@@ -52,21 +52,3 @@ export function Display({ children, level = 'h2', size = 'lg', italic = false, c
     <Tag className={cn('font-serif font-light', SIZE_CLASSES[size], italic && 'italic', className)}>{children}</Tag>
   );
 }
-
-/**
- * Fragmento cursivo con degradado de texto oro→teal→lavanda (patrón
- * `heroTitleEm`). Pensado como hijo inline de `Display`, no como componente
- * de nivel de bloque.
- */
-export function GradientText({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <em
-      className={cn(
-        'bg-[linear-gradient(100deg,var(--color-gold),var(--color-teal)_55%,var(--color-lav))] bg-clip-text italic text-transparent',
-        className,
-      )}
-    >
-      {children}
-    </em>
-  );
-}

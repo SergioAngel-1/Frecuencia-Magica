@@ -31,7 +31,7 @@ interface SectionHeadingProps {
 export function SectionHeading({ kicker, title, action, align = 'start', kickerTone, className }: SectionHeadingProps) {
   if (align === 'center') {
     return (
-      <div className={cn('mb-9 flex flex-col items-center gap-2 text-center', className)}>
+      <div className={cn('mb-11 flex flex-col items-center gap-2 text-center', className)}>
         <Kicker tone={kickerTone} spacing="widest">
           {kicker}
         </Kicker>
