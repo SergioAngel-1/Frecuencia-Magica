@@ -6,7 +6,7 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 |---|---------|-----------|--------|-------|
 | 1 | Cabecera, restricciones y estructura | Contrato del proyecto + árbol de `frontend/src` | ✅ Completada | 2026-07-28 |
 | 2 | Fases 0–2 | Fundaciones, sistema de diseño, i18n y datos | ✅ Completada | 2026-07-28 |
-| 3 | Fase 3 | Motor del mundo (canvas, cursor, audio, portal) | ⬜ Pendiente | — |
+| 3 | Fase 3 | Motor del mundo (canvas, cursor, audio, portal) | ✅ Completada | 2026-07-28 |
 | 4 | Fases 4–5 | UI Kit y layout | ⬜ Pendiente | — |
 | 5 | Fases 6–8 | Portal, Home, Descúbrete | ⬜ Pendiente | — |
 | 6 | Fases 9–11 | Biblioteca, Academia, Experiencias | ⬜ Pendiente | — |
@@ -75,6 +75,40 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 
 - `academy.lessonTitles` (Task 10.2) y `store.productSections` (Task 12.3): su copy se escribe cuando se construyen esas vistas.
 - Los horarios de reserva viven como datos en `lib/booking/dates.ts` (Task 11.2), no en los catálogos de mensajes.
+
+---
+
+## Sección 3 — Fase 3 · Motor del mundo
+
+**Entregado** (9 tareas, 9 commits atómicos)
+
+- **3.1 Contexto de realm.** `realmFromPathname` (función pura, mapea el segmento crudo de la URL a `RealmId` en ES y EN, sin tocar texto traducido), `<RealmProvider>` (deriva el realm de la ruta, memoiza el contexto y escribe `--realm-accent` en el `<html>`) y `useRealm()`. 7 tests.
+- **3.2 Canvas cósmico.** Helpers puros `hexToRgb`, `createStars`, `createParticles`, `advanceParticle` (rangos exactos del prototipo, aleatoriedad inyectada) y `<CosmicCanvas>`: 220 estrellas, 54 partículas, 3 nebulosas a la deriva, `dpr` capado a 2, pausa con pestaña oculta, recoloreado por realm sin regenerar, y un solo frame quieto con movimiento reducido. 7 tests.
+- **3.3 Nebulosas DOM y figuras de marca.** `<NebulaLayer>` (tres blobs difuminados + viñeta) y `<BrandFigures>` (dos aros de esquina + cuatro destellos), decorativos y `aria-hidden`.
+- **3.4 Cursor luminoso.** `<LuminousCursor>`: punto instantáneo por escritura directa al DOM, anillo con estela en su propio rAF (lerp 0.14), crecimiento sobre `[data-magnetic], a, button`, sin montar en táctil, sin estela con movimiento reducido.
+- **3.5 Audio ambiental.** `baseNoteForRealm`/`voiceFrequencies` (5 tests), `useAmbientStore` (persistido en `fm.ambient`, arranca apagado), `createDrone` (grafo Web Audio: 3 osciladores → filtro paso-bajo → maestro con LFO de respiración; `retune` con constante 2) y `useAmbientAudio()` (contexto perezoso, degrada en silencio).
+- **3.6 Transición de portal.** `usePortalStore` (`idle`→`in`→`out`→`idle`, coreografía fija 1000/1900 ms de `PORTAL_TIMING`, no reinicia en marcha; 5 tests), `<PortalTransition>` (círculo gigante + núcleo + anillos + geometría sagrada; fundido simple con movimiento reducido) y `<PortalAnnouncer>` (región `aria-live`).
+- **3.7 Componentes de mundo.** `<OrbitalRings>` (+ `.Node`), `<WaveSeparator>`, `<RealmGlyph>`, `<Halo>`: las cuatro piezas que se repiten en el prototipo, factorizadas.
+- **3.8 Scroll suave.** `<SmoothScroll>` con Lenis (easing exponencial): sin instanciar con movimiento reducido ni en portal/acceso, scroll-to-top al cambiar de ruta.
+- **3.9 Ensamblaje.** `<WorldEngine>` compone todas las capas y activa `useAmbientAudio`; el layout de locale envuelve con `RealmProvider → SmoothScroll` y `<main>` en `z-100`.
+
+**Verificación**
+
+`lint`, `typecheck`, `test` (60 casos en 11 ficheros, +24 de esta fase) y `build`, todos en verde. Comprobado sobre el servidor de producción: el HTML de `/` sirve ya el motor (canvas, capas `aria-hidden`, `<main z-100>`); `/es` y `/en` con su `lang` correcto y `/fr` devuelve 404. First-load JS de `/[locale]`: 142 kB (antes 124 kB; +18 kB por motor + Lenis + Zustand), muy por debajo del presupuesto de 200 kB.
+
+**Desviaciones del plan, con motivo**
+
+1. **`OrbitalRings` usa un `viewBox` autoajustado al radio mayor** (centrado en el origen), no el `viewBox="0 0 200 200"` fijo que citaba el plan. Sus propios casos de referencia (radios 300/240/192) no caben en 200; el autoajuste los expresa todos con una implementación y facilita colocar los nodos con `cos/sin`.
+2. **`OrbitalRings.Node` recibe `radius`** además de `angle/color/size`: un nodo necesita saber sobre qué aro se sienta. La firma del plan lo omitía.
+3. **`advanceParticle(p, random = Math.random)`** acepta la aleatoriedad como segundo parámetro opcional: mantiene la firma `advanceParticle(p)` del plan y el determinismo salvo en la `x` de reaparición, que es la única parte no determinista.
+4. **Polyfill de `localStorage` en `tests/setup.ts`.** happy-dom no lo expone como global en este entorno y los stores persistidos (`fm.ambient` ahora; carrito y diario después) fallaban al hacer `set`. Se añade una vez para toda la fase futura.
+5. **Añadido `<PortalAnnouncer>` como componente aparte** del overlay: la región `aria-live` debe quedar fuera del `aria-hidden` del overlay para que se lea. Queda montada y lista; el destino real se cablea en la Fase 6.
+6. **La página del portal pasa de `<main>` a `<div>`.** El layout ahora posee el landmark `<main>` (Task 3.9 · Paso 2); mantener el `<main>` de la página habría anidado dos landmarks. Consistente con la dirección de la Fase 5.
+
+**No entregado (pertenece a fases posteriores)**
+
+- Página de sandbox de verificación visual (Task 3.7 · Paso 4): andamiaje opcional; se omitió para no ensuciar el árbol. La comprobación visual lado a lado se hará con las vistas reales en sus fases.
+- Cableado del destino real de `PortalAnnouncer` y disparo del cruce (`useCrossPortal`): pertenece a la Fase 6.
 
 ---
 
