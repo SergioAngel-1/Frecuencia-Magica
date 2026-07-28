@@ -1,6 +1,6 @@
 'use client';
 
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, MouseEvent as ReactMouseEvent, ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
 import { Magnetic } from './magnetic';
@@ -19,6 +19,10 @@ interface IconButtonOwnProps {
   size?: IconButtonSize;
   /** Estado activo (p. ej. el icono de sesión mientras estás en `/acceso`). */
   active?: boolean;
+  /**
+   * Aspecto normal más pulso de luz (`animate-fm-glow`); pone `aria-busy` y
+   * bloquea el click, pero NO aplica la opacidad de `disabled`.
+   */
   loading?: boolean;
 }
 
@@ -47,6 +51,13 @@ const SURFACE_SIZE_CLASSES: Record<IconButtonSize, string> = {
  * Mismos seis estados que `Button` (default/hover/focus/pressed/loading/
  * disabled) y el mismo contrato de magnetismo: el contenido se envuelve en
  * `Magnetic` salvo que `disabled` sea verdadero.
+ *
+ * `disabled` y `loading` son estados independientes (ver el mismo comentario
+ * en `button.tsx`): la opacidad reducida y la anulación de puntero se
+ * calculan con clases explícitas — nunca con `:disabled`/`group-disabled` —
+ * para que `disabled` sea el único que apaga visualmente el control y
+ * `loading` sólo bloquee el click (por puntero y por teclado, vía
+ * `handleClick`) manteniendo el aspecto normal más el pulso de luz.
  */
 export function IconButton({
   children,
@@ -57,16 +68,26 @@ export function IconButton({
   disabled = false,
   className,
   type = 'button',
+  onClick,
   ...rest
 }: IconButtonProps) {
+  const handleClick = (event: ReactMouseEvent<HTMLButtonElement>): void => {
+    if (disabled || loading) {
+      event.preventDefault();
+      return;
+    }
+    onClick?.(event);
+  };
+
   const surface = (
     <span
       aria-hidden="true"
       className={cn(
         'inline-flex items-center justify-center rounded-full border backdrop-blur-[10px]',
-        'transition-all duration-300 ease-out group-active:scale-[0.98] group-disabled:opacity-45',
+        'transition-[color,background-color,border-color,box-shadow,opacity] duration-300 ease-out group-active:scale-[0.98]',
         SURFACE_SIZE_CLASSES[size],
         loading && 'animate-fm-glow',
+        disabled && 'opacity-45',
         active
           ? 'border-[rgba(216,185,120,0.6)] bg-[rgba(216,185,120,0.18)] text-gold'
           : 'border-glass-brd bg-glass text-ivory group-hover:bg-[rgba(247,244,234,0.09)] group-hover:border-[rgba(216,185,120,0.4)]',
@@ -82,9 +103,11 @@ export function IconButton({
       aria-label={label}
       aria-busy={loading}
       aria-pressed={active}
-      disabled={disabled || loading}
+      disabled={disabled}
+      onClick={handleClick}
       className={cn(
-        'group relative inline-flex items-center justify-center disabled:pointer-events-none',
+        'group relative inline-flex items-center justify-center',
+        (disabled || loading) && 'pointer-events-none',
         HIT_AREA_CLASSES[size],
         className,
       )}

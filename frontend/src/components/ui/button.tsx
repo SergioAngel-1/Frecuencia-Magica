@@ -1,6 +1,13 @@
 'use client';
 
-import { cloneElement, isValidElement, type ButtonHTMLAttributes, type ReactElement, type ReactNode } from 'react';
+import {
+  cloneElement,
+  isValidElement,
+  type ButtonHTMLAttributes,
+  type MouseEvent as ReactMouseEvent,
+  type ReactElement,
+  type ReactNode,
+} from 'react';
 
 import { cn } from '@/lib/cn';
 import { Magnetic } from './magnetic';
@@ -16,7 +23,11 @@ interface ButtonOwnProps {
   tone?: ButtonTone;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
-  /** Pulso de luz en vez de contenido normal; pone `aria-busy` e inhabilita el botón. */
+  /**
+   * Aspecto normal más pulso de luz (`animate-fm-glow`) sobre la etiqueta;
+   * pone `aria-busy` y bloquea el click, pero NO aplica la opacidad de
+   * `disabled` — ver el comentario de `Button` para el detalle.
+   */
   loading?: boolean;
   /**
    * Traslada el estilo y el comportamiento del botón a su único hijo (p. ej.
@@ -44,10 +55,19 @@ interface SlotProps {
  * serif con tracking amplio, altura mínima de hit target y transición de
  * .3s para los estados. El foco visible lo aporta ya la regla global
  * `:focus-visible` de `globals.css`; aquí no se toca `outline`.
+ *
+ * La transición enumera sólo color/fondo/borde/sombra/opacidad — nunca
+ * `all`: `backdrop-filter` (variante `glass`) y propiedades de layout quedan
+ * fuera a propósito. El transform lo anima el muelle de `Magnetic`.
+ *
+ * Los estados `disabled`/`loading` NO se resuelven con el pseudo-selector
+ * `:disabled` (ver `stateClasses` más abajo): así el mismo cálculo sirve
+ * tanto para el `<button>` nativo como para el hijo clonado de `asChild`,
+ * que nunca puede matchear `:disabled`.
  */
 const BASE =
-  'relative inline-flex items-center justify-center gap-2 rounded-pill font-serif tracking-[.05em] ' +
-  'transition-all duration-300 ease-out active:scale-[0.98] disabled:pointer-events-none disabled:opacity-45';
+  'relative inline-flex items-center justify-center rounded-pill font-serif tracking-[.05em] ' +
+  'transition-[color,background-color,border-color,box-shadow,opacity] duration-300 ease-out active:scale-[0.98]';
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
   sm: 'min-h-11 px-[clamp(18px,3vw,26px)] py-[clamp(8px,1.2vw,11px)] text-[17px]',
@@ -84,12 +104,17 @@ const ACCENT_TONE_CLASSES: Record<ButtonTone, string> = {
  * hover, focus, pressed, loading, disabled).
  *
  * El contenido va siempre envuelto en `Magnetic` salvo que `disabled` sea
- * verdadero (paso 6 del brief). Durante `loading` el botón queda
- * nativamente `disabled` — evita doble envío y, de paso, silencia el
- * magnetismo (el navegador no despacha `pointermove` dentro de un elemento
- * deshabilitado) sin necesidad de una prop aparte para ello. La opacidad
- * reducida es exclusiva de `disabled`: un botón "loading" sigue con su
- * aspecto normal salvo por el pulso de luz.
+ * verdadero (paso 6 del brief).
+ *
+ * `disabled` y `loading` son estados independientes, no un único apagado:
+ * - `disabled` aplica la opacidad reducida (.45) y anula los eventos de
+ *   puntero, vía clases explícitas — nunca vía `:disabled` — para que el
+ *   mismo cálculo funcione también en el hijo clonado de `asChild`.
+ * - `loading` mantiene el aspecto normal (más el pulso `animate-fm-glow`
+ *   sobre la etiqueta) y pone `aria-busy`. Bloquea el click — tanto por
+ *   puntero como por teclado — mediante `handleClick` y anula los eventos
+ *   de puntero de paso (silencia el magnetismo), pero sin la opacidad de
+ *   `disabled`.
  */
 export function Button({
   variant = 'primary',
@@ -103,13 +128,26 @@ export function Button({
   className,
   children,
   type = 'button',
+  onClick,
   ...rest
 }: ButtonProps) {
   const variantClasses = variant === 'accent' ? cn('border', ACCENT_TONE_CLASSES[tone], 'text-ivory') : VARIANT_CLASSES[variant];
-  const classes = cn(BASE, SIZE_CLASSES[size], variantClasses, className);
+  // Estado explícito, no pseudo-clase: `disabled` trae opacidad + anula
+  // puntero; `loading` sólo anula puntero (el click además se bloquea en
+  // `handleClick`, que también cubre la activación por teclado).
+  const stateClasses = cn(loading && !disabled && 'pointer-events-none', disabled && 'pointer-events-none opacity-45');
+  const classes = cn(BASE, SIZE_CLASSES[size], variantClasses, stateClasses, className);
+
+  const handleClick = (event: ReactMouseEvent<HTMLButtonElement>): void => {
+    if (disabled || loading) {
+      event.preventDefault();
+      return;
+    }
+    onClick?.(event);
+  };
 
   const buildContent = (label: ReactNode) => (
-    <>
+    <span className="inline-flex items-center gap-2">
       {iconLeft ? (
         <span aria-hidden="true" className="inline-flex shrink-0 items-center">
           {iconLeft}
@@ -121,7 +159,7 @@ export function Button({
           {iconRight}
         </span>
       ) : null}
-    </>
+    </span>
   );
 
   if (asChild) {
@@ -131,14 +169,19 @@ export function Button({
 
     return cloneElement(child, {
       ...rest,
+      onClick: handleClick,
       className: cn(classes, child.props.className),
       'aria-busy': loading,
+      // El hijo clonado (p. ej. un `Link`) no puede matchear `:disabled` ni
+      // recibir el atributo nativo: se anuncia vía `aria-disabled` y se
+      // corta la interacción con las clases explícitas de `stateClasses`.
+      'aria-disabled': disabled ? true : undefined,
       children: disabled ? buildContent(child.props.children) : <Magnetic>{buildContent(child.props.children)}</Magnetic>,
     });
   }
 
   return (
-    <button type={type} disabled={disabled || loading} aria-busy={loading} className={classes} {...rest}>
+    <button type={type} disabled={disabled} aria-busy={loading} onClick={handleClick} className={classes} {...rest}>
       {disabled ? buildContent(children) : <Magnetic>{buildContent(children)}</Magnetic>}
     </button>
   );
