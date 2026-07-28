@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
+import { RealmFooter, RealmNav, RouteTransition, SiteHeader } from '@/components/layout';
 import { RealmProvider } from '@/components/world/realm-provider';
 import { SmoothScroll } from '@/components/world/smooth-scroll';
 import { WorldEngine } from '@/components/world/world-engine';
@@ -56,7 +57,12 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           <RealmProvider>
             <SmoothScroll>
               <WorldEngine />
-              <main className="relative z-[100]">{children}</main>
+              <SiteHeader />
+              <RealmNav />
+              <main id="contenido" className="relative z-[100]">
+                <RouteTransition>{children}</RouteTransition>
+                <RealmFooter />
+              </main>
             </SmoothScroll>
           </RealmProvider>
         </NextIntlClientProvider>

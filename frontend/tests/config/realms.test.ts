@@ -73,4 +73,33 @@ describe('configuración de realms', () => {
   it('getRealm devuelve el realm pedido', () => {
     expect(getRealm('academia').accent).toBe('#96C6BC');
   });
+
+  it('cada realm declara su ruta', () => {
+    const esperado: Record<string, string> = {
+      portal: '/',
+      home: '/inicio',
+      auth: '/acceso',
+      descubrete: '/descubrete',
+      biblioteca: '/biblioteca',
+      academia: '/academia',
+      experiencias: '/experiencias',
+      tienda: '/tienda',
+      sanctuario: '/mi-santuario',
+    };
+
+    for (const realm of REALMS) {
+      expect(realm.href).toBe(esperado[realm.id]);
+    }
+  });
+
+  it('la ruta de cada realm resuelve de vuelta a ese realm', async () => {
+    // Invariante que impide que el mapa de rutas y el mapeo inverso que usa
+    // el contexto de realm se desincronicen: si alguien cambia un segmento
+    // en un sitio y no en el otro, este test cae.
+    const { realmFromPathname } = await import('@/lib/realm-from-pathname');
+
+    for (const realm of REALMS) {
+      expect(realmFromPathname(realm.href), `ida y vuelta rota en ${realm.id}`).toBe(realm.id);
+    }
+  });
 });

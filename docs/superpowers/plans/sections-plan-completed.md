@@ -7,7 +7,7 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 | 1 | Cabecera, restricciones y estructura | Contrato del proyecto + árbol de `frontend/src` | ✅ Completada | 2026-07-28 |
 | 2 | Fases 0–2 | Fundaciones, sistema de diseño, i18n y datos | ✅ Completada | 2026-07-28 |
 | 3 | Fase 3 | Motor del mundo (canvas, cursor, audio, portal) | ✅ Completada | 2026-07-28 |
-| 4 | Fases 4–5 | UI Kit y layout | 🟡 Fase 4 completada · Fase 5 pendiente | 2026-07-28 |
+| 4 | Fases 4–5 | UI Kit y layout | ✅ Completada | 2026-07-28 |
 | 5 | Fases 6–8 | Portal, Home, Descúbrete | ⬜ Pendiente | — |
 | 6 | Fases 9–11 | Biblioteca, Academia, Experiencias | ⬜ Pendiente | — |
 | 7 | Fases 12–14 | Tienda, Acceso, Mi Santuario | ⬜ Pendiente | — |
@@ -140,9 +140,33 @@ Revisado y correcto. Ningún componente de `ui/` importa de `data/`, `stores/` n
 2. **`/kit` se añadió al mapa de `pathnames`** con el mismo segmento en ambos idiomas, para que la ruta se comporte igual que el resto bajo el middleware de next-intl.
 3. **El copy del catálogo va en castellano dentro del componente.** Es la única excepción a la regla de no hardcodear texto, y se sostiene porque la página nunca se sirve en producción: es una herramienta de desarrollo, no una vista de producto.
 
-**Pendiente de la Sección 4**
+---
 
-La Fase 5 completa (header, navegación de constelación, footer, shell de página y transiciones de ruta).
+## Sección 4 — Fase 5 (Layout y navegación)
+
+**Entregado**
+
+- **5.1 Header.** `SiteHeader` fijo con `pointer-events-none` en el contenedor y `auto` sólo en los controles, de modo que flote sin bloquear el contenido. Dentro: `BrandMark` (wordmark oculto por debajo de 768px), `LanguageToggle`, `AudioToggle` y `SessionLink`. Añadido un enlace «Saltar al contenido» como primer elemento enfocable.
+- **5.2 Navegación de constelación.** `RealmNav`: seis puntos de luz con badge que emerge al acercarse. Columna lateral desde 1024px, barra inferior por debajo (con `env(safe-area-inset-bottom)`). Oculta en portal y acceso.
+- **5.3 Footer.** `SiteFooter` con columnas y `NewsletterForm` con confirmación temporal y región `aria-live`. `RealmFooter` decide dónde aparece.
+- **5.4 Shell y transiciones.** `PageShell` con los siete anchos reales del prototipo nombrados por uso, y `RouteTransition` con fundido de sólo opacidad.
+- **Rutas.** Las ocho rutas de realm existen con copy definitivo y metadata traducida, a la espera de su vista completa.
+
+**Verificación**
+
+`lint`, `typecheck`, `test` (66 casos, +2 de esta fase), `format:check` y `build`, todos en verde; 18 rutas prerenderizadas en ambos idiomas. Sobre el servidor: los cuatro landmarks presentes, los seis enlaces de navegación a 44px con `aria-current` en el activo, y el conmutador de idioma probado con clic real — `/biblioteca` lleva a `/en/library` y relocaliza toda la navegación. Reglas de visibilidad confirmadas ruta por ruta: portal y acceso sin nav ni footer; descúbrete y santuario con nav y sin footer; biblioteca con ambos.
+
+**Decisiones acertadas del código heredado**
+
+`SessionLink` no reutiliza `IconButton` a propósito: es una navegación, no un conmutador, así que emite `aria-current` en vez de `aria-pressed` y replica la superficie a mano. Y se añadió `href` a `Realm` con un test de ida y vuelta contra `realmFromPathname`, que impide que el mapa de rutas y el mapeo inverso se desincronicen.
+
+**Una falsa alarma, documentada para no repetirla**
+
+La comprobación del badge de navegación con foco de teclado dio negativa, y el diagnóstico apuntaba a un fallo de accesibilidad. No lo era: una regla `!important` **estática** inyectada tampoco alteraba el valor computado, lo que demuestra que `getComputedStyle` devuelve valores cacheados cuando el panel del navegador no está compositando. **Las pseudo-clases dinámicas (`:hover`, `:focus-visible`) no se pueden verificar por medición en ese entorno**; hay que hacerlo a ojo o en la auditoría manual de la Fase 16. El CSS quedó validado por inspección: clases presentes en el DOM, reglas generadas con el selector correcto, dentro de `@layer utilities` y en el orden debido.
+
+**Deuda anotada para la Fase 16**
+
+El *first load JS* por ruta es de **212 kB**, por encima del presupuesto de 200 kB de la Task 16.4. Reparto: 115 kB compartidos y ~97 kB del layout cliente. El principal candidato es Motion, que entra completo por `RouteTransition` y `Magnetic`; migrar a `LazyMotion` con `domAnimation` es la palanca evidente. No se toca ahora porque es exactamente el trabajo que la Task 16.4 tiene programado, y hacerlo aquí sería ensanchar el alcance.
 
 ---
 

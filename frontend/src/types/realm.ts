@@ -12,6 +12,11 @@ export type RealmId =
 
 export type Realm = {
   id: RealmId;
+  /**
+   * Pathname interno del realm. Es una clave del mapa `pathnames` de
+   * next-intl, así que el `Link` lo traduce al segmento de cada idioma.
+   */
+  href: string;
   /** Acento en hexadecimal. Recolorea el canvas cósmico y la nebulosa. */
   accent: string;
   /** Variable CSS equivalente al acento, para usarlo desde estilos. */
