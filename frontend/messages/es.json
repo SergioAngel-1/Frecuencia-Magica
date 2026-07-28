@@ -464,6 +464,7 @@
     "title": "Tu carrito",
     "thanks": "Gracias",
     "quantity": "Cantidad {count}",
+    "items": "{count, plural, one {# artículo} other {# artículos}}",
     "increase": "Añadir una unidad",
     "decrease": "Quitar una unidad",
     "summary": "Resumen",
@@ -540,6 +541,9 @@
     "errorTitle": "Algo se desalineó",
     "errorBody": "La frecuencia se perdió un momento. Respira e inténtalo otra vez.",
     "errorCta": "Reintentar",
-    "offline": "Estás sin conexión. El santuario te espera cuando vuelvas."
+    "offline": "Estás sin conexión. El santuario te espera cuando vuelvas.",
+    "payFailedTitle": "El pago no se completó",
+    "payFailedBody": "Nada se ha cargado todavía. Respira e inténtalo de nuevo cuando quieras.",
+    "payFailedCta": "Intentar de nuevo"
   }
 }

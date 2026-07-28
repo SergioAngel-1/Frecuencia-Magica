@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { CartView } from '@/components/features/store';
+import { CheckoutView } from '@/components/features/store';
 import { PageShell } from '@/components/layout';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 
@@ -18,7 +18,7 @@ export default async function CartPage({ params }: PageProps) {
 
   return (
     <PageShell width="form">
-      <CartView />
+      <CheckoutView />
     </PageShell>
   );
 }

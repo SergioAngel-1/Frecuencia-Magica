@@ -4,7 +4,7 @@ import type { Product } from '@/types/content';
 
 import { useTranslations } from 'next-intl';
 
-import { Button, GlassPanel, Kicker } from '@/components/ui';
+import { Button, EmptyState, GlassPanel, Kicker } from '@/components/ui';
 import { PRODUCTS } from '@/data';
 import { Link } from '@/i18n/navigation';
 import { cartLines, cartCount } from '@/lib/cart/totals';
@@ -59,7 +59,11 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
   );
 }
 
-export function CartView() {
+type CartViewProps = {
+  onPlaceOrder?: () => void;
+};
+
+export function CartView({ onPlaceOrder }: CartViewProps) {
   const t = useTranslations('cart');
   const items = useCartStore((s) => s.items);
   const lines = cartLines(items, PRODUCTS);
@@ -67,15 +71,14 @@ export function CartView() {
 
   if (count === 0) {
     return (
-      <div className="flex flex-col items-center gap-4 py-20 text-center">
-        <Kicker tone="gold" spacing="widest">
-          {t('title')}
-        </Kicker>
-        <p className="font-serif text-[20px] text-ivory/60">{t('empty.text')}</p>
-        <Button variant="outline" asChild>
-          <Link href="/tienda">{t('empty.cta')}</Link>
-        </Button>
-      </div>
+      <EmptyState
+        title={t('empty.text')}
+        action={
+          <Button variant="outline" asChild>
+            <Link href="/tienda">{t('empty.cta')}</Link>
+          </Button>
+        }
+      />
     );
   }
 
@@ -87,7 +90,7 @@ export function CartView() {
             {t('title')}
           </Kicker>
           <span className="font-sans text-[12px] tracking-[.14em] text-ivory/40">
-            {count} {count === 1 ? 'artículo' : 'artículos'}
+            {t('items', { count })}
           </span>
         </div>
         <div className="space-y-3">
@@ -98,7 +101,7 @@ export function CartView() {
       </div>
 
       <div>
-        <OrderSummary items={items} />
+        <OrderSummary items={items} onPlaceOrder={onPlaceOrder} />
       </div>
     </div>
   );

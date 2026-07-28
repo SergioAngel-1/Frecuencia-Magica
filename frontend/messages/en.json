@@ -464,6 +464,7 @@
     "title": "Your cart",
     "thanks": "Thank you",
     "quantity": "Qty {count}",
+    "items": "{count, plural, one {# item} other {# items}}",
     "increase": "Add one unit",
     "decrease": "Remove one unit",
     "summary": "Summary",
@@ -540,6 +541,9 @@
     "errorTitle": "Something fell out of alignment",
     "errorBody": "The frequency was lost for a moment. Breathe and try again.",
     "errorCta": "Try again",
-    "offline": "You are offline. The sanctuary awaits your return."
+    "offline": "You are offline. The sanctuary awaits your return.",
+    "payFailedTitle": "The payment did not go through",
+    "payFailedBody": "Nothing has been charged yet. Breathe and try again whenever you're ready.",
+    "payFailedCta": "Try again"
   }
 }
