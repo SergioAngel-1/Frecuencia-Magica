@@ -44,7 +44,11 @@ export function StepProgress(props: StepProgressProps) {
     const segments = Array.from({ length: props.steps }, (_, index) => index);
 
     return (
-      <div role="group" aria-label={ariaLabel} className={cn('flex justify-center gap-2', className)}>
+      <div
+        role="group"
+        aria-label={ariaLabel}
+        className={cn('flex justify-center gap-2', className)}
+      >
         {segments.map((index) => (
           <span
             key={index}
@@ -65,11 +69,14 @@ export function StepProgress(props: StepProgressProps) {
         <div key={label} className="flex-1 text-center">
           <div
             aria-hidden="true"
-            className={cn('mb-[10px] h-[3px] rounded-[2px] transition-colors duration-500', index <= current ? 'bg-lav' : DIM_BG)}
+            className={cn(
+              'mb-[10px] h-[3px] rounded-[2px] transition-colors duration-500',
+              index <= current ? 'bg-lav' : DIM_BG,
+            )}
           />
           <span
             className={cn(
-              'font-sans text-[11px] uppercase tracking-[.14em]',
+              'font-sans text-[11px] tracking-[.14em] uppercase',
               index === current ? 'text-ivory' : 'text-ivory/50',
             )}
           >

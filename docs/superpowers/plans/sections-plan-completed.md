@@ -7,7 +7,7 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 | 1 | Cabecera, restricciones y estructura | Contrato del proyecto + árbol de `frontend/src` | ✅ Completada | 2026-07-28 |
 | 2 | Fases 0–2 | Fundaciones, sistema de diseño, i18n y datos | ✅ Completada | 2026-07-28 |
 | 3 | Fase 3 | Motor del mundo (canvas, cursor, audio, portal) | ✅ Completada | 2026-07-28 |
-| 4 | Fases 4–5 | UI Kit y layout | ⬜ Pendiente | — |
+| 4 | Fases 4–5 | UI Kit y layout | 🟡 Fase 4 completada · Fase 5 pendiente | 2026-07-28 |
 | 5 | Fases 6–8 | Portal, Home, Descúbrete | ⬜ Pendiente | — |
 | 6 | Fases 9–11 | Biblioteca, Academia, Experiencias | ⬜ Pendiente | — |
 | 7 | Fases 12–14 | Tienda, Acceso, Mi Santuario | ⬜ Pendiente | — |
@@ -109,6 +109,40 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 
 - Página de sandbox de verificación visual (Task 3.7 · Paso 4): andamiaje opcional; se omitió para no ensuciar el árbol. La comprobación visual lado a lado se hará con las vistas reales en sus fases.
 - Cableado del destino real de `PortalAnnouncer` y disparo del cruce (`useCrossPortal`): pertenece a la Fase 6.
+
+---
+
+## Sección 4 — Fase 4 (UI Kit)
+
+Las tareas 4.1 a 4.5 se ejecutaron en una sesión previa; 4.6, 4.7 y 4.8 en esta.
+
+**Auditoría de lo ya implementado (4.1–4.5)**
+
+Revisado y correcto. Ningún componente de `ui/` importa de `data/`, `stores/` ni `i18n/`; ningún fichero supera las 200 líneas; los valores (radios, opacidades, gradientes, `clamp`) coinciden con el prototipo; los hit targets usan `min-h-11`. Dos decisiones previas que conviene conservar: `Button` resuelve `disabled`/`loading` con clases explícitas en vez del pseudo-selector `:disabled`, para que el mismo cálculo sirva al hijo clonado de `asChild`; y `Band` aísla su contenido con `z-10` sobre las capas de luz. Lo único en rojo era el formato de Prettier en nueve ficheros, ya corregido.
+
+**Entregado en esta sesión**
+
+- **4.6** — `Equalizer` con las alturas y los retardos desordenados del prototipo (lo que evita que las barras suban en ola), y `FrequencyDisc`, la pieza identitaria: una sola implementación cubre las tres escalas —pequeño flotante, medio en rejilla y destacado— con halo, aros contrarrotados, cifra de frecuencia, ecualizador y botón de play.
+- **4.7** — `Skeleton` (cuatro variantes), `LoadingOrb` (tres tonos, más modo de confirmación sin `role="status"`), `EmptyState` con constelación dormida y `ErrorState` con el aro partido. Ningún spinner.
+- **4.8** — Barrels de `ui/` y `world/`, y catálogo interno con las siete familias, cada variante y cada estado.
+
+**Verificación**
+
+`lint`, `typecheck`, `test` (64 casos), `format:check` y `build`, todos en verde. Sobre el catálogo servido: 25 botones y **ninguno por debajo de 44px**, todos los SVG decorativos con `aria-hidden`, `role` correcto en progressbar, status, alert y tablist, y cero desbordamiento horizontal.
+
+**Un fallo encontrado y corregido**
+
+`FrequencyDisc` pasaba a `OrbitalRings` un tamaño fijo en píxeles. En pantallas estrechas el disco se clampa con `max-width`, pero los aros mantenían su tamaño y se salían del círculo: con un marco de 300px los aros medían 368 y 413px. Ahora se dimensionan al 100% del contenedor y escalan con él. Verificado midiendo el disco a 380px y a 300px.
+
+**Desviaciones del plan, con motivo**
+
+1. **El catálogo vive en `kit/`, no en `_kit/`.** En el App Router las carpetas con guión bajo son privadas y **no generan ruta**: la página del plan nunca habría sido accesible. Se cierra en producción con `notFound()` y lleva `robots: noindex`.
+2. **`/kit` se añadió al mapa de `pathnames`** con el mismo segmento en ambos idiomas, para que la ruta se comporte igual que el resto bajo el middleware de next-intl.
+3. **El copy del catálogo va en castellano dentro del componente.** Es la única excepción a la regla de no hardcodear texto, y se sostiene porque la página nunca se sirve en producción: es una herramienta de desarrollo, no una vista de producto.
+
+**Pendiente de la Sección 4**
+
+La Fase 5 completa (header, navegación de constelación, footer, shell de página y transiciones de ruta).
 
 ---
 

@@ -58,7 +58,7 @@ export function Field({ label, htmlFor, error, hint, children, className }: Fiel
       <label
         htmlFor={htmlFor}
         className={cn(
-          'mb-[7px] font-sans text-[11px] uppercase tracking-[.14em]',
+          'mb-[7px] font-sans text-[11px] tracking-[.14em] uppercase',
           error ? 'text-warn' : 'text-[rgba(247,244,234,0.55)]',
         )}
       >
@@ -68,7 +68,10 @@ export function Field({ label, htmlFor, error, hint, children, className }: Fiel
       {messageId ? (
         <p
           id={messageId}
-          className={cn('mt-[7px] font-sans text-[13px]', error ? 'text-warn' : 'text-[rgba(247,244,234,0.55)]')}
+          className={cn(
+            'mt-[7px] font-sans text-[13px]',
+            error ? 'text-warn' : 'text-[rgba(247,244,234,0.55)]',
+          )}
         >
           {error ?? hint}
         </p>

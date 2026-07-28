@@ -39,8 +39,14 @@ export function Stat({ value, label, tone = 'gold', size = 'hero', className }: 
 
   return (
     <div className={className}>
-      <p className={cn('font-serif font-light leading-none', sizeClasses.value, TONE_CLASSES[tone])}>{value}</p>
-      <p className={cn('font-sans uppercase text-[rgba(247,244,234,0.55)]', sizeClasses.label)}>{label}</p>
+      <p
+        className={cn('font-serif leading-none font-light', sizeClasses.value, TONE_CLASSES[tone])}
+      >
+        {value}
+      </p>
+      <p className={cn('font-sans text-[rgba(247,244,234,0.55)] uppercase', sizeClasses.label)}>
+        {label}
+      </p>
     </div>
   );
 }

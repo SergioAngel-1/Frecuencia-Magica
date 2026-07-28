@@ -78,7 +78,7 @@ export function SegmentedControl<Value extends string = string>({
       role="tablist"
       aria-label={ariaLabel}
       className={cn(
-        'flex max-w-[340px] gap-[6px] rounded-pill border border-glass-brd bg-glass p-[5px] backdrop-blur-[10px]',
+        'rounded-pill border-glass-brd bg-glass flex max-w-[340px] gap-[6px] border p-[5px] backdrop-blur-[10px]',
         className,
       )}
     >
@@ -98,9 +98,11 @@ export function SegmentedControl<Value extends string = string>({
             onClick={() => onChange(option.value)}
             onKeyDown={(event) => handleKeyDown(event, index)}
             className={cn(
-              'min-h-11 flex-1 rounded-pill py-[11px] font-serif text-[18px] tracking-[.04em]',
+              'rounded-pill min-h-11 flex-1 py-[11px] font-serif text-[18px] tracking-[.04em]',
               'transition-colors duration-300 ease-out',
-              active ? 'bg-[rgba(216,185,120,0.16)] text-ivory' : 'bg-transparent text-[rgba(247,244,234,0.55)]',
+              active
+                ? 'text-ivory bg-[rgba(216,185,120,0.16)]'
+                : 'bg-transparent text-[rgba(247,244,234,0.55)]',
             )}
           >
             {option.label}

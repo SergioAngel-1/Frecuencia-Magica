@@ -131,11 +131,17 @@ export function Button({
   onClick,
   ...rest
 }: ButtonProps) {
-  const variantClasses = variant === 'accent' ? cn('border', ACCENT_TONE_CLASSES[tone], 'text-ivory') : VARIANT_CLASSES[variant];
+  const variantClasses =
+    variant === 'accent'
+      ? cn('border', ACCENT_TONE_CLASSES[tone], 'text-ivory')
+      : VARIANT_CLASSES[variant];
   // Estado explícito, no pseudo-clase: `disabled` trae opacidad + anula
   // puntero; `loading` sólo anula puntero (el click además se bloquea en
   // `handleClick`, que también cubre la activación por teclado).
-  const stateClasses = cn(loading && !disabled && 'pointer-events-none', disabled && 'pointer-events-none opacity-45');
+  const stateClasses = cn(
+    loading && !disabled && 'pointer-events-none',
+    disabled && 'pointer-events-none opacity-45',
+  );
   const classes = cn(BASE, SIZE_CLASSES[size], variantClasses, stateClasses, className);
 
   const handleClick = (event: ReactMouseEvent<HTMLButtonElement>): void => {
@@ -176,12 +182,23 @@ export function Button({
       // recibir el atributo nativo: se anuncia vía `aria-disabled` y se
       // corta la interacción con las clases explícitas de `stateClasses`.
       'aria-disabled': disabled ? true : undefined,
-      children: disabled ? buildContent(child.props.children) : <Magnetic>{buildContent(child.props.children)}</Magnetic>,
+      children: disabled ? (
+        buildContent(child.props.children)
+      ) : (
+        <Magnetic>{buildContent(child.props.children)}</Magnetic>
+      ),
     });
   }
 
   return (
-    <button type={type} disabled={disabled} aria-busy={loading} onClick={handleClick} className={classes} {...rest}>
+    <button
+      type={type}
+      disabled={disabled}
+      aria-busy={loading}
+      onClick={handleClick}
+      className={classes}
+      {...rest}
+    >
       {disabled ? buildContent(children) : <Magnetic>{buildContent(children)}</Magnetic>}
     </button>
   );

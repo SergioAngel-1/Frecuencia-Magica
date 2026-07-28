@@ -27,7 +27,10 @@ interface IconButtonOwnProps {
 }
 
 export type IconButtonProps = IconButtonOwnProps &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | keyof IconButtonOwnProps | 'aria-label'>;
+  Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    'children' | keyof IconButtonOwnProps | 'aria-label'
+  >;
 
 // El botón entero es el hit target (44px, suelo de accesibilidad). La
 // superficie glass visible es más pequeña (40px) y va centrada dentro por
@@ -89,8 +92,8 @@ export function IconButton({
         loading && 'animate-fm-glow',
         disabled && 'opacity-45',
         active
-          ? 'border-[rgba(216,185,120,0.6)] bg-[rgba(216,185,120,0.18)] text-gold'
-          : 'border-glass-brd bg-glass text-ivory group-hover:bg-[rgba(247,244,234,0.09)] group-hover:border-[rgba(216,185,120,0.4)]',
+          ? 'text-gold border-[rgba(216,185,120,0.6)] bg-[rgba(216,185,120,0.18)]'
+          : 'border-glass-brd bg-glass text-ivory group-hover:border-[rgba(216,185,120,0.4)] group-hover:bg-[rgba(247,244,234,0.09)]',
       )}
     >
       {children}

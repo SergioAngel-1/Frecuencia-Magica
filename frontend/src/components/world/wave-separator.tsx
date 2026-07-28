@@ -6,13 +6,7 @@ import type { CSSProperties } from 'react';
  *
  * Port literal de las líneas 418–425 del prototipo.
  */
-export function WaveSeparator({
-  className,
-  style,
-}: {
-  className?: string;
-  style?: CSSProperties;
-}) {
+export function WaveSeparator({ className, style }: { className?: string; style?: CSSProperties }) {
   return (
     <svg
       aria-hidden="true"

@@ -45,10 +45,18 @@ const SIZE_CLASSES: Record<DisplaySize, string> = {
  * </Display>
  * ```
  */
-export function Display({ children, level = 'h2', size = 'lg', italic = false, className }: DisplayProps) {
+export function Display({
+  children,
+  level = 'h2',
+  size = 'lg',
+  italic = false,
+  className,
+}: DisplayProps) {
   const Tag = level;
 
   return (
-    <Tag className={cn('font-serif font-light', SIZE_CLASSES[size], italic && 'italic', className)}>{children}</Tag>
+    <Tag className={cn('font-serif font-light', SIZE_CLASSES[size], italic && 'italic', className)}>
+      {children}
+    </Tag>
   );
 }

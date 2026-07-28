@@ -53,9 +53,17 @@ export function Band({ gradient, aspect = 'auto', overlay, children, className }
       className={cn('relative isolate overflow-hidden', ASPECT_CLASSES[aspect], className)}
       style={{ backgroundImage: gradient }}
     >
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ backgroundImage: LIGHT_SWEEP }} />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{ backgroundImage: LIGHT_SWEEP }}
+      />
       {overlay === 'bottom' ? (
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ backgroundImage: BOTTOM_OVERLAY }} />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{ backgroundImage: BOTTOM_OVERLAY }}
+        />
       ) : null}
       {children ? <div className="relative z-10">{children}</div> : null}
     </div>

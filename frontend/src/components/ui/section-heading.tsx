@@ -28,7 +28,14 @@ interface SectionHeadingProps {
  * la sección de realms (líneas 365–366). Ese patrón del prototipo no lleva
  * acción, así que `action` se ignora en esta variante.
  */
-export function SectionHeading({ kicker, title, action, align = 'start', kickerTone, className }: SectionHeadingProps) {
+export function SectionHeading({
+  kicker,
+  title,
+  action,
+  align = 'start',
+  kickerTone,
+  className,
+}: SectionHeadingProps) {
   if (align === 'center') {
     return (
       <div className={cn('mb-11 flex flex-col items-center gap-2 text-center', className)}>

@@ -34,7 +34,11 @@ export function ProgressBar({ value, height = 4, ariaLabel, className }: Progres
       aria-valuemin={0}
       aria-valuemax={100}
       aria-label={ariaLabel}
-      className={cn('w-full overflow-hidden rounded-[3px] bg-[rgba(247,244,234,0.14)]', HEIGHT_CLASSES[height], className)}
+      className={cn(
+        'w-full overflow-hidden rounded-[3px] bg-[rgba(247,244,234,0.14)]',
+        HEIGHT_CLASSES[height],
+        className,
+      )}
     >
       <div
         className="h-full rounded-[3px] bg-[linear-gradient(90deg,var(--color-teal),var(--color-gold))] transition-[width] duration-500 ease-out"

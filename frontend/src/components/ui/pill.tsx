@@ -12,7 +12,8 @@ interface PillOwnProps {
   className?: string;
 }
 
-export type PillProps = PillOwnProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | keyof PillOwnProps>;
+export type PillProps = PillOwnProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | keyof PillOwnProps>;
 
 /**
  * Píldora de filtro/toggle: la usa el filtro de biblioteca y el selector de
@@ -40,12 +41,12 @@ export function Pill({
       disabled={disabled}
       aria-pressed={active}
       className={cn(
-        'inline-flex min-h-11 items-center justify-center rounded-pill border font-sans text-[13px] tracking-[.08em]',
+        'rounded-pill inline-flex min-h-11 items-center justify-center border font-sans text-[13px] tracking-[.08em]',
         'px-5 py-2 transition-[color,background-color,border-color] duration-300 ease-out active:scale-[0.98]',
         disabled && 'pointer-events-none opacity-45',
         active
-          ? 'border-[rgba(216,185,120,0.55)] bg-[rgba(216,185,120,0.16)] text-ivory'
-          : 'border-[rgba(247,244,234,0.14)] bg-[rgba(247,244,234,0.04)] text-[rgba(247,244,234,0.7)] hover:bg-[rgba(247,244,234,0.08)] hover:border-[rgba(247,244,234,0.22)]',
+          ? 'text-ivory border-[rgba(216,185,120,0.55)] bg-[rgba(216,185,120,0.16)]'
+          : 'border-[rgba(247,244,234,0.14)] bg-[rgba(247,244,234,0.04)] text-[rgba(247,244,234,0.7)] hover:border-[rgba(247,244,234,0.22)] hover:bg-[rgba(247,244,234,0.08)]',
         className,
       )}
       {...rest}

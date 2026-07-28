@@ -1,6 +1,12 @@
 'use client';
 
-import { useRef, useState, useSyncExternalStore, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
+import {
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type PointerEvent as ReactPointerEvent,
+  type ReactNode,
+} from 'react';
 import { motion } from 'motion/react';
 
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
@@ -39,7 +45,11 @@ function getFinePointerServerSnapshot(): boolean {
 
 /** `true` sólo con ratón/trackpad (hover real + puntero fino). */
 function useFinePointer(): boolean {
-  return useSyncExternalStore(subscribeFinePointer, getFinePointerSnapshot, getFinePointerServerSnapshot);
+  return useSyncExternalStore(
+    subscribeFinePointer,
+    getFinePointerSnapshot,
+    getFinePointerServerSnapshot,
+  );
 }
 
 interface MagneticProps {

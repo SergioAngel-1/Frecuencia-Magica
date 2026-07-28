@@ -40,6 +40,9 @@ export const routing = defineRouting({
     '/tienda/carrito': { es: '/tienda/carrito', en: '/store/cart' },
     '/tienda/[productId]': { es: '/tienda/[productId]', en: '/store/[productId]' },
     '/mi-santuario': { es: '/mi-santuario', en: '/my-sanctuary' },
+    // Catálogo interno del UI Kit. Sólo existe en desarrollo: la página
+    // devuelve 404 en producción. Mismo segmento en ambos idiomas.
+    '/kit': '/kit',
   },
 });
 

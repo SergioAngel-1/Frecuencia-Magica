@@ -1,7 +1,6 @@
 import type { CSSProperties } from 'react';
 
-const STAR_PATH =
-  'M12 0 L13.4 10.6 L24 12 L13.4 13.4 L12 24 L10.6 13.4 L0 12 L10.6 10.6 Z';
+const STAR_PATH = 'M12 0 L13.4 10.6 L24 12 L13.4 13.4 L12 24 L10.6 13.4 L0 12 L10.6 10.6 Z';
 
 /** Los cuatro destellos de cuatro puntas, con su posición, color y ritmo. */
 type Sparkle = {
@@ -14,7 +13,13 @@ type Sparkle = {
 
 const SPARKLES: readonly Sparkle[] = [
   { style: { top: '14%', left: '11%' }, size: 26, fill: '#D8B978', duration: '6s', delay: '0s' },
-  { style: { top: '26%', right: '16%' }, size: 18, fill: '#B9B0D6', duration: '7.5s', delay: '.8s' },
+  {
+    style: { top: '26%', right: '16%' },
+    size: 18,
+    fill: '#B9B0D6',
+    duration: '7.5s',
+    delay: '.8s',
+  },
   {
     style: { bottom: '20%', right: '24%' },
     size: 22,

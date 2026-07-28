@@ -38,10 +38,13 @@ export function Badge({ children, tone = 'gold', solid = false, className, ...re
   return (
     <span
       className={cn(
-        'inline-flex items-center whitespace-nowrap rounded-pill px-[14px] py-[6px] font-sans text-[10px] uppercase tracking-[.2em]',
+        'rounded-pill inline-flex items-center px-[14px] py-[6px] font-sans text-[10px] tracking-[.2em] whitespace-nowrap uppercase',
         solid
           ? 'bg-[rgba(216,185,120,0.92)] text-[#12213a]'
-          : cn('border border-[rgba(247,244,234,0.16)] bg-[rgba(15,27,46,0.35)]', TONE_TEXT_CLASSES[tone]),
+          : cn(
+              'border border-[rgba(247,244,234,0.16)] bg-[rgba(15,27,46,0.35)]',
+              TONE_TEXT_CLASSES[tone],
+            ),
         className,
       )}
       {...rest}

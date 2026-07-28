@@ -40,11 +40,24 @@ const SPACING_CLASSES: Record<KickerSpacing, string> = {
  * Etiqueta corta en mayúsculas que antecede a un título. Presentacional y sin
  * estado: el texto llega ya traducido por `children`.
  */
-export function Kicker({ children, tone = 'gold', spacing = 'wide', as = 'p', className }: KickerProps) {
+export function Kicker({
+  children,
+  tone = 'gold',
+  spacing = 'wide',
+  as = 'p',
+  className,
+}: KickerProps) {
   const Tag = as;
 
   return (
-    <Tag className={cn('font-sans text-[11px] uppercase', TONE_CLASSES[tone], SPACING_CLASSES[spacing], className)}>
+    <Tag
+      className={cn(
+        'font-sans text-[11px] uppercase',
+        TONE_CLASSES[tone],
+        SPACING_CLASSES[spacing],
+        className,
+      )}
+    >
       {children}
     </Tag>
   );

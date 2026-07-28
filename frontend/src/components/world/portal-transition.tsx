@@ -24,10 +24,7 @@ export function PortalTransition() {
   if (phase === 'idle') return null;
 
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[9000] overflow-hidden"
-    >
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[9000] overflow-hidden">
       {reduced ? (
         <div
           className="absolute inset-0"
