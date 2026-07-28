@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { AUDIOS } from '@/data';
-import { nextAudioId, progressPercent } from '@/lib/player/progress';
+import { nextAudioId, previousAudioId, progressPercent } from '@/lib/player/progress';
 
 describe('progressPercent', () => {
   it('calcula el porcentaje transcurrido', () => {
@@ -28,5 +28,15 @@ describe('nextAudioId', () => {
 
   it('el siguiente audio avanza uno', () => {
     expect(nextAudioId('a3', AUDIOS)).toBe('a4');
+  });
+});
+
+describe('previousAudioId', () => {
+  it('el anterior retrocede uno', () => {
+    expect(previousAudioId('a4', AUDIOS)).toBe('a3');
+  });
+
+  it('el anterior envuelve al final desde el primero', () => {
+    expect(previousAudioId('a1', AUDIOS)).toBe('a7');
   });
 });

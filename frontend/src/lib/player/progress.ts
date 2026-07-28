@@ -25,3 +25,18 @@ export function nextAudioId(currentId: string, catalog: readonly { id: string }[
 
   return next.id;
 }
+
+/**
+ * Id del audio anterior en el catálogo. Envuelve al final al llegar al
+ * principio, simétrico a `nextAudioId`.
+ */
+export function previousAudioId(currentId: string, catalog: readonly { id: string }[]): string {
+  const index = catalog.findIndex((item) => item.id === currentId);
+  const previousIndex = (index - 1 + catalog.length) % catalog.length;
+  const previous = catalog[previousIndex];
+
+  // Mismo razonamiento que en `nextAudioId`: sólo falla con catálogo vacío.
+  if (!previous) throw new Error('previousAudioId: el catálogo está vacío');
+
+  return previous.id;
+}

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 import { AUDIOS } from '@/data';
-import { nextAudioId } from '@/lib/player/progress';
+import { nextAudioId, previousAudioId } from '@/lib/player/progress';
 
 type PlayerState = {
   audioId: string | null;
@@ -18,7 +18,7 @@ type PlayerState = {
 };
 
 /** Índice del audio actual en el catálogo real, o -1 si no hay audio abierto. */
-function indexOf(audioId: string | null): number {
+function indexInCatalog(audioId: string | null): number {
   if (audioId === null) return -1;
 
   return AUDIOS.findIndex((audio) => audio.id === audioId);
@@ -56,13 +56,8 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   },
   previous: () => {
     const { audioId } = get();
-    const index = indexOf(audioId);
-    if (index === -1) return;
+    if (audioId === null || indexInCatalog(audioId) === -1) return;
 
-    const previousIndex = (index - 1 + AUDIOS.length) % AUDIOS.length;
-    const previousAudio = AUDIOS[previousIndex];
-    if (!previousAudio) return;
-
-    set({ audioId: previousAudio.id, isPlaying: true, elapsed: 0 });
+    set({ audioId: previousAudioId(audioId, AUDIOS), isPlaying: true, elapsed: 0 });
   },
 }));

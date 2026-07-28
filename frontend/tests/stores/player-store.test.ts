@@ -58,4 +58,12 @@ describe('usePlayerStore', () => {
     expect(state.audioId).toBe('a2');
     expect(state.isPlaying).toBe(true);
   });
+
+  it('anterior cambia al audio anterior y sigue reproduciendo', () => {
+    usePlayerStore.getState().open('a2');
+    usePlayerStore.getState().previous();
+    const state = usePlayerStore.getState();
+    expect(state.audioId).toBe('a1');
+    expect(state.isPlaying).toBe(true);
+  });
 });
