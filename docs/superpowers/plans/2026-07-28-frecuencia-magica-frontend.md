@@ -192,7 +192,9 @@ Esperado: typecheck sin errores y build exitoso con la ruta `/` generada.
 cd "/home/sergi/Documentos/Proyectos/Frecuencia Mágica" && git add frontend && git commit -m "chore: scaffold Next.js 15 + React 19 + Tailwind v4 frontend"
 ```
 
-Nota: la raíz del proyecto **no es un repo git** todavía. Si `git status` falla, inicializar primero con `git init` en la raíz y crear un `.gitignore` que excluya `node_modules/`, `.next/`, `dist/`, `.env*` y `**/node_modules/`.
+> **Estado real verificado el 2026-07-28: esta tarea ya está completa.** El commit `ee80091` contiene el scaffold con Next 15.5.22, React 19.1.0, Tailwind v4, el `tsconfig.json` con los cinco flags estrictos del Paso 4 y el script `typecheck` del Paso 5. La raíz **sí** es un repositorio git (rama `feat/frontend-foundations`) y ya tiene `.gitignore`.
+>
+> Por tanto esta tarea pasa de *generar* a *verificar*: ejecutar los pasos 3 y 6 para confirmar versiones y que compila, y saltar los pasos 1, 2, 4, 5 y 7. **No ejecutar `create-next-app`**: fallaría por conflicto con los ficheros existentes y destruiría el trabajo commiteado.
 
 ---
 
@@ -317,9 +319,9 @@ git add frontend && git commit -m "test: set up vitest with happy-dom for logic 
 - Consumes: nada.
 - Produces: rutas de import estables para todas las fases siguientes; `/logo.png` servible.
 
-- [ ] **Paso 1: Crear el árbol de carpetas**
+- [x] **Paso 1: Crear el árbol de carpetas** — *ya ejecutado en la Sección 1 (2026-07-28)*
 
-Crear bajo `frontend/src/`: `components/ui`, `components/world`, `components/layout`, `components/features`, `config`, `data`, `hooks`, `i18n`, `lib`, `stores`, `types`. Crear también `frontend/messages` y `frontend/tests`.
+Crear bajo `frontend/src/`: `components/ui`, `components/world`, `components/layout`, `components/features`, `config`, `data`, `hooks`, `i18n`, `lib`, `stores`, `types`. Crear también `frontend/messages` y `frontend/tests`. Cada directorio lleva un `.gitkeep` para que git lo registre mientras esté vacío; borrarlo en cuanto el directorio reciba su primer fichero real.
 
 - [ ] **Paso 2: Copiar el logo oficial**
 
