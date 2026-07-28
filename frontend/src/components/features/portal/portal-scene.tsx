@@ -94,7 +94,10 @@ export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneP
           {title}
         </Display>
 
-        <Prose size="lg" className="text-ivory/72 mx-auto mt-[26px] mb-[46px] max-w-[520px]">
+        <Prose
+          size="lg"
+          className="text-ivory/72 mx-auto mt-[26px] mb-[46px] max-w-[520px] leading-[1.75]"
+        >
           {subtitle}
         </Prose>
 

@@ -45,7 +45,7 @@ export function EnterButton({
         aria-busy={busy}
         className={cn(
           'group text-ivory relative min-h-11 px-[46px] py-[18px] font-serif text-[22px] tracking-[.14em] uppercase',
-          disabled && 'pointer-events-none opacity-45',
+          isInert && 'pointer-events-none opacity-45',
         )}
       >
         {/* Capa 1: cristal — borde y fondo de vidrio */}
