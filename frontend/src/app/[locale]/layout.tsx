@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
+import { RealmProvider } from '@/components/world/realm-provider';
+import { SmoothScroll } from '@/components/world/smooth-scroll';
+import { WorldEngine } from '@/components/world/world-engine';
 import { cormorant, jost } from '@/config/fonts';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { routing } from '@/i18n/routing';
@@ -49,7 +52,14 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   return (
     <html lang={locale} className={`${cormorant.variable} ${jost.variable}`}>
       <body className="antialiased">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <RealmProvider>
+            <SmoothScroll>
+              <WorldEngine />
+              <main className="relative z-[100]">{children}</main>
+            </SmoothScroll>
+          </RealmProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
