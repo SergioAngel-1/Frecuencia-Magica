@@ -1,5 +1,7 @@
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
+import { PortalScene } from '@/components/features/portal/portal-scene';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 
 type PortalPageProps = {
@@ -7,10 +9,25 @@ type PortalPageProps = {
 };
 
 /**
+ * Es la raíz del sitio: título sin plantilla (el layout aplica `%s · marca`
+ * al resto de rutas) y la descripción de marca, ya traducida.
+ */
+export async function generateMetadata({ params }: PortalPageProps): Promise<Metadata> {
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'common' });
+
+  return {
+    title: t('brand'),
+    description: t('tagline'),
+  };
+}
+
+/**
  * El Portal — el umbral del universo.
  *
- * Placeholder de la Fase 2: la escena completa (geometría sagrada, logo
- * flotante y cruce del portal) se construye en la Fase 6.
+ * La página sólo resuelve el idioma y el copy; toda la escena (geometría
+ * sagrada, logo flotante y botón de entrada) vive en `PortalScene`, que es
+ * Server Component salvo por su hijo interactivo `EnterButton`.
  */
 export default async function PortalPage({ params }: PortalPageProps) {
   await resolveLocale(params);
@@ -18,14 +35,12 @@ export default async function PortalPage({ params }: PortalPageProps) {
   const t = await getTranslations('portal');
 
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center px-6 text-center">
-      <p className="text-teal font-sans text-[11px] tracking-[0.5em] uppercase">{t('kicker')}</p>
-      <h1 className="font-serif text-[clamp(46px,8vw,104px)] leading-[0.98] font-light">
-        {t('title')}
-      </h1>
-      <p className="text-ivory/72 mt-6 max-w-[520px] text-[clamp(15px,1.6vw,19px)] leading-[1.75]">
-        {t('subtitle')}
-      </p>
-    </div>
+    <PortalScene
+      kicker={t('kicker')}
+      title={t('title')}
+      subtitle={t('subtitle')}
+      cta={t('cta')}
+      hint={t('hint')}
+    />
   );
 }
