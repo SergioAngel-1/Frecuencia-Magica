@@ -57,7 +57,7 @@ export function Band({ gradient, aspect = 'auto', overlay, children, className }
       {overlay === 'bottom' ? (
         <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ backgroundImage: BOTTOM_OVERLAY }} />
       ) : null}
-      {children}
+      {children ? <div className="relative z-10">{children}</div> : null}
     </div>
   );
 }
