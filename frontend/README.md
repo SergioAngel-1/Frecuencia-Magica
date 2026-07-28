@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frecuencia Mágica — Frontend
 
-## Getting Started
+Portal inmersivo y cinematográfico de bienestar. Un universo de 9 realms navegables, bilingüe ES/EN.
 
-First, run the development server:
+Las restricciones del proyecto (paleta, tipografía, movimiento, accesibilidad, arquitectura) están en [`../CLAUDE.md`](../CLAUDE.md) y son de obligado cumplimiento. El plan de implementación completo está en [`../docs/superpowers/plans/`](../docs/superpowers/plans/), y la fuente de verdad visual es el prototipo en [`../frontend-prototype/`](../frontend-prototype/).
+
+## Stack
+
+Next.js 15 (App Router) · React 19 · TypeScript strict · Tailwind CSS v4 · Motion · next-intl · Vitest
+
+## Comandos
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Comando                | Qué hace                             |
+| ---------------------- | ------------------------------------ |
+| `npm run dev`          | Servidor de desarrollo con Turbopack |
+| `npm run build`        | Build de producción                  |
+| `npm run start`        | Sirve el build de producción         |
+| `npm run lint`         | ESLint                               |
+| `npm run lint:fix`     | ESLint con autocorrección            |
+| `npm run format`       | Prettier sobre todo el proyecto      |
+| `npm run format:check` | Comprueba formato sin escribir       |
+| `npm run typecheck`    | TypeScript sin emitir                |
+| `npm run test`         | Tests de lógica con Vitest           |
+| `npm run test:watch`   | Tests en modo watch                  |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Antes de dar por terminado cualquier trabajo, los cuatro deben estar en verde:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint && npm run typecheck && npm run test && npm run build
+```
 
-## Learn More
+## Arquitectura
 
-To learn more about Next.js, take a look at the following resources:
+Tres capas, sin saltárselas:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Carpeta                    | Responsabilidad                                                                                                          |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `src/app/[locale]/`        | Rutas. Una por realm, con segmentos localizados. Server Components por defecto                                           |
+| `src/components/ui/`       | **UI Kit puro.** No importa de `data/`, `stores/` ni `i18n/`: recibe texto ya traducido por props                        |
+| `src/components/world/`    | Motor inmersivo: canvas cósmico, cursor luminoso, audio ambiental, geometría sagrada. Se monta una sola vez en el layout |
+| `src/components/layout/`   | Marco persistente: header, navegación de constelación, footer, shells                                                    |
+| `src/components/features/` | Un subdirectorio por realm. Compone UI Kit + world + datos                                                               |
+| `src/config/`              | Configuración estática: realms, bandas, fuentes, constantes de movimiento                                                |
+| `src/data/`                | Catálogo de contenido tipado. **Sin textos**: sólo claves de traducción                                                  |
+| `src/hooks/`               | Hooks reutilizables                                                                                                      |
+| `src/i18n/`                | Routing localizado, navegación y carga de mensajes                                                                       |
+| `src/lib/`                 | Utilidades puras y testeables                                                                                            |
+| `src/stores/`              | Estado transversal con Zustand (reproductor, carrito, audio, diario)                                                     |
+| `src/types/`               | Tipos compartidos                                                                                                        |
+| `messages/`                | Todo el copy, ES y EN                                                                                                    |
+| `tests/`                   | Tests de lógica, en espejo de `src/`                                                                                     |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Internacionalización
 
-## Deploy on Vercel
+El copy **nunca** se escribe en un componente. Cada entidad de `data/` guarda una clave (`titleKey`) y el texto vive en `messages/{es,en}.json`. Un test verifica que ambos catálogos tienen exactamente las mismas claves y que nada queda sin traducir.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Las rutas están localizadas: `/biblioteca` en español, `/en/library` en inglés. Todo enlace interno usa el `Link` de `@/i18n/navigation`, nunca el de `next/link`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Toda página bajo `[locale]` empieza resolviendo el idioma:
+
+```ts
+const locale = await resolveLocale(params);
+```
+
+Eso valida el segmento, devuelve 404 si no es un idioma soportado y activa el render estático.
+
+## Testing
+
+Sólo lógica: stores, reducers, hooks y utilidades puras. No se testean componentes visuales. Las funciones puras reciben por parámetro sus dependencias no deterministas (`Math.random`, `Date`) para poder testearlas.
+
+## Pendiente de backend
+
+No hay servidor. Los puntos que lo requieren se marcan en el código con `// TODO(backend)`: autenticación real, pagos y checkout, reproducción de audio real, persistencia de diario y progreso, y CMS de contenido.
+
+Fuera de alcance por ahora: blog, membresía como página propia, about, contacto, búsqueda global, perfil, favoritos, pedidos, notificaciones, ajustes y recuperación de contraseña.

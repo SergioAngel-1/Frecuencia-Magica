@@ -1,0 +1,68 @@
+import type { Audio } from '@/types/content';
+
+/** Las siete frecuencias del catálogo. Portadas 1:1 del prototipo. */
+export const AUDIOS: readonly Audio[] = [
+  {
+    id: 'a1',
+    titleKey: 'library.audios.a1.title',
+    tagKey: 'library.tags.meditation',
+    tagId: 'meditation',
+    duration: '18:00',
+    hz: 432,
+    band: 'linear-gradient(150deg,#3a5a6e,#1a2c44)',
+  },
+  {
+    id: 'a2',
+    titleKey: 'library.audios.a2.title',
+    tagKey: 'library.tags.frequency',
+    tagId: 'frequency',
+    duration: '11:20',
+    hz: 528,
+    band: 'linear-gradient(150deg,#6e5f8a,#241f3a)',
+  },
+  {
+    id: 'a3',
+    titleKey: 'library.audios.a3.title',
+    tagKey: 'library.tags.grounding',
+    tagId: 'grounding',
+    duration: '24:40',
+    hz: 396,
+    band: 'linear-gradient(150deg,#4f6b5e,#1e2e28)',
+  },
+  {
+    id: 'a4',
+    titleKey: 'library.audios.a4.title',
+    tagKey: 'library.tags.rest',
+    tagId: 'rest',
+    duration: '42:00',
+    hz: 174,
+    band: 'linear-gradient(150deg,#3f4a72,#1b2138)',
+  },
+  {
+    id: 'a5',
+    titleKey: 'library.audios.a5.title',
+    tagKey: 'library.tags.ritual',
+    tagId: 'ritual',
+    duration: '09:10',
+    hz: 639,
+    band: 'linear-gradient(150deg,#8a7150,#2c2418)',
+  },
+  {
+    id: 'a6',
+    titleKey: 'library.audios.a6.title',
+    tagKey: 'library.tags.breath',
+    tagId: 'breath',
+    duration: '07:30',
+    hz: 417,
+    band: 'linear-gradient(150deg,#4a7d8a,#1c2f36)',
+  },
+  {
+    id: 'a7',
+    titleKey: 'library.audios.a7.title',
+    tagKey: 'library.tags.meditation',
+    tagId: 'meditation',
+    duration: '15:40',
+    hz: 528,
+    band: 'linear-gradient(150deg,#5a6b52,#20281c)',
+  },
+] as const;

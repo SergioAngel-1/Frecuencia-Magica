@@ -1,0 +1,404 @@
+{
+  "common": {
+    "brand": "Frecuencia Mágica",
+    "tagline": "A sanctuary to return to yourself.",
+    "seeAll": "See all",
+    "back": "Back",
+    "continue": "Continue",
+    "close": "Close"
+  },
+  "header": {
+    "signIn": "Sign in",
+    "switchLanguage": "Switch to Spanish",
+    "languageLabel": "ES",
+    "soundOn": "Mute ambient sound",
+    "soundOff": "Turn on ambient sound",
+    "skipToContent": "Skip to content"
+  },
+  "nav": {
+    "label": "Realms",
+    "realms": {
+      "descubrete": "Discover",
+      "biblioteca": "Library",
+      "academia": "Academy",
+      "experiencias": "Experiences",
+      "tienda": "Store",
+      "sanctuario": "My Sanctuary"
+    },
+    "emotions": {
+      "descubrete": "Reflection",
+      "biblioteca": "Wisdom",
+      "academia": "Transformation",
+      "experiencias": "Encounter",
+      "tienda": "Abundance",
+      "sanctuario": "Intimacy"
+    }
+  },
+  "footer": {
+    "tagline": "We accompany real processes of transformation. You need not become someone else: only remember who you have always been.",
+    "newsletterPlaceholder": "Your email",
+    "newsletterLabel": "Your email address",
+    "newsletterSuccess": "Thank you. We will write when there is something worth your silence.",
+    "rights": "Made with light",
+    "columns": {
+      "explore": "Explore",
+      "community": "Community",
+      "brand": "Magic Frequency"
+    },
+    "links": {
+      "about": "About Marisol",
+      "membership": "Membership",
+      "contact": "Contact"
+    }
+  },
+  "portal": {
+    "kicker": "Welcome to the threshold",
+    "title": "Magic Frequency",
+    "subtitle": "You are not about to enter a website. You are about to cross a portal toward the most important place: yourself.",
+    "cta": "Cross the portal",
+    "hint": "The light you seek already lives in you"
+  },
+  "home": {
+    "heroKicker": "A sanctuary to return to yourself",
+    "heroTitlePre": "Awaken the light that never",
+    "heroTitleEm": "disappeared.",
+    "heroSubtitle": "Knowledge, aromas, conscious rituals, nature and sound. Tools that invite you to pause, breathe and remember who you have always been.",
+    "heroCta1": "Discover yourself",
+    "heroCta2": "Explore frequencies",
+    "stats": {
+      "daily": { "value": "432 Hz", "label": "Frequency of the day" },
+      "meditations": { "value": "40+", "label": "Meditations" },
+      "realms": { "value": "8", "label": "Realms to explore" }
+    },
+    "daily": {
+      "kicker": "Frequency of the day",
+      "title": "432 Hz · Return to Calm",
+      "description": "A brief meditation to find your center before starting the day.",
+      "meta": "Meditation",
+      "cta": "Listen"
+    },
+    "audio": {
+      "kicker": "Library of Frequencies",
+      "title": "Sound to return to you"
+    },
+    "realms": {
+      "kicker": "The universe of Magic Frequency",
+      "title": "Choose where to enter",
+      "featuredCta": "Enter the Academy",
+      "featuredDescription": "Courses that accompany real processes of transformation, at your own pace. Learn to return to yourself through breath, silence and small daily rituals.",
+      "storeCta": "View products",
+      "featuredBadge": "Featured",
+      "descriptions": {
+        "descubrete": "An inner compass that listens to your present moment.",
+        "biblioteca": "Frequencies, meditations and sound to return to you.",
+        "academia": "Courses that accompany real processes of transformation.",
+        "experiencias": "Live and in-person gatherings to reunite.",
+        "tienda": "Oils, candles and crystals born from a conviction: when you transform within, your world changes.",
+        "sanctuario": "Your space: journal, progress and daily frequency."
+      }
+    },
+    "about": {
+      "kicker": "About Marisol",
+      "title": "We believe every person holds a light that never disappears.",
+      "p1": "Our mission is to create experiences that awaken that light: through knowledge, aromas, conscious rituals and nature. Every oil, every candle, every course is born from a deep conviction.",
+      "p2": "We do not want to sell wellness. We want to accompany real processes of transformation."
+    },
+    "membership": {
+      "kicker": "Membership",
+      "title": "Your sanctuary, always with you",
+      "description": "Unlimited access to frequencies, courses and experiences. A space that remembers your path and evolves with you.",
+      "cta": "Begin my path"
+    }
+  },
+  "auth": {
+    "kicker": "The threshold",
+    "backHome": "Back home",
+    "login": {
+      "tab": "Sign in",
+      "title": "Return to your sanctuary",
+      "subtitle": "Sign in to reconnect with your frequency, your courses and your journal.",
+      "cta": "Sign in"
+    },
+    "register": {
+      "tab": "Register",
+      "title": "Create your sanctuary",
+      "subtitle": "Begin your path. A space that remembers who you have always been.",
+      "cta": "Create my account"
+    },
+    "fields": {
+      "name": { "label": "Name", "placeholder": "What is your name?" },
+      "email": { "label": "Email", "placeholder": "you@email.com" },
+      "password": { "label": "Password", "placeholder": "••••••••" }
+    },
+    "errors": {
+      "nameRequired": "We need a name to welcome you.",
+      "emailInvalid": "That email does not look complete.",
+      "passwordShort": "At least eight characters."
+    },
+    "forgot": "Forgot your password?",
+    "or": "or",
+    "sso": "Continue with your inner light",
+    "quote": "The light you seek already lives in you. You only need to remember it.",
+    "quoteBy": "Magic Frequency"
+  },
+  "discover": {
+    "kicker": "Discover yourself",
+    "title": "What frequency are you today?",
+    "intro": "Five questions to listen to your present moment. There are no right answers: only the truth of how you arrive today. At the end, a frequency chosen for you.",
+    "begin": "Begin",
+    "questionCount": "Question {current} / {total}",
+    "back": "← Back",
+    "backToIntro": "← Back",
+    "tuning": "Listening to your frequency…",
+    "result": {
+      "kicker": "Your frequency today",
+      "cta": "Listen now",
+      "restart": "Retake"
+    },
+    "frequencies": {
+      "432": "A frequency of calm and reunion. Let the sound loosen what weighs today and return you to your center.",
+      "528": "The frequency of inner light. Ideal to reconnect with who you are when everything else grows quiet.",
+      "396": "Deep grounding. Release fear and find solid ground within you.",
+      "174": "A threshold toward rest. Let your body remember how to fully let go.",
+      "639": "Aroma and ritual. Reconnect with bond and tenderness.",
+      "417": "Breathe the sky. Cleanse the old and open space for the new."
+    },
+    "questions": {
+      "q1": {
+        "prompt": "How does your body arrive to this moment?",
+        "options": ["Tired, heavy", "Restless, fast", "Neutral, paused", "Light, present"]
+      },
+      "q2": {
+        "prompt": "What does your mind ask for today?",
+        "options": ["Silence", "Clarity", "Inspiration", "Rest"]
+      },
+      "q3": {
+        "prompt": "Which emotion accompanies you?",
+        "options": ["Nostalgia", "Anxiety", "Hope", "Gratitude"]
+      },
+      "q4": {
+        "prompt": "Where would you like to be now?",
+        "options": ["A forest", "The ocean", "Under the stars", "At home"]
+      },
+      "q5": {
+        "prompt": "What do you seek when you close your eyes?",
+        "options": ["To let go", "To remember", "To heal", "To dream"]
+      }
+    }
+  },
+  "library": {
+    "kicker": "Library of Frequencies",
+    "title": "Sound to return to you",
+    "description": "Meditations, frequencies and soundscapes. Choose by what your body asks for today.",
+    "featuredBadge": "Featured frequency",
+    "filtersLabel": "Filter frequencies",
+    "filters": {
+      "all": "All",
+      "meditation": "Meditation",
+      "frequency": "Frequency",
+      "rest": "Rest",
+      "ritual": "Ritual"
+    },
+    "tags": {
+      "meditation": "Meditation",
+      "frequency": "Frequency",
+      "grounding": "Grounding",
+      "rest": "Rest",
+      "ritual": "Ritual",
+      "breath": "Breath"
+    },
+    "audios": {
+      "a1": { "title": "Return to Calm" },
+      "a2": { "title": "Inner Light" },
+      "a3": { "title": "Deep Roots" },
+      "a4": { "title": "Threshold of Sleep" },
+      "a5": { "title": "Cedar Aroma" },
+      "a6": { "title": "Breathe the Sky" },
+      "a7": { "title": "Open Heart" }
+    }
+  },
+  "player": {
+    "play": "Play",
+    "pause": "Pause",
+    "close": "Close the player",
+    "seek": "Seek within the track",
+    "next": "Next frequency",
+    "previous": "Previous frequency"
+  },
+  "academy": {
+    "kicker": "Academy",
+    "title": "Real processes of transformation",
+    "description": "Courses that accompany, step by step, your return to yourself. Learn at your own pace, wherever you are.",
+    "featuredBadge": "Featured",
+    "featuredDescription": "A guided journey to reunite with yourself through breath, silence and small daily rituals.",
+    "featuredCta": "Start course",
+    "allCourses": "All courses",
+    "courseContent": "Course content",
+    "courseDescription": "A guided journey with practices, meditations and rituals to integrate what you learn into daily life. Each lesson opens one more door toward you.",
+    "lessonsCount": "{count} lessons",
+    "lesson": "Lesson {number}",
+    "previousLesson": "Previous",
+    "nextLesson": "Next",
+    "finish": "Finish",
+    "levels": {
+      "foundations": "Foundations",
+      "practice": "Practice",
+      "intermediate": "Intermediate"
+    },
+    "courses": {
+      "c1": { "title": "The Art of Returning to You" },
+      "c2": { "title": "Conscious Rituals" },
+      "c3": { "title": "Aromas that Heal" }
+    }
+  },
+  "experiences": {
+    "kicker": "Experiences",
+    "title": "Gatherings to reunite",
+    "description": "Sound baths, circles and live rituals. Spaces to pause alongside others and breathe again.",
+    "featuredBadge": "Featured experience",
+    "featuredDescription": "An hour to let sound loosen what weighs today. Live bowls, gongs and frequencies that accompany you back to your center, wherever you are.",
+    "book": "Book",
+    "all": "All experiences",
+    "modes": {
+      "online": "Online",
+      "inPerson": "In-person"
+    },
+    "items": {
+      "e1": { "title": "Live Sound Bath" },
+      "e2": { "title": "New Moon Circle" },
+      "e3": { "title": "Aroma Ritual" },
+      "e4": { "title": "Sunrise Meditation" }
+    }
+  },
+  "booking": {
+    "steps": {
+      "date": "Date",
+      "details": "Details",
+      "done": "Done"
+    },
+    "progress": "Step {current} of {total}",
+    "dateLabel": "Choose a day",
+    "timeLabel": "Choose a time",
+    "continue": "Continue",
+    "continueHint": "Choose a day and a time to continue.",
+    "fields": {
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "Your email",
+      "notePlaceholder": "Anything you want to share? (optional)"
+    },
+    "confirm": "Confirm booking",
+    "done": {
+      "title": "Your place is reserved",
+      "description": "We sent the details by email. Breathe: you only need to show up as yourself.",
+      "cta": "See more experiences"
+    }
+  },
+  "store": {
+    "kicker": "Store",
+    "title": "Tools for the ritual",
+    "description": "Oils, candles and crystals born from a conviction: when you transform within, your world changes.",
+    "cart": "Cart",
+    "add": "Add",
+    "buyNow": "Buy now",
+    "featuredBadge": "Featured",
+    "featuredDescription": "Our signature piece: handcrafted in small batches, to accompany your most intimate rituals of pause and breath.",
+    "backToStore": "All the store",
+    "keepExploring": "Keep exploring",
+    "productDescription": "Crafted in small batches, with intention and noble raw materials. A companion for your moments of pause, breath and ritual.",
+    "notes": [
+      "Handmade in small batches",
+      "Natural, conscious ingredients",
+      "Ships in compostable packaging"
+    ],
+    "categories": {
+      "aromas": "Aromas",
+      "candles": "Candles",
+      "crystals": "Crystals",
+      "mists": "Mists",
+      "rituals": "Rituals",
+      "care": "Care",
+      "drinks": "Drinks",
+      "stationery": "Stationery"
+    },
+    "products": {
+      "p1": { "title": "Essential Oil · Sacred Cedar" },
+      "p2": { "title": "Ritual Candle · Candlelight" },
+      "p3": { "title": "Serenity Quartz" },
+      "p4": { "title": "Grounding Mist" },
+      "p5": { "title": "Incense · Copal Forest" },
+      "p6": { "title": "Bath Salt · Full Moon" },
+      "p7": { "title": "Infusion · Cedar Calm" },
+      "p8": { "title": "Frequency Journal" }
+    }
+  },
+  "cart": {
+    "title": "Your cart",
+    "thanks": "Thank you",
+    "quantity": "Qty {count}",
+    "increase": "Add one unit",
+    "decrease": "Remove one unit",
+    "summary": "Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "shippingFree": "Free",
+    "total": "Total",
+    "placeOrder": "Place order",
+    "empty": {
+      "text": "Your cart waits in silence.",
+      "cta": "Explore the store"
+    },
+    "done": {
+      "title": "Your order is on its way",
+      "description": "You will receive an email with the details. May each object accompany your ritual.",
+      "cta": "Keep exploring"
+    }
+  },
+  "sanctuary": {
+    "kicker": "My Sanctuary",
+    "title": "Welcome back, Luz",
+    "stats": {
+      "days": { "value": "12", "label": "days of practice" },
+      "frequencies": { "value": "34", "label": "frequencies heard" },
+      "courses": { "value": "3", "label": "courses in progress" },
+      "entries": { "value": "8", "label": "journal entries" }
+    },
+    "continue": {
+      "kicker": "Continue where you left off",
+      "subtitle": "Lesson 5 of 8 · The body you inhabit",
+      "cta": "Resume"
+    },
+    "daily": {
+      "kicker": "Frequency of the day",
+      "subtitle": "Chosen for your morning"
+    }
+  },
+  "journal": {
+    "kicker": "Journal",
+    "title": "How do you arrive today?",
+    "moodLabel": "Your state",
+    "moods": {
+      "calm": "Calm",
+      "joy": "Joy",
+      "nostalgia": "Nostalgia",
+      "tiredness": "Tiredness",
+      "gratitude": "Gratitude"
+    },
+    "placeholder": "Write what wants to be heard today…",
+    "save": "Save to my journal",
+    "saved": "Saved. Your word now has a place."
+  },
+  "states": {
+    "loading": "Gathering the light…",
+    "emptyFavorites": "You have not saved anything yet. Whatever moves you, keep it.",
+    "emptyJournal": "Your journal is blank. The first word always weighs less than it seems.",
+    "emptyCart": "Your cart waits in silence.",
+    "emptySearch": "We found nothing by that name. Try another word.",
+    "notFoundTitle": "This place does not exist yet",
+    "notFoundBody": "The path you were looking for faded away. Return to the portal and choose another door.",
+    "notFoundCta": "Back to the portal",
+    "errorTitle": "Something fell out of alignment",
+    "errorBody": "The frequency was lost for a moment. Breathe and try again.",
+    "errorCta": "Try again",
+    "offline": "You are offline. The sanctuary awaits your return."
+  }
+}
