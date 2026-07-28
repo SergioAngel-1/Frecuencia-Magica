@@ -17,10 +17,16 @@ export default async function AuthPage({ params }: PageProps) {
   await resolveLocale(params);
 
   return (
-    <PageShell width="focus" padding="centered">
-      <div className="grid gap-10 md:grid-cols-[1fr_360px] md:items-start">
-        <AuthForm />
-        <AuthAside />
+    <PageShell width="wide" padding="none">
+      {/* Por debajo de 900px el aside pasa arriba (order-1): el logo y la
+          cita reciben al usuario antes que el formulario. */}
+      <div className="grid grid-cols-1 min-[900px]:grid-cols-[1fr_360px]">
+        <div className="order-2 min-[900px]:order-1">
+          <AuthForm />
+        </div>
+        <div className="order-1 min-[900px]:order-2">
+          <AuthAside />
+        </div>
       </div>
     </PageShell>
   );

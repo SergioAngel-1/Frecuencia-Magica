@@ -68,6 +68,9 @@ export function Field({ label, htmlFor, error, hint, children, className }: Fiel
       {messageId ? (
         <p
           id={messageId}
+          // El error se anuncia al aparecer/cambiar; la ayuda estática no
+          // necesita interrumpir al lector de pantalla.
+          aria-live={error ? 'polite' : undefined}
           className={cn(
             'mt-[7px] font-sans text-[13px]',
             error ? 'text-warn' : 'text-[rgba(247,244,234,0.55)]',

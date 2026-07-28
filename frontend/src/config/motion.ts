@@ -16,6 +16,8 @@ export const DURATION = {
   portal: 1,
   /** Apertura tipo "pergamino" de los bloques colapsables (brief 12.3). */
   scroll: 0.4,
+  /** Aparición/desaparición del campo nombre al alternar login/registro (brief 13.1). */
+  reveal: 0.35,
 } as const;
 
 /** Retardos de las entradas escalonadas, en segundos. */
