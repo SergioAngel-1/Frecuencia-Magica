@@ -142,6 +142,8 @@ export function BookingFlow({ experience }: BookingFlowProps) {
             />
           </Field>
 
+          {/* TODO(backend): confirmar sólo avanza el paso. Aquí iría el envío
+              real de la reserva y la integración de calendario. */}
           <Button
             variant="primary"
             size="lg"
