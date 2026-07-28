@@ -538,6 +538,7 @@
     "notFoundTitle": "This place does not exist yet",
     "notFoundBody": "The path you were looking for faded away. Return to the portal and choose another door.",
     "notFoundCta": "Back to the portal",
+    "notFoundRealmsCta": "See the realms",
     "errorTitle": "Something fell out of alignment",
     "errorBody": "The frequency was lost for a moment. Breathe and try again.",
     "errorCta": "Try again",

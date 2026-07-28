@@ -538,6 +538,7 @@
     "notFoundTitle": "Este lugar aún no existe",
     "notFoundBody": "El camino que buscabas se desvaneció. Vuelve al portal y elige otra puerta.",
     "notFoundCta": "Volver al portal",
+    "notFoundRealmsCta": "Ver los realms",
     "errorTitle": "Algo se desalineó",
     "errorBody": "La frecuencia se perdió un momento. Respira e inténtalo otra vez.",
     "errorCta": "Reintentar",
