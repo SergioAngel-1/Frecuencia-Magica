@@ -8,6 +8,7 @@ import { Badge, Band, Button, Kicker, Prose, SectionHeading } from '@/components
 import { OrbitalRings } from '@/components/world';
 import { PRODUCTS } from '@/data';
 import { formatPrice } from '@/lib/format';
+import { categoryKey } from '@/lib/store/category-key';
 import { relatedProducts } from '@/lib/store/related';
 import { useCartStore } from '@/stores/cart-store';
 import { usePlayerStore } from '@/stores/player-store';
@@ -39,7 +40,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       </div>
 
       <div className="flex flex-col justify-center gap-5">
-        <Badge solid>{t(`categories.${product.catKey}`)}</Badge>
+        <Badge solid>{t(categoryKey(product.catKey))}</Badge>
 
         <Kicker tone="gold" spacing="widest">
           {t('kicker')}

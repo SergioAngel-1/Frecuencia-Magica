@@ -9,6 +9,7 @@ import { PRODUCTS } from '@/data';
 import { Link } from '@/i18n/navigation';
 import { cartLines, cartCount } from '@/lib/cart/totals';
 import { formatPrice } from '@/lib/format';
+import { categoryKey } from '@/lib/store/category-key';
 import { useCartStore } from '@/stores/cart-store';
 
 import { OrderSummary } from './order-summary';
@@ -29,7 +30,7 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
           {tStore(`products.${product.id}.title`)}
         </p>
         <p className="font-sans text-[12px] text-ivory/50">
-          {tStore(`categories.${product.catKey}`)}
+          {tStore(categoryKey(product.catKey))}
         </p>
       </div>
       <div className="flex items-center gap-3">

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 
 import { DURATION, EASE } from '@/config/motion';
@@ -20,6 +20,11 @@ type SectionKey = (typeof SECTION_KEYS)[number];
  * desvanecido del contenido, nunca un simple show/hide. Con movimiento
  * reducido se respeta el contenido pero se retira la animación de altura:
  * el bloque aparece/desaparece al instante.
+ *
+ * El panel de cada sección permanece siempre en el DOM (colapsado a altura
+ * cero, u oculto con `hidden` en el camino de movimiento reducido) en vez de
+ * desmontarse: así el `id` que referencia el `aria-controls` del disparador
+ * siempre existe, esté la sección abierta o cerrada.
  */
 export function ProductSections() {
   const t = useTranslations('store');
@@ -41,7 +46,9 @@ export function ProductSections() {
               aria-controls={bodyId}
               className="flex min-h-11 w-full items-center justify-between gap-4 py-4 text-left"
             >
-              <span className="font-serif text-[19px] text-ivory">{t(`productSections.${key}.title`)}</span>
+              <span className="font-serif text-[19px] text-ivory">
+                {t(`productSections.${key}.title`)}
+              </span>
               <span
                 aria-hidden="true"
                 className={cn(
@@ -54,38 +61,43 @@ export function ProductSections() {
             </button>
 
             {reducedMotion ? (
-              isOpen ? (
-                <p id={bodyId} className="pb-5 font-sans text-[14px] leading-[1.9] text-ivory/72">
+              <p
+                id={bodyId}
+                hidden={!isOpen}
+                className="pb-5 font-sans text-[14px] leading-[1.9] text-ivory/72"
+              >
+                {t(`productSections.${key}.body`)}
+              </p>
+            ) : (
+              <motion.div
+                id={bodyId}
+                aria-hidden={!isOpen}
+                initial={false}
+                animate={
+                  isOpen
+                    ? {
+                        height: 'auto',
+                        opacity: 1,
+                        transition: {
+                          height: { duration: DURATION.scroll, ease: EASE.soft },
+                          opacity: { duration: DURATION.scroll, delay: 0.08 },
+                        },
+                      }
+                    : {
+                        height: 0,
+                        opacity: 0,
+                        transition: {
+                          height: { duration: DURATION.scroll, ease: EASE.soft },
+                          opacity: { duration: DURATION.scroll * 0.5 },
+                        },
+                      }
+                }
+                style={{ overflow: 'hidden' }}
+              >
+                <p className="pb-5 font-sans text-[14px] leading-[1.9] text-ivory/72">
                   {t(`productSections.${key}.body`)}
                 </p>
-              ) : null
-            ) : (
-              <AnimatePresence initial={false}>
-                {isOpen ? (
-                  <motion.div
-                    id={bodyId}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{
-                      height: 'auto',
-                      opacity: 1,
-                      transition: {
-                        height: { duration: DURATION.scroll, ease: EASE.soft },
-                        opacity: { duration: DURATION.scroll, delay: 0.08 },
-                      },
-                    }}
-                    exit={{
-                      height: 0,
-                      opacity: 0,
-                      transition: { duration: DURATION.scroll, ease: EASE.soft },
-                    }}
-                    style={{ overflow: 'hidden' }}
-                  >
-                    <p className="pb-5 font-sans text-[14px] leading-[1.9] text-ivory/72">
-                      {t(`productSections.${key}.body`)}
-                    </p>
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
+              </motion.div>
             )}
           </div>
         );
