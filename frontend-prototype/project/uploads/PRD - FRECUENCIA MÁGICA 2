@@ -1,0 +1,921 @@
+# PRD — FRECUENCIA MÁGICA
+
+## Frontend Design System & Prototype
+
+### PART 2 — APPLICATION SCREENS, USER FLOWS & EXPERIENCE
+
+---
+
+# GENERAL OBJECTIVE
+
+Using the Design System defined in Part 1, design the complete application prototype.
+
+Every screen must feel like part of the same ecosystem.
+
+Do not redesign components.
+
+Reuse the Design System.
+
+Maintain visual consistency across the entire product.
+
+The application should feel handcrafted.
+
+Nothing should resemble a generic SaaS dashboard.
+
+---
+
+# INFORMATION ARCHITECTURE
+
+Create the following sitemap.
+
+```
+/
+
+Discover
+
+Library
+
+Academy
+
+Experiences
+
+Store
+
+Blog
+
+About
+
+Membership
+
+Contact
+
+Login
+
+Register
+
+Forgot Password
+
+Dashboard
+
+Profile
+
+Journal
+
+Favorites
+
+Orders
+
+Bookings
+
+Course Player
+
+Audio Player
+
+Article Reader
+
+Checkout
+
+Search
+
+404
+```
+
+---
+
+# PUBLIC WEBSITE
+
+Design every page.
+
+## Home
+
+Sections
+
+Hero
+
+Daily Frequency
+
+Discover Yourself
+
+Featured Audio
+
+Featured Experiences
+
+Courses
+
+Products
+
+Testimonials
+
+About Marisol
+
+Membership
+
+Newsletter
+
+Footer
+
+---
+
+Hero requirements
+
+Large immersive section
+
+Soft animated background
+
+Primary CTA
+
+Secondary CTA
+
+Audio toggle
+
+Minimal navigation
+
+Elegant typography
+
+Large breathing spaces
+
+No hero image.
+
+Instead use abstract layered placeholder bands.
+
+---
+
+# DISCOVER YOURSELF
+
+Create the complete experience.
+
+Steps
+
+Introduction
+
+Question 1
+
+Question 2
+
+Question 3
+
+Question 4
+
+Question 5
+
+Loading State
+
+Personal Result
+
+Recommendations
+
+The questionnaire should feel conversational.
+
+Never like a medical assessment.
+
+Include
+
+Progress
+
+Back
+
+Continue
+
+Save Progress
+
+Exit
+
+---
+
+Recommendation Screen
+
+Display
+
+Mood Summary
+
+Reflection
+
+Recommended Audio
+
+Recommended Ritual
+
+Recommended Course
+
+Recommended Product
+
+Related Article
+
+CTA
+
+Save Results
+
+---
+
+# LIBRARY
+
+Create
+
+Library Home
+
+Categories
+
+Search
+
+Filters
+
+Audio Detail
+
+Video Detail
+
+Meditation Detail
+
+Favorites
+
+Recently Played
+
+Recommended
+
+Collections
+
+Audio Player
+
+Mini Player
+
+Floating Player
+
+Include
+
+Waveforms
+
+Duration
+
+Tags
+
+Save
+
+Share
+
+Download (if available)
+
+---
+
+# ACADEMY
+
+Design
+
+Academy Home
+
+Course Listing
+
+Course Detail
+
+Module Detail
+
+Lesson Player
+
+Lesson Notes
+
+Downloads
+
+Completion
+
+Certificates
+
+Progress
+
+Instructor
+
+Student Reviews
+
+Continue Learning
+
+---
+
+Course Player
+
+Sidebar
+
+Progress
+
+Lesson Navigation
+
+Video
+
+Transcript
+
+Resources
+
+Discussion Placeholder
+
+Next Lesson
+
+---
+
+# EXPERIENCES
+
+Design
+
+Experiences Home
+
+Online Sessions
+
+In-person Sessions
+
+Experience Detail
+
+Booking Flow
+
+Confirmation
+
+Preparation Guide
+
+Follow-up Page
+
+Waiting List
+
+---
+
+Booking Flow
+
+Experience
+
+Calendar
+
+Available Time
+
+Personal Information
+
+Payment
+
+Confirmation
+
+Calendar Integration Placeholder
+
+---
+
+# STORE
+
+Design
+
+Store Home
+
+Collections
+
+Product Listing
+
+Product Detail
+
+Experience QR
+
+Related Products
+
+Reviews
+
+Cart
+
+Checkout
+
+Order Confirmation
+
+Product Detail
+
+Include
+
+Large product gallery placeholders
+
+Benefits
+
+Ingredients
+
+Usage
+
+Associated Ritual
+
+Associated Audio
+
+FAQ
+
+Reviews
+
+Related Products
+
+---
+
+# BLOG
+
+Create
+
+Article Listing
+
+Article Detail
+
+Categories
+
+Search
+
+Author
+
+Related Articles
+
+Reading Progress
+
+Estimated Reading Time
+
+Share
+
+Save
+
+Audio Version
+
+---
+
+# MEMBERSHIP
+
+Landing
+
+Benefits
+
+Pricing
+
+Comparison
+
+FAQ
+
+Member Testimonials
+
+CTA
+
+---
+
+# AUTHENTICATION
+
+Design
+
+Login
+
+Register
+
+Forgot Password
+
+Magic Link
+
+Email Verification
+
+Two Factor Placeholder
+
+Session Expired
+
+---
+
+# USER DASHBOARD
+
+Dashboard Home
+
+Profile
+
+Journal
+
+Favorites
+
+History
+
+Recommendations
+
+Courses
+
+Orders
+
+Bookings
+
+Membership
+
+Notifications
+
+Settings
+
+Support
+
+---
+
+Dashboard Home
+
+Display
+
+Daily Frequency
+
+Continue Listening
+
+Continue Learning
+
+Today's Reflection
+
+Upcoming Session
+
+Recent Activity
+
+Saved Content
+
+Progress
+
+---
+
+# JOURNAL
+
+Design
+
+Journal Home
+
+Create Entry
+
+Mood Selector
+
+Reflection Prompt
+
+Calendar
+
+Timeline
+
+Search
+
+Tags
+
+Entry Detail
+
+Empty State
+
+---
+
+# PROFILE
+
+Personal Information
+
+Avatar
+
+Preferences
+
+Audio Preferences
+
+Accessibility
+
+Notifications
+
+Privacy
+
+Connected Accounts Placeholder
+
+---
+
+# SEARCH
+
+Global Search
+
+Recent Searches
+
+Popular Searches
+
+Results
+
+Filters
+
+Empty State
+
+Suggestions
+
+---
+
+# CHECKOUT
+
+Cart
+
+Shipping
+
+Billing
+
+Payment
+
+Confirmation
+
+Order Tracking Placeholder
+
+---
+
+# EMPTY STATES
+
+Design dedicated empty states for
+
+No favorites
+
+No courses
+
+No orders
+
+No journal
+
+No recommendations
+
+No search results
+
+No notifications
+
+Each empty state should contain
+
+Illustration Placeholder
+
+Message
+
+CTA
+
+---
+
+# LOADING STATES
+
+Every page requires
+
+Skeleton Loading
+
+Progressive Loading
+
+Wave Loading
+
+Card Loading
+
+Player Loading
+
+Never use spinners as the primary loading mechanism.
+
+---
+
+# ERROR STATES
+
+Create
+
+404
+
+500
+
+Offline
+
+Network Error
+
+Payment Failed
+
+Booking Failed
+
+Course Locked
+
+Audio Unavailable
+
+---
+
+# COMPONENT STATES
+
+Every reusable component must include
+
+Default
+
+Hover
+
+Focus
+
+Pressed
+
+Loading
+
+Disabled
+
+Success
+
+Warning
+
+Error
+
+Selected
+
+---
+
+# RESPONSIVE REQUIREMENTS
+
+Design
+
+Desktop
+
+1440
+
+Laptop
+
+1280
+
+Tablet
+
+768
+
+Mobile
+
+390
+
+Every screen must exist in mobile.
+
+Not only desktop.
+
+---
+
+# MICRO INTERACTIONS
+
+Buttons
+
+Cards
+
+Navigation
+
+Audio
+
+Drawer
+
+Accordion
+
+Search
+
+Tabs
+
+Hover
+
+Focus
+
+Success
+
+Errors
+
+Every interaction should have intentional animation.
+
+---
+
+# AUDIO EXPERIENCE
+
+Design
+
+Mini Player
+
+Full Screen Player
+
+Floating Player
+
+Queue
+
+Sleep Timer
+
+Playback Speed
+
+Volume
+
+Background Ambience
+
+Waveform
+
+Progress
+
+Related Content
+
+Audio Recommendations
+
+---
+
+# MOTION PRINCIPLES
+
+Never animate for decoration.
+
+Animate to
+
+Guide
+
+Reveal
+
+Connect
+
+Reduce cognitive load
+
+Create calm
+
+---
+
+# PLACEHOLDER SYSTEM
+
+Do NOT use
+
+Stock Images
+
+People Photos
+
+Random Landscapes
+
+Unsplash
+
+Lorem Picsum
+
+Instead
+
+Create elegant placeholder compositions using
+
+Gradient Bands
+
+Layered Shapes
+
+Soft Blocks
+
+Blurred Containers
+
+Aspect Ratio Frames
+
+Every placeholder must look intentional.
+
+---
+
+# ACCESSIBILITY
+
+Every screen must include
+
+Keyboard Navigation
+
+Visible Focus
+
+Semantic Landmarks
+
+Touch Friendly Controls
+
+Screen Reader Support
+
+Reduced Motion Compatibility
+
+High Contrast Compatibility
+
+---
+
+# UX PRINCIPLES
+
+Every interface must answer
+
+What should I do now?
+
+What is the most important action?
+
+Can I leave without confusion?
+
+Can I continue later?
+
+Can I undo this?
+
+Reduce every possible decision.
+
+Never overwhelm.
+
+---
+
+# DESIGN CONSISTENCY
+
+All pages must reuse
+
+Cards
+
+Buttons
+
+Typography
+
+Spacing
+
+Navigation
+
+Elevation
+
+Inputs
+
+Badges
+
+Dialogs
+
+Icons
+
+Animations
+
+No duplicated UI.
+
+No visual inconsistencies.
+
+---
+
+# FINAL DELIVERABLE
+
+Generate a production-ready high-fidelity prototype including:
+
+* Complete sitemap.
+* Every public page.
+* Every authenticated page.
+* Every modal.
+* Every drawer.
+* Every form.
+* Every reusable component.
+* Mobile and desktop versions.
+* Empty states.
+* Error states.
+* Loading states.
+* Component interaction states.
+* User journeys.
+* Navigation flows.
+* Motion specifications.
+* Placeholder strategy.
+* Responsive layouts.
+
+The final prototype must feel like a premium digital product ready to be handed to a frontend engineering team for implementation in **Next.js 15 + React 19 + TypeScript**, using **Tailwind CSS v4**, **shadcn/ui**, **Motion One**, **TanStack Query**, **React Hook Form**, **Zod** and the Design System defined in Part 1.

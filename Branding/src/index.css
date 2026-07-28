@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Pastel palette — main: yellow, blue, gray, white */
+  --color-fm-fondo:             #FAFAF5;
+  --color-fm-surface:           #FFFFFF;
+  --color-fm-border:            #E2E2E8;
+  --color-fm-primary:           #FFF0B5;
+  --color-fm-secondary:         #C5E0F7;
+  --color-fm-texto:             #4A4A55;
+
+  /* Semantic aliases */
+  --color-fm-rosa:              #FFD6E0;
+  --color-fm-lila:              #E5D9F2;
+  --color-fm-carbon:            #4A4A55;
+  --color-fm-durazno:           #FFE5C8;
+  --color-fm-azul:              #C5E0F7;
+  --color-fm-menta:             #C8F0E0;
+  --color-fm-lavanda:           #F0E8FF;
+  --color-fm-celeste:           #D0E8F0;
+
+  /* Pastel accents */
+  --color-fm-pale-pink:         #FFD6E0;
+  --color-fm-pale-blue:         #C5E0F7;
+  --color-fm-pale-mint:         #C8F0E0;
+  --color-fm-pale-lavender:     #F0E8FF;
+  --color-fm-pale-peach:        #FFE5C8;
+  --color-fm-pale-purple:       #E5D9F2;
+  --color-fm-pale-sky:          #D0E8F0;
+
+  /* Button hover states */
+  --color-fm-primary-hover:     #FFE894;
+  --color-fm-secondary-hover:   #A8D0F0;
+
+  /* Typography */
+  --font-heading:               'Cormorant Garamond', serif;
+  --font-body:                  'Inter', sans-serif;
+  --font-accent:                'Playfair Display', serif;
+}
+
+html {
+  font-family: var(--font-body);
+  background-color: var(--color-fm-fondo);
+  color: var(--color-fm-texto);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-fm-fondo); }
+::-webkit-scrollbar-thumb { background: var(--color-fm-primary); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-fm-primary-hover); }
