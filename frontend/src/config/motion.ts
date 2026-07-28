@@ -14,6 +14,8 @@ export const DURATION = {
   slow: 1,
   entrance: 0.8,
   portal: 1,
+  /** Apertura tipo "pergamino" de los bloques colapsables (brief 12.3). */
+  scroll: 0.4,
 } as const;
 
 /** Retardos de las entradas escalonadas, en segundos. */

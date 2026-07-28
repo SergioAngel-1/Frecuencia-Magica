@@ -5,3 +5,4 @@ export { OrderSummary } from './order-summary';
 export { ProductCard } from './product-card';
 export { ProductDetail } from './product-detail';
 export { ProductGrid } from './product-grid';
+export { ProductSections } from './product-sections';

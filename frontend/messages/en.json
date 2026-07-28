@@ -404,6 +404,25 @@
       "Natural, conscious ingredients",
       "Ships in compostable packaging"
     ],
+    "productSections": {
+      "benefits": {
+        "title": "Benefits",
+        "body": "Every object follows your breath and helps you slow down: it calms the nervous system, invites presence, and turns an ordinary moment into a conscious pause."
+      },
+      "usage": {
+        "title": "How to use it",
+        "body": "Choose a quiet space, take three deep breaths, and let the scent or texture accompany you. Use it as often as your body asks for — no rush, no obligation."
+      },
+      "ritual": {
+        "title": "A ritual to pair it with",
+        "body": "Pair it with a sound frequency and a few quiet minutes before sleep or upon waking. Over time, this small gesture becomes an anchor that brings you back to yourself."
+      }
+    },
+    "relatedFrequencyLabel": "A frequency to accompany it",
+    "relatedHeading": {
+      "kicker": "Also for you",
+      "title": "More companions for your ritual"
+    },
     "categories": {
       "aromas": "Aromas",
       "candles": "Candles",

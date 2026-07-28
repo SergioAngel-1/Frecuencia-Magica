@@ -404,6 +404,25 @@
       "Ingredientes naturales y conscientes",
       "Envío en empaque compostable"
     ],
+    "productSections": {
+      "benefits": {
+        "title": "Beneficios",
+        "body": "Cada objeto acompaña tu respiración y ayuda a bajar el ritmo: calma el sistema nervioso, invita a la presencia y convierte un instante cualquiera en una pausa consciente."
+      },
+      "usage": {
+        "title": "Modo de uso",
+        "body": "Elige un espacio en calma, respira hondo tres veces y deja que el aroma o la textura te acompañen. Úsalo con la frecuencia que tu cuerpo te pida, sin prisa ni obligación."
+      },
+      "ritual": {
+        "title": "Ritual asociado",
+        "body": "Combínalo con una frecuencia sonora y unos minutos de silencio antes de dormir o al despertar. Con el tiempo, este pequeño gesto se vuelve un ancla que te trae de regreso a ti."
+      }
+    },
+    "relatedFrequencyLabel": "Frecuencia asociada",
+    "relatedHeading": {
+      "kicker": "También para ti",
+      "title": "Otros compañeros de ritual"
+    },
     "categories": {
       "aromas": "Aromas",
       "candles": "Velas",
