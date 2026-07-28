@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
+import { LibrarySystem } from '@/components/features/library/library-system';
 import { PageShell } from '@/components/layout';
 import { Display, Kicker, Prose } from '@/components/ui';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
@@ -13,25 +14,23 @@ export async function generateMetadata({ params }: PageProps) {
   return { title: t('title') };
 }
 
-/**
- * Placeholder de la Fase 5: la ruta existe, el marco la envuelve y el copy
- * es el definitivo. La vista completa llega en su fase.
- */
 export default async function LibraryPage({ params }: PageProps) {
   await resolveLocale(params);
   const t = await getTranslations('library');
 
   return (
-    <PageShell width="wide">
+    <PageShell width="wide" className="pb-[220px] pt-[130px]">
       <Kicker tone="gold" spacing="widest">
         {t('kicker')}
       </Kicker>
       <Display size="lg" level="h1">
         {t('title')}
       </Display>
-      <Prose maxWidth={54} className="mt-5">
+      <Prose maxWidth={54} className="mt-5 mb-10">
         {t('description')}
       </Prose>
+
+      <LibrarySystem />
     </PageShell>
   );
 }

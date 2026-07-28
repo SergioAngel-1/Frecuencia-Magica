@@ -19,12 +19,11 @@ type PortalSceneProps = {
  *
  * Server Component: nada aquí tiene estado propio. El texto llega ya
  * traducido por props (namespace `portal`); el único nodo interactivo es
- * `EnterButton`, que es quien entra en el árbol cliente.
+ * `EnterButton`, que es quien entra en el árbol cliente y cablea el cruce.
  */
 export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneProps) {
   return (
     <section className="relative flex min-h-dvh flex-col items-center justify-center px-6 py-20 text-center">
-      {/* Geometría sagrada de fondo — puramente decorativa */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute top-1/2 left-1/2 size-[min(70vh,380px)] -translate-x-1/2 -translate-y-1/2 md:size-[min(78vh,640px)]"
@@ -60,16 +59,11 @@ export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneP
         </OrbitalRings>
       </div>
 
-      {/* Bloque central — entra con un fade que le es propio (2s, más lento
-          que el fm-fade-in de 1s por defecto de las vistas) */}
       <div
         className="relative z-[2] mx-auto w-[90%] md:w-auto"
         style={{ animation: 'fm-fade-in 2s ease both' }}
       >
         <div className="animate-fm-float relative mx-auto mb-[30px] size-[140px] md:size-[210px]">
-          {/* Los stops de oro y teal se pasan ya combinados: `Halo` añade el
-              cierre a transparente, así que aquí sólo entra el arranque del
-              degradado del prototipo (oro 0.22 → teal 0.10 al 55%). */}
           <Halo color="rgba(216,185,120,0.22), rgba(150,198,188,0.10) 55%" inset="-8%" />
           <Image
             src="/logo.png"
@@ -79,7 +73,6 @@ export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneP
             priority
             className="relative block size-[140px] object-contain drop-shadow-[0_0_26px_rgba(216,185,120,0.4)] md:size-[210px]"
           />
-          {/* Onda expansiva que se repite — el aro del umbral */}
           <div
             aria-hidden="true"
             className="animate-fm-ring absolute -inset-[18px] rounded-full border border-[rgba(247,244,234,0.30)]"

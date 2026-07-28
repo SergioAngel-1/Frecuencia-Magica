@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
-import { PageShell } from '@/components/layout';
-import { Display, Kicker, Prose } from '@/components/ui';
+import { QuizContainer } from '@/components/features/descubrete/quiz-container';
+import { AUDIOS } from '@/data/audios';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 
 type PageProps = { params: LocaleParams };
@@ -13,25 +13,8 @@ export async function generateMetadata({ params }: PageProps) {
   return { title: t('title') };
 }
 
-/**
- * Placeholder de la Fase 5: la ruta existe, el marco la envuelve y el copy
- * es el definitivo. La vista completa llega en su fase.
- */
 export default async function DiscoverPage({ params }: PageProps) {
   await resolveLocale(params);
-  const t = await getTranslations('discover');
 
-  return (
-    <PageShell width="result">
-      <Kicker tone="lav" spacing="widest">
-        {t('kicker')}
-      </Kicker>
-      <Display size="lg" level="h1">
-        {t('title')}
-      </Display>
-      <Prose maxWidth={54} className="mt-5">
-        {t('intro')}
-      </Prose>
-    </PageShell>
-  );
+  return <QuizContainer audios={AUDIOS} />;
 }

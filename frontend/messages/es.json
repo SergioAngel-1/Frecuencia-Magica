@@ -66,9 +66,18 @@
     "heroCta1": "Descúbrete",
     "heroCta2": "Explorar frecuencias",
     "stats": {
-      "daily": { "value": "432 Hz", "label": "Frecuencia del día" },
-      "meditations": { "value": "40+", "label": "Meditaciones" },
-      "realms": { "value": "8", "label": "Realms por explorar" }
+      "daily": {
+        "value": "432 Hz",
+        "label": "Frecuencia del día"
+      },
+      "meditations": {
+        "value": "40+",
+        "label": "Meditaciones"
+      },
+      "realms": {
+        "value": "8",
+        "label": "Realms por explorar"
+      }
     },
     "daily": {
       "kicker": "Frecuencia del día",
@@ -126,9 +135,18 @@
       "cta": "Crear mi cuenta"
     },
     "fields": {
-      "name": { "label": "Nombre", "placeholder": "¿Cómo te llamas?" },
-      "email": { "label": "Correo", "placeholder": "tu@correo.com" },
-      "password": { "label": "Contraseña", "placeholder": "••••••••" }
+      "name": {
+        "label": "Nombre",
+        "placeholder": "¿Cómo te llamas?"
+      },
+      "email": {
+        "label": "Correo",
+        "placeholder": "tu@correo.com"
+      },
+      "password": {
+        "label": "Contraseña",
+        "placeholder": "••••••••"
+      }
     },
     "errors": {
       "nameRequired": "Necesitamos un nombre para recibirte.",
@@ -175,19 +193,39 @@
       },
       "q2": {
         "prompt": "¿Qué pide tu mente hoy?",
-        "options": ["Silencio", "Claridad", "Inspiración", "Descanso"]
+        "options": [
+          "Silencio",
+          "Claridad",
+          "Inspiración",
+          "Descanso"
+        ]
       },
       "q3": {
         "prompt": "¿Qué emoción te acompaña?",
-        "options": ["Nostalgia", "Ansiedad", "Esperanza", "Gratitud"]
+        "options": [
+          "Nostalgia",
+          "Ansiedad",
+          "Esperanza",
+          "Gratitud"
+        ]
       },
       "q4": {
         "prompt": "¿Dónde quisieras estar ahora?",
-        "options": ["Un bosque", "El océano", "Bajo las estrellas", "En casa"]
+        "options": [
+          "Un bosque",
+          "El océano",
+          "Bajo las estrellas",
+          "En casa"
+        ]
       },
       "q5": {
         "prompt": "¿Qué buscas al cerrar los ojos?",
-        "options": ["Soltar", "Recordar", "Sanar", "Soñar"]
+        "options": [
+          "Soltar",
+          "Recordar",
+          "Sanar",
+          "Soñar"
+        ]
       }
     }
   },
@@ -213,13 +251,27 @@
       "breath": "Respiración"
     },
     "audios": {
-      "a1": { "title": "Regreso a la Calma" },
-      "a2": { "title": "Luz Interior" },
-      "a3": { "title": "Raíces Profundas" },
-      "a4": { "title": "Umbral del Sueño" },
-      "a5": { "title": "Aroma de Cedro" },
-      "a6": { "title": "Respirar el Cielo" },
-      "a7": { "title": "Corazón Abierto" }
+      "a1": {
+        "title": "Regreso a la Calma"
+      },
+      "a2": {
+        "title": "Luz Interior"
+      },
+      "a3": {
+        "title": "Raíces Profundas"
+      },
+      "a4": {
+        "title": "Umbral del Sueño"
+      },
+      "a5": {
+        "title": "Aroma de Cedro"
+      },
+      "a6": {
+        "title": "Respirar el Cielo"
+      },
+      "a7": {
+        "title": "Corazón Abierto"
+      }
     }
   },
   "player": {
@@ -251,10 +303,36 @@
       "intermediate": "Intermedio"
     },
     "courses": {
-      "c1": { "title": "El Arte de Volver a Ti" },
-      "c2": { "title": "Rituales Conscientes" },
-      "c3": { "title": "Aromas que Sanan" }
-    }
+      "c1": {
+        "title": "El Arte de Volver a Ti"
+      },
+      "c2": {
+        "title": "Rituales Conscientes"
+      },
+      "c3": {
+        "title": "Aromas que Sanan"
+      }
+    },
+    "completion": {
+      "title": "Has completado este curso",
+      "description": "Cada paso que diste te trajo hasta aquí. Lo aprendido ya vive en ti.",
+      "back": "Volver a la Academia",
+      "exploreLibrary": "Explorar la Biblioteca"
+    },
+    "lessonTitles": [
+      "El primer suspiro",
+      "La puerta del silencio",
+      "Raíces que sostienen",
+      "El latido del instante",
+      "Abrir la mirada",
+      "La respiración que todo lo limpia",
+      "El arte de soltar",
+      "El eco de tu voz interior",
+      "Tejer el día con calma",
+      "La luz que habita en ti",
+      "Reconciliarse con el tiempo",
+      "Volver a comenzar"
+    ]
   },
   "experiences": {
     "kicker": "Experiencias",
@@ -269,10 +347,18 @@
       "inPerson": "Presencial"
     },
     "items": {
-      "e1": { "title": "Baño de Sonido en Vivo" },
-      "e2": { "title": "Círculo de Luna Nueva" },
-      "e3": { "title": "Ritual de Aromas" },
-      "e4": { "title": "Meditación al Amanecer" }
+      "e1": {
+        "title": "Baño de Sonido en Vivo"
+      },
+      "e2": {
+        "title": "Círculo de Luna Nueva"
+      },
+      "e3": {
+        "title": "Ritual de Aromas"
+      },
+      "e4": {
+        "title": "Meditación al Amanecer"
+      }
     }
   },
   "booking": {
@@ -287,8 +373,11 @@
     "continue": "Continuar",
     "continueHint": "Elige un día y una hora para continuar.",
     "fields": {
+      "name": "Nombre",
       "namePlaceholder": "Tu nombre",
+      "email": "Correo",
       "emailPlaceholder": "Tu correo",
+      "note": "Nota",
       "notePlaceholder": "¿Algo que quieras compartir? (opcional)"
     },
     "confirm": "Confirmar reserva",
@@ -326,14 +415,30 @@
       "stationery": "Papelería"
     },
     "products": {
-      "p1": { "title": "Aceite Esencial · Cedro Sagrado" },
-      "p2": { "title": "Vela Ritual · Luz de Vela" },
-      "p3": { "title": "Cuarzo de Serenidad" },
-      "p4": { "title": "Bruma de Enraizamiento" },
-      "p5": { "title": "Incienso · Bosque de Copal" },
-      "p6": { "title": "Sal de Baño · Luna Llena" },
-      "p7": { "title": "Infusión · Calma de Cedro" },
-      "p8": { "title": "Diario de Frecuencias" }
+      "p1": {
+        "title": "Aceite Esencial · Cedro Sagrado"
+      },
+      "p2": {
+        "title": "Vela Ritual · Luz de Vela"
+      },
+      "p3": {
+        "title": "Cuarzo de Serenidad"
+      },
+      "p4": {
+        "title": "Bruma de Enraizamiento"
+      },
+      "p5": {
+        "title": "Incienso · Bosque de Copal"
+      },
+      "p6": {
+        "title": "Sal de Baño · Luna Llena"
+      },
+      "p7": {
+        "title": "Infusión · Calma de Cedro"
+      },
+      "p8": {
+        "title": "Diario de Frecuencias"
+      }
     }
   },
   "cart": {
@@ -362,10 +467,22 @@
     "kicker": "Mi Santuario",
     "title": "Bienvenida de vuelta, Luz",
     "stats": {
-      "days": { "value": "12", "label": "días de práctica" },
-      "frequencies": { "value": "34", "label": "frecuencias oídas" },
-      "courses": { "value": "3", "label": "cursos en camino" },
-      "entries": { "value": "8", "label": "entradas de diario" }
+      "days": {
+        "value": "12",
+        "label": "días de práctica"
+      },
+      "frequencies": {
+        "value": "34",
+        "label": "frecuencias oídas"
+      },
+      "courses": {
+        "value": "3",
+        "label": "cursos en camino"
+      },
+      "entries": {
+        "value": "8",
+        "label": "entradas de diario"
+      }
     },
     "continue": {
       "kicker": "Continúa donde lo dejaste",

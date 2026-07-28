@@ -66,9 +66,18 @@
     "heroCta1": "Discover yourself",
     "heroCta2": "Explore frequencies",
     "stats": {
-      "daily": { "value": "432 Hz", "label": "Frequency of the day" },
-      "meditations": { "value": "40+", "label": "Meditations" },
-      "realms": { "value": "8", "label": "Realms to explore" }
+      "daily": {
+        "value": "432 Hz",
+        "label": "Frequency of the day"
+      },
+      "meditations": {
+        "value": "40+",
+        "label": "Meditations"
+      },
+      "realms": {
+        "value": "8",
+        "label": "Realms to explore"
+      }
     },
     "daily": {
       "kicker": "Frequency of the day",
@@ -126,9 +135,18 @@
       "cta": "Create my account"
     },
     "fields": {
-      "name": { "label": "Name", "placeholder": "What is your name?" },
-      "email": { "label": "Email", "placeholder": "you@email.com" },
-      "password": { "label": "Password", "placeholder": "••••••••" }
+      "name": {
+        "label": "Name",
+        "placeholder": "What is your name?"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "you@email.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "••••••••"
+      }
     },
     "errors": {
       "nameRequired": "We need a name to welcome you.",
@@ -166,23 +184,48 @@
     "questions": {
       "q1": {
         "prompt": "How does your body arrive to this moment?",
-        "options": ["Tired, heavy", "Restless, fast", "Neutral, paused", "Light, present"]
+        "options": [
+          "Tired, heavy",
+          "Restless, fast",
+          "Neutral, paused",
+          "Light, present"
+        ]
       },
       "q2": {
         "prompt": "What does your mind ask for today?",
-        "options": ["Silence", "Clarity", "Inspiration", "Rest"]
+        "options": [
+          "Silence",
+          "Clarity",
+          "Inspiration",
+          "Rest"
+        ]
       },
       "q3": {
         "prompt": "Which emotion accompanies you?",
-        "options": ["Nostalgia", "Anxiety", "Hope", "Gratitude"]
+        "options": [
+          "Nostalgia",
+          "Anxiety",
+          "Hope",
+          "Gratitude"
+        ]
       },
       "q4": {
         "prompt": "Where would you like to be now?",
-        "options": ["A forest", "The ocean", "Under the stars", "At home"]
+        "options": [
+          "A forest",
+          "The ocean",
+          "Under the stars",
+          "At home"
+        ]
       },
       "q5": {
         "prompt": "What do you seek when you close your eyes?",
-        "options": ["To let go", "To remember", "To heal", "To dream"]
+        "options": [
+          "To let go",
+          "To remember",
+          "To heal",
+          "To dream"
+        ]
       }
     }
   },
@@ -208,13 +251,27 @@
       "breath": "Breath"
     },
     "audios": {
-      "a1": { "title": "Return to Calm" },
-      "a2": { "title": "Inner Light" },
-      "a3": { "title": "Deep Roots" },
-      "a4": { "title": "Threshold of Sleep" },
-      "a5": { "title": "Cedar Aroma" },
-      "a6": { "title": "Breathe the Sky" },
-      "a7": { "title": "Open Heart" }
+      "a1": {
+        "title": "Return to Calm"
+      },
+      "a2": {
+        "title": "Inner Light"
+      },
+      "a3": {
+        "title": "Deep Roots"
+      },
+      "a4": {
+        "title": "Threshold of Sleep"
+      },
+      "a5": {
+        "title": "Cedar Aroma"
+      },
+      "a6": {
+        "title": "Breathe the Sky"
+      },
+      "a7": {
+        "title": "Open Heart"
+      }
     }
   },
   "player": {
@@ -246,10 +303,36 @@
       "intermediate": "Intermediate"
     },
     "courses": {
-      "c1": { "title": "The Art of Returning to You" },
-      "c2": { "title": "Conscious Rituals" },
-      "c3": { "title": "Aromas that Heal" }
-    }
+      "c1": {
+        "title": "The Art of Returning to You"
+      },
+      "c2": {
+        "title": "Conscious Rituals"
+      },
+      "c3": {
+        "title": "Aromas that Heal"
+      }
+    },
+    "completion": {
+      "title": "You have completed this course",
+      "description": "Every step you took brought you here. What you learned now lives within you.",
+      "back": "Back to Academy",
+      "exploreLibrary": "Explore the Library"
+    },
+    "lessonTitles": [
+      "The first breath",
+      "The door of silence",
+      "Roots that hold",
+      "The heartbeat of the moment",
+      "Opening your gaze",
+      "The breath that cleanses all",
+      "The art of letting go",
+      "The echo of your inner voice",
+      "Weaving the day with calm",
+      "The light within you",
+      "Making peace with time",
+      "Beginning again"
+    ]
   },
   "experiences": {
     "kicker": "Experiences",
@@ -264,10 +347,18 @@
       "inPerson": "In-person"
     },
     "items": {
-      "e1": { "title": "Live Sound Bath" },
-      "e2": { "title": "New Moon Circle" },
-      "e3": { "title": "Aroma Ritual" },
-      "e4": { "title": "Sunrise Meditation" }
+      "e1": {
+        "title": "Live Sound Bath"
+      },
+      "e2": {
+        "title": "New Moon Circle"
+      },
+      "e3": {
+        "title": "Aroma Ritual"
+      },
+      "e4": {
+        "title": "Sunrise Meditation"
+      }
     }
   },
   "booking": {
@@ -282,8 +373,11 @@
     "continue": "Continue",
     "continueHint": "Choose a day and a time to continue.",
     "fields": {
+      "name": "Name",
       "namePlaceholder": "Your name",
+      "email": "Email",
       "emailPlaceholder": "Your email",
+      "note": "Note",
       "notePlaceholder": "Anything you want to share? (optional)"
     },
     "confirm": "Confirm booking",
@@ -321,14 +415,30 @@
       "stationery": "Stationery"
     },
     "products": {
-      "p1": { "title": "Essential Oil · Sacred Cedar" },
-      "p2": { "title": "Ritual Candle · Candlelight" },
-      "p3": { "title": "Serenity Quartz" },
-      "p4": { "title": "Grounding Mist" },
-      "p5": { "title": "Incense · Copal Forest" },
-      "p6": { "title": "Bath Salt · Full Moon" },
-      "p7": { "title": "Infusion · Cedar Calm" },
-      "p8": { "title": "Frequency Journal" }
+      "p1": {
+        "title": "Essential Oil · Sacred Cedar"
+      },
+      "p2": {
+        "title": "Ritual Candle · Candlelight"
+      },
+      "p3": {
+        "title": "Serenity Quartz"
+      },
+      "p4": {
+        "title": "Grounding Mist"
+      },
+      "p5": {
+        "title": "Incense · Copal Forest"
+      },
+      "p6": {
+        "title": "Bath Salt · Full Moon"
+      },
+      "p7": {
+        "title": "Infusion · Cedar Calm"
+      },
+      "p8": {
+        "title": "Frequency Journal"
+      }
     }
   },
   "cart": {
@@ -357,10 +467,22 @@
     "kicker": "My Sanctuary",
     "title": "Welcome back, Luz",
     "stats": {
-      "days": { "value": "12", "label": "days of practice" },
-      "frequencies": { "value": "34", "label": "frequencies heard" },
-      "courses": { "value": "3", "label": "courses in progress" },
-      "entries": { "value": "8", "label": "journal entries" }
+      "days": {
+        "value": "12",
+        "label": "days of practice"
+      },
+      "frequencies": {
+        "value": "34",
+        "label": "frequencies heard"
+      },
+      "courses": {
+        "value": "3",
+        "label": "courses in progress"
+      },
+      "entries": {
+        "value": "8",
+        "label": "journal entries"
+      }
     },
     "continue": {
       "kicker": "Continue where you left off",
