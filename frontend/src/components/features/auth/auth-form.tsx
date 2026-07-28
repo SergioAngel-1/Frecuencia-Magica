@@ -153,12 +153,12 @@ export function AuthForm() {
         </Field>
 
         {mode === 'login' ? (
-          <div className="-mt-1 text-right">
-            {/* Sin recuperación de contraseña real (fuera de alcance): enlace
-                de marcador de posición, no navega a ningún sitio. */}
+          <div className="-mt-1 flex justify-end">
+            {/* TODO(backend): recuperación de contraseña aplazada; el click
+                es intencionalmente inerte hasta que exista esa pantalla. */}
             <button
               type="button"
-              className="font-sans text-[12.5px] tracking-[.04em] text-[rgba(247,244,234,0.6)] transition-colors hover:text-ivory"
+              className="min-h-11 rounded-pill px-3 font-sans text-[12.5px] tracking-[.04em] text-[rgba(247,244,234,0.6)] transition-colors hover:text-ivory"
             >
               {t('auth.forgot')}
             </button>
