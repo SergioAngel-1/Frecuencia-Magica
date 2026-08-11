@@ -73,6 +73,6 @@ describe('catálogo de contenido', () => {
   });
 
   it('cada experiencia declara su modalidad', () => {
-    expect(EXPERIENCES.map((e) => e.mode)).toEqual(['online', 'in-person', 'in-person', 'online']);
+    expect(EXPERIENCES.map((e) => e.mode)).toEqual(['online', 'inPerson', 'inPerson', 'online']);
   });
 });

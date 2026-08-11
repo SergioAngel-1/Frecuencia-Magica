@@ -35,6 +35,9 @@ export default async function StorePage({ params }: PageProps) {
       <Prose maxWidth={54} className="mb-10">
         {t('description')}
       </Prose>
+      {/* Encabezado de sección para los lectores de pantalla: el grid de
+          productos salta de h1 a h3 sin un h2 intermedio. */}
+      <h2 className="sr-only">{t('gridTitle')}</h2>
       <ProductGrid />
     </PageShell>
   );

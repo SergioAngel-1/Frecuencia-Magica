@@ -33,8 +33,13 @@ export const EASE = {
 
 /** Milisegundos de la coreografía de cruce del portal. */
 export const PORTAL_TIMING = {
-  /** Momento en que el círculo cubre la pantalla y se navega. */
+  /** Momento en que el círculo cubre la pantalla y el consumidor navega. */
   navigate: 1000,
-  /** Momento en que el overlay termina de desvanecerse. */
-  settle: 1900,
+  /** Momento en que el overlay empieza a disolverse. Debe llegar DESPUÉS de
+      que la vista anterior haya salido (exit de RouteTransition:
+      DURATION.fast = 0.3s): si el círculo se desvaneciera antes, la pantalla
+      anterior se asomaría tras él durante su fundido de salida. */
+  reveal: 1300,
+  /** Momento en que el overlay vuelve a reposo (disolución de 0.9s completa). */
+  settle: 2200,
 } as const;

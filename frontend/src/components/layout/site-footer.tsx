@@ -52,7 +52,7 @@ export function SiteFooter() {
                   <Link
                     href={link.href as '/biblioteca'}
                     data-magnetic
-                    className="text-ivory/78 hover:text-ivory font-serif text-[17px] transition-colors duration-300"
+                    className="inline-flex min-h-11 items-center text-ivory/78 hover:text-ivory font-serif text-[17px] transition-colors duration-300"
                   >
                     {tNav(`realms.${link.key}` as 'realms.biblioteca')}
                   </Link>
@@ -71,7 +71,7 @@ export function SiteFooter() {
               <Link
                 href="/inicio"
                 data-magnetic
-                className="text-ivory/78 hover:text-ivory font-serif text-[17px] transition-colors duration-300"
+                className="inline-flex min-h-11 items-center text-ivory/78 hover:text-ivory font-serif text-[17px] transition-colors duration-300"
               >
                 {t('links.about')}
               </Link>
@@ -80,7 +80,7 @@ export function SiteFooter() {
               <Link
                 href="/mi-santuario"
                 data-magnetic
-                className="text-ivory/78 hover:text-ivory font-serif text-[17px] transition-colors duration-300"
+                className="inline-flex min-h-11 items-center text-ivory/78 hover:text-ivory font-serif text-[17px] transition-colors duration-300"
               >
                 {t('links.membership')}
               </Link>
@@ -89,7 +89,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <p className="text-ivory/40 font-sans text-[11px] tracking-[.1em]">
+      <p className="text-ivory/50 font-sans text-[11px] tracking-[.1em]">
         © 2026 {tCommon('brand')} · {t('rights')}
       </p>
     </footer>

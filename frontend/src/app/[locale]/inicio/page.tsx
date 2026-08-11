@@ -80,7 +80,7 @@ export default async function HomePage({ params }: PageProps) {
           action={
             <Link
               href="/biblioteca"
-              className="font-sans text-[11px] uppercase tracking-[.14em] text-gold transition-colors hover:text-ivory"
+              className="inline-flex min-h-11 items-center font-sans text-[11px] uppercase tracking-[.14em] text-gold transition-colors hover:text-ivory"
             >
               {common('seeAll')} →
             </Link>

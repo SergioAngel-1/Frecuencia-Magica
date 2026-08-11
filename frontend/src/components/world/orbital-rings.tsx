@@ -35,10 +35,16 @@ type NodeProps = {
 /** Punto orbital sobre un aro. */
 function OrbitalNode({ angle, radius, color, size = 6 }: NodeProps) {
   const rad = (angle * Math.PI) / 180;
+
+  // Redondeo a 3 decimales: sin él, Math.cos/sin pueden diferir en 1 ULP entre
+  // el render del servidor y el del cliente y React dispara un hydration
+  // mismatch en cada carga (diferencia invisible a escala de píxel).
+  const round3 = (value: number) => Math.round(value * 1000) / 1000;
+
   return (
     <circle
-      cx={radius * Math.cos(rad)}
-      cy={radius * Math.sin(rad)}
+      cx={round3(radius * Math.cos(rad))}
+      cy={round3(radius * Math.sin(rad))}
       r={size / 2}
       fill={color}
       style={{ filter: `drop-shadow(0 0 4px ${color})` }}

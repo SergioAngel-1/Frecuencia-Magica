@@ -78,7 +78,12 @@ describe('catálogos de mensajes', () => {
       ...COURSES.flatMap((c) => [c.titleKey, c.levelKey]),
       ...EXPERIENCES.flatMap((e) => [e.titleKey, e.modeKey]),
       ...PRODUCTS.flatMap((p) => [p.titleKey, p.catKey]),
-      ...QUESTIONS.flatMap((q) => [q.promptKey, ...q.optionKeys]),
+      // Las claves de QUESTIONS son relativas al namespace `discover`: el test
+      // las verifica prefijadas, igual que las consume `useTranslations('discover')`.
+      ...QUESTIONS.flatMap((q) => [
+        `discover.${q.promptKey}`,
+        ...q.optionKeys.map((key) => `discover.${key}`),
+      ]),
     ];
 
     for (const clave of referencias) {

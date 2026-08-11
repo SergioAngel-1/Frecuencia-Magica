@@ -6,13 +6,13 @@ import { nextAudioId, previousAudioId } from '@/lib/player/progress';
 type PlayerState = {
   audioId: string | null;
   isPlaying: boolean;
-  /** Segundos transcurridos del audio abierto. */
+  /** Segundos transcurridos del audio abierto. Acepta un actualizador funcional. */
   elapsed: number;
   /** Abre un audio y lo reproduce. Reabrir el mismo audio no reinicia el tiempo. */
   open(id: string): void;
   toggle(): void;
   close(): void;
-  setElapsed(seconds: number): void;
+  setElapsed(seconds: number | ((elapsed: number) => number)): void;
   next(): void;
   previous(): void;
 };
@@ -47,7 +47,10 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   },
   toggle: () => set((state) => ({ isPlaying: !state.isPlaying })),
   close: () => set({ audioId: null, isPlaying: false, elapsed: 0 }),
-  setElapsed: (seconds) => set({ elapsed: seconds }),
+  setElapsed: (seconds) =>
+    set((state) => ({
+      elapsed: typeof seconds === 'function' ? seconds(state.elapsed) : seconds,
+    })),
   next: () => {
     const { audioId } = get();
     if (audioId === null) return;

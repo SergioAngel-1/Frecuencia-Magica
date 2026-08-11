@@ -51,8 +51,15 @@ export function NebulaLayer() {
       <div
         className="absolute inset-0"
         style={{
+          // Viñeta que oscurece toda la pantalla. Port del prototipo (líneas
+          // 64–69), corregido: con `at 50% 120%` el borde superior de la elipse
+          // (el stop oscuro al 100%) caía al 75% de la altura y dejaba el
+          // borde inferior sin oscurecer — la oscuridad "se cortaba" y la base
+          // del body (void-2 plano) quedaba a la vista como una banda más
+          // clara. Con `at 50% 145%` el borde de la elipse coincide con el
+          // borde inferior de la pantalla y la viñeta cubre todo el viewport.
           background:
-            'radial-gradient(120% 90% at 50% 120%, rgba(15,27,46,0) 40%, rgba(10,18,32,0.85) 100%)',
+            'radial-gradient(120% 90% at 50% 145%, rgba(15,27,46,0) 40%, rgba(10,18,32,0.85) 100%)',
         }}
       />
     </div>

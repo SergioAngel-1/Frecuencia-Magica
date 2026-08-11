@@ -32,7 +32,7 @@ export type Course = {
   band: string;
 };
 
-export type ExperienceMode = 'online' | 'in-person';
+export type ExperienceMode = 'online' | 'inPerson';
 
 export type Experience = {
   id: string;

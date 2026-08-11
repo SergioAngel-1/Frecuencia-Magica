@@ -6,11 +6,10 @@ import { Button, GlassPanel } from '@/components/ui';
 import { PRODUCTS } from '@/data';
 import { cartCount, cartSubtotal, cartTotal, shippingCost } from '@/lib/cart/totals';
 import { formatPrice } from '@/lib/format';
-import { useCartStore } from '@/stores/cart-store';
 
 type OrderSummaryProps = {
   items: Record<string, number>;
-  onPlaceOrder?: () => void;
+  onPlaceOrder: () => void;
 };
 
 export function OrderSummary({ items, onPlaceOrder }: OrderSummaryProps) {
@@ -19,10 +18,6 @@ export function OrderSummary({ items, onPlaceOrder }: OrderSummaryProps) {
   const shipping = shippingCost(subtotal);
   const total = cartTotal(subtotal);
   const count = cartCount(items);
-
-  const handlePlaceOrder = onPlaceOrder ?? (() => {
-    useCartStore.getState().clear();
-  });
 
   return (
     <GlassPanel className="sticky top-[150px] p-5" glow>
@@ -46,7 +41,7 @@ export function OrderSummary({ items, onPlaceOrder }: OrderSummaryProps) {
       </div>
 
       {count > 0 ? (
-        <Button variant="primary" size="md" className="mt-5 w-full" onClick={handlePlaceOrder}>
+        <Button variant="primary" size="md" className="mt-5 w-full" onClick={onPlaceOrder}>
           {t('placeOrder')}
         </Button>
       ) : null}

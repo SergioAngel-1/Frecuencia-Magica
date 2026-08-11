@@ -306,6 +306,21 @@
     padding: 0;
   }
 
+  /* El body debe cubrir SIEMPRE el viewport completo, aunque el contenido sea
+     más corto. Sin esto, con páginas breves (portal, descúbrete) el box del
+     body termina a media pantalla: la zona inferior queda fuera de la capa de
+     fondo (el cursor `none` deja de aplicar y vuelve el puntero normal) y
+     cualquier capa anclada al body se corta. Las capas fijas (canvas, blobs)
+     ya cubren el viewport; ésta es la que faltaba. */
+  html {
+    min-height: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
   body {
     background: radial-gradient(
       140% 100% at 50% -10%,

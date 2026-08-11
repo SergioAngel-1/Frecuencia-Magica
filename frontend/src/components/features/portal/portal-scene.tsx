@@ -97,7 +97,7 @@ export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneP
         <EnterButton>{cta}</EnterButton>
       </div>
 
-      <p className="text-ivory/40 absolute bottom-[34px] left-1/2 z-[2] -translate-x-1/2 font-sans text-[11px] tracking-[.32em] uppercase">
+      <p className="text-ivory/50 absolute bottom-[34px] left-1/2 z-[2] -translate-x-1/2 font-sans text-[11px] tracking-[.32em] uppercase">
         {hint}
       </p>
     </section>

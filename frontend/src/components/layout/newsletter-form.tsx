@@ -50,7 +50,7 @@ export function NewsletterForm() {
           <button
             type="submit"
             data-magnetic
-            aria-label={t('newsletterLabel')}
+            aria-label={t('newsletterSubmit')}
             className="rounded-pill bg-gold min-h-11 px-[22px] font-sans text-[13px] font-medium tracking-[.06em] text-[#12213a] transition-[background-color,box-shadow] duration-300 hover:shadow-[0_0_20px_rgba(216,185,120,0.35)]"
           >
             →

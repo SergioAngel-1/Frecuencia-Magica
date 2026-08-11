@@ -63,19 +63,15 @@ export function CourseCard({
 
         {/* Lado derecho — información */}
         <div className="flex flex-1 flex-col justify-center px-[clamp(24px,4vw,44px)] py-[32px]">
-          <p className="font-sans text-[11px] uppercase tracking-[.3em] text-teal">{level}</p>
-          <h3 className="font-serif text-[clamp(30px,3.4vw,46px)] font-[300] leading-[1.05]">
+          <h2 className="font-serif text-[clamp(30px,3.4vw,46px)] font-[300] leading-[1.05]">
             {title}
-          </h3>
+          </h2>
           <p className="text-ivory/70 mt-[14px] max-w-[40ch] font-sans text-[14px] leading-[1.7]">
             {lessonsLabel}
           </p>
           <div className="mt-6 flex items-center gap-4">
             <span className="inline-flex items-center gap-2 rounded-[999px] border border-ivory/22 bg-ivory/8 px-5 py-2 font-serif text-[17px] tracking-[.04em] backdrop-blur-[6px]">
               ▶ {level}
-            </span>
-            <span className="font-sans text-[13px] tracking-[.08em] text-ivory/60">
-              {lessonsLabel}
             </span>
           </div>
         </div>

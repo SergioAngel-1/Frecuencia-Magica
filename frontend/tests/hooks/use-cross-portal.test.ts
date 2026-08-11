@@ -20,6 +20,7 @@ describe('useCrossPortal', () => {
   beforeEach(() => {
     vi.useFakeTimers();
     pushMock.mockClear();
+    window.localStorage.clear();
     usePortalStore.setState({ phase: 'idle' });
     useAmbientStore.setState({ enabled: false });
   });
@@ -62,6 +63,30 @@ describe('useCrossPortal', () => {
 
     act(() => {
       vi.advanceTimersByTime(1000);
+    });
+
+    expect(pushMock).toHaveBeenCalledExactlyOnceWith('/inicio');
+  });
+
+  it('con un cruce reciente omite la coreografía: navega a los 250 ms', () => {
+    const { result } = renderHook(() => useCrossPortal());
+
+    // Primera vez (storage vacío): coreografía completa.
+    act(() => result.current());
+    act(() => {
+      vi.advanceTimersByTime(1000);
+    });
+    expect(pushMock).toHaveBeenCalledTimes(1);
+
+    // La coreografía termina y se cruza de nuevo enseguida: fundido corto.
+    usePortalStore.setState({ phase: 'idle' });
+    pushMock.mockClear();
+
+    act(() => result.current());
+    expect(pushMock).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(250);
     });
 
     expect(pushMock).toHaveBeenCalledExactlyOnceWith('/inicio');

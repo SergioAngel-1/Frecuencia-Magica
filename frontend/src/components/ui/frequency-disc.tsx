@@ -241,7 +241,12 @@ export function FrequencyDisc({
     </>
   );
 
-  const frame = cn('block text-center', className);
+  // `mx-auto`: el frame tiene ancho explícito (`box`) y, como bloque, quedaba
+  // alineado a la izquierda en contenedores más anchos — el disco se veía
+  // descentrado respecto a badges/títulos centrados encima (p. ej. el badge
+  // "Destacado" de Biblioteca). En celdas de grid o slots con maxWidth lo
+  // centra igual sin alterar la constelación.
+  const frame = cn('mx-auto block text-center', className);
   const style: CSSProperties = { width: box, maxWidth: '100%' };
 
   if (!onClick) {

@@ -52,9 +52,9 @@ export function ExperienceRow({
           <p className="font-sans text-[11px] uppercase tracking-[.3em] text-teal mt-3">
             {mode}
           </p>
-          <h3 className="font-serif text-[clamp(32px,3.6vw,50px)] font-[300] leading-[1.05] mt-1">
+          <h2 className="font-serif text-[clamp(32px,3.6vw,50px)] font-[300] leading-[1.05] mt-1">
             {title}
-          </h3>
+          </h2>
           <div className="mt-6 flex items-center gap-6">
             <Button variant="primary" size="lg" asChild>
               <Link href={{ pathname: '/experiencias/[experienceId]/reservar', params: { experienceId: experience.id } }}>
@@ -121,9 +121,9 @@ export function ExperienceRow({
 
         {/* Info */}
         <div className="flex flex-1 flex-col justify-center px-6 py-5">
-          <h4 className="font-serif text-[26px] font-[400] leading-[1.2] text-ivory">
+          <h3 className="font-serif text-[26px] font-[400] leading-[1.2] text-ivory">
             {title}
-          </h4>
+          </h3>
           <p className="font-sans text-[12.5px] tracking-[.06em] text-ivory/60 mt-1">
             {experience.dur}
           </p>

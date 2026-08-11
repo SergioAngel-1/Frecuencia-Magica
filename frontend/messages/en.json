@@ -39,6 +39,7 @@
     "newsletterPlaceholder": "Your email",
     "newsletterLabel": "Your email address",
     "newsletterSuccess": "Thank you. We will write when there is something worth your silence.",
+    "newsletterSubmit": "Subscribe",
     "rights": "Made with light",
     "columns": {
       "explore": "Explore",
@@ -289,6 +290,7 @@
     "featuredBadge": "Featured",
     "featuredDescription": "A guided journey to reunite with yourself through breath, silence and small daily rituals.",
     "featuredCta": "Start course",
+    "backLabel": "Back",
     "allCourses": "All courses",
     "courseContent": "Course content",
     "courseDescription": "A guided journey with practices, meditations and rituals to integrate what you learn into daily life. Each lesson opens one more door toward you.",
@@ -391,6 +393,7 @@
     "kicker": "Store",
     "title": "Tools for the ritual",
     "description": "Oils, candles and crystals born from a conviction: when you transform within, your world changes.",
+    "gridTitle": "All products",
     "cart": "Cart",
     "add": "Add",
     "buyNow": "Buy now",

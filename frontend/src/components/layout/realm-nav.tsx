@@ -11,9 +11,11 @@ import type { RealmId } from '@/types/realm';
 /**
  * Navegación de constelación.
  *
- * Seis puntos de luz, uno por realm. El nombre sólo aparece al acercarse
- * —hover o foco de teclado—, de modo que la navegación no compite con el
- * contenido: es parte del mundo, no una barra encima de él.
+ * Seis puntos de luz, uno por realm. En desktop el nombre sólo aparece al
+ * acercarse —hover o foco de teclado—, de modo que la navegación no compite
+ * con el contenido; en la barra inferior de móvil/tablet el nombre queda
+ * siempre visible bajo el punto (sin hover fiable, los puntos solos no dicen
+ * nada). El `sr-only` mantiene el nombre en el árbol de accesibilidad.
  *
  * En columna lateral desde 1024px; por debajo se convierte en una barra
  * inferior, porque el margen izquierdo deja de existir en tablet y móvil.
@@ -50,9 +52,9 @@ export function RealmNav() {
             data-magnetic
             aria-current={active ? 'page' : undefined}
             className={cn(
-              'group relative flex h-11 min-w-11 items-center justify-center opacity-60',
+              'group relative flex h-11 min-w-11 flex-col items-center justify-center opacity-60',
               'transition-opacity duration-300 hover:opacity-100 focus-visible:opacity-100',
-              'lg:justify-start lg:px-[6px] lg:py-[11px]',
+              'lg:h-11 lg:min-w-11 lg:flex-row lg:justify-start lg:px-[6px] lg:py-[11px]',
               active && 'opacity-100',
             )}
           >
@@ -68,6 +70,15 @@ export function RealmNav() {
                 boxShadow: active ? `0 0 12px 2px ${realm.accent}` : undefined,
               }}
             />
+
+            {/* Nombre persistente bajo el punto en la barra inferior: sin
+                hover fiable en táctil, los puntos solos no comunican destino. */}
+            <span
+              aria-hidden="true"
+              className="mt-[3px] max-w-[56px] truncate font-sans text-[8px] uppercase tracking-[.06em] text-ivory/60 lg:hidden"
+            >
+              {name}
+            </span>
 
             <span
               aria-hidden="true"

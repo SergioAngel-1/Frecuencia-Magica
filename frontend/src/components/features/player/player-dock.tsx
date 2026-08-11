@@ -32,11 +32,11 @@ export function PlayerDock() {
     // TODO(backend): reproducción simulada con un temporizador. Sustituir por
     // un HTMLAudioElement (timeupdate/ended) cuando existan los ficheros de audio.
     const interval = setInterval(() => {
-      setElapsed(elapsed + 1);
+      setElapsed((elapsed) => elapsed + 1);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isPlaying, elapsed, audio, setElapsed]);
+  }, [isPlaying, audio, setElapsed]);
 
   useEffect(() => {
     if (audio && elapsed >= total) {

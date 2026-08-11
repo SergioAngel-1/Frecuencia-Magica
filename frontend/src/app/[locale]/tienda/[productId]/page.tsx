@@ -20,7 +20,9 @@ export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const { productId } = await params;
   const product = PRODUCTS.find((p) => p.id === productId);
-  if (!product) return { title: 'Producto' };
+  // Sin producto (id obsoleto o ruta inventada): el layout raíz aporta el
+  // título por defecto; la página resuelve con notFound().
+  if (!product) return {};
 
   const t = await getTranslations({ locale, namespace: 'store' });
 

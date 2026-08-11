@@ -10,7 +10,14 @@ type QuizLayoutProps = {
 
 export function QuizLayout({ children, className }: QuizLayoutProps) {
   return (
-    <PageShell width="result" className={cn('flex flex-col items-center text-center', className)}>
+    <PageShell
+      width="result"
+      padding="centered"
+      className={cn(
+        'flex min-h-dvh flex-col items-center justify-center text-center',
+        className,
+      )}
+    >
       {children}
     </PageShell>
   );

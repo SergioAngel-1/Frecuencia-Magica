@@ -22,21 +22,21 @@ describe('usePortalStore', () => {
     expect(usePortalStore.getState().phase).toBe('in');
   });
 
-  it('a los mil milisegundos pasa a salida', () => {
+  it('a los 1300 ms pasa a salida (la vista anterior ya salió)', () => {
     usePortalStore.getState().cross();
-    vi.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1300);
     expect(usePortalStore.getState().phase).toBe('out');
   });
 
-  it('a los mil novecientos vuelve a reposo', () => {
+  it('a los 2200 ms vuelve a reposo', () => {
     usePortalStore.getState().cross();
-    vi.advanceTimersByTime(1900);
+    vi.advanceTimersByTime(2200);
     expect(usePortalStore.getState().phase).toBe('idle');
   });
 
   it('cruzar dos veces seguidas no reinicia la secuencia', () => {
     usePortalStore.getState().cross();
-    vi.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1300);
     expect(usePortalStore.getState().phase).toBe('out');
     // En plena salida, un segundo cruce no debe reiniciar la coreografía.
     usePortalStore.getState().cross();

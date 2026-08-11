@@ -1,12 +1,10 @@
 'use client';
 
-import { AnimatePresence, motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useMemo, useState, type ChangeEvent, type FormEvent } from 'react';
 
 import { Button, Field, Input, Kicker, SegmentedControl } from '@/components/ui';
-import { DURATION, EASE } from '@/config/motion';
-import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { cn } from '@/lib/cn';
 import { Link, useRouter } from '@/i18n/navigation';
 import { authErrors, type AuthFormValues, type AuthMode } from '@/lib/auth/validation';
 
@@ -22,7 +20,6 @@ const INITIAL_TOUCHED: Record<AuthField, boolean> = {
 export function AuthForm() {
   const t = useTranslations();
   const router = useRouter();
-  const reducedMotion = useReducedMotionSafe();
 
   const [mode, setMode] = useState<AuthMode>('login');
   const [values, setValues] = useState<AuthFormValues>(INITIAL_VALUES);
@@ -107,26 +104,21 @@ export function AuthForm() {
       />
 
       <form onSubmit={handleSubmit} className="max-w-[400px] space-y-[15px]" noValidate>
-        {reducedMotion ? (
-          mode === 'register' ? (
-            nameField
-          ) : null
-        ) : (
-          <AnimatePresence initial={false}>
-            {mode === 'register' && (
-              <motion.div
-                key="name-field"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: DURATION.reveal, ease: EASE.soft }}
-                style={{ overflow: 'hidden' }}
-              >
-                {nameField}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        )}
+        {/* Apertura tipo "pergamino" sin animar altura (grid-rows 0fr→1fr,
+            transform-free; la regla del proyecto limita a transform/opacity).
+            `inert` + `aria-hidden` retiran el campo del tab y del árbol cuando
+            está colapsado; con prefers-reduced-motion el kill global de CSS
+            hace la transición instantánea. */}
+        <div
+          className={cn(
+            'grid transition-[grid-template-rows,opacity] duration-[350ms] ease-[cubic-bezier(.2,.85,.25,1)]',
+            mode === 'register' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
+          )}
+          aria-hidden={mode !== 'register'}
+          inert={mode !== 'register'}
+        >
+          <div className="overflow-hidden">{nameField}</div>
+        </div>
 
         <Field htmlFor="email" label={t('auth.fields.email.label')} error={fieldError('email')}>
           <Input

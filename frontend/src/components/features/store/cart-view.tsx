@@ -60,7 +60,7 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
 }
 
 type CartViewProps = {
-  onPlaceOrder?: () => void;
+  onPlaceOrder: () => void;
 };
 
 export function CartView({ onPlaceOrder }: CartViewProps) {

@@ -39,6 +39,7 @@
     "newsletterPlaceholder": "Tu correo",
     "newsletterLabel": "Tu correo electrónico",
     "newsletterSuccess": "Gracias. Te escribiremos cuando haya algo que merezca tu silencio.",
+    "newsletterSubmit": "Suscribirse",
     "rights": "Hecho con luz",
     "columns": {
       "explore": "Explorar",
@@ -289,6 +290,7 @@
     "featuredBadge": "Destacado",
     "featuredDescription": "Un recorrido guiado para reencontrarte contigo a través de la respiración, el silencio y pequeños rituales diarios.",
     "featuredCta": "Comenzar curso",
+    "backLabel": "Volver",
     "allCourses": "Todos los cursos",
     "courseContent": "Contenido del curso",
     "courseDescription": "Un recorrido guiado con prácticas, meditaciones y rituales para integrar lo aprendido en tu vida diaria. Cada lección abre una puerta más hacia ti.",
@@ -391,6 +393,7 @@
     "kicker": "Tienda",
     "title": "Herramientas para el ritual",
     "description": "Aceites, velas y cristales nacidos de una convicción: cuando transformas tu interior, cambia tu mundo.",
+    "gridTitle": "Todos los productos",
     "cart": "Carrito",
     "add": "Añadir",
     "buyNow": "Comprar ya",
