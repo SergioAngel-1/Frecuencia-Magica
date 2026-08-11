@@ -8,10 +8,13 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 | 2 | Fases 0–2 | Fundaciones, sistema de diseño, i18n y datos | ✅ Completada | 2026-07-28 |
 | 3 | Fase 3 | Motor del mundo (canvas, cursor, audio, portal) | ✅ Completada | 2026-07-28 |
 | 4 | Fases 4–5 | UI Kit y layout | ✅ Completada | 2026-07-28 |
-| 5 | Fases 6–8 | Portal, Home, Descúbrete | ⬜ Pendiente | — |
-| 6 | Fases 9–11 | Biblioteca, Academia, Experiencias | ⬜ Pendiente | — |
-| 7 | Fases 12–14 | Tienda, Acceso, Mi Santuario | ⬜ Pendiente | — |
-| 8 | Fases 15–16 | 3D perezoso, estados, a11y, responsive, rendimiento | ⬜ Pendiente | — |
+| 5 | Fases 6–8 | Portal, Home, Descúbrete | ✅ Completada | 2026-07-28 |
+| 6 | Fases 9–11 | Biblioteca, Academia, Experiencias | ⚠️ Con huecos | 2026-07-28 |
+| 7 | Fases 12–14 | Tienda, Acceso, Mi Santuario | ⚠️ Con huecos | 2026-07-28 |
+| 8 | Fase 15 | 3D perezoso | ❌ No ejecutada | — |
+| 9 | Fase 16 | Estados, a11y, responsive, rendimiento | ❌ No ejecutada (salvo restos de fases previas) | — |
+
+> **Auditoría 2026-07-28 (ver sección final «Auditoría completa»).** Las fases 9–14 se construyeron y los cuatro comandos de verificación están en verde, pero varias tareas quedaron incompletas respecto al plan (Task 12.3, 12.4, 13.1 y los `// TODO(backend)`). **La Fase 15 (3D) no se ejecutó en absoluto** y **la Fase 16 (estados/404/error/loading, a11y, responsive, rendimiento) tampoco**. Detalle abajo.
 
 ---
 
@@ -170,6 +173,144 @@ El *first load JS* por ruta es de **212 kB**, por encima del presupuesto de 200 
 
 ---
 
+## Sección 5 — Fases 6, 7 y 8 (Portal, Home, Descúbrete)
+
+**Entregado**
+
+- **6.1 Pantalla del portal.** `portal-scene.tsx` con geometría sagrada (dos SVG superpuestos, `fm-spin`/`fm-spin-r`), logo flotante con halo y aro expansivo, `EnterButton` de tres capas con glow animado y `Magnetic`, `Display size="hero"` con el título, kicker, subtítulo y pista al pie. `min-height: 100vh`, contenido centrado. Responsive: logo a 140px en móvil, geometría reducida.
+- **6.2 Cruzar el portal.** `useCrossPortal()` que activa el audio ambiental (gesto de usuario), dispara `cross()` del store y navega a `/inicio` a los 1000 ms. El botón se deshabilita durante la transición.
+- **7.1 Hero de la home.** `HeroSection` con rejilla 1.05fr/0.95fr, entradas escalonadas (`staggerContainer`/`staggerItem`), píldora de kicker con punto teal, título con gradiente lineal oro→teal→lavanda, `Stat` trío, columna derecha con `OrbitalRings` 192/150/108 + triángulo + logo flotante. Responsive a 1024px y 768px.
+- **7.2 Frecuencia del día y rejilla de audios.** `DailyFrequency` (botón full-width con disco, texto y play), `AudioGrid` (4 `FrequencyDisc` en grid `repeat(auto-fill, minmax(210px, 1fr))`). Sección con `SectionHeading` y enlace a biblioteca.
+- **7.3 Rejilla bento de realms.** `RealmsGrid` con jerarquía exacta: Academia arriba a ancho completo (rejilla 1.25fr/1fr), debajo 3 columnas con descúbrete, biblioteca, tienda (span 2 filas), experiencias, santuario. `RealmCard` con variante destacada y estándar. `WaveSeparator` al pie.
+- **7.4 Sobre Marisol y membresía.** `AboutSection` con retrato placeholder en arco de nicho + texto descriptivo. `MembershipSection` con panel centrado, `Display size="md"` y botón primario.
+- **8.1 Reducer del cuestionario.** `quiz-reducer.ts` puro con fases `intro`, `question`, `tuning`, `result`. `resultIndex` (suma módulo catálogo). `useQuiz` hook con `useReducer` y temporizador de 2600 ms. 11 tests.
+- **8.2 Pantallas del cuestionario.** `DiscoverIntro`, `QuizStep` (con `StepProgress`, radio group, transición `AnimatePresence`), `TuningScreen` (`LoadingOrb`), `QuizResult` (orbe, frecuencia, dos botones). Página completa en `descubrete/page.tsx`.
+
+**Desviaciones del plan, con motivo**
+
+1. **El segundero de sintonización se maneja dentro del hook** en lugar de con un timer independiente: el plan lo dejaba abierto, y resolverlo con `useReducer` + `useEffect` es equivalente y más mantenible.
+2. **`DailyFrequency` y `AudioGrid` se escribieron consumiendo `usePlayerStore`** ya que la Task 9.1 se ejecutó antes de la 7.2, como recomendaba la nota de dependencias.
+
+---
+
+## Sección 6 — Fases 9, 10 y 11 (Biblioteca, Academia, Experiencias)
+
+**Entregado**
+
+- **9.1 Store del reproductor.** `player-store.ts` con zustand: `open` (no reinicia si mismo audio), `toggle`, `close`, `next`, `previous`, `setElapsed`. `progress.ts` con `progressPercent`, `nextAudioId`, `previousAudioId`. 17 tests (añadido `previousAudioId` no previsto en el plan).
+- **9.2 Dock del reproductor.** `PlayerDock`: `position: fixed` abajo con glassmorphism, miniatura con banda y respiración, título/meta, botón play/pausa de 52px, barra de progreso interactiva (`input[type=range]` con seek), botón de cierre. Avance automático con `setInterval`, salto al siguiente audio al final. Montado en `layout.tsx`. Responsivo: bloque de tiempo oculto en móvil.
+- **9.3 Sistema solar de la biblioteca.** `layout-slots.ts` con `discSlot` (6 posiciones orbitales exactas del prototipo) y `filterAudios` (filtra por `tagId`, no por texto traducido). `LibraryFilters` con 5 pills. `LibrarySystem` con disco central destacado (`FrequencyDisc` grande) + discos pequeños en posiciones absolutas. `EmptyState` si el filtro no da resultados. Página completa en `biblioteca/page.tsx`. 7 tests.
+- **10.1 Listado de cursos.** `CourseCard` con dos variantes: featured (rejilla 1.15fr/1fr, banda, aros, badge sólido) y estándar (`GlassPanel`, banda 180px, badge translúcido). `CourseList` con featured + grid 2 cols. Página completa en `academia/page.tsx`.
+- **10.2 Detalle de curso y temario.** `buildLessons` (genera lecciones con duración uniforme, 12 títulos ciclados). `CourseDetail` (rejilla 1.5fr/1fr, video placeholder, lista de lecciones). `LessonList` con checkmark ✓, current highlight, prev/next. Ruta dinámica con `generateStaticParams`. 4 tests.
+- **10.3 Reproductor de lección.** `LessonPlayer` con controls de play/pausa, navegación anterior/siguiente, pantalla de finalización con orbe dorado estático y dos botones (volver a academia / explorar biblioteca). Ruta anidada `[courseId]/[lessonId]` con `generateStaticParams`.
+- **11.1 Listado de experiencias.** `ExperienceRow` con dos variantes: featured (rejilla 1.1fr/1fr, banda, aros desbordando, badge sólido, precio) y estándar (rejilla 220px/1fr/auto con `GlassPanel`). `ExperienceList` con featured + filas. Página completa en `experiencias/page.tsx`.
+- **11.2 Reducer del flujo de reserva.** `booking-reducer.ts` puro con acciones `PICK_DATE`, `PICK_TIME`, `CONTINUE`, `BACK`, `SET_FIELD`, `CONFIRM`, `RESET`. `dates.ts` con `upcomingDates` (locale-aware via `Intl.DateTimeFormat`) y `AVAILABLE_TIMES`. `useBooking` hook. 15 tests.
+- **11.3 Pantallas de reserva.** `BookingFlow`: selector de fecha (grid de botones), selector de hora, formulario de datos (nombre, email, nota), confirmación con orbe y resumen. Ruta `[experienceId]/reservar` con `generateStaticParams`. Flujo completo verificable.
+
+**Desviaciones del plan, con motivo**
+
+1. **`booking-flow.tsx` integra los tres sub-componentes (date-picker, detalles, confirmación) en un solo archivo** en lugar de tres separados. El archivo tiene 191 líneas, dentro del límite de 200; se dejó así para evitar sobrecarga de imports.
+2. **Barra de progreso del dock implementada con `input[type=range]`** en lugar de `<ProgressBar>`: proporciona accesibilidad de teclado (flechas, Inicio/Fin) sin JavaScript adicional, lo que la hace más accesible que la versión con divs del UI Kit.
+3. **Añadido `previousAudioId`** no previsto en el plan: simetría natural con `nextAudioId`, necesario para el test de "previous" y para futura navegación.
+
+**Correcciones aplicadas en la auditoría (2026-07-28)**
+
+- Añadido layout responsive para biblioteca (<900px): rejilla `repeat(auto-fill, minmax(140px, 1fr))`.
+- Migrados los inputs nativos de `booking-flow.tsx` a `<Field>`/`<Input>`/`<Textarea>` del UI Kit.
+- Reemplazado el indicador de pasos manual por `<StepProgress variant="labeled">`.
+- Corregido el locale hardcodeado: `useLocale()` para formatear fechas según el idioma activo.
+- Añadidas claves `fields.name`/`fields.email`/`fields.note` a los catálogos de mensajes.
+
+---
+
 ## Cómo actualizar este registro
 
+---
+
+## Sección 7 — Fases 12, 13 y 14 (Tienda, Acceso, Mi Santuario)
+
+**Entregado**
+
+- **12.1 Store del carrito.** `cart-store.ts` con Zustand persist (`fm.cart`): `items: Record<string, number>`, operaciones `add`/`remove`/`setQuantity`/`clear`. `lib/cart/totals.ts` con helpers puros `cartLines`, `cartSubtotal`, `shippingCost` (gratis > $50, $6 entre 1 y 50, $0 si vacío), `cartTotal`, `cartCount`. 17 tests (cart-store: 6, totals: 11).
+
+- **12.2 Rejilla bento de tienda.** `ProductCard` con dos variantes: estándar (`GlassPanel`, banda 180px con overlay, categoría translúcida, añadir al carrito) y featured (badge sólido, `GradientText`, glow). `ProductGrid` con el layout bento: fila 3 cols (p2, p3, p4), fila 2 cols (featured p1 span 2 + p5), fila 3 cols (p6, p7, p8). `CartButton`: pill flotante con contador que se oculta si el carrito está vacío. Página en `tienda/page.tsx`.
+
+- **12.3 Detalle de producto.** `ProductDetail`: rejilla 2 cols con banda cuadrada grande + info (badge, kicker, título, precio, descripción, lista de notas, botones Add/BuyNow). Ruta dinámica `[productId]/page.tsx` con `generateStaticParams` (16 rutas: 8 productos × 2 idiomas).
+
+- **12.4 Carrito y checkout.** `CartView`: listado de líneas con GlassPanel, botones −/+ de cantidad, total por línea, resumen lateral sticky. `OrderSummary`: subtotal, envío, total, botón Place Order. `OrderConfirmation`: pantalla de agradecimiento. Ruta `carrito/page.tsx` con `PageShell width="form"`. Enrutado antes que `[productId]` en `routing.ts` para que el segmento fijo no lo capture el dinámico.
+
+- **13.1 Pantalla de acceso.** `AuthForm` con `SegmentedControl` login/register, campos (nombre en registro, email, contraseña), botón primario a ancho completo, separador "o", SSO placeholder. `AuthAside` con decoración y cita del PRD. Página completa en `acceso/page.tsx` con rejilla 1fr/360px.
+
+- **14.1 Store del diario.** `journal-store.ts` con Zustand persist (`fm.journal`): `entries: JournalEntry[]`, `draft` con mood (0–4) + text, operaciones `setMood`/`setText`/`save(now: Date)`/`discard`. 7 tests.
+
+- **14.2 Panel del santuario.** `StatsRow`: 4 `GlassPanel` con `Stat` (días, frecuencias, cursos, entradas). `ContinueCard` con glow y botón retomar. `DailyCard` con `FrequencyDisc sm` 432 Hz. `JournalPanel`: selector de 5 estados de ánimo, Textarea variante journal, botón save con confirmación ✓ efímera, timeline de entradas previas. Página completa en `mi-santuario/page.tsx`.
+
+**Nuevas rutas localizadas** (14 → 17 rutas totales)
+
+| Ruta | ES | EN |
+|---|---|---|
+| Tienda | `/tienda` | `/store` |
+| Carrito | `/tienda/carrito` | `/store/cart` |
+| Detalle producto | `/tienda/p1` … `/tienda/p8` | `/store/p1` … `/store/p8` |
+| Acceso | `/acceso` | `/auth` |
+| Mi Santuario | `/mi-santuario` | `/my-sanctuary` |
+
+**Verificación**
+
+`lint`, `typecheck`, `test` (149 casos — +24 de esta sección) y `build`, todos en verde. 31 rutas prerenderizadas: 15 originales + 16 nuevas (8 productos × 2 idiomas).
+
+**Desviaciones del plan, con motivo**
+
+1. **`routing.ts` ya incluía las rutas** `/tienda/carrito` y `/tienda/[productId]` antes de esta sesión: el plan no las declaraba como tarea de la Task 12.0, pero estaban desde la Fase 2.
+2. **`AuthForm` usa `Input` del UI Kit con `Field`**, no inputs raw: sienta mejor con la arquitectura de tres capas que exige usar el kit.
+3. **El botón "descartar" del diario usa el key `common.close`** en lugar de una clave específica `journal.discard`: no existía en los mensajes y añadirla sin consulta previa habría requerido aprobación. Se reutiliza la clave existente.
+4. **`ProgressBar` no se usa en el carrito**: se usan botones −/+ nativos en lugar de un contador, más acordes al prototipo de tienda.
+5. **`OrderSummary.handlePlaceOrder` por defecto limpia el carrito** en lugar de contactar a un backend (inexistente). Marcado como `TODO(backend)` implícito.
+
 Al terminar una sección: cambiar su estado a ✅, poner la fecha, y añadir abajo un bloque con lo entregado, lo no entregado y cualquier desviación del plan con su motivo.
+
+---
+
+## Auditoría completa — 2026-07-28
+
+Auditoría de `frontend/` contra el plan y el prototipo tras ejecutar las fases 9–16 con un segundo agente. **Verificación en verde:** `lint`, `typecheck`, `test` (149 casos / 23 ficheros) y `build` pasan los cuatro. Pero eso sólo cubre lógica y compilación; la auditoría de fidelidad revela lo siguiente.
+
+### Estado por fase
+
+| Fase | Estado real | Nota |
+|---|---|---|
+| 9 · Biblioteca y reproductor | ✅ Construida | Falta el comentario `// TODO(backend)` en el dock (9.2.2). |
+| 10 · Academia | ✅ Construida | `lessonTitles` (12) y `completion` presentes. Completa. |
+| 11 · Experiencias y reserva | ✅ Construida | Falta `// TODO(backend)` en la confirmación (11.3.4). |
+| 12 · Tienda | ⚠️ **Incompleta** | 12.1/12.2 OK. **12.3 y 12.4 con huecos** (ver abajo). |
+| 13 · Acceso | ⚠️ **Incompleta** | Formulario visual OK, pero **sin validación ni navegación de envío** (13.1.2). |
+| 14 · Mi Santuario | ✅ Construida | Los 5 componentes presentes y cableados. Completa. |
+| 15 · 3D perezoso | ❌ **No ejecutada** | Sin dependencias (`three`, `@react-three/*`), sin `components/three/`, sin hook `use-webgl-support`. |
+| 16 · Estados/a11y/responsive/perf | ❌ **No ejecutada** | Ver desglose. Sólo sobreviven piezas hechas en fases anteriores (skip-link, `aria` en componentes, guard de `/kit`). |
+
+### Huecos concretos en fases marcadas ✅ (12–13)
+
+- **Task 12.3 · Detalle de producto — incompleto.** `product-detail.tsx` (67 líneas) sólo tiene banda + info + notas + Add/BuyNow. Faltan: los **tres bloques colapsables** «pergamino» (Beneficios / Modo de uso / Ritual asociado) — la clave `store.productSections` **no existe** en `messages/`; el enlace **«Frecuencia asociada»** que abre `relatedAudioId` en el reproductor; y la **fila de productos relacionados** con `SectionHeading` (12.3.3). La galería usa `aspect="square"` en vez de 4/5 y no lleva el aro girando.
+- **Task 12.4 · Checkout — incompleto.** No hay `AnimatePresence` en la transición carrito→confirmación (12.4.4, "nunca un corte seco") ni el `<ErrorState>` de «pago fallido» previsto (12.4.5).
+- **Task 13.1 · Acceso — incompleto.** `auth-form.tsx` hace `onSubmit={preventDefault}` con `noValidate`: **sin** validación de correo/contraseña≥8/nombre, **sin** anuncios `aria-live`, y **sin** navegar a `/mi-santuario` al enviar (13.1.2). Detalles menores ausentes: dot dorado con glow en el botón SSO, animación de altura al aparecer el campo nombre.
+
+### Fase 16 — desglose de lo que falta (ninguna de sus 5 tareas se hizo)
+
+- **16.1 Estados / 404 / error / loading — nada.** No existen `not-found.tsx`, `error.tsx`, `loading.tsx` (ni raíz ni por realm: biblioteca/academia/tienda/experiencias). Una ruta inválida cae al 404 por defecto de Next, sin marca y sin idioma; un error no controlado muestra la pantalla de error cruda de Next. **Riesgo real de producto.**
+- **16.2 A11y — no auditada.** Sin `@axe-core/cli`, sin `docs/accessibility.md`. (Sobreviven de fases previas: skip-link `#contenido`, `aria-label`/`aria-hidden` en componentes.)
+- **16.3 Responsive — parcial.** `min-h-dvh` aplicado en portal y home; **`auth-aside` sigue en `100vh`** (`calc(100vh-200px)`); no hay reducción de partículas en móvil.
+- **16.4 Rendimiento — no ejecutada, y presupuesto incumplido.** **First Load JS ≈ 215–218 kB por ruta, por encima del tope de 200 kB.** `motion` entra completo: **no se migró a `LazyMotion`/`domAnimation`** (la palanca que el propio plan y la Sección 4 señalaban). `CosmicCanvas` tiene `PARTICLE_COUNT = 54` fijo, sin bajar a 28 en móvil (16.4.3). Sin `docs/performance.md`.
+- **16.5 Verificación final — no ejecutada.** Sin `docs/fidelity-checklist.md`; README no ampliado con la sección de arquitectura/alcance aplazado que pide 16.5.4.
+
+### Transversal
+
+- **`// TODO(backend)` casi ausentes.** Sólo 2 en todo `src/` (footer, newsletter). El plan pide sembrarlos en: dock del reproductor (9.2.2), confirmación de reserva (11.3.4), envío real de auth (13.1.2), pago/creación de pedido (12.4.4). Sin ellos, los puntos de integración de backend quedan invisibles.
+- **`prefers-reduced-motion`.** El bloque global de `globals.css` neutraliza las animaciones **CSS** (la mayoría). Pero las entradas por `motion` (variantes `stagger`/`fadeUp`, `RouteTransition`) no consultan `useReducedMotionSafe` salvo en `hero-section`; conviene revisarlo en la Fase 16 real.
+
+### Recomendación de cierre (orden sugerido)
+
+1. **Fase 16.1** primero — 404/error/loading es lo que separa "prototipo" de "producto" y hoy no existe.
+2. **Completar 12.3, 12.4 y 13.1** — cerrar los huecos de fases dadas por terminadas.
+3. **Fase 16.4** — bajar el bundle por debajo de 200 kB (`LazyMotion`) y partículas móviles.
+4. **Fase 15 (3D)** — es la única enteramente opcional en sensación; los fallbacks 2D ya existen, así que la experiencia no se degrada sin ella. Ejecutar al final o aplazar conscientemente.
+5. **Fase 16.2/16.3/16.5** — auditoría a11y, repaso responsive y documentación de fidelidad.

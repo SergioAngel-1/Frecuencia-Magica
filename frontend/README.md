@@ -2,7 +2,7 @@
 
 Portal inmersivo y cinematográfico de bienestar. Un universo de 9 realms navegables, bilingüe ES/EN.
 
-Las restricciones del proyecto (paleta, tipografía, movimiento, accesibilidad, arquitectura) están en [`../CLAUDE.md`](../CLAUDE.md) y son de obligado cumplimiento. El plan de implementación completo está en [`../docs/superpowers/plans/`](../docs/superpowers/plans/), y la fuente de verdad visual es el prototipo en [`../frontend-prototype/`](../frontend-prototype/).
+Las restricciones del proyecto (paleta, tipografía, movimiento, accesibilidad, arquitectura) están en [`../AGENTS.md`](../AGENTS.md) y son de obligado cumplimiento. El plan de implementación completo está en [`../docs/superpowers/plans/`](../docs/superpowers/plans/), y la fuente de verdad visual es el prototipo en [`../frontend-prototype/`](../frontend-prototype/).
 
 ## Stack
 
