@@ -1,48 +1,58 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
+import { EditorialImage } from '@/components/ui';
 import { Halo, OrbitalRings } from '@/components/world';
+import type { EditorialMedia } from '@/types/editorial-media';
 
-/** Valores exactos del brief 13.1 (prototipo líneas 188–207). */
 const ASIDE_GRADIENT =
   'linear-gradient(150deg, rgba(150,198,188,0.16), rgba(15,27,46,0.55) 55%, rgba(185,176,214,0.14))';
 const ASIDE_GLOW = 'radial-gradient(60% 55% at 50% 44%, rgba(216,185,120,0.18), transparent 62%)';
 const ASIDE_FADE = 'linear-gradient(180deg, transparent 60%, rgba(10,18,32,0.78))';
 
+export interface AuthAsideProps {
+  media: EditorialMedia;
+}
+
 /**
- * Panel decorativo del acceso: aros orbitales, logo flotante con halo
- * respirando y la cita de marca (prototipo líneas 188–207).
+ * Umbral editorial del acceso: la materia de la imagen ocupa el panel y el
+ * world engine permanece visible en forma de aros, halos y logo respirando.
  *
- * Server Component puro: nada aquí tiene estado ni listeners — el único nodo
- * interactivo del acceso vive en `AuthForm`.
- *
- * Responsive (brief paso 4): por debajo de 900px pasa arriba con 40dvh de
- * alto (así el logo y la cita reciben primero); por debajo de 640px el logo
- * se reduce a 110px y los aros exteriores se ocultan.
+ * En móvil se convierte en un banner breve para que el formulario siga siendo
+ * la acción principal. En desktop recupera toda la altura de la pantalla.
  */
-export async function AuthAside() {
+export async function AuthAside({ media }: AuthAsideProps) {
   const t = await getTranslations('auth');
   const brand = t('quoteBy');
 
   return (
     <aside
       aria-label={brand}
-      className="relative flex h-[40dvh] flex-col overflow-hidden px-6 py-8 max-[639px]:h-[34dvh] min-[900px]:h-auto min-[900px]:min-h-dvh min-[900px]:justify-center min-[900px]:px-[4vw] min-[900px]:py-14"
+      className="relative isolate flex h-[clamp(230px,42vw,360px)] flex-col overflow-hidden px-6 py-8 min-[900px]:h-full min-[900px]:min-h-[100svh] min-[900px]:px-[clamp(32px,6vw,96px)] min-[900px]:py-14"
       style={{ backgroundImage: ASIDE_GRADIENT }}
     >
+      <div className="absolute inset-0">
+        <EditorialImage
+          media={media}
+          aspect="16:9"
+          className="h-full"
+          overlay="bottom"
+          scrim="left"
+        />
+      </div>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 z-10"
         style={{ backgroundImage: ASIDE_GLOW }}
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 z-10"
         style={{ backgroundImage: ASIDE_FADE }}
       />
 
-      <div className="relative flex w-full flex-1 items-center justify-center">
-        <div className="absolute size-[min(78%,460px)] max-[639px]:hidden">
+      <div className="relative z-20 flex min-h-full flex-1 flex-col items-center justify-center text-center min-[900px]:items-start min-[900px]:justify-center min-[900px]:text-left">
+        <div className="absolute hidden size-[min(78%,460px)] min-[900px]:block min-[1280px]:size-[min(78%,520px)]">
           <OrbitalRings
             size={460}
             spin={120}
@@ -60,26 +70,26 @@ export async function AuthAside() {
           </OrbitalRings>
         </div>
 
-        <div className="animate-fm-float relative size-[170px] max-[639px]:size-[110px]">
+        <div className="animate-fm-float relative size-[clamp(90px,16vw,170px)]">
           <Halo color="rgba(216,185,120,0.28), transparent 68%" blur={12} inset="-16%" />
           <Image
             src="/logo.png"
             alt={brand}
             width={170}
             height={170}
-            sizes="(min-width: 640px) 170px, 110px"
+            sizes="(min-width: 900px) 170px, 110px"
             className="relative block size-full object-contain drop-shadow-[0_0_24px_rgba(216,185,120,0.42)]"
           />
         </div>
-      </div>
 
-      <div className="relative z-[1] pt-6 text-center max-[639px]:pt-3">
-        <p className="mx-auto max-w-[30ch] font-serif text-[clamp(20px,2.2vw,28px)] leading-[1.4] text-ivory/90 italic">
-          &ldquo;{t('quote')}&rdquo;
-        </p>
-        <p className="mt-3 font-sans text-[11px] tracking-[.32em] text-gold uppercase">
-          — {brand}
-        </p>
+        <div className="relative z-10 mt-4 max-w-[38ch] min-[900px]:mt-8">
+          <p className="text-ivory/90 font-serif text-[clamp(20px,2.2vw,28px)] leading-[1.35] italic">
+            &ldquo;{t('quote')}&rdquo;
+          </p>
+          <p className="text-gold mt-3 font-sans text-[11px] tracking-[.32em] uppercase">
+            — {brand}
+          </p>
+        </div>
       </div>
     </aside>
   );
