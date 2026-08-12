@@ -1,17 +1,18 @@
 import { getTranslations } from 'next-intl/server';
 
-import { HeroSection } from '@/components/features/home/hero-section';
-import { DailyFrequency } from '@/components/features/home/daily-frequency';
-import { AudioGrid } from '@/components/features/home/audio-grid';
-import { RealmsGrid } from '@/components/features/home/realms-grid';
 import { AboutSection } from '@/components/features/home/about-section';
+import { AudioGrid } from '@/components/features/home/audio-grid';
+import { DailyFrequency } from '@/components/features/home/daily-frequency';
+import { HeroSection } from '@/components/features/home/hero-section';
 import { MembershipSection } from '@/components/features/home/membership-section';
-import { SectionHeading } from '@/components/ui';
+import { RealmsGrid } from '@/components/features/home/realms-grid';
+import { PageShell } from '@/components/layout';
 import { Link } from '@/i18n/navigation';
 import { AUDIOS } from '@/data';
 import { BANDS } from '@/config/bands';
 import { NAV_REALMS } from '@/config/realms';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
 type PageProps = { params: LocaleParams };
 
@@ -52,13 +53,23 @@ export default async function HomePage({ params }: PageProps) {
 
   const academiaData = realmData.find((r) => r.id === 'academia')!;
   const otherRealms = realmData.filter((r) => r.id !== 'academia');
+  const homeMedia = {
+    hero: resolveEditorialMedia('home.hero'),
+    daily: resolveEditorialMedia('home.daily-frequency'),
+    audio: resolveEditorialMedia('home.audio-banner'),
+    realms: resolveEditorialMedia('home.realms-banner'),
+    // The existing registry keeps the approved legacy id for this portrait slot.
+    marisol: resolveEditorialMedia('home-marisol-portrait'),
+    membership: resolveEditorialMedia('home-membership'),
+  };
 
   const realmsFeaturedCta = t('realms.featuredCta' as 'realms.kicker');
   const realmsFeaturedDescription = t('realms.featuredDescription' as 'realms.kicker');
 
   return (
-    <>
+    <PageShell width="wide" padding="none" fullBleed editorial reserveBottomUi={false}>
       <HeroSection
+        media={homeMedia.hero}
         kicker={t('heroKicker')}
         titlePre={t('heroTitlePre')}
         titleEm={t('heroTitleEm')}
@@ -72,63 +83,69 @@ export default async function HomePage({ params }: PageProps) {
         ]}
       />
 
-      <section className="mx-auto max-w-[1280px] px-[8vw] pt-[20px] pb-[40px]">
-        <SectionHeading
-          kicker={t('audio.kicker')}
-          title={t('audio.title')}
-          kickerTone="teal"
-          action={
-            <Link
-              href="/biblioteca"
-              className="inline-flex min-h-11 items-center font-sans text-[11px] uppercase tracking-[.14em] text-gold transition-colors hover:text-ivory"
-            >
-              {common('seeAll')} →
-            </Link>
-          }
-        />
+      <div className="relative">
+        <div className="mx-auto flex max-w-[1280px] flex-col gap-[clamp(18px,4vw,56px)] px-0 pt-[clamp(18px,4vw,56px)]">
+          <DailyFrequency
+            media={homeMedia.daily}
+            hz={firstAudio.hz}
+            band={firstAudio.band}
+            audioId={firstAudio.id}
+            kicker={t('daily.kicker')}
+            title={t('daily.title')}
+            description={t('daily.description')}
+            meta={`${t('daily.meta')} · ${firstAudio.duration}`}
+            cta={t('daily.cta')}
+          />
 
-        <DailyFrequency
-          hz={firstAudio.hz}
-          band={firstAudio.band}
-          audioId={firstAudio.id}
-          kicker={t('daily.kicker')}
-          title={t('daily.title')}
-          description={t('daily.description')}
-          meta={`${t('daily.meta')} · ${firstAudio.duration}`}
-          cta={t('daily.cta')}
-        />
-
-        <div className="mt-[36px]">
-          <AudioGrid audios={homeAudios} />
+          <AudioGrid
+            media={homeMedia.audio}
+            kicker={t('audio.kicker')}
+            title={t('audio.title')}
+            action={
+              <Link
+                href="/biblioteca"
+                className="border-teal/60 text-teal focus-visible:ring-teal inline-flex min-h-11 items-center border-b pb-1 font-sans text-[11px] tracking-[.18em] uppercase outline-none focus-visible:ring-2"
+              >
+                {common('seeAll')}
+                <span aria-hidden="true" className="ml-3 text-[18px] leading-none">
+                  →
+                </span>
+              </Link>
+            }
+            audios={homeAudios}
+          />
         </div>
-      </section>
 
-      <RealmsGrid
-        kicker={t('realms.kicker')}
-        title={t('realms.title')}
-        academia={{
-          ...academiaData,
-          featuredCta: realmsFeaturedCta,
-          description: realmsFeaturedDescription,
-        }}
-        realms={otherRealms}
-        storeCta={t('realms.storeCta')}
-        featuredBadge={t('realms.featuredBadge')}
-      />
+        <RealmsGrid
+          media={homeMedia.realms}
+          kicker={t('realms.kicker')}
+          title={t('realms.title')}
+          academia={{
+            ...academiaData,
+            featuredCta: realmsFeaturedCta,
+            description: realmsFeaturedDescription,
+          }}
+          realms={otherRealms}
+          storeCta={t('realms.storeCta')}
+          featuredBadge={t('realms.featuredBadge')}
+        />
 
-      <AboutSection
-        kicker={t('about.kicker')}
-        title={t('about.title')}
-        p1={t('about.p1')}
-        p2={t('about.p2')}
-      />
+        <AboutSection
+          media={homeMedia.marisol}
+          kicker={t('about.kicker')}
+          title={t('about.title')}
+          p1={t('about.p1')}
+          p2={t('about.p2')}
+        />
 
-      <MembershipSection
-        kicker={t('membership.kicker')}
-        title={t('membership.title')}
-        description={t('membership.description')}
-        cta={t('membership.cta')}
-      />
-    </>
+        <MembershipSection
+          media={homeMedia.membership}
+          kicker={t('membership.kicker')}
+          title={t('membership.title')}
+          description={t('membership.description')}
+          cta={t('membership.cta')}
+        />
+      </div>
+    </PageShell>
   );
 }

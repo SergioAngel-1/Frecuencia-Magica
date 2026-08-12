@@ -2,7 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 
-import { Kicker } from '@/components/ui';
+import { EditorialBanner, Kicker } from '@/components/ui';
+import { useRealm } from '@/hooks/use-realm';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { Link } from '@/i18n/navigation';
 
 import { NewsletterForm } from './newsletter-form';
@@ -28,15 +30,43 @@ const COLUMNS = [
 ] as const;
 
 export function SiteFooter() {
+  const { realmId } = useRealm();
   const t = useTranslations('footer');
+  const tHome = useTranslations('home');
   const tNav = useTranslations('nav');
   const tCommon = useTranslations('common');
+  const footerMedia = resolveEditorialMedia('home.footer-banner');
 
   return (
     <footer
       data-layout-layer="footer"
       className="fm-safe-area-bottom mx-auto max-w-[1280px] border-t border-[rgba(247,244,234,0.1)] px-6 pt-[60px] pb-[calc(150px+env(safe-area-inset-bottom))] md:px-[8vw] md:pb-[46px]"
     >
+      {realmId === 'home' ? (
+        <div className="fm-editorial-full-bleed mb-[clamp(42px,7vw,88px)]">
+          <EditorialBanner
+            media={footerMedia}
+            eyebrow={tHome('membership.kicker')}
+            title={tHome('membership.title')}
+            body={<p>{tHome('membership.description')}</p>}
+            action={
+              <Link
+                href="/acceso"
+                className="border-gold/70 text-gold focus-visible:ring-gold inline-flex min-h-11 items-center border-b pb-1 font-sans text-[11px] tracking-[.18em] uppercase outline-none focus-visible:ring-2"
+              >
+                {tHome('membership.cta')}
+                <span aria-hidden="true" className="ml-3 text-[18px] leading-none">
+                  →
+                </span>
+              </Link>
+            }
+            tone="gold"
+            align="left"
+            className="min-h-[clamp(300px,34vw,520px)]"
+          />
+        </div>
+      ) : null}
+
       <div className="mb-11 flex flex-wrap items-start justify-between gap-10">
         <div className="max-w-[36ch]">
           <p className="mb-[10px] font-serif text-[26px] tracking-[.1em]">{tCommon('brand')}</p>

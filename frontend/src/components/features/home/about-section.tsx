@@ -1,61 +1,71 @@
-import { Display, Kicker } from '@/components/ui';
+import { Display, EditorialImage, Kicker } from '@/components/ui';
 import { OrbitalRings } from '@/components/world';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import type { EditorialMedia } from '@/types/editorial-media';
 
 type AboutSectionProps = {
+  media?: EditorialMedia;
   kicker: string;
   title: string;
   p1: string;
   p2: string;
 };
 
-export function AboutSection({ kicker, title, p1, p2 }: AboutSectionProps) {
+export function AboutSection({ media, kicker, title, p1, p2 }: AboutSectionProps) {
+  const portraitMedia = media ?? resolveEditorialMedia('home-marisol-portrait');
+
   return (
-    <section className="mx-auto max-w-[1080px] px-[8vw] py-[90px]">
-      <div className="flex flex-wrap items-start gap-[56px]">
-        {/* Retrato placeholder */}
+    <section className="relative w-full overflow-hidden py-[clamp(58px,10vw,140px)]">
+      <div
+        className="pointer-events-none absolute top-[18%] left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(150,198,188,0.1),transparent_68%)] blur-3xl"
+        aria-hidden="true"
+      />
+      <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-[clamp(36px,8vw,120px)] px-6 sm:px-[8vw] md:grid-cols-[minmax(260px,0.8fr)_minmax(0,1.2fr)]">
         <div
-          className="relative min-w-[240px] flex-1 overflow-hidden"
-          style={{
-            borderRadius: '200px 200px 22px 22px',
-            aspectRatio: '3 / 4',
-            background:
-              'linear-gradient(160deg, rgba(216,185,120,0.22), rgba(185,176,214,0.16) 55%, rgba(150,198,188,0.14))',
-          }}
+          className="relative mx-auto w-full max-w-[420px] md:mx-0"
+          data-editorial-zone="human-focus"
         >
-          <div
-            aria-hidden="true"
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(80% 60% at 40% 20%, rgba(247,244,234,0.14), transparent 60%)',
-            }}
-          />
-          <div aria-hidden="true" className="absolute left-1/2 top-[15%] -translate-x-1/2">
-            <OrbitalRings
-              size={140}
-              spin={90}
-              rings={[
-                { r: 70, stroke: 'rgba(216,185,120,0.15)' },
-                { r: 56, stroke: 'rgba(150,198,188,0.12)' },
-              ]}
+          <div className="border-gold/35 relative aspect-[3/4] overflow-hidden rounded-[200px_200px_8px_8px] border">
+            <EditorialImage
+              media={portraitMedia}
+              aspect="3:4"
+              className="h-full"
+              focalPoint="50% 30%"
+              scrim="bottom"
+              overlay={false}
             />
+            <div
+              aria-hidden="true"
+              className="border-gold/30 pointer-events-none absolute inset-[8%] rounded-[45%] border opacity-75"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute top-[13%] left-1/2 -translate-x-1/2 opacity-75"
+            >
+              <OrbitalRings
+                size={150}
+                spin={90}
+                rings={[
+                  { r: 74, stroke: 'rgba(216,185,120,0.24)' },
+                  { r: 58, stroke: 'rgba(150,198,188,0.18)' },
+                ]}
+              />
+            </div>
           </div>
-          {/*
-           * TODO: sustituir por la fotografía real de Marisol cuando el
-           * cliente la entregue, manteniendo la máscara de arco.
-           */}
+          <p className="text-gold mt-4 font-sans text-[11px] tracking-[.22em] uppercase">
+            {kicker}
+          </p>
         </div>
 
-        {/* Texto */}
-        <div className="min-w-[280px] flex-[1.3]">
+        <div className="max-w-[680px]">
           <Kicker tone="gold" spacing="widest">
             {kicker}
           </Kicker>
-          <Display size="sm" className="mt-[10px] leading-[1.15]">
+          <Display size="md" className="mt-4 max-w-[14ch] leading-[0.98]">
             {title}
           </Display>
-          <p className="text-ivory/78 mt-[24px] text-[16px] leading-[1.9]">{p1}</p>
-          <p className="text-ivory/66 mt-[18px] font-serif italic leading-[1.8] tracking-[.02em]">
+          <p className="text-ivory/84 mt-7 text-[17px] leading-[1.85]">{p1}</p>
+          <p className="text-ivory/78 mt-6 max-w-[48ch] font-serif text-[clamp(22px,3vw,34px)] leading-[1.25] font-light italic">
             {p2}
           </p>
         </div>

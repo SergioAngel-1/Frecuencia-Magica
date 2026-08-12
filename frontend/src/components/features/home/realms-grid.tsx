@@ -1,6 +1,8 @@
-import { Badge, Button, Kicker, Display } from '@/components/ui';
+import { EditorialBanner } from '@/components/ui';
 import { WaveSeparator } from '@/components/world';
 import { Link } from '@/i18n/navigation';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import type { EditorialMedia } from '@/types/editorial-media';
 
 import { RealmCard } from './realm-card';
 
@@ -14,6 +16,7 @@ type RealmDescription = {
 };
 
 type RealmsGridProps = {
+  media?: EditorialMedia;
   kicker: string;
   title: string;
   academia: RealmDescription & { featuredCta: string };
@@ -23,6 +26,7 @@ type RealmsGridProps = {
 };
 
 export function RealmsGrid({
+  media,
   kicker,
   title,
   academia,
@@ -30,24 +34,32 @@ export function RealmsGrid({
   storeCta,
   featuredBadge,
 }: RealmsGridProps) {
-  const descubrete = realms[0];
-  const biblioteca = realms[1];
-  const tienda = realms[2];
-  const experiencias = realms[3];
-  const sanctuario = realms[4];
-
-  if (!descubrete || !biblioteca || !tienda || !experiencias || !sanctuario) return null;
+  const realmsMedia = media ?? resolveEditorialMedia('home.realms-banner');
+  const panels = realms.slice(0, 5);
 
   return (
-    <section className="px-[8vw]">
-      <div className="mx-auto max-w-[1280px]">
-        <div className="mb-11 flex flex-col items-center gap-2 text-center">
-          <Kicker tone="lav" spacing="widest">
-            {kicker}
-          </Kicker>
-          <Display size="sm">{title}</Display>
-        </div>
+    <section className="w-full py-[clamp(46px,8vw,110px)]">
+      <EditorialBanner
+        media={realmsMedia}
+        eyebrow={kicker}
+        title={title}
+        body={academia.description}
+        tone="lav"
+        action={
+          <Link
+            href={academia.href as '/academia'}
+            className="border-lav/70 text-lav focus-visible:ring-lav inline-flex min-h-11 items-center border-b pb-1 font-sans text-[11px] tracking-[.18em] uppercase outline-none focus-visible:ring-2"
+          >
+            {academia.featuredCta}
+            <span aria-hidden="true" className="ml-3 text-[18px] leading-none">
+              →
+            </span>
+          </Link>
+        }
+        className="w-full"
+      />
 
+      <div className="mx-auto mt-[clamp(28px,5vw,64px)] grid max-w-[1280px] grid-cols-1 gap-4 px-6 sm:grid-cols-12 sm:gap-5 sm:px-[8vw]">
         <RealmCard
           href={academia.href}
           band={academia.band}
@@ -55,65 +67,30 @@ export function RealmsGrid({
           title={academia.title}
           description={academia.description}
           featured
-          className="mb-6"
-        >
-          <Button variant="accent" tone="teal" size="md" iconRight={<span aria-hidden="true">→</span>} asChild>
-            <Link href={academia.href as '/academia'}>{academia.featuredCta}</Link>
-          </Button>
-        </RealmCard>
+          actionLabel={academia.featuredCta}
+          className="sm:col-span-7"
+        />
 
-        <div className="grid gap-6 sm:grid-cols-3">
+        {panels.map((realm, index) => (
           <RealmCard
-            href={descubrete.href}
-            band={descubrete.band}
-            emotion={descubrete.emotion}
-            title={descubrete.title}
-            description={descubrete.description}
+            key={realm.id}
+            href={realm.href}
+            band={realm.band}
+            emotion={realm.emotion}
+            title={realm.title}
+            description={realm.description}
+            store={realm.id === 'tienda'}
+            actionLabel={realm.id === 'tienda' ? `${featuredBadge} · ${storeCta}` : undefined}
+            className={
+              ['sm:col-span-5', 'sm:col-span-5', 'sm:col-span-4', 'sm:col-span-4', 'sm:col-span-4'][
+                index
+              ]
+            }
           />
-
-          <RealmCard
-            href={biblioteca.href}
-            band={biblioteca.band}
-            emotion={biblioteca.emotion}
-            title={biblioteca.title}
-            description={biblioteca.description}
-          />
-
-          <RealmCard
-            href={tienda.href}
-            band={tienda.band}
-            emotion={tienda.emotion}
-            title={tienda.title}
-            description={tienda.description}
-            store
-          >
-            <Badge solid className="mb-3">
-              {featuredBadge}
-            </Badge>
-            <Button variant="accent" tone="gold" size="md" iconRight={<span aria-hidden="true">→</span>} asChild>
-              <Link href={tienda.href as '/tienda'}>{storeCta}</Link>
-            </Button>
-          </RealmCard>
-
-          <RealmCard
-            href={experiencias.href}
-            band={experiencias.band}
-            emotion={experiencias.emotion}
-            title={experiencias.title}
-            description={experiencias.description}
-          />
-
-          <RealmCard
-            href={sanctuario.href}
-            band={sanctuario.band}
-            emotion={sanctuario.emotion}
-            title={sanctuario.title}
-            description={sanctuario.description}
-          />
-        </div>
-
-        <WaveSeparator className="mx-auto mt-[44px] max-w-[1000px]" />
+        ))}
       </div>
+
+      <WaveSeparator className="mx-auto mt-[clamp(36px,6vw,72px)] max-w-[1000px]" />
     </section>
   );
 }

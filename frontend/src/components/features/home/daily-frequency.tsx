@@ -1,9 +1,13 @@
 'use client';
 
+import { FrequencyDisc, EditorialImage } from '@/components/ui';
 import { usePlayerStore } from '@/stores/player-store';
 import { cn } from '@/lib/cn';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import type { EditorialMedia } from '@/types/editorial-media';
 
 type DailyFrequencyProps = {
+  media?: EditorialMedia;
   hz: number;
   band: string;
   audioId: string;
@@ -15,6 +19,7 @@ type DailyFrequencyProps = {
 };
 
 export function DailyFrequency({
+  media,
   hz,
   band,
   audioId,
@@ -27,119 +32,60 @@ export function DailyFrequency({
   const open = usePlayerStore((s) => s.open);
   const activeId = usePlayerStore((s) => s.audioId);
   const isActive = activeId === audioId;
+  const dailyMedia = media ?? resolveEditorialMedia('home.daily-frequency');
 
   return (
-    <button
-      type="button"
-      onClick={() => open(audioId)}
-      className={cn(
-        'group relative w-full overflow-hidden rounded-[26px] border p-[clamp(26px,3.4vw,44px)] text-left transition-shadow duration-300',
-        isActive
-          ? 'border-[rgba(216,185,120,0.55)] shadow-[0_0_60px_rgba(216,185,120,0.2)]'
-          : 'border-[rgba(216,185,120,0.34)]',
-      )}
-      style={{
-        background:
-          'linear-gradient(120deg, rgba(216,185,120,0.14), rgba(15,27,46,0.35) 60%, rgba(150,198,188,0.12))',
-      }}
-    >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(50% 120% at 88% 0%, rgba(216,185,120,0.2), transparent 60%)',
-        }}
-      />
-      <div className="relative grid grid-cols-[auto_1fr_auto] items-center gap-[clamp(24px,4vw,52px)] max-md:grid-cols-1 max-md:text-center">
-        {/* Columna 1 — disco de frecuencia */}
-        <div
-          className="animate-fm-float relative mx-auto aspect-square w-[clamp(130px,15vw,180px)] rounded-full"
-          style={{ animationDuration: '8s' }}
-        >
-          <div
-            aria-hidden="true"
-            className="absolute -inset-[10%] rounded-full"
-            style={{
-              background: 'radial-gradient(circle, rgba(216,185,120,0.22), transparent 66%)',
-              filter: 'blur(12px)',
-              animation: 'fm-breathe 7s ease-in-out infinite',
-            }}
+    <section className="relative isolate min-h-[clamp(360px,42vw,620px)] overflow-hidden">
+      <div className="absolute inset-0">
+        <EditorialImage
+          media={dailyMedia}
+          aspect="16:8"
+          className="h-full"
+          focalPoint="50% 50%"
+          scrim="bottom"
+          overlay="bottom"
+        />
+      </div>
+
+      <button
+        type="button"
+        aria-pressed={isActive}
+        onClick={() => open(audioId)}
+        className={cn(
+          'group focus-visible:ring-gold relative z-20 grid min-h-[clamp(360px,42vw,620px)] w-full grid-cols-1 items-center gap-8 px-6 py-12 text-left outline-none focus-visible:ring-2 focus-visible:ring-inset sm:px-[8vw] md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1fr)] md:gap-[clamp(34px,7vw,110px)] md:py-[clamp(44px,7vw,90px)]',
+          isActive && 'bg-[rgba(216,185,120,0.04)]',
+        )}
+      >
+        <div className="mx-auto w-full max-w-[380px] md:mx-0">
+          <FrequencyDisc
+            size="lg"
+            hz={hz}
+            band={band}
+            active={isActive}
+            floatDuration="8s"
+            ariaLabel={`${title} — ${hz} Hz — ${meta}`}
           />
-          <svg
-            aria-hidden="true"
-            viewBox="-100 -100 200 200"
-            className="absolute inset-0 size-full"
-            style={{ animation: 'fm-spin 90s linear infinite' }}
-          >
-            <circle r="98" fill="none" stroke="rgba(216,185,120,0.35)" strokeWidth={0.7} />
-            <circle r="82" fill="none" stroke="rgba(150,198,188,0.3)" strokeWidth={0.6} strokeDasharray="1 7" />
-          </svg>
-          <div
-            className="absolute overflow-hidden rounded-full border"
-            style={{
-              inset: 12,
-              backgroundImage: band,
-              borderColor: 'rgba(216,185,120,0.55)',
-              boxShadow: '0 0 50px rgba(216,185,120,0.35)',
-            }}
-          >
-            <div
-              aria-hidden="true"
-              className="absolute inset-0"
-              style={{
-                background:
-                  'radial-gradient(70% 80% at 32% 22%, rgba(247,244,234,0.24), transparent 62%)',
-              }}
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="font-serif text-[clamp(30px,3.4vw,44px)] leading-none text-ivory">
-                {hz}
-              </span>
-              <span className="text-ivory/75 font-sans text-[10px] uppercase tracking-[.28em]">
-                Hz
-              </span>
-            </div>
-          </div>
         </div>
 
-        {/* Columna 2 — texto */}
-        <div>
-          <p className="font-sans text-[11px] uppercase tracking-[.14em] text-gold">{kicker}</p>
-          <h3 className="mt-1 font-serif font-light text-[clamp(28px,3.4vw,44px)] leading-[1.05] text-ivory">
+        <div className="max-w-[620px]">
+          <p className="text-gold font-sans text-[11px] tracking-[.3em] uppercase">{kicker}</p>
+          <h2 className="text-ivory mt-3 max-w-[12ch] font-serif text-[clamp(34px,5vw,72px)] leading-[0.98] font-light">
             {title}
-          </h3>
-          <p className="text-ivory/74 mt-[10px] max-w-[46ch] text-[15px] leading-[1.75]">
+          </h2>
+          <p className="text-ivory/84 mt-5 max-w-[48ch] text-[17px] leading-[1.75]">
             {description}
           </p>
-          <p className="text-ivory/55 mt-[8px] font-sans text-[13px]">{meta}</p>
+          <div className="mt-6 flex min-h-11 items-center gap-4">
+            <span className="border-gold/60 text-gold inline-flex min-h-11 items-center border-b pb-1 font-sans text-[11px] tracking-[.18em] uppercase">
+              {cta}
+              <span aria-hidden="true" className="ml-3 text-[18px] leading-none">
+                →
+              </span>
+            </span>
+            <span className="text-ivory/65 font-sans text-[13px] tracking-[.08em]">{meta}</span>
+          </div>
         </div>
-
-        {/* Columna 3 — botón de play */}
-        <div className="flex flex-col items-center gap-2 max-md:mt-4 max-md:flex-row max-md:justify-center">
-          <span
-            className="flex size-[74px] items-center justify-center rounded-full border backdrop-blur-[4px] transition-[background-color] duration-300 group-hover:shadow-[0_0_30px_rgba(216,185,120,0.4)]"
-            style={{
-              borderColor: 'rgba(216,185,120,0.6)',
-              background: 'rgba(216,185,120,0.14)',
-              animation: 'fm-breathe 6s ease-in-out infinite',
-            }}
-          >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="text-ivory translate-x-[6%]"
-            >
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </span>
-          <span className="font-sans text-[11px] uppercase tracking-[.14em] text-gold">
-            {cta}
-          </span>
-        </div>
-      </div>
-    </button>
+      </button>
+    </section>
   );
 }

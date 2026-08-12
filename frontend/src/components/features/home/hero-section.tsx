@@ -1,13 +1,22 @@
 'use client';
 
-import Image from 'next/image';
 import { div as Mdiv } from 'motion/react-m';
 
-import { Button, Display, GradientText, Kicker, Prose, Stat } from '@/components/ui';
+import {
+  Button,
+  Display,
+  GradientText,
+  Kicker,
+  Prose,
+  Stat,
+  FullBleedSection,
+} from '@/components/ui';
 import { Halo, OrbitalRings } from '@/components/world';
 import { Link } from '@/i18n/navigation';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { staggerContainer, staggerItem } from '@/lib/motion-variants';
+import type { EditorialMedia } from '@/types/editorial-media';
 
 type StatData = {
   value: string;
@@ -15,6 +24,7 @@ type StatData = {
 };
 
 type HeroSectionProps = {
+  media?: EditorialMedia;
   kicker: string;
   titlePre: string;
   titleEm: string;
@@ -24,54 +34,65 @@ type HeroSectionProps = {
   stats: [StatData, StatData, StatData];
 };
 
-export function HeroSection({ kicker, titlePre, titleEm, subtitle, cta1, cta2, stats }: HeroSectionProps) {
+export function HeroSection({
+  media,
+  kicker,
+  titlePre,
+  titleEm,
+  subtitle,
+  cta1,
+  cta2,
+  stats,
+}: HeroSectionProps) {
   const reduced = useReducedMotionSafe();
-
+  const heroMedia = media ?? resolveEditorialMedia('home.hero');
   const container = reduced ? undefined : staggerContainer;
   const item = reduced ? undefined : staggerItem;
 
   return (
-    <section className="relative min-h-dvh overflow-hidden">
-      <div className="mx-auto grid min-h-dvh max-w-[1440px] grid-cols-1 items-center gap-10 px-[8vw] pt-[120px] pb-[70px] lg:grid-cols-[1.05fr_0.95fr]">
-        {/* Columna izquierda — texto */}
+    <FullBleedSection
+      media={heroMedia}
+      mode="viewport"
+      overlay="left"
+      className="fm-editorial-viewport-media"
+      contentClassName="flex min-h-[100svh] items-center"
+    >
+      <div className="relative mx-auto grid min-h-[100svh] w-full max-w-[1440px] grid-cols-1 items-center gap-10 px-6 pt-[112px] pb-[64px] sm:px-[8vw] lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.9fr)] lg:gap-12 lg:px-[7vw] lg:pt-[126px] lg:pb-[78px]">
         <Mdiv
           variants={container}
           initial="hidden"
           animate="visible"
-          className="order-2 flex flex-col gap-0 lg:order-1"
+          className="relative z-20 order-2 flex max-w-[680px] flex-col lg:order-1"
+          data-editorial-zone="reading"
         >
-          {/* Píldora de kicker */}
-          <Mdiv variants={item} className="mb-[12px]">
-            <span className="inline-flex items-center gap-[8px] rounded-pill border border-glass-brd bg-glass px-[16px] py-[8px] pr-[16px] pl-[10px] backdrop-blur-[10px]">
-              <span
-                aria-hidden="true"
-                className="size-[6px] rounded-full bg-teal"
-                style={{ boxShadow: '0 0 8px 1px var(--color-teal)', animation: 'fm-glow 3s ease-in-out infinite' }}
-              />
-              <Kicker tone="muted" as="span">
-                {kicker}
-              </Kicker>
-            </span>
+          <Mdiv variants={item} className="mb-[14px]">
+            <Kicker tone="teal" spacing="wide">
+              {kicker}
+            </Kicker>
           </Mdiv>
 
-          {/* Título */}
           <Mdiv variants={item}>
-            <Display size="xl" level="h1" className="max-w-[15ch]">
-              {titlePre}{' '}
-              <GradientText>{titleEm}</GradientText>
+            <Display size="xl" level="h1" className="max-w-[14ch]">
+              {titlePre} <GradientText>{titleEm}</GradientText>
             </Display>
           </Mdiv>
 
-          {/* Subtítulo */}
           <Mdiv variants={item}>
-            <Prose size="base" maxWidth={52} className="mt-[22px]">
+            <Prose size="base" maxWidth={52} className="text-ivory/86 mt-[24px]">
               {subtitle}
             </Prose>
           </Mdiv>
 
-          {/* Botones */}
-          <Mdiv variants={item} className="mt-[36px] flex flex-wrap gap-[16px] max-sm:flex-col max-sm:*:w-full">
-            <Button variant="primary" size="lg" iconRight={<span aria-hidden="true">→</span>} asChild>
+          <Mdiv
+            variants={item}
+            className="mt-[36px] flex flex-wrap gap-[16px] max-sm:flex-col max-sm:*:w-full"
+          >
+            <Button
+              variant="primary"
+              size="lg"
+              iconRight={<span aria-hidden="true">→</span>}
+              asChild
+            >
               <Link href="/descubrete">{cta1}</Link>
             </Button>
             <Button variant="glass" size="lg" iconLeft={<PlayIcon />} asChild>
@@ -79,63 +100,55 @@ export function HeroSection({ kicker, titlePre, titleEm, subtitle, cta1, cta2, s
             </Button>
           </Mdiv>
 
-          {/* Estadísticas */}
-          <Mdiv variants={item} className="mt-[44px] flex gap-[40px]">
+          <Mdiv variants={item} className="mt-[44px] flex flex-wrap gap-x-[40px] gap-y-[22px]">
             <Stat value={stats[0].value} label={stats[0].label} tone="teal" />
             <Stat value={stats[1].value} label={stats[1].label} tone="gold" />
             <Stat value={stats[2].value} label={stats[2].label} tone="lav" />
           </Mdiv>
         </Mdiv>
 
-        {/* Columna derecha — geometría orbital */}
         <div
-          className="relative order-1 flex min-h-[420px] items-center justify-center lg:order-2"
-          style={{ animation: reduced ? undefined : 'fm-fade-in 1.4s ease both' }}
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 flex w-full items-center justify-center lg:w-[52%]"
+          data-editorial-zone="energy"
         >
+          <div className="absolute inset-0 bg-[radial-gradient(50%_58%_at_58%_48%,rgba(216,185,120,0.16),transparent_70%)]" />
           <Halo
-            color="rgba(216,185,120,0.16)"
-            inset="-10%"
+            color="rgba(216,185,120,0.2)"
+            inset="-12%"
             className="!animate-fm-breathe"
-            style={{ width: 'min(80%, 440px)', filter: 'blur(18px)' }}
+            style={{ width: 'min(72vw, 560px)', filter: 'blur(18px)' }}
           />
           <OrbitalRings
-            size={420}
+            size={520}
             spin={130}
-            className="opacity-75"
+            className="relative h-[min(78vw,560px)] w-[min(78vw,560px)] opacity-75"
+            style={{ width: 'min(78vw, 560px)', height: 'min(78vw, 560px)' }}
             rings={[
-              { r: 192, stroke: 'rgba(216,185,120,0.18)' },
-              { r: 150, stroke: 'rgba(150,198,188,0.16)' },
-              { r: 108, stroke: 'rgba(185,176,214,0.16)' },
+              { r: 238, stroke: 'rgba(216,185,120,0.2)' },
+              { r: 188, stroke: 'rgba(150,198,188,0.18)' },
+              { r: 134, stroke: 'rgba(185,176,214,0.18)' },
             ]}
           >
-            <OrbitalRings.Node angle={0} radius={192} color="var(--color-gold)" size={5} />
-            <OrbitalRings.Node angle={120} radius={150} color="var(--color-teal)" size={5} />
-            <OrbitalRings.Node angle={240} radius={108} color="var(--color-lav)" size={5} />
+            <OrbitalRings.Node angle={0} radius={238} color="var(--color-gold)" size={5} />
+            <OrbitalRings.Node angle={120} radius={188} color="var(--color-teal)" size={5} />
+            <OrbitalRings.Node angle={240} radius={134} color="var(--color-lav)" size={5} />
           </OrbitalRings>
           <svg
-            aria-hidden="true"
             viewBox="0 0 400 340"
-            className="absolute animate-fm-spin-r opacity-50"
-            style={{ width: 'min(80%, 400px)', animationDuration: '95s' }}
+            className="animate-fm-spin-r absolute h-auto w-[min(72vw,480px)] opacity-55"
           >
             <polygon
               points="200,40 340,290 60,290"
               fill="none"
-              stroke="rgba(150,198,188,0.12)"
+              stroke="rgba(150,198,188,0.14)"
               strokeWidth={1}
             />
+            <circle cx="200" cy="172" r="92" fill="none" stroke="rgba(185,176,214,0.12)" />
           </svg>
-          <Image
-            src="/logo.png"
-            alt=""
-            width={300}
-            height={300}
-            sizes="(min-width: 768px) 300px, 60vw"
-            className="animate-fm-float relative w-[60%] max-w-[300px] object-contain drop-shadow-[0_0_30px_rgba(216,185,120,0.42)]"
-          />
         </div>
       </div>
-    </section>
+    </FullBleedSection>
   );
 }
 
