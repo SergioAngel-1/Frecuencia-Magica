@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
+import { mediaLayout } from '@/lib/editorial/media-layout';
 import type {
   EditorialMedia,
   EditorialTone,
@@ -33,6 +34,8 @@ const TONE_CLASSES: Record<EditorialTone, string> = {
   ivory: 'text-ivory',
 };
 
+const BANNER_LAYOUT = mediaLayout('banner', 'desktop');
+
 export function EditorialBanner({
   media,
   eyebrow,
@@ -49,7 +52,13 @@ export function EditorialBanner({
     >
       {media ? (
         <div className="absolute inset-0">
-          <EditorialImage media={media} overlay="bottom" scrim="bottom" />
+          <EditorialImage
+            aspect={BANNER_LAYOUT.ratio}
+            focalPoint={media.position ?? BANNER_LAYOUT.objectPosition}
+            media={media}
+            overlay="bottom"
+            scrim="bottom"
+          />
         </div>
       ) : null}
       <div

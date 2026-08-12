@@ -42,7 +42,8 @@ export function FullBleedSection({
   className,
   contentClassName,
 }: FullBleedSectionProps) {
-  const defaultOverlay = mediaLayout(mode, 'desktop').overlay;
+  const layout = mediaLayout(mode, 'desktop');
+  const defaultOverlay = layout.overlay;
   const overlayDirection =
     overlay === false
       ? false
@@ -60,7 +61,9 @@ export function FullBleedSection({
       {media ? (
         <div className="absolute inset-0">
           <EditorialImage
+            aspect={layout.ratio}
             className="h-full"
+            focalPoint={media.position ?? layout.objectPosition}
             media={media}
             overlay={overlayDirection}
             scrim={overlayDirection}

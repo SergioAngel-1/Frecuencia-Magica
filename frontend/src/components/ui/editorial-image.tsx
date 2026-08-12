@@ -1,9 +1,9 @@
 import Image from 'next/image';
 
-import { EDITORIAL_MEDIA_REGISTRY } from '@/config/editorial-media';
 import { cn } from '@/lib/cn';
 import type {
   EditorialMedia,
+  EditorialMediaAspect,
   EditorialOverlayDirection,
 } from '@/types/editorial-media';
 import { EditorialOverlay } from './editorial-overlay';
@@ -11,6 +11,7 @@ import { MediaSkeleton } from './media-skeleton';
 
 export interface EditorialImageProps {
   media: EditorialMedia;
+  aspect?: EditorialMediaAspect;
   fill?: boolean;
   priority?: boolean;
   scrim?: EditorialOverlayDirection | boolean;
@@ -30,6 +31,7 @@ function directionOrDefault(
 
 export function EditorialImage({
   media,
+  aspect = '16:9',
   fill = true,
   priority,
   scrim,
@@ -37,10 +39,9 @@ export function EditorialImage({
   focalPoint,
   className,
 }: EditorialImageProps) {
-  const definition = EDITORIAL_MEDIA_REGISTRY[media.slot];
   const scrimDirection = directionOrDefault(scrim, 'bottom');
   const overlayDirection = directionOrDefault(overlay, 'bottom');
-  const objectPosition = focalPoint ?? media.position ?? definition.position;
+  const objectPosition = focalPoint ?? media.position ?? '50% 50%';
 
   return (
     <div
@@ -76,7 +77,7 @@ export function EditorialImage({
         )
       ) : (
         <MediaSkeleton
-          aspect={definition.aspect}
+          aspect={aspect}
           label={media.alt}
           slot={media.slot}
         />
