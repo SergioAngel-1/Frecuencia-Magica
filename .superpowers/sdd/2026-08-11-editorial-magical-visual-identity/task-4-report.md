@@ -55,3 +55,28 @@ All commands below were run from `frontend/` unless noted otherwise. No build wa
 - The requested dev server was not reachable at verification time, so route-level smoke verification was unavailable. Static checks and the full Vitest suite passed.
 - `next build` was intentionally not run, as required by the task while the dev server is active.
 - No approved or placeholder photography was added; all three threshold slots remain absent and intentionally render the zebra fallback with their registered human-readable alt labels.
+
+## Fix round 1/5 — responsive portal geometry
+
+- **Finding addressed:** both `OrbitalRings` instances in `PortalScene` passed fixed `size={720}` values. Because `OrbitalRings` writes inline dimensions from `size`, those dimensions overrode `h-full w-full`, leaving the sacred geometry oversized, top-left anchored, and clipped inside the centered responsive wrapper.
+- **Fix:** kept the existing `size={720}`/viewBox geometry and all sacred-geometry children unchanged, while passing `style={{ width: '100%', height: '100%' }}` to both portal ring instances. The style is applied after the component's default inline dimensions, so the SVG scales with the already centered wrapper without changing `OrbitalRings` globally.
+- **Regression assertion:** `frontend/tests/lib/portal-editorial.test.ts` now uses a pure source contract that extracts both portal ring instances and requires the responsive width/height override on each.
+
+### TDD evidence
+
+- **RED** — `npm run test -- tests/lib/portal-editorial.test.ts`: **1 file, 4 tests; 1 failed and 3 passed**. The new responsive geometry assertion failed because the baseline instances had no `style={{ width: '100%', height: '100%' }}`.
+- **GREEN** — `npm run test -- tests/lib/portal-editorial.test.ts`: **1 file, 4 tests passed**.
+
+### Verification
+
+- `npm run test`: **passed**, 32 files / 183 tests.
+- `npm run lint`: **passed**, exit 0.
+- `npm run typecheck`: **passed**, exit 0.
+- `npx prettier --check "src/components/features/portal/portal-scene.tsx" "tests/lib/portal-editorial.test.ts"`: **passed**, all matched files use Prettier code style.
+- `git diff --check`: **passed**.
+- `ps` confirmed the active `npm run dev` process (PID 749357); `next build` was deliberately not run per the task constraint.
+
+### Fix-round scope and concerns
+
+- Modified only `frontend/src/components/features/portal/portal-scene.tsx`, `frontend/tests/lib/portal-editorial.test.ts`, and this report.
+- No new concerns from the fix round. Route smoke verification remains unavailable from the prior report, and the build remains intentionally omitted while `next dev` is active.

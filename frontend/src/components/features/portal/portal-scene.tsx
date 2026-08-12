@@ -52,6 +52,7 @@ export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneP
             size={720}
             spin={120}
             className="absolute inset-0 h-full w-full opacity-90"
+            style={{ width: '100%', height: '100%' }}
             rings={[
               { r: 340, stroke: 'rgba(216,185,120,0.18)' },
               { r: 270, stroke: 'rgba(150,198,188,0.16)', dash: '2 10' },
@@ -70,6 +71,7 @@ export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneP
             spin={90}
             direction="ccw"
             className="absolute inset-0 h-full w-full"
+            style={{ width: '100%', height: '100%' }}
             rings={[{ r: 340, stroke: 'transparent' }]}
           >
             <polygon points="0,-260 226,136 -226,136" fill="none" stroke="rgba(216,185,120,0.14)" />

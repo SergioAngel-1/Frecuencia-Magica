@@ -42,6 +42,18 @@ describe('portal editorial threshold contracts', () => {
     expect(portalSource).toContain('<EditorialImage');
   });
 
+  it('keeps both portal ring layers responsive inside the centered wrapper', () => {
+    const ringInstances = portalSource
+      .split('<OrbitalRings')
+      .slice(1)
+      .map((instance) => instance.slice(0, instance.indexOf('</OrbitalRings>')));
+
+    expect(ringInstances).toHaveLength(2);
+    for (const instance of ringInstances) {
+      expect(instance).toContain("style={{ width: '100%', height: '100%' }}");
+    }
+  });
+
   it('gives both 404 surfaces the not-found fallback and keeps human-facing semantics', () => {
     for (const source of [rootNotFoundSource, localizedNotFoundSource]) {
       expect(source).toContain("resolveEditorialMedia('not-found.hero')");
