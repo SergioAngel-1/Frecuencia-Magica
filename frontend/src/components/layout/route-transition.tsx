@@ -1,7 +1,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
+import { div as Mdiv } from 'motion/react-m';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 import { LoadingOrb } from '@/components/ui';
@@ -75,7 +76,7 @@ export function RouteTransition({ children }: { children: ReactNode }) {
   return (
     <>
       <AnimatePresence mode="wait" initial={false}>
-        <motion.div
+        <Mdiv
           key={pathname}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: DURATION.base, ease: EASE.soft } }}
@@ -87,7 +88,7 @@ export function RouteTransition({ children }: { children: ReactNode }) {
           }}
         >
           {children}
-        </motion.div>
+        </Mdiv>
       </AnimatePresence>
 
       {exchanging && !portalBusy ? (

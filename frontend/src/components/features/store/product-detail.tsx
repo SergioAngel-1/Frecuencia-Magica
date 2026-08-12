@@ -12,6 +12,7 @@ import { categoryKey } from '@/lib/store/category-key';
 import { relatedProducts } from '@/lib/store/related';
 import { useCartStore } from '@/stores/cart-store';
 import { usePlayerStore } from '@/stores/player-store';
+import { useRouter } from '@/i18n/navigation';
 
 import { ProductCard } from './product-card';
 import { ProductSections } from './product-sections';
@@ -25,6 +26,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const lib = useTranslations('library');
   const add = useCartStore((s) => s.add);
   const openPlayer = usePlayerStore((s) => s.open);
+  const router = useRouter();
   const related = relatedProducts(product, PRODUCTS, 3);
 
   return (
@@ -71,7 +73,13 @@ export function ProductDetail({ product }: ProductDetailProps) {
           <Button variant="primary" onClick={() => add(product.id)}>
             {t('add')}
           </Button>
-          <Button variant="outline">
+          <Button
+            variant="outline"
+            onClick={() => {
+              add(product.id);
+              router.push('/tienda/carrito');
+            }}
+          >
             {t('buyNow')}
           </Button>
         </div>

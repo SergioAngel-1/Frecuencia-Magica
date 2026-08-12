@@ -173,7 +173,7 @@ export function AuthForm() {
           <div className="w-full border-t border-ivory/10" />
         </div>
         <div className="relative flex justify-center">
-          <span className="bg-[var(--void)] px-4 font-sans text-[11px] tracking-[.2em] text-ivory/30 uppercase">
+          <span className="bg-[var(--void)] px-4 font-sans text-[11px] tracking-[.2em] text-ivory/55 uppercase">
             {t('auth.or')}
           </span>
         </div>

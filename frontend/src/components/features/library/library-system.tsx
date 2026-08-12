@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { Badge, Button, EmptyState } from '@/components/ui';
 import { FrequencyDisc } from '@/components/ui/frequency-disc';
 import { AUDIOS } from '@/data';
-import { discSlot, filterAudios } from '@/lib/library/layout-slots';
+import { discSlot, filterAudios, splitFeaturedAudio } from '@/lib/library/layout-slots';
 import { usePlayerStore } from '@/stores/player-store';
 
 import { LibraryFilters } from './library-filters';
@@ -20,8 +20,7 @@ export function LibrarySystem() {
   const currentAudioId = usePlayerStore((s) => s.audioId);
 
   const filtered = useMemo(() => filterAudios(AUDIOS, filter), [filter]);
-  const featured = filtered[0];
-  const others = filtered.slice(1);
+  const { featured, others } = splitFeaturedAudio(filtered);
 
   return (
     <>
@@ -34,8 +33,8 @@ export function LibrarySystem() {
         />
       ) : (
         <>
-          {/* <900px: rejilla móvil */}
-          <div className="mx-auto block max-w-[1040px] max-[900px]:block lg:hidden">
+          {/* <1024px: rejilla móvil/tablet */}
+          <div className="mx-auto block max-w-[1040px] lg:hidden">
             {featured ? (
               <div className="mx-auto mb-10 w-[280px]">
                 <div className="mb-3 flex justify-center">
@@ -58,7 +57,7 @@ export function LibrarySystem() {
             ) : null}
 
             <div className="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-5">
-              {filtered.map((audio) => (
+              {others.map((audio) => (
                 <div key={audio.id} className="mx-auto">
                   <FrequencyDisc
                     size="sm"
@@ -77,8 +76,8 @@ export function LibrarySystem() {
             </div>
           </div>
 
-          {/* >=900px: sistema orbital */}
-          <div className="relative mx-auto hidden min-h-[720px] max-w-[1040px] max-[900px]:hidden lg:block">
+          {/* >=1024px: sistema orbital */}
+          <div className="relative mx-auto hidden min-h-[720px] max-w-[1040px] lg:block">
             {featured ? (
               <div
                 className="absolute left-1/2 top-1/2 z-[4] -translate-x-1/2 -translate-y-1/2"

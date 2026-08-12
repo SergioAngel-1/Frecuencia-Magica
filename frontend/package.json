@@ -26,6 +26,7 @@
     "zustand": "^5.0.14"
   },
   "devDependencies": {
+    "@axe-core/cli": "^4.13.0",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
@@ -34,6 +35,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.4",
+    "chromedriver": "^150.0.4",
     "eslint": "^9",
     "eslint-config-next": "15.5.22",
     "eslint-config-prettier": "^10.1.8",
@@ -43,5 +45,8 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.10"
+  },
+  "allowScripts": {
+    "chromedriver@150.0.4": true
   }
 }

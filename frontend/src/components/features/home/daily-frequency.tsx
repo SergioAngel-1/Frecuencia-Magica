@@ -118,7 +118,7 @@ export function DailyFrequency({
         {/* Columna 3 — botón de play */}
         <div className="flex flex-col items-center gap-2 max-md:mt-4 max-md:flex-row max-md:justify-center">
           <span
-            className="flex size-[74px] items-center justify-center rounded-full border backdrop-blur-[4px] transition-[background,box-shadow] duration-300 group-hover:shadow-[0_0_30px_rgba(216,185,120,0.4)]"
+            className="flex size-[74px] items-center justify-center rounded-full border backdrop-blur-[4px] transition-[background-color] duration-300 group-hover:shadow-[0_0_30px_rgba(216,185,120,0.4)]"
             style={{
               borderColor: 'rgba(216,185,120,0.6)',
               background: 'rgba(216,185,120,0.14)',

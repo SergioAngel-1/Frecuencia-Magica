@@ -2,7 +2,7 @@
 
 Portal inmersivo y cinematográfico de bienestar. Un universo de 9 realms navegables, bilingüe ES/EN.
 
-Las restricciones del proyecto (paleta, tipografía, movimiento, accesibilidad, arquitectura) están en [`../AGENTS.md`](../AGENTS.md) y son de obligado cumplimiento. El plan de implementación completo está en [`../docs/superpowers/plans/`](../docs/superpowers/plans/), y la fuente de verdad visual es el prototipo en [`../frontend-prototype/`](../frontend-prototype/).
+Las restricciones del proyecto (paleta, tipografía, movimiento, accesibilidad, arquitectura) están en [`../AGENTS.md`](../AGENTS.md) y son de obligado cumplimiento. El plan de implementación completo está en [`../docs/superpowers/plans/`](../docs/superpowers/plans/). **El prototipo original se perdió** (no existe `frontend-prototype/`): la fuente visual viva es el sistema codificado en `src/app/globals.css` y `src/config/`, y los activos de marca (Brand Book, PRDs) están en `~/Descargas/`.
 
 ## Stack
 
@@ -77,3 +77,25 @@ Sólo lógica: stores, reducers, hooks y utilidades puras. No se testean compone
 No hay servidor. Los puntos que lo requieren se marcan en el código con `// TODO(backend)`: autenticación real, pagos y checkout, reproducción de audio real, persistencia de diario y progreso, y CMS de contenido.
 
 Fuera de alcance por ahora: blog, membresía como página propia, about, contacto, búsqueda global, perfil, favoritos, pedidos, notificaciones, ajustes y recuperación de contraseña.
+
+## Añadir un realm nuevo
+
+1. **Config:** crear el id en `src/config/realms.ts` (`RealmId`, acento, nota del drone) y su banda en `src/config/bands.ts`.
+2. **Rutas:** añadir el segmento localizado en `src/i18n/routing.ts` (`pathnames`) — el `Link` de `@/i18n/navigation` traducirá `/nuevo` ↔ `/en/new` automáticamente.
+3. **Copy:** crear el namespace en `messages/es.json` y `messages/en.json` con las mismas claves (el test de integridad lo exige).
+4. **Datos:** el catálogo tipado en `src/data/` con claves de traducción, nunca textos.
+5. **Vista:** `src/app/[locale]/<realm>/page.tsx` (Server Component, empieza con `const locale = await resolveLocale(params);`) que compone componentes de `src/components/features/<realm>/`.
+6. **Navegación:** el realm aparece en `RealmNav`/`RealmsGrid` según los catálogos existentes (`config/realms.ts`).
+
+## Añadir un componente al UI Kit
+
+1. Crear el componente en `src/components/ui/<name>.tsx`: **puro** — no importa de `data/`, `stores/` ni `i18n/`; todo texto llega por props.
+2. `"use client"` sólo si hay estado, efectos, listeners o animación imperativa.
+3. Exportarlo desde `src/components/ui/index.ts` (barrel).
+4. Añadirlo al catálogo interno `src/app/[locale]/kit/kit-catalog.tsx` (herramienta de desarrollo, nunca servida en producción).
+
+## Documentación de decisiones
+
+- Accesibilidad (contraste, landmarks, foco, reduced-motion): `docs/accessibility.md`.
+- Rendimiento (presupuesto de bundle, FPS, pausas): `docs/performance.md`.
+- Fidelidad por vista y desviaciones conscientes: `docs/fidelity-checklist.md`.

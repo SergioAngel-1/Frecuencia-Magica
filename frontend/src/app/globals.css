@@ -304,6 +304,11 @@
   body {
     margin: 0;
     padding: 0;
+    /* Recorta todo desborde horizontal sin crear un scroll container (un
+       `hidden` en body no recorta el scrollWidth del html, y los SVG que
+       giran —geometría del portal— desbordan el viewport en móvil). `clip`
+       además no rompe `position: sticky` ni el scroll suave de Lenis. */
+    overflow-x: clip;
   }
 
   /* El body debe cubrir SIEMPRE el viewport completo, aunque el contenido sea
@@ -331,7 +336,6 @@
     color: var(--color-ivory);
     font-family: var(--font-sans);
     font-weight: 300;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
 

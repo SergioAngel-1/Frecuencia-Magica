@@ -77,7 +77,7 @@ export function StepProgress(props: StepProgressProps) {
           <span
             className={cn(
               'font-sans text-[11px] tracking-[.14em] uppercase',
-              index === current ? 'text-ivory' : 'text-ivory/50',
+              index === current ? 'text-ivory' : 'text-ivory/55',
             )}
           >
             {label}

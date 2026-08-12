@@ -7,7 +7,7 @@ import {
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
 } from 'react';
-import { motion } from 'motion/react';
+import { div as Mdiv } from 'motion/react-m';
 
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { magneticOffset } from '@/lib/magnetic-offset';
@@ -91,7 +91,7 @@ export function Magnetic({ children, strength = MAX_OFFSET, disabled = false }: 
   };
 
   return (
-    <motion.div
+    <Mdiv
       ref={ref}
       data-magnetic
       className="inline-flex h-full w-full items-center justify-center"
@@ -101,6 +101,6 @@ export function Magnetic({ children, strength = MAX_OFFSET, disabled = false }: 
       onPointerLeave={handlePointerLeave}
     >
       {children}
-    </motion.div>
+    </Mdiv>
   );
 }

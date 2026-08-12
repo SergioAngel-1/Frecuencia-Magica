@@ -44,7 +44,7 @@ export function LessonList({ courseId, lessons, currentIndex }: LessonListProps)
                     ? 'bg-gold/20 text-gold'
                     : isCurrent
                       ? 'border border-gold text-gold'
-                      : 'border border-ivory/20 text-ivory/50',
+                      : 'border border-ivory/20 text-ivory/55',
                 )}
               >
                 {isCompleted ? '✓' : lesson.number}
@@ -52,7 +52,7 @@ export function LessonList({ courseId, lessons, currentIndex }: LessonListProps)
               <span className="flex-1 font-serif text-[18px] leading-[1.2]">
                 {lesson.number}. {t(`lessonTitles.${lesson.titleIndex}` as 'lessonTitles.0')}
               </span>
-              <span className="font-sans text-[11px] tracking-[.06em] text-ivory/50">
+              <span className="font-sans text-[11px] tracking-[.06em] text-ivory/55">
                 {lesson.duration}
               </span>
             </Link>

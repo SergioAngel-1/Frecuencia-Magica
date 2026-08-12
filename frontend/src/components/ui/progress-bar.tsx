@@ -19,10 +19,9 @@ const HEIGHT_CLASSES: Record<ProgressBarHeight, string> = {
 
 /**
  * Barra de progreso lineal: pista translúcida (`rgba(247,244,234,0.14)`) con
- * relleno en degradado teal→oro cuya anchura sigue `value`. La transición de
- * anchura anima un cambio discreto de valor (no un bucle continuo), por lo
- * que se mantiene incluso bajo `prefers-reduced-motion` sin violar la regla
- * de "nada aparece de golpe".
+ * relleno en degradado teal→oro cuyo avance se expresa con `transform: scaleX`
+ * desde el borde izquierdo. Así el cambio discreto de valor no anima una
+ * propiedad de layout y respeta el presupuesto de movimiento del proyecto.
  */
 export function ProgressBar({ value, height = 4, ariaLabel, className }: ProgressBarProps) {
   const clamped = Math.min(100, Math.max(0, value));
@@ -41,8 +40,8 @@ export function ProgressBar({ value, height = 4, ariaLabel, className }: Progres
       )}
     >
       <div
-        className="h-full rounded-[3px] bg-[linear-gradient(90deg,var(--color-teal),var(--color-gold))] transition-[width] duration-500 ease-out"
-        style={{ width: `${clamped}%` }}
+        className="h-full origin-left rounded-[3px] bg-[linear-gradient(90deg,var(--color-teal),var(--color-gold))] transition-transform duration-500 ease-out"
+        style={{ transform: `scaleX(${clamped / 100})` }}
       />
     </div>
   );

@@ -21,7 +21,7 @@ function EntryCard({ entry }: { entry: JournalEntry }) {
   return (
     <div className="border-b border-ivory/8 py-3 last:border-b-0">
       <div className="mb-1 flex items-center gap-2">
-        <span className="font-sans text-[11px] tracking-[.1em] text-ivory/40">{date}</span>
+        <span className="font-sans text-[11px] tracking-[.1em] text-ivory/55">{date}</span>
         <span className="font-sans text-[11px] uppercase tracking-[.14em] text-gold/60">
           {t(`moods.${moodKey}`)}
         </span>
@@ -55,16 +55,17 @@ export function JournalPanel() {
         {tJournal('moodLabel')}
       </p>
 
-      <div className="mb-5 flex gap-2">
+      <div className="mb-5 flex flex-wrap gap-2" role="group" aria-label={tJournal('moodLabel')}>
         {MOODS.map((mood, index) => (
           <button
             key={mood}
             type="button"
             onClick={() => setMood(index)}
-            className={`rounded-pill min-h-10 flex-1 px-3 py-2 font-sans text-[11px] uppercase tracking-[.12em] transition-all duration-300 ${
+            aria-pressed={draft.mood === index}
+            className={`rounded-pill min-h-11 flex-1 basis-[86px] px-3 py-2 font-sans text-[11px] uppercase tracking-[.12em] transition-[color,background-color,border-color] duration-300 ${
               draft.mood === index
                 ? 'bg-gold/15 text-gold border border-gold/40'
-                : 'bg-glass text-ivory/50 border border-glass-brd hover:border-ivory/20'
+                : 'bg-glass text-ivory/55 border border-glass-brd hover:border-ivory/20'
             }`}
           >
             {tJournal(`moods.${mood}`)}
@@ -73,6 +74,7 @@ export function JournalPanel() {
       </div>
 
       <Textarea
+        aria-label={tJournal('placeholder')}
         variant="journal"
         placeholder={tJournal('placeholder')}
         rows={4}
@@ -107,6 +109,10 @@ export function JournalPanel() {
           ))}
         </div>
       ) : null}
+
+      <p aria-live="polite" className="sr-only">
+        {saved ? tJournal('saved') : ''}
+      </p>
     </GlassPanel>
   );
 }

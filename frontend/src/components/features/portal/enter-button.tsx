@@ -42,7 +42,7 @@ export function EnterButton({ children }: EnterButtonProps) {
       >
         <span
           aria-hidden="true"
-          className="rounded-pill absolute inset-0 border border-[rgba(216,185,120,0.5)] bg-[rgba(216,185,120,0.06)] backdrop-blur-[6px] transition-[inset] duration-300 ease-out group-hover:-inset-1"
+          className="rounded-pill absolute inset-0 scale-100 border border-[rgba(216,185,120,0.5)] bg-[rgba(216,185,120,0.06)] backdrop-blur-[6px] transition-transform duration-300 ease-out group-hover:scale-[1.03]"
         />
         <span
           aria-hidden="true"

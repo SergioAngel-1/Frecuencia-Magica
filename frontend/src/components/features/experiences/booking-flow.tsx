@@ -63,6 +63,7 @@ export function BookingFlow({ experience }: BookingFlowProps) {
                 key={d.iso}
                 type="button"
                 onClick={() => booking.pickDate(d.iso)}
+                aria-pressed={booking.state.date === d.iso}
                 className={cn(
                   'flex flex-col items-center rounded-[14px] px-2 py-[14px] text-center transition-colors backdrop-blur-[6px]',
                   booking.state.date === d.iso
@@ -74,7 +75,7 @@ export function BookingFlow({ experience }: BookingFlowProps) {
                   {d.dow}
                 </span>
                 <span className="font-serif text-[26px] leading-[1.1]">{d.day}</span>
-                <span className="font-sans text-[10px] uppercase tracking-[.06em] text-ivory/50">
+                <span className="font-sans text-[10px] uppercase tracking-[.06em] text-ivory/55">
                   {d.month}
                 </span>
               </button>
@@ -91,6 +92,7 @@ export function BookingFlow({ experience }: BookingFlowProps) {
                 key={time}
                 type="button"
                 onClick={() => booking.pickTime(time)}
+                aria-pressed={booking.state.time === time}
                 className={cn(
                   'rounded-[12px] px-6 py-3 font-sans text-[15px] transition-colors backdrop-blur-[6px]',
                   booking.state.time === time

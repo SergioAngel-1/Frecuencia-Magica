@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: PageProps) {
     <PageShell width="default">
       <Link
         href="/tienda"
-        className="mb-8 inline-flex font-sans text-[12px] tracking-[.14em] uppercase text-ivory/50 transition-colors hover:text-gold"
+        className="mb-8 inline-flex font-sans text-[12px] tracking-[.14em] uppercase text-ivory/55 transition-colors hover:text-gold"
       >
         ← {t('backToStore')}
       </Link>

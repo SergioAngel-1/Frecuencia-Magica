@@ -128,7 +128,7 @@ export function PlayerDock() {
           type="button"
           aria-label={t('close')}
           onClick={close}
-          className="flex size-8 shrink-0 items-center justify-center text-ivory/50 hover:text-ivory"
+          className="flex size-11 shrink-0 items-center justify-center text-ivory/55 hover:text-ivory"
         >
           ×
         </button>

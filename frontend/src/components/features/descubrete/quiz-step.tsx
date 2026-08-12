@@ -72,7 +72,7 @@ function OptionButton({
       type="button"
       onClick={handleClick}
       className={cn(
-        'group w-full rounded-[14px] border px-5 py-[14px] text-left text-[15px] leading-[1.5] transition-all duration-300',
+        'group w-full rounded-[14px] border px-5 py-[14px] text-left text-[15px] leading-[1.5] transition-[color,background-color,border-color] duration-300',
         'border-glass-brd bg-glass text-ivory/82',
         'hover:border-gold/50 hover:bg-[rgba(216,185,120,0.08)] hover:text-ivory',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-void',

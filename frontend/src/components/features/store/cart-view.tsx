@@ -29,14 +29,14 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
         <p className="truncate font-serif text-[16px] text-ivory">
           {tStore(`products.${product.id}.title`)}
         </p>
-        <p className="font-sans text-[12px] text-ivory/50">
+        <p className="font-sans text-[12px] text-ivory/55">
           {tStore(categoryKey(product.catKey))}
         </p>
       </div>
       <div className="flex items-center gap-3">
         <button
           onClick={() => setQuantity(product.id, quantity - 1)}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-ivory/20 text-ivory/60 transition-colors hover:border-ivory/40 hover:text-ivory"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-ivory/20 text-ivory/60 transition-colors hover:border-ivory/40 hover:text-ivory"
           aria-label={t('decrease')}
         >
           −
@@ -46,7 +46,7 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
         </span>
         <button
           onClick={() => setQuantity(product.id, quantity + 1)}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-ivory/20 text-ivory/60 transition-colors hover:border-ivory/40 hover:text-ivory"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-ivory/20 text-ivory/60 transition-colors hover:border-ivory/40 hover:text-ivory"
           aria-label={t('increase')}
         >
           +
@@ -89,7 +89,7 @@ export function CartView({ onPlaceOrder }: CartViewProps) {
           <Kicker tone="gold" spacing="widest">
             {t('title')}
           </Kicker>
-          <span className="font-sans text-[12px] tracking-[.14em] text-ivory/40">
+          <span className="font-sans text-[12px] tracking-[.14em] text-ivory/55">
             {t('items', { count })}
           </span>
         </div>

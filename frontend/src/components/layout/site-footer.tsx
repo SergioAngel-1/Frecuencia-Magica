@@ -89,7 +89,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <p className="text-ivory/50 font-sans text-[11px] tracking-[.1em]">
+      <p className="text-ivory/55 font-sans text-[11px] tracking-[.1em]">
         © 2026 {tCommon('brand')} · {t('rights')}
       </p>
     </footer>

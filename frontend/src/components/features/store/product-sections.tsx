@@ -1,11 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 
-import { DURATION, EASE } from '@/config/motion';
-import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { cn } from '@/lib/cn';
 
 const SECTION_KEYS = ['benefits', 'usage', 'ritual'] as const;
@@ -16,19 +13,15 @@ type SectionKey = (typeof SECTION_KEYS)[number];
  * uso y Ritual asociado (brief 12.3, paso 2).
  *
  * El patrón busca sentirse como un pergamino que se abre, no un acordeón
- * genérico: la altura se anima en 0.4s (`DURATION.scroll`) junto a un ligero
- * desvanecido del contenido, nunca un simple show/hide. Con movimiento
- * reducido se respeta el contenido pero se retira la animación de altura:
- * el bloque aparece/desaparece al instante.
+ * genérico. El contenido entra con un fade-up breve y el layout cambia de
+ * forma inmediata: no se anima `height` ni ninguna propiedad de layout.
  *
- * El panel de cada sección permanece siempre en el DOM (colapsado a altura
- * cero, u oculto con `hidden` en el camino de movimiento reducido) en vez de
- * desmontarse: así el `id` que referencia el `aria-controls` del disparador
- * siempre existe, esté la sección abierta o cerrada.
+ * El panel de cada sección permanece siempre en el DOM y usa `hidden` cuando
+ * está cerrado: así el `id` que referencia el `aria-controls` del disparador
+ * siempre existe, sin mantener espacio vacío en el layout.
  */
 export function ProductSections() {
   const t = useTranslations('store');
-  const reducedMotion = useReducedMotionSafe();
   const [openKey, setOpenKey] = useState<SectionKey | null>(null);
 
   return (
@@ -60,45 +53,16 @@ export function ProductSections() {
               </span>
             </button>
 
-            {reducedMotion ? (
-              <p
-                id={bodyId}
-                hidden={!isOpen}
-                className="pb-5 font-sans text-[14px] leading-[1.9] text-ivory/72"
-              >
+            <div
+              id={bodyId}
+              aria-hidden={!isOpen}
+              hidden={!isOpen}
+              className={cn(isOpen && 'animate-fm-fade-up')}
+            >
+              <p className="pb-5 font-sans text-[14px] leading-[1.9] text-ivory/72">
                 {t(`productSections.${key}.body`)}
               </p>
-            ) : (
-              <motion.div
-                id={bodyId}
-                aria-hidden={!isOpen}
-                initial={false}
-                animate={
-                  isOpen
-                    ? {
-                        height: 'auto',
-                        opacity: 1,
-                        transition: {
-                          height: { duration: DURATION.scroll, ease: EASE.soft },
-                          opacity: { duration: DURATION.scroll, delay: 0.08 },
-                        },
-                      }
-                    : {
-                        height: 0,
-                        opacity: 0,
-                        transition: {
-                          height: { duration: DURATION.scroll, ease: EASE.soft },
-                          opacity: { duration: DURATION.scroll * 0.5 },
-                        },
-                      }
-                }
-                style={{ overflow: 'hidden' }}
-              >
-                <p className="pb-5 font-sans text-[14px] leading-[1.9] text-ivory/72">
-                  {t(`productSections.${key}.body`)}
-                </p>
-              </motion.div>
-            )}
+            </div>
           </div>
         );
       })}

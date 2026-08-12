@@ -8,7 +8,10 @@ import { hexToRgb, type Rgb } from '@/lib/cosmic/colors';
 import { advanceParticle, createParticles, createStars } from '@/lib/cosmic/particles';
 
 const STAR_COUNT = 220;
+/** Partículas en desktop; se baja a 28 por debajo de 768px (presupuesto 16.4). */
 const PARTICLE_COUNT = 54;
+const PARTICLE_COUNT_MOBILE = 28;
+const MOBILE_QUERY = '(max-width: 767px)';
 
 /** Nebulosas fijas del canvas. La tercera se recolorea con el acento del realm. */
 const NEBULAE: readonly { x: number; y: number; r: number; color: Rgb | null }[] = [
@@ -16,6 +19,23 @@ const NEBULAE: readonly { x: number; y: number; r: number; color: Rgb | null }[]
   { x: 0.78, y: 0.7, r: 0.4, color: [185, 176, 214] },
   { x: 0.55, y: 0.45, r: 0.34, color: null },
 ];
+
+/** ¿Pantalla pequeña? Según el mismo breakpoint que la rejilla móvil. */
+function isSmallScreen(): boolean {
+  return typeof window !== 'undefined' && window.matchMedia(MOBILE_QUERY).matches;
+}
+
+/**
+ * Gradiente de una partícula, pre-horneado en coordenadas locales centradas
+ * en el origen: el bucle lo dibuja con `translate` en lugar de crear 54
+ * gradientes por frame (Task 16.4 — presupuesto de animación).
+ */
+function makeParticleGradient(ctx: CanvasRenderingContext2D, color: Rgb, alpha: number, radius: number): CanvasGradient {
+  const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius);
+  gradient.addColorStop(0, `rgba(${color[0]},${color[1]},${color[2]},${alpha})`);
+  gradient.addColorStop(1, `rgba(${color[0]},${color[1]},${color[2]},0)`);
+  return gradient;
+}
 
 /**
  * Fondo cósmico: estrellas que parpadean, polen dorado que asciende y tres
@@ -31,8 +51,13 @@ export function CosmicCanvas() {
 
   // El acento vive en un ref para que el bucle lo lea sin reiniciarse.
   const accentRef = useRef<Rgb>(hexToRgb(accent));
+  // Rebuild de los sprites de partículas, expuesto por el efecto del canvas;
+  // se llama desde abajo cuando cambia el acento (el color pre-horneado debe
+  // seguir al realm, no congelarse con el primero).
+  const rebuildSpritesRef = useRef<(() => void) | null>(null);
   useEffect(() => {
     accentRef.current = hexToRgb(accent);
+    rebuildSpritesRef.current?.();
   }, [accent]);
 
   useEffect(() => {
@@ -55,7 +80,15 @@ export function CosmicCanvas() {
     resize();
 
     const stars = createStars(STAR_COUNT, Math.random);
-    let particles = createParticles(PARTICLE_COUNT, Math.random);
+    let particles = createParticles(isSmallScreen() ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT, Math.random);
+    // Sprites pre-horneados en coordenadas locales; se regeneran al cambiar
+    // el acento (rebuildSpritesRef) o el tamaño de pantalla (onResize).
+    let sprites: CanvasGradient[] = [];
+    const rebuildSprites = () => {
+      sprites = particles.map((p) => makeParticleGradient(ctx, accentRef.current, p.a, p.r * 4));
+    };
+    rebuildSprites();
+    rebuildSpritesRef.current = rebuildSprites;
 
     const draw = (time: number, twinkleFrozen: boolean) => {
       ctx.clearRect(0, 0, width, height);
@@ -85,19 +118,19 @@ export function CosmicCanvas() {
         ctx.fill();
       }
 
-      // Partículas de polen con el color de acento.
-      const [ar, ag, ab] = accentRef.current;
-      for (const p of particles) {
-        const px = p.x * width;
-        const py = p.y * height;
-        const pr = p.r * 4;
-        const gradient = ctx.createRadialGradient(px, py, 0, px, py, pr);
-        gradient.addColorStop(0, `rgba(${ar},${ag},${ab},${p.a})`);
-        gradient.addColorStop(1, `rgba(${ar},${ag},${ab},0)`);
-        ctx.fillStyle = gradient;
+      // Partículas de polen con el color de acento, dibujadas con el sprite
+      // pre-horneado (translate + arc; sin gradientes por frame).
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        const sprite = sprites[i];
+        if (!p || !sprite) continue;
+        ctx.save();
+        ctx.translate(p.x * width, p.y * height);
+        ctx.fillStyle = sprite;
         ctx.beginPath();
-        ctx.arc(px, py, pr, 0, Math.PI * 2);
+        ctx.arc(0, 0, p.r * 4, 0, Math.PI * 2);
         ctx.fill();
+        ctx.restore();
       }
     };
 
@@ -125,7 +158,15 @@ export function CosmicCanvas() {
 
     const onResize = () => {
       if (resizeTimer) clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(resize, 150);
+      resizeTimer = setTimeout(() => {
+        resize();
+        // Cambio de breakpoint: regenerar partículas (54 → 28) y sus sprites.
+        const count = isSmallScreen() ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT;
+        if (particles.length !== count) {
+          particles = createParticles(count, Math.random);
+          rebuildSprites();
+        }
+      }, 150);
     };
     window.addEventListener('resize', onResize);
 
@@ -142,6 +183,7 @@ export function CosmicCanvas() {
     return () => {
       cancelAnimationFrame(raf);
       if (resizeTimer) clearTimeout(resizeTimer);
+      rebuildSpritesRef.current = null;
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVisibility);
     };

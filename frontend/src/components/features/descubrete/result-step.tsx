@@ -2,6 +2,7 @@
 
 import { Button, Kicker } from '@/components/ui';
 import { FrequencyDisc } from '@/components/ui/frequency-disc';
+import { Link } from '@/i18n/navigation';
 
 type ResultStepProps = {
   kicker: string;
@@ -35,7 +36,9 @@ export function ResultStep({
       </p>
 
       <div className="mt-2 flex flex-wrap items-center gap-4">
-        <Button variant="primary" size="lg">{ctaLabel}</Button>
+        <Button variant="primary" size="lg" asChild>
+          <Link href="/biblioteca">{ctaLabel}</Link>
+        </Button>
         <Button variant="ghost" size="sm" onClick={onRestart}>
           {restartLabel}
         </Button>

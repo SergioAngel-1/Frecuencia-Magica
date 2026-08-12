@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { getTuningTiming } from '@/lib/quiz-timing';
+
 type TuningStepProps = {
   tuningLabel: string;
   onFinish: () => void;
@@ -10,21 +13,23 @@ type TuningStepProps = {
 export function TuningStep({ tuningLabel, onFinish }: TuningStepProps) {
   const [reveal, setReveal] = useState(false);
   const finishedRef = useRef(false);
+  const reducedMotion = useReducedMotionSafe();
 
   useEffect(() => {
-    const revealTimer = setTimeout(() => setReveal(true), 1800);
+    const timing = getTuningTiming(reducedMotion);
+    const revealTimer = setTimeout(() => setReveal(true), timing.reveal);
     const finishTimer = setTimeout(() => {
       if (!finishedRef.current) {
         finishedRef.current = true;
         onFinish();
       }
-    }, 3000);
+    }, timing.finish);
 
     return () => {
       clearTimeout(revealTimer);
       clearTimeout(finishTimer);
     };
-  }, [onFinish]);
+  }, [onFinish, reducedMotion]);
 
   return (
     <div className="flex flex-col items-center gap-8 pt-[60px]">
@@ -47,7 +52,7 @@ export function TuningStep({ tuningLabel, onFinish }: TuningStepProps) {
 
       <p
         className={`font-serif text-[20px] italic tracking-[.06em] transition-opacity duration-700 ${
-          reveal ? 'text-ivory' : 'text-ivory/40'
+          reveal ? 'text-ivory' : 'text-ivory/55'
         }`}
       >
         {tuningLabel}

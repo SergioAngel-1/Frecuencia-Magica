@@ -1,6 +1,7 @@
 'use client';
 
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
+import { div as Mdiv } from 'motion/react-m';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
@@ -58,14 +59,14 @@ export function CheckoutView() {
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <motion.div
+      <Mdiv
         key={key}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: DURATION.base, ease: EASE.soft } }}
         exit={{ opacity: 0, transition: { duration: DURATION.fast, ease: EASE.soft } }}
       >
         {content}
-      </motion.div>
+      </Mdiv>
     </AnimatePresence>
   );
 }

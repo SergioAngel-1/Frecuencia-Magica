@@ -8,9 +8,12 @@ Portal inmersivo y cinematográfico de bienestar (marca "Marisol"): un universo 
 |---|---|
 | Plan de implementación (manda en arquitectura y funcional) | `docs/superpowers/plans/2026-07-28-frecuencia-magica-frontend.md` |
 | Progreso por secciones del plan | `docs/superpowers/plans/sections-plan-completed.md` — actualízalo al completar secciones |
-| Diseño visual (manda en lo visual) | `frontend-prototype/project/Frecuencia Magica.dc.html` + `DESIGN_CONTEXT.md` |
+| Diseño visual (manda en lo visual) | Sistema ya codificado: paleta/tipografía/keyframes en `frontend/src/app/globals.css`, realms en `frontend/src/config/`. Activos de marca fuera del repo: Brand Book y PRDs en `~/Descargas/` |
+| Decisiones de accesibilidad | `frontend/docs/accessibility.md` |
+| Decisiones de rendimiento y presupuestos | `frontend/docs/performance.md` |
+| Lista de fidelidad por vista | `frontend/docs/fidelity-checklist.md` |
 
-`frontend-prototype/` es **sólo lectura**: nunca modificarlo. El código de producción vive en `frontend/`. Si prototipo y plan se contradicen: el prototipo manda en lo visual, el plan en lo arquitectónico y funcional.
+**El prototipo original se perdió**: `frontend-prototype/` fue eliminado del repo (commit `7c55bf0`). No reintentar comparar contra él ni contra ningún `.dc.html` de terceros (`~/Descargas/siu-premium-web-design-system/` es de otra marca). El sistema visual ya está codificado en `globals.css` y `config/`; si un cambio visual necesita una referencia, usar el Brand Book de `~/Descargas/` y el plan. El código de producción vive en `frontend/`.
 
 ## Comandos (siempre desde `frontend/` — la raíz del repo no tiene package.json)
 
@@ -58,10 +61,10 @@ npm run lint && npm run typecheck && npm run test && npm run build
 
 ## Pitfalls
 
-- `frontend-prototype/` es read-only: ni editar ni reescribir; cualquier cambio ahí se descarta.
-- La ruta del prototipo lleva espacios (`Frecuencia Magica.dc.html`): entrecomillarla siempre en shell.
+- El prototipo original ya no existe en el repo: no hay nada que comparar bajo `frontend-prototype/` (ver «Fuentes de verdad»).
 - Vitest sólo recoge `tests/**/*.test.{ts,tsx}` (así lo define `vitest.config.ts`): un test dentro de `src/` no se ejecuta.
 - Al ejecutar el plan: usa las skills `superpowers:subagent-driven-development` (recomendada) o `superpowers:executing-plans`.
+- `next build` comparte `.next` con el dev server: tras ejecutar el gate completo, reiniciar `npm run dev` si sigue en uso.
 
 ## Alcance
 

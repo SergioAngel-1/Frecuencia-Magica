@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
+import { LazyMotion, domAnimation } from 'motion/react';
 
 import { PlayerDock } from '@/components/features/player/player-dock';
 import { RealmFooter, RealmNav, RouteTransition, SiteHeader } from '@/components/layout';
@@ -52,9 +53,16 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const locale = await resolveLocale(params);
 
   return (
-    <html lang={locale} className={`${cormorant.variable} ${jost.variable}`}>
-      <body className="antialiased">
-        <NextIntlClientProvider>
+    <html lang={locale} className={`${cormorant.variable} ${jost.variable}`} suppressHydrationWarning>
+      {/* suppressHydrationWarning en los nodos raíz: extensiones de navegador
+          (modo oscuro / auto-dark) inlinean los estilos computados del body en
+          el atributo `style` antes de que React hidrate, y algunas tocan el
+          `lang`. El HTML del servidor no lleva esos atributos (verificado); el
+          mismatch es ambiental, no del código. React documenta este caso como
+          el uso legítimo de suppressHydrationWarning. */}
+      <body className="antialiased" suppressHydrationWarning>
+        <LazyMotion features={domAnimation}>
+          <NextIntlClientProvider>
           <RealmProvider>
             <SmoothScroll>
               <WorldEngine />
@@ -68,6 +76,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             </SmoothScroll>
           </RealmProvider>
         </NextIntlClientProvider>
+        </LazyMotion>
       </body>
     </html>
   );

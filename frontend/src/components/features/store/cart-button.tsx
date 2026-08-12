@@ -20,7 +20,7 @@ export function CartButton({ className }: CartButtonProps) {
     <Link
       href="/tienda/carrito"
       className={cn(
-        'rounded-pill inline-flex items-center gap-2 border border-gold/30 bg-void/70 px-4 py-2 font-sans text-[12px] tracking-[.14em] uppercase text-gold backdrop-blur-sm transition-all duration-300 hover:bg-gold/10 hover:shadow-[0_0_20px_rgba(216,185,120,0.2)]',
+        'rounded-pill inline-flex min-h-11 items-center gap-2 border border-gold/30 bg-void/70 px-4 py-2 font-sans text-[12px] tracking-[.14em] uppercase text-gold backdrop-blur-sm transition-[color,background-color] duration-300 hover:bg-gold/10 hover:shadow-[0_0_20px_rgba(216,185,120,0.2)]',
         className,
       )}
       aria-label={t('cart')}

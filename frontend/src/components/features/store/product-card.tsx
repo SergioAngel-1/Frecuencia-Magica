@@ -54,7 +54,7 @@ export function ProductCard({ product, featured, className }: ProductCardProps) 
 
         <div className={cn('flex flex-col gap-2 p-4', featured ? 'p-5' : 'pb-0')}>
           {featured ? null : (
-            <span className="font-sans text-[11px] tracking-[.14em] uppercase text-ivory/50">
+            <span className="font-sans text-[11px] tracking-[.14em] uppercase text-ivory/55">
               {t(categoryKey(product.catKey))}
             </span>
           )}

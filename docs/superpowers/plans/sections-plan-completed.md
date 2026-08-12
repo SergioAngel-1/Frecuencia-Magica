@@ -12,7 +12,7 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 | 6 | Fases 9–11 | Biblioteca, Academia, Experiencias | ⚠️ Con huecos | 2026-07-28 |
 | 7 | Fases 12–14 | Tienda, Acceso, Mi Santuario | ⚠️ Con huecos | 2026-07-28 |
 | 8 | Fase 15 | 3D perezoso | ❌ No ejecutada | — |
-| 9 | Fase 16 | Estados, a11y, responsive, rendimiento | ❌ No ejecutada (salvo restos de fases previas) | — |
+| 9 | Fase 16 | Estados, a11y, responsive, rendimiento | ✅ Completada (salvo 16.2.4/16.2.5 manuales) | 2026-08-11 |
 
 > **Auditoría 2026-07-28 (ver sección final «Auditoría completa»).** Las fases 9–14 se construyeron y los cuatro comandos de verificación están en verde, pero varias tareas quedaron incompletas respecto al plan (Task 12.3, 12.4, 13.1 y los `// TODO(backend)`). **La Fase 15 (3D) no se ejecutó en absoluto** y **la Fase 16 (estados/404/error/loading, a11y, responsive, rendimiento) tampoco**. Detalle abajo.
 
@@ -220,6 +220,53 @@ El *first load JS* por ruta es de **212 kB**, por encima del presupuesto de 200 
 - Reemplazado el indicador de pasos manual por `<StepProgress variant="labeled">`.
 - Corregido el locale hardcodeado: `useLocale()` para formatear fechas según el idioma activo.
 - Añadidas claves `fields.name`/`fields.email`/`fields.note` a los catálogos de mensajes.
+
+---
+
+## Sección 9 — Fase 16 (Estados, a11y, responsive, rendimiento)
+
+Ejecutada en 2026-08-11. La Task 16.1 (estados/404/error/loading) se había completado antes (commit `5d31ea3`); esta sesión ejecutó las tasks 16.2–16.5. Sobre la base del working tree, que ya traía una tanda de fixes de auditoría sin commitear (i18n key-leak, cursor transform-only, cooldown del portal, `setElapsed` funcional, hit targets del footer, viñeta, hydration de `OrbitalRings`, headings).
+
+**Task 16.2 · Auditoría de accesibilidad**
+
+- `@axe-core/cli` 4.13 instalado (con `chromedriver@150` para el Chrome local). **18 páginas (9 rutas × 2 idiomas): cero violaciones** al cierre.
+- Violaciones encontradas y corregidas:
+  - `image-redundant-alt` en el logo del header: `alt` movido al `Link` como `aria-label`, imagen decorativa (`alt=""`).
+  - Contraste: textos secundarios en `text-ivory/50` subidos a `/55` (kickers, metas, hints, fechas, pasos inactivos, iconos) — el 50 % sobre `#16273f` cae a ≈ 4.2:1; el 55 % cumple ≈ 4.8:1. Documentado en `docs/accessibility.md` con la tabla de opacidades mínimas.
+- Falso positivo identificado: la pasada automatizada marca el skip-link (`sr-only`, 40×24) como hit target pequeño; es intencional (sólo visible al recibir foco).
+- **No ejecutado (requiere dispositivo/lector real):** 16.2.4 recorrido completo por teclado en vista real y 16.2.5 verificación con lector de pantalla. El resto de la auditoría (foco visible, `inert`, radio groups, dock operable) se validó por código.
+
+**Task 16.3 · Repaso responsive**
+
+- Pasada automatizada con Selenium en los 4 breakpoints (1440/1280/768/390) × 9 rutas: overflow horizontal y hit targets < 44px.
+- Hallazgos y correcciones:
+  - **Overflow de 118px en Mi Santuario a 390px**: los botones de estado de ánimo no hacían wrap y medían 40px. Corregido: `flex-wrap` + `basis-[86px]` + `min-h-11`.
+  - **Overflow intermitente (12–23px) en el portal a 390px**: la geometría giratoria (`fm-spin`) desbordaba el viewport y el `overflow-x: hidden` del body no recorta el `scrollWidth` del `html`. Corregido con `overflow-x: clip` en `html, body` (no crea scroll container, no rompe `sticky` ni Lenis).
+  - `100vh` residuales: el único era el fallback `min-height: 100vh` → `100dvh` del body (intencional); `auth-aside` y quiz ya usaban `dvh`.
+- Resultado final: **cero overflow y cero hit targets < 44px en las 36 combinaciones** (excluido el skip-link).
+
+**Task 16.4 · Rendimiento**
+
+- **First Load JS: 227–232 kB → 212–216 kB** por ruta (transferido gzip real en `/inicio`: 235 → 220 kB). Sigue ~13–16 kB sobre el presupuesto de 200 kB; el remanente es React DOM (~59 kB gz) y runtime de Next/Turbopack (~39 kB gz), no reducible desde la aplicación. Documentado en `docs/performance.md`.
+- Palanca principal: **imports granulares de motion** — `m` desde `motion/react-m` (el barrel `motion/react` arrastraba el proxy completo con drag/layout/projection; Turbopack no lo tree-shakeaba). motion: 58 → 28 kB gz. `LazyMotion` + `domAnimation` en el layout raíz.
+- `CosmicCanvas`: gradientes de partículas **pre-horneados** (antes 54 `createRadialGradient` por frame) + **54 partículas desktop / 28 < 768px**.
+- Logo: `sizes` correcto en los 4 usos (`priority` ya sólo en portal/header).
+- Pausas verificadas: canvas (`visibilitychange`), Lenis (`destroy`), cursor (`cancelAnimationFrame`), reproductor (interval limpio al pausar). 3D no existe (Fase 15): punto N/A.
+
+**Task 16.5 · Verificación final**
+
+- Gate completo en verde: lint, typecheck, test (168 casos / 27 ficheros) y build.
+- `docs/fidelity-checklist.md` creado (sin `DESIGN_CONTEXT.md` — prototipo perdido; la lista se construyó desde el plan y AGENTS.md, con desviaciones conscientes registradas).
+- Andamiaje retirado: scripts de medición de la sesión eliminados (ensuciaban el lint); `/kit` verificado **404 en producción** (guard en middleware: el guard en la página se eliminaba en build time por la prerenderización forzada del layout `[locale]`; `headers()` + middleware son la doble capa).
+- `TODO(backend)` revisados: 7 puntos sembrados (newsletter, footer, dock, booking, checkout, auth ×2), donde corresponde.
+- README ampliado: guías «Añadir un realm nuevo» y «Añadir un componente al UI Kit», documentación de decisiones, nota del prototipo perdido. AGENTS.md actualizado (fuentes de verdad sin prototipo, pitfalls).
+
+**Desviaciones del plan, con motivo**
+
+1. La lista de fidelidad se construyó desde el plan/AGENTS.md, no desde `DESIGN_CONTEXT.md` (el prototipo se perdió — ver AGENTS.md).
+2. El guard de `/kit` vive en el middleware, no (sólo) en la página: la prerenderización del layout `[locale]` hacía que el branch `NODE_ENV` se evaluara en build time y la página se sirviera en producción.
+3. Los pasos 16.2.4 y 16.2.5 (recorrido por teclado y lector de pantalla en dispositivo real) quedan pendientes de auditoría manual; no son automatizables en esta sesión.
+4. `docs/performance.md` documenta la deuda de ~13–16 kB sobre el presupuesto de 200 kB con su desglose.
 
 ---
 

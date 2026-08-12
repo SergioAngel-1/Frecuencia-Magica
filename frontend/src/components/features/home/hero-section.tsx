@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'motion/react';
+import { div as Mdiv } from 'motion/react-m';
 
 import { Button, Display, GradientText, Kicker, Prose, Stat } from '@/components/ui';
 import { Halo, OrbitalRings } from '@/components/world';
@@ -34,14 +34,14 @@ export function HeroSection({ kicker, titlePre, titleEm, subtitle, cta1, cta2, s
     <section className="relative min-h-dvh overflow-hidden">
       <div className="mx-auto grid min-h-dvh max-w-[1440px] grid-cols-1 items-center gap-10 px-[8vw] pt-[120px] pb-[70px] lg:grid-cols-[1.05fr_0.95fr]">
         {/* Columna izquierda — texto */}
-        <motion.div
+        <Mdiv
           variants={container}
           initial="hidden"
           animate="visible"
           className="order-2 flex flex-col gap-0 lg:order-1"
         >
           {/* Píldora de kicker */}
-          <motion.div variants={item} className="mb-[12px]">
+          <Mdiv variants={item} className="mb-[12px]">
             <span className="inline-flex items-center gap-[8px] rounded-pill border border-glass-brd bg-glass px-[16px] py-[8px] pr-[16px] pl-[10px] backdrop-blur-[10px]">
               <span
                 aria-hidden="true"
@@ -52,40 +52,40 @@ export function HeroSection({ kicker, titlePre, titleEm, subtitle, cta1, cta2, s
                 {kicker}
               </Kicker>
             </span>
-          </motion.div>
+          </Mdiv>
 
           {/* Título */}
-          <motion.div variants={item}>
+          <Mdiv variants={item}>
             <Display size="xl" level="h1" className="max-w-[15ch]">
               {titlePre}{' '}
               <GradientText>{titleEm}</GradientText>
             </Display>
-          </motion.div>
+          </Mdiv>
 
           {/* Subtítulo */}
-          <motion.div variants={item}>
+          <Mdiv variants={item}>
             <Prose size="base" maxWidth={52} className="mt-[22px]">
               {subtitle}
             </Prose>
-          </motion.div>
+          </Mdiv>
 
           {/* Botones */}
-          <motion.div variants={item} className="mt-[36px] flex flex-wrap gap-[16px] max-sm:flex-col max-sm:*:w-full">
+          <Mdiv variants={item} className="mt-[36px] flex flex-wrap gap-[16px] max-sm:flex-col max-sm:*:w-full">
             <Button variant="primary" size="lg" iconRight={<span aria-hidden="true">→</span>} asChild>
               <Link href="/descubrete">{cta1}</Link>
             </Button>
             <Button variant="glass" size="lg" iconLeft={<PlayIcon />} asChild>
               <Link href="/biblioteca">{cta2}</Link>
             </Button>
-          </motion.div>
+          </Mdiv>
 
           {/* Estadísticas */}
-          <motion.div variants={item} className="mt-[44px] flex gap-[40px]">
+          <Mdiv variants={item} className="mt-[44px] flex gap-[40px]">
             <Stat value={stats[0].value} label={stats[0].label} tone="teal" />
             <Stat value={stats[1].value} label={stats[1].label} tone="gold" />
             <Stat value={stats[2].value} label={stats[2].label} tone="lav" />
-          </motion.div>
-        </motion.div>
+          </Mdiv>
+        </Mdiv>
 
         {/* Columna derecha — geometría orbital */}
         <div
@@ -130,6 +130,7 @@ export function HeroSection({ kicker, titlePre, titleEm, subtitle, cta1, cta2, s
             alt=""
             width={300}
             height={300}
+            sizes="(min-width: 768px) 300px, 60vw"
             className="animate-fm-float relative w-[60%] max-w-[300px] object-contain drop-shadow-[0_0_30px_rgba(216,185,120,0.42)]"
           />
         </div>

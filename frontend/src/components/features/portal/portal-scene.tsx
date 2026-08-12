@@ -71,6 +71,7 @@ export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneP
             width={210}
             height={210}
             priority
+            sizes="(min-width: 768px) 210px, 140px"
             className="relative block size-[140px] object-contain drop-shadow-[0_0_26px_rgba(216,185,120,0.4)] md:size-[210px]"
           />
           <div
@@ -97,7 +98,7 @@ export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneP
         <EnterButton>{cta}</EnterButton>
       </div>
 
-      <p className="text-ivory/50 absolute bottom-[34px] left-1/2 z-[2] -translate-x-1/2 font-sans text-[11px] tracking-[.32em] uppercase">
+      <p className="text-ivory/55 absolute bottom-[34px] left-1/2 z-[2] -translate-x-1/2 font-sans text-[11px] tracking-[.32em] uppercase">
         {hint}
       </p>
     </section>

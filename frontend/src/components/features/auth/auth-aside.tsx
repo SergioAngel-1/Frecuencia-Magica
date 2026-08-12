@@ -67,6 +67,7 @@ export async function AuthAside() {
             alt={brand}
             width={170}
             height={170}
+            sizes="(min-width: 640px) 170px, 110px"
             className="relative block size-full object-contain drop-shadow-[0_0_24px_rgba(216,185,120,0.42)]"
           />
         </div>

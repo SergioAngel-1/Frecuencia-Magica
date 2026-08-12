@@ -8,6 +8,19 @@ export type DiscSlot = {
   delay: string;
 };
 
+export type FeaturedAudioSplit = {
+  featured: Audio | undefined;
+  others: Audio[];
+};
+
+/** Separa el primer audio destacado de los discos secundarios. */
+export function splitFeaturedAudio(audios: readonly Audio[]): FeaturedAudioSplit {
+  return {
+    featured: audios[0],
+    others: audios.slice(1),
+  };
+}
+
 const SLOTS: readonly DiscSlot[] = [
   { top: '3%', left: '9%', size: '150px', duration: '7s', delay: '0s' },
   { top: '3%', left: '73%', size: '138px', duration: '8.5s', delay: '.6s' },
