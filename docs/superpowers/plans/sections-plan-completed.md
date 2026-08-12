@@ -318,6 +318,30 @@ Al terminar una sección: cambiar su estado a ✅, poner la fecha, y añadir aba
 
 ---
 
+## Sección 10 — Plan editorial-mágico, Task 10 (Experiencias y booking)
+
+**Estado:** ✅ Completada — 2026-08-12
+
+**Entregado**
+
+- Hero full-bleed de Experiencias con `experiences.hero` y fallback zebra.
+- Experiencia destacada y filas secundarias image-led con `experiences.featured` y `experiences-visual`; modalidad, fecha, duración y precio permanecen escaneables.
+- Flujo de reserva con `booking.hero` y `booking.confirmation`, `aria-live`, `aria-pressed`, fechas locale-aware, validación y `TODO(backend)` preservados.
+- Loading editorial con `MediaSkeleton`, alts ES/EN y tests de contrato en `frontend/tests/lib/experiences-editorial.test.ts`.
+
+**Verificación**
+
+- Gate canónico en verde: lint, typecheck, 37 ficheros/221 tests y build.
+- Revisión formal del diff y re-revisión del fix P1 de fecha escaneable: ADDRESSED, sin nueva rotura crítica/importante.
+
+**No entregado / desviaciones**
+
+- Los slots continúan sin assets reales por contrato; renderizan zebra intencionalmente.
+- No se hizo smoke visual en navegador; queda para la QA transversal final.
+- El brief menciona `experiences.row.*`, pero se conserva `experiences-visual`, que es el ID canónico del inventario y registro tipado.
+
+---
+
 ## Auditoría completa — 2026-07-28
 
 Auditoría de `frontend/` contra el plan y el prototipo tras ejecutar las fases 9–16 con un segundo agente. **Verificación en verde:** `lint`, `typecheck`, `test` (149 casos / 23 ficheros) y `build` pasan los cuatro. Pero eso sólo cubre lógica y compilación; la auditoría de fidelidad revela lo siguiente.
