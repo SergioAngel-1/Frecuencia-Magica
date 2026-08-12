@@ -3,6 +3,8 @@ import { resolve } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
+import enMessages from '../../messages/en.json';
+import esMessages from '../../messages/es.json';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
 const SOURCE_ROOT = resolve(process.cwd(), 'src');
@@ -28,6 +30,18 @@ describe('auth editorial composition', () => {
       expect(media.slot).toBe(slot);
       expect(media.aspect).toBe(aspect);
     }
+  });
+
+  it('keeps both access media alts localized and specific to their slots', () => {
+    expect(esMessages.auth).toHaveProperty('media.alt.hero');
+    expect(esMessages.auth).toHaveProperty('media.alt.formAtmosphere');
+    expect(enMessages.auth).toHaveProperty('media.alt.hero');
+    expect(enMessages.auth).toHaveProperty('media.alt.formAtmosphere');
+
+    expect(authPageSource).toContain("alt: t('media.alt.hero')");
+    expect(authPageSource).toContain("alt: t('media.alt.formAtmosphere')");
+    expect(authPageSource).not.toContain("alt: t('quoteBy')");
+    expect(authPageSource).not.toContain("alt: t('kicker')");
   });
 
   it('keeps the access route in split mode and gives the form its own atmosphere layer', () => {

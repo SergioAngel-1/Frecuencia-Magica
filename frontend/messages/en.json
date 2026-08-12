@@ -133,6 +133,12 @@
   },
   "auth": {
     "kicker": "The threshold",
+    "media": {
+      "alt": {
+        "hero": "The doorway into your sanctuary",
+        "formAtmosphere": "Intimate calm around sign-in"
+      }
+    },
     "backHome": "Back home",
     "login": {
       "tab": "Sign in",

@@ -133,6 +133,12 @@
   },
   "auth": {
     "kicker": "El umbral",
+    "media": {
+      "alt": {
+        "hero": "La puerta de entrada a tu santuario",
+        "formAtmosphere": "Calma íntima alrededor del acceso"
+      }
+    },
     "backHome": "Volver al inicio",
     "login": {
       "tab": "Entrar",

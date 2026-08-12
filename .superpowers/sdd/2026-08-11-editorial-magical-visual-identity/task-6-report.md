@@ -39,3 +39,16 @@ La herramienta Browser Use no pudo abrir `localhost` por su bloqueo de direccion
 ## Alcance y concerns
 
 Sólo se tocaron los tres archivos de producción del brief y el test lógico implícito requerido por el paso 1. El reporte vive bajo `.superpowers/`, que está ignorado por Git y requiere `git add -f`.
+
+## Fix round — localized access media alt text
+
+- **Finding addressed:** the access page supplied generic UI strings (`quoteBy` and `kicker`) as media alt text. The hero and form-atmosphere slots now receive dedicated, locale-specific descriptions from `messages/es.json` and `messages/en.json`.
+- **Regression coverage:** `frontend/tests/lib/auth-editorial.test.ts` now asserts both bilingual alt keys and verifies the route uses `t('media.alt.hero')` and `t('media.alt.formAtmosphere')`, not the generic labels.
+- **RED (fresh):** focused auth test — 1 failed / 2 passed because `auth.media.alt.*` keys were absent.
+- **GREEN (fresh):** focused auth test — 1 file / 3 tests passed.
+- **Full suite (fresh):** `npm run test` — 34 files / 194 tests passed.
+- **Lint (fresh):** `npm run lint` — exit 0.
+- **Typecheck (fresh):** `npm run typecheck` — exit 0.
+- **Targeted Prettier:** the changed TypeScript page/test files pass `npx prettier --check`; the two message catalogs retain a pre-existing repository formatting mismatch in unrelated question-option arrays, so they were not reformatted outside this finding.
+- **Build:** intentionally not run because active `next dev` processes share `.next`, per the task constraint.
+- **Whitespace and scope:** `git diff --check` and the exact staged path list were checked before commit; no assets or auth components were changed.

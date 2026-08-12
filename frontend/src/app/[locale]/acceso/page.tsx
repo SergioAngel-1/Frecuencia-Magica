@@ -18,8 +18,10 @@ export default async function AuthPage({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'auth' });
   const authMedia = {
-    hero: resolveEditorialMedia('auth.hero', { alt: t('quoteBy') }),
-    formAtmosphere: resolveEditorialMedia('auth.form-atmosphere', { alt: t('kicker') }),
+    hero: resolveEditorialMedia('auth.hero', { alt: t('media.alt.hero') }),
+    formAtmosphere: resolveEditorialMedia('auth.form-atmosphere', {
+      alt: t('media.alt.formAtmosphere'),
+    }),
   };
 
   return (
