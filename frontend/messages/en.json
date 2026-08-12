@@ -210,48 +210,23 @@
     "questions": {
       "q1": {
         "prompt": "How does your body arrive to this moment?",
-        "options": [
-          "Tired, heavy",
-          "Restless, fast",
-          "Neutral, paused",
-          "Light, present"
-        ]
+        "options": ["Tired, heavy", "Restless, fast", "Neutral, paused", "Light, present"]
       },
       "q2": {
         "prompt": "What does your mind ask for today?",
-        "options": [
-          "Silence",
-          "Clarity",
-          "Inspiration",
-          "Rest"
-        ]
+        "options": ["Silence", "Clarity", "Inspiration", "Rest"]
       },
       "q3": {
         "prompt": "Which emotion accompanies you?",
-        "options": [
-          "Nostalgia",
-          "Anxiety",
-          "Hope",
-          "Gratitude"
-        ]
+        "options": ["Nostalgia", "Anxiety", "Hope", "Gratitude"]
       },
       "q4": {
         "prompt": "Where would you like to be now?",
-        "options": [
-          "A forest",
-          "The ocean",
-          "Under the stars",
-          "At home"
-        ]
+        "options": ["A forest", "The ocean", "Under the stars", "At home"]
       },
       "q5": {
         "prompt": "What do you seek when you close your eyes?",
-        "options": [
-          "To let go",
-          "To remember",
-          "To heal",
-          "To dream"
-        ]
+        "options": ["To let go", "To remember", "To heal", "To dream"]
       }
     }
   },
@@ -462,6 +437,20 @@
     "kicker": "Store",
     "title": "Tools for the ritual",
     "description": "Oils, candles and crystals born from a conviction: when you transform within, your world changes.",
+    "media": {
+      "alt": {
+        "hero": "The store of ritual objects",
+        "product": "{title} by Frecuencia Mágica",
+        "ritualBanner": "The objects of the ritual",
+        "detail": "{title}: detail",
+        "related": "Objects that accompany the ritual"
+      }
+    },
+    "ritualBanner": {
+      "kicker": "Matter for your practice",
+      "title": "The ritual lives in objects too",
+      "body": "Small pieces to hold your pause, accompany your breath, and bring you back to yourself with hands full of intention."
+    },
     "gridTitle": "All products",
     "cart": "Cart",
     "add": "Add",
@@ -535,6 +524,12 @@
   "cart": {
     "title": "Your cart",
     "thanks": "Thank you",
+    "media": {
+      "alt": {
+        "empty": "The cart at rest, awaiting your choice",
+        "confirmation": "Your ritual is on its way"
+      }
+    },
     "quantity": "Qty {count}",
     "items": "{count, plural, one {# item} other {# items}}",
     "increase": "Add one unit",

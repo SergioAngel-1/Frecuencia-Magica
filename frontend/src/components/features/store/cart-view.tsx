@@ -4,55 +4,67 @@ import type { Product } from '@/types/content';
 
 import { useTranslations } from 'next-intl';
 
-import { Button, EmptyState, GlassPanel, Kicker } from '@/components/ui';
+import { Button, EditorialImage, EmptyState, GlassPanel, Kicker } from '@/components/ui';
 import { PRODUCTS } from '@/data';
 import { Link } from '@/i18n/navigation';
 import { cartLines, cartCount } from '@/lib/cart/totals';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { formatPrice } from '@/lib/format';
 import { categoryKey } from '@/lib/store/category-key';
 import { useCartStore } from '@/stores/cart-store';
+import type { EditorialMedia } from '@/types/editorial-media';
 
 import { OrderSummary } from './order-summary';
+
+export type CheckoutMedia = {
+  empty: EditorialMedia;
+  confirmation: EditorialMedia;
+};
 
 function CartLineRow({ product, quantity }: { product: Product; quantity: number }) {
   const t = useTranslations('cart');
   const tStore = useTranslations('store');
-  const { setQuantity } = useCartStore();
+  const setQuantity = useCartStore((state) => state.setQuantity);
+  const productMedia = resolveEditorialMedia('store-product-visual', {
+    alt: tStore('media.alt.product', {
+      title: tStore(`products.${product.id}.title`),
+    }),
+    sizes: '80px',
+  });
 
   return (
-    <GlassPanel className="flex items-center gap-4 p-4">
-      <div
-        className="h-16 w-16 shrink-0 rounded-[14px]"
-        style={{ backgroundImage: product.band }}
-      />
-      <div className="flex-1 min-w-0">
-        <p className="truncate font-serif text-[16px] text-ivory">
+    <GlassPanel className="grid grid-cols-[64px_minmax(0,1fr)] gap-4 p-4 sm:grid-cols-[80px_minmax(0,1fr)_auto_auto] sm:items-center">
+      <div className="relative aspect-square overflow-hidden rounded-[14px]">
+        <EditorialImage aspect="1:1" className="h-full" media={productMedia} />
+      </div>
+      <div className="min-w-0">
+        <p className="text-ivory truncate font-serif text-[17px]">
           {tStore(`products.${product.id}.title`)}
         </p>
-        <p className="font-sans text-[12px] text-ivory/55">
-          {tStore(categoryKey(product.catKey))}
-        </p>
+        <p className="text-ivory/55 font-sans text-[13px]">{tStore(categoryKey(product.catKey))}</p>
       </div>
-      <div className="flex items-center gap-3">
+      <div className="col-span-2 flex min-h-11 items-center gap-3 sm:col-span-1">
         <button
+          type="button"
           onClick={() => setQuantity(product.id, quantity - 1)}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-ivory/20 text-ivory/60 transition-colors hover:border-ivory/40 hover:text-ivory"
+          className="border-ivory/20 text-ivory/60 hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
           aria-label={t('decrease')}
         >
           −
         </button>
-        <span className="min-w-[24px] text-center font-serif text-[17px] text-ivory">
+        <span className="text-ivory min-w-[24px] text-center font-serif text-[18px]">
           {quantity}
         </span>
         <button
+          type="button"
           onClick={() => setQuantity(product.id, quantity + 1)}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-ivory/20 text-ivory/60 transition-colors hover:border-ivory/40 hover:text-ivory"
+          className="border-ivory/20 text-ivory/60 hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
           aria-label={t('increase')}
         >
           +
         </button>
       </div>
-      <p className="min-w-[60px] text-right font-serif text-[17px] text-gold">
+      <p className="text-gold text-right font-serif text-[18px]">
         {formatPrice(product.price * quantity)}
       </p>
     </GlassPanel>
@@ -60,36 +72,54 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
 }
 
 type CartViewProps = {
+  media: CheckoutMedia;
   onPlaceOrder: () => void;
 };
 
-export function CartView({ onPlaceOrder }: CartViewProps) {
+export function CartView({ media, onPlaceOrder }: CartViewProps) {
   const t = useTranslations('cart');
-  const items = useCartStore((s) => s.items);
+  const items = useCartStore((state) => state.items);
   const lines = cartLines(items, PRODUCTS);
   const count = cartCount(items);
 
   if (count === 0) {
     return (
-      <EmptyState
-        title={t('empty.text')}
-        action={
-          <Button variant="outline" asChild>
-            <Link href="/tienda">{t('empty.cta')}</Link>
-          </Button>
-        }
-      />
+      <section
+        className="rounded-card-lg relative isolate min-h-[clamp(420px,55vw,620px)] overflow-hidden"
+        data-editorial-media="cart.empty"
+      >
+        <div className="absolute inset-0">
+          <EditorialImage
+            aspect="16:9"
+            className="h-full"
+            media={media.empty}
+            overlay="bottom"
+            scrim="bottom"
+          />
+        </div>
+        <div className="relative z-10 flex min-h-[clamp(420px,55vw,620px)] items-center justify-center px-4">
+          <EmptyState
+            title={t('empty.text')}
+            className="max-w-[34rem]"
+            action={
+              <Button variant="outline" asChild>
+                <Link href="/tienda">{t('empty.cta')}</Link>
+              </Button>
+            }
+          />
+        </div>
+      </section>
     );
   }
 
   return (
-    <div className="grid gap-8 md:grid-cols-[1fr_360px] md:gap-10">
+    <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] md:gap-12">
       <div>
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <Kicker tone="gold" spacing="widest">
             {t('title')}
           </Kicker>
-          <span className="font-sans text-[12px] tracking-[.14em] text-ivory/55">
+          <span className="text-ivory/55 font-sans text-[13px] tracking-[.14em]">
             {t('items', { count })}
           </span>
         </div>
@@ -100,9 +130,7 @@ export function CartView({ onPlaceOrder }: CartViewProps) {
         </div>
       </div>
 
-      <div>
-        <OrderSummary items={items} onPlaceOrder={onPlaceOrder} />
-      </div>
+      <OrderSummary items={items} onPlaceOrder={onPlaceOrder} />
     </div>
   );
 }

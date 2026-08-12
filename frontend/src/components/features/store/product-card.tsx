@@ -4,64 +4,75 @@ import type { Product } from '@/types/content';
 
 import { useTranslations } from 'next-intl';
 
-import { Badge, Band, Button, GlassPanel, GradientText } from '@/components/ui';
+import { Badge, Button, EditorialImage, GradientText } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
 import { categoryKey } from '@/lib/store/category-key';
-import { useCartStore } from '@/stores/cart-store';
 import { cn } from '@/lib/cn';
+import { useCartStore } from '@/stores/cart-store';
+import type { EditorialMedia } from '@/types/editorial-media';
 
 type ProductCardProps = {
   product: Product;
+  media: EditorialMedia;
   featured?: boolean;
   className?: string;
 };
 
-export function ProductCard({ product, featured, className }: ProductCardProps) {
+export function ProductCard({ product, media: baseMedia, featured, className }: ProductCardProps) {
   const t = useTranslations('store');
   const add = useCartStore((s) => s.add);
+  const title = t(`products.${product.id}.title`);
+  const media: EditorialMedia = {
+    ...baseMedia,
+    alt: t('media.alt.product', { title }),
+  };
 
   return (
-    <GlassPanel
-      radius={featured ? 26 : 22}
-      glow={featured}
-      as="article"
+    <article
       className={cn(
-        'group flex flex-col overflow-hidden',
-        featured ? 'min-h-[440px]' : 'min-h-[340px]',
+        'group rounded-card-lg border-gold/20 bg-glass hover:border-gold/45 flex flex-col overflow-hidden border transition-colors',
+        featured ? 'min-h-[520px]' : 'min-h-[390px]',
         className,
       )}
+      data-product-id={product.id}
+      data-editorial-media={media.slot}
     >
-      {/* Banda + título: única zona que navega al detalle. El botón de
-          "Añadir" queda fuera de este enlace a propósito (dos acciones
-          distintas, nunca un botón anidado dentro de un enlace). */}
+      {/* Sólo la zona editorial navega al detalle; la acción de añadir permanece separada. */}
       <Link
         href={{ pathname: '/tienda/[productId]', params: { productId: product.id } }}
-        className="flex flex-1 flex-col focus-visible:rounded-[inherit]"
+        className="flex min-h-11 flex-1 flex-col focus-visible:rounded-[inherit]"
       >
-        <Band
-          gradient={product.band}
-          aspect={featured ? '16/8' : 'square'}
-          overlay="bottom"
-          className={cn('shrink-0', featured ? 'h-[200px] md:h-[260px]' : 'h-[180px]')}
+        <div
+          className={cn(
+            'relative shrink-0',
+            featured ? 'h-[clamp(210px,26vw,340px)]' : 'h-[clamp(190px,22vw,260px)]',
+          )}
         >
-          <div className="flex h-full flex-col justify-end p-4">
-            {featured ? (
+          <EditorialImage
+            aspect={featured ? '16:8' : '1:1'}
+            className="h-full"
+            media={media}
+            overlay="bottom"
+            scrim="bottom"
+          />
+          {featured ? (
+            <div className="absolute top-5 left-5 z-10">
               <Badge solid>{t('featuredBadge')}</Badge>
-            ) : null}
-          </div>
-        </Band>
+            </div>
+          ) : null}
+        </div>
 
-        <div className={cn('flex flex-col gap-2 p-4', featured ? 'p-5' : 'pb-0')}>
+        <div className={cn('flex flex-col gap-2 p-5', featured && 'p-6')}>
           {featured ? null : (
-            <span className="font-sans text-[11px] tracking-[.14em] uppercase text-ivory/55">
+            <span className="text-ivory/55 font-sans text-[11px] tracking-[.14em] uppercase">
               {t(categoryKey(product.catKey))}
             </span>
           )}
           <h3
             className={cn(
-              'font-serif leading-tight text-ivory transition-colors group-hover:text-gold',
-              featured ? 'text-[22px]' : 'text-[17px]',
+              'text-ivory group-hover:text-gold font-serif leading-tight transition-colors',
+              featured ? 'text-[clamp(24px,3vw,34px)]' : 'text-[20px]',
             )}
           >
             {featured ? (
@@ -73,19 +84,19 @@ export function ProductCard({ product, featured, className }: ProductCardProps) 
         </div>
       </Link>
 
-      <div className={cn('mt-auto flex items-center justify-between p-4 pt-3', featured && 'px-5 pb-5')}>
-        <span className="font-serif text-[19px] tracking-[.04em] text-gold">
+      <div
+        className={cn(
+          'mt-auto flex items-center justify-between gap-4 p-5 pt-3',
+          featured && 'px-6 pb-6',
+        )}
+      >
+        <span className="text-gold font-serif text-[21px] tracking-[.04em]">
           {formatPrice(product.price)}
         </span>
-        <Button
-          variant="accent"
-          size="sm"
-          tone="gold"
-          onClick={() => add(product.id)}
-        >
+        <Button variant="accent" size="sm" tone="gold" onClick={() => add(product.id)}>
           {t('add')}
         </Button>
       </div>
-    </GlassPanel>
+    </article>
   );
 }

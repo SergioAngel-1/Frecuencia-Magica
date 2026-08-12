@@ -12,7 +12,9 @@ type CartButtonProps = {
 
 export function CartButton({ className }: CartButtonProps) {
   const t = useTranslations('store');
-  const count = useCartStore((s) => Object.values(s.items).reduce((a, b) => a + b, 0));
+  const count = useCartStore((state) =>
+    Object.values(state.items).reduce((sum, value) => sum + value, 0),
+  );
 
   if (count === 0) return null;
 
@@ -20,12 +22,12 @@ export function CartButton({ className }: CartButtonProps) {
     <Link
       href="/tienda/carrito"
       className={cn(
-        'rounded-pill inline-flex min-h-11 items-center gap-2 border border-gold/30 bg-void/70 px-4 py-2 font-sans text-[12px] tracking-[.14em] uppercase text-gold backdrop-blur-sm transition-[color,background-color] duration-300 hover:bg-gold/10 hover:shadow-[0_0_20px_rgba(216,185,120,0.2)]',
+        'rounded-pill border-gold/30 bg-void/70 text-gold hover:bg-gold/10 inline-flex min-h-11 items-center gap-2 border px-4 py-2 font-sans text-[12px] tracking-[.14em] uppercase backdrop-blur-sm transition-[color,background-color] duration-300 hover:shadow-[0_0_20px_rgba(216,185,120,0.2)]',
         className,
       )}
       aria-label={t('cart')}
     >
-      <span className="relative flex h-[18px] w-[18px] items-center justify-center rounded-full bg-gold text-[10px] font-semibold text-void">
+      <span className="bg-gold text-void relative flex size-[18px] items-center justify-center rounded-full text-[10px] font-semibold">
         {count}
       </span>
       <span>{t('cart')}</span>

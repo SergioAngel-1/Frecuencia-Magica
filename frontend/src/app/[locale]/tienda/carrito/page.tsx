@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { CheckoutView } from '@/components/features/store';
 import { PageShell } from '@/components/layout';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
 type PageProps = { params: LocaleParams };
 
@@ -14,11 +15,24 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function CartPage({ params }: PageProps) {
-  await resolveLocale(params);
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'cart' });
+  const checkoutMedia = {
+    empty: resolveEditorialMedia('cart.empty', {
+      alt: t('media.alt.empty'),
+      sizes: '100vw',
+    }),
+    confirmation: resolveEditorialMedia('checkout.confirmation', {
+      alt: t('media.alt.confirmation'),
+      sizes: '100vw',
+    }),
+  };
 
   return (
-    <PageShell width="form">
-      <CheckoutView />
+    <PageShell width="form" padding="none" editorial>
+      <div className="px-6 pt-[100px] pb-[180px] md:px-0 md:pt-[130px]">
+        <CheckoutView media={checkoutMedia} />
+      </div>
     </PageShell>
   );
 }

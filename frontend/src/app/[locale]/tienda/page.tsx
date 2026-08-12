@@ -1,10 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 
-import { PageShell } from '@/components/layout';
-import { Display, Kicker, Prose } from '@/components/ui';
-import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { CartButton } from '@/components/features/store/cart-button';
 import { ProductGrid } from '@/components/features/store/product-grid';
+import { PageShell } from '@/components/layout';
+import { Display, EditorialBanner, FullBleedSection, Kicker, Prose } from '@/components/ui';
+import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
 type PageProps = { params: LocaleParams };
 
@@ -16,29 +17,63 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function StorePage({ params }: PageProps) {
-  await resolveLocale(params);
-  const t = await getTranslations('store');
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'store' });
+  const storeMedia = {
+    hero: resolveEditorialMedia('store.hero', { alt: t('media.alt.hero'), sizes: '100vw' }),
+    product: resolveEditorialMedia('store-product-visual', {
+      alt: t('media.alt.product', { title: '{title}' }),
+      sizes: '(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw',
+    }),
+    productFeatured: resolveEditorialMedia('store-product-visual', {
+      alt: t('media.alt.product', { title: '{title}' }),
+      aspect: '16:8',
+      sizes: '(min-width: 1280px) 66vw, 100vw',
+    }),
+    ritualBanner: resolveEditorialMedia('store.ritual-banner', {
+      alt: t('media.alt.ritualBanner'),
+      sizes: '100vw',
+    }),
+  };
 
   return (
-    <PageShell width="store">
-      <div className="mb-8 flex items-start justify-between">
-        <div>
-          <Kicker tone="gold" spacing="widest">
-            {t('kicker')}
-          </Kicker>
-          <Display size="lg" level="h1">
-            {t('title')}
-          </Display>
+    <PageShell width="store" padding="none" fullBleed editorial>
+      <FullBleedSection
+        media={storeMedia.hero}
+        mode="banner"
+        overlay="left"
+        className="fm-editorial-full-bleed"
+        contentClassName="flex min-h-full items-center"
+        minHeight="clamp(420px, 52vw, 680px)"
+      >
+        <div className="mx-auto flex w-full max-w-[1440px] flex-col justify-center px-6 py-20 sm:px-[8vw] lg:px-[10vw]">
+          <div className="flex items-start justify-between gap-6">
+            <div>
+              <Kicker tone="teal" spacing="wide">
+                {t('kicker')}
+              </Kicker>
+              <Display size="xl" level="h1" className="mt-4 max-w-[12ch]">
+                {t('title')}
+              </Display>
+            </div>
+            <CartButton className="mt-1 shrink-0" />
+          </div>
+          <Prose maxWidth={54} className="text-ivory/86 mt-6 max-w-[52ch]">
+            {t('description')}
+          </Prose>
         </div>
-        <CartButton className="mt-2 shrink-0" />
+      </FullBleedSection>
+
+      <div className="mx-auto w-full max-w-[1240px] px-6 pt-[clamp(30px,5vw,76px)] pb-[220px] md:px-[8vw]">
+        <ProductGrid media={storeMedia} />
+        <EditorialBanner
+          media={storeMedia.ritualBanner}
+          eyebrow={t('ritualBanner.kicker')}
+          title={t('ritualBanner.title')}
+          body={t('ritualBanner.body')}
+          className="fm-editorial-full-bleed mt-[clamp(60px,10vw,140px)]"
+        />
       </div>
-      <Prose maxWidth={54} className="mb-10">
-        {t('description')}
-      </Prose>
-      {/* Encabezado de sección para los lectores de pantalla: el grid de
-          productos salta de h1 a h3 sin un h2 intermedio. */}
-      <h2 className="sr-only">{t('gridTitle')}</h2>
-      <ProductGrid />
     </PageShell>
   );
 }

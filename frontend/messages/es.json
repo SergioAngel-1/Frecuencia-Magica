@@ -219,39 +219,19 @@
       },
       "q2": {
         "prompt": "¿Qué pide tu mente hoy?",
-        "options": [
-          "Silencio",
-          "Claridad",
-          "Inspiración",
-          "Descanso"
-        ]
+        "options": ["Silencio", "Claridad", "Inspiración", "Descanso"]
       },
       "q3": {
         "prompt": "¿Qué emoción te acompaña?",
-        "options": [
-          "Nostalgia",
-          "Ansiedad",
-          "Esperanza",
-          "Gratitud"
-        ]
+        "options": ["Nostalgia", "Ansiedad", "Esperanza", "Gratitud"]
       },
       "q4": {
         "prompt": "¿Dónde quisieras estar ahora?",
-        "options": [
-          "Un bosque",
-          "El océano",
-          "Bajo las estrellas",
-          "En casa"
-        ]
+        "options": ["Un bosque", "El océano", "Bajo las estrellas", "En casa"]
       },
       "q5": {
         "prompt": "¿Qué buscas al cerrar los ojos?",
-        "options": [
-          "Soltar",
-          "Recordar",
-          "Sanar",
-          "Soñar"
-        ]
+        "options": ["Soltar", "Recordar", "Sanar", "Soñar"]
       }
     }
   },
@@ -462,6 +442,20 @@
     "kicker": "Tienda",
     "title": "Herramientas para el ritual",
     "description": "Aceites, velas y cristales nacidos de una convicción: cuando transformas tu interior, cambia tu mundo.",
+    "media": {
+      "alt": {
+        "hero": "La tienda de los objetos del ritual",
+        "product": "{title} de Frecuencia Mágica",
+        "ritualBanner": "Los objetos del ritual",
+        "detail": "{title}: detalle",
+        "related": "Objetos que acompañan al ritual"
+      }
+    },
+    "ritualBanner": {
+      "kicker": "Materia para tu práctica",
+      "title": "El ritual también vive en los objetos",
+      "body": "Pequeñas piezas para sostener tu pausa, acompañar tu respiración y volver a ti con las manos ocupadas de intención."
+    },
     "gridTitle": "Todos los productos",
     "cart": "Carrito",
     "add": "Añadir",
@@ -535,6 +529,12 @@
   "cart": {
     "title": "Tu carrito",
     "thanks": "Gracias",
+    "media": {
+      "alt": {
+        "empty": "El carrito en calma, esperando tu elección",
+        "confirmation": "Tu ritual está en camino"
+      }
+    },
     "quantity": "Cantidad {count}",
     "items": "{count, plural, one {# artículo} other {# artículos}}",
     "increase": "Añadir una unidad",

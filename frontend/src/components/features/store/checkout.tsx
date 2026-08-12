@@ -10,28 +10,23 @@ import { DURATION, EASE } from '@/config/motion';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { useCartStore } from '@/stores/cart-store';
 
-import { CartView } from './cart-view';
+import { CartView, type CheckoutMedia } from './cart-view';
 import { OrderConfirmation } from './order-confirmation';
 
-/**
- * Orquesta la transición entre el carrito y su confirmación.
- *
- * No hay pasarela de pago: `handlePlaceOrder` vacía el carrito y marca
- * `ordered` directamente. `paymentFailed` queda como constante apagada — el
- * hueco reservado para el día en que un pago real pueda fallar de verdad.
- * Hasta entonces es inalcanzable a propósito.
- */
-export function CheckoutView() {
+type CheckoutViewProps = {
+  media: CheckoutMedia;
+};
+
+/** Simulated checkout: no payment provider is introduced in this task. */
+export function CheckoutView({ media }: CheckoutViewProps) {
   const t = useTranslations('states');
   const reducedMotion = useReducedMotionSafe();
   const [ordered, setOrdered] = useState(false);
 
-  // `paymentFailed` está preparado para el día en que exista un pago real que
-  // pueda fallar; hoy es una constante apagada, nunca se activa.
+  // TODO(backend): a real payment response will drive this state when payments exist.
   const paymentFailed = false;
 
   function handlePlaceOrder() {
-    // TODO(backend): pago real y creación de pedido; aquí se dispararía este estado de error.
     useCartStore.getState().clear();
     setOrdered(true);
   }
@@ -48,9 +43,9 @@ export function CheckoutView() {
       }
     />
   ) : ordered ? (
-    <OrderConfirmation />
+    <OrderConfirmation media={media.confirmation} />
   ) : (
-    <CartView onPlaceOrder={handlePlaceOrder} />
+    <CartView media={media} onPlaceOrder={handlePlaceOrder} />
   );
 
   if (reducedMotion) return content;
