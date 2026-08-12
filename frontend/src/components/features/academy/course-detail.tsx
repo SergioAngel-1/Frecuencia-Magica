@@ -25,7 +25,7 @@ export function CourseDetail({ course, media, currentLesson }: CourseDetailProps
     <div>
       <Link
         href="/academia"
-        className="text-ivory/62 hover:text-ivory min-h-11 py-3 font-sans text-[13px] tracking-[.12em] uppercase transition-colors"
+        className="text-ivory/62 hover:text-ivory inline-flex min-h-11 items-center py-3 font-sans text-[13px] tracking-[.12em] uppercase transition-colors"
       >
         ← {t('backLabel')}
       </Link>

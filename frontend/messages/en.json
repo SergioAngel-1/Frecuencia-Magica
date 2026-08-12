@@ -333,7 +333,7 @@
     "media": {
       "alt": {
         "hero": "Frecuencia Mágica's academy of practices",
-        "featured": "Frecuencia Mágica featured course",
+        "featured": "{title}: Frecuencia Mágica featured course",
         "courseCover": "{title}: a scene from the practice",
         "lesson": "Practice for lesson {title}",
         "completion": "Completed course: a cycle closed in light"

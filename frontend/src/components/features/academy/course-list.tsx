@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 
+import { EditorialImage } from '@/components/ui';
 import { COURSES } from '@/data';
 import { Link } from '@/i18n/navigation';
 import type { EditorialMedia } from '@/types/editorial-media';
@@ -11,6 +12,34 @@ export type AcademyMedia = {
   featuredCourse: EditorialMedia;
   courseCover: EditorialMedia;
 };
+
+type CourseRowProps = {
+  course: (typeof COURSES)[number];
+  title: string;
+  level: string;
+  lessonsLabel: string;
+  media: EditorialMedia;
+};
+
+function CourseRow({ course, title, level, lessonsLabel, media }: CourseRowProps) {
+  return (
+    <Link
+      href={{ pathname: '/academia/[courseId]', params: { courseId: course.id } }}
+      className="group text-ivory hover:text-gold border-gold/20 grid min-h-11 gap-5 border-b py-5 transition-colors md:grid-cols-[minmax(180px,0.8fr)_minmax(0,1.2fr)] md:items-center md:gap-8"
+    >
+      <div className="rounded-card relative aspect-[16/8] overflow-hidden">
+        <EditorialImage aspect="16:8" className="h-full" media={media} />
+      </div>
+      <div className="flex min-h-11 flex-col justify-center">
+        <p className="text-teal font-sans text-[11px] tracking-[.2em] uppercase">{level}</p>
+        <h3 className="mt-2 font-serif text-[clamp(26px,3vw,40px)] leading-[1.02]">{title}</h3>
+        <p className="text-ivory/62 mt-3 font-sans text-[12.5px] tracking-[.06em]">
+          {lessonsLabel}
+        </p>
+      </div>
+    </Link>
+  );
+}
 
 export function CourseList({ media }: { media: AcademyMedia }) {
   const t = useTranslations('academy');
@@ -58,21 +87,16 @@ export function CourseList({ media }: { media: AcademyMedia }) {
           <p className="text-ivory/72 mt-4 text-[16px] leading-[1.7]">{t('archive.description')}</p>
         </div>
 
-        <div className="grid gap-x-6 gap-y-8 md:grid-cols-2">
+        <div>
           {others.map((course) => (
-            <Link
+            <CourseRow
               key={course.id}
-              href={{ pathname: '/academia/[courseId]', params: { courseId: course.id } }}
-              className="text-ivory hover:text-gold block min-h-11 transition-colors"
-            >
-              <CourseCard
-                course={course}
-                level={level(course)}
-                lessonsLabel={`${t('lessonsCount', { count: course.lessons })} · ${course.hours}`}
-                media={courseMedia(course)}
-                title={courseTitle(course)}
-              />
-            </Link>
+              course={course}
+              level={level(course)}
+              lessonsLabel={`${t('lessonsCount', { count: course.lessons })} · ${course.hours}`}
+              media={courseMedia(course)}
+              title={courseTitle(course)}
+            />
           ))}
         </div>
       </section>

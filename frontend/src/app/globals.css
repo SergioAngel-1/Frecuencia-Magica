@@ -156,6 +156,16 @@
   }
 }
 
+@keyframes fm-editorial-zebra-sweep {
+  0%,
+  100% {
+    transform: translateX(-12%);
+  }
+  50% {
+    transform: translateX(12%);
+  }
+}
+
 @keyframes fm-glow {
   0%,
   100% {
@@ -440,10 +450,7 @@
 }
 
 @utility fm-editorial-zebra-sweep {
-  animation: fm-shimmer 2.4s linear infinite;
-  background-size:
-    200% 100%,
-    100% 100%;
+  animation: fm-editorial-zebra-sweep 2.4s ease-in-out infinite;
 }
 
 @utility fm-editorial-geometry {

@@ -18,15 +18,16 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function AcademyPage({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'academy' });
+  const featuredTitle = t('courses.c1.title');
   const academyMedia = {
     hero: resolveEditorialMedia('academy.hero', { alt: t('media.alt.hero') }),
     featuredCourse: resolveEditorialMedia('academy.featured-course', {
-      alt: t('media.alt.featured'),
-      sizes: '100vw',
+      alt: t('media.alt.featured', { title: featuredTitle }),
+      sizes: '(min-width: 1280px) 1040px, calc(100vw - 48px)',
     }),
     courseCover: resolveEditorialMedia('academy-course-cover', {
       alt: t('media.alt.courseCover', { title: '{title}' }),
-      sizes: '(min-width: 768px) 50vw, 100vw',
+      sizes: '(min-width: 1280px) 520px, (min-width: 768px) 42vw, calc(100vw - 48px)',
     }),
   };
 

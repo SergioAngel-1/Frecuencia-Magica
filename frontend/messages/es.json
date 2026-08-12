@@ -333,7 +333,7 @@
     "media": {
       "alt": {
         "hero": "La academia de prácticas de Frecuencia Mágica",
-        "featured": "Curso destacado de Frecuencia Mágica",
+        "featured": "{title}: curso destacado de Frecuencia Mágica",
         "courseCover": "{title}: escena de la práctica",
         "lesson": "Práctica de la lección {title}",
         "completion": "El curso completado: un ciclo cerrado con luz"

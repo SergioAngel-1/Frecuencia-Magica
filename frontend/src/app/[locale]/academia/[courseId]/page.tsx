@@ -18,10 +18,13 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const { courseId } = await params;
+  const course = getCourse(courseId);
+  if (!course) return {};
+
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'academy' });
 
-  return { title: `${t(`courses.${courseId}.title` as 'courses.c1.title')}` };
+  return { title: t(course.titleKey.replace('academy.', '') as 'courses.c1.title') };
 }
 
 export default async function CoursePage({ params }: PageProps) {
@@ -36,7 +39,7 @@ export default async function CoursePage({ params }: PageProps) {
     alt: t('media.alt.courseCover', {
       title: t(`courses.${course.id}.title` as 'courses.c1.title'),
     }),
-    sizes: '(min-width: 1024px) 720px, 100vw',
+    sizes: '(min-width: 1024px) 580px, calc(100vw - 48px)',
   });
 
   return (

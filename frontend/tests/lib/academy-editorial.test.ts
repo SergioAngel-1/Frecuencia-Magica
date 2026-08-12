@@ -91,6 +91,14 @@ describe('academy editorial composition contracts', () => {
     expect(lessonPageSource).toContain('<LessonPlayer');
     expect(lessonPageSource).toContain("resolveEditorialMedia('academy-lesson-visual'");
     expect(lessonPageSource).toContain("resolveEditorialMedia('academy.completion'");
+    expect(lessonPageSource).toContain('if (!/^\\d+$/.test(lessonId)) notFound();');
+    expect(lessonPageSource).toContain(
+      'if (lessonIndex < 0 || lessonIndex > lessons.length) notFound();',
+    );
+    expect(lessonPageSource).toContain('lessonId: String(course.lessons + 1)');
+    expect(coursePageSource).toContain('const course = getCourse(courseId);');
+    expect(coursePageSource).toContain('if (!course) return {};');
+    expect(lessonPageSource).toContain('const course = getCourse(courseId);');
   });
 
   it('uses the lesson visual fallback and native audio controls while preserving navigation', () => {
@@ -117,9 +125,18 @@ describe('academy editorial composition contracts', () => {
     expect(loadingSource).toContain('motion-safe:');
   });
 
+  it('keeps the editorial sweep on transform rather than background-position', () => {
+    const cssSource = readFileSync(resolve(SOURCE_ROOT, 'app/globals.css'), 'utf8');
+    expect(cssSource).toContain('@keyframes fm-editorial-zebra-sweep');
+    expect(cssSource).toContain('transform: translateX');
+    expect(cssSource).toContain('animation: fm-editorial-zebra-sweep');
+    expect(cssSource).not.toContain('animation: fm-shimmer 2.4s linear infinite');
+  });
+
   it('keeps every catalog course represented exactly once in the archive source', () => {
     expect(COURSES).toHaveLength(3);
-    expect(listSource.match(/<CourseCard/g)?.length).toBe(2);
+    expect(listSource.match(/<CourseCard/g)?.length).toBe(1);
+    expect(listSource).toContain('function CourseRow');
     expect(listSource).toContain('{others.map');
   });
 });

@@ -33,11 +33,14 @@ export default async function Loading() {
               </div>
               <Skeleton variant="text" className="mt-4 h-5 w-[min(620px,90vw)]" />
             </div>
-            <div className="grid gap-8 md:grid-cols-2">
+            <div>
               {Array.from({ length: 2 }, (_, index) => (
-                <div key={index} className="rounded-card overflow-hidden">
+                <div
+                  key={index}
+                  className="border-gold/20 grid gap-5 border-b py-5 md:grid-cols-[minmax(180px,0.8fr)_minmax(0,1.2fr)] md:items-center md:gap-8"
+                >
                   <MediaSkeleton
-                    aspect="1:1"
+                    aspect="16:8"
                     className="motion-safe:animate-fm-fade-up"
                     label={t('media.alt.courseCover', { title: t('allCourses') })}
                     slot="academy-course-cover"

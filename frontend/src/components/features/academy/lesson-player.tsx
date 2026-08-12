@@ -73,7 +73,7 @@ export function LessonPlayer({
     <article>
       <Link
         href={{ pathname: '/academia/[courseId]', params: { courseId: course.id } }}
-        className="text-ivory/62 hover:text-ivory min-h-11 py-3 font-sans text-[13px] tracking-[.12em] uppercase transition-colors"
+        className="text-ivory/62 hover:text-ivory inline-flex min-h-11 items-center py-3 font-sans text-[13px] tracking-[.12em] uppercase transition-colors"
       >
         ← {t('backLabel')}
       </Link>

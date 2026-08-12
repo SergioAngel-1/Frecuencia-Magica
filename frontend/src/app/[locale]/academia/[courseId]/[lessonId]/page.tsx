@@ -23,17 +23,20 @@ export function generateStaticParams() {
         locale,
         courseId,
         lessonId: String(i + 1),
-      }));
+      })).concat({ locale, courseId, lessonId: String(course.lessons + 1) });
     }),
   );
 }
 
 export async function generateMetadata({ params }: PageProps) {
   const { courseId } = await params;
+  const course = getCourse(courseId);
+  if (!course) return {};
+
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'academy' });
 
-  return { title: t(`courses.${courseId}.title` as 'courses.c1.title') };
+  return { title: t(course.titleKey.replace('academy.', '') as 'courses.c1.title') };
 }
 
 export default async function LessonPage({ params }: PageProps) {
@@ -44,8 +47,12 @@ export default async function LessonPage({ params }: PageProps) {
   const course = getCourse(courseId);
   if (!course) notFound();
 
+  if (!/^\d+$/.test(lessonId)) notFound();
+
   const lessonIndex = Number(lessonId) - 1;
   const lessons = buildLessons(course);
+  if (lessonIndex < 0 || lessonIndex > lessons.length) notFound();
+
   const lessonData = lessons[lessonIndex];
   const isLast = lessonIndex >= lessons.length - 1;
   const lessonTitle =
@@ -55,7 +62,7 @@ export default async function LessonPage({ params }: PageProps) {
 
   const lessonMedia = resolveEditorialMedia('academy-lesson-visual', {
     alt: t('media.alt.lesson', { title: lessonTitle }),
-    sizes: '(min-width: 1024px) 900px, 100vw',
+    sizes: '(min-width: 1024px) 760px, calc(100vw - 48px)',
   });
   const completionMedia = resolveEditorialMedia('academy.completion', {
     alt: t('media.alt.completion'),
