@@ -252,6 +252,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
   },
   'experiences.featured': {
     ...WIDE,
+    position: '50% 45%',
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',

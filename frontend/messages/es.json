@@ -398,6 +398,13 @@
     "featuredDescription": "Una hora para dejar que el sonido afloje lo que hoy pesa. Cuencos, gongs y frecuencias en vivo que te acompañan de vuelta a tu centro, desde donde estés.",
     "book": "Reservar",
     "all": "Todas las experiencias",
+    "media": {
+      "alt": {
+        "hero": "Las experiencias que te esperan",
+        "featured": "{title}: experiencia destacada",
+        "row": "{title}: atmósfera de la vivencia"
+      }
+    },
     "modes": {
       "online": "En línea",
       "inPerson": "Presencial"
@@ -418,6 +425,13 @@
     }
   },
   "booking": {
+    "media": {
+      "alt": {
+        "hero": "El lugar de tu experiencia",
+        "confirmation": "Tu experiencia te espera"
+      }
+    },
+    "backToDate": "Volver a fecha y hora",
     "steps": {
       "date": "Fecha",
       "details": "Datos",

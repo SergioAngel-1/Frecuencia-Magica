@@ -5,6 +5,7 @@ import { BookingFlow } from '@/components/features/experiences/booking-flow';
 import { PageShell } from '@/components/layout';
 import { getExperience } from '@/data';
 import { resolveLocale } from '@/i18n/resolve-locale';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { routing } from '@/i18n/routing';
 
 type PageProps = { params: Promise<{ locale: string; experienceId: string }> };
@@ -25,14 +26,26 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function BookingPage({ params }: PageProps) {
   const { experienceId } = await params;
-  await resolveLocale(params);
+  const locale = await resolveLocale(params);
+  const bookingT = await getTranslations({ locale, namespace: 'booking' });
 
   const experience = getExperience(experienceId);
   if (!experience) notFound();
 
+  const bookingMedia = {
+    hero: resolveEditorialMedia('booking.hero', {
+      alt: bookingT('media.alt.hero'),
+      sizes: '(min-width: 1280px) 1200px, 100vw',
+    }),
+    confirmation: resolveEditorialMedia('booking.confirmation', {
+      alt: bookingT('media.alt.confirmation'),
+      sizes: '(min-width: 1280px) 1000px, calc(100vw - 48px)',
+    }),
+  };
+
   return (
-    <PageShell width="focus">
-      <BookingFlow experience={experience} />
+    <PageShell width="wide" padding="none" fullBleed editorial>
+      <BookingFlow experience={experience} media={bookingMedia} />
     </PageShell>
   );
 }

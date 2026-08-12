@@ -398,6 +398,13 @@
     "featuredDescription": "An hour to let sound loosen what weighs today. Live bowls, gongs and frequencies that accompany you back to your center, wherever you are.",
     "book": "Book",
     "all": "All experiences",
+    "media": {
+      "alt": {
+        "hero": "The experiences awaiting you",
+        "featured": "{title}: featured experience",
+        "row": "{title}: atmosphere of the experience"
+      }
+    },
     "modes": {
       "online": "Online",
       "inPerson": "In-person"
@@ -418,6 +425,13 @@
     }
   },
   "booking": {
+    "media": {
+      "alt": {
+        "hero": "The place of your experience",
+        "confirmation": "Your experience awaits you"
+      }
+    },
+    "backToDate": "Back to date and time",
     "steps": {
       "date": "Date",
       "details": "Details",
