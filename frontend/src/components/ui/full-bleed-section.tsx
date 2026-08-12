@@ -61,7 +61,7 @@ export function FullBleedSection({
       {media ? (
         <div className="absolute inset-0">
           <EditorialImage
-            aspect={layout.ratio}
+            aspect={media.aspect}
             className="h-full"
             focalPoint={media.position ?? layout.objectPosition}
             media={media}

@@ -11,6 +11,7 @@ type ResultStepProps = {
   description: string;
   ctaLabel: string;
   restartLabel: string;
+  onListen: () => void;
   onRestart: () => void;
 };
 
@@ -21,6 +22,7 @@ export function ResultStep({
   description,
   ctaLabel,
   restartLabel,
+  onListen,
   onRestart,
 }: ResultStepProps) {
   return (
@@ -31,15 +33,15 @@ export function ResultStep({
 
       <FrequencyDisc hz={hz} band={band} size="lg" />
 
-      <p className="max-w-[48ch] text-center text-[15px] leading-[1.8] text-ivory/78">
+      <p className="text-ivory/78 max-w-[48ch] text-center text-[15px] leading-[1.8]">
         {description}
       </p>
 
       <div className="mt-2 flex flex-wrap items-center gap-4">
-        <Button variant="primary" size="lg" asChild>
+        <Button variant="primary" size="lg" asChild onClick={onListen}>
           <Link href="/biblioteca">{ctaLabel}</Link>
         </Button>
-        <Button variant="ghost" size="sm" onClick={onRestart}>
+        <Button variant="ghost" size="sm" className="text-[15px]" onClick={onRestart}>
           {restartLabel}
         </Button>
       </div>

@@ -21,6 +21,7 @@ export default async function DiscoverPage({ params }: PageProps) {
     hero: resolveEditorialMedia('discover.hero', { alt: t('media.alt.hero') }),
     question: resolveEditorialMedia('discover.question-atmosphere', {
       alt: t('media.alt.questionAtmosphere'),
+      sizes: '100vw',
     }),
     tuning: resolveEditorialMedia('discover.tuning', { alt: t('media.alt.tuning') }),
     result: resolveEditorialMedia('discover.result', { alt: t('media.alt.result') }),

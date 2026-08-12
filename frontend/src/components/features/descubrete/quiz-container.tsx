@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react';
 
 import { QUESTIONS } from '@/data/questions';
 import { useQuiz } from '@/hooks/use-quiz';
+import { selectDiscoverMedia, type DiscoverMedia } from '@/lib/discover/media';
+import { usePlayerStore } from '@/stores/player-store';
 import type { Audio } from '@/types/content';
-import type { EditorialMedia } from '@/types/editorial-media';
 
 import { IntroStep } from './intro-step';
 import { QuizLayout } from './quiz-layout';
@@ -16,17 +17,13 @@ import { TuningStep } from './tuning-step';
 
 type QuizContainerProps = {
   audios: readonly Audio[];
-  media: {
-    hero: EditorialMedia;
-    question: EditorialMedia;
-    tuning: EditorialMedia;
-    result: EditorialMedia;
-  };
+  media: DiscoverMedia;
 };
 
 export function QuizContainer({ audios, media }: QuizContainerProps) {
   const t = useTranslations('discover');
   const quiz = useQuiz(QUESTIONS);
+  const open = usePlayerStore((s) => s.open);
   const [resolvedAudio, setResolvedAudio] = useState<Audio | null>(null);
 
   useEffect(() => {
@@ -38,15 +35,8 @@ export function QuizContainer({ audios, media }: QuizContainerProps) {
 
   const question = QUESTIONS[quiz.currentQuestion];
 
-  const phaseMedia = {
-    intro: media.hero,
-    questions: media.question,
-    tuning: media.tuning,
-    result: media.result,
-  } as const;
-
   return (
-    <QuizLayout phase={quiz.step} media={phaseMedia[quiz.step]}>
+    <QuizLayout phase={quiz.step} media={selectDiscoverMedia(quiz.step, media)}>
       {quiz.step === 'intro' && (
         <IntroStep
           kicker={t('kicker')}
@@ -85,6 +75,7 @@ export function QuizContainer({ audios, media }: QuizContainerProps) {
           description={t(`frequencies.${quiz.resultHz}` as 'frequencies.432')}
           ctaLabel={t('result.cta')}
           restartLabel={t('result.restart')}
+          onListen={() => open(resolvedAudio.id)}
           onRestart={quiz.reset}
         />
       )}

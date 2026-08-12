@@ -51,7 +51,7 @@ export function QuizStep({
       </div>
 
       {currentIndex > 0 && (
-        <Button variant="ghost" size="sm" className="mt-6" onClick={onBack}>
+        <Button variant="ghost" size="sm" className="mt-6 text-[15px]" onClick={onBack}>
           {backLabel}
         </Button>
       )}
@@ -75,9 +75,9 @@ function OptionButton({
       type="button"
       onClick={handleClick}
       className={cn(
-        'group min-h-11 w-full rounded-[14px] border px-5 py-[14px] text-left text-[15px] leading-[1.5] transition-[color,background-color,border-color] duration-300',
-        'border-ivory/30 bg-void/45 text-ivory/90 backdrop-blur-sm',
-        'hover:border-gold/60 hover:text-ivory hover:bg-[rgba(216,185,120,0.10)]',
+        'group min-h-11 w-full border-b px-2 py-[14px] text-left text-[15px] leading-[1.5] transition-[color,border-color] duration-300',
+        'border-ivory/25 text-ivory/90 bg-transparent',
+        'hover:border-gold/60 hover:text-ivory',
         'focus-visible:ring-gold/50 focus-visible:ring-offset-void focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
       )}
     >
