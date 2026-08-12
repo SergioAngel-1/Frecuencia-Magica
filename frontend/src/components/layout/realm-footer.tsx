@@ -26,5 +26,9 @@ export function RealmFooter() {
 
   if (!WITH_FOOTER.includes(realmId)) return null;
 
-  return <SiteFooter />;
+  return (
+    <div className="relative z-[100]">
+      <SiteFooter />
+    </div>
+  );
 }

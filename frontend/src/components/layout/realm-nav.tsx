@@ -33,9 +33,10 @@ export function RealmNav() {
     <nav
       aria-label={t('label')}
       className={cn(
-        'animate-fm-fade-in fixed z-[190]',
-        // Barra inferior en móvil y tablet.
-        'inset-x-0 bottom-0 flex justify-center gap-1 pb-[max(12px,env(safe-area-inset-bottom))]',
+        'animate-fm-fade-in fixed z-[210]',
+        // Barra inferior en móvil y tablet, above the player dock.
+        'inset-x-0 bottom-[calc(84px+env(safe-area-inset-bottom))] flex justify-center gap-1',
+        'pb-[max(12px,env(safe-area-inset-bottom))]',
         // Columna lateral centrada desde 1024px.
         'lg:inset-x-auto lg:top-1/2 lg:bottom-auto lg:left-[26px] lg:-translate-y-1/2',
         'lg:flex-col lg:justify-start lg:gap-1 lg:pb-0',
@@ -75,7 +76,16 @@ export function RealmNav() {
                 hover fiable en táctil, los puntos solos no comunican destino. */}
             <span
               aria-hidden="true"
-              className="mt-[3px] max-w-[56px] truncate font-sans text-[8px] uppercase tracking-[.06em] text-ivory/60 lg:hidden"
+              className="text-ivory/70 mt-[3px] max-w-[68px] truncate font-sans text-[15px] leading-[1.05] tracking-[.06em] uppercase lg:hidden"
+            >
+              {name}
+            </span>
+
+            {/* Desktop keeps the constellation point and its destination
+                legible without requiring hover to discover the realm. */}
+            <span
+              aria-hidden="true"
+              className="text-ivory/70 ml-2 hidden font-serif text-[15px] tracking-[.05em] lg:inline"
             >
               {name}
             </span>

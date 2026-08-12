@@ -1,11 +1,19 @@
 import type { CSSProperties } from 'react';
 
+import type { VisualMode } from '@/config/realms';
+
 /** Un blob circular difuminado a la deriva. */
 type Blob = {
   style: CSSProperties;
   gradient: string;
   blur: number;
   animation: string;
+};
+
+const MODE_OPACITY: Record<VisualMode, number> = {
+  cosmic: 1,
+  editorial: 0.68,
+  quiet: 0.46,
 };
 
 const BLOBS: readonly Blob[] = [
@@ -33,9 +41,13 @@ const BLOBS: readonly Blob[] = [
  * Capa de nebulosas: tres blobs difuminados a la deriva bajo una viñeta que
  * oscurece el borde inferior. Decorativa y sin interacción.
  */
-export function NebulaLayer() {
+export function NebulaLayer({ visualMode = 'cosmic' }: { visualMode?: VisualMode }) {
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[1] overflow-hidden">
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 z-[1] overflow-hidden"
+      style={{ opacity: MODE_OPACITY[visualMode] }}
+    >
       {BLOBS.map((blob, i) => (
         <div
           key={i}

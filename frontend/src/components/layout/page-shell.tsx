@@ -32,11 +32,39 @@ const PADDING_CLASSES: Record<ShellPadding, string> = {
   none: '',
 };
 
-interface PageShellProps {
+export interface PageShellProps {
   children: ReactNode;
   width?: ShellWidth;
   padding?: ShellPadding;
   className?: string;
+  fullBleed?: boolean;
+  editorial?: boolean;
+  reserveBottomUi?: boolean;
+}
+
+export type PageShellClassOptions = Omit<PageShellProps, 'children'>;
+
+/**
+ * Derives the shell classes without mounting a component. Full-bleed content
+ * reserves the persistent mobile controls unless a caller explicitly opts out.
+ */
+export function getPageShellClasses({
+  width = 'default',
+  padding = 'realm',
+  className,
+  fullBleed = false,
+  editorial = false,
+  reserveBottomUi = fullBleed,
+}: PageShellClassOptions = {}): string {
+  return cn(
+    'mx-auto w-full',
+    WIDTH_CLASSES[width],
+    PADDING_CLASSES[padding],
+    fullBleed && 'fm-editorial-full-bleed',
+    editorial && 'fm-editorial-shell',
+    reserveBottomUi && 'fm-shell-reserve-bottom',
+    className,
+  );
 }
 
 /** Contenedor de contenido: fija el ancho y el aire de cada vista. */
@@ -45,10 +73,20 @@ export function PageShell({
   width = 'default',
   padding = 'realm',
   className,
+  fullBleed = false,
+  editorial = false,
+  reserveBottomUi = fullBleed,
 }: PageShellProps) {
   return (
     <div
-      className={cn('mx-auto w-full', WIDTH_CLASSES[width], PADDING_CLASSES[padding], className)}
+      className={getPageShellClasses({
+        width,
+        padding,
+        className,
+        fullBleed,
+        editorial,
+        reserveBottomUi,
+      })}
     >
       {children}
     </div>

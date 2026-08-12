@@ -49,15 +49,18 @@ export function PlayerDock() {
   const title = lib(`audios.${audio.id}.title` as 'audios.a1.title');
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[180] px-4 pb-[max(12px,env(safe-area-inset-bottom))] pt-0">
+    <div
+      data-layout-layer="player"
+      className="fixed inset-x-0 bottom-0 z-[180] px-3 pt-0 pb-[max(12px,env(safe-area-inset-bottom))] sm:px-4"
+    >
       <div
-        className="mx-auto flex max-w-[920px] items-center gap-5 rounded-[20px] border border-glass-brd px-5 py-[14px] shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-[22px]"
+        className="border-glass-brd mx-auto flex w-full max-w-[920px] items-center gap-3 rounded-[20px] border px-3 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-[22px] sm:gap-5 sm:px-5 sm:py-[14px]"
         style={{ background: 'rgba(15,27,46,0.72)' }}
       >
         {/* Miniatura */}
         <div
           aria-hidden="true"
-          className="h-14 w-14 shrink-0 animate-fm-breathe rounded-[14px]"
+          className="animate-fm-breathe size-11 shrink-0 rounded-[14px] sm:size-14"
           style={{
             backgroundImage: audio.band,
           }}
@@ -74,10 +77,8 @@ export function PlayerDock() {
 
         {/* Texto */}
         <div className="min-w-0 flex-1">
-          <p className="truncate font-serif text-[19px] text-ivory">{title}</p>
-          <p className="font-sans text-[11px] tracking-[.08em] text-ivory/55">
-            {audio.hz} Hz
-          </p>
+          <p className="text-ivory truncate font-serif text-[17px] sm:text-[19px]">{title}</p>
+          <p className="text-ivory/55 font-sans text-[11px] tracking-[.08em]">{audio.hz} Hz</p>
         </div>
 
         {/* Play/Pause */}
@@ -85,10 +86,16 @@ export function PlayerDock() {
           type="button"
           aria-label={isPlaying ? t('pause') : t('play')}
           onClick={toggle}
-          className="flex size-[52px] shrink-0 items-center justify-center rounded-full border text-ivory transition-colors hover:border-gold/70"
+          className="text-ivory hover:border-gold/70 flex size-[52px] shrink-0 items-center justify-center rounded-full border transition-colors"
           style={{ borderColor: 'rgba(216,185,120,0.55)', background: 'rgba(216,185,120,0.12)' }}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="translate-x-[6%]">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="translate-x-[6%]"
+          >
             {isPlaying ? (
               <>
                 <rect x="6" y="4" width="4" height="16" rx="1" />
@@ -111,11 +118,11 @@ export function PlayerDock() {
             onChange={(e) => setElapsed(Number(e.target.value))}
             aria-label={t('seek')}
             className={cn(
-              'h-[5px] w-full cursor-pointer appearance-none rounded-[3px]',
-              '[&::-webkit-slider-runnable-track]:h-[5px] [&::-webkit-slider-runnable-track]:rounded-[3px] [&::-webkit-slider-runnable-track]:bg-ivory/14',
-              '[&::-webkit-slider-thumb]:mt-[-5px] [&::-webkit-slider-thumb]:size-[15px] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gold',
-              '[&::-moz-range-track]:h-[5px] [&::-moz-range-track]:rounded-[3px] [&::-moz-range-track]:bg-ivory/14',
-              '[&::-moz-range-thumb]:size-[15px] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-gold',
+              'h-11 w-full cursor-pointer touch-pan-y appearance-none rounded-[3px]',
+              '[&::-webkit-slider-runnable-track]:bg-ivory/14 [&::-webkit-slider-runnable-track]:h-[5px] [&::-webkit-slider-runnable-track]:rounded-[3px]',
+              '[&::-webkit-slider-thumb]:bg-gold [&::-webkit-slider-thumb]:mt-[-5px] [&::-webkit-slider-thumb]:size-[15px] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full',
+              '[&::-moz-range-track]:bg-ivory/14 [&::-moz-range-track]:h-[5px] [&::-moz-range-track]:rounded-[3px]',
+              '[&::-moz-range-thumb]:bg-gold [&::-moz-range-thumb]:size-[15px] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0',
             )}
             style={{
               background: `linear-gradient(90deg, var(--color-gold) 0%, var(--color-gold) ${pct}%, rgba(247,244,234,0.14) ${pct}%, rgba(247,244,234,0.14) 100%)`,
@@ -128,7 +135,7 @@ export function PlayerDock() {
           type="button"
           aria-label={t('close')}
           onClick={close}
-          className="flex size-11 shrink-0 items-center justify-center text-ivory/55 hover:text-ivory"
+          className="text-ivory/55 hover:text-ivory flex size-11 shrink-0 items-center justify-center"
         >
           ×
         </button>

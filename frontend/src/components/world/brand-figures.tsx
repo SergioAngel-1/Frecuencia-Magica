@@ -1,6 +1,13 @@
 import type { CSSProperties } from 'react';
 
+import type { VisualMode } from '@/config/realms';
+
 const STAR_PATH = 'M12 0 L13.4 10.6 L24 12 L13.4 13.4 L12 24 L10.6 13.4 L0 12 L10.6 10.6 Z';
+const MODE_OPACITY: Record<VisualMode, number> = {
+  cosmic: 1,
+  editorial: 0.7,
+  quiet: 0.5,
+};
 
 /** Los cuatro destellos de cuatro puntas, con su posición, color y ritmo. */
 type Sparkle = {
@@ -40,9 +47,13 @@ const SPARKLES: readonly Sparkle[] = [
  * Figuras de marca: dos aros concéntricos de esquina y cuatro destellos de
  * cuatro puntas parpadeando desincronizados. Decorativas y sin interacción.
  */
-export function BrandFigures() {
+export function BrandFigures({ visualMode = 'cosmic' }: { visualMode?: VisualMode }) {
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-[1] overflow-hidden">
+    <div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 z-[1] overflow-hidden"
+      style={{ opacity: MODE_OPACITY[visualMode] }}
+    >
       {/* Aro superior derecho */}
       <svg
         viewBox="0 0 200 200"

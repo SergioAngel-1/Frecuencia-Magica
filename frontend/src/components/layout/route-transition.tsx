@@ -81,6 +81,7 @@ export function RouteTransition({ children }: { children: ReactNode }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: DURATION.base, ease: EASE.soft } }}
           exit={{ opacity: 0, transition: { duration: DURATION.fast, ease: EASE.soft } }}
+          className="relative"
           onAnimationComplete={() => {
             // El callback también lo dispara la salida de la vista anterior;
             // sólo la entrada de la vista actual apaga el orbe.

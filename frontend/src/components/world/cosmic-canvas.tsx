@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
+import type { VisualMode } from '@/config/realms';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { useRealm } from '@/hooks/use-realm';
 import { hexToRgb, type Rgb } from '@/lib/cosmic/colors';
@@ -12,6 +13,11 @@ const STAR_COUNT = 220;
 const PARTICLE_COUNT = 54;
 const PARTICLE_COUNT_MOBILE = 28;
 const MOBILE_QUERY = '(max-width: 767px)';
+const VISUAL_MODE_OPACITY: Record<VisualMode, number> = {
+  cosmic: 1,
+  editorial: 0.52,
+  quiet: 0.34,
+};
 
 /** Nebulosas fijas del canvas. La tercera se recolorea con el acento del realm. */
 const NEBULAE: readonly { x: number; y: number; r: number; color: Rgb | null }[] = [
@@ -30,7 +36,12 @@ function isSmallScreen(): boolean {
  * en el origen: el bucle lo dibuja con `translate` en lugar de crear 54
  * gradientes por frame (Task 16.4 — presupuesto de animación).
  */
-function makeParticleGradient(ctx: CanvasRenderingContext2D, color: Rgb, alpha: number, radius: number): CanvasGradient {
+function makeParticleGradient(
+  ctx: CanvasRenderingContext2D,
+  color: Rgb,
+  alpha: number,
+  radius: number,
+): CanvasGradient {
   const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius);
   gradient.addColorStop(0, `rgba(${color[0]},${color[1]},${color[2]},${alpha})`);
   gradient.addColorStop(1, `rgba(${color[0]},${color[1]},${color[2]},0)`);
@@ -44,7 +55,7 @@ function makeParticleGradient(ctx: CanvasRenderingContext2D, color: Rgb, alpha: 
  * Port literal de `setupCanvas` / `drawFrame` del prototipo. Los valores mágicos
  * son intencionales.
  */
-export function CosmicCanvas() {
+export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMode }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { accent } = useRealm();
   const reduced = useReducedMotionSafe();
@@ -80,7 +91,10 @@ export function CosmicCanvas() {
     resize();
 
     const stars = createStars(STAR_COUNT, Math.random);
-    let particles = createParticles(isSmallScreen() ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT, Math.random);
+    let particles = createParticles(
+      isSmallScreen() ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT,
+      Math.random,
+    );
     // Sprites pre-horneados en coordenadas locales; se regeneran al cambiar
     // el acento (rebuildSpritesRef) o el tamaño de pantalla (onResize).
     let sprites: CanvasGradient[] = [];
@@ -194,6 +208,7 @@ export function CosmicCanvas() {
       ref={canvasRef}
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0 h-full w-full"
+      style={{ opacity: VISUAL_MODE_OPACITY[visualMode] }}
     />
   );
 }

@@ -14,7 +14,7 @@ export function BrandMark({ label }: { label: string }) {
       href="/inicio"
       data-magnetic
       aria-label={label}
-      className="text-ivory pointer-events-auto flex items-center gap-[13px] hover:text-[color:var(--color-ivory)]"
+      className="text-ivory pointer-events-auto flex min-h-11 items-center gap-[13px] hover:text-[color:var(--color-ivory)]"
     >
       <Image
         src="/logo.png"
