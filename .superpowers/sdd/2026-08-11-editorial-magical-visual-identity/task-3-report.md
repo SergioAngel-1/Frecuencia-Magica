@@ -78,4 +78,29 @@ Fresh verification after implementation and formatting:
 - `frontend/src/config/realms.ts`
 - `frontend/tests/lib/editorial-shell.test.ts`
 
+## Fix round 1 — inactive realm label contrast
+
+- Base: `a15bd2f8f274bc81c89fd794323753d5e7d3da0b`.
+- Scoped finding: inactive realm labels inherited the link's `opacity-60`, stacking it with their ivory text treatment and dropping below the documented contrast floor.
+- Removed the link-level opacity so text is no longer composited with a second opacity layer.
+- Set inactive mobile and desktop labels to explicit `text-ivory/60` (the documented body-text floor) with `group-hover:text-ivory` and `group-focus-visible:text-ivory` transitions; the active label remains full ivory through the existing `aria-current` state.
+- Kept the constellation metaphor by applying the inactive opacity only to the decorative point; hover/focus restores the point and labels, and the existing badge hover/focus behavior is unchanged.
+- Added a focused logical contract test covering both persistent label variants, the absence of link-level stacked opacity, and hover/focus text restoration.
+
+### Fix verification
+
+- `npm run test -- tests/lib/editorial-shell.test.ts` before the fix — **1 failed, 4 passed** (the new contrast contract failed on the existing link `opacity-60`).
+- `npm run test -- tests/lib/editorial-shell.test.ts` after the fix — **1 file, 5 tests passed**.
+- `npm run test` — **31 files, 179 tests passed**.
+- `npm run lint` — **exit 0**.
+- `npm run typecheck` — **exit 0**.
+- `git diff --check` — **exit 0**.
+- `next build` — intentionally not run because the existing `next dev` process is active and the task forbids building in that state.
+
+### Fix files
+
+- `frontend/src/components/layout/realm-nav.tsx`
+- `frontend/tests/lib/editorial-shell.test.ts`
+- This report.
+
 This report is included in the requested Task 3 commit.

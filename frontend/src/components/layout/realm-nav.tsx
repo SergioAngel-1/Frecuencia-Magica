@@ -53,10 +53,8 @@ export function RealmNav() {
             data-magnetic
             aria-current={active ? 'page' : undefined}
             className={cn(
-              'group relative flex h-11 min-w-11 flex-col items-center justify-center opacity-60',
-              'transition-opacity duration-300 hover:opacity-100 focus-visible:opacity-100',
+              'group relative flex h-11 min-w-11 flex-col items-center justify-center',
               'lg:h-11 lg:min-w-11 lg:flex-row lg:justify-start lg:px-[6px] lg:py-[11px]',
-              active && 'opacity-100',
             )}
           >
             {/* El nombre siempre está en el árbol de accesibilidad: el badge
@@ -65,7 +63,11 @@ export function RealmNav() {
 
             <span
               aria-hidden="true"
-              className="h-[9px] w-[9px] flex-none rounded-full transition-transform duration-300 group-hover:scale-[1.35] group-focus-visible:scale-[1.35]"
+              className={cn(
+                'h-[9px] w-[9px] flex-none rounded-full transition-[transform,opacity] duration-300',
+                'group-hover:scale-[1.35] group-hover:opacity-100 group-focus-visible:scale-[1.35] group-focus-visible:opacity-100',
+                !active && 'opacity-60',
+              )}
               style={{
                 background: realm.accent,
                 boxShadow: active ? `0 0 12px 2px ${realm.accent}` : undefined,
@@ -76,7 +78,7 @@ export function RealmNav() {
                 hover fiable en táctil, los puntos solos no comunican destino. */}
             <span
               aria-hidden="true"
-              className="text-ivory/70 mt-[3px] max-w-[68px] truncate font-sans text-[15px] leading-[1.05] tracking-[.06em] uppercase lg:hidden"
+              className="text-ivory/60 aria-[current=page]:text-ivory group-hover:text-ivory group-focus-visible:text-ivory mt-[3px] max-w-[68px] truncate font-sans text-[15px] leading-[1.05] tracking-[.06em] uppercase transition-colors duration-300 lg:hidden"
             >
               {name}
             </span>
@@ -85,7 +87,7 @@ export function RealmNav() {
                 legible without requiring hover to discover the realm. */}
             <span
               aria-hidden="true"
-              className="text-ivory/70 ml-2 hidden font-serif text-[15px] tracking-[.05em] lg:inline"
+              className="text-ivory/60 aria-[current=page]:text-ivory group-hover:text-ivory group-focus-visible:text-ivory ml-2 hidden font-serif text-[15px] tracking-[.05em] transition-colors duration-300 lg:inline"
             >
               {name}
             </span>
