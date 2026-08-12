@@ -259,6 +259,19 @@
     "kicker": "Biblioteca de Frecuencias",
     "title": "Sonido para volver a ti",
     "description": "Meditaciones, frecuencias y paisajes sonoros. Elige por lo que tu cuerpo pide hoy.",
+    "media": {
+      "alt": {
+        "hero": "Paisaje sonoro de la Biblioteca de Frecuencia Mágica",
+        "featured": "Campo editorial para la frecuencia destacada",
+        "archiveBanner": "Textura sonora que acompaña el archivo completo",
+        "audioCover": "Portada sonora de {title}"
+      }
+    },
+    "archive": {
+      "eyebrow": "Dentro del archivo",
+      "title": "Una frecuencia para cada momento",
+      "description": "Escucha despacio. Cada pieza abre un espacio distinto para descansar, enraizarte o volver a respirar."
+    },
     "featuredBadge": "Frecuencia destacada",
     "filtersLabel": "Filtrar frecuencias",
     "filters": {

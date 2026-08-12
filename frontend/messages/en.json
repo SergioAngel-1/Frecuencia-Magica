@@ -259,6 +259,19 @@
     "kicker": "Library of Frequencies",
     "title": "Sound to return to you",
     "description": "Meditations, frequencies and soundscapes. Choose by what your body asks for today.",
+    "media": {
+      "alt": {
+        "hero": "Soundscape of the Frecuencia Mágica library",
+        "featured": "Editorial field for the featured frequency",
+        "archiveBanner": "Sound texture accompanying the complete archive",
+        "audioCover": "Sound cover for {title}"
+      }
+    },
+    "archive": {
+      "eyebrow": "Inside the archive",
+      "title": "A frequency for every moment",
+      "description": "Listen slowly. Each piece opens a different space to rest, find your roots or breathe again."
+    },
     "featuredBadge": "Featured frequency",
     "filtersLabel": "Filter frequencies",
     "filters": {

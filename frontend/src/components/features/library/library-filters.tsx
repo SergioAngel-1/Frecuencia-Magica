@@ -15,7 +15,11 @@ export function LibraryFilters({ active, onChange }: LibraryFiltersProps) {
   const t = useTranslations('library');
 
   return (
-    <div className="mb-[38px] flex flex-wrap gap-[10px]" role="group" aria-label={t('filtersLabel')}>
+    <div
+      className="mb-[38px] flex flex-wrap gap-[10px]"
+      role="group"
+      aria-label={t('filtersLabel')}
+    >
       {FILTERS.map((key) => (
         <Pill
           key={key}
