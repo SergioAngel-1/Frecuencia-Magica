@@ -65,3 +65,34 @@ All commands below were run from `frontend/` unless noted otherwise. `next build
 No assets were added.
 
 This report is included in the requested Task 5 commit.
+
+## Fix round 1
+
+### Changes
+
+- Moved all seven home media alt strings into `messages/es.json` and `messages/en.json`. The server home page resolves the six page slots with the active locale before passing `EditorialMedia`; the client `SiteFooter` resolves its translated footer alt through `useTranslations('home')`. The home registry no longer stores single-language alt phrases.
+- Restored the existing `/logo.png` as a decorative, aria-hidden layer inside the hero energy field, with responsive `next/image` sizing.
+- Extended `EditorialMedia` with its declared aspect and made `EditorialBanner` consume `media.aspect`, preserving the `16:9` membership/footer contracts instead of forcing the legacy `16:8` banner layout. `EditorialImage` now also makes no-source `MediaSkeleton` fill its wrapper (`h-full w-full`); this shared primitive change is required because the same fallback serves full-bleed/min-height home sections.
+- Restructured Daily Frequency so the block content lives in a section/div and the translated play CTA is the independent `aria-pressed` button with its player-store action and visible focus treatment.
+- Removed Home's explicit `reserveBottomUi={false}` so the default fixed-player/mobile-navigation reserve applies.
+- Corrected the normative focal positions for `home.hero` (`62% 40%`) and `home-membership` (`50% 15%`). The pure home contract test preserves the typed alias from brief name `home.marisol` to canonical `home-marisol-portrait` without changing the inventory ID.
+
+### Regression coverage
+
+- Extended `frontend/tests/lib/home-editorial.test.ts` with pure source/contract assertions for localized ES/EN alts across all seven home slots, no registry alt literals, canonical alias mapping, focal points, banner ratios, fallback fill, independent Daily Frequency action semantics, decorative logo restoration, and fixed-UI reservation.
+
+### Verification (all commands run from `frontend/` unless noted)
+
+- `npm run test -- tests/lib/home-editorial.test.ts` — **passed**, 1 file / 8 tests.
+- `npm run test -- tests/lib/editorial-media.test.ts tests/lib/editorial-shell.test.ts tests/lib/portal-editorial.test.ts` — **passed**, 3 files / 12 tests.
+- `npm run lint` — **passed**, exit 0.
+- `npm run typecheck` — **passed**, exit 0.
+- `npm run test` — **passed**, 33 files / 191 tests.
+- `npx prettier --check "src/app/[locale]/inicio/page.tsx" "src/components/features/home/about-section.tsx" "src/components/features/home/audio-grid.tsx" "src/components/features/home/daily-frequency.tsx" "src/components/features/home/hero-section.tsx" "src/components/features/home/membership-section.tsx" "src/components/features/home/realms-grid.tsx" "src/components/layout/site-footer.tsx" "src/components/ui/editorial-banner.tsx" "src/components/ui/editorial-image.tsx" "src/config/editorial-media.ts" "src/lib/editorial/asset-registry.ts" "src/types/editorial-media.ts" "tests/lib/home-editorial.test.ts"` — **passed**, all matched files use Prettier code style.
+- `git diff --check` — **passed**, exit 0.
+- No `next build` was run, per the task constraint while `next dev` is active. No browser-level 390/768 smoke check was run in this fix round.
+
+### Concerns
+
+- The existing repository-wide `npm run format:check` baseline remains outside this fix round's scope; the changed TypeScript/test files pass the targeted Prettier check above.
+- No assets were added; all seven home slots still use their named zebra fallbacks when no approved source is present.

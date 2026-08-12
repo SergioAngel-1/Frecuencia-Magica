@@ -118,6 +118,17 @@
       "title": "Your sanctuary, always with you",
       "description": "Unlimited access to frequencies, courses and experiences. A space that remembers your path and evolves with you.",
       "cta": "Begin my path"
+    },
+    "media": {
+      "alt": {
+        "hero": "The Frecuencia Mágica universe in a single image",
+        "dailyFrequency": "Today's frequency, made light",
+        "audioBanner": "Frecuencia Mágica's sound atmosphere",
+        "realmsBanner": "The nine realms of Frecuencia Mágica",
+        "marisolPortrait": "Portrait of Marisol, founder of Frecuencia Mágica",
+        "membership": "Golden light over a serene community space",
+        "footerBanner": "The cosmos continues beyond the page"
+      }
     }
   },
   "auth": {

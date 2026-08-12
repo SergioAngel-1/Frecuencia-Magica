@@ -3,11 +3,10 @@
 import { FrequencyDisc, EditorialImage } from '@/components/ui';
 import { usePlayerStore } from '@/stores/player-store';
 import { cn } from '@/lib/cn';
-import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 type DailyFrequencyProps = {
-  media?: EditorialMedia;
+  media: EditorialMedia;
   hz: number;
   band: string;
   audioId: string;
@@ -32,7 +31,7 @@ export function DailyFrequency({
   const open = usePlayerStore((s) => s.open);
   const activeId = usePlayerStore((s) => s.audioId);
   const isActive = activeId === audioId;
-  const dailyMedia = media ?? resolveEditorialMedia('home.daily-frequency');
+  const dailyMedia = media;
 
   return (
     <section className="relative isolate min-h-[clamp(360px,42vw,620px)] overflow-hidden">
@@ -47,24 +46,9 @@ export function DailyFrequency({
         />
       </div>
 
-      <button
-        type="button"
-        aria-pressed={isActive}
-        onClick={() => open(audioId)}
-        className={cn(
-          'group focus-visible:ring-gold relative z-20 grid min-h-[clamp(360px,42vw,620px)] w-full grid-cols-1 items-center gap-8 px-6 py-12 text-left outline-none focus-visible:ring-2 focus-visible:ring-inset sm:px-[8vw] md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1fr)] md:gap-[clamp(34px,7vw,110px)] md:py-[clamp(44px,7vw,90px)]',
-          isActive && 'bg-[rgba(216,185,120,0.04)]',
-        )}
-      >
+      <div className="relative z-20 grid min-h-[clamp(360px,42vw,620px)] w-full grid-cols-1 items-center gap-8 px-6 py-12 sm:px-[8vw] md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1fr)] md:gap-[clamp(34px,7vw,110px)] md:py-[clamp(44px,7vw,90px)]">
         <div className="mx-auto w-full max-w-[380px] md:mx-0">
-          <FrequencyDisc
-            size="lg"
-            hz={hz}
-            band={band}
-            active={isActive}
-            floatDuration="8s"
-            ariaLabel={`${title} — ${hz} Hz — ${meta}`}
-          />
+          <FrequencyDisc size="lg" hz={hz} band={band} active={isActive} floatDuration="8s" />
         </div>
 
         <div className="max-w-[620px]">
@@ -76,16 +60,24 @@ export function DailyFrequency({
             {description}
           </p>
           <div className="mt-6 flex min-h-11 items-center gap-4">
-            <span className="border-gold/60 text-gold inline-flex min-h-11 items-center border-b pb-1 font-sans text-[11px] tracking-[.18em] uppercase">
+            <button
+              type="button"
+              aria-pressed={isActive}
+              onClick={() => open(audioId)}
+              className={cn(
+                'border-gold/60 text-gold focus-visible:ring-gold inline-flex min-h-11 items-center border-b pb-1 font-sans text-[11px] tracking-[.18em] uppercase outline-none focus-visible:ring-2',
+                isActive && 'bg-[rgba(216,185,120,0.04)]',
+              )}
+            >
               {cta}
               <span aria-hidden="true" className="ml-3 text-[18px] leading-none">
                 →
               </span>
-            </span>
+            </button>
             <span className="text-ivory/65 font-sans text-[13px] tracking-[.08em]">{meta}</span>
           </div>
         </div>
-      </button>
+      </div>
     </section>
   );
 }

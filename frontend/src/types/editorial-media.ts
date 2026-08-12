@@ -1,7 +1,4 @@
-import type {
-  EditorialMediaAspect,
-  EditorialMediaSlot,
-} from '@/config/editorial-media';
+import type { EditorialMediaAspect, EditorialMediaSlot } from '@/config/editorial-media';
 
 export type { EditorialMediaAspect, EditorialMediaSlot } from '@/config/editorial-media';
 
@@ -10,6 +7,7 @@ export type EditorialMediaKind = 'photo' | 'art-direction' | 'fallback';
 export type EditorialMedia = {
   src?: string;
   alt: string;
+  aspect: EditorialMediaAspect;
   slot: EditorialMediaSlot;
   kind: EditorialMediaKind;
   position?: string;
@@ -17,16 +15,9 @@ export type EditorialMedia = {
   sizes: string;
 };
 
-export type EditorialMediaInput = Partial<Omit<EditorialMedia, 'slot'>> &
-  Pick<EditorialMedia, 'alt'>;
+export type EditorialMediaInput = Partial<Omit<EditorialMedia, 'slot'>>;
 
-export type EditorialMediaMode =
-  | 'viewport'
-  | 'banner'
-  | 'portrait'
-  | 'cover'
-  | 'split'
-  | 'quiet';
+export type EditorialMediaMode = 'viewport' | 'banner' | 'portrait' | 'cover' | 'split' | 'quiet';
 
 export type EditorialOverlayDirection = 'left' | 'right' | 'bottom' | 'top' | 'none';
 export type EditorialTone = 'gold' | 'teal' | 'lav' | 'ivory';

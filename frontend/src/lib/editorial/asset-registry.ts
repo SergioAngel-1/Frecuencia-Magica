@@ -9,13 +9,10 @@ export function resolveEditorialMedia(
   const definition = EDITORIAL_MEDIA_REGISTRY[slot];
   const hasSource = typeof media?.src === 'string' && media.src.length > 0;
   const resolved: EditorialMedia = {
-    alt: media?.alt ?? definition.alt,
+    alt: media?.alt ?? definition.alt ?? '',
+    aspect: media?.aspect ?? definition.aspect,
     slot,
-    kind: hasSource
-      ? media?.kind === 'art-direction'
-        ? 'art-direction'
-        : 'photo'
-      : 'fallback',
+    kind: hasSource ? (media?.kind === 'art-direction' ? 'art-direction' : 'photo') : 'fallback',
     position: media?.position ?? definition.position,
     priority: media?.priority ?? definition.priority,
     sizes: media?.sizes ?? definition.sizes,

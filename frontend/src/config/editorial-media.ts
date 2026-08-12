@@ -54,7 +54,7 @@ export interface EditorialMediaDefinition {
   priority: boolean;
   priorityTier: EditorialMediaPriority;
   sizes: string;
-  alt: string;
+  alt?: string;
 }
 
 const WIDE: Pick<EditorialMediaDefinition, 'position' | 'sizes'> = {
@@ -72,7 +72,7 @@ const PORTRAIT: Pick<EditorialMediaDefinition, 'position' | 'sizes'> = {
   sizes: '(min-width: 768px) 50vw, 100vw',
 };
 
-export const EDITORIAL_MEDIA_REGISTRY = {
+export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMediaDefinition> = {
   'portal.hero': {
     ...WIDE,
     aspect: '16:9',
@@ -96,52 +96,47 @@ export const EDITORIAL_MEDIA_REGISTRY = {
   },
   'home.hero': {
     ...WIDE,
+    position: '62% 40%',
     aspect: '16:9',
     priority: true,
     priorityTier: 'P0',
-    alt: 'El universo Frecuencia Mágica en una sola imagen',
   },
   'home.daily-frequency': {
     ...CENTER,
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
-    alt: 'La frecuencia de hoy, hecha luz',
   },
   'home.audio-banner': {
     ...WIDE,
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
-    alt: 'Atmósfera sonora de Frecuencia Mágica',
   },
   'home.realms-banner': {
     ...CENTER,
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
-    alt: 'Los nueve reinos de Frecuencia Mágica',
   },
   'home-marisol-portrait': {
     ...PORTRAIT,
     aspect: '3:4',
     priority: true,
     priorityTier: 'P0',
-    alt: 'Retrato de Marisol, fundadora de Frecuencia Mágica',
   },
   'home-membership': {
     ...WIDE,
+    position: '50% 15%',
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
-    alt: 'Luz dorada sobre un espacio sereno de la comunidad',
   },
   'home.footer-banner': {
     ...WIDE,
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
-    alt: 'El cosmos continúa tras la página',
   },
   'auth.hero': {
     ...WIDE,
@@ -368,4 +363,4 @@ export const EDITORIAL_MEDIA_REGISTRY = {
     priorityTier: 'P2',
     alt: 'Tu santuario espera sus primeras prácticas',
   },
-} satisfies Record<EditorialMediaSlot, EditorialMediaDefinition>;
+};

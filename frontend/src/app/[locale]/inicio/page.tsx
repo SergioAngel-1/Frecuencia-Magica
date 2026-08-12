@@ -24,8 +24,8 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function HomePage({ params }: PageProps) {
-  await resolveLocale(params);
-  const t = await getTranslations('home');
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'home' });
   const common = await getTranslations('common');
   const lib = await getTranslations('library');
   const nav = await getTranslations('nav');
@@ -54,20 +54,23 @@ export default async function HomePage({ params }: PageProps) {
   const academiaData = realmData.find((r) => r.id === 'academia')!;
   const otherRealms = realmData.filter((r) => r.id !== 'academia');
   const homeMedia = {
-    hero: resolveEditorialMedia('home.hero'),
-    daily: resolveEditorialMedia('home.daily-frequency'),
-    audio: resolveEditorialMedia('home.audio-banner'),
-    realms: resolveEditorialMedia('home.realms-banner'),
-    // The existing registry keeps the approved legacy id for this portrait slot.
-    marisol: resolveEditorialMedia('home-marisol-portrait'),
-    membership: resolveEditorialMedia('home-membership'),
+    hero: resolveEditorialMedia('home.hero', { alt: t('media.alt.hero') }),
+    daily: resolveEditorialMedia('home.daily-frequency', {
+      alt: t('media.alt.dailyFrequency'),
+    }),
+    audio: resolveEditorialMedia('home.audio-banner', { alt: t('media.alt.audioBanner') }),
+    realms: resolveEditorialMedia('home.realms-banner', { alt: t('media.alt.realmsBanner') }),
+    marisol: resolveEditorialMedia('home-marisol-portrait', {
+      alt: t('media.alt.marisolPortrait'),
+    }),
+    membership: resolveEditorialMedia('home-membership', { alt: t('media.alt.membership') }),
   };
 
   const realmsFeaturedCta = t('realms.featuredCta' as 'realms.kicker');
   const realmsFeaturedDescription = t('realms.featuredDescription' as 'realms.kicker');
 
   return (
-    <PageShell width="wide" padding="none" fullBleed editorial reserveBottomUi={false}>
+    <PageShell width="wide" padding="none" fullBleed editorial>
       <HeroSection
         media={homeMedia.hero}
         kicker={t('heroKicker')}

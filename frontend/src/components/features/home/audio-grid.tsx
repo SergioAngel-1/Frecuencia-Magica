@@ -4,7 +4,6 @@ import type { ReactNode } from 'react';
 
 import { EditorialImage, FrequencyDisc } from '@/components/ui';
 import { usePlayerStore } from '@/stores/player-store';
-import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 type AudioItem = {
@@ -16,7 +15,7 @@ type AudioItem = {
 };
 
 type AudioGridProps = {
-  media?: EditorialMedia;
+  media: EditorialMedia;
   kicker: string;
   title: string;
   action?: ReactNode;
@@ -26,7 +25,7 @@ type AudioGridProps = {
 export function AudioGrid({ media, kicker, title, action, audios }: AudioGridProps) {
   const open = usePlayerStore((s) => s.open);
   const activeId = usePlayerStore((s) => s.audioId);
-  const audioMedia = media ?? resolveEditorialMedia('home.audio-banner');
+  const audioMedia = media;
 
   return (
     <section className="relative isolate min-h-[clamp(420px,48vw,680px)] overflow-hidden py-[clamp(42px,7vw,88px)]">

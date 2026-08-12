@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { div as Mdiv } from 'motion/react-m';
 
 import {
@@ -14,7 +15,6 @@ import {
 import { Halo, OrbitalRings } from '@/components/world';
 import { Link } from '@/i18n/navigation';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
-import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { staggerContainer, staggerItem } from '@/lib/motion-variants';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -24,7 +24,7 @@ type StatData = {
 };
 
 type HeroSectionProps = {
-  media?: EditorialMedia;
+  media: EditorialMedia;
   kicker: string;
   titlePre: string;
   titleEm: string;
@@ -45,7 +45,7 @@ export function HeroSection({
   stats,
 }: HeroSectionProps) {
   const reduced = useReducedMotionSafe();
-  const heroMedia = media ?? resolveEditorialMedia('home.hero');
+  const heroMedia = media;
   const container = reduced ? undefined : staggerContainer;
   const item = reduced ? undefined : staggerItem;
 
@@ -118,6 +118,15 @@ export function HeroSection({
             inset="-12%"
             className="!animate-fm-breathe"
             style={{ width: 'min(72vw, 560px)', filter: 'blur(18px)' }}
+          />
+          <Image
+            src="/logo.png"
+            alt=""
+            aria-hidden="true"
+            width={190}
+            height={190}
+            sizes="(min-width: 1024px) 190px, 28vw"
+            className="absolute z-10 h-[clamp(104px,16vw,190px)] w-auto opacity-90"
           />
           <OrbitalRings
             size={520}

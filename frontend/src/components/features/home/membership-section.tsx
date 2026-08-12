@@ -1,10 +1,9 @@
 import { Button, EditorialBanner } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
-import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 type MembershipSectionProps = {
-  media?: EditorialMedia;
+  media: EditorialMedia;
   kicker: string;
   title: string;
   description: string;
@@ -18,7 +17,7 @@ export function MembershipSection({
   description,
   cta,
 }: MembershipSectionProps) {
-  const membershipMedia = media ?? resolveEditorialMedia('home-membership');
+  const membershipMedia = media;
 
   return (
     <section className="w-full py-[clamp(28px,6vw,84px)]">

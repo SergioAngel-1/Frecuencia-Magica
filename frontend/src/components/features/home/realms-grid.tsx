@@ -1,7 +1,6 @@
 import { EditorialBanner } from '@/components/ui';
 import { WaveSeparator } from '@/components/world';
 import { Link } from '@/i18n/navigation';
-import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { RealmCard } from './realm-card';
@@ -16,7 +15,7 @@ type RealmDescription = {
 };
 
 type RealmsGridProps = {
-  media?: EditorialMedia;
+  media: EditorialMedia;
   kicker: string;
   title: string;
   academia: RealmDescription & { featuredCta: string };
@@ -34,7 +33,7 @@ export function RealmsGrid({
   storeCta,
   featuredBadge,
 }: RealmsGridProps) {
-  const realmsMedia = media ?? resolveEditorialMedia('home.realms-banner');
+  const realmsMedia = media;
   const panels = realms.slice(0, 5);
 
   return (

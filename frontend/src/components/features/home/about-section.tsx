@@ -1,10 +1,9 @@
 import { Display, EditorialImage, Kicker } from '@/components/ui';
 import { OrbitalRings } from '@/components/world';
-import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 type AboutSectionProps = {
-  media?: EditorialMedia;
+  media: EditorialMedia;
   kicker: string;
   title: string;
   p1: string;
@@ -12,7 +11,7 @@ type AboutSectionProps = {
 };
 
 export function AboutSection({ media, kicker, title, p1, p2 }: AboutSectionProps) {
-  const portraitMedia = media ?? resolveEditorialMedia('home-marisol-portrait');
+  const portraitMedia = media;
 
   return (
     <section className="relative w-full overflow-hidden py-[clamp(58px,10vw,140px)]">

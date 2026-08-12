@@ -35,7 +35,9 @@ export function SiteFooter() {
   const tHome = useTranslations('home');
   const tNav = useTranslations('nav');
   const tCommon = useTranslations('common');
-  const footerMedia = resolveEditorialMedia('home.footer-banner');
+  const footerMedia = resolveEditorialMedia('home.footer-banner', {
+    alt: tHome('media.alt.footerBanner'),
+  });
 
   return (
     <footer

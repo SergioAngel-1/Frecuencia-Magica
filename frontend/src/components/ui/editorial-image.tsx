@@ -31,7 +31,7 @@ function directionOrDefault(
 
 export function EditorialImage({
   media,
-  aspect = '16:9',
+  aspect,
   fill = true,
   priority,
   scrim,
@@ -77,7 +77,8 @@ export function EditorialImage({
         )
       ) : (
         <MediaSkeleton
-          aspect={aspect}
+          aspect={aspect ?? media.aspect}
+          className="h-full w-full"
           label={media.alt}
           slot={media.slot}
         />

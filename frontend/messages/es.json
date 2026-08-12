@@ -118,6 +118,17 @@
       "title": "Tu santuario, siempre contigo",
       "description": "Acceso ilimitado a frecuencias, cursos y experiencias. Un espacio que recuerda tu camino y evoluciona contigo.",
       "cta": "Comenzar mi camino"
+    },
+    "media": {
+      "alt": {
+        "hero": "El universo Frecuencia Mágica en una sola imagen",
+        "dailyFrequency": "La frecuencia de hoy, hecha luz",
+        "audioBanner": "Atmósfera sonora de Frecuencia Mágica",
+        "realmsBanner": "Los nueve reinos de Frecuencia Mágica",
+        "marisolPortrait": "Retrato de Marisol, fundadora de Frecuencia Mágica",
+        "membership": "Luz dorada sobre un espacio sereno de la comunidad",
+        "footerBanner": "El cosmos continúa tras la página"
+      }
     }
   },
   "auth": {
