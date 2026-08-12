@@ -91,6 +91,11 @@ describe('experiences editorial composition contracts', () => {
     expect(rowSource).toContain('media={media}');
     expect(rowSource).toContain('formatPrice(experience.price)');
     expect(rowSource).toContain('experience.dur');
+    expect(rowSource).toContain('dateTime={date.iso}');
+    expect(rowSource).toContain('{date.dow} {date.day} {date.month}');
+    expect(listSource).toContain('upcomingDates(new Date(), EXPERIENCES.length, locale)');
+    expect(listSource).toContain('date={dates[0]!}');
+    expect(listSource).toContain('date={dates[index + 1]!}');
     expect(rowSource).toContain('<Link');
     expect(rowSource).toContain("pathname: '/experiencias/[experienceId]/reservar'");
     expect(rowSource).not.toMatch(/unsplash|https?:\/\//i);

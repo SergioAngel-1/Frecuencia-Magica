@@ -79,3 +79,29 @@ El cierre queda contenido en un único commit atómico con este subject:
 Trailer requerido:
 
 `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`
+
+## Apéndice — corrección P1 T10-P1-01
+
+La revisión confirmó que el listado no exponía ninguna fecha escaneable. La corrección mínima conserva el catálogo y el flujo existente: `ExperienceList` obtiene una fecha localizada por experiencia mediante `upcomingDates(new Date(), EXPERIENCES.length, locale)` y `ExperienceRow` la renderiza como `<time dateTime={date.iso}>` junto a modalidad y precio. La fecha se muestra tanto en la experiencia destacada como en cada fila, con `dateLabel` localizado en ES/EN; no se hardcodeó ninguna fecha en un componente.
+
+Se actualizó el contrato editorial para exigir el uso de `upcomingDates`, el paso de fechas a las dos ramas de fila y el renderizado `time` con día, mes y día de la semana. No se modificaron reducer, booking, navegación `@/i18n/navigation`, slots de media ni assets.
+
+Verificación de esta corrección:
+
+- `npm run test -- --run tests/lib/experiences-editorial.test.ts` — **PASS**, 1 fichero / 6 tests.
+- `npm run test` — **PASS**, 37 ficheros / 221 tests.
+- `npm run lint` — **PASS**, exit `0`.
+- `npm run typecheck` — **PASS**, exit `0`.
+- `npx prettier --check 'src/components/features/experiences/experience-row.tsx' 'src/components/features/experiences/experience-list.tsx' 'tests/lib/experiences-editorial.test.ts'` — **PASS**.
+- `node -e "JSON.parse(...)"` para ambos catálogos — **PASS**.
+- `git diff --check` — **PASS**.
+
+`npx prettier --check` sobre los dos JSON completos continúa detectando formato preexistente fuera de este cambio; no se reformatearon para evitar ruido ajeno. No se arrancó servidor ni se hizo build/browser smoke, conforme al alcance indicado.
+
+Commit atómico de la corrección:
+
+`fix(experiences): keep session dates scannable`
+
+Trailer:
+
+`Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`

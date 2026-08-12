@@ -1,6 +1,7 @@
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { EXPERIENCES } from '@/data';
+import { upcomingDates } from '@/lib/booking/dates';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ExperienceRow } from './experience-row';
@@ -16,9 +17,11 @@ type ExperienceListProps = {
 };
 
 export function ExperienceList({ media }: ExperienceListProps) {
+  const locale = useLocale();
   const t = useTranslations('experiences');
   const featured = EXPERIENCES[0]!;
   const others = EXPERIENCES.slice(1);
+  const dates = upcomingDates(new Date(), EXPERIENCES.length, locale);
   const titleFor = (experience: (typeof EXPERIENCES)[number]) =>
     t(`items.${experience.id}.title` as 'items.e1.title');
   const experienceMedia = (experience: (typeof EXPERIENCES)[number]): EditorialMedia => ({
@@ -30,6 +33,8 @@ export function ExperienceList({ media }: ExperienceListProps) {
     <div>
       <ExperienceRow
         bookLabel={t('book')}
+        date={dates[0]!}
+        dateLabel={t('dateLabel')}
         description={t('featuredDescription')}
         experience={featured}
         media={media.featured}
@@ -52,10 +57,12 @@ export function ExperienceList({ media }: ExperienceListProps) {
         </div>
 
         <div className="flex flex-col gap-5">
-          {others.map((exp) => (
+          {others.map((exp, index) => (
             <ExperienceRow
               key={exp.id}
               bookLabel={t('book')}
+              date={dates[index + 1]!}
+              dateLabel={t('dateLabel')}
               experience={exp}
               media={experienceMedia(exp)}
               mode={t(`modes.${exp.mode}` as 'modes.online')}

@@ -1,6 +1,7 @@
 import { Badge, Button, EditorialImage } from '@/components/ui';
 import { OrbitalRings } from '@/components/world';
 import { Link } from '@/i18n/navigation';
+import type { DateOption } from '@/lib/booking/dates';
 import { formatPrice } from '@/lib/format';
 import { cn } from '@/lib/cn';
 import type { EditorialMedia } from '@/types/editorial-media';
@@ -11,6 +12,8 @@ type ExperienceRowProps = {
   title: string;
   mode: string;
   modeLabel: string;
+  date: DateOption;
+  dateLabel: string;
   bookLabel: string;
   media: EditorialMedia;
   description?: string;
@@ -44,6 +47,8 @@ export function ExperienceRow({
   title,
   mode,
   modeLabel,
+  date,
+  dateLabel,
   bookLabel,
   media,
   description,
@@ -98,6 +103,10 @@ export function ExperienceRow({
           <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
             <BookingLink bookLabel={bookLabel} experience={experience} variant="primary" />
             <div className="text-ivory/72 flex flex-wrap items-center gap-x-5 gap-y-2 font-sans text-[13px] tracking-[.08em]">
+              <time dateTime={date.iso}>
+                <span className="sr-only">{dateLabel}: </span>
+                {date.dow} {date.day} {date.month}
+              </time>
               <span>{experience.dur}</span>
               <span className="text-gold font-serif text-[30px]">
                 {formatPrice(experience.price)}
@@ -137,6 +146,14 @@ export function ExperienceRow({
           </h3>
         </div>
         <div className="border-ivory/25 flex min-h-11 flex-wrap items-center gap-x-5 gap-y-3 border-t pt-5 md:border-t-0 md:border-l md:pt-0 md:pl-8">
+          <div className="flex min-h-11 flex-col justify-center">
+            <span className="text-ivory/62 font-sans text-[12px] tracking-[.08em] uppercase">
+              {dateLabel}
+            </span>
+            <time dateTime={date.iso} className="text-ivory mt-1 font-serif text-[22px]">
+              {date.dow} {date.day} {date.month}
+            </time>
+          </div>
           <div className="flex min-h-11 flex-col justify-center">
             <span className="text-ivory/62 font-sans text-[12px] tracking-[.08em] uppercase">
               {mode}
