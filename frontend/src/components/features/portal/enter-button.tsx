@@ -36,7 +36,7 @@ export function EnterButton({ children }: EnterButtonProps) {
         disabled={isBusy}
         aria-busy={isBusy}
         className={cn(
-          'group text-ivory relative min-h-11 px-[46px] py-[18px] font-serif text-[22px] tracking-[.14em] uppercase',
+          'group text-ivory relative inline-flex min-h-14 min-w-[min(100%,280px)] items-center justify-center px-[34px] py-[15px] font-serif text-[20px] tracking-[.14em] uppercase md:px-[46px] md:text-[22px]',
           isBusy && 'pointer-events-none opacity-45',
         )}
       >

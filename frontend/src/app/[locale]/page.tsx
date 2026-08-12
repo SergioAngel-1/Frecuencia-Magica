@@ -30,9 +30,8 @@ export async function generateMetadata({ params }: PortalPageProps): Promise<Met
  * Server Component salvo por su hijo interactivo `EnterButton`.
  */
 export default async function PortalPage({ params }: PortalPageProps) {
-  await resolveLocale(params);
-
-  const t = await getTranslations('portal');
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'portal' });
 
   return (
     <PortalScene
