@@ -325,6 +325,22 @@
     "kicker": "Academy",
     "title": "Real processes of transformation",
     "description": "Courses that accompany, step by step, your return to yourself. Learn at your own pace, wherever you are.",
+    "archive": {
+      "kicker": "Practice archive",
+      "title": "Learning can also be a return",
+      "description": "Move through the practices at your own pace. Each course keeps a different door toward your center."
+    },
+    "media": {
+      "alt": {
+        "hero": "Frecuencia Mágica's academy of practices",
+        "featured": "Frecuencia Mágica featured course",
+        "courseCover": "{title}: a scene from the practice",
+        "lesson": "Practice for lesson {title}",
+        "completion": "Completed course: a cycle closed in light"
+      }
+    },
+    "audioLabel": "Listen to this lesson",
+    "audioDeferred": "The audio for this practice will be added here. For now, stay with the reading and return to your breath.",
     "featuredBadge": "Featured",
     "featuredDescription": "A guided journey to reunite with yourself through breath, silence and small daily rituals.",
     "featuredCta": "Start course",

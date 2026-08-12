@@ -325,6 +325,22 @@
     "kicker": "Academia",
     "title": "Procesos reales de transformación",
     "description": "Cursos que acompañan, paso a paso, tu regreso a ti. Aprende a tu ritmo, desde donde estés.",
+    "archive": {
+      "kicker": "Archivo de prácticas",
+      "title": "Aprender también puede ser volver",
+      "description": "Recorre las prácticas a tu propio ritmo. Cada curso guarda una puerta distinta hacia tu centro."
+    },
+    "media": {
+      "alt": {
+        "hero": "La academia de prácticas de Frecuencia Mágica",
+        "featured": "Curso destacado de Frecuencia Mágica",
+        "courseCover": "{title}: escena de la práctica",
+        "lesson": "Práctica de la lección {title}",
+        "completion": "El curso completado: un ciclo cerrado con luz"
+      }
+    },
+    "audioLabel": "Escuchar esta lección",
+    "audioDeferred": "El audio de esta práctica se incorporará aquí. Mientras tanto, permanece con la lectura y vuelve a tu respiración.",
     "featuredBadge": "Destacado",
     "featuredDescription": "Un recorrido guiado para reencontrarte contigo a través de la respiración, el silencio y pequeños rituales diarios.",
     "featuredCta": "Comenzar curso",

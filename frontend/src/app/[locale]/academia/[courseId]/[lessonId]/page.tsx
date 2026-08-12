@@ -6,6 +6,7 @@ import { PageShell } from '@/components/layout';
 import { getCourse } from '@/data';
 import { buildLessons } from '@/lib/academy/lessons';
 import { resolveLocale } from '@/i18n/resolve-locale';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { routing } from '@/i18n/routing';
 
 type PageProps = { params: Promise<{ locale: string; courseId: string; lessonId: string }> };
@@ -37,31 +38,42 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function LessonPage({ params }: PageProps) {
   const { courseId, lessonId } = await params;
-  await resolveLocale(params);
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'academy' });
 
   const course = getCourse(courseId);
   if (!course) notFound();
 
   const lessonIndex = Number(lessonId) - 1;
   const lessons = buildLessons(course);
-
   const lessonData = lessons[lessonIndex];
   const isLast = lessonIndex >= lessons.length - 1;
-  const t = await getTranslations('academy');
-
   const lessonTitle =
     lessonIndex < lessons.length
       ? `${lessonData?.number}. ${t(`lessonTitles.${lessonData!.titleIndex}` as 'lessonTitles.0')}`
       : '';
 
+  const lessonMedia = resolveEditorialMedia('academy-lesson-visual', {
+    alt: t('media.alt.lesson', { title: lessonTitle }),
+    sizes: '(min-width: 1024px) 900px, 100vw',
+  });
+  const completionMedia = resolveEditorialMedia('academy.completion', {
+    alt: t('media.alt.completion'),
+    sizes: '(min-width: 1024px) 1000px, 100vw',
+  });
+
   return (
-    <PageShell width="default">
-      <LessonPlayer
-        course={course}
-        lessonIndex={lessonIndex}
-        isLast={isLast}
-        lessonTitle={lessonTitle}
-      />
+    <PageShell width="wide" padding="none" fullBleed editorial>
+      <div className="mx-auto w-full max-w-[1280px] px-6 pt-[clamp(100px,12vw,160px)] pb-[220px] md:px-[8vw]">
+        <LessonPlayer
+          completionMedia={completionMedia}
+          course={course}
+          isLast={isLast}
+          lessonIndex={lessonIndex}
+          lessonMedia={lessonMedia}
+          lessonTitle={lessonTitle}
+        />
+      </div>
     </PageShell>
   );
 }

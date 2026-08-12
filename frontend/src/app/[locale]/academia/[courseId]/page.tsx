@@ -5,6 +5,7 @@ import { CourseDetail } from '@/components/features/academy/course-detail';
 import { PageShell } from '@/components/layout';
 import { getCourse } from '@/data';
 import { resolveLocale } from '@/i18n/resolve-locale';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { routing } from '@/i18n/routing';
 
 type PageProps = { params: Promise<{ locale: string; courseId: string }> };
@@ -25,14 +26,24 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function CoursePage({ params }: PageProps) {
   const { courseId } = await params;
-  await resolveLocale(params);
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'academy' });
 
   const course = getCourse(courseId);
   if (!course) notFound();
 
+  const courseMedia = resolveEditorialMedia('academy-course-cover', {
+    alt: t('media.alt.courseCover', {
+      title: t(`courses.${course.id}.title` as 'courses.c1.title'),
+    }),
+    sizes: '(min-width: 1024px) 720px, 100vw',
+  });
+
   return (
-    <PageShell width="default">
-      <CourseDetail course={course} />
+    <PageShell width="wide" padding="none" fullBleed editorial>
+      <div className="mx-auto w-full max-w-[1280px] px-6 pt-[clamp(100px,12vw,160px)] pb-[220px] md:px-[8vw]">
+        <CourseDetail course={course} media={courseMedia} />
+      </div>
     </PageShell>
   );
 }

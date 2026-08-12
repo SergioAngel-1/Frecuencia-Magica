@@ -2,76 +2,69 @@
 
 import { useTranslations } from 'next-intl';
 
-import { Display, Kicker } from '@/components/ui';
+import { Display, EditorialImage, Kicker } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
 import { buildLessons } from '@/lib/academy/lessons';
+import type { EditorialMedia } from '@/types/editorial-media';
 import type { Course } from '@/types/content';
 
 import { LessonList } from './lesson-list';
 
 type CourseDetailProps = {
   course: Course;
+  media: EditorialMedia;
   currentLesson?: number;
 };
 
-export function CourseDetail({ course, currentLesson }: CourseDetailProps) {
+export function CourseDetail({ course, media, currentLesson }: CourseDetailProps) {
   const t = useTranslations('academy');
   const lessons = buildLessons(course);
+  const title = t(`courses.${course.id}.title` as 'courses.c1.title');
 
   return (
     <div>
       <Link
-        href="/academia" className="font-sans text-[13px] uppercase tracking-[.12em] text-ivory/60 transition-colors hover:text-ivory"
+        href="/academia"
+        className="text-ivory/62 hover:text-ivory min-h-11 py-3 font-sans text-[13px] tracking-[.12em] uppercase transition-colors"
       >
         ← {t('backLabel')}
       </Link>
 
-      <div className="mt-8 grid gap-11 md:grid-cols-[1.5fr_1fr] md:items-start">
-        <div>
+      <div className="mt-8 grid gap-[clamp(36px,7vw,96px)] md:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)] md:items-start">
+        <article>
           <Kicker tone="teal" spacing="widest">
             {t('featuredBadge')}
           </Kicker>
-          <Display size="md" level="h1" className="mt-1">
-            {t(`courses.${course.id}.title` as 'courses.c1.title')}
+          <Display size="lg" level="h1" className="mt-3 max-w-[13ch]">
+            {title}
           </Display>
-          <p className="text-ivory/74 mt-4 max-w-[52ch] text-[15px] leading-[1.8]">
+          <p className="text-ivory/76 mt-5 max-w-[56ch] text-[16px] leading-[1.8]">
             {t('courseDescription')}
           </p>
 
-          <div
-            className="relative mt-8 overflow-hidden rounded-[20px]"
-            style={{
-              aspectRatio: '16/8',
-              backgroundImage: course.band,
-            }}
+          <figure
+            className="rounded-card-lg mt-9 overflow-hidden"
+            data-editorial-media="academy-course-cover"
           >
-            <div
-              aria-hidden="true"
-              className="absolute inset-0"
-              style={{
-                background:
-                  'radial-gradient(70% 100% at 30% 10%, rgba(247,244,234,0.18), transparent 60%)',
-              }}
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div
-                aria-hidden="true"
-                className="flex size-[74px] animate-fm-breathe items-center justify-center rounded-full border border-ivory/60 backdrop-blur-[4px]"
-                style={{ background: 'rgba(15,27,46,0.35)' }}
-              >
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" className="translate-x-[8%] text-ivory">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
+            <div className="relative aspect-[16/8]">
+              <EditorialImage
+                aspect="16:8"
+                className="h-full"
+                focalPoint={media.position}
+                media={media}
+                overlay="bottom"
+                scrim="bottom"
+              />
             </div>
-          </div>
-        </div>
+            <figcaption className="border-gold/20 bg-ivory/[0.025] text-ivory/58 border-x border-b px-5 py-4 font-sans text-[11px] tracking-[.18em] uppercase">
+              {t('media.alt.courseCover', { title })}
+            </figcaption>
+          </figure>
+        </article>
 
-        <LessonList
-          courseId={course.id}
-          lessons={lessons}
-          currentIndex={currentLesson}
-        />
+        <aside className="md:sticky md:top-[112px]">
+          <LessonList courseId={course.id} currentIndex={currentLesson} lessons={lessons} />
+        </aside>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
-import { Badge, GlassPanel } from '@/components/ui';
-import { OrbitalRings } from '@/components/world/orbital-rings';
+import { Badge, EditorialImage, GlassPanel } from '@/components/ui';
 import { cn } from '@/lib/cn';
+import type { EditorialMedia } from '@/types/editorial-media';
 import type { Course } from '@/types/content';
 
 type CourseCardProps = {
@@ -8,6 +8,9 @@ type CourseCardProps = {
   title: string;
   level: string;
   lessonsLabel: string;
+  media: EditorialMedia;
+  description?: string;
+  cta?: string;
   featured?: boolean;
   className?: string;
 };
@@ -17,6 +20,9 @@ export function CourseCard({
   title,
   level,
   lessonsLabel,
+  media,
+  description,
+  cta,
   featured = false,
   className,
 }: CourseCardProps) {
@@ -24,54 +30,37 @@ export function CourseCard({
     return (
       <article
         className={cn(
-          'relative flex min-h-[340px] overflow-hidden rounded-[26px] text-ivory',
+          'rounded-card-lg text-ivory relative isolate min-h-[clamp(420px,42vw,600px)] overflow-hidden',
           className,
         )}
-        style={{
-          border: '1px solid rgba(216,185,120,0.32)',
-          background:
-            'linear-gradient(120deg, rgba(216,185,120,0.12), rgba(15,27,46,0.4))',
-        }}
+        data-course-id={course.id}
+        data-editorial-media="academy.featured-course"
       >
-        {/* Lado izquierdo — banda */}
-        <div
-          className="relative hidden min-h-[300px] flex-1 md:block"
-          style={{ backgroundImage: course.band }}
-        >
-          <div
-            aria-hidden="true"
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(70% 100% at 30% 10%, rgba(247,244,234,0.18), transparent 60%)',
-            }}
+        <div className="absolute inset-0">
+          <EditorialImage
+            aspect="16:8"
+            className="h-full"
+            media={media}
+            overlay="bottom"
+            scrim="left"
           />
-          <div className="absolute bottom-6 right-6">
-            <OrbitalRings
-              size={150}
-              spin={90}
-              rings={[
-                { r: 75, stroke: 'rgba(216,185,120,0.3)' },
-                { r: 55, stroke: 'rgba(150,198,188,0.2)', dash: '1 7' },
-              ]}
-            />
-          </div>
-          <div className="absolute left-4 top-4">
-            <Badge solid>{level}</Badge>
-          </div>
         </div>
-
-        {/* Lado derecho — información */}
-        <div className="flex flex-1 flex-col justify-center px-[clamp(24px,4vw,44px)] py-[32px]">
-          <h2 className="font-serif text-[clamp(30px,3.4vw,46px)] font-[300] leading-[1.05]">
+        <div className="relative z-10 flex min-h-[clamp(420px,42vw,600px)] max-w-[720px] flex-col justify-end px-[clamp(24px,6vw,76px)] py-[clamp(30px,6vw,76px)]">
+          <Badge solid>{level}</Badge>
+          <h2 className="text-ivory mt-5 max-w-[12ch] font-serif text-[clamp(38px,6vw,78px)] leading-[0.92]">
             {title}
           </h2>
-          <p className="text-ivory/70 mt-[14px] max-w-[40ch] font-sans text-[14px] leading-[1.7]">
-            {lessonsLabel}
-          </p>
-          <div className="mt-6 flex items-center gap-4">
-            <span className="inline-flex items-center gap-2 rounded-[999px] border border-ivory/22 bg-ivory/8 px-5 py-2 font-serif text-[17px] tracking-[.04em] backdrop-blur-[6px]">
-              ▶ {level}
+          {description ? (
+            <p className="text-ivory/82 mt-5 max-w-[48ch] text-[16px] leading-[1.7]">
+              {description}
+            </p>
+          ) : null}
+          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <span className="border-gold/55 text-gold min-h-11 border-b py-3 font-sans text-[11px] tracking-[.2em] uppercase">
+              {cta}
+            </span>
+            <span className="text-ivory/72 font-sans text-[12px] tracking-[.08em] uppercase">
+              {lessonsLabel}
             </span>
           </div>
         </div>
@@ -80,29 +69,31 @@ export function CourseCard({
   }
 
   return (
-    <GlassPanel radius={22} className={cn('group overflow-hidden', className)}>
-      <div
-        className="relative h-[180px]"
-        style={{ backgroundImage: course.band }}
-      >
-        <div
-          aria-hidden="true"
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, transparent 30%, rgba(10,18,32,0.72))',
-          }}
+    <GlassPanel
+      as="article"
+      radius={22}
+      className={cn('group hover:border-gold/45 overflow-hidden transition-colors', className)}
+      data-course-id={course.id}
+      data-editorial-media="academy-course-cover"
+    >
+      <div className="relative aspect-square">
+        <EditorialImage
+          aspect="1:1"
+          className="h-full"
+          media={media}
+          overlay="bottom"
+          scrim="bottom"
         />
-        <div className="absolute left-3 top-3">
+        <div className="absolute top-4 left-4 z-10">
           <Badge>{level}</Badge>
         </div>
       </div>
 
-      <div className="px-6 pb-[26px] pt-[22px]">
-        <h3 className="font-serif text-[27px] font-[400] leading-[1.15] text-ivory">
+      <div className="px-6 pt-5 pb-7">
+        <h3 className="text-ivory font-serif text-[clamp(26px,3vw,34px)] leading-[1.05]">
           {title}
         </h3>
-        <p className="text-ivory/60 mt-[6px] font-sans text-[12.5px] tracking-[.06em]">
+        <p className="text-ivory/62 mt-3 font-sans text-[12.5px] tracking-[.06em]">
           {lessonsLabel}
         </p>
       </div>

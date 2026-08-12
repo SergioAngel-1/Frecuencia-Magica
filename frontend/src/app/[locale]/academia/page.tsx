@@ -2,8 +2,9 @@ import { getTranslations } from 'next-intl/server';
 
 import { CourseList } from '@/components/features/academy/course-list';
 import { PageShell } from '@/components/layout';
-import { Display, Kicker, Prose } from '@/components/ui';
+import { Display, FullBleedSection, Kicker, Prose } from '@/components/ui';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
 type PageProps = { params: LocaleParams };
 
@@ -15,22 +16,46 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function AcademyPage({ params }: PageProps) {
-  await resolveLocale(params);
-  const t = await getTranslations('academy');
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'academy' });
+  const academyMedia = {
+    hero: resolveEditorialMedia('academy.hero', { alt: t('media.alt.hero') }),
+    featuredCourse: resolveEditorialMedia('academy.featured-course', {
+      alt: t('media.alt.featured'),
+      sizes: '100vw',
+    }),
+    courseCover: resolveEditorialMedia('academy-course-cover', {
+      alt: t('media.alt.courseCover', { title: '{title}' }),
+      sizes: '(min-width: 768px) 50vw, 100vw',
+    }),
+  };
 
   return (
-    <PageShell width="default">
-      <Kicker tone="teal" spacing="widest">
-        {t('kicker')}
-      </Kicker>
-      <Display size="lg" level="h1">
-        {t('title')}
-      </Display>
-      <Prose maxWidth={54} className="mt-5 mb-12">
-        {t('description')}
-      </Prose>
+    <PageShell width="wide" padding="none" fullBleed editorial>
+      <FullBleedSection
+        media={academyMedia.hero}
+        mode="banner"
+        overlay="left"
+        className="fm-editorial-full-bleed"
+        contentClassName="flex min-h-full items-center"
+        minHeight="clamp(420px, 52vw, 680px)"
+      >
+        <div className="mx-auto flex w-full max-w-[1440px] flex-col justify-center px-6 py-20 sm:px-[8vw] lg:px-[10vw]">
+          <Kicker tone="teal" spacing="wide">
+            {t('kicker')}
+          </Kicker>
+          <Display size="xl" level="h1" className="mt-4 max-w-[12ch]">
+            {t('title')}
+          </Display>
+          <Prose maxWidth={54} className="text-ivory/86 mt-6 max-w-[52ch]">
+            {t('description')}
+          </Prose>
+        </div>
+      </FullBleedSection>
 
-      <CourseList />
+      <div className="mx-auto w-full max-w-[1200px] px-6 pt-[clamp(30px,5vw,76px)] pb-[220px] md:px-[8vw]">
+        <CourseList media={academyMedia} />
+      </div>
     </PageShell>
   );
 }
