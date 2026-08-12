@@ -9,11 +9,14 @@ Portal inmersivo y cinematográfico de bienestar (marca "Marisol"): un universo 
 | Plan de implementación (manda en arquitectura y funcional) | `docs/superpowers/plans/2026-07-28-frecuencia-magica-frontend.md` |
 | Progreso por secciones del plan | `docs/superpowers/plans/sections-plan-completed.md` — actualízalo al completar secciones |
 | Diseño visual (manda en lo visual) | Sistema ya codificado: paleta/tipografía/keyframes en `frontend/src/app/globals.css`, realms en `frontend/src/config/`. Activos de marca fuera del repo: Brand Book y PRDs en `~/Descargas/` |
+| Dirección editorial-mágica (contrato) | Tesis, lo que permanece, lo que cambia y anti-goals en `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md`; inventario de slots fotográficos en `frontend/public/editorial/README.md` |
 | Decisiones de accesibilidad | `frontend/docs/accessibility.md` |
 | Decisiones de rendimiento y presupuestos | `frontend/docs/performance.md` |
 | Lista de fidelidad por vista | `frontend/docs/fidelity-checklist.md` |
 
 **El prototipo original se perdió**: `frontend-prototype/` fue eliminado del repo (commit `7c55bf0`). No reintentar comparar contra él ni contra ningún `.dc.html` de terceros (`~/Descargas/siu-premium-web-design-system/` es de otra marca). El sistema visual ya está codificado en `globals.css` y `config/`; si un cambio visual necesita una referencia, usar el Brand Book de `~/Descargas/` y el plan. El código de producción vive en `frontend/`.
+
+**Dirección editorial-mágica (2026-08-11)**: la fotografía entra como materia estructural sobre el world engine vivo («fotografía como materia; world engine como energía»). Contrato completo en `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md` e inventario de slots en `frontend/public/editorial/README.md`. Todo slot sin asset usa el skeleton editorial «zebra» (bandas de la paleta + barrido de luz + `data-media-slot`) — nunca cajas grises, stock ni Unsplash.
 
 ## Comandos (siempre desde `frontend/` — la raíz del repo no tiene package.json)
 
