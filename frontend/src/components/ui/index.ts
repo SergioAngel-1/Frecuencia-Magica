@@ -17,6 +17,18 @@ export {
 } from './button';
 export { Display, type DisplayLevel, type DisplaySize } from './display';
 export { EmptyState } from './empty-state';
+export { EditorialBanner, type EditorialBannerAlign, type EditorialBannerProps } from './editorial-banner';
+export { EditorialImage, type EditorialImageProps } from './editorial-image';
+export {
+  EditorialOverlay,
+  type EditorialOverlayDirection,
+  type EditorialOverlayProps,
+  type EditorialTone,
+} from './editorial-overlay';
+export {
+  FullBleedSection,
+  type FullBleedSectionProps,
+} from './full-bleed-section';
 export { Equalizer, type EqualizerScale } from './equalizer';
 export { ErrorState, type ErrorTone } from './error-state';
 export { Field } from './field';
@@ -33,6 +45,7 @@ export { Input, type InputProps } from './input';
 export { Kicker, type KickerSpacing, type KickerTone } from './kicker';
 export { LoadingOrb, type OrbTone } from './loading-orb';
 export { Magnetic } from './magnetic';
+export { MediaSkeleton, type MediaSkeletonProps } from './media-skeleton';
 export { Pill, type PillProps } from './pill';
 export { ProgressBar, type ProgressBarHeight } from './progress-bar';
 export { Prose, type ProseMaxWidth, type ProseSize } from './prose';

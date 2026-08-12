@@ -422,3 +422,32 @@
   border: 1px solid var(--color-glass-brd);
   backdrop-filter: blur(22px);
 }
+
+/* Fallback editorial: bandas zebra deliberadas, no caja gris. */
+@utility fm-editorial-zebra {
+  background-image:
+    repeating-linear-gradient(
+      122deg,
+      rgba(216, 185, 120, 0.22) 0 11%,
+      rgba(150, 198, 188, 0.18) 11% 24%,
+      rgba(185, 176, 214, 0.2) 24% 38%,
+      rgba(15, 27, 46, 0.58) 38% 52%
+    ),
+    linear-gradient(140deg, var(--color-void-2), var(--color-void));
+  background-size: auto, 100% 100%;
+}
+
+@utility fm-editorial-zebra-sweep {
+  animation: fm-shimmer 2.4s linear infinite;
+  background-size: 200% 100%, 100% 100%;
+}
+
+@utility fm-editorial-geometry {
+  border-color: rgba(216, 185, 120, 0.25);
+}
+
+@utility fm-editorial-full-bleed {
+  position: relative;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
