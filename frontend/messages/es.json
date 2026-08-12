@@ -182,6 +182,14 @@
     "title": "¿Qué frecuencia eres hoy?",
     "intro": "Cinco preguntas para escuchar tu momento presente. No hay respuestas correctas: solo la verdad de cómo llegas hoy. Al final, una frecuencia elegida para ti.",
     "begin": "Comenzar",
+    "media": {
+      "alt": {
+        "hero": "El comienzo de tu descubrimiento",
+        "questionAtmosphere": "Atmósfera serena para escucharte",
+        "tuning": "Tu frecuencia encontrando su tono",
+        "result": "El resultado de tu descubrimiento"
+      }
+    },
     "questionCount": "Pregunta {current} / {total}",
     "back": "← Anterior",
     "backToIntro": "← Volver",

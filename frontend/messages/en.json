@@ -182,6 +182,14 @@
     "title": "What frequency are you today?",
     "intro": "Five questions to listen to your present moment. There are no right answers: only the truth of how you arrive today. At the end, a frequency chosen for you.",
     "begin": "Begin",
+    "media": {
+      "alt": {
+        "hero": "The beginning of your discovery",
+        "questionAtmosphere": "A serene atmosphere to listen to yourself",
+        "tuning": "Your frequency finding its tone",
+        "result": "The result of your discovery"
+      }
+    },
     "questionCount": "Question {current} / {total}",
     "back": "← Back",
     "backToIntro": "← Back",

@@ -31,13 +31,16 @@ export function QuizStep({
 
   return (
     <div className="flex w-full flex-col items-center">
-      <p className="font-sans text-[11px] uppercase tracking-[.25em] text-lav">
-        {progressLabel}
-      </p>
+      <p className="text-lav font-sans text-[11px] tracking-[.25em] uppercase">{progressLabel}</p>
 
-      <ProgressBar value={pct} height={4} ariaLabel={progressLabel} className="mt-4 mb-10 w-full max-w-[360px]" />
+      <ProgressBar
+        value={pct}
+        height={4}
+        ariaLabel={progressLabel}
+        className="mt-4 mb-10 w-full max-w-[360px]"
+      />
 
-      <h2 className="font-serif text-[clamp(22px,3.2vw,32px)] leading-[1.2] tracking-[.02em] text-ivory">
+      <h2 className="text-ivory font-serif text-[clamp(22px,3.2vw,32px)] leading-[1.2] tracking-[.02em]">
         {prompt}
       </h2>
 
@@ -72,13 +75,13 @@ function OptionButton({
       type="button"
       onClick={handleClick}
       className={cn(
-        'group w-full rounded-[14px] border px-5 py-[14px] text-left text-[15px] leading-[1.5] transition-[color,background-color,border-color] duration-300',
-        'border-glass-brd bg-glass text-ivory/82',
-        'hover:border-gold/50 hover:bg-[rgba(216,185,120,0.08)] hover:text-ivory',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 focus-visible:ring-offset-2 focus-visible:ring-offset-void',
+        'group min-h-11 w-full rounded-[14px] border px-5 py-[14px] text-left text-[15px] leading-[1.5] transition-[color,background-color,border-color] duration-300',
+        'border-ivory/30 bg-void/45 text-ivory/90 backdrop-blur-sm',
+        'hover:border-gold/60 hover:text-ivory hover:bg-[rgba(216,185,120,0.10)]',
+        'focus-visible:ring-gold/50 focus-visible:ring-offset-void focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
       )}
     >
-      <span className="mr-4 font-serif text-gold/60 group-hover:text-gold/90">0{index + 1}</span>
+      <span className="text-gold/60 group-hover:text-gold/90 mr-4 font-serif">0{index + 1}</span>
       {label}
     </button>
   );

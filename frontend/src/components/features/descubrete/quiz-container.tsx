@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { QUESTIONS } from '@/data/questions';
 import { useQuiz } from '@/hooks/use-quiz';
 import type { Audio } from '@/types/content';
+import type { EditorialMedia } from '@/types/editorial-media';
 
 import { IntroStep } from './intro-step';
 import { QuizLayout } from './quiz-layout';
@@ -15,9 +16,15 @@ import { TuningStep } from './tuning-step';
 
 type QuizContainerProps = {
   audios: readonly Audio[];
+  media: {
+    hero: EditorialMedia;
+    question: EditorialMedia;
+    tuning: EditorialMedia;
+    result: EditorialMedia;
+  };
 };
 
-export function QuizContainer({ audios }: QuizContainerProps) {
+export function QuizContainer({ audios, media }: QuizContainerProps) {
   const t = useTranslations('discover');
   const quiz = useQuiz(QUESTIONS);
   const [resolvedAudio, setResolvedAudio] = useState<Audio | null>(null);
@@ -31,8 +38,15 @@ export function QuizContainer({ audios }: QuizContainerProps) {
 
   const question = QUESTIONS[quiz.currentQuestion];
 
+  const phaseMedia = {
+    intro: media.hero,
+    questions: media.question,
+    tuning: media.tuning,
+    result: media.result,
+  } as const;
+
   return (
-    <QuizLayout>
+    <QuizLayout phase={quiz.step} media={phaseMedia[quiz.step]}>
       {quiz.step === 'intro' && (
         <IntroStep
           kicker={t('kicker')}
@@ -46,9 +60,7 @@ export function QuizContainer({ audios }: QuizContainerProps) {
       {quiz.step === 'questions' && question && (
         <QuizStep
           prompt={t(`questions.${question.id}.prompt` as 'questions.q1.prompt')}
-          options={question.optionKeys.map(
-            (k) => t(k as 'questions.q1.options.0'),
-          )}
+          options={question.optionKeys.map((k) => t(k as 'questions.q1.options.0'))}
           currentIndex={quiz.currentQuestion}
           total={quiz.totalQuestions}
           progressLabel={t('questionCount', {
@@ -62,10 +74,7 @@ export function QuizContainer({ audios }: QuizContainerProps) {
       )}
 
       {quiz.step === 'tuning' && (
-        <TuningStep
-          tuningLabel={t('tuning')}
-          onFinish={quiz.finishTune}
-        />
+        <TuningStep tuningLabel={t('tuning')} onFinish={quiz.finishTune} />
       )}
 
       {quiz.step === 'result' && quiz.resultHz && resolvedAudio && (
