@@ -64,6 +64,9 @@ describe('store editorial composition contracts', () => {
       expect(enStore.media.alt[key]).not.toBe(esStore.media.alt[key]);
     }
 
+    expect(esStore.media.alt.related).toContain('{title}');
+    expect(enStore.media.alt.related).toContain('{title}');
+
     for (const key of cartAltKeys) {
       expect(esCart.media.alt[key]).toBeTruthy();
       expect(enCart.media.alt[key]).toBeTruthy();
@@ -85,13 +88,17 @@ describe('store editorial composition contracts', () => {
   });
 
   it('keeps the catalog image-led while preserving product actions and localized relations', () => {
-    expect(gridSource).toContain('media: StoreMedia');
-    expect(gridSource).toContain('media={media.product}');
-    expect(gridSource).toContain('media={media.productFeatured}');
+    expect(storePageSource).toContain('const products = Object.fromEntries');
+    expect(gridSource).toContain('type StoreProductMedia');
+    expect(gridSource).toContain("Record<(typeof PRODUCTS)[number]['id'], EditorialMedia>");
+    expect(gridSource).toContain('media.products[product.id]');
+    expect(gridSource).not.toContain('media.productFeatured');
     expect(gridSource).toContain('data-editorial-archive="true"');
     expect(cardSource).toContain('<EditorialImage');
     expect(cardSource).toContain('media={media}');
+    expect(cardSource).toContain('aspect={media.aspect}');
     expect(cardSource).toContain('data-editorial-media={media.slot}');
+    expect(cardSource).toContain("baseMedia.slot === 'product.related'");
     expect(cardSource).toContain('onClick={() => add(product.id)}');
     expect(cardSource).toContain("pathname: '/tienda/[productId]'");
     expect(cardSource).not.toContain('<Band');
@@ -104,11 +111,18 @@ describe('store editorial composition contracts', () => {
     expect(productPageSource).toContain("getTranslations({ locale, namespace: 'store' })");
     expect(productPageSource).toContain("resolveEditorialMedia('product.detail'");
     expect(productPageSource).toContain("resolveEditorialMedia('product.related'");
+    expect(productPageSource).toContain("alt: t('media.alt.related', { title: relatedTitle })");
+    expect(productPageSource).toContain("aspect: '16:8'");
+    expect(productPageSource).toContain('const related = Object.fromEntries');
     expect(productPageSource).toContain('<ProductDetail product={product} media={productMedia}');
     expect(detailSource).toContain('media: ProductMedia');
+    expect(detailSource).toContain(
+      "related: Record<(typeof PRODUCTS)[number]['id'], EditorialMedia>",
+    );
     expect(detailSource).toContain('<EditorialImage');
     expect(detailSource).toContain('media={media.detail}');
-    expect(detailSource).toContain('media={media.related}');
+    expect(detailSource).toContain('media={media.related[relatedProduct.id]!}');
+    expect(detailSource).not.toMatch(/<OrbitalRings\s+aria-hidden/);
     expect(detailSource).toContain('onClick={() => add(product.id)}');
     expect(detailSource).toContain("router.push('/tienda/carrito')");
     expect(detailSource).toContain('relatedAudioId');
@@ -131,23 +145,33 @@ describe('store editorial composition contracts', () => {
     expect(cartSource).toContain('<EditorialImage');
     expect(cartSource).toContain('data-editorial-media="cart.empty"');
     expect(cartSource).toContain('cartLines(items, PRODUCTS)');
-    expect(cartSource).toContain('cartCount(items)');
+    expect(cartSource).toContain('const count = lines.reduce');
+    expect(cartSource).toContain('sm:contents');
+    expect(cartSource).not.toContain('cartCount(items)');
     expect(cartSource).toContain('setQuantity(product.id, quantity - 1)');
     expect(cartSource).toContain('setQuantity(product.id, quantity + 1)');
     expect(cartSource).toContain('min-h-11');
-    expect(summarySource).toContain('cartSubtotal(items, PRODUCTS)');
+    expect(summarySource).toContain('lines: readonly CartLine[]');
+    expect(summarySource).toContain('lines.reduce');
     expect(summarySource).toContain('cartTotal(subtotal)');
     expect(summarySource).toContain('shippingCost(subtotal)');
+    expect(cartButtonSource).toContain('const items = useCartStore((state) => state.items);');
+    expect(cartButtonSource).toContain('cartLines(items, PRODUCTS)');
     expect(cartButtonSource).toContain('href="/tienda/carrito"');
     expect(cartButtonSource).toContain('min-h-11');
   });
 
   it('keeps simulated checkout motion, payment error and confirmation media', () => {
+    expect(checkoutSource).toContain("type CheckoutState = 'cart' | 'error' | 'success';");
+    expect(checkoutSource).toContain("useState<CheckoutState>('cart')");
+    expect(checkoutSource).toContain("setCheckoutState('cart')");
     expect(checkoutSource).toContain('ErrorState');
     expect(checkoutSource).toContain('AnimatePresence');
     expect(checkoutSource).toContain('useReducedMotionSafe');
     expect(checkoutSource).toContain('media: CheckoutMedia');
     expect(checkoutSource).toContain('<OrderConfirmation media={media.confirmation}');
+    expect(checkoutSource).toContain('TODO(backend)');
+    expect(checkoutSource).not.toContain('onClick={handlePlaceOrder}');
     expect(confirmationSource).toContain('<EditorialImage');
     expect(confirmationSource).toContain('data-editorial-media="checkout.confirmation"');
     expect(confirmationSource).toContain('href="/tienda"');
@@ -159,6 +183,10 @@ describe('store editorial composition contracts', () => {
     expect(loadingSource).toContain('slot="store.hero"');
     expect(loadingSource).toContain('slot="store-product-visual"');
     expect(loadingSource).toContain('slot="store.ritual-banner"');
+    expect(loadingSource).toContain('h-[clamp(190px,22vw,260px)]');
+    expect(loadingSource).toContain('h-[clamp(210px,26vw,340px)]');
+    expect(loadingSource).not.toContain('min-h-[390px]');
+    expect(loadingSource).not.toContain('min-h-[520px]');
     expect(loadingSource).toContain('motion-safe:');
     expect(loadingSource).not.toContain('bg-gray');
   });

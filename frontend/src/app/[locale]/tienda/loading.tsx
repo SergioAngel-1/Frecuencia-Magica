@@ -29,19 +29,19 @@ export default async function Loading() {
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 md:gap-7">
                 <MediaSkeleton
                   aspect="1:1"
-                  className="min-h-[390px]"
+                  className="h-[clamp(190px,22vw,260px)]"
                   label={productLabel}
                   slot="store-product-visual"
                 />
                 <MediaSkeleton
                   aspect="1:1"
-                  className="min-h-[390px]"
+                  className="h-[clamp(190px,22vw,260px)]"
                   label={productLabel}
                   slot="store-product-visual"
                 />
                 <MediaSkeleton
                   aspect="1:1"
-                  className="min-h-[390px]"
+                  className="h-[clamp(190px,22vw,260px)]"
                   label={productLabel}
                   slot="store-product-visual"
                 />
@@ -50,13 +50,13 @@ export default async function Loading() {
               <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-7">
                 <MediaSkeleton
                   aspect="16:8"
-                  className="min-h-[520px] md:col-span-2"
+                  className="h-[clamp(210px,26vw,340px)] md:col-span-2"
                   label={productLabel}
                   slot="store-product-visual"
                 />
                 <MediaSkeleton
                   aspect="1:1"
-                  className="min-h-[390px]"
+                  className="h-[clamp(190px,22vw,260px)]"
                   label={productLabel}
                   slot="store-product-visual"
                 />
@@ -65,19 +65,19 @@ export default async function Loading() {
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 md:gap-7">
                 <MediaSkeleton
                   aspect="1:1"
-                  className="min-h-[390px]"
+                  className="h-[clamp(190px,22vw,260px)]"
                   label={productLabel}
                   slot="store-product-visual"
                 />
                 <MediaSkeleton
                   aspect="1:1"
-                  className="min-h-[390px]"
+                  className="h-[clamp(190px,22vw,260px)]"
                   label={productLabel}
                   slot="store-product-visual"
                 />
                 <MediaSkeleton
                   aspect="1:1"
-                  className="min-h-[390px]"
+                  className="h-[clamp(190px,22vw,260px)]"
                   label={productLabel}
                   slot="store-product-visual"
                 />

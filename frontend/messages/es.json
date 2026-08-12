@@ -448,7 +448,7 @@
         "product": "{title} de Frecuencia Mágica",
         "ritualBanner": "Los objetos del ritual",
         "detail": "{title}: detalle",
-        "related": "Objetos que acompañan al ritual"
+        "related": "{title}, objeto que acompaña al ritual"
       }
     },
     "ritualBanner": {

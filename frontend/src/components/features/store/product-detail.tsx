@@ -21,7 +21,7 @@ import { ProductSections } from './product-sections';
 
 export type ProductMedia = {
   detail: EditorialMedia;
-  related: EditorialMedia;
+  related: Record<(typeof PRODUCTS)[number]['id'], EditorialMedia>;
 };
 
 type ProductDetailProps = {
@@ -57,7 +57,6 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
           data-editorial-geometry="true"
         />
         <OrbitalRings
-          aria-hidden="true"
           className="pointer-events-none absolute right-[8%] bottom-[10%] z-10 opacity-45"
           size={160}
           spin={100}
@@ -140,7 +139,11 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
           />
           <div className={cn('grid gap-6 sm:grid-cols-3')}>
             {related.map((relatedProduct) => (
-              <ProductCard key={relatedProduct.id} media={media.related} product={relatedProduct} />
+              <ProductCard
+                key={relatedProduct.id}
+                media={media.related[relatedProduct.id]!}
+                product={relatedProduct}
+              />
             ))}
           </div>
         </section>

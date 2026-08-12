@@ -3,21 +3,21 @@
 import { useTranslations } from 'next-intl';
 
 import { Button, GlassPanel } from '@/components/ui';
-import { PRODUCTS } from '@/data';
-import { cartCount, cartSubtotal, cartTotal, shippingCost } from '@/lib/cart/totals';
+import { cartTotal, shippingCost } from '@/lib/cart/totals';
 import { formatPrice } from '@/lib/format';
+import type { CartLine } from '@/lib/cart/totals';
 
 type OrderSummaryProps = {
-  items: Record<string, number>;
+  lines: readonly CartLine[];
   onPlaceOrder: () => void;
 };
 
-export function OrderSummary({ items, onPlaceOrder }: OrderSummaryProps) {
+export function OrderSummary({ lines, onPlaceOrder }: OrderSummaryProps) {
   const t = useTranslations('cart');
-  const subtotal = cartSubtotal(items, PRODUCTS);
+  const subtotal = lines.reduce((sum, line) => sum + line.lineTotal, 0);
   const shipping = shippingCost(subtotal);
   const total = cartTotal(subtotal);
-  const count = cartCount(items);
+  const count = lines.reduce((sum, line) => sum + line.quantity, 0);
 
   return (
     <GlassPanel className="h-fit p-5 md:sticky md:top-[150px]" glow>

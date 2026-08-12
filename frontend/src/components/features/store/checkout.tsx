@@ -17,45 +17,55 @@ type CheckoutViewProps = {
   media: CheckoutMedia;
 };
 
+type CheckoutState = 'cart' | 'error' | 'success';
+
 /** Simulated checkout: no payment provider is introduced in this task. */
 export function CheckoutView({ media }: CheckoutViewProps) {
   const t = useTranslations('states');
   const reducedMotion = useReducedMotionSafe();
-  const [ordered, setOrdered] = useState(false);
+  const [checkoutState, setCheckoutState] = useState<CheckoutState>('cart');
 
   // TODO(backend): a real payment response will drive this state when payments exist.
   const paymentFailed = false;
 
   function handlePlaceOrder() {
+    if (paymentFailed) {
+      setCheckoutState('error');
+      return;
+    }
+
     useCartStore.getState().clear();
-    setOrdered(true);
+    setCheckoutState('success');
   }
 
-  const content = paymentFailed ? (
-    <ErrorState
-      tone="warn"
-      title={t('payFailedTitle')}
-      body={t('payFailedBody')}
-      action={
-        <Button variant="outline" onClick={handlePlaceOrder}>
-          {t('payFailedCta')}
-        </Button>
-      }
-    />
-  ) : ordered ? (
-    <OrderConfirmation media={media.confirmation} />
-  ) : (
-    <CartView media={media} onPlaceOrder={handlePlaceOrder} />
-  );
+  function handleRetry() {
+    setCheckoutState('cart');
+  }
+
+  const content =
+    checkoutState === 'error' ? (
+      <ErrorState
+        tone="warn"
+        title={t('payFailedTitle')}
+        body={t('payFailedBody')}
+        action={
+          <Button variant="outline" onClick={handleRetry}>
+            {t('payFailedCta')}
+          </Button>
+        }
+      />
+    ) : checkoutState === 'success' ? (
+      <OrderConfirmation media={media.confirmation} />
+    ) : (
+      <CartView media={media} onPlaceOrder={handlePlaceOrder} />
+    );
 
   if (reducedMotion) return content;
-
-  const key = paymentFailed ? 'error' : ordered ? 'confirmation' : 'cart';
 
   return (
     <AnimatePresence mode="wait" initial={false}>
       <Mdiv
-        key={key}
+        key={checkoutState}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: DURATION.base, ease: EASE.soft } }}
         exit={{ opacity: 0, transition: { duration: DURATION.fast, ease: EASE.soft } }}

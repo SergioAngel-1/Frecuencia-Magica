@@ -20,11 +20,11 @@ export default async function CartPage({ params }: PageProps) {
   const checkoutMedia = {
     empty: resolveEditorialMedia('cart.empty', {
       alt: t('media.alt.empty'),
-      sizes: '100vw',
+      sizes: '(min-width: 768px) 820px, calc(100vw - 48px)',
     }),
     confirmation: resolveEditorialMedia('checkout.confirmation', {
       alt: t('media.alt.confirmation'),
-      sizes: '100vw',
+      sizes: '(min-width: 768px) 820px, calc(100vw - 48px)',
     }),
   };
 

@@ -443,7 +443,7 @@
         "product": "{title} by Frecuencia Mágica",
         "ritualBanner": "The objects of the ritual",
         "detail": "{title}: detail",
-        "related": "Objects that accompany the ritual"
+        "related": "{title}, an object that accompanies the ritual"
       }
     },
     "ritualBanner": {

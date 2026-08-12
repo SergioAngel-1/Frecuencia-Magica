@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
 import { ProductDetail } from '@/components/features/store';
+import type { ProductMedia } from '@/components/features/store/product-detail';
 import { PageShell } from '@/components/layout';
 import { PRODUCTS } from '@/data';
 import { Link } from '@/i18n/navigation';
@@ -35,15 +36,25 @@ export default async function ProductPage({ params }: PageProps) {
 
   const t = await getTranslations({ locale, namespace: 'store' });
   const title = t(`products.${product.id}.title`);
-  const productMedia = {
+  const related = Object.fromEntries(
+    PRODUCTS.map((relatedProduct) => {
+      const relatedTitle = t(`products.${relatedProduct.id}.title`);
+      return [
+        relatedProduct.id,
+        resolveEditorialMedia('product.related', {
+          alt: t('media.alt.related', { title: relatedTitle }),
+          aspect: '16:8',
+          sizes: '(min-width: 1280px) 380px, (min-width: 768px) 27vw, calc(100vw - 48px)',
+        }),
+      ];
+    }),
+  ) as ProductMedia['related'];
+  const productMedia: ProductMedia = {
     detail: resolveEditorialMedia('product.detail', {
       alt: t('media.alt.detail', { title }),
-      sizes: '100vw',
+      sizes: '(min-width: 1280px) 1240px, (min-width: 768px) 84vw, calc(100vw - 48px)',
     }),
-    related: resolveEditorialMedia('product.related', {
-      alt: t('media.alt.related'),
-      sizes: '(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw',
-    }),
+    related,
   };
 
   return (

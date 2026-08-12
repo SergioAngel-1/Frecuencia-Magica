@@ -25,7 +25,10 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
   const title = t(`products.${product.id}.title`);
   const media: EditorialMedia = {
     ...baseMedia,
-    alt: t('media.alt.product', { title }),
+    alt:
+      baseMedia.slot === 'product.related'
+        ? t('media.alt.related', { title })
+        : t('media.alt.product', { title }),
   };
 
   return (
@@ -50,7 +53,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
           )}
         >
           <EditorialImage
-            aspect={featured ? '16:8' : '1:1'}
+            aspect={media.aspect}
             className="h-full"
             media={media}
             overlay="bottom"

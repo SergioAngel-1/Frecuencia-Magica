@@ -1,9 +1,14 @@
 import { getTranslations } from 'next-intl/server';
 
 import { CartButton } from '@/components/features/store/cart-button';
-import { ProductGrid } from '@/components/features/store/product-grid';
+import {
+  ProductGrid,
+  type StoreMedia,
+  type StoreProductMedia,
+} from '@/components/features/store/product-grid';
 import { PageShell } from '@/components/layout';
 import { Display, EditorialBanner, FullBleedSection, Kicker, Prose } from '@/components/ui';
+import { PRODUCTS } from '@/data';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -19,17 +24,27 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function StorePage({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'store' });
-  const storeMedia = {
+  const featuredId = PRODUCTS[0]!.id;
+  const products = Object.fromEntries(
+    PRODUCTS.map((product) => {
+      const title = t(`products.${product.id}.title`);
+      const featured = product.id === featuredId;
+
+      return [
+        product.id,
+        resolveEditorialMedia('store-product-visual', {
+          alt: t('media.alt.product', { title }),
+          aspect: featured ? '16:8' : '1:1',
+          sizes: featured
+            ? '(min-width: 1280px) 820px, (min-width: 768px) 56vw, calc(100vw - 48px)'
+            : '(min-width: 1280px) 380px, (min-width: 768px) 28vw, calc(100vw - 48px)',
+        }),
+      ];
+    }),
+  ) as StoreProductMedia;
+  const storeMedia: StoreMedia = {
     hero: resolveEditorialMedia('store.hero', { alt: t('media.alt.hero'), sizes: '100vw' }),
-    product: resolveEditorialMedia('store-product-visual', {
-      alt: t('media.alt.product', { title: '{title}' }),
-      sizes: '(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw',
-    }),
-    productFeatured: resolveEditorialMedia('store-product-visual', {
-      alt: t('media.alt.product', { title: '{title}' }),
-      aspect: '16:8',
-      sizes: '(min-width: 1280px) 66vw, 100vw',
-    }),
+    products,
     ritualBanner: resolveEditorialMedia('store.ritual-banner', {
       alt: t('media.alt.ritualBanner'),
       sizes: '100vw',

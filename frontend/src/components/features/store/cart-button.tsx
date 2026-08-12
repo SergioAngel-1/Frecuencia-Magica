@@ -2,7 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 
+import { PRODUCTS } from '@/data';
 import { Link } from '@/i18n/navigation';
+import { cartLines } from '@/lib/cart/totals';
 import { cn } from '@/lib/cn';
 import { useCartStore } from '@/stores/cart-store';
 
@@ -12,9 +14,8 @@ type CartButtonProps = {
 
 export function CartButton({ className }: CartButtonProps) {
   const t = useTranslations('store');
-  const count = useCartStore((state) =>
-    Object.values(state.items).reduce((sum, value) => sum + value, 0),
-  );
+  const items = useCartStore((state) => state.items);
+  const count = cartLines(items, PRODUCTS).reduce((sum, line) => sum + line.quantity, 0);
 
   if (count === 0) return null;
 

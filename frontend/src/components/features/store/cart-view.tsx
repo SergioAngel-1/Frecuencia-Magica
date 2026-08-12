@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { Button, EditorialImage, EmptyState, GlassPanel, Kicker } from '@/components/ui';
 import { PRODUCTS } from '@/data';
 import { Link } from '@/i18n/navigation';
-import { cartLines, cartCount } from '@/lib/cart/totals';
+import { cartLines } from '@/lib/cart/totals';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { formatPrice } from '@/lib/format';
 import { categoryKey } from '@/lib/store/category-key';
@@ -33,8 +33,8 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
   });
 
   return (
-    <GlassPanel className="grid grid-cols-[64px_minmax(0,1fr)] gap-4 p-4 sm:grid-cols-[80px_minmax(0,1fr)_auto_auto] sm:items-center">
-      <div className="relative aspect-square overflow-hidden rounded-[14px]">
+    <GlassPanel className="grid grid-cols-[64px_minmax(0,1fr)] gap-x-4 gap-y-3 p-4 sm:grid-cols-[80px_minmax(0,1fr)_auto_auto] sm:items-center">
+      <div className="relative row-span-2 aspect-square overflow-hidden rounded-[14px] sm:row-span-1">
         <EditorialImage aspect="1:1" className="h-full" media={productMedia} />
       </div>
       <div className="min-w-0">
@@ -43,30 +43,32 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
         </p>
         <p className="text-ivory/55 font-sans text-[13px]">{tStore(categoryKey(product.catKey))}</p>
       </div>
-      <div className="col-span-2 flex min-h-11 items-center gap-3 sm:col-span-1">
-        <button
-          type="button"
-          onClick={() => setQuantity(product.id, quantity - 1)}
-          className="border-ivory/20 text-ivory/60 hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
-          aria-label={t('decrease')}
-        >
-          −
-        </button>
-        <span className="text-ivory min-w-[24px] text-center font-serif text-[18px]">
-          {quantity}
-        </span>
-        <button
-          type="button"
-          onClick={() => setQuantity(product.id, quantity + 1)}
-          className="border-ivory/20 text-ivory/60 hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
-          aria-label={t('increase')}
-        >
-          +
-        </button>
+      <div className="col-start-2 flex min-h-11 items-center justify-between gap-4 sm:contents">
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setQuantity(product.id, quantity - 1)}
+            className="border-ivory/20 text-ivory/60 hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
+            aria-label={t('decrease')}
+          >
+            −
+          </button>
+          <span className="text-ivory min-w-[24px] text-center font-serif text-[18px]">
+            {quantity}
+          </span>
+          <button
+            type="button"
+            onClick={() => setQuantity(product.id, quantity + 1)}
+            className="border-ivory/20 text-ivory/60 hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
+            aria-label={t('increase')}
+          >
+            +
+          </button>
+        </div>
+        <p className="text-gold text-right font-serif text-[18px]">
+          {formatPrice(product.price * quantity)}
+        </p>
       </div>
-      <p className="text-gold text-right font-serif text-[18px]">
-        {formatPrice(product.price * quantity)}
-      </p>
     </GlassPanel>
   );
 }
@@ -80,9 +82,9 @@ export function CartView({ media, onPlaceOrder }: CartViewProps) {
   const t = useTranslations('cart');
   const items = useCartStore((state) => state.items);
   const lines = cartLines(items, PRODUCTS);
-  const count = cartCount(items);
+  const count = lines.reduce((sum, line) => sum + line.quantity, 0);
 
-  if (count === 0) {
+  if (lines.length === 0) {
     return (
       <section
         className="rounded-card-lg relative isolate min-h-[clamp(420px,55vw,620px)] overflow-hidden"
@@ -130,7 +132,7 @@ export function CartView({ media, onPlaceOrder }: CartViewProps) {
         </div>
       </div>
 
-      <OrderSummary items={items} onPlaceOrder={onPlaceOrder} />
+      <OrderSummary lines={lines} onPlaceOrder={onPlaceOrder} />
     </div>
   );
 }

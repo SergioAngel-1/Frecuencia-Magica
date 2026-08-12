@@ -5,10 +5,11 @@ import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ProductCard } from './product-card';
 
+export type StoreProductMedia = Record<(typeof PRODUCTS)[number]['id'], EditorialMedia>;
+
 export type StoreMedia = {
   hero: EditorialMedia;
-  product: EditorialMedia;
-  productFeatured: EditorialMedia;
+  products: StoreProductMedia;
   ritualBanner: EditorialMedia;
 };
 
@@ -39,20 +40,20 @@ export function ProductGrid({ media }: ProductGridProps) {
       <div className="grid gap-5 md:gap-7">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 md:gap-7">
           {firstRow.map((product) => (
-            <ProductCard key={product.id} media={media.product} product={product} />
+            <ProductCard key={product.id} media={media.products[product.id]!} product={product} />
           ))}
         </div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-7">
           <div className="md:col-span-2">
-            <ProductCard featured media={media.productFeatured} product={featured} />
+            <ProductCard featured media={media.products[featured.id]!} product={featured} />
           </div>
-          <ProductCard className="md:mt-auto" media={media.product} product={side} />
+          <ProductCard className="md:mt-auto" media={media.products[side.id]!} product={side} />
         </div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 md:gap-7">
           {lastRow.map((product) => (
-            <ProductCard key={product.id} media={media.product} product={product} />
+            <ProductCard key={product.id} media={media.products[product.id]!} product={product} />
           ))}
         </div>
       </div>
