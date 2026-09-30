@@ -45,7 +45,7 @@ Todo control sin texto visible lleva `aria-label` (o `aria-label` descriptivo en
 
 ## Movimiento reducido
 
-- CSS: el bloque `@media (prefers-reduced-motion: reduce)` de `globals.css` neutraliza las animaciones CSS; las transiciones de estado quedan en fundido instantáneo.
+- CSS: el bloque `@media (prefers-reduced-motion: reduce)` de `tokens.css` (capa base compartida) neutraliza las animaciones CSS; las transiciones de estado quedan en fundido instantáneo.
 - JS: `useReducedMotionSafe` (con `useSyncExternalStore`, sin parpadeo de hidratación) consultado por:
   - `LuminousCursor` — el anillo no interpola (sin estela); el cursor no se monta en táctil.
   - `CosmicCanvas` — un único frame quieto, sin `requestAnimationFrame`.

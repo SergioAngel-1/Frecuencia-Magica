@@ -402,3 +402,17 @@ Informe completo: [`../audits/2026-09-30-design-coherence-audit.md`](../audits/2
 - Tests: +3 guardas (paleta cerrada, alt traducido, `Button asChild`), `cn`, `zebra`; 245 tests en verde.
 
 **Pendiente** (detalle en la auditoría): First Load JS ≈ 247 kB gz (presupuesto 200), `sanctuary.journal` y `sanctuary.empty`, estado del inventario editorial desfasado, `Branding/`, validar el copy del cierre de la home, recorrido real con lector de pantalla.
+
+---
+
+## Sección 11 — Mi Santuario, Branding y brief fotográfico (2026-09-30)
+
+**Entregado**
+
+- **Mi Santuario** (`/mi-santuario`) terminado: `sanctuary-header`, `stats-row`, `continue-card` (progreso de lección real), `daily-card`, `journal-panel` / `journal-entry` / `journal-empty`, `loading.tsx`; `lib/sanctuary/profile.ts` (`MOCK_PROFILE`, `lessonProgress`, `resumeTarget`), `hooks/use-mounted.ts`; cinco slots editoriales cableados; mensajes ES/EN reescritos. Tests: `sanctuary-profile`, `sanctuary-editorial`, `use-mounted`, `editorial-inventory`.
+- **`frontend/src/app/tokens.css`**: fuente única de tokens; `globals.css` lo importa.
+- **`Branding/`** reescrito como espejo vivo del sistema (`/`, `/sistema`, `/fotografia`). Test `branding-tokens`.
+- **`docs/brief-fotografico.md`**: 65 imágenes con medidas y prompts, generado desde `Branding/src/data/photography.js`. Test `photography-brief`.
+
+**Pendiente**: sesión fotográfica real de Marisol (`home-marisol-portrait`); cablear la imagen Open Graph en los metadatos; First Load JS ≈ 247 kB gz (presupuesto 200); validar el copy del cierre de la home; recorrido real con lector de pantalla.
+

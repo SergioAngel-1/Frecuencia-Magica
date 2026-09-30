@@ -27,7 +27,7 @@ Esta pasada arregla los defectos, introduce los tokens y el eje que faltaban, y 
 
 Fuente de verdad, por orden: `AGENTS.md` → `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md` (contrato aprobado) → `frontend/src/app/globals.css` y `config/` (tokens) → `frontend/docs/{accessibility,performance,fidelity-checklist}.md`. El Brand Book y los PRDs de `~/Descargas/` **no están en el repo ni en este entorno**: lo visual se contrastó contra el sistema codificado, no contra el original.
 
-**Conflicto que hay que resolver (abierta, sección 8):** `Branding/` codifica *otro* sistema —fondo `#FAFAF5`, amarillo `#FFF0B5`, azul `#C5E0F7`, gris `#4A4A55`, Inter y Playfair, «JABONES · ESENCIAS · MENTORÍAS», junio de 2026— y además se contradice a sí mismo: `index.css` define tokens claros pero sus páginas se renderizan sobre `#2A2A2E` con rosa y lila. No lo referencia ninguna doc del proyecto. Esta auditoría lo trata como **legado no autoritativo** (así consta en `DESIGN.md`); usted dijo que el concepto actual está «bastante cerca», y migrar a una paleta clara sería un rediseño, no una armonización.
+**Resuelto en la segunda pasada (2026-09-30):** `Branding/` codificaba *otro* sistema —fondo `#FAFAF5`, amarillo `#FFF0B5`, azul `#C5E0F7`, gris `#4A4A55`, Inter y Playfair, «JABONES · ESENCIAS · MENTORÍAS», junio de 2026— y además se contradice a sí mismo: `index.css` define tokens claros pero sus páginas se renderizan sobre `#2A2A2E` con rosa y lila. No lo referencia ninguna doc del proyecto. La primera pasada lo trató como legado no autoritativo; la decisión del cliente fue **actualizarlo al sistema de la web**: se reescribió como espejo vivo que importa `frontend/src/app/tokens.css` (ver sección 10).
 
 ### Alineamiento con el contrato editorial
 
@@ -105,10 +105,10 @@ Estado: ✅ resuelto y verificado en render · ⚠️ parcial · ⏳ pendiente.
 **[P2] Logo flotante del hero sobre el párrafo (móvil) y stats que envolvían** ✅
 **[P2] Header fijo sin superficie** ✅ — scrim de vacío, sin borde.
 **[P2] Disco `md`: ecualizador tapado por el play** ✅ — sólo asomaba una barra; se retira a esa escala.
-**[P2] Mi Santuario sin slots editoriales** ⚠️ — hero, continuar y frecuencia diaria cableados con zebra; **pendientes** `sanctuary.journal` y `sanctuary.empty`.
-**[P2] Documentación desfasada** ⚠️ — `accessibility.md`, `performance.md`, `fidelity-checklist.md` y `AGENTS.md` actualizados. El *Estado* del inventario `frontend/public/editorial/README.md` dice «sin cablear» en **todas** las filas aunque 40 de los 42 slots registrados ya están cableados: pendiente (idealmente generado y verificado por test).
+**[P2] Mi Santuario sin slots editoriales** ✅ — los cinco slots cableados con zebra (hero, continuar, diaria, diario y vacío); la vista está terminada (segunda pasada).
+**[P2] Documentación desfasada** ⚠️ — `accessibility.md`, `performance.md`, `fidelity-checklist.md` y `AGENTS.md` actualizados. El *Estado* del inventario `frontend/public/editorial/README.md` decía «sin cablear» en todas las filas: corregido y verificado por `tests/lib/editorial-inventory.test.ts` (segunda pasada).
 **[P2] First Load JS ≈ 247 kB gz** ⏳ — home 246.7 kB (suma del manifest de la ruta), 248–254 kB en `next build`; `performance.md` registraba 213–216 kB, tope 200 kB. Esta pasada suma +1–2 kB por ruta (`ButtonLink`, slots de Mi Santuario); la regresión es anterior. *(`/impeccable optimize`; empezar por `@next/bundle-analyzer` y por sospechosos: `next/image` en todas las rutas, catálogo de mensajes completo en el cliente, `PlayerDock`.)*
-**[P2] `Branding/` contradice la paleta del producto** ⏳ — decisión suya.
+**[P2] `Branding/` contradice la paleta del producto** ✅ — reescrito sobre `tokens.css` (segunda pasada).
 
 ### P3 — pulido
 
@@ -157,7 +157,7 @@ Estado: ✅ resuelto y verificado en render · ⚠️ parcial · ⏳ pendiente.
 
 ## 8. Decisiones que no son del código
 
-1. **`Branding/`**: ¿archivar o eliminar como legado, o es la línea que el cliente quiere y entonces esto es un rediseño? Mientras tanto queda marcado como no autoritativo en `DESIGN.md`.
+1. ~~**`Branding/`**~~ — **Decidida:** se actualiza al sistema de la web (ver sección 10).
 2. **Copy del cierre de la home** («Antes de irte · Tu luz seguirá aquí cuando vuelvas · Volver al umbral» / «Before you go · Your light will be here when you return · Back to the threshold»): escrito en la voz de marca, sin validar con Marisol.
 3. **Nav de escritorio**: se restituyó puntos + badge al acercarse (el diseño documentado). Si se prefieren etiquetas permanentes, hay que reservar el margen (`--page-inset` ≥ 152px desde 1024px) y aceptar contenido más estrecho.
 4. **Filtros de Biblioteca**: hoy están separados de los discos por un banner (contrato en `tests/lib/library-layout.test.ts`). Acercarlos es un cambio de arquitectura de la información.
@@ -165,7 +165,7 @@ Estado: ✅ resuelto y verificado en render · ⚠️ parcial · ⏳ pendiente.
 ## 9. Recomendaciones, por orden
 
 1. `/impeccable optimize` — bajar el First Load JS (P2) con un analizador antes de tocar nada.
-2. Cablear `sanctuary.journal` y `sanctuary.empty` y **automatizar el Estado del inventario** (registro vs uso) con un test.
+2. ~~Cablear `sanctuary.journal` y `sanctuary.empty` y automatizar el Estado del inventario~~ — hecho (sección 10).
 3. Sustituir el `<audio>` nativo por el reproductor propio cuando exista el audio real (hoy `lessonAudioDeferred`).
 4. Pasar el recorrido de teclado y lector de pantalla en dispositivo real (sigue manual en `accessibility.md`).
 5. Perfilar FPS en un móvil de gama media con las bandas a sangre y 14 superficies con `backdrop-filter`.
@@ -178,3 +178,11 @@ Estado: ✅ resuelto y verificado en render · ⚠️ parcial · ⏳ pendiente.
 - **Detector de impeccable:** 0 hallazgos en `frontend/src` y en las páginas renderizadas, antes y después.
 - **No se midió:** FPS reales, dispositivo físico, lector de pantalla, Safari/Firefox, ni se perfiló memoria.
 - El primer intento de contraste dio 54% de fallos por un error de la herramienta (los colores `oklab()` se leían como casi negros); se detectó por implausible y se corrigió antes de extraer conclusiones.
+
+## 10. Segunda pasada (2026-09-30): Mi Santuario, Branding y brief fotográfico
+
+- **Mi Santuario terminado.** Cabecera con el nombre (`Bienvenida de vuelta, {name}`), stats, continuar con progreso de lección real (`lib/sanctuary/profile.ts`: `lessonProgress`, `resumeTarget`), frecuencia diaria, diario con entradas y estado vacío, `loading.tsx`, y los cinco slots editoriales cableados. El diario persiste en el navegador: `useMounted` evita el desajuste de hidratación. `// TODO(backend)`: el perfil es `MOCK_PROFILE`.
+- **Tokens en un solo archivo.** `frontend/src/app/tokens.css` contiene `@theme`, keyframes, utilidades (`fm-surface`, zebra, `fm-container`) y la base compartida; `globals.css` lo importa y conserva sólo lo propio de la web. Verificado con diffs de píxeles deterministas: la web renderiza idéntica.
+- **`Branding/` reescrito.** De showcase claro/pastel (Inter, Playfair, `#FAFAF5`) a espejo del sistema real: importa `tokens.css`, `config/`, `data/` y `messages/` de la web y los muestra en vivo (`/sistema`), con puertos JSX de las primitivas y los patrones por realm. Un test (`branding-tokens.test.ts`) impide que derive.
+- **Brief fotográfico.** `docs/brief-fotografico.md` (65 imágenes: 42 slots registrados expandidos por instancia + estados + Open Graph) con medidas, zona de texto, prioridad y un prompt por imagen; `/fotografia` en Branding lo muestra con copia al portapapeles. Un test lo ata al registro de slots y al catálogo.
+- **Decisiones que siguen abiertas:** el retrato de Marisol debe ser una sesión real (el prompt es sólo moodboard); la imagen Open Graph no está cableada en los metadatos; los pesos de imagen del brief son recomendaciones, no un contrato de la web.

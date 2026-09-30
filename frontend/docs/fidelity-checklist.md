@@ -81,6 +81,9 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 - [x] Stats (días, frecuencias, cursos, entradas), tarjeta de continuación, frecuencia diaria.
 - [x] Diario: 5 estados de ánimo (44px, wrap en móvil), textarea, guardar con ✓ efímero, timeline.
 - [x] `TODO(backend)` implícito en persistencia (store Zustand local).
+- [x] Cabecera con el nombre, progreso real de la lección a retomar y enlace al punto exacto (`resumeTarget`).
+- [x] Diario sin desajuste de hidratación (`useMounted`), estado vacío propio y contador de entradas.
+- [x] Cinco slots editoriales cableados (`sanctuary.hero|continue|daily|journal|empty`) y `loading.tsx` con esqueleto.
 
 ## Criterios añadidos 2026-09-30
 
@@ -93,7 +96,7 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 
 ## Desviaciones conscientes registradas
 
-0. **`Branding/` no es fuente visual.** Es un showcase de design system claro/pastel (junio de 2026) que contradice la paleta del producto y no lo referencia ninguna doc. Decisión pendiente del cliente (ver la auditoría del 2026-09-30).
+0. **`Branding/` ya no es un sistema propio.** Desde el 2026-09-30 es un espejo vivo de `tokens.css` (ver `Branding/README.md` y la sección 10 de la auditoría). El showcase claro/pastel de junio de 2026 fue eliminado.
 
 
 1. **Prototipo perdido**: no existe `frontend-prototype/` en el repo (eliminado en `7c55bf0`). La fidelidad se verifica contra el sistema codificado (`globals.css`, `config/`) y el Brand Book de `~/Descargas/`.

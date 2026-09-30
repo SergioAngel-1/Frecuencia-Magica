@@ -105,7 +105,7 @@ components:
 
 # Design System: Frecuencia Mágica
 
-> Fuente de verdad visual del frontend. Nace de leer el código de `frontend/` (2026-09-30), el contrato editorial (`docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md`) y `AGENTS.md`. Los **tokens normativos viven en `frontend/src/app/globals.css`**; este documento los describe y fija cómo usarlos. Si discrepan, manda el CSS y este archivo se corrige.
+> Fuente de verdad visual del frontend. Nace de leer el código de `frontend/` (2026-09-30), el contrato editorial (`docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md`) y `AGENTS.md`. Los **tokens normativos viven en `frontend/src/app/tokens.css`** (fuente única: `globals.css` los importa y `Branding/` los muestra en vivo); este documento los describe y fija cómo usarlos. Si discrepan, manda el CSS y este archivo se corrige.
 
 ## Overview
 
@@ -262,4 +262,4 @@ Entradas en fade-up escalonado (`.1s`, `.25s`, `.4s`, `.55s`), curva `cubic-bezi
 - **Don't** dibujar scrims propios sobre fotografía ni poner texto sobre imagen por debajo de AA.
 - **Don't** reintroducir `Button asChild` con `Link` en un Server Component.
 - **Don't** convertir los nueve realms en la misma plantilla: la fotografía se adapta al trabajo de cada uno.
-- **Don't** tomar `Branding/` (design system claro/pastel de junio de 2026) como referencia de esta marca: contradice la paleta de este documento y no es autoritativo.
+- **Don't** declarar tokens en `Branding/` ni en `globals.css`: van en `tokens.css`. `Branding/` refleja este documento, no lo define (el showcase claro/pastel de junio de 2026 fue sustituido el 2026-09-30).
