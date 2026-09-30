@@ -10,7 +10,15 @@ import { formatPrice } from '@/lib/format';
 import { categoryKey } from '@/lib/store/category-key';
 import { cn } from '@/lib/cn';
 import { useCartStore } from '@/stores/cart-store';
-import type { EditorialMedia } from '@/types/editorial-media';
+import type { EditorialMedia, EditorialMediaAspect } from '@/types/editorial-media';
+
+const ASPECT_FIELD: Record<EditorialMediaAspect, string> = {
+  viewport: 'min-h-[100svh]',
+  '16:9': 'aspect-[16/9]',
+  '16:8': 'aspect-[16/8]',
+  '3:4': 'aspect-[3/4]',
+  '1:1': 'aspect-square',
+};
 
 type ProductCardProps = {
   product: Product;
@@ -49,7 +57,11 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
         <div
           className={cn(
             'relative shrink-0',
-            featured ? 'h-[clamp(210px,26vw,340px)]' : 'h-[clamp(190px,22vw,260px)]',
+            featured
+              ? 'h-[clamp(210px,26vw,340px)]'
+              : baseMedia.slot === 'product.related'
+                ? ASPECT_FIELD[media.aspect]
+                : 'h-[clamp(190px,22vw,260px)]',
           )}
         >
           <EditorialImage

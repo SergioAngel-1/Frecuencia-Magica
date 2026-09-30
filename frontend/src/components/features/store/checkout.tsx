@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { Button, ErrorState } from '@/components/ui';
 import { DURATION, EASE } from '@/config/motion';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { simulatePayment } from '@/lib/store/payment';
 import { useCartStore } from '@/stores/cart-store';
 
 import { CartView, type CheckoutMedia } from './cart-view';
@@ -26,10 +27,8 @@ export function CheckoutView({ media }: CheckoutViewProps) {
   const [checkoutState, setCheckoutState] = useState<CheckoutState>('cart');
 
   // TODO(backend): a real payment response will drive this state when payments exist.
-  const paymentFailed = false;
-
   function handlePlaceOrder() {
-    if (paymentFailed) {
+    if (simulatePayment(Math.random) === 'declined') {
       setCheckoutState('error');
       return;
     }

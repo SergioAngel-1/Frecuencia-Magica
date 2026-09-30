@@ -99,6 +99,9 @@ describe('store editorial composition contracts', () => {
     expect(cardSource).toContain('aspect={media.aspect}');
     expect(cardSource).toContain('data-editorial-media={media.slot}');
     expect(cardSource).toContain("baseMedia.slot === 'product.related'");
+    expect(cardSource).toContain('ASPECT_FIELD[media.aspect]');
+    expect(cardSource).toContain('aspect-[16/8]');
+    expect(cardSource).toContain('h-[clamp(190px,22vw,260px)]');
     expect(cardSource).toContain('onClick={() => add(product.id)}');
     expect(cardSource).toContain("pathname: '/tienda/[productId]'");
     expect(cardSource).not.toContain('<Band');
@@ -169,6 +172,8 @@ describe('store editorial composition contracts', () => {
     expect(checkoutSource).toContain('AnimatePresence');
     expect(checkoutSource).toContain('useReducedMotionSafe');
     expect(checkoutSource).toContain('media: CheckoutMedia');
+    expect(checkoutSource).toContain('simulatePayment(Math.random)');
+    expect(checkoutSource).not.toContain('paymentFailed');
     expect(checkoutSource).toContain('<OrderConfirmation media={media.confirmation}');
     expect(checkoutSource).toContain('TODO(backend)');
     expect(checkoutSource).not.toContain('onClick={handlePlaceOrder}');
@@ -177,7 +182,7 @@ describe('store editorial composition contracts', () => {
     expect(confirmationSource).toContain('href="/tienda"');
   });
 
-  it('mirrors the image-led bento rhythm in loading with zebra slots', () => {
+  it('mirrors the full image-led bento rhythm in loading with zebra slots', () => {
     expect(loadingSource).toContain('aria-busy="true"');
     expect(loadingSource).toContain('<MediaSkeleton');
     expect(loadingSource).toContain('slot="store.hero"');
@@ -185,8 +190,9 @@ describe('store editorial composition contracts', () => {
     expect(loadingSource).toContain('slot="store.ritual-banner"');
     expect(loadingSource).toContain('h-[clamp(190px,22vw,260px)]');
     expect(loadingSource).toContain('h-[clamp(210px,26vw,340px)]');
-    expect(loadingSource).not.toContain('min-h-[390px]');
-    expect(loadingSource).not.toContain('min-h-[520px]');
+    expect(loadingSource).toContain('min-h-[390px]');
+    expect(loadingSource).toContain('min-h-[520px]');
+    expect(loadingSource).toContain('mt-auto');
     expect(loadingSource).toContain('motion-safe:');
     expect(loadingSource).not.toContain('bg-gray');
   });
