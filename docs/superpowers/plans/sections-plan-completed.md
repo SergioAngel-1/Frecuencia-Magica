@@ -13,6 +13,7 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 | 7 | Fases 12–14 | Tienda, Acceso, Mi Santuario | ⚠️ Con huecos | 2026-07-28 |
 | 8 | Fase 15 | 3D perezoso | ❌ No ejecutada | — |
 | 9 | Fase 16 | Estados, a11y, responsive, rendimiento | ✅ Completada (salvo 16.2.4/16.2.5 manuales) | 2026-08-11 |
+| 10 | Armonización visual | Auditoría de coherencia (impeccable), tokens, eje de página y corrección de defectos visibles | ✅ Completada (decisiones abiertas en la auditoría) | 2026-09-30 |
 
 > **Auditoría 2026-07-28 (ver sección final «Auditoría completa»).** Las fases 9–14 se construyeron y los cuatro comandos de verificación están en verde, pero varias tareas quedaron incompletas respecto al plan (Task 12.3, 12.4, 13.1 y los `// TODO(backend)`). **La Fase 15 (3D) no se ejecutó en absoluto** y **la Fase 16 (estados/404/error/loading, a11y, responsive, rendimiento) tampoco**. Detalle abajo.
 
@@ -385,3 +386,19 @@ Auditoría de `frontend/` contra el plan y el prototipo tras ejecutar las fases 
 3. **Fase 16.4** — bajar el bundle por debajo de 200 kB (`LazyMotion`) y partículas móviles.
 4. **Fase 15 (3D)** — es la única enteramente opcional en sensación; los fallbacks 2D ya existen, así que la experiencia no se degrada sin ella. Ejecutar al final o aplazar conscientemente.
 5. **Fase 16.2/16.3/16.5** — auditoría a11y, repaso responsive y documentación de fidelidad.
+
+---
+
+## Sección 10 — Armonización visual (auditoría 2026-09-30)
+
+Informe completo: [`../audits/2026-09-30-design-coherence-audit.md`](../audits/2026-09-30-design-coherence-audit.md). Lineamientos resultantes: [`DESIGN.md`](../../../DESIGN.md).
+
+**Entregado**
+
+- Auditoría técnica + lectura de diseño con la skill impeccable: 15 rutas × 3 anchos antes y después, contraste medido sobre píxeles reales, desborde/targets/consola. Puntuación 12/20 → 15/20.
+- Tokens: marfil en 5 peldaños, tamaños sans (`text-label|meta|body|lead`), tracking en 6 peldaños, halos, `--color-ink`, `--page-inset`/`fm-container`; `cn()` extendido; `config/covers.ts`.
+- Primitivas: `ButtonLink`, `ArrowLink`; `Badge`, `Button`, `Pill`, `EditorialBanner`, `FullBleedSection`, `MediaSkeleton`, `FrequencyDisc`, `Display`, `RealmNav`, `SiteHeader` corregidos.
+- Defectos: CTA de reserva y membresía ausentes (P0), Biblioteca orbital, nav móvil, bento, zebra, píldora estirada, ejes, contraste de kickers, membresía duplicada, alts, `h1` del carrito, audio nativo, etiqueta de duración, Mi Santuario (hero, continuar, diaria).
+- Tests: +3 guardas (paleta cerrada, alt traducido, `Button asChild`), `cn`, `zebra`; 245 tests en verde.
+
+**Pendiente** (detalle en la auditoría): First Load JS ≈ 247 kB gz (presupuesto 200), `sanctuary.journal` y `sanctuary.empty`, estado del inventario editorial desfasado, `Branding/`, validar el copy del cierre de la home, recorrido real con lector de pantalla.

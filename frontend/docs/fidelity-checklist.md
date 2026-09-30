@@ -35,7 +35,7 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 - [x] Hero con rejilla 1.05fr/0.95fr, kicker en píldora, título con gradiente, trío de stats.
 - [x] Columna derecha con aros orbitales + triángulo + logo flotante.
 - [x] Frecuencia del día (botón full-width con `FrequencyDisc`) y rejilla de 4 audios.
-- [x] Bento de realms con jerarquía exacta (Academia destacada; Tienda span 2 filas).
+- [x] Bento de realms de 12 columnas que tesela: Academia (7) + Descúbrete (5) / Biblioteca (4) + Experiencias (4) + Tienda (4, dos filas) / Mi Santuario (8); 2 columnas en tablet. *(Hasta 2026-09-30 los spans sumaban 13 y dejaban huecos pese a esta casilla.)*
 - [x] Sobre Marisol (retrato en arco de nicho) y membresía.
 - [x] `WaveSeparator` entre secciones.
 
@@ -53,7 +53,7 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 - [x] Vista centrada verticalmente (`min-h-dvh`), con nav y sin footer.
 
 ### Biblioteca (`/biblioteca`)
-- [x] Sistema solar: disco destacado + 6 discos en posiciones orbitales exactas.
+- [x] Sistema solar: disco destacado («el sol», su foto se funde con una máscara radial) + 6 discos en posiciones orbitales exactas, sin columna de texto duplicada. Apilado en <1024px.
 - [x] Filtros por tags (5 pills), `EmptyState` cuando no hay resultados.
 - [x] Disco destacado centrado (`FrequencyDisc` con `mx-auto`), aros que escalan.
 - [x] Grid responsive < 900px.
@@ -82,7 +82,19 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 - [x] Diario: 5 estados de ánimo (44px, wrap en móvil), textarea, guardar con ✓ efímero, timeline.
 - [x] `TODO(backend)` implícito en persistencia (store Zustand local).
 
+## Criterios añadidos 2026-09-30
+
+- [x] Un solo eje de página: héroes, bandas y contenido arrancan en el mismo margen (`--page-inset`, `fm-container`).
+- [x] Bandas y héroes siempre a sangre; ninguna banda inset junto a bandas a sangre.
+- [x] Sin solapes entre la navegación de constelación y el contenido en 1024/1280/1440.
+- [x] Barra de realms de móvil/tablet sin truncar, con el realm actual centrado.
+- [x] Todos los CTA presentes en el DOM (reserva, membresía, continuar).
+- [x] Escalas con nombre (texto, tracking, marfil) y paleta cerrada verificadas por test.
+
 ## Desviaciones conscientes registradas
+
+0. **`Branding/` no es fuente visual.** Es un showcase de design system claro/pastel (junio de 2026) que contradice la paleta del producto y no lo referencia ninguna doc. Decisión pendiente del cliente (ver la auditoría del 2026-09-30).
+
 
 1. **Prototipo perdido**: no existe `frontend-prototype/` en el repo (eliminado en `7c55bf0`). La fidelidad se verifica contra el sistema codificado (`globals.css`, `config/`) y el Brand Book de `~/Descargas/`.
 2. **Kit de desarrollo en `/kit`** (no `/_kit`): las carpetas con guión bajo no generan ruta en App Router. Cierra con `notFound()` en producción (guard con `force-dynamic` para que Turbopack no lo elimine en build).

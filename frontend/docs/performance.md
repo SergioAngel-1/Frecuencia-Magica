@@ -15,6 +15,8 @@ Presupuestos, métricas y decisiones de rendimiento del frontend (Task 16.4 del 
 
 > Nota: el presupuesto de 200 kB estaba pensado para el JS de primera carga. El valor que imprime `next build` (First Load JS) ya es gzip y se usó como métrica. Queda una deuda de ~13–16 kB sobre el tope, toda ella en React DOM (~59 kB gz) y el runtime de Next/Turbopack (~39 kB gz) — no reducible desde la aplicación. Ver «Deuda restante».
 
+> **Medición 2026-09-30 (auditoría de coherencia visual): el presupuesto se ha degradado.** Suma de los chunks JS de `/inicio` (manifest de la ruta, gzip): **246.7 kB**; `next build` imprime 248–254 kB por ruta (compartido 148 kB). Son ~32 kB más que los 220 kB medidos el 2026-08-11 y ~47 kB sobre el tope. La pasada de armonización visual la movió +1–2 kB (`/inicio` 252 → 253 kB, `/experiencias` 248 → 250 kB: `ButtonLink` y los nuevos slots de Mi Santuario); la regresión de fondo es anterior. Sospechosos por medir con `@next/bundle-analyzer`: `next/image` presente en todas las rutas por `EditorialImage`, catálogo de mensajes completo en el cliente, `PlayerDock` en el layout. No se ha perfilado FPS en móvil de gama media con las bandas a sangre ni con las 14 superficies con `backdrop-filter`.
+
 ## Línea base y resultado
 
 **Antes (2026-07-28, auditoría):** 215–218 kB por ruta. `motion` entraba completo (migración a LazyMotion pendiente, era la palanca señalada).
