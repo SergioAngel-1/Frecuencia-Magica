@@ -126,7 +126,7 @@ describe('academy editorial composition contracts', () => {
   });
 
   it('keeps the editorial sweep on transform rather than background-position', () => {
-    const cssSource = readFileSync(resolve(SOURCE_ROOT, 'app/globals.css'), 'utf8');
+    const cssSource = readFileSync(resolve(SOURCE_ROOT, 'app/tokens.css'), 'utf8');
     expect(cssSource).toContain('@keyframes fm-editorial-zebra-sweep');
     expect(cssSource).toContain('transform: translateX');
     expect(cssSource).toContain('animation: fm-editorial-zebra-sweep');

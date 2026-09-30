@@ -1,0 +1,422 @@
+/* ============================================================================
+   TOKENS DEL SISTEMA DE DISEÑO — fuente única
+   La consumen la web (`globals.css`) y el showcase `Branding/`, que los importa
+   y los muestra leyendo estas variables en vivo, sin copiarlas. Aquí viven sólo
+   valores y piezas visuales reutilizables; lo propio de la web (cursor luminoso,
+   scroll, layout de vistas, coreografía del portal) queda en `globals.css`.
+   Descripción y reglas de uso: `DESIGN.md`. Guarda: `tests/lib/branding-tokens.test.ts`.
+   ========================================================================= */
+
+/* ============================================================================
+   TOKENS
+   Paleta y tipografía definidas por el cliente. No introducir colores ni
+   fuentes nuevas: los acentos entran como halos, bordes y glows.
+   ========================================================================= */
+
+@theme {
+  /* Paleta */
+  --color-void: #0f1b2e;
+  --color-void-2: #0a1220;
+  --color-gold: #d8b978;
+  --color-teal: #96c6bc;
+  --color-lav: #b9b0d6;
+  --color-ivory: #f7f4ea;
+  /* Tinta: texto oscuro sobre rellenos marfil u oro (botón primario, badge
+     «Destacado»). Valor exacto del prototipo. */
+  --color-ink: #12213a;
+  --color-glass: rgba(247, 244, 234, 0.045);
+  --color-glass-brd: rgba(216, 185, 120, 0.2);
+
+  /* Único color añadido al sistema del prototipo: terracota que armoniza con
+     el oro. Exclusivamente para errores de formulario y estados de fallo. */
+  --color-warn: #c98b7a;
+
+  /* Texto sobre el fondo de la app: cinco peldaños de marfil, y sólo cinco.
+     Todos cumplen AA (4.5:1) contra el punto más claro del gradiente
+     (#16273f, ver docs/accessibility.md). Nunca bajar de `fg-meta`. */
+  --color-fg: var(--color-ivory); /* títulos y énfasis */
+  --color-fg-body: rgb(247 244 234 / 0.82); /* párrafos largos */
+  --color-fg-soft: rgb(247 244 234 / 0.7); /* descripciones, meta secundaria */
+  --color-fg-muted: rgb(247 244 234 / 0.6); /* apoyo, etiquetas inactivas */
+  --color-fg-meta: rgb(247 244 234 / 0.55); /* kickers y meta mínima (piso AA) */
+
+  /* Tipografía */
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-jost), system-ui, sans-serif;
+
+  /* Escala de la sans (Jost). Los titulares serif viven en `Display`. */
+  --text-label: 11px; /* kickers en MAYÚSCULAS, únicamente con tracking >= .14em */
+  --text-meta: 13px; /* fechas, conteos, apoyo */
+  --text-body: 15px; /* texto corrido y UI */
+  --text-lead: 17px; /* entradillas y descripciones destacadas */
+
+  /* Tracking: seis peldaños. Los kickers usan `label`, `kicker` o `eyebrow`. */
+  --tracking-soft: 0.05em; /* botones serif, nav */
+  --tracking-ui: 0.1em; /* pills, meta sans */
+  --tracking-label: 0.14em; /* stats y labels de apoyo */
+  --tracking-caps: 0.2em; /* badges y enlaces con flecha */
+  --tracking-kicker: 0.3em; /* kicker estándar */
+  --tracking-eyebrow: 0.4em; /* cabeceras de realm */
+
+  /* Radios */
+  --radius-card: 22px;
+  --radius-card-lg: 26px;
+  --radius-field: 14px;
+  --radius-pill: 999px;
+
+  /* Halos: el oro/teal/lavanda como luz, nunca como relleno. */
+  --shadow-glow-gold: 0 0 24px rgb(216 185 120 / 0.25);
+  --shadow-glow-teal: 0 0 24px rgb(150 198 188 / 0.25);
+  --shadow-glow-lav: 0 0 24px rgb(185 176 214 / 0.25);
+  --shadow-glow-card: 0 0 60px rgb(216 185 120 / 0.18);
+
+  /* Animaciones. Las duraciones que varían por instancia (los 60s/70s/90s/
+     100s/110s/130s/200s de las geometrías) se aplican inline en cada uso. */
+  --animate-fm-fade-up: fm-fade-up 0.8s ease both;
+  --animate-fm-fade-in: fm-fade-in 1s ease both;
+  --animate-fm-breathe: fm-breathe 7s ease-in-out infinite;
+  --animate-fm-float: fm-float 8s ease-in-out infinite;
+  --animate-fm-float-s: fm-float-s 7s ease-in-out infinite;
+  --animate-fm-spin: fm-spin 120s linear infinite;
+  --animate-fm-spin-r: fm-spin-r 90s linear infinite;
+  --animate-fm-twinkle: fm-twinkle 6s ease-in-out infinite;
+  --animate-fm-ring: fm-ring 4.5s ease-out infinite;
+  --animate-fm-shimmer: fm-shimmer 2.4s linear infinite;
+  --animate-fm-glow: fm-glow 4s ease-in-out infinite;
+  --animate-fm-drift: fm-drift 34s ease-in-out infinite;
+  --animate-fm-wave-flow: fm-wave-flow 3.2s linear infinite;
+  --animate-fm-wave-pulse: fm-wave-pulse 1.6s ease-in-out infinite;
+  --animate-fm-sparkle: fm-sparkle 6s ease-in-out infinite;
+  --animate-fm-ring-pulse: fm-ring-pulse 16s ease-in-out infinite;
+}
+
+/* ============================================================================
+   KEYFRAMES
+   Portados literalmente del prototipo. No "redondear" los valores.
+   ========================================================================= */
+
+@keyframes fm-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fm-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fm-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes fm-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes fm-float-s {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes fm-spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fm-spin-r {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+
+@keyframes fm-twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fm-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes fm-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* La capa del zebra mide 124% del contenedor (-inset-x-[12%]): el barrido de
+   ±8% de su propio ancho (~±10% del contenedor) nunca deja ver el borde. */
+@keyframes fm-editorial-zebra-sweep {
+  0%,
+  100% {
+    transform: translateX(-8%);
+  }
+  50% {
+    transform: translateX(8%);
+  }
+}
+
+@keyframes fm-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fm-drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, -20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes fm-wave-flow {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -40;
+  }
+}
+
+@keyframes fm-wave-pulse {
+  0%,
+  100% {
+    transform: scaleY(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scaleY(1.35);
+    opacity: 1;
+  }
+}
+
+@keyframes fm-sparkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fm-ring-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+}
+
+/* Eje de página: un solo margen lateral editorial para héroes, bandas y
+   contenido. `fm-container` lo combina con un ancho máximo de lectura. */
+:root {
+  --page-inset: 24px;
+  --container-max: 1240px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --page-inset: 8vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --page-inset: 10vw;
+  }
+}
+
+/* ============================================================================
+   BASE COMPARTIDA
+   ========================================================================= */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: radial-gradient(
+      140% 100% at 50% -10%,
+      #16273f 0%,
+      var(--color-void) 45%,
+      var(--color-void-2) 100%
+    );
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: rgba(216, 185, 120, 0.3);
+    color: #fff;
+  }
+
+  a {
+    color: var(--color-gold);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-ivory);
+  }
+
+  /* Foco visible sobre fondo oscuro. El prototipo no lo tenía; es obligatorio. */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(216, 185, 120, 0.18);
+    border-radius: 9px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(216, 185, 120, 0.34);
+  }
+
+  /* Modo simplificado: se congela lo decorativo, se conserva la narrativa. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Vidrio astral: la superficie de todas las cards. */
+@utility fm-surface {
+  background: var(--color-glass);
+  border: 1px solid var(--color-glass-brd);
+  backdrop-filter: blur(12px);
+}
+
+/* Vidrio denso: dock del reproductor y badge de la navegación. */
+@utility fm-surface-strong {
+  background: rgba(15, 27, 46, 0.72);
+  border: 1px solid var(--color-glass-brd);
+  backdrop-filter: blur(22px);
+}
+
+/* Fallback editorial: bandas zebra deliberadas, no caja gris. El ángulo lo
+   fija cada slot (`--fm-zebra-angle`, derivado de su id) para que dos bandas
+   de la misma vista no sean la misma textura. */
+@utility fm-editorial-zebra {
+  background-image:
+    repeating-linear-gradient(
+      var(--fm-zebra-angle, 122deg),
+      rgba(216, 185, 120, 0.18) 0 11%,
+      rgba(150, 198, 188, 0.15) 11% 24%,
+      rgba(185, 176, 214, 0.16) 24% 38%,
+      rgba(15, 27, 46, 0.6) 38% 52%
+    ),
+    linear-gradient(140deg, var(--color-void-2), var(--color-void));
+  background-size:
+    auto,
+    100% 100%;
+}
+
+@utility fm-editorial-zebra-sweep {
+  animation: fm-editorial-zebra-sweep 2.4s ease-in-out infinite;
+}
+
+@utility fm-editorial-geometry {
+  border-color: rgba(216, 185, 120, 0.25);
+}
+
+/* Eje de contenido para bloques de 100vw (PageShell `fullBleed`, bandas y
+   héroes): el margen editorial o el centrado por ancho máximo, lo que deje
+   más aire. Con `[--container-max:Npx]` se estrecha por uso. */
+@utility fm-container {
+  padding-inline: max(var(--page-inset), calc((100vw - var(--container-max)) / 2));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fm-editorial-zebra-sweep {
+    animation: none;
+  }
+}
