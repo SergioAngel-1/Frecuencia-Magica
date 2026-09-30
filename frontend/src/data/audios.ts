@@ -1,4 +1,5 @@
 import type { Audio } from '@/types/content';
+import { COVERS } from '@/config/covers';
 
 /** Las siete frecuencias del catálogo. Portadas 1:1 del prototipo. */
 export const AUDIOS: readonly Audio[] = [
@@ -9,7 +10,7 @@ export const AUDIOS: readonly Audio[] = [
     tagId: 'meditation',
     duration: '18:00',
     hz: 432,
-    band: 'linear-gradient(150deg,#3a5a6e,#1a2c44)',
+    band: COVERS.tide,
   },
   {
     id: 'a2',
@@ -18,7 +19,7 @@ export const AUDIOS: readonly Audio[] = [
     tagId: 'frequency',
     duration: '11:20',
     hz: 528,
-    band: 'linear-gradient(150deg,#6e5f8a,#241f3a)',
+    band: COVERS.violet,
   },
   {
     id: 'a3',
@@ -27,7 +28,7 @@ export const AUDIOS: readonly Audio[] = [
     tagId: 'grounding',
     duration: '24:40',
     hz: 396,
-    band: 'linear-gradient(150deg,#4f6b5e,#1e2e28)',
+    band: COVERS.moss,
   },
   {
     id: 'a4',
@@ -36,7 +37,7 @@ export const AUDIOS: readonly Audio[] = [
     tagId: 'rest',
     duration: '42:00',
     hz: 174,
-    band: 'linear-gradient(150deg,#3f4a72,#1b2138)',
+    band: COVERS.indigo,
   },
   {
     id: 'a5',
@@ -45,7 +46,7 @@ export const AUDIOS: readonly Audio[] = [
     tagId: 'ritual',
     duration: '09:10',
     hz: 639,
-    band: 'linear-gradient(150deg,#8a7150,#2c2418)',
+    band: COVERS.amber,
   },
   {
     id: 'a6',
@@ -54,7 +55,7 @@ export const AUDIOS: readonly Audio[] = [
     tagId: 'breath',
     duration: '07:30',
     hz: 417,
-    band: 'linear-gradient(150deg,#4a7d8a,#1c2f36)',
+    band: COVERS.lagoon,
   },
   {
     id: 'a7',
@@ -63,6 +64,6 @@ export const AUDIOS: readonly Audio[] = [
     tagId: 'meditation',
     duration: '15:40',
     hz: 528,
-    band: 'linear-gradient(150deg,#5a6b52,#20281c)',
+    band: COVERS.sage,
   },
 ] as const;

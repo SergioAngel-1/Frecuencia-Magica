@@ -58,8 +58,8 @@ export function Field({ label, htmlFor, error, hint, children, className }: Fiel
       <label
         htmlFor={htmlFor}
         className={cn(
-          'mb-[7px] font-sans text-[11px] tracking-[.14em] uppercase',
-          error ? 'text-warn' : 'text-[rgba(247,244,234,0.55)]',
+          'text-label tracking-label mb-[7px] font-sans uppercase',
+          error ? 'text-warn' : 'text-fg-meta',
         )}
       >
         {label}
@@ -71,10 +71,7 @@ export function Field({ label, htmlFor, error, hint, children, className }: Fiel
           // El error se anuncia al aparecer/cambiar; la ayuda estática no
           // necesita interrumpir al lector de pantalla.
           aria-live={error ? 'polite' : undefined}
-          className={cn(
-            'mt-[7px] font-sans text-[13px]',
-            error ? 'text-warn' : 'text-[rgba(247,244,234,0.55)]',
-          )}
+          className={cn('text-meta mt-[7px] font-sans', error ? 'text-warn' : 'text-fg-meta')}
         >
           {error ?? hint}
         </p>

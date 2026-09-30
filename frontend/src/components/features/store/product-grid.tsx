@@ -4,6 +4,7 @@ import { PRODUCTS } from '@/data';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ProductCard } from './product-card';
+import { Display } from '@/components/ui';
 
 export type StoreProductMedia = Record<(typeof PRODUCTS)[number]['id'], EditorialMedia>;
 
@@ -28,13 +29,9 @@ export function ProductGrid({ media }: ProductGridProps) {
   return (
     <section data-editorial-archive="true" aria-labelledby="store-archive-title">
       <div className="mb-8 max-w-[58ch]">
-        <p className="text-teal font-sans text-[11px] tracking-[.3em] uppercase">{t('kicker')}</p>
-        <h2
-          id="store-archive-title"
-          className="text-ivory mt-3 font-serif text-[clamp(32px,4vw,54px)] leading-[0.98]"
-        >
+        <Display level="h2" size="md" id="store-archive-title" className="mt-3">
           {t('gridTitle')}
-        </h2>
+        </Display>
       </div>
 
       <div className="grid gap-5 md:gap-7">

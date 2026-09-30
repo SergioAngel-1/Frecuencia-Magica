@@ -41,12 +41,12 @@ export function Pill({
       disabled={disabled}
       aria-pressed={active}
       className={cn(
-        'rounded-pill inline-flex min-h-11 items-center justify-center border font-sans text-[13px] tracking-[.08em]',
+        'rounded-pill text-meta tracking-ui inline-flex min-h-11 items-center justify-center border font-sans',
         'px-5 py-2 transition-[color,background-color,border-color] duration-300 ease-out active:scale-[0.98]',
         disabled && 'pointer-events-none opacity-45',
         active
-          ? 'text-ivory border-[rgba(216,185,120,0.55)] bg-[rgba(216,185,120,0.16)]'
-          : 'border-[rgba(247,244,234,0.14)] bg-[rgba(247,244,234,0.04)] text-[rgba(247,244,234,0.7)] hover:border-[rgba(247,244,234,0.22)] hover:bg-[rgba(247,244,234,0.08)]',
+          ? 'text-ivory border-gold/55 bg-gold/16'
+          : 'border-ivory/14 bg-ivory/4 text-fg-soft hover:border-ivory/22 hover:bg-ivory/8',
         className,
       )}
       {...rest}

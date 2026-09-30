@@ -62,7 +62,7 @@ export default async function Loading() {
           slot="store.hero"
         />
 
-        <div className="mx-auto w-full max-w-[1240px] px-6 pt-[clamp(30px,5vw,76px)] pb-[220px] md:px-[8vw]">
+        <div className="fm-editorial-full-bleed fm-container pt-[clamp(30px,5vw,76px)] pb-[220px]">
           <section data-editorial-archive="true" aria-label={t('gridTitle')}>
             <div className="mb-8 max-w-[58ch]">
               <div className="bg-gold/20 h-3 w-28 rounded-full" />

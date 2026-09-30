@@ -32,9 +32,9 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     width: 150,
     inset: 9,
     hz: 'text-[26px]',
-    unit: 'text-[8px] tracking-[.26em]',
+    unit: 'text-label tracking-kicker',
     title: 'text-[16px]',
-    meta: 'text-[10px]',
+    meta: 'text-label',
     spin: 70,
     play: null,
     eq: null,
@@ -46,12 +46,14 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     width: 190,
     inset: 12,
     hz: 'text-[34px]',
-    unit: 'text-[10px] tracking-[.28em]',
+    unit: 'text-label tracking-kicker',
     title: 'text-[22px]',
-    meta: 'text-[12px]',
+    meta: 'text-meta',
     spin: 60,
     play: 46,
-    eq: 'sm',
+    // El ecualizador no cabe entre la cifra y el play a esta escala: el play
+    // lo tapaba y sólo asomaba una barra. Sólo el disco `lg` lo lleva.
+    eq: null,
     halo: '-10%',
     restGlow: '0 0 22px rgba(15,27,46,0.5)',
     activeGlow: '0 0 44px rgba(216,185,120,0.4)',
@@ -60,9 +62,9 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     width: 380,
     inset: 22,
     hz: 'text-[clamp(44px,9vw,70px)]',
-    unit: 'text-[12px] tracking-[.36em]',
+    unit: 'text-meta tracking-eyebrow',
     title: 'text-[clamp(24px,4vw,32px)]',
-    meta: 'text-[13px]',
+    meta: 'text-meta',
     spin: 110,
     play: 62,
     eq: 'lg',
@@ -204,7 +206,7 @@ export function FrequencyDisc({
             )}
           >
             <span className={cn('text-ivory block font-serif leading-none', spec.hz)}>{hz}</span>
-            <span className={cn('text-ivory/75 block font-sans uppercase', spec.unit)}>Hz</span>
+            <span className={cn('text-fg-body block font-sans uppercase', spec.unit)}>Hz</span>
           </div>
 
           {showPlay && spec.play ? (
@@ -236,7 +238,7 @@ export function FrequencyDisc({
         <p className={cn('mt-[10px] font-serif leading-[1.08]', spec.title)}>{title}</p>
       ) : null}
       {meta ? (
-        <p className={cn('text-ivory/60 mt-[2px] font-sans tracking-[.08em]', spec.meta)}>{meta}</p>
+        <p className={cn('text-fg-muted tracking-ui mt-[2px] font-sans', spec.meta)}>{meta}</p>
       ) : null}
     </>
   );

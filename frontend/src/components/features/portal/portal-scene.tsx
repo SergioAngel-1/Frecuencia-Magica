@@ -12,6 +12,9 @@ type PortalSceneProps = {
   subtitle: string;
   cta: string;
   hint: string;
+  /** Alt traducido de las dos capas de media (namespace `portal.media.alt`). */
+  heroAlt: string;
+  fieldAlt: string;
 };
 
 /**
@@ -23,9 +26,17 @@ type PortalSceneProps = {
  * Las dos capas de media se resuelven aunque todavía no haya fotografía: el
  * contrato conserva el slot y deja que `EditorialImage` pinte el zebra.
  */
-export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneProps) {
-  const heroMedia = resolveEditorialMedia('portal.hero');
-  const portalFieldMedia = resolveEditorialMedia('portal.portal-field');
+export function PortalScene({
+  kicker,
+  title,
+  subtitle,
+  cta,
+  hint,
+  heroAlt,
+  fieldAlt,
+}: PortalSceneProps) {
+  const heroMedia = resolveEditorialMedia('portal.hero', { alt: heroAlt });
+  const portalFieldMedia = resolveEditorialMedia('portal.portal-field', { alt: fieldAlt });
 
   return (
     <FullBleedSection
@@ -102,11 +113,11 @@ export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneP
             />
             <div
               aria-hidden="true"
-              className="animate-fm-ring absolute -inset-[16px] rounded-full border border-[rgba(247,244,234,0.30)]"
+              className="animate-fm-ring border-ivory/30 absolute -inset-[16px] rounded-full border"
             />
           </div>
 
-          <Kicker tone="teal" spacing="widest" className="mb-[18px] tracking-[.5em] opacity-85">
+          <Kicker tone="teal" spacing="widest" className="tracking-eyebrow mb-[18px] opacity-85">
             {kicker}
           </Kicker>
 
@@ -116,7 +127,7 @@ export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneP
 
           <Prose
             size="lg"
-            className="text-ivory/72 mx-auto mt-[24px] mb-[38px] max-w-[520px] leading-[1.75] md:mb-[46px]"
+            className="text-fg-soft mx-auto mt-[24px] mb-[38px] max-w-[520px] leading-[1.75] md:mb-[46px]"
           >
             {subtitle}
           </Prose>
@@ -125,7 +136,7 @@ export function PortalScene({ kicker, title, subtitle, cta, hint }: PortalSceneP
         </div>
       </div>
 
-      <p className="text-ivory/55 absolute bottom-[28px] left-1/2 z-20 -translate-x-1/2 px-6 text-center font-sans text-[15px] tracking-[.22em] whitespace-nowrap uppercase md:bottom-[34px] md:text-[11px] md:tracking-[.32em]">
+      <p className="text-fg-meta text-body tracking-caps md:text-label md:tracking-kicker absolute bottom-[28px] left-1/2 z-20 -translate-x-1/2 px-6 text-center font-sans whitespace-nowrap uppercase md:bottom-[34px]">
         {hint}
       </p>
     </FullBleedSection>

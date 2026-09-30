@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
-import { EditorialImage } from '@/components/ui';
+import { EditorialImage, Kicker } from '@/components/ui';
 import { Halo, OrbitalRings } from '@/components/world';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -83,12 +83,12 @@ export async function AuthAside({ media }: AuthAsideProps) {
         </div>
 
         <div className="relative z-10 mt-4 max-w-[38ch] min-[900px]:mt-8">
-          <p className="text-ivory/90 font-serif text-[clamp(20px,2.2vw,28px)] leading-[1.35] italic">
+          <p className="text-fg-body font-serif text-[clamp(20px,2.2vw,28px)] leading-[1.35] italic">
             &ldquo;{t('quote')}&rdquo;
           </p>
-          <p className="text-gold mt-3 font-sans text-[11px] tracking-[.32em] uppercase">
+          <Kicker tone="gold" className="mt-3">
             — {brand}
-          </p>
+          </Kicker>
         </div>
       </div>
     </aside>

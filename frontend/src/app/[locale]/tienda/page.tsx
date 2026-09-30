@@ -61,7 +61,7 @@ export default async function StorePage({ params }: PageProps) {
         contentClassName="flex min-h-full items-center"
         minHeight="clamp(420px, 52vw, 680px)"
       >
-        <div className="mx-auto flex w-full max-w-[1440px] flex-col justify-center px-6 py-20 sm:px-[8vw] lg:px-[10vw]">
+        <div className="fm-container flex w-full flex-col justify-center py-20">
           <div className="flex items-start justify-between gap-6">
             <div>
               <Kicker tone="teal" spacing="wide">
@@ -73,13 +73,13 @@ export default async function StorePage({ params }: PageProps) {
             </div>
             <CartButton className="mt-1 shrink-0" />
           </div>
-          <Prose maxWidth={54} className="text-ivory/86 mt-6 max-w-[52ch]">
+          <Prose maxWidth={54} className="text-fg-body mt-6 max-w-[52ch]">
             {t('description')}
           </Prose>
         </div>
       </FullBleedSection>
 
-      <div className="mx-auto w-full max-w-[1240px] px-6 pt-[clamp(30px,5vw,76px)] pb-[220px] md:px-[8vw]">
+      <div className="fm-editorial-full-bleed fm-container pt-[clamp(30px,5vw,76px)] pb-[220px]">
         <ProductGrid media={storeMedia} />
         <EditorialBanner
           media={storeMedia.ritualBanner}

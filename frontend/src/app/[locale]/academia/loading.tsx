@@ -17,7 +17,7 @@ export default async function Loading() {
           slot="academy.hero"
         />
 
-        <div className="mx-auto w-full max-w-[1200px] px-6 pt-[clamp(30px,5vw,76px)] pb-[220px] md:px-[8vw]">
+        <div className="fm-editorial-full-bleed fm-container pt-[clamp(30px,5vw,76px)] pb-[220px]">
           <MediaSkeleton
             aspect="16:8"
             className="motion-safe:animate-fm-fade-up mb-[clamp(42px,7vw,90px)] min-h-[clamp(420px,42vw,600px)]"

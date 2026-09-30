@@ -33,15 +33,13 @@ export function ResultStep({
 
       <FrequencyDisc hz={hz} band={band} size="lg" />
 
-      <p className="text-ivory/78 max-w-[48ch] text-center text-[15px] leading-[1.8]">
-        {description}
-      </p>
+      <p className="text-fg-soft text-body max-w-[48ch] text-center leading-[1.8]">{description}</p>
 
       <div className="mt-2 flex flex-wrap items-center gap-4">
         <Button variant="primary" size="lg" asChild onClick={onListen}>
           <Link href="/biblioteca">{ctaLabel}</Link>
         </Button>
-        <Button variant="ghost" size="sm" className="text-[15px]" onClick={onRestart}>
+        <Button variant="ghost" size="sm" className="text-body" onClick={onRestart}>
           {restartLabel}
         </Button>
       </div>

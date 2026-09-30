@@ -5,6 +5,7 @@ import { upcomingDates } from '@/lib/booking/dates';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ExperienceRow } from './experience-row';
+import { Kicker, Display } from '@/components/ui';
 
 export type ExperienceMedia = {
   hero: EditorialMedia;
@@ -35,6 +36,7 @@ export function ExperienceList({ media }: ExperienceListProps) {
         bookLabel={t('book')}
         date={dates[0]!}
         dateLabel={t('dateLabel')}
+        durationLabel={t('durationLabel')}
         description={t('featuredDescription')}
         experience={featured}
         media={media.featured}
@@ -47,13 +49,10 @@ export function ExperienceList({ media }: ExperienceListProps) {
 
       <section aria-labelledby="experiences-archive-title" data-editorial-archive="true">
         <div className="mb-8 max-w-[58ch]">
-          <p className="text-teal font-sans text-[11px] tracking-[.3em] uppercase">{t('all')}</p>
-          <h2
-            id="experiences-archive-title"
-            className="text-ivory mt-3 font-serif text-[clamp(32px,4vw,54px)] leading-[0.98]"
-          >
+          <Kicker tone="teal">{t('all')}</Kicker>
+          <Display level="h2" size="md" id="experiences-archive-title" className="mt-3">
             {t('title')}
-          </h2>
+          </Display>
         </div>
 
         <div className="flex flex-col gap-5">
@@ -63,6 +62,7 @@ export function ExperienceList({ media }: ExperienceListProps) {
               bookLabel={t('book')}
               date={dates[index + 1]!}
               dateLabel={t('dateLabel')}
+              durationLabel={t('durationLabel')}
               experience={exp}
               media={experienceMedia(exp)}
               mode={t(`modes.${exp.mode}` as 'modes.online')}

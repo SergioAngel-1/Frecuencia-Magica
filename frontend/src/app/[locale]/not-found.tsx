@@ -13,7 +13,7 @@ import { NotFoundActions } from './not-found-actions';
  */
 export default async function NotFound() {
   const t = await getTranslations('states');
-  const media = resolveEditorialMedia('not-found.hero');
+  const media = resolveEditorialMedia('not-found.hero', { alt: t('media.alt.notFound') });
 
   return (
     <FullBleedSection
@@ -46,14 +46,10 @@ export default async function NotFound() {
           <Kicker tone="gold" spacing="wide" className="relative mb-[18px]">
             404
           </Kicker>
-          <Display
-            size="lg"
-            level="h1"
-            className="text-ivory/85 relative max-w-[34ch] text-balance"
-          >
+          <Display size="lg" level="h1" className="text-fg-body relative max-w-[34ch] text-balance">
             {t('notFoundTitle')}
           </Display>
-          <Prose muted className="relative mt-[16px] max-w-[42ch] text-[15px] leading-[1.7]">
+          <Prose muted className="text-body relative mt-[16px] max-w-[42ch] leading-[1.7]">
             {t('notFoundBody')}
           </Prose>
 

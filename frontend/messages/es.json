@@ -41,6 +41,11 @@
     "newsletterSuccess": "Gracias. Te escribiremos cuando haya algo que merezca tu silencio.",
     "newsletterSubmit": "Suscribirse",
     "rights": "Hecho con luz",
+    "closing": {
+      "kicker": "Antes de irte",
+      "title": "Tu luz seguirá aquí cuando vuelvas.",
+      "cta": "Volver al umbral"
+    },
     "columns": {
       "explore": "Explorar",
       "community": "Comunidad",
@@ -57,7 +62,13 @@
     "title": "Frecuencia Mágica",
     "subtitle": "No estás por entrar a un sitio web. Estás por cruzar un portal hacia el lugar más importante: tú mismo.",
     "cta": "Cruzar el portal",
-    "hint": "La luz que buscas ya vive en ti"
+    "hint": "La luz que buscas ya vive en ti",
+    "media": {
+      "alt": {
+        "hero": "Luz y cosmos en el umbral de Frecuencia Mágica",
+        "field": "El campo del portal entre mundos"
+      }
+    }
   },
   "home": {
     "heroKicker": "Un santuario para volver a ti",
@@ -379,6 +390,7 @@
     "book": "Reservar",
     "all": "Todas las experiencias",
     "dateLabel": "Fecha",
+    "durationLabel": "Duración",
     "media": {
       "alt": {
         "hero": "Las experiencias que te esperan",
@@ -556,6 +568,13 @@
     }
   },
   "sanctuary": {
+    "media": {
+      "alt": {
+        "hero": "Tu santuario te espera",
+        "continue": "Continúa tu práctica desde donde la dejaste",
+        "daily": "La práctica de hoy en tu santuario"
+      }
+    },
     "kicker": "Mi Santuario",
     "title": "Bienvenida de vuelta, Luz",
     "stats": {
@@ -617,6 +636,11 @@
     "offline": "Estás sin conexión. El santuario te espera cuando vuelvas.",
     "payFailedTitle": "El pago no se completó",
     "payFailedBody": "Nada se ha cargado todavía. Respira e inténtalo de nuevo cuando quieras.",
-    "payFailedCta": "Intentar de nuevo"
+    "payFailedCta": "Intentar de nuevo",
+    "media": {
+      "alt": {
+        "notFound": "Un rincón sereno del cosmos para retomar el camino"
+      }
+    }
   }
 }

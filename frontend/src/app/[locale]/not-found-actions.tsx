@@ -23,9 +23,9 @@ interface NotFoundActionsProps {
  * Aislar sólo estos dos botones aquí es el workaround mínimo: evita que
  * `not-found.tsx` tenga que convertirse entero en cliente por dos enlaces.
  *
- * (El mismo bug afecta hoy a otros Server Components del proyecto —
- * `realms-grid.tsx`, `membership-section.tsx`, `experience-row.tsx` — pero
- * arreglarlo allí es una tarea aparte, fuera del alcance de la 16.1.)
+ * El mismo patrón en el resto de Server Components se resuelve con
+ * `ButtonLink` (`components/layout`), y `tests/lib/button-link.test.ts` impide
+ * que `Button asChild` vuelva a aparecer fuera de una frontera cliente.
  */
 export function NotFoundActions({ homeLabel, realmsLabel }: NotFoundActionsProps) {
   return (

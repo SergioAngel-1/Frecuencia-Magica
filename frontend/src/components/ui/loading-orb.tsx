@@ -77,7 +77,7 @@ export function LoadingOrb({
       </div>
 
       {label ? (
-        <p className="text-ivory/80 mt-[26px] font-serif text-[clamp(19px,2.4vw,24px)] italic">
+        <p className="text-fg-body mt-[26px] font-serif text-[clamp(19px,2.4vw,24px)] italic">
           {label}
         </p>
       ) : null}

@@ -53,7 +53,7 @@ export function LessonPlayer({
           <Display size="md" level="h1">
             {t('completion.title')}
           </Display>
-          <p className="text-ivory/82 mt-5 max-w-[42ch] text-[16px] leading-[1.8]">
+          <p className="text-fg-body mt-5 max-w-[42ch] text-[16px] leading-[1.8]">
             {t('completion.description')}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -73,7 +73,7 @@ export function LessonPlayer({
     <article>
       <Link
         href={{ pathname: '/academia/[courseId]', params: { courseId: course.id } }}
-        className="text-ivory/62 hover:text-ivory inline-flex min-h-11 items-center py-3 font-sans text-[13px] tracking-[.12em] uppercase transition-colors"
+        className="text-fg-muted hover:text-ivory text-meta tracking-ui inline-flex min-h-11 items-center py-3 font-sans uppercase transition-colors"
       >
         ← {t('backLabel')}
       </Link>
@@ -102,19 +102,19 @@ export function LessonPlayer({
             <audio
               aria-describedby="lesson-audio-note"
               aria-label={t('audioLabel')}
-              className="accent-gold h-11 w-full"
+              className="accent-gold h-11 w-full [color-scheme:dark]"
               controls
               preload="none"
             />
             <p
               id="lesson-audio-note"
-              className="text-ivory/70 mt-3 max-w-[52ch] font-sans text-[12px] leading-[1.5]"
+              className="text-fg-soft text-meta mt-3 max-w-[52ch] font-sans leading-[1.5]"
             >
               {t('audioDeferred')}
             </p>
           </div>
         </div>
-        <figcaption className="border-gold/20 bg-ivory/[0.025] text-ivory/58 border-x border-b px-5 py-4 font-sans text-[11px] tracking-[.18em] uppercase">
+        <figcaption className="border-gold/20 bg-ivory/[0.025] text-fg-meta text-label tracking-caps border-x border-b px-5 py-4 font-sans uppercase">
           {t('media.alt.lesson', { title: lessonTitle })}
         </figcaption>
       </figure>

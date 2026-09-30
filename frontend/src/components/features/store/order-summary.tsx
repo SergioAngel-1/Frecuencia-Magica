@@ -24,11 +24,11 @@ export function OrderSummary({ lines, onPlaceOrder }: OrderSummaryProps) {
       <h3 className="text-ivory mb-5 font-serif text-[20px]">{t('summary')}</h3>
 
       <div className="space-y-3">
-        <div className="text-ivory/65 flex justify-between font-sans text-[14px]">
+        <div className="text-fg-soft text-body flex justify-between font-sans">
           <span>{t('subtotal')}</span>
           <span>{formatPrice(subtotal)}</span>
         </div>
-        <div className="text-ivory/65 flex justify-between font-sans text-[14px]">
+        <div className="text-fg-soft text-body flex justify-between font-sans">
           <span>{t('shipping')}</span>
           <span>{shipping === 0 ? t('shippingFree') : formatPrice(shipping)}</span>
         </div>

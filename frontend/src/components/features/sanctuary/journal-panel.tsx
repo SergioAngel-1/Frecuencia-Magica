@@ -11,7 +11,16 @@ const MOODS = ['calm', 'joy', 'nostalgia', 'tiredness', 'gratitude'] as const;
 
 function EntryCard({ entry }: { entry: JournalEntry }) {
   const t = useTranslations('journal');
-  const moodKey = entry.mood === 0 ? 'calm' : entry.mood === 1 ? 'joy' : entry.mood === 2 ? 'nostalgia' : entry.mood === 3 ? 'tiredness' : 'gratitude';
+  const moodKey =
+    entry.mood === 0
+      ? 'calm'
+      : entry.mood === 1
+        ? 'joy'
+        : entry.mood === 2
+          ? 'nostalgia'
+          : entry.mood === 3
+            ? 'tiredness'
+            : 'gratitude';
 
   const date = new Date(entry.createdAt).toLocaleDateString(undefined, {
     day: 'numeric',
@@ -19,14 +28,14 @@ function EntryCard({ entry }: { entry: JournalEntry }) {
   });
 
   return (
-    <div className="border-b border-ivory/8 py-3 last:border-b-0">
+    <div className="border-ivory/8 border-b py-3 last:border-b-0">
       <div className="mb-1 flex items-center gap-2">
-        <span className="font-sans text-[11px] tracking-[.1em] text-ivory/55">{date}</span>
-        <span className="font-sans text-[11px] uppercase tracking-[.14em] text-gold/60">
+        <span className="text-label tracking-ui text-fg-meta font-sans">{date}</span>
+        <span className="text-label tracking-label text-gold/60 font-sans uppercase">
           {t(`moods.${moodKey}`)}
         </span>
       </div>
-      <p className="font-serif text-[15px] leading-relaxed text-ivory/80">{entry.text}</p>
+      <p className="text-body text-fg-body font-serif leading-relaxed">{entry.text}</p>
     </div>
   );
 }
@@ -49,9 +58,9 @@ export function JournalPanel() {
         {tJournal('kicker')}
       </Kicker>
 
-      <p className="mb-5 font-serif text-[22px] leading-tight text-ivory">{tJournal('title')}</p>
+      <p className="text-ivory mb-5 font-serif text-[22px] leading-tight">{tJournal('title')}</p>
 
-      <p className="mb-3 font-sans text-[11px] uppercase tracking-[.14em] text-ivory/55">
+      <p className="text-label tracking-label text-fg-meta mb-3 font-sans uppercase">
         {tJournal('moodLabel')}
       </p>
 
@@ -62,10 +71,10 @@ export function JournalPanel() {
             type="button"
             onClick={() => setMood(index)}
             aria-pressed={draft.mood === index}
-            className={`rounded-pill min-h-11 flex-1 basis-[86px] px-3 py-2 font-sans text-[11px] uppercase tracking-[.12em] transition-[color,background-color,border-color] duration-300 ${
+            className={`rounded-pill text-label tracking-ui min-h-11 flex-1 basis-[86px] px-3 py-2 font-sans uppercase transition-[color,background-color,border-color] duration-300 ${
               draft.mood === index
-                ? 'bg-gold/15 text-gold border border-gold/40'
-                : 'bg-glass text-ivory/55 border border-glass-brd hover:border-ivory/20'
+                ? 'bg-gold/15 text-gold border-gold/40 border'
+                : 'bg-glass text-fg-meta border-glass-brd hover:border-ivory/20 border'
             }`}
           >
             {tJournal(`moods.${mood}`)}

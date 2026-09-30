@@ -2,7 +2,7 @@
 
 import type { ReactNode } from 'react';
 
-import { EditorialImage, FrequencyDisc } from '@/components/ui';
+import { Display, EditorialImage, FrequencyDisc, Kicker } from '@/components/ui';
 import { usePlayerStore } from '@/stores/player-store';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -28,7 +28,7 @@ export function AudioGrid({ media, kicker, title, action, audios }: AudioGridPro
   const audioMedia = media;
 
   return (
-    <section className="relative isolate min-h-[clamp(420px,48vw,680px)] overflow-hidden py-[clamp(42px,7vw,88px)]">
+    <section className="fm-editorial-full-bleed relative isolate min-h-[clamp(420px,48vw,680px)] overflow-hidden py-[clamp(42px,7vw,88px)]">
       <div className="absolute inset-0">
         <EditorialImage
           media={audioMedia}
@@ -40,13 +40,13 @@ export function AudioGrid({ media, kicker, title, action, audios }: AudioGridPro
         />
       </div>
 
-      <div className="relative z-20 mx-auto flex w-full max-w-[1280px] flex-col gap-10 px-6 sm:px-[8vw]">
+      <div className="fm-container relative z-20 flex w-full flex-col gap-10">
         <header className="flex flex-wrap items-end justify-between gap-5">
           <div>
-            <p className="text-teal font-sans text-[11px] tracking-[.3em] uppercase">{kicker}</p>
-            <h2 className="text-ivory mt-3 max-w-[16ch] font-serif text-[clamp(34px,5vw,68px)] leading-[0.98] font-light">
+            <Kicker tone="teal">{kicker}</Kicker>
+            <Display level="h2" size="lg" className="mt-3 max-w-[16ch]">
               {title}
-            </h2>
+            </Display>
           </div>
           {action ? <div className="min-h-11">{action}</div> : null}
         </header>

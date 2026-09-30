@@ -57,7 +57,7 @@ export function HeroSection({
       className="fm-editorial-viewport-media"
       contentClassName="flex min-h-[100svh] items-center"
     >
-      <div className="relative mx-auto grid min-h-[100svh] w-full max-w-[1440px] grid-cols-1 items-center gap-10 px-6 pt-[112px] pb-[64px] sm:px-[8vw] lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.9fr)] lg:gap-12 lg:px-[7vw] lg:pt-[126px] lg:pb-[78px]">
+      <div className="fm-container relative grid min-h-[100svh] w-full grid-cols-1 items-center gap-10 pt-[112px] pb-[64px] lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.9fr)] lg:gap-12 lg:pt-[126px] lg:pb-[78px]">
         <Mdiv
           variants={container}
           initial="hidden"
@@ -78,7 +78,7 @@ export function HeroSection({
           </Mdiv>
 
           <Mdiv variants={item}>
-            <Prose size="base" maxWidth={52} className="text-ivory/86 mt-[24px]">
+            <Prose size="base" maxWidth={52} className="text-fg-body mt-[24px]">
               {subtitle}
             </Prose>
           </Mdiv>
@@ -100,7 +100,10 @@ export function HeroSection({
             </Button>
           </Mdiv>
 
-          <Mdiv variants={item} className="mt-[44px] flex flex-wrap gap-x-[40px] gap-y-[22px]">
+          <Mdiv
+            variants={item}
+            className="mt-[44px] grid grid-cols-3 gap-x-4 gap-y-[22px] sm:flex sm:flex-wrap sm:gap-x-[40px]"
+          >
             <Stat value={stats[0].value} label={stats[0].label} tone="teal" />
             <Stat value={stats[1].value} label={stats[1].label} tone="gold" />
             <Stat value={stats[2].value} label={stats[2].label} tone="lav" />
@@ -126,7 +129,7 @@ export function HeroSection({
             width={190}
             height={190}
             sizes="(min-width: 1024px) 190px, 28vw"
-            className="absolute z-10 h-[clamp(104px,16vw,190px)] w-auto opacity-90"
+            className="absolute z-10 h-[clamp(104px,16vw,190px)] w-auto opacity-90 max-lg:hidden"
           />
           <OrbitalRings
             size={520}

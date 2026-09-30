@@ -95,8 +95,8 @@ describe('Descúbrete editorial composition', () => {
     expect(stepSource).not.toContain('backdrop-blur');
     expect(stepSource).toContain('min-h-11');
     expect(stepSource).toContain('focus-visible:ring-gold');
-    expect(stepSource).toContain('text-[15px]');
-    expect(resultSource).toContain('text-[15px]');
+    expect(stepSource).toContain('text-body');
+    expect(resultSource).toContain('text-body');
   });
 
   it('opens the resolved audio while preserving the localized library link', () => {

@@ -39,7 +39,7 @@ import { BANDS } from '@/config/bands';
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="border-t border-[rgba(247,244,234,0.1)] py-12">
+    <section className="border-ivory/10 border-t py-12">
       <Kicker tone="muted" spacing="tight" className="mb-6">
         {title}
       </Kicker>
@@ -51,7 +51,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="mb-8">
-      <p className="text-ivory/40 mb-3 font-sans text-[11px] tracking-[.1em]">{label}</p>
+      <p className="text-fg-meta text-label tracking-ui mb-3 font-sans">{label}</p>
       <div className="flex flex-wrap items-center gap-4">{children}</div>
     </div>
   );

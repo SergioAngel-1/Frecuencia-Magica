@@ -28,8 +28,8 @@ export function SessionLink({ label, active }: { label: string; active: boolean 
           'inline-flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-[10px]',
           'transition-[color,background-color,border-color,box-shadow] duration-300 ease-out',
           active
-            ? 'text-gold border-[rgba(216,185,120,0.6)] bg-[rgba(216,185,120,0.18)]'
-            : 'border-glass-brd bg-glass text-ivory group-hover:border-[rgba(216,185,120,0.4)] group-hover:bg-[rgba(247,244,234,0.09)]',
+            ? 'text-gold border-gold/60 bg-gold/18'
+            : 'border-glass-brd bg-glass text-ivory group-hover:border-gold/40 group-hover:bg-ivory/9',
         )}
       >
         <svg

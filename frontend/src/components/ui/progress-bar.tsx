@@ -34,7 +34,7 @@ export function ProgressBar({ value, height = 4, ariaLabel, className }: Progres
       aria-valuemax={100}
       aria-label={ariaLabel}
       className={cn(
-        'w-full overflow-hidden rounded-[3px] bg-[rgba(247,244,234,0.14)]',
+        'bg-ivory/14 w-full overflow-hidden rounded-[3px]',
         HEIGHT_CLASSES[height],
         className,
       )}

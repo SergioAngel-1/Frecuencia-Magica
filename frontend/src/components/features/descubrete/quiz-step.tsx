@@ -2,7 +2,7 @@
 
 import { useCallback, useId } from 'react';
 
-import { Button, ProgressBar } from '@/components/ui';
+import { Button, ProgressBar, Kicker } from '@/components/ui';
 import { cn } from '@/lib/cn';
 
 type QuizStepProps = {
@@ -31,7 +31,7 @@ export function QuizStep({
 
   return (
     <div className="flex w-full flex-col items-center">
-      <p className="text-lav font-sans text-[11px] tracking-[.25em] uppercase">{progressLabel}</p>
+      <Kicker tone="lav">{progressLabel}</Kicker>
 
       <ProgressBar
         value={pct}
@@ -40,7 +40,7 @@ export function QuizStep({
         className="mt-4 mb-10 w-full max-w-[360px]"
       />
 
-      <h2 className="text-ivory font-serif text-[clamp(22px,3.2vw,32px)] leading-[1.2] tracking-[.02em]">
+      <h2 className="text-ivory tracking-soft font-serif text-[clamp(22px,3.2vw,32px)] leading-[1.2]">
         {prompt}
       </h2>
 
@@ -51,7 +51,7 @@ export function QuizStep({
       </div>
 
       {currentIndex > 0 && (
-        <Button variant="ghost" size="sm" className="mt-6 text-[15px]" onClick={onBack}>
+        <Button variant="ghost" size="sm" className="text-body mt-6" onClick={onBack}>
           {backLabel}
         </Button>
       )}
@@ -75,8 +75,8 @@ function OptionButton({
       type="button"
       onClick={handleClick}
       className={cn(
-        'group min-h-11 w-full border-b px-2 py-[14px] text-left text-[15px] leading-[1.5] transition-[color,border-color] duration-300',
-        'border-ivory/25 text-ivory/90 bg-transparent',
+        'group text-body min-h-11 w-full border-b px-2 py-[14px] text-left leading-[1.5] transition-[color,border-color] duration-300',
+        'border-ivory/25 text-fg-body bg-transparent',
         'hover:border-gold/60 hover:text-ivory',
         'focus-visible:ring-gold/50 focus-visible:ring-offset-void focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
       )}

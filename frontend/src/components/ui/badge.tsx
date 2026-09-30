@@ -21,7 +21,7 @@ interface BadgeOwnProps {
   tone?: BadgeTone;
   /**
    * `true` = tratamiento "Destacado": fondo oro sólido
-   * `rgba(216,185,120,0.92)`, texto `#12213a`. Por defecto `false`
+   * `rgba(216,185,120,0.92)`, texto `ink`. Por defecto `false`
    * (variante translúcida: fondo `rgba(15,27,46,0.35)`, borde marfil).
    */
   solid?: boolean;
@@ -33,18 +33,19 @@ export type BadgeProps = BadgeOwnProps & Omit<HTMLAttributes<HTMLSpanElement>, k
 /**
  * Píldora corta en mayúsculas (badge "Destacado", etiquetas de nivel/modo...).
  * Server Component puro, texto ya traducido vía `children`.
+ *
+ * `w-fit self-start`: dentro de un contenedor `flex-col` una píldora
+ * `inline-flex` se estira al ancho de la columna y el oro sólido pasa de
+ * etiqueta a barra. El acento es luz, no relleno grande.
  */
 export function Badge({ children, tone = 'gold', solid = false, className, ...rest }: BadgeProps) {
   return (
     <span
       className={cn(
-        'rounded-pill inline-flex items-center px-[14px] py-[6px] font-sans text-[10px] tracking-[.2em] whitespace-nowrap uppercase',
+        'rounded-pill text-label tracking-caps inline-flex w-fit items-center self-start px-[14px] py-[6px] font-sans whitespace-nowrap uppercase',
         solid
-          ? 'bg-[rgba(216,185,120,0.92)] text-[#12213a]'
-          : cn(
-              'border border-[rgba(247,244,234,0.16)] bg-[rgba(15,27,46,0.35)]',
-              TONE_TEXT_CLASSES[tone],
-            ),
+          ? 'bg-gold/92 text-ink'
+          : cn('border-ivory/16 bg-void/35 border', TONE_TEXT_CLASSES[tone]),
         className,
       )}
       {...rest}

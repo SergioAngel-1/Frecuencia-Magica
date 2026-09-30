@@ -17,3 +17,4 @@ export { RouteTransition } from './route-transition';
 export { SessionLink } from './session-link';
 export { SiteFooter } from './site-footer';
 export { SiteHeader } from './site-header';
+export { ButtonLink } from './button-link';

@@ -77,8 +77,8 @@ export function PlayerDock() {
 
         {/* Texto */}
         <div className="min-w-0 flex-1">
-          <p className="text-ivory truncate font-serif text-[17px] sm:text-[19px]">{title}</p>
-          <p className="text-ivory/55 font-sans text-[11px] tracking-[.08em]">{audio.hz} Hz</p>
+          <p className="text-ivory text-lead truncate font-serif sm:text-[19px]">{title}</p>
+          <p className="text-fg-meta text-label tracking-ui font-sans">{audio.hz} Hz</p>
         </div>
 
         {/* Play/Pause */}
@@ -135,7 +135,7 @@ export function PlayerDock() {
           type="button"
           aria-label={t('close')}
           onClick={close}
-          className="text-ivory/55 hover:text-ivory flex size-11 shrink-0 items-center justify-center"
+          className="text-fg-meta hover:text-ivory flex size-11 shrink-0 items-center justify-center"
         >
           ×
         </button>

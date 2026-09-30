@@ -59,10 +59,10 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      <div className="mx-auto w-full max-w-[1240px] px-6 pt-[100px] pb-[220px] md:px-[8vw] md:pt-[130px]">
+      <div className="fm-editorial-full-bleed fm-container pt-[100px] pb-[220px] md:pt-[130px]">
         <Link
           href="/tienda"
-          className="text-ivory/55 hover:text-gold mb-8 inline-flex min-h-11 items-center font-sans text-[12px] tracking-[.14em] uppercase transition-colors"
+          className="text-fg-meta hover:text-gold text-meta tracking-label mb-8 inline-flex min-h-11 items-center font-sans uppercase transition-colors"
         >
           ← {t('backToStore')}
         </Link>

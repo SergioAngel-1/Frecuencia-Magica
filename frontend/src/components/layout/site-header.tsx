@@ -28,9 +28,15 @@ export function SiteHeader() {
       role="banner"
       className="fm-safe-area-top pointer-events-none fixed inset-x-0 top-0 z-[220] flex items-center justify-between px-5 py-4 md:px-[34px] md:py-[22px]"
     >
+      {/* Scrim: sin superficie, el logo y los controles flotan sobre el texto
+          que pasa por debajo al hacer scroll. Sólo luz de fondo, sin borde. */}
+      <div
+        aria-hidden="true"
+        className="from-void/85 via-void/45 pointer-events-none absolute inset-x-0 top-0 -z-10 h-[150%] bg-gradient-to-b to-transparent"
+      />
       <a
         href="#contenido"
-        className="text-ivory rounded-pill border-glass-brd pointer-events-auto sr-only bg-[rgba(15,27,46,0.92)] px-5 py-3 font-sans text-[13px] tracking-[.1em] focus-visible:not-sr-only focus-visible:absolute focus-visible:top-4 focus-visible:left-5 focus-visible:border"
+        className="text-ivory rounded-pill border-glass-brd bg-void/92 text-meta tracking-ui pointer-events-auto sr-only px-5 py-3 font-sans focus-visible:not-sr-only focus-visible:absolute focus-visible:top-4 focus-visible:left-5 focus-visible:border"
       >
         {t('skipToContent')}
       </a>

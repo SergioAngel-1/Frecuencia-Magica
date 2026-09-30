@@ -38,17 +38,17 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
         <EditorialImage aspect="1:1" className="h-full" media={productMedia} />
       </div>
       <div className="min-w-0">
-        <p className="text-ivory truncate font-serif text-[17px]">
+        <p className="text-ivory text-lead truncate font-serif">
           {tStore(`products.${product.id}.title`)}
         </p>
-        <p className="text-ivory/55 font-sans text-[13px]">{tStore(categoryKey(product.catKey))}</p>
+        <p className="text-fg-meta text-meta font-sans">{tStore(categoryKey(product.catKey))}</p>
       </div>
       <div className="col-start-2 flex min-h-11 items-center justify-between gap-4 sm:contents">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={() => setQuantity(product.id, quantity - 1)}
-            className="border-ivory/20 text-ivory/60 hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
+            className="border-ivory/20 text-fg-muted hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
             aria-label={t('decrease')}
           >
             −
@@ -59,7 +59,7 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
           <button
             type="button"
             onClick={() => setQuantity(product.id, quantity + 1)}
-            className="border-ivory/20 text-ivory/60 hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
+            className="border-ivory/20 text-fg-muted hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
             aria-label={t('increase')}
           >
             +
@@ -90,6 +90,7 @@ export function CartView({ media, onPlaceOrder }: CartViewProps) {
         className="rounded-card-lg relative isolate min-h-[clamp(420px,55vw,620px)] overflow-hidden"
         data-editorial-media="cart.empty"
       >
+        <h1 className="sr-only">{t('title')}</h1>
         <div className="absolute inset-0">
           <EditorialImage
             aspect="16:9"
@@ -116,12 +117,13 @@ export function CartView({ media, onPlaceOrder }: CartViewProps) {
 
   return (
     <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] md:gap-12">
+      <h1 className="sr-only">{t('title')}</h1>
       <div>
         <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <Kicker tone="gold" spacing="widest">
             {t('title')}
           </Kicker>
-          <span className="text-ivory/55 font-sans text-[13px] tracking-[.14em]">
+          <span className="text-fg-meta text-meta tracking-label font-sans">
             {t('items', { count })}
           </span>
         </div>

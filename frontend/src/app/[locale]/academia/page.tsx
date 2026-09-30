@@ -41,20 +41,20 @@ export default async function AcademyPage({ params }: PageProps) {
         contentClassName="flex min-h-full items-center"
         minHeight="clamp(420px, 52vw, 680px)"
       >
-        <div className="mx-auto flex w-full max-w-[1440px] flex-col justify-center px-6 py-20 sm:px-[8vw] lg:px-[10vw]">
+        <div className="fm-container flex w-full flex-col justify-center py-20">
           <Kicker tone="teal" spacing="wide">
             {t('kicker')}
           </Kicker>
           <Display size="xl" level="h1" className="mt-4 max-w-[12ch]">
             {t('title')}
           </Display>
-          <Prose maxWidth={54} className="text-ivory/86 mt-6 max-w-[52ch]">
+          <Prose maxWidth={54} className="text-fg-body mt-6 max-w-[52ch]">
             {t('description')}
           </Prose>
         </div>
       </FullBleedSection>
 
-      <div className="mx-auto w-full max-w-[1200px] px-6 pt-[clamp(30px,5vw,76px)] pb-[220px] md:px-[8vw]">
+      <div className="fm-editorial-full-bleed fm-container pt-[clamp(30px,5vw,76px)] pb-[220px]">
         <CourseList media={academyMedia} />
       </div>
     </PageShell>

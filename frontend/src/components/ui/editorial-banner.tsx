@@ -2,7 +2,9 @@ import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
 import type { EditorialMedia, EditorialTone } from '@/types/editorial-media';
+import { Display } from './display';
 import { EditorialImage } from './editorial-image';
+import { Kicker, type KickerTone } from './kicker';
 
 export type EditorialBannerAlign = 'left' | 'center' | 'right';
 
@@ -23,13 +25,20 @@ const ALIGN_CLASSES: Record<EditorialBannerAlign, string> = {
   right: 'items-end text-right',
 };
 
-const TONE_CLASSES: Record<EditorialTone, string> = {
-  gold: 'text-gold',
-  teal: 'text-teal',
-  lav: 'text-lav',
-  ivory: 'text-ivory',
+/** `ivory` no es un acento del `Kicker`: se resuelve con el peldaño `muted`. */
+const KICKER_TONES: Record<EditorialTone, KickerTone> = {
+  gold: 'gold',
+  teal: 'teal',
+  lav: 'lav',
+  ivory: 'muted',
 };
 
+/**
+ * Banda editorial a sangre de viewport. Siempre `fm-editorial-full-bleed`:
+ * una banda que hereda el ancho de su contenedor queda inset y deja un borde
+ * duro junto a las que sí llegan al borde. El texto se alinea con el eje de
+ * página (`fm-container`), el mismo que los héroes y el contenido.
+ */
 export function EditorialBanner({
   media,
   eyebrow,
@@ -42,7 +51,10 @@ export function EditorialBanner({
 }: EditorialBannerProps) {
   return (
     <section
-      className={cn('relative isolate min-h-[clamp(280px,35vw,520px)] overflow-hidden', className)}
+      className={cn(
+        'fm-editorial-full-bleed relative isolate flex min-h-[clamp(280px,35vw,520px)] flex-col overflow-hidden',
+        className,
+      )}
     >
       {media ? (
         <div className="absolute inset-0">
@@ -62,18 +74,18 @@ export function EditorialBanner({
       />
       <div
         className={cn(
-          'relative z-20 flex min-h-[clamp(280px,35vw,520px)] flex-col justify-end gap-4 p-[clamp(24px,6vw,84px)]',
+          'fm-container relative z-20 flex min-h-[clamp(280px,35vw,520px)] flex-1 flex-col justify-end gap-4 py-[clamp(24px,6vw,84px)]',
           ALIGN_CLASSES[align],
         )}
       >
-        <p className={cn('font-sans text-[11px] tracking-[.3em] uppercase', TONE_CLASSES[tone])}>
+        <Kicker tone={KICKER_TONES[tone]} spacing="wide">
           {eyebrow}
-        </p>
-        <h2 className="text-ivory max-w-4xl font-serif text-[clamp(32px,5vw,72px)] leading-[0.95]">
+        </Kicker>
+        <Display level="h2" size="lg" className="max-w-4xl">
           {title}
-        </h2>
+        </Display>
         {body ? (
-          <div className="text-ivory/80 max-w-2xl text-[17px] leading-relaxed">{body}</div>
+          <div className="text-fg-body text-lead max-w-2xl leading-relaxed">{body}</div>
         ) : null}
         {action ? <div className="mt-2">{action}</div> : null}
       </div>

@@ -1,4 +1,4 @@
-import { Badge, EditorialImage, GlassPanel } from '@/components/ui';
+import { Badge, EditorialImage, GlassPanel, Display } from '@/components/ui';
 import { cn } from '@/lib/cn';
 import type { EditorialMedia } from '@/types/editorial-media';
 import type { Course } from '@/types/content';
@@ -47,19 +47,19 @@ export function CourseCard({
         </div>
         <div className="relative z-10 flex min-h-[clamp(420px,42vw,600px)] max-w-[720px] flex-col justify-end px-[clamp(24px,6vw,76px)] py-[clamp(30px,6vw,76px)]">
           <Badge solid>{level}</Badge>
-          <h2 className="text-ivory mt-5 max-w-[12ch] font-serif text-[clamp(38px,6vw,78px)] leading-[0.92]">
+          <Display level="h2" size="feature" className="mt-5 max-w-[12ch]">
             {title}
-          </h2>
+          </Display>
           {description ? (
-            <p className="text-ivory/82 mt-5 max-w-[48ch] text-[16px] leading-[1.7]">
+            <p className="text-fg-body mt-5 max-w-[48ch] text-[16px] leading-[1.7]">
               {description}
             </p>
           ) : null}
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
-            <span className="border-gold/55 text-gold min-h-11 border-b py-3 font-sans text-[11px] tracking-[.2em] uppercase">
+            <span className="border-gold/55 text-gold text-label tracking-caps min-h-11 border-b py-3 font-sans uppercase">
               {cta}
             </span>
-            <span className="text-ivory/72 font-sans text-[12px] tracking-[.08em] uppercase">
+            <span className="text-fg-soft text-meta tracking-ui font-sans uppercase">
               {lessonsLabel}
             </span>
           </div>
@@ -93,9 +93,7 @@ export function CourseCard({
         <h3 className="text-ivory font-serif text-[clamp(26px,3vw,34px)] leading-[1.05]">
           {title}
         </h3>
-        <p className="text-ivory/62 mt-3 font-sans text-[12.5px] tracking-[.06em]">
-          {lessonsLabel}
-        </p>
+        <p className="text-fg-muted text-meta tracking-soft mt-3 font-sans">{lessonsLabel}</p>
       </div>
     </GlassPanel>
   );

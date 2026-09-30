@@ -23,8 +23,8 @@ const TONE_CLASSES: Record<StatTone, string> = {
 };
 
 const SIZE_CLASSES: Record<StatSize, { value: string; label: string }> = {
-  hero: { value: 'mb-[4px] text-[34px]', label: 'text-[11px] tracking-[.14em]' },
-  sanctuary: { value: 'mb-[6px] text-[40px]', label: 'text-[12px] tracking-[.1em]' },
+  hero: { value: 'mb-[4px] text-[34px]', label: 'text-label tracking-label' },
+  sanctuary: { value: 'mb-[6px] text-[40px]', label: 'text-meta tracking-ui' },
 };
 
 /**
@@ -44,9 +44,7 @@ export function Stat({ value, label, tone = 'gold', size = 'hero', className }: 
       >
         {value}
       </p>
-      <p className={cn('font-sans text-[rgba(247,244,234,0.55)] uppercase', sizeClasses.label)}>
-        {label}
-      </p>
+      <p className={cn('text-fg-meta font-sans uppercase', sizeClasses.label)}>{label}</p>
     </div>
   );
 }

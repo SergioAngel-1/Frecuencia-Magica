@@ -41,6 +41,11 @@
     "newsletterSuccess": "Thank you. We will write when there is something worth your silence.",
     "newsletterSubmit": "Subscribe",
     "rights": "Made with light",
+    "closing": {
+      "kicker": "Before you go",
+      "title": "Your light will be here when you return.",
+      "cta": "Back to the threshold"
+    },
     "columns": {
       "explore": "Explore",
       "community": "Community",
@@ -57,7 +62,13 @@
     "title": "Magic Frequency",
     "subtitle": "You are not about to enter a website. You are about to cross a portal toward the most important place: yourself.",
     "cta": "Cross the portal",
-    "hint": "The light you seek already lives in you"
+    "hint": "The light you seek already lives in you",
+    "media": {
+      "alt": {
+        "hero": "Light and cosmos at the threshold of Frecuencia Mágica",
+        "field": "The portal field between worlds"
+      }
+    }
   },
   "home": {
     "heroKicker": "A sanctuary to return to yourself",
@@ -374,6 +385,7 @@
     "book": "Book",
     "all": "All experiences",
     "dateLabel": "Date",
+    "durationLabel": "Duration",
     "media": {
       "alt": {
         "hero": "The experiences awaiting you",
@@ -551,6 +563,13 @@
     }
   },
   "sanctuary": {
+    "media": {
+      "alt": {
+        "hero": "Your sanctuary awaits you",
+        "continue": "Pick your practice up where you left it",
+        "daily": "Today's practice in your sanctuary"
+      }
+    },
     "kicker": "My Sanctuary",
     "title": "Welcome back, Luz",
     "stats": {
@@ -612,6 +631,11 @@
     "offline": "You are offline. The sanctuary awaits your return.",
     "payFailedTitle": "The payment did not go through",
     "payFailedBody": "Nothing has been charged yet. Breathe and try again whenever you're ready.",
-    "payFailedCta": "Try again"
+    "payFailedCta": "Try again",
+    "media": {
+      "alt": {
+        "notFound": "A serene corner of the cosmos to find your way again"
+      }
+    }
   }
 }

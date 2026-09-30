@@ -40,6 +40,8 @@ export default async function PortalPage({ params }: PortalPageProps) {
       subtitle={t('subtitle')}
       cta={t('cta')}
       hint={t('hint')}
+      heroAlt={t('media.alt.hero')}
+      fieldAlt={t('media.alt.field')}
     />
   );
 }

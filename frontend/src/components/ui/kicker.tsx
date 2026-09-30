@@ -19,7 +19,7 @@ const TONE_CLASSES: Record<KickerTone, string> = {
   gold: 'text-gold',
   teal: 'text-teal',
   lav: 'text-lav',
-  muted: 'text-ivory/55',
+  muted: 'text-fg-meta',
 };
 
 /**
@@ -31,9 +31,9 @@ const TONE_CLASSES: Record<KickerTone, string> = {
  * - `widest` (.4em): kickers de cabecera de realm (authKicker, libKicker...).
  */
 const SPACING_CLASSES: Record<KickerSpacing, string> = {
-  tight: 'tracking-[.14em]',
-  wide: 'tracking-[.3em]',
-  widest: 'tracking-[.4em]',
+  tight: 'tracking-label',
+  wide: 'tracking-kicker',
+  widest: 'tracking-eyebrow',
 };
 
 /**
@@ -52,7 +52,7 @@ export function Kicker({
   return (
     <Tag
       className={cn(
-        'font-sans text-[11px] uppercase',
+        'text-label font-sans uppercase',
         TONE_CLASSES[tone],
         SPACING_CLASSES[spacing],
         className,

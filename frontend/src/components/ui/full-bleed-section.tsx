@@ -55,7 +55,11 @@ export function FullBleedSection({
 
   return (
     <section
-      className={cn('relative isolate overflow-hidden', MODE_CLASSES[mode], className)}
+      className={cn(
+        'fm-editorial-full-bleed relative isolate overflow-hidden',
+        MODE_CLASSES[mode],
+        className,
+      )}
       style={getMinHeightStyle(minHeight)}
     >
       {media ? (

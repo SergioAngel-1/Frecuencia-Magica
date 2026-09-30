@@ -53,7 +53,7 @@ export function ProductSections() {
               hidden={!isOpen}
               className={cn(isOpen && 'animate-fm-fade-up motion-reduce:animate-none')}
             >
-              <p className="text-ivory/72 pb-5 font-sans text-[15px] leading-[1.9]">
+              <p className="text-fg-soft text-body pb-5 font-sans leading-[1.9]">
                 {t(`productSections.${key}.body`)}
               </p>
             </div>

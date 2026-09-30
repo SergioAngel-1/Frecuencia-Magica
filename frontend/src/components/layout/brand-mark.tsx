@@ -25,7 +25,7 @@ export function BrandMark({ label }: { label: string }) {
         sizes="46px"
         className="h-[46px] w-[46px] object-contain drop-shadow-[0_0_10px_rgba(216,185,120,0.35)]"
       />
-      <span className="hidden font-serif text-[19px] font-medium tracking-[.14em] uppercase md:inline">
+      <span className="tracking-label hidden font-serif text-[19px] font-medium uppercase md:inline">
         {label}
       </span>
     </Link>

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { cn } from '@/lib/cn';
 
-export type DisplaySize = 'hero' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+export type DisplaySize = 'hero' | 'xl' | 'feature' | 'lg' | 'md' | 'sm' | 'xs';
 export type DisplayLevel = 'h1' | 'h2' | 'h3' | 'span';
 
 interface DisplayProps {
@@ -12,6 +12,8 @@ interface DisplayProps {
   size?: DisplaySize;
   /** Activa la variante cursiva completa del título. */
   italic?: boolean;
+  /** Para `aria-labelledby` de la sección que encabeza. */
+  id?: string;
   className?: string;
 }
 
@@ -23,6 +25,8 @@ interface DisplayProps {
 const SIZE_CLASSES: Record<DisplaySize, string> = {
   hero: 'text-[clamp(46px,8vw,104px)] leading-[.98]',
   xl: 'text-[clamp(46px,6.2vw,86px)] leading-[1]',
+  /** Titular de la pieza destacada de una vista (curso, experiencia, realm). */
+  feature: 'text-[clamp(38px,6vw,78px)] leading-[.92]',
   lg: 'text-[clamp(36px,5.5vw,72px)] leading-[1]',
   md: 'text-[clamp(30px,4.4vw,56px)] leading-[1.05]',
   sm: 'text-[clamp(28px,3.6vw,46px)] leading-[1.05]',
@@ -50,12 +54,16 @@ export function Display({
   level = 'h2',
   size = 'lg',
   italic = false,
+  id,
   className,
 }: DisplayProps) {
   const Tag = level;
 
   return (
-    <Tag className={cn('font-serif font-light', SIZE_CLASSES[size], italic && 'italic', className)}>
+    <Tag
+      id={id}
+      className={cn('font-serif font-light', SIZE_CLASSES[size], italic && 'italic', className)}
+    >
       {children}
     </Tag>
   );

@@ -65,11 +65,15 @@ export function LibrarySystem({ media }: { media: LibraryMedia }) {
           className="relative isolate mx-auto w-full max-w-[1040px]"
           data-editorial-stage="orbital"
         >
+          {/* El destacado es el sol del sistema: su foto se funde en un halo
+              (máscara radial en desktop) y los discos orbitan a su alrededor.
+              En móvil y tablet es una tarjeta apilada sobre el archivo. El
+              título y la meta los pinta el propio disco: no se repiten al lado. */}
           <div
-            className="relative isolate min-h-[clamp(430px,58vw,680px)] overflow-hidden lg:absolute lg:top-1/2 lg:left-1/2 lg:z-[4] lg:w-[min(70%,720px)] lg:-translate-x-1/2 lg:-translate-y-1/2"
+            className="relative isolate lg:absolute lg:top-1/2 lg:left-1/2 lg:z-[2] lg:w-[min(92%,900px)] lg:-translate-x-1/2 lg:-translate-y-1/2"
             data-editorial-featured="true"
           >
-            <div className="absolute inset-0">
+            <div className="rounded-card-lg absolute inset-0 overflow-hidden lg:rounded-none lg:[mask-image:radial-gradient(closest-side,#000_58%,transparent)]">
               <EditorialImage
                 aspect={media.featured.aspect}
                 className="h-full"
@@ -79,9 +83,9 @@ export function LibrarySystem({ media }: { media: LibraryMedia }) {
                 scrim="bottom"
               />
             </div>
-            <div className="relative z-20 grid min-h-[clamp(430px,58vw,680px)] grid-cols-1 items-center gap-8 px-6 py-12 sm:px-[8vw] md:grid-cols-[minmax(220px,0.85fr)_minmax(0,1fr)] md:gap-[clamp(34px,6vw,84px)] md:py-16">
+            <div className="relative z-20 flex min-h-[clamp(470px,58vw,640px)] flex-col items-center justify-center px-6 py-12 text-center">
               {featured ? (
-                <div className="mx-auto w-[min(380px,84vw)] text-center">
+                <div className="mx-auto w-[min(380px,84vw)]">
                   <div className="mb-3 flex justify-center">
                     <Badge solid>{t('featuredBadge')}</Badge>
                   </div>
@@ -100,18 +104,6 @@ export function LibrarySystem({ media }: { media: LibraryMedia }) {
                   />
                 </div>
               ) : null}
-
-              <div className="max-w-[34rem]">
-                <p className="text-gold font-sans text-[11px] tracking-[.3em] uppercase">
-                  {t('featuredBadge')}
-                </p>
-                <h2 className="text-ivory mt-3 max-w-[14ch] font-serif text-[clamp(32px,5vw,64px)] leading-[0.96]">
-                  {featured ? audioTitle(featured) : t('title')}
-                </h2>
-                <p className="text-ivory/78 mt-5 max-w-[42ch] text-[17px] leading-[1.65]">
-                  {featured ? audioMeta(featured) : t('description')}
-                </p>
-              </div>
             </div>
           </div>
 

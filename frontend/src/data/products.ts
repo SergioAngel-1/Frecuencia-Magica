@@ -1,4 +1,5 @@
 import type { Product } from '@/types/content';
+import { COVERS } from '@/config/covers';
 
 /**
  * Los ocho productos de la tienda.
@@ -12,7 +13,7 @@ export const PRODUCTS: readonly Product[] = [
     titleKey: 'store.products.p1.title',
     catKey: 'store.categories.aromas',
     price: 28,
-    band: 'linear-gradient(150deg,#8a7150,#2c2418)',
+    band: COVERS.amber,
     relatedAudioId: 'a5',
   },
   {
@@ -20,7 +21,7 @@ export const PRODUCTS: readonly Product[] = [
     titleKey: 'store.products.p2.title',
     catKey: 'store.categories.candles',
     price: 34,
-    band: 'linear-gradient(150deg,#a07840,#2c2012)',
+    band: COVERS.honey,
     relatedAudioId: 'a2',
   },
   {
@@ -28,7 +29,7 @@ export const PRODUCTS: readonly Product[] = [
     titleKey: 'store.products.p3.title',
     catKey: 'store.categories.crystals',
     price: 22,
-    band: 'linear-gradient(150deg,#6e5f8a,#241f3a)',
+    band: COVERS.violet,
     relatedAudioId: 'a1',
   },
   {
@@ -36,7 +37,7 @@ export const PRODUCTS: readonly Product[] = [
     titleKey: 'store.products.p4.title',
     catKey: 'store.categories.mists',
     price: 26,
-    band: 'linear-gradient(150deg,#4f6b5e,#1e2e28)',
+    band: COVERS.moss,
     relatedAudioId: 'a3',
   },
   {
@@ -44,7 +45,7 @@ export const PRODUCTS: readonly Product[] = [
     titleKey: 'store.products.p5.title',
     catKey: 'store.categories.rituals',
     price: 18,
-    band: 'linear-gradient(150deg,#5a6b52,#20281c)',
+    band: COVERS.sage,
     relatedAudioId: 'a5',
   },
   {
@@ -52,7 +53,7 @@ export const PRODUCTS: readonly Product[] = [
     titleKey: 'store.products.p6.title',
     catKey: 'store.categories.care',
     price: 24,
-    band: 'linear-gradient(150deg,#6a5a8c,#221d38)',
+    band: COVERS.iris,
     relatedAudioId: 'a4',
   },
   {
@@ -60,7 +61,7 @@ export const PRODUCTS: readonly Product[] = [
     titleKey: 'store.products.p7.title',
     catKey: 'store.categories.drinks',
     price: 20,
-    band: 'linear-gradient(150deg,#8a7150,#2c2418)',
+    band: COVERS.amber,
     relatedAudioId: 'a1',
   },
   {
@@ -68,7 +69,7 @@ export const PRODUCTS: readonly Product[] = [
     titleKey: 'store.products.p8.title',
     catKey: 'store.categories.stationery',
     price: 30,
-    band: 'linear-gradient(150deg,#4a7d8a,#1c2f36)',
+    band: COVERS.lagoon,
     relatedAudioId: 'a6',
   },
 ] as const;

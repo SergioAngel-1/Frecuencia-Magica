@@ -14,12 +14,12 @@ export function AboutSection({ media, kicker, title, p1, p2 }: AboutSectionProps
   const portraitMedia = media;
 
   return (
-    <section className="relative w-full overflow-hidden py-[clamp(58px,10vw,140px)]">
+    <section className="fm-editorial-full-bleed relative overflow-hidden py-[clamp(58px,10vw,140px)]">
       <div
         className="pointer-events-none absolute top-[18%] left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(150,198,188,0.1),transparent_68%)] blur-3xl"
         aria-hidden="true"
       />
-      <div className="relative mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-[clamp(36px,8vw,120px)] px-6 sm:px-[8vw] md:grid-cols-[minmax(260px,0.8fr)_minmax(0,1.2fr)]">
+      <div className="fm-container relative grid grid-cols-1 items-center gap-[clamp(36px,8vw,120px)] md:grid-cols-[minmax(260px,0.8fr)_minmax(0,1.2fr)]">
         <div
           className="relative mx-auto w-full max-w-[420px] md:mx-0"
           data-editorial-zone="human-focus"
@@ -51,9 +51,6 @@ export function AboutSection({ media, kicker, title, p1, p2 }: AboutSectionProps
               />
             </div>
           </div>
-          <p className="text-gold mt-4 font-sans text-[11px] tracking-[.22em] uppercase">
-            {kicker}
-          </p>
         </div>
 
         <div className="max-w-[680px]">
@@ -63,8 +60,8 @@ export function AboutSection({ media, kicker, title, p1, p2 }: AboutSectionProps
           <Display size="md" className="mt-4 max-w-[14ch] leading-[0.98]">
             {title}
           </Display>
-          <p className="text-ivory/84 mt-7 text-[17px] leading-[1.85]">{p1}</p>
-          <p className="text-ivory/78 mt-6 max-w-[48ch] font-serif text-[clamp(22px,3vw,34px)] leading-[1.25] font-light italic">
+          <p className="text-fg-body text-lead mt-7 leading-[1.85]">{p1}</p>
+          <p className="text-fg-soft mt-6 max-w-[48ch] font-serif text-[clamp(22px,3vw,34px)] leading-[1.25] font-light italic">
             {p2}
           </p>
         </div>

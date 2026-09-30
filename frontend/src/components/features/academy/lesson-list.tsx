@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { GlassPanel } from '@/components/ui';
+import { GlassPanel, Kicker } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
 import type { Lesson } from '@/lib/academy/lessons';
 import { cn } from '@/lib/cn';
@@ -19,9 +19,7 @@ export function LessonList({ courseId, lessons, currentIndex }: LessonListProps)
   return (
     <nav aria-label={t('courseContent')}>
       <GlassPanel as="section" radius={22} className="px-5 py-6 sm:px-6">
-        <p className="text-gold font-sans text-[11px] tracking-[.3em] uppercase">
-          {t('courseContent')}
-        </p>
+        <Kicker tone="gold">{t('courseContent')}</Kicker>
 
         <ol className="mt-4 flex flex-col gap-1">
           {lessons.map((lesson, i) => {
@@ -39,18 +37,18 @@ export function LessonList({ courseId, lessons, currentIndex }: LessonListProps)
                     'flex min-h-11 w-full items-center gap-3 px-3 py-2.5 transition-colors',
                     isCurrent
                       ? 'bg-gold/10 text-ivory'
-                      : 'text-ivory/78 hover:bg-ivory/4 hover:text-ivory',
+                      : 'text-fg-soft hover:bg-ivory/4 hover:text-ivory',
                   )}
                 >
                   <span
                     aria-hidden="true"
                     className={cn(
-                      'flex size-8 shrink-0 items-center justify-center rounded-full font-serif text-[14px]',
+                      'text-body flex size-8 shrink-0 items-center justify-center rounded-full font-serif',
                       isCompleted
                         ? 'bg-gold/20 text-gold'
                         : isCurrent
                           ? 'border-gold text-gold border'
-                          : 'border-ivory/20 text-ivory/55 border',
+                          : 'border-ivory/20 text-fg-meta border',
                     )}
                   >
                     {isCompleted ? '✓' : lesson.number}
@@ -58,7 +56,7 @@ export function LessonList({ courseId, lessons, currentIndex }: LessonListProps)
                   <span className="min-w-0 flex-1 font-serif text-[18px] leading-[1.2]">
                     {lesson.number}. {t(`lessonTitles.${lesson.titleIndex}` as 'lessonTitles.0')}
                   </span>
-                  <span className="text-ivory/55 shrink-0 font-sans text-[11px] tracking-[.06em]">
+                  <span className="text-fg-meta text-label tracking-soft shrink-0 font-sans">
                     {lesson.duration}
                   </span>
                 </Link>

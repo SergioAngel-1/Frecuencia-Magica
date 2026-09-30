@@ -1,4 +1,5 @@
 import type { Course } from '@/types/content';
+import { COVERS } from '@/config/covers';
 
 /** Los tres cursos de la Academia. */
 export const COURSES: readonly Course[] = [
@@ -8,7 +9,7 @@ export const COURSES: readonly Course[] = [
     levelKey: 'academy.levels.foundations',
     lessons: 8,
     hours: '3.5h',
-    band: 'linear-gradient(150deg,#6a5a8c,#221d38)',
+    band: COVERS.iris,
   },
   {
     id: 'c2',
@@ -16,7 +17,7 @@ export const COURSES: readonly Course[] = [
     levelKey: 'academy.levels.practice',
     lessons: 12,
     hours: '5h',
-    band: 'linear-gradient(150deg,#4f6b5e,#1e2e28)',
+    band: COVERS.moss,
   },
   {
     id: 'c3',
@@ -24,6 +25,6 @@ export const COURSES: readonly Course[] = [
     levelKey: 'academy.levels.intermediate',
     lessons: 6,
     hours: '2.5h',
-    band: 'linear-gradient(150deg,#8a7150,#2c2418)',
+    band: COVERS.amber,
   },
 ] as const;

@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import { EditorialImage } from '@/components/ui';
+import { EditorialImage, Kicker, Display } from '@/components/ui';
 import { COURSES } from '@/data';
 import { Link } from '@/i18n/navigation';
 import type { EditorialMedia } from '@/types/editorial-media';
@@ -31,11 +31,9 @@ function CourseRow({ course, title, level, lessonsLabel, media }: CourseRowProps
         <EditorialImage aspect="16:8" className="h-full" media={media} />
       </div>
       <div className="flex min-h-11 flex-col justify-center">
-        <p className="text-teal font-sans text-[11px] tracking-[.2em] uppercase">{level}</p>
+        <p className="text-teal text-label tracking-caps font-sans uppercase">{level}</p>
         <h3 className="mt-2 font-serif text-[clamp(26px,3vw,40px)] leading-[1.02]">{title}</h3>
-        <p className="text-ivory/62 mt-3 font-sans text-[12.5px] tracking-[.06em]">
-          {lessonsLabel}
-        </p>
+        <p className="text-fg-muted text-meta tracking-soft mt-3 font-sans">{lessonsLabel}</p>
       </div>
     </Link>
   );
@@ -75,16 +73,11 @@ export function CourseList({ media }: { media: AcademyMedia }) {
 
       <section data-editorial-archive="true" aria-labelledby="academy-archive-title">
         <div className="mb-7 max-w-[58ch]">
-          <p className="text-teal font-sans text-[11px] tracking-[.3em] uppercase">
-            {t('archive.kicker')}
-          </p>
-          <h2
-            id="academy-archive-title"
-            className="text-ivory mt-3 font-serif text-[clamp(32px,4vw,54px)] leading-[0.98]"
-          >
+          <Kicker tone="teal">{t('archive.kicker')}</Kicker>
+          <Display level="h2" size="md" id="academy-archive-title" className="mt-3">
             {t('archive.title')}
-          </h2>
-          <p className="text-ivory/72 mt-4 text-[16px] leading-[1.7]">{t('archive.description')}</p>
+          </Display>
+          <p className="text-fg-soft mt-4 text-[16px] leading-[1.7]">{t('archive.description')}</p>
         </div>
 
         <div>

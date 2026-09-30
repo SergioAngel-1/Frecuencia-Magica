@@ -13,6 +13,7 @@ import { BANDS } from '@/config/bands';
 import { NAV_REALMS } from '@/config/realms';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { ArrowGlyph, arrowLinkClasses } from '@/components/ui';
 
 type PageProps = { params: LocaleParams };
 
@@ -105,14 +106,9 @@ export default async function HomePage({ params }: PageProps) {
             kicker={t('audio.kicker')}
             title={t('audio.title')}
             action={
-              <Link
-                href="/biblioteca"
-                className="border-teal/60 text-teal focus-visible:ring-teal inline-flex min-h-11 items-center border-b pb-1 font-sans text-[11px] tracking-[.18em] uppercase outline-none focus-visible:ring-2"
-              >
+              <Link href="/biblioteca" className={arrowLinkClasses('teal')}>
                 {common('seeAll')}
-                <span aria-hidden="true" className="ml-3 text-[18px] leading-none">
-                  →
-                </span>
+                <ArrowGlyph />
               </Link>
             }
             audios={homeAudios}

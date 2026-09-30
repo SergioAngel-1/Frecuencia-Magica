@@ -25,7 +25,7 @@ export function AudioToggle() {
       active={enabled}
       className="pointer-events-auto"
     >
-      <span className="font-sans text-[11px] tracking-[.1em]">{enabled ? '♪' : '𝄽'}</span>
+      <span className="text-label tracking-ui font-sans">{enabled ? '♪' : '𝄽'}</span>
     </IconButton>
   );
 }

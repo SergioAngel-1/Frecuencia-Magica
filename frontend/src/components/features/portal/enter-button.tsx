@@ -36,13 +36,13 @@ export function EnterButton({ children }: EnterButtonProps) {
         disabled={isBusy}
         aria-busy={isBusy}
         className={cn(
-          'group text-ivory relative inline-flex min-h-14 min-w-[min(100%,280px)] items-center justify-center px-[34px] py-[15px] font-serif text-[20px] tracking-[.14em] uppercase md:px-[46px] md:text-[22px]',
+          'group text-ivory tracking-label relative inline-flex min-h-14 min-w-[min(100%,280px)] items-center justify-center px-[34px] py-[15px] font-serif text-[20px] uppercase md:px-[46px] md:text-[22px]',
           isBusy && 'pointer-events-none opacity-45',
         )}
       >
         <span
           aria-hidden="true"
-          className="rounded-pill absolute inset-0 scale-100 border border-[rgba(216,185,120,0.5)] bg-[rgba(216,185,120,0.06)] backdrop-blur-[6px] transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+          className="rounded-pill border-gold/50 bg-gold/6 absolute inset-0 scale-100 border backdrop-blur-[6px] transition-transform duration-300 ease-out group-hover:scale-[1.03]"
         />
         <span
           aria-hidden="true"

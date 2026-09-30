@@ -96,7 +96,8 @@ describe('experiences editorial composition contracts', () => {
     expect(listSource).toContain('upcomingDates(new Date(), EXPERIENCES.length, locale)');
     expect(listSource).toContain('date={dates[0]!}');
     expect(listSource).toContain('date={dates[index + 1]!}');
-    expect(rowSource).toContain('<Link');
+    // El CTA es un ButtonLink (cliente): Button asChild + Link desaparece en Server Components.
+    expect(rowSource).toContain('<ButtonLink');
     expect(rowSource).toContain("pathname: '/experiencias/[experienceId]/reservar'");
     expect(rowSource).not.toMatch(/unsplash|https?:\/\//i);
     expect(EXPERIENCES).toHaveLength(4);

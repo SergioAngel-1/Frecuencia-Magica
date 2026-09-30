@@ -1,5 +1,5 @@
-import { Button, EditorialBanner } from '@/components/ui';
-import { Link } from '@/i18n/navigation';
+import { EditorialBanner } from '@/components/ui';
+import { ButtonLink } from '@/components/layout';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 type MembershipSectionProps = {
@@ -25,15 +25,13 @@ export function MembershipSection({
         media={membershipMedia}
         eyebrow={kicker}
         title={title}
-        body={
-          <p className="text-ivory/84 max-w-[54ch] text-[17px] leading-[1.75]">{description}</p>
-        }
+        body={<p className="text-fg-body text-lead max-w-[54ch] leading-[1.75]">{description}</p>}
         align="center"
         tone="gold"
         action={
-          <Button variant="primary" size="lg" asChild>
-            <Link href="/acceso">{cta}</Link>
-          </Button>
+          <ButtonLink variant="primary" size="lg" href="/acceso">
+            {cta}
+          </ButtonLink>
         }
         className="min-h-[clamp(380px,48vw,680px)]"
       />

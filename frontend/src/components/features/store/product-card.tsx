@@ -80,7 +80,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
 
         <div className={cn('flex flex-col gap-2 p-5', featured && 'p-6')}>
           {featured ? null : (
-            <span className="text-ivory/55 font-sans text-[11px] tracking-[.14em] uppercase">
+            <span className="text-fg-meta text-label tracking-label font-sans uppercase">
               {t(categoryKey(product.catKey))}
             </span>
           )}
@@ -105,7 +105,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
           featured && 'px-6 pb-6',
         )}
       >
-        <span className="text-gold font-serif text-[21px] tracking-[.04em]">
+        <span className="text-gold tracking-soft font-serif text-[21px]">
           {formatPrice(product.price)}
         </span>
         <Button variant="accent" size="sm" tone="gold" onClick={() => add(product.id)}>

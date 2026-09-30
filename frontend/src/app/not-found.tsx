@@ -37,16 +37,16 @@ export default function RootNotFound() {
               <Display
                 size="lg"
                 level="h1"
-                className="text-ivory/85 relative max-w-[34ch] text-balance"
+                className="text-fg-body relative max-w-[34ch] text-balance"
               >
                 Este lugar aún no existe
               </Display>
-              <Prose muted className="relative mt-[16px] max-w-[42ch] text-[15px] leading-[1.7]">
+              <Prose muted className="text-body relative mt-[16px] max-w-[42ch] leading-[1.7]">
                 El camino que buscabas se desvaneció. Vuelve al portal y elige otra puerta.
               </Prose>
               <Link
                 href="/"
-                className="rounded-pill text-ivory hover:text-ivory focus-visible:outline-gold relative mt-[32px] inline-flex min-h-14 items-center justify-center border border-[rgba(216,185,120,0.5)] bg-[rgba(216,185,120,0.06)] px-8 font-serif text-[18px] transition-transform duration-300 hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-3"
+                className="rounded-pill text-ivory hover:text-ivory focus-visible:outline-gold border-gold/50 bg-gold/6 relative mt-[32px] inline-flex min-h-14 items-center justify-center border px-8 font-serif text-[18px] transition-transform duration-300 hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-3"
               >
                 Volver al portal
               </Link>

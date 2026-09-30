@@ -36,8 +36,11 @@ describe('portal editorial threshold contracts', () => {
   });
 
   it('wires both portal layers through the shared full-bleed editorial primitive', () => {
-    expect(portalSource).toContain("resolveEditorialMedia('portal.hero')");
-    expect(portalSource).toContain("resolveEditorialMedia('portal.portal-field')");
+    // El alt llega traducido por props (`portal.media.alt.*`), nunca del respaldo en español.
+    expect(portalSource).toContain("resolveEditorialMedia('portal.hero', { alt: heroAlt })");
+    expect(portalSource).toContain(
+      "resolveEditorialMedia('portal.portal-field', { alt: fieldAlt })",
+    );
     expect(portalSource).toContain('<FullBleedSection');
     expect(portalSource).toContain('<EditorialImage');
   });
@@ -56,10 +59,13 @@ describe('portal editorial threshold contracts', () => {
 
   it('gives both 404 surfaces the not-found fallback and keeps human-facing semantics', () => {
     for (const source of [rootNotFoundSource, localizedNotFoundSource]) {
-      expect(source).toContain("resolveEditorialMedia('not-found.hero')");
+      expect(source).toContain("resolveEditorialMedia('not-found.hero'");
       expect(source).toContain('<FullBleedSection');
       expect(source).not.toContain('data-media-slot="not-found.hero"');
     }
+
+    // El 404 localizado traduce el alt; el raíz es estático en español (`lang="es"`).
+    expect(localizedNotFoundSource).toContain("t('media.alt.notFound')");
 
     expect(rootNotFoundSource).not.toMatch(/Georgia|Arial/);
     expect(localizedNotFoundSource).toContain("getTranslations('states')");

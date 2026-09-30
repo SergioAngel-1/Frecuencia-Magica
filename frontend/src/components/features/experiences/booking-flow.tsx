@@ -10,6 +10,7 @@ import {
   Input,
   StepProgress,
   Textarea,
+  Kicker,
 } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
 import { useBooking } from '@/hooks/use-booking';
@@ -49,7 +50,7 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
   const selectedDate = formatSelectedDate(booking.state.date, locale);
 
   return (
-    <div className="mx-auto w-full max-w-[1200px] px-6 pt-[clamp(100px,12vw,160px)] pb-[220px] md:px-[8vw]">
+    <div className="fm-editorial-full-bleed fm-container pt-[clamp(100px,12vw,160px)] pb-[220px]">
       {booking.step === 2 ? (
         <section
           aria-live="polite"
@@ -75,10 +76,10 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
             <Display size="md" level="h1">
               {t('done.title')}
             </Display>
-            <p className="text-ivory/82 mt-5 max-w-[42ch] text-[16px] leading-[1.8]">
+            <p className="text-fg-body mt-5 max-w-[42ch] text-[16px] leading-[1.8]">
               {t('done.description')}
             </p>
-            <div className="text-ivory/72 mt-5 font-sans text-[13px] leading-[1.8] tracking-[.04em]">
+            <div className="text-fg-soft text-meta tracking-soft mt-5 font-sans leading-[1.8]">
               <p>{title}</p>
               <p>
                 {selectedDate} · {booking.state.time}
@@ -107,7 +108,7 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
           <div className="bg-void/72 relative z-10 px-[clamp(20px,6vw,84px)] py-[clamp(24px,5vw,64px)] backdrop-blur-[2px]">
             <Link
               href="/experiencias"
-              className="text-ivory/72 hover:text-ivory inline-flex min-h-11 items-center py-3 font-sans text-[13px] tracking-[.12em] uppercase transition-colors"
+              className="text-fg-soft hover:text-ivory text-meta tracking-ui inline-flex min-h-11 items-center py-3 font-sans uppercase transition-colors"
             >
               ← {common('back')}
             </Link>
@@ -124,15 +125,15 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
               <Display size="xs" level="h1">
                 {title}
               </Display>
-              <p className="text-ivory/72 mt-3 font-sans text-[13px] leading-[1.6]">
+              <p className="text-fg-soft text-meta mt-3 font-sans leading-[1.6]">
                 {formatPrice(experience.price)} · {experience.dur}
               </p>
 
               {booking.step === 0 && (
                 <div className="mt-8">
-                  <p className="text-lav mb-4 font-sans text-[11px] tracking-[.3em] uppercase">
+                  <Kicker tone="lav" className="mb-4">
                     {t('dateLabel')}
-                  </p>
+                  </Kicker>
                   <div className="mb-8 grid grid-cols-[repeat(auto-fill,minmax(96px,1fr))] gap-3">
                     {dates.map((d) => (
                       <button
@@ -144,23 +145,23 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
                           'flex min-h-11 flex-col items-center rounded-[14px] px-2 py-[14px] text-center backdrop-blur-[6px] transition-colors focus-visible:outline',
                           booking.state.date === d.iso
                             ? 'border-lav/55 bg-lav/16 text-ivory border'
-                            : 'border-ivory/14 bg-ivory/4 text-ivory/80 hover:border-lav/30 border',
+                            : 'border-ivory/14 bg-ivory/4 text-fg-body hover:border-lav/30 border',
                         )}
                       >
-                        <span className="text-ivory/60 font-sans text-[11px] tracking-[.08em] uppercase">
+                        <span className="text-fg-muted text-label tracking-ui font-sans uppercase">
                           {d.dow}
                         </span>
                         <span className="font-serif text-[26px] leading-[1.1]">{d.day}</span>
-                        <span className="text-ivory/55 font-sans text-[10px] tracking-[.06em] uppercase">
+                        <span className="text-fg-meta text-label tracking-soft font-sans uppercase">
                           {d.month}
                         </span>
                       </button>
                     ))}
                   </div>
 
-                  <p className="text-lav mb-4 font-sans text-[11px] tracking-[.3em] uppercase">
+                  <Kicker tone="lav" className="mb-4">
                     {t('timeLabel')}
-                  </p>
+                  </Kicker>
                   <div className="mb-8 flex flex-wrap gap-3">
                     {AVAILABLE_TIMES.map((time) => (
                       <button
@@ -169,10 +170,10 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
                         onClick={() => booking.pickTime(time)}
                         aria-pressed={booking.state.time === time}
                         className={cn(
-                          'min-h-11 rounded-[12px] px-6 py-3 font-sans text-[15px] backdrop-blur-[6px] transition-colors focus-visible:outline',
+                          'text-body min-h-11 rounded-[12px] px-6 py-3 font-sans backdrop-blur-[6px] transition-colors focus-visible:outline',
                           booking.state.time === time
                             ? 'border-lav/55 bg-lav/16 text-ivory border'
-                            : 'border-ivory/14 bg-ivory/4 text-ivory/70 hover:border-lav/30 border',
+                            : 'border-ivory/14 bg-ivory/4 text-fg-soft hover:border-lav/30 border',
                         )}
                       >
                         {time}
@@ -183,7 +184,7 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
                   {!booking.canContinue ? (
                     <p
                       id="booking-continue-hint"
-                      className="text-ivory/60 mb-4 font-sans text-[13px] leading-[1.5]"
+                      className="text-fg-muted text-meta mb-4 font-sans leading-[1.5]"
                     >
                       {t('continueHint')}
                     </p>

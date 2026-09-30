@@ -56,24 +56,25 @@ describe('editorial shell contracts', () => {
   });
 
   it('keeps inactive realm labels above the contrast floor without stacked opacity', () => {
-    const linkClasses = REALM_NAV_SOURCE.match(
-      /'group relative flex h-11 min-w-11 flex-col items-center justify-center([^']*)'/,
-    )?.[0];
+    const labelClasses = REALM_NAV_SOURCE.match(
+      /className="([^"]*text-fg-muted[^"]*lg:hidden)"/,
+    )?.[1];
 
-    expect(linkClasses).toBeDefined();
-    expect(linkClasses).not.toContain('opacity-60');
+    expect(labelClasses, 'inactive mobile label').toBeDefined();
+    expect(labelClasses).not.toContain('opacity-');
 
-    for (const viewportClass of ['lg:hidden', 'lg:inline']) {
-      const labelClasses = REALM_NAV_SOURCE.match(
-        new RegExp(`className="([^"]*text-ivory/60[^"]*${viewportClass})"`),
-      )?.[1];
-
-      expect(labelClasses, `${viewportClass} inactive label`).toBeDefined();
-      expect(labelClasses).not.toContain('opacity-');
-    }
-
-    expect(REALM_NAV_SOURCE).toContain('aria-[current=page]:text-ivory');
+    expect(REALM_NAV_SOURCE).toContain('group-aria-[current=page]:text-ivory');
     expect(REALM_NAV_SOURCE).toContain('group-hover:text-ivory group-focus-visible:text-ivory');
+  });
+
+  it('never truncates realm names: the bottom bar scrolls and desktop shows dots only', () => {
+    expect(REALM_NAV_SOURCE).not.toContain('truncate');
+    expect(REALM_NAV_SOURCE).not.toMatch(/max-w-\[68px\]/);
+    expect(REALM_NAV_SOURCE).toContain('max-lg:overflow-x-auto');
+    expect(REALM_NAV_SOURCE).toContain('max-lg:fm-surface-strong');
+    // Persistent labels on desktop collided with content starting on the page
+    // axis; the destination appears on hover/focus through the badge instead.
+    expect(REALM_NAV_SOURCE).not.toContain('lg:inline');
   });
 
   it('preserves the existing centered shell when editorial options are omitted', () => {

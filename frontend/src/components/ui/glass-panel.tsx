@@ -77,7 +77,7 @@ export function GlassPanel({
       className={cn(
         'fm-surface relative',
         RADIUS_CLASSES[radius],
-        glow && 'shadow-[0_0_60px_rgba(216,185,120,0.18)]',
+        glow && 'shadow-glow-card',
         className,
       )}
       style={{

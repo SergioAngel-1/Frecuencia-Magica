@@ -21,7 +21,7 @@ interface ProseProps {
  * abajo. Usando tamaños arbitrarios evitamos esa carrera de cascada.
  */
 const SIZE_CLASSES: Record<ProseSize, string> = {
-  sm: 'text-[14px]',
+  sm: 'text-body',
   base: 'text-[16px]',
   lg: 'text-[clamp(15px,1.6vw,19px)]',
 };
@@ -52,7 +52,7 @@ export function Prose({ children, size = 'base', muted = false, maxWidth, classN
     <p
       className={cn(
         'font-sans leading-[1.85] text-pretty',
-        muted ? 'text-ivory/60' : 'text-ivory/74',
+        muted ? 'text-fg-muted' : 'text-fg-soft',
         SIZE_CLASSES[size],
         maxWidth ? MAX_WIDTH_CLASSES[maxWidth] : undefined,
         className,

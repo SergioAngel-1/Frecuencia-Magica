@@ -85,7 +85,7 @@ export function AuthForm({ media }: AuthFormProps) {
   return (
     <div
       data-auth-layout="form"
-      className="border-gold/15 relative isolate min-h-[clamp(620px,100svh,980px)] overflow-hidden border-t bg-[rgba(10,18,32,0.84)] min-[900px]:min-h-[100svh] min-[900px]:border-t-0 min-[900px]:border-l"
+      className="border-gold/15 bg-void-2/84 relative isolate min-h-[clamp(620px,100svh,980px)] overflow-hidden border-t min-[900px]:min-h-[100svh] min-[900px]:border-t-0 min-[900px]:border-l"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-30">
         <EditorialImage
@@ -114,7 +114,7 @@ export function AuthForm({ media }: AuthFormProps) {
           {mode === 'login' ? t('auth.login.title') : t('auth.register.title')}
         </h1>
 
-        <p className="text-ivory/60 mb-8 font-sans text-[14px] leading-relaxed">
+        <p className="text-fg-muted text-body mb-8 font-sans leading-relaxed">
           {mode === 'login' ? t('auth.login.subtitle') : t('auth.register.subtitle')}
         </p>
 
@@ -173,7 +173,7 @@ export function AuthForm({ media }: AuthFormProps) {
                   es intencionalmente inerte hasta que exista esa pantalla. */}
               <button
                 type="button"
-                className="rounded-pill hover:text-ivory min-h-11 px-3 font-sans text-[12.5px] tracking-[.04em] text-[rgba(247,244,234,0.6)] transition-colors"
+                className="rounded-pill hover:text-ivory text-meta tracking-soft text-fg-muted min-h-11 px-3 font-sans transition-colors"
               >
                 {t('auth.forgot')}
               </button>
@@ -196,7 +196,7 @@ export function AuthForm({ media }: AuthFormProps) {
             <div className="border-ivory/10 w-full border-t" />
           </div>
           <div className="relative flex justify-center">
-            <span className="text-ivory/55 bg-[var(--void)] px-4 font-sans text-[11px] tracking-[.2em] uppercase">
+            <span className="text-fg-meta text-label tracking-caps bg-[var(--void)] px-4 font-sans uppercase">
               {t('auth.or')}
             </span>
           </div>

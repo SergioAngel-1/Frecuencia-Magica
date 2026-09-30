@@ -95,7 +95,7 @@ export function RouteTransition({ children }: { children: ReactNode }) {
       {exchanging && !portalBusy ? (
         <div
           aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-[9500] flex items-center justify-center bg-[rgba(10,18,32,0.4)] backdrop-blur-[14px]"
+          className="bg-void-2/40 pointer-events-none fixed inset-0 z-[9500] flex items-center justify-center backdrop-blur-[14px]"
         >
           <LoadingOrb size={110} label={t('loading')} />
         </div>

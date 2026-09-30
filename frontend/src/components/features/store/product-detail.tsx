@@ -73,7 +73,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
           <h1 className="text-ivory mt-4 font-serif text-[clamp(36px,5vw,72px)] leading-[0.94]">
             {title}
           </h1>
-          <p className="text-gold mt-6 font-serif text-[30px] tracking-[.04em]">
+          <p className="text-gold tracking-soft mt-6 font-serif text-[30px]">
             {formatPrice(product.price)}
           </p>
         </div>
@@ -82,7 +82,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
           <Prose maxWidth={48}>{t('productDescription')}</Prose>
           <ul className="space-y-2">
             {(t.raw('notes') as string[]).map((note) => (
-              <li key={note} className="text-ivory/68 font-sans text-[14px] tracking-[.04em]">
+              <li key={note} className="text-fg-soft text-body tracking-soft font-sans">
                 — {note}
               </li>
             ))}
@@ -117,7 +117,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
               </svg>
             </span>
             <span className="flex flex-col">
-              <span className="text-teal font-sans text-[11px] tracking-[.14em] uppercase">
+              <span className="text-teal text-label tracking-label font-sans uppercase">
                 {t('relatedFrequencyLabel')}
               </span>
               <span className="text-ivory font-serif text-[16px]">

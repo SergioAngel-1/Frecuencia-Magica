@@ -66,11 +66,11 @@ interface SlotProps {
  * que nunca puede matchear `:disabled`.
  */
 const BASE =
-  'relative inline-flex items-center justify-center rounded-pill font-serif tracking-[.05em] ' +
+  'relative inline-flex items-center justify-center rounded-pill font-serif tracking-soft ' +
   'transition-[color,background-color,border-color,box-shadow,opacity] duration-300 ease-out active:scale-[0.98]';
 
 const SIZE_CLASSES: Record<ButtonSize, string> = {
-  sm: 'min-h-11 px-[clamp(18px,3vw,26px)] py-[clamp(8px,1.2vw,11px)] text-[17px]',
+  sm: 'min-h-11 px-[clamp(18px,3vw,26px)] py-[clamp(8px,1.2vw,11px)] text-lead',
   md: 'min-h-11 px-[clamp(26px,4vw,34px)] py-[clamp(12px,1.6vw,15px)] text-[clamp(18px,2vw,19px)]',
   lg: 'min-h-11 px-[clamp(32px,5vw,46px)] py-[clamp(16px,2vw,18px)] text-[clamp(19px,2.4vw,22px)]',
 };
@@ -78,24 +78,28 @@ const SIZE_CLASSES: Record<ButtonSize, string> = {
 /** Variantes que no dependen de `tone` (todas salvo `accent`). */
 const VARIANT_CLASSES: Record<Exclude<ButtonVariant, 'accent'>, string> = {
   primary:
-    'bg-[rgba(247,244,234,0.95)] text-[#12213a] font-medium shadow-[0_10px_40px_rgba(216,185,120,0.22)] ' +
-    'hover:bg-[rgba(247,244,234,1)] hover:shadow-[0_14px_48px_rgba(216,185,120,0.34)]',
+    'bg-ivory/95 text-ink font-medium shadow-[0_10px_40px_rgba(216,185,120,0.22)] ' +
+    'hover:bg-ivory hover:shadow-[0_14px_48px_rgba(216,185,120,0.34)]',
   outline:
-    'bg-transparent border border-[rgba(247,244,234,0.22)] text-ivory ' +
-    'hover:bg-[rgba(247,244,234,0.06)] hover:border-[rgba(247,244,234,0.34)]',
+    'bg-transparent border border-ivory/22 text-ivory ' + 'hover:bg-ivory/6 hover:border-ivory/34',
   glass:
-    'bg-glass border border-[rgba(247,244,234,0.22)] text-ivory backdrop-blur-[8px] ' +
-    'hover:bg-[rgba(247,244,234,0.09)] hover:border-[rgba(247,244,234,0.34)]',
-  ghost:
-    'bg-transparent text-[rgba(247,244,234,0.6)] font-sans text-[13px] tracking-[.12em] ' +
-    'hover:text-[rgba(247,244,234,0.85)]',
+    'bg-glass border border-ivory/22 text-ivory backdrop-blur-[8px] ' +
+    'hover:bg-ivory/9 hover:border-ivory/34',
+  ghost: 'bg-transparent text-fg-muted font-sans text-meta tracking-ui ' + 'hover:text-fg-body',
 };
+
+/**
+ * `disabled` del primario: un relleno marfil al 45% de opacidad se lee como
+ * una píldora gris sólida (la «caja gris» que el sistema prohíbe). Apagado
+ * = la misma píldora como vidrio con borde, sin halo y con texto atenuado.
+ */
+const PRIMARY_DISABLED = 'bg-ivory/14 border border-ivory/20 text-fg-muted shadow-none';
 
 /** `accent` vira de color según `tone`; el oro es el valor por defecto. */
 const ACCENT_TONE_CLASSES: Record<ButtonTone, string> = {
-  gold: 'bg-[rgba(216,185,120,0.12)] border-[rgba(216,185,120,0.55)] hover:bg-[rgba(216,185,120,0.2)] hover:shadow-[0_0_24px_rgba(216,185,120,0.25)]',
-  teal: 'bg-[rgba(150,198,188,0.14)] border-[rgba(150,198,188,0.5)] hover:bg-[rgba(150,198,188,0.22)] hover:shadow-[0_0_24px_rgba(150,198,188,0.25)]',
-  lav: 'bg-[rgba(185,176,214,0.14)] border-[rgba(185,176,214,0.5)] hover:bg-[rgba(185,176,214,0.22)] hover:shadow-[0_0_24px_rgba(185,176,214,0.25)]',
+  gold: 'bg-gold/12 border-gold/55 hover:bg-gold/20 hover:shadow-glow-gold',
+  teal: 'bg-teal/14 border-teal/50 hover:bg-teal/22 hover:shadow-glow-teal',
+  lav: 'bg-lav/14 border-lav/50 hover:bg-lav/22 hover:shadow-glow-lav',
 };
 
 /**
@@ -140,7 +144,8 @@ export function Button({
   // `handleClick`, que también cubre la activación por teclado).
   const stateClasses = cn(
     loading && !disabled && 'pointer-events-none',
-    disabled && 'pointer-events-none opacity-45',
+    disabled && 'pointer-events-none',
+    disabled && (variant === 'primary' ? PRIMARY_DISABLED : 'opacity-45'),
   );
   const classes = cn(BASE, SIZE_CLASSES[size], variantClasses, stateClasses, className);
 

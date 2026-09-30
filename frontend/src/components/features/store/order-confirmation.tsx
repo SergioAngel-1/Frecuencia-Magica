@@ -35,7 +35,7 @@ export function OrderConfirmation({ media }: OrderConfirmationProps) {
         <Display size="md" level="h1">
           {t('done.title')}
         </Display>
-        <Prose maxWidth={44} className="text-ivory/82">
+        <Prose maxWidth={44} className="text-fg-body">
           {t('done.description')}
         </Prose>
         <Button variant="primary" asChild>

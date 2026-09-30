@@ -1,4 +1,7 @@
+import type { CSSProperties } from 'react';
+
 import { cn } from '@/lib/cn';
+import { zebraVariant } from '@/lib/editorial/zebra';
 import type {
   EditorialMediaAspect,
   MediaSkeletonProps,
@@ -24,6 +27,10 @@ const TONE_CLASSES: Record<EditorialTone, string> = {
  * Zebra editorial: a deliberate art-direction absence, never an empty box or
  * a fake image. The label remains available to assistive technology while every
  * visual layer stays decorative.
+ *
+ * La capa de bandas mide 124% del contenedor (`-inset-x-[12%]`) para que el
+ * barrido horizontal nunca deje ver el fondo liso en un borde. El ángulo y la
+ * fase salen del id del slot (`zebraVariant`), no del azar.
  */
 export function MediaSkeleton({
   slot,
@@ -33,26 +40,29 @@ export function MediaSkeleton({
   animated = true,
   className,
 }: MediaSkeletonProps) {
+  const variant = zebraVariant(slot);
+  const zebraStyle = {
+    '--fm-zebra-angle': `${variant.angle}deg`,
+    animationDelay: `${variant.delay}s`,
+  } as CSSProperties;
+
   return (
     <div
-      className={cn(
-        'relative isolate overflow-hidden bg-void',
-        ASPECT_CLASSES[aspect],
-        className,
-      )}
+      className={cn('bg-void relative isolate overflow-hidden', ASPECT_CLASSES[aspect], className)}
       data-media-slot={slot}
     >
       <span className="sr-only">{label}</span>
       <div
         aria-hidden="true"
         className={cn(
-          'fm-editorial-zebra pointer-events-none absolute inset-0',
+          'fm-editorial-zebra pointer-events-none absolute -inset-x-[12%] inset-y-0',
           animated && 'fm-editorial-zebra-sweep',
         )}
+        style={zebraStyle}
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-[12%] rounded-[38%] border border-gold/25 opacity-70"
+        className="border-gold/25 pointer-events-none absolute inset-[12%] rounded-[38%] border opacity-70"
         data-editorial-geometry="true"
       />
       <div
@@ -65,7 +75,7 @@ export function MediaSkeleton({
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_100%_at_30%_10%,rgba(247,244,234,0.16),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_100%_at_30%_10%,rgba(247,244,234,0.07),transparent_60%)]"
       />
     </div>
   );

@@ -98,11 +98,9 @@ export function SegmentedControl<Value extends string = string>({
             onClick={() => onChange(option.value)}
             onKeyDown={(event) => handleKeyDown(event, index)}
             className={cn(
-              'rounded-pill min-h-11 flex-1 py-[11px] font-serif text-[18px] tracking-[.04em]',
+              'rounded-pill tracking-soft min-h-11 flex-1 py-[11px] font-serif text-[18px]',
               'transition-colors duration-300 ease-out',
-              active
-                ? 'text-ivory bg-[rgba(216,185,120,0.16)]'
-                : 'bg-transparent text-[rgba(247,244,234,0.55)]',
+              active ? 'text-ivory bg-gold/16' : 'text-fg-meta bg-transparent',
             )}
           >
             {option.label}

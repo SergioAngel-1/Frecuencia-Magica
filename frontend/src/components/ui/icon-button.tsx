@@ -42,8 +42,8 @@ const HIT_AREA_CLASSES: Record<IconButtonSize, string> = {
 };
 
 const SURFACE_SIZE_CLASSES: Record<IconButtonSize, string> = {
-  sm: 'h-10 w-10 text-[15px]',
-  md: 'h-10 w-10 text-[17px]',
+  sm: 'h-10 w-10 text-body',
+  md: 'h-10 w-10 text-lead',
 };
 
 /**
@@ -92,8 +92,8 @@ export function IconButton({
         loading && 'animate-fm-glow',
         disabled && 'opacity-45',
         active
-          ? 'text-gold border-[rgba(216,185,120,0.6)] bg-[rgba(216,185,120,0.18)]'
-          : 'border-glass-brd bg-glass text-ivory group-hover:border-[rgba(216,185,120,0.4)] group-hover:bg-[rgba(247,244,234,0.09)]',
+          ? 'text-gold border-gold/60 bg-gold/18'
+          : 'border-glass-brd bg-glass text-ivory group-hover:border-gold/40 group-hover:bg-ivory/9',
       )}
     >
       {children}
