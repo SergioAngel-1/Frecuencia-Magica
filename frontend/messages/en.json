@@ -567,37 +567,37 @@
       "alt": {
         "hero": "Your sanctuary awaits you",
         "continue": "Pick your practice up where you left it",
-        "daily": "Today's practice in your sanctuary"
+        "daily": "Today's practice in your sanctuary",
+        "journal": "The pages of your journal",
+        "empty": "Your sanctuary awaits its first words"
       }
     },
     "kicker": "My Sanctuary",
-    "title": "Welcome back, Luz",
+    "title": "Welcome back, {name}",
     "stats": {
       "days": {
-        "value": "12",
         "label": "days of practice"
       },
       "frequencies": {
-        "value": "34",
         "label": "frequencies heard"
       },
       "courses": {
-        "value": "3",
         "label": "courses in progress"
       },
       "entries": {
-        "value": "8",
         "label": "journal entries"
       }
     },
     "continue": {
       "kicker": "Continue where you left off",
-      "subtitle": "Lesson 5 of 8 · The body you inhabit",
+      "lesson": "Lesson {number} of {total} · {title}",
+      "progress": "Course progress",
       "cta": "Resume"
     },
     "daily": {
       "kicker": "Frequency of the day",
-      "subtitle": "Chosen for your morning"
+      "subtitle": "Chosen for your morning",
+      "cta": "Listen now"
     }
   },
   "journal": {

@@ -572,37 +572,37 @@
       "alt": {
         "hero": "Tu santuario te espera",
         "continue": "Continúa tu práctica desde donde la dejaste",
-        "daily": "La práctica de hoy en tu santuario"
+        "daily": "La práctica de hoy en tu santuario",
+        "journal": "Las páginas de tu diario",
+        "empty": "Tu santuario espera sus primeras palabras"
       }
     },
     "kicker": "Mi Santuario",
-    "title": "Bienvenida de vuelta, Luz",
+    "title": "Bienvenida de vuelta, {name}",
     "stats": {
       "days": {
-        "value": "12",
         "label": "días de práctica"
       },
       "frequencies": {
-        "value": "34",
         "label": "frecuencias oídas"
       },
       "courses": {
-        "value": "3",
         "label": "cursos en camino"
       },
       "entries": {
-        "value": "8",
         "label": "entradas de diario"
       }
     },
     "continue": {
       "kicker": "Continúa donde lo dejaste",
-      "subtitle": "Lección 5 de 8 · El cuerpo que habitas",
+      "lesson": "Lección {number} de {total} · {title}",
+      "progress": "Avance del curso",
       "cta": "Retomar"
     },
     "daily": {
       "kicker": "Frecuencia del día",
-      "subtitle": "Elegida para tu mañana"
+      "subtitle": "Elegida para tu mañana",
+      "cta": "Escuchar ahora"
     }
   },
   "journal": {
