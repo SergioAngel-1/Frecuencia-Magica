@@ -6,8 +6,8 @@ import {
   type StoreMedia,
   type StoreProductMedia,
 } from '@/components/features/store/product-grid';
-import { PageShell } from '@/components/layout';
-import { Display, EditorialBanner, FullBleedSection, Kicker, Prose } from '@/components/ui';
+import { PageShell, RealmHero } from '@/components/layout';
+import { EditorialBanner } from '@/components/ui';
 import { PRODUCTS } from '@/data';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -54,31 +54,13 @@ export default async function StorePage({ params }: PageProps) {
 
   return (
     <PageShell width="store" padding="none" fullBleed editorial>
-      <FullBleedSection
+      <RealmHero
         media={storeMedia.hero}
-        mode="banner"
-        overlay="left"
-        className="fm-editorial-full-bleed"
-        contentClassName="flex min-h-full items-center"
-        minHeight="clamp(420px, 52vw, 680px)"
-      >
-        <div className="fm-container flex w-full flex-col justify-center py-20">
-          <div className="flex items-start justify-between gap-6">
-            <div>
-              <Kicker tone="teal" spacing="wide">
-                {t('kicker')}
-              </Kicker>
-              <Display size="xl" level="h1" className="mt-4 max-w-[12ch]">
-                {t('title')}
-              </Display>
-            </div>
-            <CartButton className="mt-1 shrink-0" />
-          </div>
-          <Prose maxWidth={54} className="text-fg-body mt-6 max-w-[52ch]">
-            {t('description')}
-          </Prose>
-        </div>
-      </FullBleedSection>
+        kicker={t('kicker')}
+        title={t('title')}
+        description={t('description')}
+        action={<CartButton className="mt-1 shrink-0" />}
+      />
 
       <div className="fm-editorial-full-bleed fm-container pt-[clamp(30px,5vw,76px)] pb-[220px]">
         <ProductGrid media={storeMedia} />

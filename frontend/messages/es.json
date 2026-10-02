@@ -105,6 +105,7 @@
     "realms": {
       "kicker": "El universo de Frecuencia Mágica",
       "title": "Elige por dónde entrar",
+      "intro": "Cada puerta abre un modo distinto de volver a ti. Entra por la que hoy te llame.",
       "featuredCta": "Entrar a la Academia",
       "featuredDescription": "Cursos que acompañan procesos reales de transformación, a tu propio ritmo. Aprende a volver a ti a través de la respiración, el silencio y pequeños rituales diarios.",
       "storeCta": "Ver productos",
@@ -419,6 +420,7 @@
     "featuredDescription": "Una hora para dejar que el sonido afloje lo que hoy pesa. Cuencos, gongs y frecuencias en vivo que te acompañan de vuelta a tu centro, desde donde estés.",
     "book": "Reservar",
     "all": "Todas las experiencias",
+    "archiveTitle": "Elige tu próximo encuentro",
     "dateLabel": "Fecha",
     "durationLabel": "Duración",
     "media": {

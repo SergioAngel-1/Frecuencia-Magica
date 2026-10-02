@@ -52,7 +52,7 @@ export function ExperienceList({ media }: ExperienceListProps) {
         <div className="mb-8 max-w-[58ch]">
           <Kicker tone="teal">{t('all')}</Kicker>
           <Display level="h2" size="md" id="experiences-archive-title" className="mt-3">
-            {t('title')}
+            {t('archiveTitle')}
           </Display>
         </div>
 

@@ -21,6 +21,7 @@ const cardSource = readSource('components/features/academy/course-card.tsx');
 const detailSource = readSource('components/features/academy/course-detail.tsx');
 const lessonListSource = readSource('components/features/academy/lesson-list.tsx');
 const playerSource = readSource('components/features/academy/lesson-player.tsx');
+const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/academia/loading.tsx');
 
 const ACADEMY_SLOTS = [
@@ -63,7 +64,8 @@ describe('academy editorial composition contracts', () => {
     expect(pageSource).toContain("resolveEditorialMedia('academy.hero'");
     expect(pageSource).toContain("resolveEditorialMedia('academy.featured-course'");
     expect(pageSource).toContain("resolveEditorialMedia('academy-course-cover'");
-    expect(pageSource).toContain('<FullBleedSection');
+    expect(pageSource).toContain('<RealmHero');
+    expect(heroSource).toContain('<FullBleedSection');
     expect(pageSource).toContain('fm-editorial-full-bleed');
     expect(pageSource).toContain('<CourseList media={academyMedia}');
     expect(listSource).toContain('media: AcademyMedia');

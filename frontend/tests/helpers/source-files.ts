@@ -23,7 +23,7 @@ export function readSource(path: string): string {
   return readFileSync(path, 'utf8');
 }
 
-/** Ruta relativa a `src/`, para mensajes de error legibles. */
+/** Ruta relativa a `src/` con `/` en cualquier plataforma, para mensajes y listas de excepciones. */
 export function fromSrc(path: string): string {
-  return relative(SRC, path);
+  return relative(SRC, path).replaceAll('\\', '/');
 }

@@ -1,19 +1,6 @@
-import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, relative, resolve } from 'node:path';
-
 import { describe, expect, it } from 'vitest';
 
-const SRC = resolve(process.cwd(), 'src');
-
-function sourceFiles(dir: string): string[] {
-  return readdirSync(dir).flatMap((entry) => {
-    const path = join(dir, entry);
-
-    if (statSync(path).isDirectory()) return sourceFiles(path);
-
-    return path.endsWith('.tsx') ? [path] : [];
-  });
-}
+import { fromSrc, readSource, SRC, sourceFiles } from '../helpers/source-files';
 
 /**
  * `EDITORIAL_MEDIA_REGISTRY` guarda un alt de respaldo en español. Usarlo en
@@ -27,10 +14,10 @@ const STATIC_ES_EXCEPTIONS = new Set(['app/not-found.tsx']);
 
 describe('editorial media alt text', () => {
   it('passes a translated alt at every localized call site', () => {
-    const offenders = sourceFiles(SRC)
+    const offenders = sourceFiles(SRC, /\.tsx$/)
       .map((file) => ({
-        file: relative(SRC, file).replaceAll('\\', '/'),
-        source: readFileSync(file, 'utf8'),
+        file: fromSrc(file),
+        source: readSource(file),
       }))
       .filter(({ file }) => !STATIC_ES_EXCEPTIONS.has(file))
       .filter(({ source }) => /resolveEditorialMedia\(\s*'[^']+'\s*\)/.test(source))

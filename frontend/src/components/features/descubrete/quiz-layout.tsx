@@ -29,7 +29,7 @@ export function QuizLayout({ children, media, phase, className }: QuizLayoutProp
       mode={phaseMode(phase)}
       overlay={phase === 'questions' ? 'left' : 'bottom'}
       className={cn('fm-editorial-full-bleed fm-editorial-shell', className)}
-      contentClassName="flex min-h-full items-center justify-center"
+      contentClassName="flex items-center justify-center"
     >
       <div
         aria-hidden="true"

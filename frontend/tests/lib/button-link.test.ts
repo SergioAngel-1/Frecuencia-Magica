@@ -1,19 +1,6 @@
-import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, relative, resolve } from 'node:path';
-
 import { describe, expect, it } from 'vitest';
 
-const SRC = resolve(process.cwd(), 'src');
-
-function sourceFiles(dir: string): string[] {
-  return readdirSync(dir).flatMap((entry) => {
-    const path = join(dir, entry);
-
-    if (statSync(path).isDirectory()) return sourceFiles(path);
-
-    return path.endsWith('.tsx') ? [path] : [];
-  });
-}
+import { fromSrc, readSource, SRC, sourceFiles } from '../helpers/source-files';
 
 /**
  * `Button asChild` clona su hijo con `cloneElement`. Con el `Link` de
@@ -24,10 +11,10 @@ function sourceFiles(dir: string): string[] {
  */
 describe('Button asChild in Server Components', () => {
   it('is never used outside a client boundary', () => {
-    const offenders = sourceFiles(SRC)
+    const offenders = sourceFiles(SRC, /\.tsx$/)
       .map((file) => ({
-        file: relative(SRC, file).replaceAll('\\', '/'),
-        source: readFileSync(file, 'utf8'),
+        file: fromSrc(file),
+        source: readSource(file),
       }))
       .filter(({ file }) => file !== 'components/ui/button.tsx')
       .filter(({ source }) => !/^\s*['"]use client['"]/.test(source))

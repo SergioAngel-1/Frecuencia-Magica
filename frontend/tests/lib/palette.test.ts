@@ -1,19 +1,8 @@
-import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, relative, resolve } from 'node:path';
+import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-const SRC = resolve(process.cwd(), 'src');
-
-function sourceFiles(dir: string): string[] {
-  return readdirSync(dir).flatMap((entry) => {
-    const path = join(dir, entry);
-
-    if (statSync(path).isDirectory()) return sourceFiles(path);
-
-    return /\.(ts|tsx)$/.test(path) ? [path] : [];
-  });
-}
+import { fromSrc, readSource, SRC, sourceFiles } from '../helpers/source-files';
 
 /** La paleta cerrada de AGENTS.md (más el punto claro del gradiente de fondo). */
 const PALETTE = new Set([
@@ -59,9 +48,9 @@ describe('closed palette', () => {
     const offenders: string[] = [];
 
     for (const file of sourceFiles(SRC)) {
-      const name = relative(SRC, file).replaceAll('\\', '/');
+      const name = fromSrc(file);
       const allowed = new Set([...PALETTE, ...(FILE_EXCEPTIONS[name] ?? [])]);
-      const hexes = readFileSync(file, 'utf8').match(/#[0-9a-fA-F]{6}\b/g) ?? [];
+      const hexes = readSource(file).match(/#[0-9a-fA-F]{6}\b/g) ?? [];
 
       for (const hex of hexes) {
         if (!allowed.has(hex.toLowerCase())) offenders.push(`${name}: ${hex}`);
@@ -73,7 +62,7 @@ describe('closed palette', () => {
 
   it('keeps the cover tints out of the data layer', () => {
     for (const file of ['audios', 'courses', 'experiences', 'products']) {
-      const source = readFileSync(join(SRC, 'data', `${file}.ts`), 'utf8');
+      const source = readSource(join(SRC, 'data', `${file}.ts`));
 
       expect(source, file).not.toMatch(/#[0-9a-fA-F]{6}/);
       expect(source, file).toContain('COVERS.');

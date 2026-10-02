@@ -67,9 +67,6 @@ export default async function HomePage({ params }: PageProps) {
     membership: resolveEditorialMedia('home-membership', { alt: t('media.alt.membership') }),
   };
 
-  const realmsFeaturedCta = t('realms.featuredCta' as 'realms.kicker');
-  const realmsFeaturedDescription = t('realms.featuredDescription' as 'realms.kicker');
-
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
       <HeroSection
@@ -119,10 +116,11 @@ export default async function HomePage({ params }: PageProps) {
           media={homeMedia.realms}
           kicker={t('realms.kicker')}
           title={t('realms.title')}
+          intro={t('realms.intro')}
           academia={{
             ...academiaData,
-            featuredCta: realmsFeaturedCta,
-            description: realmsFeaturedDescription,
+            featuredCta: t('realms.featuredCta'),
+            description: t('realms.featuredDescription'),
           }}
           realms={otherRealms}
           storeCta={t('realms.storeCta')}

@@ -1,30 +1,22 @@
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
-import { join, relative, resolve } from 'node:path';
+import { existsSync } from 'node:fs';
+import { relative, resolve } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
+import { readSource, sourceFiles } from '../helpers/source-files';
+
 const FRONTEND = process.cwd();
 const BRANDING = resolve(FRONTEND, '../Branding');
-const TOKENS = readFileSync(resolve(FRONTEND, 'src/app/tokens.css'), 'utf8');
-const GLOBALS = readFileSync(resolve(FRONTEND, 'src/app/globals.css'), 'utf8');
-const BRANDING_CSS = readFileSync(resolve(BRANDING, 'src/index.css'), 'utf8');
-
-function sourceFiles(dir: string): string[] {
-  return readdirSync(dir).flatMap((entry) => {
-    const path = join(dir, entry);
-
-    if (statSync(path).isDirectory()) return sourceFiles(path);
-
-    return /\.(jsx?|css)$/.test(path) ? [path] : [];
-  });
-}
+const TOKENS = readSource(resolve(FRONTEND, 'src/app/tokens.css'));
+const GLOBALS = readSource(resolve(FRONTEND, 'src/app/globals.css'));
+const BRANDING_CSS = readSource(resolve(BRANDING, 'src/index.css'));
 
 /** Los prompts del brief fotográfico citan la paleta en hex: es texto para el agente, no estilo. */
 const PROMPT_DATA = /[\\/]data[\\/]photography\.js$/;
 
-const BRANDING_SOURCES = sourceFiles(resolve(BRANDING, 'src'))
+const BRANDING_SOURCES = sourceFiles(resolve(BRANDING, 'src'), /\.(jsx?|css)$/)
   .filter((file) => !PROMPT_DATA.test(file))
-  .map((file) => ({ file: relative(BRANDING, file), text: readFileSync(file, 'utf8') }));
+  .map((file) => ({ file: relative(BRANDING, file), text: readSource(file) }));
 
 function declared(prefix: string): Set<string> {
   return new Set(
@@ -74,7 +66,7 @@ describe('legacy pastel showcase', () => {
     expect(existsSync(resolve(BRANDING, 'src/tokens'))).toBe(false);
     expect(existsSync(resolve(BRANDING, 'src/pages/PaletaTipografia.jsx'))).toBe(false);
 
-    const manifest = JSON.parse(readFileSync(resolve(BRANDING, 'package.json'), 'utf8')) as {
+    const manifest = JSON.parse(readSource(resolve(BRANDING, 'package.json'))) as {
       dependencies: Record<string, string>;
     };
 

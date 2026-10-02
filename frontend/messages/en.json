@@ -105,6 +105,7 @@
     "realms": {
       "kicker": "The universe of Magic Frequency",
       "title": "Choose where to enter",
+      "intro": "Each doorway opens a different way back to yourself. Step through the one that calls you today.",
       "featuredCta": "Enter the Academy",
       "featuredDescription": "Courses that accompany real processes of transformation, at your own pace. Learn to return to yourself through breath, silence and small daily rituals.",
       "storeCta": "View products",
@@ -414,6 +415,7 @@
     "featuredDescription": "An hour to let sound loosen what weighs today. Live bowls, gongs and frequencies that accompany you back to your center, wherever you are.",
     "book": "Book",
     "all": "All experiences",
+    "archiveTitle": "Choose your next gathering",
     "dateLabel": "Date",
     "durationLabel": "Duration",
     "media": {

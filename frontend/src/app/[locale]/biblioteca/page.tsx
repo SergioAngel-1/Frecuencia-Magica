@@ -1,8 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { LibrarySystem } from '@/components/features/library/library-system';
-import { PageShell } from '@/components/layout';
-import { FullBleedSection, Kicker, Display, Prose } from '@/components/ui';
+import { PageShell, RealmHero } from '@/components/layout';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -34,26 +33,12 @@ export default async function LibraryPage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      <FullBleedSection
+      <RealmHero
         media={libraryMedia.hero}
-        mode="banner"
-        overlay="left"
-        className="fm-editorial-full-bleed fm-editorial-shell"
-        contentClassName="flex min-h-full items-center"
-        minHeight="clamp(420px, 52vw, 680px)"
-      >
-        <div className="fm-container flex w-full flex-col justify-center py-20">
-          <Kicker tone="teal" spacing="wide">
-            {t('kicker')}
-          </Kicker>
-          <Display size="xl" level="h1" className="mt-4 max-w-[12ch]">
-            {t('title')}
-          </Display>
-          <Prose maxWidth={54} className="text-fg-body mt-6 max-w-[52ch]">
-            {t('description')}
-          </Prose>
-        </div>
-      </FullBleedSection>
+        kicker={t('kicker')}
+        title={t('title')}
+        description={t('description')}
+      />
 
       <div className="fm-editorial-full-bleed fm-container pt-[clamp(28px,5vw,72px)] pb-[220px]">
         <LibrarySystem media={libraryMedia} />

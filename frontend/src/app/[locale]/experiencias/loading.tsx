@@ -1,7 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 
-import { PageShell } from '@/components/layout';
+import { PageShell, REALM_HERO_HEIGHT } from '@/components/layout';
 import { MediaSkeleton } from '@/components/ui';
+import { cn } from '@/lib/cn';
 
 /** Silueta editorial de Experiencias: umbral, encuentro destacado y filas. */
 export default async function Loading() {
@@ -13,7 +14,7 @@ export default async function Loading() {
         <MediaSkeleton
           animated
           aspect="16:9"
-          className="fm-editorial-full-bleed motion-safe:animate-fm-fade-up min-h-[clamp(420px,52vw,680px)]"
+          className={cn('fm-editorial-full-bleed motion-safe:animate-fm-fade-up', REALM_HERO_HEIGHT)}
           label={t('media.alt.hero')}
           slot="experiences.hero"
         />

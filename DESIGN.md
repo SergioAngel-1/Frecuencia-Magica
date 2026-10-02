@@ -217,7 +217,7 @@ Las bandas y héroes a sangre no llevan radio. El retrato de Marisol conserva su
 - **En Server Components** se usa `ButtonLink` (`components/layout`), nunca `Button asChild` con `Link`: desaparece en silencio.
 
 ### Kicker, Display y ArrowLink
-`Kicker` (eyebrow), `Display` (titulares, con `id` para `aria-labelledby`) y `arrowLinkClasses` + `ArrowGlyph` («Ver todo →»: subrayado fino del acento del realm, mayúsculas, 44px) son las tres piezas tipográficas del UI Kit; se prefieren a cualquier `<p>`/`<h*>` con clases sueltas.
+`Kicker` (eyebrow), `Display` (titulares, con `id` para `aria-labelledby`; reparte sus líneas con `text-balance`, así que ningún titular deja una palabra suelta) y `arrowLinkClasses` + `ArrowGlyph` («Ver todo →»: subrayado fino del acento del realm, mayúsculas, 44px) son las tres piezas tipográficas del UI Kit; se prefieren a cualquier `<p>`/`<h*>` con clases sueltas.
 
 ### Cards / Containers
 - **Corner Style:** 22px (`rounded-card`); 26px para destacadas.

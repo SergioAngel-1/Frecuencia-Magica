@@ -18,6 +18,7 @@ const bookingPageSource = readSource('app/[locale]/experiencias/[experienceId]/r
 const listSource = readSource('components/features/experiences/experience-list.tsx');
 const rowSource = readSource('components/features/experiences/experience-row.tsx');
 const bookingSource = readSource('components/features/experiences/booking-flow.tsx');
+const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/experiencias/loading.tsx');
 
 const EXPERIENCE_SLOTS = [
@@ -76,7 +77,8 @@ describe('experiences editorial composition contracts', () => {
     expect(pageSource).toContain("resolveEditorialMedia('experiences.hero'");
     expect(pageSource).toContain("resolveEditorialMedia('experiences.featured'");
     expect(pageSource).toContain("resolveEditorialMedia('experiences-visual'");
-    expect(pageSource).toContain('<FullBleedSection');
+    expect(pageSource).toContain('<RealmHero');
+    expect(heroSource).toContain('<FullBleedSection');
     expect(pageSource).toContain('fm-editorial-full-bleed');
     expect(pageSource).toContain('<ExperienceList media={experienceMedia}');
     expect(listSource).toContain('media: ExperienceMedia');

@@ -17,6 +17,7 @@ const readSource = (relativePath: string) =>
 const pageSource = readSource('app/[locale]/biblioteca/page.tsx');
 const systemSource = readSource('components/features/library/library-system.tsx');
 const filtersSource = readSource('components/features/library/library-filters.tsx');
+const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/biblioteca/loading.tsx');
 
 const LIBRARY_SLOTS = [
@@ -78,7 +79,8 @@ describe('library editorial composition contracts', () => {
     expect(pageSource).toContain("alt: t('media.alt.hero')");
     expect(pageSource).toContain("sizes: '(min-width: 1024px) 720px, 100vw'");
     expect(pageSource).toContain("sizes: '(min-width: 1024px) 150px, 150px'");
-    expect(pageSource).toContain('<FullBleedSection');
+    expect(pageSource).toContain('<RealmHero');
+    expect(heroSource).toContain('<FullBleedSection');
     expect(pageSource).toContain('fm-editorial-full-bleed');
     expect(pageSource).toContain('<LibrarySystem media={libraryMedia}');
   });

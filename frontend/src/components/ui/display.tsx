@@ -36,7 +36,8 @@ const SIZE_CLASSES: Record<DisplaySize, string> = {
 /**
  * Título en Cormorant Garamond peso 300. `level` decide el elemento
  * semántico (o `span` para uso inline dentro de otro título), `size` fija la
- * escala y `italic` activa la variante cursiva completa.
+ * escala y `italic` activa la variante cursiva completa. Las líneas se
+ * reparten con `text-balance`: ningún titular deja una palabra suelta.
  *
  * Para contenido mixto con un fragmento enfatizado (patrón `heroTitleEm`,
  * prototipo línea 261: cursiva con degradado oro→teal→lavanda) envolver ese
@@ -62,7 +63,12 @@ export function Display({
   return (
     <Tag
       id={id}
-      className={cn('font-serif font-light', SIZE_CLASSES[size], italic && 'italic', className)}
+      className={cn(
+        'font-serif font-light text-balance',
+        SIZE_CLASSES[size],
+        italic && 'italic',
+        className,
+      )}
     >
       {children}
     </Tag>

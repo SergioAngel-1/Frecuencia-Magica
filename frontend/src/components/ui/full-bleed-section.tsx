@@ -56,7 +56,9 @@ export function FullBleedSection({
   return (
     <section
       className={cn(
-        'fm-editorial-full-bleed relative isolate overflow-hidden',
+        // `grid` estira el contenido al alto mínimo: un `h-full` contra un
+        // `min-height` no resuelve y `items-center|end` quedaba sin efecto.
+        'fm-editorial-full-bleed relative isolate grid overflow-hidden',
         MODE_CLASSES[mode],
         className,
       )}
@@ -74,7 +76,7 @@ export function FullBleedSection({
           />
         </div>
       ) : null}
-      <div className={cn('relative z-20 h-full', contentClassName)}>{children}</div>
+      <div className={cn('relative z-20 min-w-0', contentClassName)}>{children}</div>
     </section>
   );
 }

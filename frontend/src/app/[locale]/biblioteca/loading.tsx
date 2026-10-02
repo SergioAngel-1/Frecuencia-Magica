@@ -1,7 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 
-import { PageShell } from '@/components/layout';
+import { PageShell, REALM_HERO_HEIGHT } from '@/components/layout';
 import { MediaSkeleton, Skeleton } from '@/components/ui';
+import { cn } from '@/lib/cn';
 import { discSlot } from '@/lib/library/layout-slots';
 
 const SMALL_DISCS = Array.from({ length: 6 }, (_, i) => discSlot(i));
@@ -19,7 +20,7 @@ export default async function Loading() {
         <MediaSkeleton
           animated
           aspect="16:9"
-          className="fm-editorial-full-bleed min-h-[clamp(420px,52vw,680px)]"
+          className={cn('fm-editorial-full-bleed', REALM_HERO_HEIGHT)}
           label={t('media.alt.hero')}
           slot="library.hero"
         />

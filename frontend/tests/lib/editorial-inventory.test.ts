@@ -1,26 +1,15 @@
-import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { resolve } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
 import { EDITORIAL_MEDIA_SLOTS } from '@/config/editorial-media';
 
-const ROOT = process.cwd();
-const SRC = resolve(ROOT, 'src');
-const README = readFileSync(resolve(ROOT, 'public/editorial/README.md'), 'utf8');
+import { readSource, SRC, sourceFiles } from '../helpers/source-files';
 
-function sourceFiles(dir: string): string[] {
-  return readdirSync(dir).flatMap((entry) => {
-    const path = join(dir, entry);
-
-    if (statSync(path).isDirectory()) return sourceFiles(path);
-
-    return /\.(ts|tsx)$/.test(path) ? [path] : [];
-  });
-}
+const README = readSource(resolve(process.cwd(), 'public/editorial/README.md'));
 
 const SOURCE = sourceFiles(SRC)
-  .map((file) => readFileSync(file, 'utf8'))
+  .map((file) => readSource(file))
   .join('\n');
 
 /** Fila del inventario por id: `| `slot` | … | Estado |`, con o sin relleno de columnas. */

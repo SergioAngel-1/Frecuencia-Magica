@@ -12,7 +12,7 @@ const SIZES = {
 
 /** Titular en Cormorant Garamond peso 300. `size` fija la escala; `level` el elemento. */
 export function Display({ children, level: Tag = 'h2', size = 'lg', italic = false, className }) {
-  return <Tag className={cn('font-serif font-light', SIZES[size], italic && 'italic', className)}>{children}</Tag>
+  return <Tag className={cn('font-serif font-light text-balance', SIZES[size], italic && 'italic', className)}>{children}</Tag>
 }
 
 /** Fragmento cursivo con degradado oro → teal → lavanda (`heroTitleEm`). */

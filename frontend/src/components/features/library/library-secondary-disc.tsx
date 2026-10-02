@@ -28,7 +28,8 @@ export function LibrarySecondaryDisc({
 }: LibrarySecondaryDiscProps) {
   return (
     <div className="relative isolate w-full max-w-[150px]">
-      <div className="pointer-events-none absolute inset-x-0 top-0 aspect-square">
+      {/* La portada vive dentro del círculo del disco: sin foto, su banda es un halo, no una caja. */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 aspect-square overflow-hidden rounded-full">
         <EditorialImage
           aspect="1:1"
           className="h-full"

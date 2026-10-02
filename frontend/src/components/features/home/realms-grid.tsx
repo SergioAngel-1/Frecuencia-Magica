@@ -1,6 +1,5 @@
-import { EditorialBanner, ArrowGlyph, arrowLinkClasses } from '@/components/ui';
+import { EditorialBanner } from '@/components/ui';
 import { WaveSeparator } from '@/components/world';
-import { Link } from '@/i18n/navigation';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { RealmCard } from './realm-card';
@@ -18,6 +17,7 @@ type RealmsGridProps = {
   media: EditorialMedia;
   kicker: string;
   title: string;
+  intro: string;
   academia: RealmDescription & { featuredCta: string };
   realms: RealmDescription[];
   storeCta: string;
@@ -45,6 +45,7 @@ export function RealmsGrid({
   media,
   kicker,
   title,
+  intro,
   academia,
   realms,
   storeCta,
@@ -59,14 +60,8 @@ export function RealmsGrid({
         media={realmsMedia}
         eyebrow={kicker}
         title={title}
-        body={academia.description}
+        body={intro}
         tone="lav"
-        action={
-          <Link href={academia.href as '/academia'} className={arrowLinkClasses('lav')}>
-            {academia.featuredCta}
-            <ArrowGlyph />
-          </Link>
-        }
         className="w-full"
       />
 

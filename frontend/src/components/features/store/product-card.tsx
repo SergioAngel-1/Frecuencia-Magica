@@ -96,6 +96,11 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
               t(`products.${product.id}.title`)
             )}
           </h3>
+          {featured ? (
+            <p className="text-fg-soft text-body mt-1 max-w-[52ch] leading-[1.75]">
+              {t('featuredDescription')}
+            </p>
+          ) : null}
         </div>
       </Link>
 

@@ -12,6 +12,7 @@ export { LanguageToggle } from './language-toggle';
 export { NewsletterForm } from './newsletter-form';
 export { PageShell, type ShellPadding, type ShellWidth } from './page-shell';
 export { RealmFooter } from './realm-footer';
+export { REALM_HERO_HEIGHT, RealmHero, type RealmHeroProps } from './realm-hero';
 export { RealmLoading } from './realm-loading';
 export { RealmNav } from './realm-nav';
 export { RouteTransition } from './route-transition';

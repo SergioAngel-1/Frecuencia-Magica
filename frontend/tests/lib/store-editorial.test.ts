@@ -25,6 +25,7 @@ const cartSource = readSource('components/features/store/cart-view.tsx');
 const summarySource = readSource('components/features/store/order-summary.tsx');
 const confirmationSource = readSource('components/features/store/order-confirmation.tsx');
 const checkoutSource = readSource('components/features/store/checkout.tsx');
+const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/tienda/loading.tsx');
 
 const STORE_SLOTS = [
@@ -80,7 +81,8 @@ describe('store editorial composition contracts', () => {
     expect(storePageSource).toContain("resolveEditorialMedia('store.hero'");
     expect(storePageSource).toContain("resolveEditorialMedia('store-product-visual'");
     expect(storePageSource).toContain("resolveEditorialMedia('store.ritual-banner'");
-    expect(storePageSource).toContain('<FullBleedSection');
+    expect(storePageSource).toContain('<RealmHero');
+    expect(heroSource).toContain('<FullBleedSection');
     expect(storePageSource).toContain('fm-editorial-full-bleed');
     expect(storePageSource).toContain('<ProductGrid media={storeMedia}');
     expect(storePageSource).toContain('<EditorialBanner');
