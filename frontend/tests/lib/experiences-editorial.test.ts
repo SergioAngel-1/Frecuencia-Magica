@@ -13,13 +13,13 @@ const SOURCE_ROOT = resolve(process.cwd(), 'src');
 const readSource = (relativePath: string) =>
   readFileSync(resolve(SOURCE_ROOT, relativePath), 'utf8');
 
-const pageSource = readSource('app/[locale]/experiencias/page.tsx');
+const pageSource = readSource('app/[locale]/experiencias/(catalogo)/page.tsx');
 const bookingPageSource = readSource('app/[locale]/experiencias/[experienceId]/reservar/page.tsx');
 const listSource = readSource('components/features/experiences/experience-list.tsx');
 const rowSource = readSource('components/features/experiences/experience-row.tsx');
 const bookingSource = readSource('components/features/experiences/booking-flow.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
-const loadingSource = readSource('app/[locale]/experiencias/loading.tsx');
+const loadingSource = readSource('app/[locale]/experiencias/(catalogo)/loading.tsx');
 
 const EXPERIENCE_SLOTS = [
   { slot: 'experiences.hero' as const, aspect: '16:9' as const, alt: 'hero' },

@@ -13,7 +13,7 @@ const SOURCE_ROOT = resolve(process.cwd(), 'src');
 const readSource = (relativePath: string) =>
   readFileSync(resolve(SOURCE_ROOT, relativePath), 'utf8');
 
-const storePageSource = readSource('app/[locale]/tienda/page.tsx');
+const storePageSource = readSource('app/[locale]/tienda/(catalogo)/page.tsx');
 const productPageSource = readSource('app/[locale]/tienda/[productId]/page.tsx');
 const cartPageSource = readSource('app/[locale]/tienda/carrito/page.tsx');
 const gridSource = readSource('components/features/store/product-grid.tsx');
@@ -26,7 +26,7 @@ const summarySource = readSource('components/features/store/order-summary.tsx');
 const confirmationSource = readSource('components/features/store/order-confirmation.tsx');
 const checkoutSource = readSource('components/features/store/checkout.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
-const loadingSource = readSource('app/[locale]/tienda/loading.tsx');
+const loadingSource = readSource('app/[locale]/tienda/(catalogo)/loading.tsx');
 
 const STORE_SLOTS = [
   { slot: 'store.hero' as const, aspect: '16:9' as const, alt: 'hero' },

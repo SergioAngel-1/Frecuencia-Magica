@@ -13,7 +13,7 @@ const SOURCE_ROOT = resolve(process.cwd(), 'src');
 const readSource = (relativePath: string) =>
   readFileSync(resolve(SOURCE_ROOT, relativePath), 'utf8');
 
-const pageSource = readSource('app/[locale]/academia/page.tsx');
+const pageSource = readSource('app/[locale]/academia/(catalogo)/page.tsx');
 const coursePageSource = readSource('app/[locale]/academia/[courseId]/page.tsx');
 const lessonPageSource = readSource('app/[locale]/academia/[courseId]/[lessonId]/page.tsx');
 const listSource = readSource('components/features/academy/course-list.tsx');
@@ -22,7 +22,7 @@ const detailSource = readSource('components/features/academy/course-detail.tsx')
 const lessonListSource = readSource('components/features/academy/lesson-list.tsx');
 const playerSource = readSource('components/features/academy/lesson-player.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
-const loadingSource = readSource('app/[locale]/academia/loading.tsx');
+const loadingSource = readSource('app/[locale]/academia/(catalogo)/loading.tsx');
 
 const ACADEMY_SLOTS = [
   { slot: 'academy.hero' as const, aspect: '16:9' as const, alt: 'hero' },

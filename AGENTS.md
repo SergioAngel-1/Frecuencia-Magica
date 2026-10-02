@@ -77,6 +77,7 @@ npm run format:check && npm run lint && npm run typecheck && npm run test && npm
 - `docs/brief-fotografico.md` no se edita a mano: cambia `Branding/src/data/photography.js` y regenera; `tests/lib/photography-brief.test.ts` falla si el brief se desvía de `editorial-media.ts`, del catálogo o de `messages/`.
 
 - El prototipo original ya no existe en el repo: no hay nada que comparar bajo `frontend-prototype/` (ver «Fuentes de verdad»).
+- Un `loading.tsx` no puede envolver una ruta dinámica: su `notFound()` saldría con estado 200 (la respuesta ya se está emitiendo). Por eso no hay `[locale]/loading.tsx` y el índice de tienda, academia y experiencias vive con su esqueleto en un route group `(catalogo)/`; lo vigila `tests/lib/not-found-status.test.ts`. `next dev` responde 200 igualmente: el 404 real se comprueba con `next build` + `next start`.
 - Vitest sólo recoge `tests/**/*.test.{ts,tsx}` (así lo define `vitest.config.ts`): un test dentro de `src/` no se ejecuta.
 - Al ejecutar el plan: usa las skills `superpowers:subagent-driven-development` (recomendada) o `superpowers:executing-plans`.
 - `next build` comparte `.next` con el dev server: tras ejecutar el gate completo, reiniciar `npm run dev` si sigue en uso.

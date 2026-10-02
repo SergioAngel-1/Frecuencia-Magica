@@ -13,9 +13,9 @@ import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 type PageProps = { params: Promise<{ locale: string; productId: string }> };
 
 /**
- * Sólo existen los ids del catálogo: uno desconocido responde 404 en el
- * enrutado, antes de que el `loading.tsx` del realm empiece a emitir (un
- * `notFound()` dentro del streaming sale con estado 200).
+ * Sólo existen los ids del catálogo. El 404 de uno desconocido sale con su
+ * estado real porque el `loading.tsx` del realm vive en `(catalogo)/` y no
+ * envuelve esta ruta: un `notFound()` dentro del streaming responde 200.
  */
 export const dynamicParams = false;
 
