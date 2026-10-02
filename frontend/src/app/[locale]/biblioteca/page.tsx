@@ -28,7 +28,6 @@ export default async function LibraryPage({ params }: PageProps) {
       alt: t('media.alt.archiveBanner'),
     }),
     audioCover: resolveEditorialMedia('library.audio-cover.*', {
-      alt: t('media.alt.audioCover', { title: '{title}' }),
       sizes: '(min-width: 1024px) 150px, 150px',
     }),
   };

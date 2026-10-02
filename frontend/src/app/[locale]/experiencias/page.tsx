@@ -29,7 +29,6 @@ export default async function ExperiencesPage({ params }: PageProps) {
       sizes: '100vw',
     }),
     row: resolveEditorialMedia('experiences-visual', {
-      alt: t('media.alt.row', { title: '{title}' }),
       sizes: '(min-width: 1280px) 1200px, calc(100vw - 48px)',
     }),
   };

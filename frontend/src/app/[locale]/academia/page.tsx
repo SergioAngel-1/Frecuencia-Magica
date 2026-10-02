@@ -26,7 +26,6 @@ export default async function AcademyPage({ params }: PageProps) {
       sizes: '(min-width: 1280px) 1040px, calc(100vw - 48px)',
     }),
     courseCover: resolveEditorialMedia('academy-course-cover', {
-      alt: t('media.alt.courseCover', { title: '{title}' }),
       sizes: '(min-width: 1280px) 520px, (min-width: 768px) 42vw, calc(100vw - 48px)',
     }),
   };

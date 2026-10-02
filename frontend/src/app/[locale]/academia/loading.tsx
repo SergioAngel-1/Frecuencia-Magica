@@ -21,7 +21,7 @@ export default async function Loading() {
           <MediaSkeleton
             aspect="16:8"
             className="motion-safe:animate-fm-fade-up mb-[clamp(42px,7vw,90px)] min-h-[clamp(420px,42vw,600px)]"
-            label={t('media.alt.featured')}
+            label={t('media.alt.featured', { title: t('courses.c1.title') })}
             slot="academy.featured-course"
           />
 
