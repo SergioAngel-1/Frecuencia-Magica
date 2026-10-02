@@ -22,7 +22,9 @@ import {
 import { renderBrief } from '../../../Branding/src/data/photography-brief.js';
 
 function lookup(catalog: unknown, key: string): string {
-  return key.split('.').reduce<unknown>((node, part) => (node as Record<string, unknown>)?.[part], catalog) as string;
+  return key
+    .split('.')
+    .reduce<unknown>((node, part) => (node as Record<string, unknown>)?.[part], catalog) as string;
 }
 
 const RATIO: Record<string, number> = { '16:9': 16 / 9, '16:8': 2, '3:4': 3 / 4, '1:1': 1 };
@@ -51,10 +53,18 @@ describe('photography brief', () => {
   });
 
   it('expands one row per catalog item for the instance slots', () => {
-    expect(FAMILIES.audio.instances.map((item) => item.slug)).toEqual(AUDIOS.map((item) => item.id));
-    expect(FAMILIES.course.instances.map((item) => item.slug)).toEqual(COURSES.map((item) => item.id));
-    expect(FAMILIES.experience.instances.map((item) => item.slug)).toEqual(EXPERIENCES.map((item) => item.id));
-    expect(FAMILIES.product.instances.map((item) => item.slug)).toEqual(PRODUCTS.map((item) => item.id));
+    expect(FAMILIES.audio.instances.map((item) => item.slug)).toEqual(
+      AUDIOS.map((item) => item.id),
+    );
+    expect(FAMILIES.course.instances.map((item) => item.slug)).toEqual(
+      COURSES.map((item) => item.id),
+    );
+    expect(FAMILIES.experience.instances.map((item) => item.slug)).toEqual(
+      EXPERIENCES.map((item) => item.id),
+    );
+    expect(FAMILIES.product.instances.map((item) => item.slug)).toEqual(
+      PRODUCTS.map((item) => item.id),
+    );
   });
 
   it('names each instance exactly as the catalog does, in both languages', () => {

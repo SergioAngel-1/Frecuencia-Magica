@@ -56,9 +56,12 @@ export function useCrossPortal(): () => void {
     const timing = quick ? { navigate: QUICK_MS, reveal: QUICK_MS, settle: QUICK_MS } : undefined;
     usePortalStore.getState().cross(timing);
 
-    navTimerRef.current = setTimeout(() => {
-      router.push('/inicio');
-    }, quick ? QUICK_MS : PORTAL_TIMING.navigate);
+    navTimerRef.current = setTimeout(
+      () => {
+        router.push('/inicio');
+      },
+      quick ? QUICK_MS : PORTAL_TIMING.navigate,
+    );
   }, [router, reduced]);
 
   return cross;

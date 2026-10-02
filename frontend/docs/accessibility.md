@@ -6,12 +6,12 @@ Decisiones y verificación de accesibilidad del frontend. Todo lo que se documen
 
 Paleta sobre el fondo de la app (`radial-gradient(140% 100% at 50% -10%, #16273f 0%, var(--void) 45%, var(--void-2) 100%)`). El punto más claro del gradiente es `#16273f` (arriba); los valores de opacidad se fijaron para cumplir **WCAG AA (4.5:1)** contra ese peor caso, no contra el fondo más oscuro.
 
-| Texto | Opacidad mínima de `--ivory` | Contraste sobre `#16273f` |
-|---|---|---|
-| Cuerpo (≥ 15px) | `60%` | ≈ 5.2:1 |
-| Meta / kickers (10–13px, MAYÚSCULAS espaciadas) | `55%` | ≈ 4.8:1 |
-| Títulos grandes (≥ 24px serif) | `55%` | ≈ 4.8:1 (mínimo exigido 3:1) |
-| Texto decorativo / deshabilitado | nunca por debajo de `55%` | — |
+| Texto                                           | Opacidad mínima de `--ivory` | Contraste sobre `#16273f`    |
+| ----------------------------------------------- | ---------------------------- | ---------------------------- |
+| Cuerpo (≥ 15px)                                 | `60%`                        | ≈ 5.2:1                      |
+| Meta / kickers (10–13px, MAYÚSCULAS espaciadas) | `55%`                        | ≈ 4.8:1                      |
+| Títulos grandes (≥ 24px serif)                  | `55%`                        | ≈ 4.8:1 (mínimo exigido 3:1) |
+| Texto decorativo / deshabilitado                | nunca por debajo de `55%`    | —                            |
 
 Los cinco peldaños de marfil son tokens (`text-ivory`, `text-fg-body` 82%, `text-fg-soft` 70%, `text-fg-muted` 60%, `text-fg-meta` 55%); el más bajo es el piso AA de la tabla. Sobre **fotografía o zebra** el contraste lo garantiza el scrim único de `EditorialOverlay`, no el peldaño: los kickers de 11px en oro/teal sobre bandas medían 3.3–4.3:1 hasta la pasada del 2026-09-30.
 
@@ -21,12 +21,12 @@ Regla práctica: **nunca introducir `text-ivory/50` o inferior en texto**. El ma
 
 ## Landmarks
 
-| Landmark | Componente |
-|---|---|
-| `<header>` | `SiteHeader` (fijo, `pointer-events-none` salvo controles) |
-| `<nav aria-label="Realms">` | `RealmNav` (constelación) |
-| `<main id="contenido">` | Layout `[locale]` — posee el landmark; las páginas NO anidan `<main>` |
-| `<footer>` | `SiteFooter` / `RealmFooter` |
+| Landmark                    | Componente                                                            |
+| --------------------------- | --------------------------------------------------------------------- |
+| `<header>`                  | `SiteHeader` (fijo, `pointer-events-none` salvo controles)            |
+| `<nav aria-label="Realms">` | `RealmNav` (constelación)                                             |
+| `<main id="contenido">`     | Layout `[locale]` — posee el landmark; las páginas NO anidan `<main>` |
+| `<footer>`                  | `SiteFooter` / `RealmFooter`                                          |
 
 Primer elemento enfocable del documento: enlace «Saltar al contenido» (`#contenido`), visualmente oculto hasta recibir foco.
 

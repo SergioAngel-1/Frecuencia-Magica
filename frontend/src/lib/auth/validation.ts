@@ -12,9 +12,7 @@ export type AuthFormValues = {
  * nunca conoce el idioma.
  */
 export type AuthErrorKey =
-  | 'auth.errors.nameRequired'
-  | 'auth.errors.emailInvalid'
-  | 'auth.errors.passwordShort';
+  'auth.errors.nameRequired' | 'auth.errors.emailInvalid' | 'auth.errors.passwordShort';
 
 export type AuthFieldErrors = Partial<Record<keyof AuthFormValues, AuthErrorKey>>;
 

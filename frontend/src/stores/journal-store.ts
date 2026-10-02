@@ -22,10 +22,8 @@ export const useJournalStore = create<JournalState>()(
     (set) => ({
       entries: [],
       draft: { mood: null, text: '' },
-      setMood: (i) =>
-        set((state) => ({ draft: { ...state.draft, mood: i } })),
-      setText: (t) =>
-        set((state) => ({ draft: { ...state.draft, text: t } })),
+      setMood: (i) => set((state) => ({ draft: { ...state.draft, mood: i } })),
+      setText: (t) => set((state) => ({ draft: { ...state.draft, text: t } })),
       save: (now) =>
         set((state) => {
           if (!state.draft.text.trim() || state.draft.mood === null) return state;

@@ -6,10 +6,7 @@ export type CartLine = {
   lineTotal: number;
 };
 
-export function cartLines(
-  items: Record<string, number>,
-  products: readonly Product[],
-): CartLine[] {
+export function cartLines(items: Record<string, number>, products: readonly Product[]): CartLine[] {
   return Object.entries(items)
     .map(([id, quantity]) => {
       const product = products.find((p) => p.id === id);
@@ -24,10 +21,7 @@ export function cartLines(
     .filter((line): line is CartLine => line !== null);
 }
 
-export function cartSubtotal(
-  items: Record<string, number>,
-  products: readonly Product[],
-): number {
+export function cartSubtotal(items: Record<string, number>, products: readonly Product[]): number {
   return cartLines(items, products).reduce((sum, line) => sum + line.lineTotal, 0);
 }
 

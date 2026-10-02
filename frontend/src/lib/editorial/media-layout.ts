@@ -1,7 +1,4 @@
-import type {
-  EditorialMediaMode,
-  EditorialOverlayDirection,
-} from '@/types/editorial-media';
+import type { EditorialMediaMode, EditorialOverlayDirection } from '@/types/editorial-media';
 
 export type EditorialViewport = 'mobile' | 'tablet' | 'desktop';
 

@@ -4,14 +4,14 @@ Presupuestos, métricas y decisiones de rendimiento del frontend (Task 16.4 del 
 
 ## Presupuestos
 
-| Métrica | Presupuesto | Estado (2026-08-11) |
-|---|---|---|
-| First Load JS (cualquier ruta, gzip) | ≤ 200 kB | ✅ 213–216 kB (build) — ver desglose |
-| FPS en desktop | 60 | ✅ sin caídas medidas en la home |
-| FPS en móvil de gama media | 30 | ✅ (partículas reducidas a 28) |
-| `devicePixelRatio` | capado a 2 | ✅ `CosmicCanvas` |
-| Animaciones | sólo `transform`/`opacity` | ✅ auditoría corregida (cursor, aros, botones) |
-| Pausas fuera de pantalla | sin drenaje de batería | ✅ verificado |
+| Métrica                              | Presupuesto                | Estado (2026-08-11)                            |
+| ------------------------------------ | -------------------------- | ---------------------------------------------- |
+| First Load JS (cualquier ruta, gzip) | ≤ 200 kB                   | ✅ 213–216 kB (build) — ver desglose           |
+| FPS en desktop                       | 60                         | ✅ sin caídas medidas en la home               |
+| FPS en móvil de gama media           | 30                         | ✅ (partículas reducidas a 28)                 |
+| `devicePixelRatio`                   | capado a 2                 | ✅ `CosmicCanvas`                              |
+| Animaciones                          | sólo `transform`/`opacity` | ✅ auditoría corregida (cursor, aros, botones) |
+| Pausas fuera de pantalla             | sin drenaje de batería     | ✅ verificado                                  |
 
 > Nota: el presupuesto de 200 kB estaba pensado para el JS de primera carga. El valor que imprime `next build` (First Load JS) ya es gzip y se usó como métrica. Queda una deuda de ~13–16 kB sobre el tope, toda ella en React DOM (~59 kB gz) y el runtime de Next/Turbopack (~39 kB gz) — no reducible desde la aplicación. Ver «Deuda restante».
 
@@ -40,19 +40,19 @@ Presupuestos, métricas y decisiones de rendimiento del frontend (Task 16.4 del 
 
 ## Desglose del first load de `/inicio` (gzip, medido)
 
-| Chunk | gz | Contenido |
-|---|---|---|
-| `66e5d5d1` | 59 kB | React DOM (inamovible) |
-| `a21808` | 28 kB | motion core + domAnimation |
-| `a8c9ea` | 23 kB | next-intl + zustand |
-| `475395bf` | 22 kB | runtime Next/Turbopack (inamovible) |
-| `c20516c2` | 17 kB | runtime Next/Turbopack (inamovible) |
-| `675530` | 17 kB | layout cliente: PlayerDock + motion |
-| `a92e07` | 14 kB | layout cliente: header, nav, footer, RouteTransition |
-| `ce91af` | 10 kB | world engine: canvas, cursor, Lenis |
-| `7d5fd1` | 7 kB | SmoothScroll + RouteTransition |
-| resto | ~23 kB | chunks menores |
-| **Total** | **220 kB** | |
+| Chunk      | gz         | Contenido                                            |
+| ---------- | ---------- | ---------------------------------------------------- |
+| `66e5d5d1` | 59 kB      | React DOM (inamovible)                               |
+| `a21808`   | 28 kB      | motion core + domAnimation                           |
+| `a8c9ea`   | 23 kB      | next-intl + zustand                                  |
+| `475395bf` | 22 kB      | runtime Next/Turbopack (inamovible)                  |
+| `c20516c2` | 17 kB      | runtime Next/Turbopack (inamovible)                  |
+| `675530`   | 17 kB      | layout cliente: PlayerDock + motion                  |
+| `a92e07`   | 14 kB      | layout cliente: header, nav, footer, RouteTransition |
+| `ce91af`   | 10 kB      | world engine: canvas, cursor, Lenis                  |
+| `7d5fd1`   | 7 kB       | SmoothScroll + RouteTransition                       |
+| resto      | ~23 kB     | chunks menores                                       |
+| **Total**  | **220 kB** |                                                      |
 
 ## Deuda restante (documentada, no bloqueante)
 
@@ -68,4 +68,5 @@ Presupuestos, métricas y decisiones de rendimiento del frontend (Task 16.4 del 
 npm run build        # First Load JS por ruta (métrica oficial del presupuesto)
 npm run start        # servir el build
 ```
+
 La medición del transferido real (gzip) se hizo con la Performance API del navegador (`performance.getEntriesByType('resource')`) sobre `/inicio`; el desglose por chunk se obtuvo listando los archivos de `.next/static/chunks/` y calculando su tamaño gzip. La pasada responsive (overflow + hit targets en 1440/1280/768/390) se hizo con un script de Selenium desechable, no versionado.

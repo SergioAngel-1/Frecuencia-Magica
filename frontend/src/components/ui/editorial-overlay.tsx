@@ -7,8 +7,10 @@ import type {
 
 const SCRIM_GRADIENTS: Record<EditorialOverlayDirection, string> = {
   left: 'linear-gradient(90deg, rgba(10,18,32,0.86) 0%, rgba(15,27,46,0.58) 44%, transparent 82%)',
-  right: 'linear-gradient(270deg, rgba(10,18,32,0.86) 0%, rgba(15,27,46,0.58) 44%, transparent 82%)',
-  bottom: 'linear-gradient(180deg, transparent 24%, rgba(15,27,46,0.76) 72%, rgba(10,18,32,0.88) 100%)',
+  right:
+    'linear-gradient(270deg, rgba(10,18,32,0.86) 0%, rgba(15,27,46,0.58) 44%, transparent 82%)',
+  bottom:
+    'linear-gradient(180deg, transparent 24%, rgba(15,27,46,0.76) 72%, rgba(10,18,32,0.88) 100%)',
   top: 'linear-gradient(0deg, transparent 24%, rgba(15,27,46,0.76) 72%, rgba(10,18,32,0.88) 100%)',
   none: 'none',
 };

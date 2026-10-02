@@ -43,15 +43,11 @@ describe('editorial media contracts', () => {
       overlay: 'bottom',
       sizes: '100vw',
     });
-    expect(
-      mediaLayout('portrait', { focalPoint: '50% 30%' }),
-    ).toMatchObject({
+    expect(mediaLayout('portrait', { focalPoint: '50% 30%' })).toMatchObject({
       ratio: '3:4',
       objectPosition: '50% 30%',
     });
-    expect(mediaLayout('banner', 'desktop').sizes).toBe(
-      mediaLayout('banner', 'desktop').sizes,
-    );
+    expect(mediaLayout('banner', 'desktop').sizes).toBe(mediaLayout('banner', 'desktop').sizes);
   });
 });
 

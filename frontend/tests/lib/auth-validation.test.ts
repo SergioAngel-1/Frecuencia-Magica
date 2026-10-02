@@ -25,8 +25,7 @@ describe('authErrors', () => {
 
   it('exige nombre no vacío sólo en registro', () => {
     expect(
-      authErrors('register', { name: '', email: 'ana@ejemplo.com', password: 'password123' })
-        .name,
+      authErrors('register', { name: '', email: 'ana@ejemplo.com', password: 'password123' }).name,
     ).toBe('auth.errors.nameRequired');
 
     expect(

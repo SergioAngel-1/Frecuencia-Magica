@@ -14,7 +14,10 @@ export default async function Loading() {
         <MediaSkeleton
           animated
           aspect="16:9"
-          className={cn('fm-editorial-full-bleed motion-safe:animate-fm-fade-up', REALM_HERO_HEIGHT)}
+          className={cn(
+            'fm-editorial-full-bleed motion-safe:animate-fm-fade-up',
+            REALM_HERO_HEIGHT,
+          )}
           label={t('media.alt.hero')}
           slot="experiences.hero"
         />

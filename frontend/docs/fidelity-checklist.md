@@ -24,6 +24,7 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 ## Por vista
 
 ### Portal (`/`)
+
 - [x] Geometría sagrada girando (dos SVG contrapuestos) + logo flotante con halo.
 - [x] Título/kicker/subtítulo en Display hero centrado.
 - [x] Botón «Entrar» de tres capas con glow y `Magnetic`.
@@ -32,14 +33,16 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 - [x] Sin nav ni footer (regla de visibilidad).
 
 ### Home (`/inicio`)
+
 - [x] Hero con rejilla 1.05fr/0.95fr, kicker en píldora, título con gradiente, trío de stats.
 - [x] Columna derecha con aros orbitales + triángulo + logo flotante.
 - [x] Frecuencia del día (botón full-width con `FrequencyDisc`) y rejilla de 4 audios.
-- [x] Bento de realms de 12 columnas que tesela: Academia (7) + Descúbrete (5) / Biblioteca (4) + Experiencias (4) + Tienda (4, dos filas) / Mi Santuario (8); 2 columnas en tablet. *(Hasta 2026-09-30 los spans sumaban 13 y dejaban huecos pese a esta casilla.)*
+- [x] Bento de realms de 12 columnas que tesela: Academia (7) + Descúbrete (5) / Biblioteca (4) + Experiencias (4) + Tienda (4, dos filas) / Mi Santuario (8); 2 columnas en tablet. _(Hasta 2026-09-30 los spans sumaban 13 y dejaban huecos pese a esta casilla.)_
 - [x] Sobre Marisol (retrato en arco de nicho) y membresía.
 - [x] `WaveSeparator` entre secciones.
 
 ### Acceso (`/acceso`)
+
 - [x] Rejilla 1fr/360px con `AuthAside` (aros, logo, cita).
 - [x] SegmentedControl login/registro; campo nombre con apertura «pergamino» (grid-rows, `inert`).
 - [x] Validación real (email, contraseña ≥ 8, nombre en registro) con `aria-live` y errores en `--color-warn`.
@@ -47,30 +50,35 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 - [x] Sin nav ni footer.
 
 ### Descúbrete (`/descubrete`)
+
 - [x] Flujo intro → pregunta → sintonización → resultado (reducer puro + temporizador 2600 ms).
 - [x] Radio group accesible, `StepProgress`, `AnimatePresence` entre pasos.
 - [x] Resultado: orbe, frecuencia asignada, dos botones (repetir / biblioteca).
 - [x] Vista centrada verticalmente (`min-h-dvh`), con nav y sin footer.
 
 ### Biblioteca (`/biblioteca`)
+
 - [x] Sistema solar: disco destacado («el sol», su foto se funde con una máscara radial) + 6 discos en posiciones orbitales exactas, sin columna de texto duplicada. Apilado en <1024px.
 - [x] Filtros por tags (5 pills), `EmptyState` cuando no hay resultados.
 - [x] Disco destacado centrado (`FrequencyDisc` con `mx-auto`), aros que escalan.
 - [x] Grid responsive < 900px.
 
 ### Academia (`/academia`, `/[courseId]`, `/[courseId]/[lessonId]`)
+
 - [x] Card destacada + grid 2 cols (jerarquía 1.15fr/1fr).
 - [x] Detalle: video placeholder de geometría/luz, temario con ✓, lección actual resaltada.
 - [x] Reproductor de lección con prev/next y pantalla de finalización.
 - [x] Headings jerarquizados (h2 en cards).
 
 ### Experiencias (`/experiencias`, `/[experienceId]/reservar`)
+
 - [x] Fila destacada + filas estándar (220px/1fr/auto).
 - [x] Flujo de reserva: fecha (grid), hora, formulario, confirmación con orbe.
 - [x] Fechas locale-aware (`Intl.DateTimeFormat`).
 - [x] `TODO(backend)` en el envío de confirmación.
 
 ### Tienda (`/tienda`, `/[productId]`, `/carrito`)
+
 - [x] Bento exacto: fila 3 cols (p2/p3/p4), destacado span 2 + p5, fila 3 cols (p6/p7/p8).
 - [x] Detalle: banda 4/5, info, secciones colapsables «pergamino», frecuencia asociada, relacionados.
 - [x] Carrito con líneas, −/+, resumen sticky y totales correctos (gratis > $50).
@@ -78,6 +86,7 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 - [x] `sr-only` h2 sobre el grid de productos (jerarquía h1→h2→h3).
 
 ### Mi Santuario (`/mi-santuario`)
+
 - [x] Stats (días, frecuencias, cursos, entradas), tarjeta de continuación, frecuencia diaria.
 - [x] Diario: 5 estados de ánimo (44px, wrap en móvil), textarea, guardar con ✓ efímero, timeline.
 - [x] `TODO(backend)` implícito en persistencia (store Zustand local).
@@ -97,7 +106,6 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 ## Desviaciones conscientes registradas
 
 0. **`Branding/` ya no es un sistema propio.** Desde el 2026-09-30 es un espejo vivo de `tokens.css` (ver `Branding/README.md` y la sección 10 de la auditoría). El showcase claro/pastel de junio de 2026 fue eliminado.
-
 
 1. **Prototipo perdido**: no existe `frontend-prototype/` en el repo (eliminado en `7c55bf0`). La fidelidad se verifica contra el sistema codificado (`globals.css`, `config/`) y el Brand Book de `~/Descargas/`.
 2. **Kit de desarrollo en `/kit`** (no `/_kit`): las carpetas con guión bajo no generan ruta en App Router. Cierra con `notFound()` en producción (guard con `force-dynamic` para que Turbopack no lo elimine en build).

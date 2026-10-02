@@ -25,7 +25,14 @@ export interface RealmHeroProps {
  * tienda): foto a sangre con el kicker, el título y la entrada centrados en
  * vertical sobre el eje de página. Presentacional: recibe el texto traducido.
  */
-export function RealmHero({ media, kicker, title, description, action, className }: RealmHeroProps) {
+export function RealmHero({
+  media,
+  kicker,
+  title,
+  description,
+  action,
+  className,
+}: RealmHeroProps) {
   const heading = (
     <>
       <Kicker tone="teal" spacing="wide">

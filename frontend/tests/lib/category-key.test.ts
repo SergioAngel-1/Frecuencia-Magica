@@ -14,9 +14,7 @@ describe('categoryKey', () => {
 
   it('funciona para todas las categorías del catálogo real', () => {
     for (const product of PRODUCTS) {
-      expect(categoryKey(product.catKey)).toBe(
-        product.catKey.replace(/^store\./, ''),
-      );
+      expect(categoryKey(product.catKey)).toBe(product.catKey.replace(/^store\./, ''));
     }
   });
 });
