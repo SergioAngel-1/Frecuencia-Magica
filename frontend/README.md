@@ -27,10 +27,10 @@ npm run dev
 | `npm run test`         | Tests de lógica con Vitest           |
 | `npm run test:watch`   | Tests en modo watch                  |
 
-Antes de dar por terminado cualquier trabajo, los cuatro deben estar en verde:
+Antes de dar por terminado cualquier trabajo, los cinco deben estar en verde:
 
 ```bash
-npm run lint && npm run typecheck && npm run test && npm run build
+npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build
 ```
 
 ## Arquitectura
@@ -80,12 +80,16 @@ Fuera de alcance por ahora: blog, membresía como página propia, about, contact
 
 ## Añadir un realm nuevo
 
-1. **Config:** crear el id en `src/config/realms.ts` (`RealmId`, acento, nota del drone) y su banda en `src/config/bands.ts`.
-2. **Rutas:** añadir el segmento localizado en `src/i18n/routing.ts` (`pathnames`) — el `Link` de `@/i18n/navigation` traducirá `/nuevo` ↔ `/en/new` automáticamente.
-3. **Copy:** crear el namespace en `messages/es.json` y `messages/en.json` con las mismas claves (el test de integridad lo exige).
-4. **Datos:** el catálogo tipado en `src/data/` con claves de traducción, nunca textos.
-5. **Vista:** `src/app/[locale]/<realm>/page.tsx` (Server Component, empieza con `const locale = await resolveLocale(params);`) que compone componentes de `src/components/features/<realm>/`.
-6. **Navegación:** el realm aparece en `RealmNav`/`RealmsGrid` según los catálogos existentes (`config/realms.ts`).
+Un realm no es sólo una ruta: su id vive en varios sitios que hay que mantener sincronizados.
+
+1. **Tipo:** añadir el id a `RealmId` en `src/types/realm.ts`.
+2. **Config:** su entrada en `REALMS` (`src/config/realms.ts`): acento, `baseNote` del drone, `inNav`, `visualMode` y `photoTreatment`. `src/config/bands.ts` no lleva una entrada por realm: `BANDS` son gradientes por acento (`gold | teal | lav | mix`) y sólo se toca si el realm estrena un acento, cosa que la paleta cerrada no permite.
+3. **Rutas:** añadir el segmento localizado en `src/i18n/routing.ts` (`pathnames`), con los segmentos estáticos antes que los dinámicos — el `Link` de `@/i18n/navigation` traducirá `/nuevo` ↔ `/en/new` automáticamente.
+4. **Realm por URL:** registrar el primer segmento, en ES **y** EN, en `SEGMENT_TO_REALM` (`src/lib/realm-from-pathname.ts`). Si falta, la ruta cae en silencio a `portal` y se ve con el acento y el drone equivocados, sin error de tipos.
+5. **Copy:** crear `realms.<id>` (lo lee `RealmNav`) y el namespace de la vista en `messages/es.json` y `messages/en.json` con las mismas claves (el test de integridad lo exige).
+6. **Datos:** el catálogo tipado en `src/data/` con claves de traducción, nunca textos.
+7. **Vista:** `src/app/[locale]/<realm>/page.tsx` (Server Component, empieza con `const locale = await resolveLocale(params);`) que compone componentes de `src/components/features/<realm>/`. Un realm de catálogo abre con `RealmHero` (`components/layout`).
+8. **Navegación y footer:** con `inNav: true` el realm aparece en `RealmNav` y en `RealmsGrid`; el footer se decide en `WITH_FOOTER` (`src/components/layout/realm-footer.tsx`).
 
 ## Añadir un componente al UI Kit
 

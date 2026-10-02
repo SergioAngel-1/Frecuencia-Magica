@@ -36,10 +36,10 @@ npm run format       # Prettier (format:check para sólo verificar)
 
 Showcase (desde `Branding/`, tiene su propio `package.json`): `npm run dev` · `npm run build` · `npm run lint` (oxlint) · `npm run export:photo-brief`. Si tocas `tokens.css` o el UI Kit, comprueba que `npm run build` de `Branding/` sigue pasando.
 
-Gate de terminado — los cuatro deben quedar en verde:
+Gate de terminado — los cinco deben quedar en verde (`format:check` va primero: es el más rápido y ESLint no vigila el formato):
 
 ```bash
-npm run lint && npm run typecheck && npm run test && npm run build
+npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build
 ```
 
 ## Arquitectura (tres capas, sin saltárselas)
@@ -64,8 +64,8 @@ npm run lint && npm run typecheck && npm run test && npm run build
 - Paleta exacta, sin colores ni fuentes nuevos: `--void #0F1B2E`, `--void-2 #0a1220`, `--gold #D8B978`, `--teal #96C6BC`, `--lav #B9B0D6`, `--ivory #F7F4EA`, `--color-warn #C98B7A` (sólo errores de formulario); glass `rgba(247,244,234,0.045)` + borde `rgba(216,185,120,0.20)`. Fondo de app: `radial-gradient(140% 100% at 50% -10%, #16273f 0%, var(--void) 45%, var(--void-2) 100%)`. Cormorant Garamond (títulos, cifras, precios, poético) · Jost (kickers, labels, UI); body en peso 300, kickers en MAYÚSCULAS 11px con `letter-spacing` .14em–.4em. Acentos como halos/bordes/glows, nunca rellenos sólidos grandes.
 - Sin emojis (única excepción: ✓ de confirmación). Placeholders prohibidos: fotos de stock, Unsplash, cajas grises — todo placeholder es gradiente/geometría/luz. El único bitmap permitido es el logo.
 - Movimiento: nada es estático (fondo vivo, elementos que respiran/flotan/orbitan); entradas con fade-up escalonado (`.1s`, `.25s`, `.4s`, `.55s`); nada aparece de golpe.
-- Escalas con nombre (ver `DESIGN.md`): texto sobre fondo oscuro en cinco peldaños de marfil (`text-ivory`, `text-fg-body|soft|muted|meta`, nunca por debajo de 55%); sans en `text-label` (11px, sólo kickers y labels en MAYÚSCULAS), `text-meta` (13px), `text-body` (15px) y `text-lead` (17px); tracking en seis peldaños (`tracking-soft|ui|label|caps|kicker|eyebrow`); titulares con `Display`, eyebrows con `Kicker`, enlaces con flecha con `arrowLinkClasses`. Nada de `text-[Npx]`, `tracking-[…]`, `text-ivory/NN` ni `rgba()` de la paleta sueltos. Las escalas viven en el `@theme` de `frontend/src/app/tokens.css` (no en `globals.css`); al añadir una, registrarla en `src/lib/cn.ts` (`tailwind-merge` no la conoce).
-- Eje de página: héroes, bandas y contenido arrancan en el mismo margen (`--page-inset` + `fm-container`); `FullBleedSection` y `EditorialBanner` son siempre a sangre.
+- Escalas con nombre (ver `DESIGN.md`): texto sobre fondo oscuro en cinco peldaños de marfil (`text-ivory`, `text-fg-body|soft|muted|meta`, nunca por debajo de 55%); sans en `text-label` (11px, sólo kickers y labels en MAYÚSCULAS), `text-meta` (13px), `text-body` (15px) y `text-lead` (17px); tracking en seis peldaños (`tracking-soft|ui|label|caps|kicker|eyebrow`); titulares con `Display` (reparte sus líneas con `text-balance`), eyebrows con `Kicker`, enlaces con flecha con `arrowLinkClasses`. Nada de `text-[Npx]`, `tracking-[…]`, `text-ivory/NN` ni `rgba()` de la paleta sueltos. Entre capas del layout se apila con la escala `z-*` con nombre (`z-content`, `z-header`, `z-cursor`…; ver `DESIGN.md`), nunca con `z-[N]`. Las escalas viven en el `@theme` de `frontend/src/app/tokens.css` (no en `globals.css`); al añadir una, registrarla en `src/lib/cn.ts` (`tailwind-merge` no la conoce).
+- Eje de página: héroes, bandas y contenido arrancan en el mismo margen (`--page-inset` + `fm-container`); `FullBleedSection` y `EditorialBanner` son siempre a sangre. Los realms de catálogo (biblioteca, academia, experiencias, tienda) abren con `RealmHero` (`components/layout`), que también fija el alto que reutiliza su `loading.tsx`.
 - En Server Components, un botón-enlace es `ButtonLink` (`components/layout`): `Button asChild` + `Link` desaparece en silencio fuera de una frontera cliente (lo vigila un test).
 - Accesibilidad/rendimiento: hit targets ≥ 44px, texto corrido y UI ≥ 15px (kickers 11px y meta 13px son las únicas excepciones, con los peldaños de arriba), foco visible sobre fondo oscuro, `aria-label` en todo control sólo-icono, `aria-hidden` en toda capa decorativa, `prefers-reduced-motion` respetado siempre. 60 FPS en desktop / 30 FPS en móvil de gama media; `devicePixelRatio` capado a 2; animar sólo `transform` y `opacity`.
 - Breakpoints obligatorios: 1440 / 1280 / 768 / 390. Toda vista debe existir en móvil.

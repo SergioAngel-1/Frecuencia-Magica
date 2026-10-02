@@ -199,6 +199,22 @@ Sin sombras de bloque. La profundidad se construye con **luz y vidrio**: superfi
 ### Named Rules
 **La Regla del Halo.** Un resplandor es de acento (oro, teal o lavanda), de baja opacidad y gran radio. Nunca gris, nunca negro duro, nunca un desplazamiento de bloque.
 
+**La Regla de las Capas con Nombre.** Entre capas del layout se apila con la escala `z-*` de `frontend/src/app/globals.css`, nunca con `z-[N]`:
+
+| Capa | `z-index` | Quién la ocupa |
+|---|---|---|
+| `z-world` | 0 | Canvas cósmico |
+| `z-atmosphere` | 1 | Nebulosa y figuras de marca |
+| `z-content` | 100 | `<main>` y footer |
+| `z-player` | 180 | Dock del reproductor |
+| `z-nav` | 210 | Constelación de realms |
+| `z-header` | 220 | Header |
+| `z-portal` | 9000 | Cruce del portal |
+| `z-veil` | 9500 | Velo de transición de ruta |
+| `z-cursor` | 9800 | Cursor luminoso |
+
+El cursor va encima de todo: es el puntero, no decoración. Dentro de un componente aislado (`isolate`) bastan `z-10`/`z-20`. Los nombres están registrados en `frontend/src/lib/cn.ts` y `tests/lib/z-layers.test.ts` prohíbe los `z-[N]` de tres cifras o más.
+
 **La Regla del Scrim Único.** El texto sobre imagen se lee por `EditorialOverlay`; ningún componente dibuja su propio degradado de legibilidad. El texto nunca baja del contraste AA documentado.
 
 ## Shapes
