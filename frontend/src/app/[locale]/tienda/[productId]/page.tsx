@@ -12,6 +12,13 @@ import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
 type PageProps = { params: Promise<{ locale: string; productId: string }> };
 
+/**
+ * Sólo existen los ids del catálogo: uno desconocido responde 404 en el
+ * enrutado, antes de que el `loading.tsx` del realm empiece a emitir (un
+ * `notFound()` dentro del streaming sale con estado 200).
+ */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
     PRODUCTS.map((product) => ({ locale, productId: product.id })),

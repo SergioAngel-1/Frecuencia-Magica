@@ -95,7 +95,9 @@ describe('academy editorial composition contracts', () => {
     expect(lessonPageSource).toContain(
       'if (lessonIndex < 0 || lessonIndex > lessons.length) notFound();',
     );
-    expect(lessonPageSource).toContain('lessonId: String(course.lessons + 1)');
+    // Una página por lección más la de finalización, y nada fuera del catálogo.
+    expect(lessonPageSource).toContain('length: course.lessons + 1');
+    expect(lessonPageSource).toContain('export const dynamicParams = false;');
     expect(coursePageSource).toContain('const course = getCourse(courseId);');
     expect(coursePageSource).toContain('if (!course) return {};');
     expect(lessonPageSource).toContain('const course = getCourse(courseId);');

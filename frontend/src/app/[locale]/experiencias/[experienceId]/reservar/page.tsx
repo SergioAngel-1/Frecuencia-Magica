@@ -10,6 +10,13 @@ import { routing } from '@/i18n/routing';
 
 type PageProps = { params: Promise<{ locale: string; experienceId: string }> };
 
+/**
+ * Sólo existen los ids del catálogo: uno desconocido responde 404 en el
+ * enrutado, antes de que el `loading.tsx` del realm empiece a emitir (un
+ * `notFound()` dentro del streaming sale con estado 200).
+ */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
     ['e1', 'e2', 'e3', 'e4'].map((experienceId) => ({ locale, experienceId })),

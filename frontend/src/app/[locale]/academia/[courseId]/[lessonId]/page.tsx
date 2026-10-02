@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { LessonPlayer } from '@/components/features/academy/lesson-player';
 import { PageShell } from '@/components/layout';
-import { getCourse } from '@/data';
+import { COURSES, getCourse } from '@/data';
 import { buildLessons } from '@/lib/academy/lessons';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -11,20 +11,23 @@ import { routing } from '@/i18n/routing';
 
 type PageProps = { params: Promise<{ locale: string; courseId: string; lessonId: string }> };
 
+/**
+ * Sólo existen los ids del catálogo: uno desconocido responde 404 en el
+ * enrutado, antes de que el `loading.tsx` del realm empiece a emitir (un
+ * `notFound()` dentro del streaming sale con estado 200).
+ */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  const ids = ['c1', 'c2', 'c3'];
-
+  // Una página por lección más la de finalización (`lessons + 1`).
   return routing.locales.flatMap((locale) =>
-    ids.flatMap((courseId) => {
-      const course = getCourse(courseId);
-      if (!course) return [];
-
-      return Array.from({ length: course.lessons }, (_, i) => ({
+    COURSES.flatMap((course) =>
+      Array.from({ length: course.lessons + 1 }, (_, i) => ({
         locale,
-        courseId,
+        courseId: course.id,
         lessonId: String(i + 1),
-      })).concat({ locale, courseId, lessonId: String(course.lessons + 1) });
-    }),
+      })),
+    ),
   );
 }
 
