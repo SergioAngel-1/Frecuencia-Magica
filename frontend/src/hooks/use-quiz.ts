@@ -10,7 +10,7 @@ export type { QuizStep } from '@/lib/quiz-reducer';
 type UseQuizReturn = {
   step: QuizStep;
   currentQuestion: number;
-  resultHz: number | null;
+  answers: Readonly<Record<string, number>>;
   totalQuestions: number;
   answer: (optionIndex: number) => void;
   goBack: () => void;
@@ -25,13 +25,13 @@ export function useQuiz(questions: readonly Question[]): UseQuizReturn {
   return {
     step: state.step,
     currentQuestion: state.currentQuestion,
-    resultHz: state.resultHz,
+    answers: state.answers,
     totalQuestions: questions.length,
 
     answer: (optionIndex: number) => {
       const q = questions[state.currentQuestion];
       if (!q) return;
-      dispatch({ type: 'ANSWER', questionId: q.id, optionIndex });
+      dispatch({ type: 'ANSWER', questionId: q.id, optionIndex, total: questions.length });
     },
 
     goBack: () => dispatch({ type: 'GO_BACK' }),

@@ -208,15 +208,45 @@
     "result": {
       "kicker": "Tu frecuencia de hoy",
       "cta": "Escuchar ahora",
-      "restart": "Repetir"
+      "restart": "Repetir",
+      "pathKicker": "Tu camino",
+      "pathTitle": "Para seguir volviendo a ti",
+      "kinds": {
+        "course": "Un curso",
+        "experience": "Una experiencia",
+        "product": "Para tu ritual"
+      },
+      "open": {
+        "course": "Ver el curso",
+        "experience": "Reservar tu lugar",
+        "product": "Ver el objeto"
+      }
     },
-    "frequencies": {
-      "432": "Una frecuencia de calma y reencuentro. Deja que el sonido afloje lo que hoy pesa y te devuelva a tu centro.",
-      "528": "La frecuencia de la luz interior. Ideal para reconectar con lo que eres cuando todo lo demás se aquieta.",
-      "396": "Enraizamiento profundo. Suelta el miedo y encuentra tierra firme dentro de ti.",
-      "174": "Un umbral hacia el descanso. Que tu cuerpo recuerde cómo soltar por completo.",
-      "639": "Aroma y ritual. Reconecta con el vínculo y la ternura.",
-      "417": "Respirar el cielo. Limpia lo viejo y abre espacio a lo nuevo."
+    "intents": {
+      "calm": {
+        "name": "Calma",
+        "description": "Hoy tu cuerpo pide bajar el ritmo. Deja que el sonido afloje lo que pesa y te devuelva a tu centro."
+      },
+      "grounding": {
+        "name": "Raíz",
+        "description": "Necesitas tierra firme. Siente el peso de tu cuerpo, suelta el miedo y vuelve a habitar el presente."
+      },
+      "clarity": {
+        "name": "Claridad",
+        "description": "Algo en ti quiere ver con nitidez. Aquieta el ruido y deja que tu luz interior ordene lo esencial."
+      },
+      "rest": {
+        "name": "Descanso",
+        "description": "Tu cuerpo recuerda cómo soltar por completo. Concédete el permiso de descansar sin culpa."
+      },
+      "bond": {
+        "name": "Vínculo",
+        "description": "Hoy te llama la ternura. Reconecta con quien eres y con quienes te acompañan."
+      },
+      "renewal": {
+        "name": "Renovación",
+        "description": "Es tiempo de abrir espacio. Respira hondo, limpia lo viejo y deja entrar lo nuevo."
+      }
     },
     "questions": {
       "q1": {

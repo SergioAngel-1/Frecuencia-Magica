@@ -27,7 +27,20 @@ describe('catálogo de contenido', () => {
 
   it('cada pregunta ofrece cuatro opciones', () => {
     for (const pregunta of QUESTIONS) {
-      expect(pregunta.optionKeys).toHaveLength(4);
+      expect(pregunta.options).toHaveLength(4);
+    }
+  });
+
+  it('cada intención tiene audio, curso, experiencia y producto afines', () => {
+    const intents = ['calm', 'grounding', 'clarity', 'rest', 'bond', 'renewal'] as const;
+
+    for (const coleccion of [AUDIOS, COURSES, EXPERIENCES, PRODUCTS]) {
+      for (const intent of intents) {
+        expect(
+          coleccion.some((item) => item.intents.includes(intent)),
+          intent,
+        ).toBe(true);
+      }
     }
   });
 

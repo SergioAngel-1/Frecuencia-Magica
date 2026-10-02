@@ -2,6 +2,9 @@ import { getTranslations } from 'next-intl/server';
 
 import { QuizContainer } from '@/components/features/descubrete/quiz-container';
 import { AUDIOS } from '@/data/audios';
+import { COURSES } from '@/data/courses';
+import { EXPERIENCES } from '@/data/experiences';
+import { PRODUCTS } from '@/data/products';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -27,5 +30,12 @@ export default async function DiscoverPage({ params }: PageProps) {
     result: resolveEditorialMedia('discover.result', { alt: t('media.alt.result') }),
   };
 
-  return <QuizContainer audios={AUDIOS} media={discoverMedia} />;
+  const catalog = {
+    audios: AUDIOS,
+    courses: COURSES,
+    experiences: EXPERIENCES,
+    products: PRODUCTS,
+  };
+
+  return <QuizContainer catalog={catalog} media={discoverMedia} />;
 }

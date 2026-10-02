@@ -10,6 +10,7 @@ import { COVERS } from '@/config/covers';
 export const PRODUCTS: readonly Product[] = [
   {
     id: 'p1',
+    intents: ['bond', 'grounding'],
     titleKey: 'store.products.p1.title',
     catKey: 'store.categories.aromas',
     price: 28,
@@ -18,6 +19,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: 'p2',
+    intents: ['clarity', 'calm'],
     titleKey: 'store.products.p2.title',
     catKey: 'store.categories.candles',
     price: 34,
@@ -26,6 +28,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: 'p3',
+    intents: ['calm'],
     titleKey: 'store.products.p3.title',
     catKey: 'store.categories.crystals',
     price: 22,
@@ -34,6 +37,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: 'p4',
+    intents: ['grounding'],
     titleKey: 'store.products.p4.title',
     catKey: 'store.categories.mists',
     price: 26,
@@ -42,6 +46,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: 'p5',
+    intents: ['renewal', 'grounding'],
     titleKey: 'store.products.p5.title',
     catKey: 'store.categories.rituals',
     price: 18,
@@ -50,6 +55,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: 'p6',
+    intents: ['rest', 'renewal'],
     titleKey: 'store.products.p6.title',
     catKey: 'store.categories.care',
     price: 24,
@@ -58,6 +64,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: 'p7',
+    intents: ['rest', 'calm'],
     titleKey: 'store.products.p7.title',
     catKey: 'store.categories.drinks',
     price: 20,
@@ -66,6 +73,7 @@ export const PRODUCTS: readonly Product[] = [
   },
   {
     id: 'p8',
+    intents: ['clarity', 'renewal'],
     titleKey: 'store.products.p8.title',
     catKey: 'store.categories.stationery',
     price: 30,

@@ -7,6 +7,7 @@ import type { Product } from '@/types/content';
 function product(id: string, catKey: string): Product {
   return {
     id,
+    intents: [],
     titleKey: `store.products.${id}.title`,
     catKey,
     price: 20,

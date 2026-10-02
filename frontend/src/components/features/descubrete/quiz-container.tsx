@@ -1,13 +1,13 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
 
 import { QUESTIONS } from '@/data/questions';
+import { useDiscoverResult } from '@/hooks/use-discover-result';
 import { useQuiz } from '@/hooks/use-quiz';
 import { selectDiscoverMedia, type DiscoverMedia } from '@/lib/discover/media';
+import type { DiscoverCatalog } from '@/lib/discover/recommend';
 import { usePlayerStore } from '@/stores/player-store';
-import type { Audio } from '@/types/content';
 
 import { IntroStep } from './intro-step';
 import { QuizLayout } from './quiz-layout';
@@ -16,22 +16,15 @@ import { ResultStep } from './result-step';
 import { TuningStep } from './tuning-step';
 
 type QuizContainerProps = {
-  audios: readonly Audio[];
+  catalog: DiscoverCatalog;
   media: DiscoverMedia;
 };
 
-export function QuizContainer({ audios, media }: QuizContainerProps) {
+export function QuizContainer({ catalog, media }: QuizContainerProps) {
   const t = useTranslations('discover');
   const quiz = useQuiz(QUESTIONS);
   const open = usePlayerStore((s) => s.open);
-  const [resolvedAudio, setResolvedAudio] = useState<Audio | null>(null);
-
-  useEffect(() => {
-    if (quiz.resultHz) {
-      const found = audios.find((a) => a.hz === quiz.resultHz) ?? null;
-      setResolvedAudio(found);
-    }
-  }, [quiz.resultHz, audios]);
+  const result = useDiscoverResult(quiz.answers, QUESTIONS, catalog, quiz.step === 'result');
 
   const question = QUESTIONS[quiz.currentQuestion];
 
@@ -50,7 +43,7 @@ export function QuizContainer({ audios, media }: QuizContainerProps) {
       {quiz.step === 'questions' && question && (
         <QuizStep
           prompt={t(`questions.${question.id}.prompt` as 'questions.q1.prompt')}
-          options={question.optionKeys.map((k) => t(k as 'questions.q1.options.0'))}
+          options={question.options.map(({ key }) => t(key as 'questions.q1.options.0'))}
           currentIndex={quiz.currentQuestion}
           total={quiz.totalQuestions}
           progressLabel={t('questionCount', {
@@ -67,17 +60,8 @@ export function QuizContainer({ audios, media }: QuizContainerProps) {
         <TuningStep tuningLabel={t('tuning')} onFinish={quiz.finishTune} />
       )}
 
-      {quiz.step === 'result' && quiz.resultHz && resolvedAudio && (
-        <ResultStep
-          kicker={t('result.kicker')}
-          hz={quiz.resultHz}
-          band={resolvedAudio.band}
-          description={t(`frequencies.${quiz.resultHz}` as 'frequencies.432')}
-          ctaLabel={t('result.cta')}
-          restartLabel={t('result.restart')}
-          onListen={() => open(resolvedAudio.id)}
-          onRestart={quiz.reset}
-        />
+      {quiz.step === 'result' && result && (
+        <ResultStep {...result} onListen={() => open(result.audio.id)} onRestart={quiz.reset} />
       )}
     </QuizLayout>
   );

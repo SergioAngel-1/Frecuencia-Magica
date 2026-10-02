@@ -62,7 +62,7 @@ describe('catálogos de mensajes', () => {
       // las verifica prefijadas, igual que las consume `useTranslations('discover')`.
       ...QUESTIONS.flatMap((q) => [
         `discover.${q.promptKey}`,
-        ...q.optionKeys.map((key) => `discover.${key}`),
+        ...q.options.map(({ key }) => `discover.${key}`),
       ]),
     ];
 

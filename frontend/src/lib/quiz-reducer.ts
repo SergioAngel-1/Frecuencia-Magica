@@ -1,15 +1,19 @@
 export type QuizStep = 'intro' | 'questions' | 'tuning' | 'result';
 
+/**
+ * Flujo de Descúbrete. El reducer sólo sabe de pasos y respuestas: qué
+ * significan las respuestas lo decide `lib/discover/recommend.ts`.
+ */
 export type QuizState = {
   step: QuizStep;
   currentQuestion: number;
   answers: Record<string, number>;
-  resultHz: number | null;
 };
 
 export type QuizAction =
   | { type: 'START_QUIZ' }
-  | { type: 'ANSWER'; questionId: string; optionIndex: number }
+  /** `total`: preguntas del quiz; responder la última pasa a afinar. */
+  | { type: 'ANSWER'; questionId: string; optionIndex: number; total: number }
   | { type: 'GO_BACK' }
   | { type: 'FINISH_TUNE' }
   | { type: 'RESET' };
@@ -18,17 +22,7 @@ export const INITIAL_STATE: QuizState = {
   step: 'intro',
   currentQuestion: 0,
   answers: {},
-  resultHz: null,
 };
-
-const FREQUENCIES = [432, 528, 396, 174, 639, 417] as const;
-
-export type FrequenciesCatalog = typeof FREQUENCIES;
-
-export function computeResult(answers: Record<string, number>): number {
-  const total = Object.values(answers).reduce((sum, idx) => sum + idx, 0);
-  return FREQUENCIES[total % FREQUENCIES.length]!;
-}
 
 export function quizReducer(state: QuizState, action: QuizAction): QuizState {
   switch (action.type) {
@@ -37,10 +31,9 @@ export function quizReducer(state: QuizState, action: QuizAction): QuizState {
 
     case 'ANSWER': {
       const nextAnswers = { ...state.answers, [action.questionId]: action.optionIndex };
-      const isLast = state.currentQuestion >= 4;
+      const isLast = state.currentQuestion >= action.total - 1;
       if (isLast) {
-        const resultHz = computeResult(nextAnswers);
-        return { ...state, answers: nextAnswers, resultHz, step: 'tuning' };
+        return { ...state, answers: nextAnswers, step: 'tuning' };
       }
       return {
         ...state,

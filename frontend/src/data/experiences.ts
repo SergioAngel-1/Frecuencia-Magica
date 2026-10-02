@@ -5,6 +5,7 @@ import { COVERS } from '@/config/covers';
 export const EXPERIENCES: readonly Experience[] = [
   {
     id: 'e1',
+    intents: ['calm', 'rest'],
     titleKey: 'experiences.items.e1.title',
     modeKey: 'experiences.modes.online',
     mode: 'online',
@@ -14,6 +15,7 @@ export const EXPERIENCES: readonly Experience[] = [
   },
   {
     id: 'e2',
+    intents: ['renewal', 'bond'],
     titleKey: 'experiences.items.e2.title',
     modeKey: 'experiences.modes.inPerson',
     mode: 'inPerson',
@@ -23,6 +25,7 @@ export const EXPERIENCES: readonly Experience[] = [
   },
   {
     id: 'e3',
+    intents: ['bond', 'grounding'],
     titleKey: 'experiences.items.e3.title',
     modeKey: 'experiences.modes.inPerson',
     mode: 'inPerson',
@@ -32,6 +35,7 @@ export const EXPERIENCES: readonly Experience[] = [
   },
   {
     id: 'e4',
+    intents: ['clarity', 'renewal'],
     titleKey: 'experiences.items.e4.title',
     modeKey: 'experiences.modes.online',
     mode: 'online',

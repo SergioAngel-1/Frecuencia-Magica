@@ -208,15 +208,45 @@
     "result": {
       "kicker": "Your frequency today",
       "cta": "Listen now",
-      "restart": "Retake"
+      "restart": "Retake",
+      "pathKicker": "Your path",
+      "pathTitle": "To keep coming back to yourself",
+      "kinds": {
+        "course": "A course",
+        "experience": "An experience",
+        "product": "For your ritual"
+      },
+      "open": {
+        "course": "View the course",
+        "experience": "Book your place",
+        "product": "View the object"
+      }
     },
-    "frequencies": {
-      "432": "A frequency of calm and reunion. Let the sound loosen what weighs today and return you to your center.",
-      "528": "The frequency of inner light. Ideal to reconnect with who you are when everything else grows quiet.",
-      "396": "Deep grounding. Release fear and find solid ground within you.",
-      "174": "A threshold toward rest. Let your body remember how to fully let go.",
-      "639": "Aroma and ritual. Reconnect with bond and tenderness.",
-      "417": "Breathe the sky. Cleanse the old and open space for the new."
+    "intents": {
+      "calm": {
+        "name": "Calm",
+        "description": "Today your body asks to slow down. Let the sound loosen what weighs on you and bring you back to your center."
+      },
+      "grounding": {
+        "name": "Root",
+        "description": "You need solid ground. Feel the weight of your body, release the fear and come back to the present."
+      },
+      "clarity": {
+        "name": "Clarity",
+        "description": "Something in you wants to see clearly. Quiet the noise and let your inner light sort out what matters."
+      },
+      "rest": {
+        "name": "Rest",
+        "description": "Your body remembers how to let go completely. Give yourself permission to rest without guilt."
+      },
+      "bond": {
+        "name": "Bond",
+        "description": "Tenderness is calling you today. Reconnect with who you are and with those who walk beside you."
+      },
+      "renewal": {
+        "name": "Renewal",
+        "description": "It is time to make room. Breathe deeply, clear out the old and let the new come in."
+      }
     },
     "questions": {
       "q1": {

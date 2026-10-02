@@ -81,7 +81,7 @@ describe('Descúbrete editorial composition', () => {
     expect(pageSource).toContain("resolveEditorialMedia('discover.tuning'");
     expect(pageSource).toContain("resolveEditorialMedia('discover.result'");
     expect(pageSource).toContain("sizes: '100vw'");
-    expect(pageSource).toContain('<QuizContainer audios={AUDIOS} media={discoverMedia}');
+    expect(pageSource).toContain('<QuizContainer catalog={catalog} media={discoverMedia}');
   });
 
   it('uses a full-bleed phase field and quiet non-card question controls', () => {
@@ -100,7 +100,7 @@ describe('Descúbrete editorial composition', () => {
   });
 
   it('opens the resolved audio while preserving the localized library link', () => {
-    expect(containerSource).toContain('open(resolvedAudio.id)');
+    expect(containerSource).toContain('open(result.audio.id)');
     expect(resultSource).toContain('onListen');
     expect(resultSource).toContain('asChild onClick={onListen}');
     expect(resultSource).toContain('href="/biblioteca"');

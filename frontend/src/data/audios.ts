@@ -5,6 +5,7 @@ import { COVERS } from '@/config/covers';
 export const AUDIOS: readonly Audio[] = [
   {
     id: 'a1',
+    intents: ['calm'],
     titleKey: 'library.audios.a1.title',
     tagKey: 'library.tags.meditation',
     tagId: 'meditation',
@@ -14,6 +15,7 @@ export const AUDIOS: readonly Audio[] = [
   },
   {
     id: 'a2',
+    intents: ['clarity'],
     titleKey: 'library.audios.a2.title',
     tagKey: 'library.tags.frequency',
     tagId: 'frequency',
@@ -23,6 +25,7 @@ export const AUDIOS: readonly Audio[] = [
   },
   {
     id: 'a3',
+    intents: ['grounding'],
     titleKey: 'library.audios.a3.title',
     tagKey: 'library.tags.grounding',
     tagId: 'grounding',
@@ -32,6 +35,7 @@ export const AUDIOS: readonly Audio[] = [
   },
   {
     id: 'a4',
+    intents: ['rest'],
     titleKey: 'library.audios.a4.title',
     tagKey: 'library.tags.rest',
     tagId: 'rest',
@@ -41,6 +45,7 @@ export const AUDIOS: readonly Audio[] = [
   },
   {
     id: 'a5',
+    intents: ['bond', 'grounding'],
     titleKey: 'library.audios.a5.title',
     tagKey: 'library.tags.ritual',
     tagId: 'ritual',
@@ -50,6 +55,7 @@ export const AUDIOS: readonly Audio[] = [
   },
   {
     id: 'a6',
+    intents: ['renewal'],
     titleKey: 'library.audios.a6.title',
     tagKey: 'library.tags.breath',
     tagId: 'breath',
@@ -59,6 +65,7 @@ export const AUDIOS: readonly Audio[] = [
   },
   {
     id: 'a7',
+    intents: ['bond', 'renewal'],
     titleKey: 'library.audios.a7.title',
     tagKey: 'library.tags.meditation',
     tagId: 'meditation',

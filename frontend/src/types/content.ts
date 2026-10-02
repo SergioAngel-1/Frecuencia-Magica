@@ -7,10 +7,22 @@
  * de i18n.
  */
 
+/**
+ * Intención que guía Descúbrete. Cada respuesta del quiz suma a una o dos, y
+ * cada ítem del catálogo declara las que acompaña (la primera es la principal):
+ * así el resultado recomienda algo de cada realm, no sólo una frecuencia.
+ */
+export type Intent = 'calm' | 'grounding' | 'clarity' | 'rest' | 'bond' | 'renewal';
+
+/** Ítem recomendable por intención, en orden de afinidad. */
+export type IntentAffine = {
+  intents: readonly Intent[];
+};
+
 /** Etiqueta estable de frecuencia, independiente del idioma. */
 export type AudioTag = 'meditation' | 'frequency' | 'grounding' | 'rest' | 'ritual' | 'breath';
 
-export type Audio = {
+export type Audio = IntentAffine & {
   id: string;
   titleKey: string;
   tagKey: string;
@@ -22,7 +34,7 @@ export type Audio = {
   band: string;
 };
 
-export type Course = {
+export type Course = IntentAffine & {
   id: string;
   titleKey: string;
   levelKey: string;
@@ -34,7 +46,7 @@ export type Course = {
 
 export type ExperienceMode = 'online' | 'inPerson';
 
-export type Experience = {
+export type Experience = IntentAffine & {
   id: string;
   titleKey: string;
   modeKey: string;
@@ -45,7 +57,7 @@ export type Experience = {
   band: string;
 };
 
-export type Product = {
+export type Product = IntentAffine & {
   id: string;
   titleKey: string;
   catKey: string;
@@ -55,8 +67,14 @@ export type Product = {
   relatedAudioId: string;
 };
 
+export type QuestionOption = {
+  key: string;
+  /** Intención principal (2 puntos) y, opcional, secundaria (1 punto). */
+  intents: readonly [Intent] | readonly [Intent, Intent];
+};
+
 export type Question = {
   id: string;
   promptKey: string;
-  optionKeys: string[];
+  options: readonly QuestionOption[];
 };

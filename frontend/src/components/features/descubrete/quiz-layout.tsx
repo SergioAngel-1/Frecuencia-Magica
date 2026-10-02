@@ -63,7 +63,7 @@ export function QuizLayout({ children, media, phase, className }: QuizLayoutProp
         ) : null}
       </div>
       <PageShell
-        width="result"
+        width={phase === 'result' ? 'narrow' : 'result'}
         padding="centered"
         reserveBottomUi
         className="flex min-h-[clamp(520px,100svh,920px)] flex-col items-center justify-center text-center"

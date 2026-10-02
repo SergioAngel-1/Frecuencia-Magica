@@ -5,6 +5,7 @@ import { COVERS } from '@/config/covers';
 export const COURSES: readonly Course[] = [
   {
     id: 'c1',
+    intents: ['calm', 'clarity', 'rest'],
     titleKey: 'academy.courses.c1.title',
     levelKey: 'academy.levels.foundations',
     lessons: 8,
@@ -13,6 +14,7 @@ export const COURSES: readonly Course[] = [
   },
   {
     id: 'c2',
+    intents: ['renewal', 'bond', 'grounding'],
     titleKey: 'academy.courses.c2.title',
     levelKey: 'academy.levels.practice',
     lessons: 12,
@@ -21,6 +23,7 @@ export const COURSES: readonly Course[] = [
   },
   {
     id: 'c3',
+    intents: ['bond', 'grounding', 'rest'],
     titleKey: 'academy.courses.c3.title',
     levelKey: 'academy.levels.intermediate',
     lessons: 6,
