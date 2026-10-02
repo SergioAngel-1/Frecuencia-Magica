@@ -4,68 +4,157 @@
 /* Tokens, keyframes compartidos, superficies, zebra y base visual: `tokens.css`.
    Aquí, sólo lo propio de la web. */
 
-/* Coreografía del cruce del portal. Combinan translate(-50%,-50%) con scale
-   y rotate: el centrado forma parte del keyframe, no del elemento. */
+/* ============================================================================
+   CRUCE DEL PORTAL
+   Se cruza un umbral de luz y se llega a la noche. Lo que cubre la pantalla es
+   la noche del fondo de la app (`--fm-night`); la luz es siempre filo o halo,
+   nunca relleno. Duraciones y curvas las pone `PortalTransition` desde
+   `config/motion.ts`: aquí sólo vive la forma. El centrado va en `translate`,
+   así los keyframes sólo tocan `transform` (escala) y `opacity`.
+   ========================================================================= */
 
-@keyframes fm-portal-expand {
+.fm-portal-iris,
+.fm-portal-ripple,
+.fm-portal-light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Iris: disco de noche con el borde encendido. 150vmax cubre la diagonal de
+   cualquier viewport; el aro engorda con la escala, como algo que se acerca. */
+.fm-portal-iris {
+  width: 150vmax;
+  height: 150vmax;
+  background: radial-gradient(
+    circle closest-side,
+    var(--color-void) 0%,
+    var(--color-void-2) 58%,
+    var(--color-void-2) 90%,
+    color-mix(in srgb, var(--color-gold) 24%, var(--color-void-2)) 94.2%,
+    color-mix(in srgb, var(--color-ivory) 92%, transparent) 95.4%,
+    color-mix(in srgb, var(--color-gold) 58%, transparent) 96.2%,
+    color-mix(in srgb, var(--color-teal) 16%, transparent) 98.2%,
+    transparent 100%
+  );
+}
+
+/* Onda que se adelanta al iris: sólo un filo, sin interior. */
+.fm-portal-ripple {
+  width: 150vmax;
+  height: 150vmax;
+  background: radial-gradient(
+    circle closest-side,
+    transparent 96.4%,
+    color-mix(in srgb, var(--color-lav) 50%, transparent) 97.5%,
+    color-mix(in srgb, var(--color-teal) 20%, transparent) 98.6%,
+    transparent 100%
+  );
+}
+
+/* La luz: un halo que se reúne, queda como punto y se abre al llegar. */
+.fm-portal-light {
+  width: min(64vmin, 560px);
+  height: min(64vmin, 560px);
+  background: radial-gradient(
+    circle closest-side,
+    color-mix(in srgb, var(--color-ivory) 90%, transparent) 0%,
+    color-mix(in srgb, var(--color-gold) 62%, transparent) 9%,
+    color-mix(in srgb, var(--color-gold) 22%, transparent) 30%,
+    color-mix(in srgb, var(--color-teal) 8%, transparent) 58%,
+    transparent 100%
+  );
+  /* Estado de reposo del punto: donde empalman todas sus animaciones. */
+  opacity: 0.85;
+  transform: scale(0.42);
+}
+
+.fm-portal-night {
+  background: var(--fm-night);
+}
+
+@keyframes fm-portal-iris {
   0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0.7;
+    transform: scale(0.015);
+    opacity: 0;
   }
-  55% {
+  8% {
     opacity: 1;
   }
   100% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
     opacity: 1;
   }
 }
 
-@keyframes fm-portal-fade {
+@keyframes fm-portal-ripple {
   0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1.25);
+    transform: scale(0.03);
     opacity: 0;
   }
-}
-
-@keyframes fm-portal-ring {
-  0% {
-    transform: translate(-50%, -50%) scale(0.2);
-    opacity: 0;
-  }
-  30% {
+  16% {
     opacity: 0.9;
   }
   100% {
-    transform: translate(-50%, -50%) scale(2.4);
+    transform: scale(1);
     opacity: 0;
   }
 }
 
-@keyframes fm-portal-core {
+@keyframes fm-portal-light-gather {
   0% {
-    transform: translate(-50%, -50%) scale(0);
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  24% {
+    transform: scale(1);
     opacity: 1;
   }
-  70% {
-    opacity: 1;
+  60% {
+    transform: scale(1.3);
+    opacity: 0.7;
   }
   100% {
-    transform: translate(-50%, -50%) scale(6);
-    opacity: 0;
+    transform: scale(0.42);
+    opacity: 0.85;
   }
 }
 
-@keyframes fm-portal-spin {
-  from {
-    transform: translate(-50%, -50%) rotate(0);
+@keyframes fm-portal-light-appear {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
   }
-  to {
-    transform: translate(-50%, -50%) rotate(240deg);
+  100% {
+    transform: scale(0.42);
+    opacity: 0.85;
+  }
+}
+
+@keyframes fm-portal-light-wait {
+  0%,
+  100% {
+    transform: scale(0.42);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(0.5);
+    opacity: 0.6;
+  }
+}
+
+@keyframes fm-portal-light-open {
+  0% {
+    transform: scale(0.42);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
   }
 }
 

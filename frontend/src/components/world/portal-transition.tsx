@@ -1,137 +1,134 @@
 'use client';
 
-import type { CSSProperties } from 'react';
+import { useTranslations } from 'next-intl';
+import { div as Mdiv } from 'motion/react-m';
+import { useEffect, useRef, type CSSProperties } from 'react';
 
+import { cssEase, EASE, PORTAL_TIMING } from '@/config/motion';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { usePathname } from '@/i18n/navigation';
 import { usePortalStore } from '@/stores/portal-store';
 
-const centered: CSSProperties = { position: 'absolute', left: '50%', top: '50%' };
+/** Fracción de `cover` en la que la onda y el iris nacen de la luz ya reunida. */
+const IRIS_DELAY = 0.12;
+/**
+ * Tramo de `cover` en el que la noche se asienta tras el iris. Termina antes
+ * que el iris y éste no se retira hasta la revelación: en el relevo siempre
+ * hay una capa opaca y la vista anterior no puede traslucirse.
+ */
+const NIGHT_FROM = 0.5;
+const NIGHT_TO = 0.85;
 
-const GIANT_GRADIENT =
-  'radial-gradient(circle, #f7f4ea 0%, #e8d199 22%, #96C6BC 46%, #16273f 70%, #0F1B2E 100%)';
+const ms = (value: number) => `${Math.round(value)}ms`;
 
 /**
- * Overlay del cruce de portal. En `in` estalla un núcleo blanco, se expanden
- * dos anillos y gira la geometría sagrada mientras un círculo cubre la pantalla;
- * en `out` ese círculo se desvanece. Con movimiento reducido, un fundido simple.
+ * Overlay del cruce de portal: se cruza un umbral de luz y se llega a la noche.
  *
- * Port de las líneas 91–105 del prototipo.
+ * - `in`: la luz se reúne en el centro, una onda se adelanta y el iris —un
+ *   disco de noche con el borde encendido— se abre hasta que el aro sale de
+ *   pantalla. La noche se asienta detrás y la luz queda como un punto.
+ * - `hold`: noche y punto de luz, hasta que el destino llega.
+ * - `out`: la noche se disuelve sobre el destino y el punto se abre con ella.
+ *
+ * La luz es siempre un halo o un filo, nunca un relleno: lo que cubre la
+ * pantalla es la misma noche del fondo de la app, de modo que la revelación
+ * no deja lavado. Sólo se animan `transform` y `opacity`.
+ *
+ * En modo `quick` (cruce reciente o movimiento reducido) sólo hay noche y
+ * punto de luz. La noche funde con Motion y no con keyframes: el modo
+ * simplificado anula las animaciones CSS, pero un fundido de opacidad sí debe
+ * verse.
  */
 export function PortalTransition() {
   const phase = usePortalStore((state) => state.phase);
+  const mode = usePortalStore((state) => state.mode);
+  const arrive = usePortalStore((state) => state.arrive);
   const reduced = useReducedMotionSafe();
+  const pathname = usePathname();
+  const lastPathname = useRef(pathname);
+
+  // El destino ha llegado cuando la ruta consumada cambia.
+  useEffect(() => {
+    if (lastPathname.current === pathname) return;
+
+    lastPathname.current = pathname;
+    arrive();
+  }, [pathname, arrive]);
 
   if (phase === 'idle') return null;
 
+  const { cover, reveal } = PORTAL_TIMING[mode];
+  const iris = mode === 'full' && !reduced;
+  const covering = phase !== 'out';
+  const nightFrom = iris ? cover * NIGHT_FROM : 0;
+  const nightTo = iris ? cover * NIGHT_TO : cover;
+
   return (
-    <div aria-hidden="true" className="z-portal pointer-events-none fixed inset-0 overflow-hidden">
-      {reduced ? (
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'var(--color-void-2)',
-            opacity: phase === 'in' ? 1 : 0,
-            transition: 'opacity .2s ease',
-          }}
-        />
-      ) : (
+    <div aria-hidden="true" className="z-portal fixed inset-0 overflow-hidden">
+      {iris && covering ? (
         <>
-          {/* Círculo gigante que cubre la pantalla y luego se disuelve. */}
-          <div
+          <span
+            className="fm-portal-ripple"
             style={{
-              ...centered,
-              width: '300vmax',
-              height: '300vmax',
-              borderRadius: '50%',
-              background: GIANT_GRADIENT,
-              animation:
-                phase === 'in'
-                  ? 'fm-portal-expand 1s cubic-bezier(.7,0,.3,1) forwards'
-                  : 'fm-portal-fade .9s ease forwards',
+              animation: `fm-portal-ripple ${ms(cover * 0.8)} ${cssEase(EASE.ripple)} ${ms(cover * IRIS_DELAY)} both`,
             }}
           />
-
-          {phase === 'in' && (
-            <>
-              {/* Núcleo blanco que estalla. */}
-              <div
-                style={{
-                  ...centered,
-                  width: 120,
-                  height: 120,
-                  borderRadius: '50%',
-                  background: '#f7f4ea',
-                  boxShadow: '0 0 120px 60px rgba(247,244,234,0.7)',
-                  animation: 'fm-portal-core 1.1s ease-in forwards',
-                }}
-              />
-              {/* Dos anillos que se expanden. */}
-              <div
-                style={{
-                  ...centered,
-                  width: 280,
-                  height: 280,
-                  borderRadius: '50%',
-                  border: '1px solid rgba(247,244,234,0.7)',
-                  animation: 'fm-portal-ring 1.1s ease-out forwards',
-                }}
-              />
-              <div
-                style={{
-                  ...centered,
-                  width: 280,
-                  height: 280,
-                  borderRadius: '50%',
-                  border: '1px solid rgba(216,185,120,0.6)',
-                  animation: 'fm-portal-ring 1.1s ease-out .18s forwards',
-                }}
-              />
-              {/* Geometría sagrada que gira. */}
-              <svg
-                viewBox="0 0 400 400"
-                style={{
-                  ...centered,
-                  width: 620,
-                  height: 620,
-                  opacity: 0.55,
-                  animation: 'fm-portal-spin 1.1s ease-out forwards',
-                }}
-              >
-                <circle cx="200" cy="200" r="150" fill="none" stroke="#f7f4ea" strokeWidth="1" />
-                <circle
-                  cx="200"
-                  cy="200"
-                  r="110"
-                  fill="none"
-                  stroke="#D8B978"
-                  strokeWidth="1"
-                  strokeDasharray="3 10"
-                />
-                <polygon
-                  points="200,60 320,300 80,300"
-                  fill="none"
-                  stroke="#D8B978"
-                  strokeWidth="1"
-                />
-              </svg>
-            </>
-          )}
+          <span
+            className="fm-portal-iris"
+            style={{
+              animation: `fm-portal-iris ${ms(cover * (1 - IRIS_DELAY))} ${cssEase(EASE.portal)} ${ms(cover * IRIS_DELAY)} both`,
+            }}
+          />
         </>
+      ) : null}
+
+      <Mdiv
+        className="fm-portal-night absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: covering ? 1 : 0 }}
+        transition={
+          covering
+            ? { duration: (nightTo - nightFrom) / 1000, delay: nightFrom / 1000, ease: 'easeIn' }
+            : { duration: reveal / 1000, ease: EASE.soft }
+        }
+      />
+
+      {reduced ? null : (
+        <span className="fm-portal-light" style={lightMotion(phase, iris, cover, reveal)} />
       )}
     </div>
   );
 }
 
+/** Animación del punto de luz según la fase; entre fases empalma en el mismo estado. */
+function lightMotion(phase: string, iris: boolean, cover: number, reveal: number): CSSProperties {
+  if (phase === 'in') {
+    return {
+      animation: iris
+        ? `fm-portal-light-gather ${ms(cover)} ${cssEase(EASE.soft)} both`
+        : `fm-portal-light-appear ${ms(cover)} ${cssEase(EASE.soft)} both`,
+    };
+  }
+
+  if (phase === 'out') {
+    return { animation: `fm-portal-light-open ${ms(reveal * 0.8)} ${cssEase(EASE.soft)} both` };
+  }
+
+  // Sólo late si la espera se alarga: es también el indicador de carga.
+  return { animation: 'fm-portal-light-wait 2.6s ease-in-out 0.5s infinite' };
+}
+
 /**
- * Región que anuncia el destino del cruce a los lectores de pantalla. Se
- * mantiene fuera del overlay `aria-hidden` para que sí se lea.
+ * Anuncia el cruce a los lectores de pantalla. Vive fuera del overlay
+ * `aria-hidden` para que sí se lea.
  */
-export function PortalAnnouncer({ destination }: { destination?: string }) {
+export function PortalAnnouncer() {
+  const t = useTranslations('portal');
   const phase = usePortalStore((state) => state.phase);
 
   return (
     <div role="status" aria-live="polite" className="sr-only">
-      {phase === 'in' && destination ? destination : ''}
+      {phase === 'in' || phase === 'hold' ? t('crossing') : ''}
     </div>
   );
 }

@@ -280,6 +280,13 @@
 /* Eje de página: un solo margen lateral editorial para héroes, bandas y
    contenido. `fm-container` lo combina con un ancho máximo de lectura. */
 :root {
+  /* Fondo de la app. También es la materia que cubre la pantalla al cruzar el portal. */
+  --fm-night: radial-gradient(
+    140% 100% at 50% -10%,
+    #16273f 0%,
+    var(--color-void) 45%,
+    var(--color-void-2) 100%
+  );
   --page-inset: 24px;
   --container-max: 1240px;
 }
@@ -306,12 +313,7 @@
   }
 
   body {
-    background: radial-gradient(
-      140% 100% at 50% -10%,
-      #16273f 0%,
-      var(--color-void) 45%,
-      var(--color-void-2) 100%
-    );
+    background: var(--fm-night);
     color: var(--color-ivory);
     font-family: var(--font-sans);
     font-weight: 300;

@@ -29,7 +29,7 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 - [x] Título/kicker/subtítulo en Display hero centrado.
 - [x] Botón «Entrar» de tres capas con glow y `Magnetic`.
 - [x] Pista al pie en mayúsculas espaciadas.
-- [x] Coreografía de cruce con cooldown de 24 h (primera vez completa; cruces recientes fundido corto de 250 ms).
+- [x] Coreografía de cruce con cooldown de 24 h (primera vez el iris completo; cruces recientes, el fundido breve).
 - [x] Sin nav ni footer (regla de visibilidad).
 
 ### Home (`/inicio`)
@@ -110,6 +110,7 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 1. **Prototipo perdido**: no existe `frontend-prototype/` en el repo (eliminado en `7c55bf0`). La fidelidad se verifica contra el sistema codificado (`globals.css`, `config/`) y el Brand Book de `~/Descargas/`.
 2. **Kit de desarrollo en `/kit`** (no `/_kit`): las carpetas con guión bajo no generan ruta en App Router. Cierra con `notFound()` en producción (guard con `force-dynamic` para que Turbopack no lo elimine en build).
 3. **Orbe de carga durante la navegación**: añadido en `RouteTransition` (el plan no lo preveía) porque `usePathname` sólo cambia cuando la vista nueva está lista; sin él la vista anterior quedaba congelada sin indicador.
-4. **Cooldown del portal de 24 h**: la coreografía completa sólo la primera vez o tras la ventana de reposo; cruces recientes usan fundido corto (250 ms). Decisión de UX para no repetir una secuencia de 2.2 s en cada cruce.
+4. **Cooldown del portal de 24 h**: la coreografía completa sólo la primera vez o tras la ventana de reposo; cruces recientes usan el fundido breve. Decisión de UX para no repetir la secuencia entera en cada cruce.
+   - **El cruce ya no es el estallido del prototipo**: aquel círculo crema que inundaba la pantalla era un relleno sólido de acento. Ahora cruza un iris de noche con el borde encendido y la revelación espera a que llegue el destino (ver «Cruce del portal» en `DESIGN.md`).
 5. **Viñeta corregida** (`at 50% 145%`): la del prototipo dejaba una banda inferior sin oscurecer.
 6. **Fase 15 (3D) no ejecutada**: no hay escenas three.js; los fallbacks 2D (aros, geometría) cubren la dirección visual. El bundle se mantiene dentro de presupuesto en parte por esta ausencia.

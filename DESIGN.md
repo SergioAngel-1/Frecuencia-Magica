@@ -260,6 +260,16 @@ El disco orbital de frecuencia es la pieza identitaria: esfera con luz especular
 ### Movimiento
 Entradas en fade-up escalonado (`.1s`, `.25s`, `.4s`, `.55s`), curva `cubic-bezier(.2,.85,.25,1)` sin rebote; el portal usa `cubic-bezier(.7,0,.3,1)`. Sólo `transform` y `opacity`. Con `prefers-reduced-motion` se congela lo decorativo y se conserva la narrativa.
 
+### Cruce del portal (signature)
+El único momento coreografiado de la web: se cruza un umbral de luz y se llega a la noche. Tiempos en `PORTAL_TIMING` (`frontend/src/config/motion.ts`), forma en `globals.css`, secuencia en `stores/portal-store.ts`.
+
+- **Entrada** (`cover`, 1150 ms): la luz se reúne en el centro como halo, una onda lavanda se adelanta y el **iris** —un disco de noche con el borde encendido en marfil y oro— se abre hasta que el aro sale de pantalla. La noche del fondo (`--fm-night`) se asienta detrás y la luz queda como un punto.
+- **Espera**: noche y punto de luz. No hay reloj: la revelación empieza cuando el destino ha llegado, así que la vista anterior nunca se trasluce. Si la espera se alarga, el punto late; es el indicador de carga.
+- **Revelación** (`reveal`, 900 ms): la noche se disuelve sobre el destino mientras el punto se abre, y la entrada escalonada de la vista toma el relevo. Bajo el velo, `RouteTransition` intercambia sin fundido propio.
+- **Modo breve** (cruce reciente o movimiento reducido): sólo la noche que funde y vuelve. Con movimiento reducido, sin punto de luz.
+
+**La Regla de la Noche que Cubre.** Lo que tapa la pantalla es la noche de la app, nunca un color de acento: la luz del cruce es filo o halo. Un relleno claro a pantalla completa deslumbra, rompe la paleta y deja un lavado gris al disolverse.
+
 ## Do's and Don'ts
 
 ### Do:

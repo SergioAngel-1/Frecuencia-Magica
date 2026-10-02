@@ -72,6 +72,10 @@ export function RouteTransition({ children }: { children: ReactNode }) {
   if (reducedMotion) return <>{children}</>;
 
   const portalBusy = portalPhase !== 'idle';
+  // Bajo el velo del portal el intercambio es inmediato: un fundido propio
+  // se sumaría al del velo y la llegada se vería lavada.
+  const enter = portalBusy ? 0 : DURATION.base;
+  const exit = portalBusy ? 0 : DURATION.fast;
 
   return (
     <>
@@ -79,8 +83,8 @@ export function RouteTransition({ children }: { children: ReactNode }) {
         <Mdiv
           key={pathname}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: DURATION.base, ease: EASE.soft } }}
-          exit={{ opacity: 0, transition: { duration: DURATION.fast, ease: EASE.soft } }}
+          animate={{ opacity: 1, transition: { duration: enter, ease: EASE.soft } }}
+          exit={{ opacity: 0, transition: { duration: exit, ease: EASE.soft } }}
           className="relative"
           onAnimationComplete={() => {
             // El callback también lo dispara la salida de la vista anterior;

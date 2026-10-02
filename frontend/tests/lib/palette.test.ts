@@ -39,8 +39,6 @@ const FILE_EXCEPTIONS: Record<string, string[]> = {
     '#a07840',
     '#2c2012',
   ],
-  // Reflejo de oro claro en el centro del cruce del portal.
-  'components/world/portal-transition.tsx': ['#e8d199'],
 };
 
 describe('closed palette', () => {

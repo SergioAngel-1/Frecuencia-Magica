@@ -27,19 +27,40 @@ export const STAGGER = [0.1, 0.25, 0.4, 0.55] as const;
 export const EASE = {
   /** Entradas y salidas de contenido. Suave, sin rebote. */
   soft: [0.2, 0.85, 0.25, 1],
-  /** Expansión del portal. Arranca lento, acelera, frena. */
+  /** Apertura del iris del portal. Arranca lento, acelera, frena. */
   portal: [0.7, 0, 0.3, 1],
+  /** Onda que se adelanta al iris: sale deprisa y se posa. */
+  ripple: [0.16, 1, 0.3, 1],
 } as const;
 
-/** Milisegundos de la coreografía de cruce del portal. */
+/** Curva de bezier como valor CSS, para los keyframes que no pasan por Motion. */
+export function cssEase(curve: readonly [number, number, number, number]): string {
+  return `cubic-bezier(${curve.join(', ')})`;
+}
+
+/**
+ * Tiempos del cruce del portal, en milisegundos. Son la única fuente: el
+ * store secuencia las fases con ellos y el overlay los pasa a sus animaciones.
+ *
+ * - `cover`: lo que tarda la noche en cubrir la pantalla. Al terminar, el
+ *   consumidor navega.
+ * - `settle`: respiro entre la llegada del destino y el inicio de la
+ *   revelación, para que la vista nueva ya esté pintada debajo.
+ * - `reveal`: lo que tarda la noche en disolverse sobre el destino.
+ *
+ * `full` es la coreografía del iris (primera vez o tras el reposo de 24 h);
+ * `quick`, el fundido breve de los cruces recientes y del movimiento reducido.
+ */
 export const PORTAL_TIMING = {
-  /** Momento en que el círculo cubre la pantalla y el consumidor navega. */
-  navigate: 1000,
-  /** Momento en que el overlay empieza a disolverse. Debe llegar DESPUÉS de
-      que la vista anterior haya salido (exit de RouteTransition:
-      DURATION.fast = 0.3s): si el círculo se desvaneciera antes, la pantalla
-      anterior se asomaría tras él durante su fundido de salida. */
-  reveal: 1300,
-  /** Momento en que el overlay vuelve a reposo (disolución de 0.9s completa). */
-  settle: 2200,
+  full: { cover: 1150, settle: 140, reveal: 900 },
+  quick: { cover: 260, settle: 60, reveal: 480 },
 } as const;
+
+export type PortalMode = keyof typeof PORTAL_TIMING;
+
+/**
+ * Espera máxima con la pantalla cubierta. La revelación aguarda a que el
+ * destino llegue; si no llega (red caída), se revela igualmente lo que haya
+ * en vez de dejar al visitante a oscuras.
+ */
+export const PORTAL_MAX_HOLD = 5000;

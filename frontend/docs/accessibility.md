@@ -52,12 +52,12 @@ Todo control sin texto visible lleva `aria-label` (o `aria-label` descriptivo en
   - `SmoothScroll` — no se instancia (scroll nativo).
   - `RouteTransition` — sin fundido (render directo).
   - `HeroSection` — sin entradas escalonadas.
-  - `useCrossPortal` — el cruce del portal pasa a fundido instantáneo y **acorta la navegación** a 250 ms (evita la pantalla negra de 1 s: con el overlay instantáneo, mantener el timer de 1000 ms dejaría un segundo de pantalla oscura).
+  - `useCrossPortal` / `PortalTransition` — el cruce del portal usa el modo breve: la noche funde sobre la vista, se navega y vuelve a disolverse al llegar el destino. Sin iris, onda ni punto de luz, y sólo `opacity`. El fundido va por Motion y no por keyframes, porque el modo simplificado anula las animaciones CSS y dejaría un corte en seco.
   - El orbe de carga (`RouteTransition`) se omite con movimiento reducido.
 
 ## Anuncios y estados
 
-- `PortalAnnouncer`: región `aria-live` fuera del `aria-hidden` del overlay del portal.
+- `PortalAnnouncer`: región `aria-live` fuera del `aria-hidden` del overlay del portal; anuncia «Cruzando el portal…» mientras dura el cruce. El overlay intercepta el puntero durante el cruce para que nada debajo reciba clics.
 - `NewsletterForm` y el diario del santuario: confirmaciones en región `aria-live`.
 - Estados de carga: `Skeleton` (variantes `disc`/`card`/`line`) por realm; `LoadingOrb` sólo como indicador de navegación (`RouteTransition`) — con `aria-hidden` porque es decorativo (la navegación se anuncia sola).
 - 404 y error boundary con copy de marca (`ErrorState`, nunca el stack).
