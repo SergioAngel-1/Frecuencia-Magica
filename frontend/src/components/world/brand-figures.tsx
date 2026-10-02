@@ -51,7 +51,7 @@ export function BrandFigures({ visualMode = 'cosmic' }: { visualMode?: VisualMod
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[1] overflow-hidden"
+      className="z-atmosphere pointer-events-none fixed inset-0 overflow-hidden"
       style={{ opacity: MODE_OPACITY[visualMode] }}
     >
       {/* Aro superior derecho */}

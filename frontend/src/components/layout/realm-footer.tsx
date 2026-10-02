@@ -27,7 +27,7 @@ export function RealmFooter() {
   if (!WITH_FOOTER.includes(realmId)) return null;
 
   return (
-    <div className="relative z-[100]">
+    <div className="z-content relative">
       <SiteFooter />
     </div>
   );

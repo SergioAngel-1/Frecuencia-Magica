@@ -119,12 +119,12 @@ export function LuminousCursor() {
 
   return (
     <>
-      <div aria-hidden="true" className="fm-cursor" style={wrapStyle}>
+      <div aria-hidden="true" className="fm-cursor z-cursor" style={wrapStyle}>
         <div ref={dotTranslateRef} style={wrapStyle}>
           <div ref={dotScaleRef} style={dotStyle} />
         </div>
       </div>
-      <div aria-hidden="true" className="fm-cursor" style={wrapStyle}>
+      <div aria-hidden="true" className="fm-cursor z-cursor" style={wrapStyle}>
         <div ref={ringTranslateRef} style={wrapStyle}>
           <div ref={ringScaleRef} style={ringStyle} />
         </div>

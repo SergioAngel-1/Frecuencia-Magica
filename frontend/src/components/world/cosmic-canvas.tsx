@@ -207,7 +207,7 @@ export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMod
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 h-full w-full"
+      className="z-world pointer-events-none fixed inset-0 h-full w-full"
       style={{ opacity: VISUAL_MODE_OPACITY[visualMode] }}
     />
   );

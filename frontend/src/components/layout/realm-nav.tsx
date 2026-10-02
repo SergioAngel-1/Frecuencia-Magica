@@ -49,7 +49,7 @@ export function RealmNav() {
     <nav
       aria-label={t('label')}
       className={cn(
-        'animate-fm-fade-in fixed z-[210]',
+        'animate-fm-fade-in z-nav fixed',
         // Barra inferior en móvil y tablet, sobre el dock del reproductor.
         'inset-x-3 bottom-[calc(84px+env(safe-area-inset-bottom))] flex justify-center',
         'pb-[max(0px,env(safe-area-inset-bottom))]',

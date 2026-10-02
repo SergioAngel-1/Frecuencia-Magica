@@ -14,6 +14,22 @@ const twMerge = extendTailwindMerge({
       'text-color': [{ text: ['fg', 'fg-body', 'fg-soft', 'fg-muted', 'fg-meta'] }],
       tracking: [{ tracking: ['soft', 'ui', 'label', 'caps', 'kicker', 'eyebrow'] }],
       shadow: [{ shadow: ['glow-gold', 'glow-teal', 'glow-lav', 'glow-card'] }],
+      // Capas con nombre de `globals.css`.
+      z: [
+        {
+          z: [
+            'world',
+            'atmosphere',
+            'content',
+            'player',
+            'nav',
+            'header',
+            'portal',
+            'veil',
+            'cursor',
+          ],
+        },
+      ],
     },
   },
 });

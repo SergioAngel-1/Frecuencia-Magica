@@ -118,6 +118,42 @@
 }
 
 /* ============================================================================
+   CAPAS DE LA WEB
+   Escala única de apilamiento entre capas fijas y contenido. Dentro de un
+   componente aislado (`isolate`) basta `z-10`/`z-20`; entre capas del layout
+   se usa siempre uno de estos nombres, nunca `z-[N]`. El cursor va encima de
+   todo: es el puntero, no decoración. Guarda: `tests/lib/z-layers.test.ts`.
+   ========================================================================= */
+
+@utility z-world {
+  z-index: 0;
+}
+@utility z-atmosphere {
+  z-index: 1;
+}
+@utility z-content {
+  z-index: 100;
+}
+@utility z-player {
+  z-index: 180;
+}
+@utility z-nav {
+  z-index: 210;
+}
+@utility z-header {
+  z-index: 220;
+}
+@utility z-portal {
+  z-index: 9000;
+}
+@utility z-veil {
+  z-index: 9500;
+}
+@utility z-cursor {
+  z-index: 9800;
+}
+
+/* ============================================================================
    UTILIDADES DE LAYOUT DE LA WEB
    ========================================================================= */
 

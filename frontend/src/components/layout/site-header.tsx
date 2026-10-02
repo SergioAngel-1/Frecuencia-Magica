@@ -26,7 +26,7 @@ export function SiteHeader() {
   return (
     <header
       role="banner"
-      className="fm-safe-area-top pointer-events-none fixed inset-x-0 top-0 z-[220] flex items-center justify-between px-5 py-4 md:px-[34px] md:py-[22px]"
+      className="fm-safe-area-top z-header pointer-events-none fixed inset-x-0 top-0 flex items-center justify-between px-5 py-4 md:px-[34px] md:py-[22px]"
     >
       {/* Scrim: sin superficie, el logo y los controles flotan sobre el texto
           que pasa por debajo al hacer scroll. Sólo luz de fondo, sin borde. */}

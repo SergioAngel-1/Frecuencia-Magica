@@ -53,7 +53,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const locale = await resolveLocale(params);
 
   return (
-    <html lang={locale} className={`${cormorant.variable} ${jost.variable}`} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={`${cormorant.variable} ${jost.variable}`}
+      suppressHydrationWarning
+    >
       {/* suppressHydrationWarning en los nodos raíz: extensiones de navegador
           (modo oscuro / auto-dark) inlinean los estilos computados del body en
           el atributo `style` antes de que React hidrate, y algunas tocan el
@@ -63,19 +67,19 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       <body className="antialiased" suppressHydrationWarning>
         <LazyMotion features={domAnimation}>
           <NextIntlClientProvider>
-          <RealmProvider>
-            <SmoothScroll>
-              <WorldEngine />
-              <SiteHeader />
-              <RealmNav />
-              <main id="contenido" className="relative z-[100]">
-                <RouteTransition>{children}</RouteTransition>
-                <RealmFooter />
-              </main>
-              <PlayerDock />
-            </SmoothScroll>
-          </RealmProvider>
-        </NextIntlClientProvider>
+            <RealmProvider>
+              <SmoothScroll>
+                <WorldEngine />
+                <SiteHeader />
+                <RealmNav />
+                <main id="contenido" className="z-content relative">
+                  <RouteTransition>{children}</RouteTransition>
+                  <RealmFooter />
+                </main>
+                <PlayerDock />
+              </SmoothScroll>
+            </RealmProvider>
+          </NextIntlClientProvider>
         </LazyMotion>
       </body>
     </html>

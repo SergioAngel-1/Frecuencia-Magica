@@ -51,7 +51,7 @@ export function PlayerDock() {
   return (
     <div
       data-layout-layer="player"
-      className="fixed inset-x-0 bottom-0 z-[180] px-3 pt-0 pb-[max(12px,env(safe-area-inset-bottom))] sm:px-4"
+      className="z-player fixed inset-x-0 bottom-0 px-3 pt-0 pb-[max(12px,env(safe-area-inset-bottom))] sm:px-4"
     >
       <div
         className="border-glass-brd mx-auto flex w-full max-w-[920px] items-center gap-3 rounded-[20px] border px-3 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-[22px] sm:gap-5 sm:px-5 sm:py-[14px]"
