@@ -36,6 +36,7 @@ export default async function BookingPage({ params }: PageProps) {
     hero: resolveEditorialMedia('booking.hero', {
       alt: bookingT('media.alt.hero'),
       sizes: '(min-width: 1280px) 1200px, 100vw',
+      band: experience.band,
     }),
     confirmation: resolveEditorialMedia('booking.confirmation', {
       alt: bookingT('media.alt.confirmation'),

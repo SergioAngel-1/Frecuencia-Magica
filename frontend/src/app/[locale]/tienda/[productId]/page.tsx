@@ -45,6 +45,7 @@ export default async function ProductPage({ params }: PageProps) {
           alt: t('media.alt.related', { title: relatedTitle }),
           aspect: '16:8',
           sizes: '(min-width: 1280px) 380px, (min-width: 768px) 27vw, calc(100vw - 48px)',
+          band: relatedProduct.band,
         }),
       ];
     }),
@@ -53,6 +54,7 @@ export default async function ProductPage({ params }: PageProps) {
     detail: resolveEditorialMedia('product.detail', {
       alt: t('media.alt.detail', { title }),
       sizes: '(min-width: 1280px) 1240px, (min-width: 768px) 84vw, calc(100vw - 48px)',
+      band: product.band,
     }),
     related,
   };

@@ -1,6 +1,14 @@
-import type { EditorialMediaAspect, EditorialMediaSlot } from '@/config/editorial-media';
+import type {
+  EditorialMediaAspect,
+  EditorialMediaFallback,
+  EditorialMediaSlot,
+} from '@/config/editorial-media';
 
-export type { EditorialMediaAspect, EditorialMediaSlot } from '@/config/editorial-media';
+export type {
+  EditorialMediaAspect,
+  EditorialMediaFallback,
+  EditorialMediaSlot,
+} from '@/config/editorial-media';
 
 export type EditorialMediaKind = 'photo' | 'art-direction' | 'fallback';
 
@@ -10,12 +18,19 @@ export type EditorialMedia = {
   aspect: EditorialMediaAspect;
   slot: EditorialMediaSlot;
   kind: EditorialMediaKind;
+  /** Lo que pinta el slot sin `src`; lo fija el contrato, no la vista. */
+  fallback: EditorialMediaFallback;
+  /** Gradiente del ítem del catálogo para los slots `band` (`product.band`…). */
+  band?: string;
   position?: string;
   priority?: boolean;
   sizes: string;
 };
 
-export type EditorialMediaInput = Partial<Omit<EditorialMedia, 'slot'>>;
+export type EditorialMediaInput = Partial<Omit<EditorialMedia, 'slot' | 'fallback'>>;
+
+/** Lo que `EditorialImage` pinta de verdad para un slot resuelto. */
+export type EditorialVisual = 'photo' | 'zebra' | 'band' | 'none';
 
 export type EditorialMediaMode = 'viewport' | 'banner' | 'portrait' | 'cover' | 'split' | 'quiet';
 

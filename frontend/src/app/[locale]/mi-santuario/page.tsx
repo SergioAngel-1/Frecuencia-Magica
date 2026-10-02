@@ -31,7 +31,10 @@ export default async function SanctuaryPage({ params }: PageProps) {
   const resume = resumeTarget(profile, COURSES);
   const media = {
     hero: resolveEditorialMedia('sanctuary.hero', { alt: t('media.alt.hero') }),
-    continue: resolveEditorialMedia('sanctuary.continue', { alt: t('media.alt.continue') }),
+    continue: resolveEditorialMedia('sanctuary.continue', {
+      alt: t('media.alt.continue'),
+      band: resume?.course.band,
+    }),
     daily: resolveEditorialMedia('sanctuary.daily', { alt: t('media.alt.daily') }),
     journal: resolveEditorialMedia('sanctuary.journal', { alt: t('media.alt.journal') }),
     empty: resolveEditorialMedia('sanctuary.empty', { alt: t('media.alt.empty') }),

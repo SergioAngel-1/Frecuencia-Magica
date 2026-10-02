@@ -86,7 +86,7 @@ describe('library editorial composition contracts', () => {
   it('keeps the featured frequency inside the editorial field and never maps it as a secondary', () => {
     expect(systemSource).toContain('media: LibraryMedia');
     expect(systemSource).toContain('<EditorialImage');
-    expect(systemSource).toContain('media={media.featured}');
+    expect(systemSource).toContain('{ ...media.featured, band: featured.band }');
     expect(systemSource).toContain('media={audioCoverMedia(audio)}');
     expect(systemSource).toContain("alt: t('media.alt.audioCover', { title: audioTitle(audio) })");
     expect(systemSource).toContain('data-editorial-featured="true"');
@@ -126,7 +126,8 @@ describe('library editorial composition contracts', () => {
     expect(loadingSource).toContain('<MediaSkeleton');
     expect(loadingSource).toContain('slot="library.hero"');
     expect(loadingSource).toContain('slot="library.featured"');
-    expect(loadingSource).toContain('slot="library.archive-banner"');
+    // `library.archive-banner` es `none`: la silueta replica un banner sólo de texto.
+    expect(loadingSource).not.toContain('slot="library.archive-banner"');
     expect(loadingSource).toContain('role="group"');
     expect(loadingSource).toContain('data-editorial-stage="orbital"');
     expect(loadingSource).toContain('lg:hidden');

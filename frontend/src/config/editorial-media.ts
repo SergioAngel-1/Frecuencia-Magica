@@ -48,11 +48,25 @@ export type EditorialMediaSlot = (typeof EDITORIAL_MEDIA_SLOTS)[number];
 export type EditorialMediaAspect = 'viewport' | '16:9' | '16:8' | '3:4' | '1:1';
 export type EditorialMediaPriority = 'P0' | 'P1' | 'P2';
 
+/**
+ * Qué pinta un slot mientras no tiene fotografía, según su trabajo en la vista:
+ *
+ * - `zebra`: materia estructural con texto encima (héroes, retrato de Marisol).
+ *   Bandas de la paleta, estáticas: la zebra es una ausencia deliberada, no
+ *   una carga, y no late.
+ * - `band`: contenido de un ítem del catálogo (curso, experiencia, producto,
+ *   audio). Usa la banda de color del propio ítem para no perder su identidad.
+ * - `none`: atmósfera sin trabajo narrativo propio. No pinta nada hasta que
+ *   llegue la foto; la vista descansa en el world engine.
+ */
+export type EditorialMediaFallback = 'zebra' | 'band' | 'none';
+
 export interface EditorialMediaDefinition {
   aspect: EditorialMediaAspect;
   position: string;
   priority: boolean;
   priorityTier: EditorialMediaPriority;
+  fallback: EditorialMediaFallback;
   sizes: string;
   alt?: string;
 }
@@ -78,6 +92,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: true,
     priorityTier: 'P0',
+    fallback: 'zebra',
     alt: 'Luz y cosmos en el umbral de Frecuencia Mágica',
   },
   'portal.portal-field': {
@@ -85,6 +100,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'none',
     alt: 'El campo del portal entre mundos',
   },
   'not-found.hero': {
@@ -92,6 +108,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'none',
     alt: 'Un rincón sereno del cosmos para retomar el camino',
   },
   'home.hero': {
@@ -100,30 +117,35 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: true,
     priorityTier: 'P0',
+    fallback: 'zebra',
   },
   'home.daily-frequency': {
     ...CENTER,
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'none',
   },
   'home.audio-banner': {
     ...WIDE,
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'none',
   },
   'home.realms-banner': {
     ...CENTER,
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'none',
   },
   'home-marisol-portrait': {
     ...PORTRAIT,
     aspect: '3:4',
     priority: true,
     priorityTier: 'P0',
+    fallback: 'zebra',
   },
   'home-membership': {
     ...WIDE,
@@ -131,18 +153,21 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'zebra',
   },
   'home.footer-banner': {
     ...WIDE,
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'none',
   },
   'auth.hero': {
     ...WIDE,
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'zebra',
     alt: 'La puerta de entrada a tu santuario',
   },
   'auth.form-atmosphere': {
@@ -150,6 +175,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '3:4',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'none',
     alt: 'Calma íntima alrededor del acceso',
   },
   'discover.hero': {
@@ -157,6 +183,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'zebra',
     alt: 'El comienzo de tu descubrimiento',
   },
   'discover.question-atmosphere': {
@@ -164,6 +191,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '3:4',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'none',
     alt: 'Atmósfera serena para escucharte',
   },
   'discover.tuning': {
@@ -171,6 +199,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'none',
     alt: 'Tu frecuencia encontrando su tono',
   },
   'discover.result': {
@@ -178,6 +207,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'none',
     alt: 'El resultado de tu descubrimiento',
   },
   'library.hero': {
@@ -185,6 +215,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'zebra',
     alt: 'La biblioteca sonora de Frecuencia Mágica',
   },
   'library.featured': {
@@ -192,6 +223,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'band',
     alt: 'El audio destacado de la semana',
   },
   'library.archive-banner': {
@@ -199,6 +231,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'none',
     alt: 'El archivo completo de sonidos',
   },
   'library.audio-cover.*': {
@@ -206,6 +239,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '1:1',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'band',
     alt: 'Portada de audio de Frecuencia Mágica',
   },
   'academy.hero': {
@@ -213,6 +247,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'zebra',
     alt: 'La academia de prácticas de Frecuencia Mágica',
   },
   'academy.featured-course': {
@@ -220,6 +255,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'band',
     alt: 'Curso destacado de Frecuencia Mágica',
   },
   'academy-course-cover': {
@@ -227,6 +263,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'band',
     alt: 'Escena de la práctica del curso',
   },
   'academy-lesson-visual': {
@@ -234,6 +271,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'band',
     alt: 'Práctica de la lección',
   },
   'academy.completion': {
@@ -241,6 +279,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'none',
     alt: 'El curso completado: un ciclo cerrado con luz',
   },
   'experiences.hero': {
@@ -248,6 +287,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'zebra',
     alt: 'Las experiencias que te esperan',
   },
   'experiences.featured': {
@@ -256,6 +296,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'band',
     alt: 'Experiencia destacada de Frecuencia Mágica',
   },
   'experiences-visual': {
@@ -264,6 +305,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'band',
     alt: 'Atmósfera de la experiencia',
   },
   'booking.hero': {
@@ -271,6 +313,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'band',
     alt: 'El lugar de tu experiencia',
   },
   'booking.confirmation': {
@@ -278,6 +321,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'none',
     alt: 'Tu experiencia te espera',
   },
   'store.hero': {
@@ -285,6 +329,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'zebra',
     alt: 'La tienda de los objetos del ritual',
   },
   'store-product-visual': {
@@ -292,6 +337,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '1:1',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'band',
     alt: 'Producto de Frecuencia Mágica',
   },
   'store.ritual-banner': {
@@ -299,6 +345,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'none',
     alt: 'Los objetos del ritual',
   },
   'product.detail': {
@@ -306,6 +353,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'band',
     alt: 'Detalle del producto',
   },
   'product.related': {
@@ -313,6 +361,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'band',
     alt: 'Objetos que acompañan al ritual',
   },
   'cart.empty': {
@@ -320,6 +369,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'none',
     alt: 'El carrito en calma, esperando tu elección',
   },
   'checkout.confirmation': {
@@ -327,6 +377,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'none',
     alt: 'Tu ritual está en camino',
   },
   'sanctuary.hero': {
@@ -334,6 +385,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'zebra',
     alt: 'Tu santuario te espera',
   },
   'sanctuary.continue': {
@@ -341,6 +393,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'band',
     alt: 'Continúa tu práctica desde donde la dejaste',
   },
   'sanctuary.daily': {
@@ -348,6 +401,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '1:1',
     priority: false,
     priorityTier: 'P1',
+    fallback: 'none',
     alt: 'La práctica de hoy en tu santuario',
   },
   'sanctuary.journal': {
@@ -355,6 +409,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '3:4',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'none',
     alt: 'Las páginas de tu diario',
   },
   'sanctuary.empty': {
@@ -362,6 +417,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
+    fallback: 'none',
     alt: 'Tu santuario espera sus primeras prácticas',
   },
 };

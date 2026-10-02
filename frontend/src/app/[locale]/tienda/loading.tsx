@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { PageShell } from '@/components/layout';
-import { MediaSkeleton } from '@/components/ui';
+import { MediaSkeleton, Skeleton } from '@/components/ui';
 import { cn } from '@/lib/cn';
 
 /** Silhouette of a whole product card: media band, title block and action row. */
@@ -25,6 +25,7 @@ function CardSkeleton({
       )}
     >
       <MediaSkeleton
+        animated
         aspect={featured ? '16:8' : '1:1'}
         className={bandClass}
         label={label}
@@ -56,6 +57,7 @@ export default async function Loading() {
     <PageShell width="store" padding="none" fullBleed editorial>
       <div aria-busy="true" className="motion-safe:animate-fm-fade-up">
         <MediaSkeleton
+          animated
           aspect="16:9"
           className="fm-editorial-full-bleed min-h-[clamp(420px,52vw,680px)]"
           label={t('media.alt.hero')}
@@ -122,12 +124,13 @@ export default async function Loading() {
             </div>
           </section>
 
-          <MediaSkeleton
-            aspect="16:9"
-            className="fm-editorial-full-bleed mt-[clamp(60px,10vw,140px)]"
-            label={t('media.alt.ritualBanner')}
-            slot="store.ritual-banner"
-          />
+          <div
+            aria-hidden="true"
+            className="mt-[clamp(60px,10vw,140px)] flex min-h-[clamp(280px,35vw,520px)] flex-col justify-end gap-4 py-[clamp(24px,6vw,84px)]"
+          >
+            <Skeleton variant="text" className="h-3 w-36" />
+            <Skeleton variant="text" className="h-12 w-[min(560px,90vw)]" />
+          </div>
         </div>
       </div>
     </PageShell>

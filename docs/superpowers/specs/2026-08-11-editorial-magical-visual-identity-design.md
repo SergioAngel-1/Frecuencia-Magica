@@ -128,3 +128,14 @@ Los slots de contenido (curso, experiencia, producto, portada de audio) se aplic
 ## 7. Verificación del contrato
 
 Revisado el diff completo: sin marcadores de trabajo incompleto, sin referencias ambiguas a placeholders (todo fallback remite al skeleton zebra o a los gradientes vigentes) y sin instrucciones contradictorias con `AGENTS.md`, `accessibility.md`, `performance.md` ni `fidelity-checklist.md`. El inventario de slots refleja los componentes reales del código allí donde el slot está cableado (verificado por inspección el 2026-08-11) y registra la vista y el propósito según el plan para el resto; las marcas `// TODO(backend)` del producto son excepciones intencionales y no forman parte de este documento.
+
+## 8. Enmienda 2026-10-02 — fallback por función
+
+Con los 42 slots sin asset, la zebra en todos ellos homogeneizaba las vistas (la tienda y las experiencias se leían como listados de placeholders idénticos) y su barrido en bucle se leía como «cargando». El fallback deja de ser único: cada slot declara `fallback` en `frontend/src/config/editorial-media.ts` según su trabajo.
+
+- `zebra` (estática): materia estructural con texto encima — `portal.hero`, `home.hero`, los héroes de cada realm, `auth.hero` y `home-marisol-portrait`.
+- `band`: contenido de un ítem del catálogo — portadas de audio, cursos, lecciones, experiencias, reserva, productos y «continuar» del santuario. Usa el `band` del propio ítem.
+- `none`: atmósferas sin trabajo narrativo — quiz, formulario de acceso, carrito y confirmaciones, diario, banners intermedios y 404. No pintan nada hasta tener foto; la vista descansa en el world engine.
+
+El barrido de la zebra queda reservado a las siluetas de `loading.tsx`, donde sí significa espera. Esta enmienda sustituye a las reglas «Sin asset → zebra» (§ 6.2) y «Skeleton zebra como fallback de slot» en lo que contradigan.
+

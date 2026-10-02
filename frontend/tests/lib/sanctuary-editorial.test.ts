@@ -128,9 +128,11 @@ describe('sanctuary editorial composition contracts', () => {
     expect(loadingSource).toContain('aria-busy="true"');
     expect(loadingSource).toContain('<MediaSkeleton');
 
-    for (const slot of ['sanctuary.hero', 'sanctuary.continue', 'sanctuary.journal']) {
+    for (const slot of ['sanctuary.hero', 'sanctuary.continue']) {
       expect(loadingSource).toContain(`slot="${slot}"`);
     }
+    // `sanctuary.journal` es `none`: sin foto no hay columna lateral que esperar.
+    expect(loadingSource).not.toContain('slot="sanctuary.journal"');
 
     expect(loadingSource).not.toContain('bg-gray');
   });

@@ -28,6 +28,7 @@ export function ExperienceList({ media }: ExperienceListProps) {
   const experienceMedia = (experience: (typeof EXPERIENCES)[number]): EditorialMedia => ({
     ...media.row,
     alt: t('media.alt.row', { title: titleFor(experience) }),
+    band: experience.band,
   });
 
   return (
@@ -39,7 +40,7 @@ export function ExperienceList({ media }: ExperienceListProps) {
         durationLabel={t('durationLabel')}
         description={t('featuredDescription')}
         experience={featured}
-        media={media.featured}
+        media={{ ...media.featured, band: featured.band }}
         mode={t(`modes.${featured.mode}` as 'modes.online')}
         modeLabel={t('featuredBadge')}
         title={titleFor(featured)}

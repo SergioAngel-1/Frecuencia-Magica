@@ -40,6 +40,7 @@ export default async function CoursePage({ params }: PageProps) {
       title: t(`courses.${course.id}.title` as 'courses.c1.title'),
     }),
     sizes: '(min-width: 1024px) 580px, calc(100vw - 48px)',
+    band: course.band,
   });
 
   return (

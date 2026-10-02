@@ -17,6 +17,7 @@ export default async function Loading() {
     <PageShell width="wide" padding="none" fullBleed editorial>
       <div aria-busy="true">
         <MediaSkeleton
+          animated
           aspect="16:9"
           className="fm-editorial-full-bleed min-h-[clamp(420px,52vw,680px)]"
           label={t('media.alt.hero')}
@@ -34,12 +35,13 @@ export default async function Loading() {
             ))}
           </div>
 
-          <MediaSkeleton
-            aspect="16:9"
-            className="fm-editorial-full-bleed mb-[clamp(28px,5vw,72px)] min-h-[clamp(280px,35vw,520px)]"
-            label={t('media.alt.archiveBanner')}
-            slot="library.archive-banner"
-          />
+          <div
+            aria-hidden="true"
+            className="mb-[clamp(28px,5vw,72px)] flex min-h-[clamp(280px,35vw,520px)] flex-col justify-end gap-4 py-[clamp(24px,6vw,84px)]"
+          >
+            <Skeleton variant="text" className="h-3 w-36" />
+            <Skeleton variant="text" className="h-12 w-[min(560px,90vw)]" />
+          </div>
 
           <div
             className="relative isolate mx-auto w-full max-w-[1040px]"
@@ -48,6 +50,7 @@ export default async function Loading() {
             {/* <1024px: campo destacado seguido de rejilla secundaria. */}
             <div className="mx-auto block lg:hidden">
               <MediaSkeleton
+                animated
                 aspect="16:8"
                 className="min-h-[clamp(430px,58vw,680px)]"
                 label={t('media.alt.featured')}
@@ -63,6 +66,7 @@ export default async function Loading() {
             {/* >=1024px: el campo destacado y las posiciones orbitales. */}
             <div className="relative hidden min-h-[720px] lg:block">
               <MediaSkeleton
+                animated
                 aspect="16:8"
                 className="absolute top-1/2 left-1/2 z-[4] min-h-[clamp(430px,58vw,680px)] w-[min(70%,720px)] -translate-x-1/2 -translate-y-1/2"
                 label={t('media.alt.featured')}

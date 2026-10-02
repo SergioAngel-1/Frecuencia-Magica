@@ -63,6 +63,7 @@ export default async function LessonPage({ params }: PageProps) {
   const lessonMedia = resolveEditorialMedia('academy-lesson-visual', {
     alt: t('media.alt.lesson', { title: lessonTitle }),
     sizes: '(min-width: 1024px) 760px, calc(100vw - 48px)',
+    band: course.band,
   });
   const completionMedia = resolveEditorialMedia('academy.completion', {
     alt: t('media.alt.completion'),

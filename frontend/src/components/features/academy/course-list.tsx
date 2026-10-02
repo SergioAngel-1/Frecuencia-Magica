@@ -51,6 +51,7 @@ export function CourseList({ media }: { media: AcademyMedia }) {
   const courseMedia = (course: (typeof COURSES)[number]): EditorialMedia => ({
     ...media.courseCover,
     alt: t('media.alt.courseCover', { title: courseTitle(course) }),
+    band: course.band,
   });
 
   return (
@@ -65,7 +66,7 @@ export function CourseList({ media }: { media: AcademyMedia }) {
           description={t('featuredDescription')}
           level={level(featured)}
           lessonsLabel={`${t('lessonsCount', { count: featured.lessons })} · ${featured.hours}`}
-          media={media.featuredCourse}
+          media={{ ...media.featuredCourse, band: featured.band }}
           title={courseTitle(featured)}
           featured
         />

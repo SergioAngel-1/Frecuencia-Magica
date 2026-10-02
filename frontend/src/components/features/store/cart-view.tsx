@@ -30,6 +30,7 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
       title: tStore(`products.${product.id}.title`),
     }),
     sizes: '80px',
+    band: product.band,
   });
 
   return (

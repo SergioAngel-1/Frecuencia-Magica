@@ -11,6 +11,7 @@ export default async function Loading() {
     <PageShell width="wide" padding="none" fullBleed editorial>
       <div aria-busy="true" className="motion-safe:animate-fm-fade-up">
         <MediaSkeleton
+          animated
           aspect="16:9"
           className="fm-editorial-full-bleed min-h-[clamp(300px,34vw,460px)]"
           label={t('media.alt.hero')}
@@ -27,6 +28,7 @@ export default async function Loading() {
           <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_1fr] lg:gap-8">
             <GlassPanel aria-hidden="true" className="overflow-hidden">
               <MediaSkeleton
+                animated
                 aspect="16:8"
                 label={t('media.alt.continue')}
                 slot="sanctuary.continue"
@@ -44,18 +46,12 @@ export default async function Loading() {
             </GlassPanel>
           </div>
 
-          <div className="mt-8 grid gap-6 lg:mt-10 lg:grid-cols-[minmax(0,1fr)_minmax(260px,340px)] lg:gap-8">
+          <div className="mt-8 lg:mt-10">
             <GlassPanel aria-hidden="true" className="flex flex-col gap-4 p-5 sm:p-7">
               <Skeleton className="h-3 w-24" />
               <Skeleton className="h-7 w-2/3" />
               <Skeleton variant="band" className="h-[132px]" />
             </GlassPanel>
-            <MediaSkeleton
-              aspect="3:4"
-              className="rounded-card-lg max-lg:hidden"
-              label={t('media.alt.journal')}
-              slot="sanctuary.journal"
-            />
           </div>
         </div>
       </div>

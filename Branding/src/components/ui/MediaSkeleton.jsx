@@ -13,8 +13,9 @@ const TONES = { gold: 'border-gold/35', teal: 'border-teal/35', lav: 'border-lav
 /**
  * Zebra editorial: la ausencia deliberada de fotografía. Nunca una caja gris ni una imagen
  * falsa. Ángulo y fase salen del id del slot (`zebraVariant`, el mismo de la web), no del azar.
+ * Estática por defecto, como en la web: el barrido (`animated`) sólo significa «cargando».
  */
-export function MediaSkeleton({ slot, label, aspect = '16:9', tone = 'gold', animated = true, className }) {
+export function MediaSkeleton({ slot, label, aspect = '16:9', tone = 'gold', animated = false, className }) {
   const variant = zebraVariant(slot)
 
   return (

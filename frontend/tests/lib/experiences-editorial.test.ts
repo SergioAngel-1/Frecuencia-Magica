@@ -80,7 +80,7 @@ describe('experiences editorial composition contracts', () => {
     expect(pageSource).toContain('fm-editorial-full-bleed');
     expect(pageSource).toContain('<ExperienceList media={experienceMedia}');
     expect(listSource).toContain('media: ExperienceMedia');
-    expect(listSource).toContain('media={media.featured}');
+    expect(listSource).toContain('media={{ ...media.featured, band: featured.band }}');
     expect(listSource).toContain('media={experienceMedia(exp)}');
   });
 

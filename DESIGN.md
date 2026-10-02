@@ -115,7 +115,7 @@ Frecuencia Mágica no es un sitio sobre bienestar: es un lugar al que se entra. 
 
 El tono visual es íntimo, sereno y poético. Se habla en segunda persona ("vuelve a ti", "respira"), se escribe con serif ligera a gran tamaño y se deja aire. Los acentos son luz (halos, bordes finos, resplandores), jamás rellenos. Nada es estático: los fondos viven, los elementos flotan, orbitan o laten, y toda entrada llega en fade-up escalonado.
 
-Mientras no hay fotografía real, cada slot muestra el skeleton **zebra**: bandas de la paleta a baja opacidad con barrido de luz. Es arte dirigido, no un hueco; nunca una caja gris, ni stock, ni Unsplash.
+Mientras no hay fotografía real, cada slot pinta el fallback de su contrato: la **zebra** (bandas de la paleta a baja opacidad, quietas) en héroes y retrato; la banda de color del ítem en cursos, experiencias, productos y audios; nada en las atmósferas sin trabajo narrativo. Es arte dirigido, no un hueco; nunca una caja gris, ni stock, ni Unsplash. La zebra no late: un barrido en bucle se lee como «cargando», y sólo las siluetas de carga lo usan.
 
 **Key Characteristics:**
 - Paleta cerrada de siete colores; el acento entra como luz, no como superficie.
@@ -236,7 +236,7 @@ Las bandas y héroes a sangre no llevan radio. El retrato de Marisol conserva su
 La **constelación**: seis puntos de luz, uno por realm, tintados con el acento del realm; el activo brilla. En escritorio el nombre emerge al acercarse o enfocar; en móvil y tablet es una barra de cristal con los seis nombres en mayúsculas, desplazable, con el realm actual centrado. No aparece en portal ni acceso.
 
 ### Editorial media (signature)
-`FullBleedSection` (héroe o banda con fotografía), `EditorialBanner` (franja con kicker, título y acción), `EditorialImage` (imagen o zebra más scrim) y `MediaSkeleton` (zebra: bandas oro/teal/lavanda/vacío a baja opacidad, ángulo y fase derivados del id del slot, capa del 124% para que el barrido nunca deje ver el borde). Todo slot sin asset usa la zebra y lleva `data-media-slot`.
+`FullBleedSection` (héroe o banda con fotografía), `EditorialBanner` (franja con kicker, título y acción), `EditorialImage` (imagen o zebra más scrim) y `MediaSkeleton` (zebra: bandas oro/teal/lavanda/vacío a baja opacidad, ángulo y fase derivados del id del slot, capa del 124% para que el barrido de carga nunca deje ver el borde; estática salvo con `animated`, que sólo usan los `loading.tsx`). Sin asset, `EditorialImage` pinta el `fallback` del slot (`zebra`, `band` o `none`, resuelto por `editorialVisual`) y lleva `data-media-slot` y `data-media-visual`.
 
 ### Frequency Disc (signature)
 El disco orbital de frecuencia es la pieza identitaria: esfera con luz especular, aros contrarrotados, cifra en serif y unidad «Hz». Tres escalas (`sm` 150px, `md` 190px, `lg` 380px); sólo la grande lleva ecualizador. En la Biblioteca no hay rejilla de tarjetas: el destacado es el sol y seis discos orbitan a su alrededor.
@@ -249,7 +249,7 @@ Entradas en fade-up escalonado (`.1s`, `.25s`, `.4s`, `.55s`), curva `cubic-bezi
 ### Do:
 - **Do** usar los cinco marfiles (`text-ivory`, `text-fg-body`, `text-fg-soft`, `text-fg-muted`, `text-fg-meta`) y los tamaños nombrados (`text-label`, `text-meta`, `text-body`, `text-lead`).
 - **Do** alinear héroe, filtros, bandas y cuadrícula al eje de página con `fm-container`, y dejar las bandas a sangre (`fm-editorial-full-bleed`).
-- **Do** dar a cada slot fotográfico su ratio (3:4, 1:1, 16:8, 16:9), su alt traducido (`messages/{es,en}.json`) y, sin asset, la zebra.
+- **Do** dar a cada slot fotográfico su ratio (3:4, 1:1, 16:8, 16:9), su alt traducido (`messages/{es,en}.json`) y un `fallback` según su trabajo (`zebra`, `band` o `none`); a los slots `band`, el `band` del ítem.
 - **Do** usar `ButtonLink` para botones-enlace en Server Components y `Kicker`/`Display`/`arrowLinkClasses` antes que clases sueltas.
 - **Do** verificar en 1440, 1280, 768 y 390: sin desbordes, sin solapes con la nav, hit targets ≥44px.
 - **Do** registrar cualquier escala nueva de `@theme` en `frontend/src/lib/cn.ts`.

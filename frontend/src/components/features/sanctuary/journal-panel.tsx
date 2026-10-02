@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { Button, EditorialImage, GlassPanel, Kicker, Textarea } from '@/components/ui';
 import { useMounted } from '@/hooks/use-mounted';
 import { cn } from '@/lib/cn';
+import { hasEditorialVisual } from '@/lib/editorial/visual';
 import { useJournalStore } from '@/stores/journal-store';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -45,9 +46,17 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
   // Hasta que el cliente ha pintado no se lee `localStorage`: el servidor no
   // tiene entradas y mostrarlas en el primer render desajusta la hidratación.
   const visibleEntries = mounted ? entries : [];
+  // La columna lateral sólo existe si el slot pinta algo: sin foto, el diario
+  // ocupa el ancho entero en vez de convivir con un hueco.
+  const withAside = hasEditorialVisual(media.journal);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(260px,340px)] lg:gap-8">
+    <div
+      className={cn(
+        'grid gap-6',
+        withAside && 'lg:grid-cols-[minmax(0,1fr)_minmax(260px,340px)] lg:gap-8',
+      )}
+    >
       <GlassPanel
         className={cn(
           'p-5 transition-[box-shadow,border-color] duration-700 sm:p-7',
@@ -129,21 +138,23 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
         </p>
       </GlassPanel>
 
-      <div
-        className="rounded-card-lg relative overflow-hidden max-lg:order-first max-lg:aspect-[16/8]"
-        data-editorial-media="sanctuary.journal"
-      >
-        <div className="absolute inset-0">
-          <EditorialImage
-            aspect="3:4"
-            className="h-full"
-            focalPoint={media.journal.position}
-            media={media.journal}
-            overlay={false}
-            scrim="bottom"
-          />
+      {withAside ? (
+        <div
+          className="rounded-card-lg relative overflow-hidden max-lg:order-first max-lg:aspect-[16/8]"
+          data-editorial-media="sanctuary.journal"
+        >
+          <div className="absolute inset-0">
+            <EditorialImage
+              aspect="3:4"
+              className="h-full"
+              focalPoint={media.journal.position}
+              media={media.journal}
+              overlay={false}
+              scrim="bottom"
+            />
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }

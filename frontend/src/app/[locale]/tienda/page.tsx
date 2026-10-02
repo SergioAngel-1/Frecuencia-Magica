@@ -38,6 +38,7 @@ export default async function StorePage({ params }: PageProps) {
           sizes: featured
             ? '(min-width: 1280px) 820px, (min-width: 768px) 56vw, calc(100vw - 48px)'
             : '(min-width: 1280px) 380px, (min-width: 768px) 28vw, calc(100vw - 48px)',
+          band: product.band,
         }),
       ];
     }),

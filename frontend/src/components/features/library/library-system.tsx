@@ -36,6 +36,7 @@ export function LibrarySystem({ media }: { media: LibraryMedia }) {
   const audioCoverMedia = (audio: Audio): EditorialMedia => ({
     ...media.audioCover,
     alt: t('media.alt.audioCover', { title: audioTitle(audio) }),
+    band: audio.band,
   });
 
   return (
@@ -78,7 +79,7 @@ export function LibrarySystem({ media }: { media: LibraryMedia }) {
                 aspect={media.featured.aspect}
                 className="h-full"
                 focalPoint={media.featured.position}
-                media={media.featured}
+                media={featured ? { ...media.featured, band: featured.band } : media.featured}
                 overlay="bottom"
                 scrim="bottom"
               />

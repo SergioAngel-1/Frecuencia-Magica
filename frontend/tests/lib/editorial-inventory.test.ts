@@ -23,9 +23,9 @@ const SOURCE = sourceFiles(SRC)
   .map((file) => readFileSync(file, 'utf8'))
   .join('\n');
 
-/** Fila del inventario por id: `| `slot` | … | Estado |`. */
+/** Fila del inventario por id: `| `slot` | … | Estado |`, con o sin relleno de columnas. */
 function inventoryRow(slot: string): string | undefined {
-  return README.split('\n').find((line) => line.startsWith(`| \`${slot}\` |`));
+  return README.split('\n').find((line) => line.replace(/\s+/g, ' ').startsWith(`| \`${slot}\` |`));
 }
 
 describe('editorial slot inventory', () => {

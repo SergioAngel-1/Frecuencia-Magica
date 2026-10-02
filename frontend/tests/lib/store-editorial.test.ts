@@ -187,7 +187,8 @@ describe('store editorial composition contracts', () => {
     expect(loadingSource).toContain('<MediaSkeleton');
     expect(loadingSource).toContain('slot="store.hero"');
     expect(loadingSource).toContain('slot="store-product-visual"');
-    expect(loadingSource).toContain('slot="store.ritual-banner"');
+    // `store.ritual-banner` es `none`: la silueta replica un banner sólo de texto.
+    expect(loadingSource).not.toContain('slot="store.ritual-banner"');
     expect(loadingSource).toContain('h-[clamp(190px,22vw,260px)]');
     expect(loadingSource).toContain('h-[clamp(210px,26vw,340px)]');
     expect(loadingSource).toContain('min-h-[390px]');

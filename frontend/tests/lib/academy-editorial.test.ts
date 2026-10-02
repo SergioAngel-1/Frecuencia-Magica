@@ -67,7 +67,7 @@ describe('academy editorial composition contracts', () => {
     expect(pageSource).toContain('fm-editorial-full-bleed');
     expect(pageSource).toContain('<CourseList media={academyMedia}');
     expect(listSource).toContain('media: AcademyMedia');
-    expect(listSource).toContain('media={media.featuredCourse}');
+    expect(listSource).toContain('media={{ ...media.featuredCourse, band: featured.band }}');
     expect(listSource).toContain('media={courseMedia(course)}');
     expect(listSource).toContain('data-editorial-archive="true"');
   });

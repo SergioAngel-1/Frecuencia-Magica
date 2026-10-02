@@ -28,6 +28,10 @@ const TONE_CLASSES: Record<EditorialTone, string> = {
  * a fake image. The label remains available to assistive technology while every
  * visual layer stays decorative.
  *
+ * Estática por defecto: como fallback permanente de un slot, un barrido en
+ * bucle se leería como «cargando». `animated` sólo lo piden las siluetas de
+ * `loading.tsx`, donde el barrido sí significa espera.
+ *
  * La capa de bandas mide 124% del contenedor (`-inset-x-[12%]`) para que el
  * barrido horizontal nunca deje ver el fondo liso en un borde. El ángulo y la
  * fase salen del id del slot (`zebraVariant`), no del azar.
@@ -37,7 +41,7 @@ export function MediaSkeleton({
   label,
   aspect = '16:9',
   tone = 'gold',
-  animated = true,
+  animated = false,
   className,
 }: MediaSkeletonProps) {
   const variant = zebraVariant(slot);

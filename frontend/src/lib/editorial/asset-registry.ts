@@ -13,6 +13,7 @@ export function resolveEditorialMedia(
     aspect: media?.aspect ?? definition.aspect,
     slot,
     kind: hasSource ? (media?.kind === 'art-direction' ? 'art-direction' : 'photo') : 'fallback',
+    fallback: definition.fallback,
     position: media?.position ?? definition.position,
     priority: media?.priority ?? definition.priority,
     sizes: media?.sizes ?? definition.sizes,
@@ -20,6 +21,10 @@ export function resolveEditorialMedia(
 
   if (hasSource) {
     resolved.src = media.src;
+  }
+
+  if (media?.band) {
+    resolved.band = media.band;
   }
 
   return resolved;
