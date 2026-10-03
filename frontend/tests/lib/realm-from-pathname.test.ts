@@ -39,6 +39,11 @@ describe('realmFromPathname', () => {
     expect(realmFromPathname('/experiencias/e2/reservar')).toBe('experiencias');
   });
 
+  it('la vista de Marisol hereda el realm del home en ambos idiomas', () => {
+    expect(realmFromPathname('/sobre-marisol')).toBe('home');
+    expect(realmFromPathname('/en/about-marisol')).toBe('home');
+  });
+
   it('una ruta desconocida cae en el portal', () => {
     expect(realmFromPathname('/inexistente')).toBe('portal');
   });
