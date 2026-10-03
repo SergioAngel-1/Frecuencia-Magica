@@ -1,19 +1,19 @@
+import { Halo } from '@/components/world/halo';
+import { OrbitalRings } from '@/components/world/orbital-rings';
 import { cn } from '@/lib/cn';
 
 export type OrbTone = 'lav' | 'gold' | 'teal';
 
-/** Núcleo del orbe: luz que nace descentrada, como una esfera iluminada de lado. */
-const CORE: Record<OrbTone, string> = {
-  lav: 'radial-gradient(circle at 42% 38%, rgba(247,244,234,0.9), rgba(185,176,214,0.55) 44%, transparent 72%)',
-  gold: 'radial-gradient(circle at 42% 38%, rgba(247,244,234,0.9), rgba(216,185,120,0.55) 44%, transparent 72%)',
-  teal: 'radial-gradient(circle at 42% 38%, rgba(247,244,234,0.9), rgba(150,198,188,0.55) 44%, transparent 72%)',
+/** Acento del orbe como terna RGB, para componer sus luces a distinta opacidad. */
+const TONE_RGB: Record<OrbTone, string> = {
+  lav: '185,176,214',
+  gold: '216,185,120',
+  teal: '150,198,188',
 };
 
-const GLOW: Record<OrbTone, string> = {
-  lav: '0 0 80px 22px rgba(185,176,214,0.3)',
-  gold: '0 0 80px 22px rgba(216,185,120,0.3)',
-  teal: '0 0 80px 22px rgba(150,198,188,0.3)',
-};
+/** Núcleo: luz que nace descentrada, como una esfera iluminada de lado. */
+const core = (rgb: string) =>
+  `radial-gradient(circle at 42% 38%, rgba(247,244,234,0.92), rgba(${rgb},0.6) 44%, transparent 72%)`;
 
 interface LoadingOrbProps {
   size?: number;
@@ -29,11 +29,17 @@ interface LoadingOrbProps {
 }
 
 /**
- * Orbe que respira mientras el sistema trabaja.
+ * La espera del sistema: una frecuencia sintonizándose.
  *
- * Es el reemplazo del spinner en las esperas con narrativa —la sintonización
- * de Descúbrete, sobre todo— y el remate de las confirmaciones cuando
- * `loading` es `false`.
+ * Mientras carga es un pequeño sistema orbital, el mismo lenguaje del disco
+ * de frecuencia y del portal: un núcleo de luz que respira, una onda que sale
+ * de él, un aro con un nodo que lo recorre y un segundo aro punteado que gira
+ * al revés. El progreso lo dice el nodo en órbita, no un spinner. Sólo se
+ * animan `transform` y `opacity`; con movimiento reducido queda la figura
+ * quieta, que sigue leyéndose.
+ *
+ * Con `loading={false}` es sólo el orbe encendido: el remate de una
+ * confirmación.
  */
 export function LoadingOrb({
   size = 130,
@@ -42,38 +48,55 @@ export function LoadingOrb({
   loading = true,
   className,
 }: LoadingOrbProps) {
+  const rgb = TONE_RGB[tone];
+
   return (
     <div
       className={cn('flex flex-col items-center text-center', className)}
       {...(loading ? { role: 'status' } : {})}
     >
-      <div
-        className="relative animate-[fm-breathe_3s_ease-in-out_infinite]"
-        style={{ width: size, height: size }}
-      >
+      <div className="relative" style={{ width: size, height: size }}>
+        <Halo color={`rgba(${rgb},0.3)`} blur={16} inset={loading ? '-14%' : '-22%'} />
+
+        {loading ? (
+          <>
+            <span
+              aria-hidden="true"
+              className="animate-fm-ring border-ivory/35 absolute inset-[31%] rounded-full border"
+            />
+            <OrbitalRings
+              size={size}
+              spin={7}
+              rings={[{ r: 62, stroke: `rgba(${rgb},0.42)`, width: 0.8 }]}
+              className="absolute inset-0"
+              style={{ width: '100%', height: '100%' }}
+            >
+              <OrbitalRings.Node angle={-90} radius={62} color="var(--color-ivory)" size={6} />
+            </OrbitalRings>
+            <OrbitalRings
+              size={size}
+              spin={11}
+              direction="ccw"
+              rings={[{ r: 62, stroke: 'rgba(216,185,120,0.4)', width: 0.9, dash: '2 9' }]}
+              className="absolute inset-[14%]"
+              style={{ width: '72%', height: '72%' }}
+            >
+              <OrbitalRings.Node angle={140} radius={62} color="var(--color-gold)" size={5} />
+            </OrbitalRings>
+          </>
+        ) : null}
+
         <div
           aria-hidden="true"
-          className="absolute inset-0 rounded-full"
-          style={{ background: CORE[tone], boxShadow: GLOW[tone] }}
+          className={cn(
+            'absolute rounded-full',
+            loading ? 'inset-[31%] animate-[fm-breathe_3s_ease-in-out_infinite]' : 'inset-0',
+          )}
+          style={{
+            background: core(rgb),
+            boxShadow: `0 0 ${Math.round(size * (loading ? 0.3 : 0.6))}px ${Math.round(size * (loading ? 0.05 : 0.16))}px rgba(${rgb},0.3)`,
+          }}
         />
-        {loading ? (
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 130 130"
-            className="absolute inset-0 animate-[fm-spin_8s_linear_infinite]"
-            style={{ width: size, height: size }}
-          >
-            <circle
-              cx="65"
-              cy="65"
-              r="58"
-              fill="none"
-              stroke="rgba(216,185,120,0.4)"
-              strokeWidth="0.7"
-              strokeDasharray="3 7"
-            />
-          </svg>
-        ) : null}
       </div>
 
       {label ? (
