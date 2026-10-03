@@ -61,7 +61,7 @@ export function SiteFooter() {
               }
               tone="gold"
               align="left"
-              className="min-h-[clamp(300px,34vw,520px)]"
+              heightClassName="min-h-[clamp(300px,34vw,520px)]"
             />
           </div>
         ) : null}

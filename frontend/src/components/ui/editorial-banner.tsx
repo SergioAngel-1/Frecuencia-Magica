@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
+import { hasEditorialVisual } from '@/lib/editorial/visual';
 import type { EditorialMedia, EditorialTone } from '@/types/editorial-media';
 import { Display } from './display';
 import { EditorialImage } from './editorial-image';
@@ -16,6 +17,11 @@ export interface EditorialBannerProps {
   action?: ReactNode;
   align?: EditorialBannerAlign;
   tone?: EditorialTone;
+  /**
+   * Alto mínimo de la banda cuando tiene materia que enmarcar (foto, zebra o
+   * banda). Sin materia se ignora: la banda mide lo que su texto.
+   */
+  heightClassName?: string;
   className?: string;
 }
 
@@ -38,6 +44,12 @@ const KICKER_TONES: Record<EditorialTone, KickerTone> = {
  * una banda que hereda el ancho de su contenedor queda inset y deja un borde
  * duro junto a las que sí llegan al borde. El texto se alinea con el eje de
  * página (`fm-container`), el mismo que los héroes y el contenido.
+ *
+ * Con materia (foto o fallback `zebra`/`band`) es una franja con alto propio
+ * y el texto al pie, sobre el scrim. Un slot `none` sin foto no pinta nada:
+ * entonces la banda es sólo su texto, sin alto mínimo ni aro flotante, y el
+ * aire lo pone la vista. Reservar el hueco de una foto que no está dejaba el
+ * titular suelto en mitad de un vacío.
  */
 export function EditorialBanner({
   media,
@@ -47,16 +59,21 @@ export function EditorialBanner({
   action,
   align = 'left',
   tone = 'gold',
+  heightClassName = 'min-h-[clamp(280px,35vw,520px)]',
   className,
 }: EditorialBannerProps) {
+  const framed = media ? hasEditorialVisual(media) : false;
+
   return (
     <section
       className={cn(
-        'fm-editorial-full-bleed relative isolate flex min-h-[clamp(280px,35vw,520px)] flex-col overflow-hidden',
+        'fm-editorial-full-bleed relative isolate flex flex-col',
+        framed && ['overflow-hidden', heightClassName],
         className,
       )}
+      data-editorial-banner={framed ? 'framed' : 'text'}
     >
-      {media ? (
+      {media && framed ? (
         <div className="absolute inset-0">
           <EditorialImage
             aspect={media.aspect}
@@ -67,21 +84,24 @@ export function EditorialBanner({
           />
         </div>
       ) : null}
-      <div
-        aria-hidden="true"
-        className="border-gold/25 pointer-events-none absolute top-[12%] right-[8%] h-28 w-28 rounded-full border opacity-60"
-        data-editorial-geometry="true"
-      />
+      {framed ? (
+        <div
+          aria-hidden="true"
+          className="border-gold/25 pointer-events-none absolute top-[12%] right-[8%] h-28 w-28 rounded-full border opacity-60"
+          data-editorial-geometry="true"
+        />
+      ) : null}
       <div
         className={cn(
-          'fm-container relative z-20 flex min-h-[clamp(280px,35vw,520px)] flex-1 flex-col justify-end gap-4 py-[clamp(24px,6vw,84px)]',
+          'fm-container relative z-20 flex flex-col gap-4',
+          framed && 'py-block flex-1 justify-end',
           ALIGN_CLASSES[align],
         )}
       >
         <Kicker tone={KICKER_TONES[tone]} spacing="wide">
           {eyebrow}
         </Kicker>
-        <Display level="h2" size="lg" className="max-w-4xl">
+        <Display level="h2" size={framed ? 'lg' : 'md'} className="max-w-4xl">
           {title}
         </Display>
         {body ? (

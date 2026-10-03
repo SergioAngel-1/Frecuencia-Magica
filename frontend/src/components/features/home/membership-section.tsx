@@ -33,7 +33,7 @@ export function MembershipSection({
             {cta}
           </ButtonLink>
         }
-        className="min-h-[clamp(380px,48vw,680px)]"
+        heightClassName="min-h-[clamp(380px,48vw,680px)]"
       />
     </section>
   );

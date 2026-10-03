@@ -25,7 +25,7 @@ export default async function Loading() {
           slot="library.hero"
         />
 
-        <div className="pt-block pb-section mx-auto w-full max-w-[1040px] px-6">
+        <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
           <div
             aria-label={t('filtersLabel')}
             className="mb-[38px] flex flex-wrap gap-[10px]"
@@ -36,12 +36,10 @@ export default async function Loading() {
             ))}
           </div>
 
-          <div
-            aria-hidden="true"
-            className="mb-block flex min-h-[clamp(280px,35vw,520px)] flex-col justify-end gap-4 py-[clamp(24px,6vw,84px)]"
-          >
+          <div aria-hidden="true" className="mb-block flex flex-col gap-4">
             <Skeleton variant="text" className="h-3 w-36" />
             <Skeleton variant="text" className="h-12 w-[min(560px,90vw)]" />
+            <Skeleton variant="text" className="h-4 w-[min(420px,80vw)]" />
           </div>
 
           <div

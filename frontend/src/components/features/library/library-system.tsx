@@ -48,7 +48,7 @@ export function LibrarySystem({ media }: { media: LibraryMedia }) {
         eyebrow={t('archive.eyebrow')}
         title={t('archive.title')}
         body={t('archive.description')}
-        className="fm-editorial-full-bleed mb-block"
+        className="mb-block"
       />
 
       {filtered.length === 0 ? (
