@@ -266,7 +266,8 @@ El único momento coreografiado de la web: se cruza un umbral de luz y se llega 
 - **Entrada** (`cover`, 1150 ms): la luz se reúne en el centro como halo, una onda lavanda se adelanta y el **iris** —un disco de noche con el borde encendido en marfil y oro— se abre hasta que el aro sale de pantalla. La noche del fondo (`--fm-night`) se asienta detrás y la luz queda como un punto.
 - **Espera**: noche y punto de luz. No hay reloj: la revelación empieza cuando el destino ha llegado, así que la vista anterior nunca se trasluce. Si la espera se alarga, el punto late; es el indicador de carga.
 - **Revelación** (`reveal`, 900 ms): la noche se disuelve sobre el destino mientras el punto se abre, y la entrada escalonada de la vista toma el relevo. Bajo el velo, `RouteTransition` intercambia sin fundido propio.
-- **Modo breve** (cruce reciente o movimiento reducido): sólo la noche que funde y vuelve. Con movimiento reducido, sin punto de luz.
+- **Cruce reciente** (`brief`, 760 ms): el mismo iris, más ágil. El iris se abre hasta cubrir la pantalla en **todos** los cruces; lo que cambia con el reposo de 24 h es el ritmo, no la forma. Un cruce que sólo mostraba el punto de luz se leía como un loader, no como un umbral.
+- **Movimiento reducido** (`quick`): sólo la noche que funde y vuelve, sin iris ni punto de luz.
 
 **La Regla de la Noche que Cubre.** Lo que tapa la pantalla es la noche de la app, nunca un color de acento: la luz del cruce es filo o halo. Un relleno claro a pantalla completa deslumbra, rompe la paleta y deja un lavado gris al disolverse.
 

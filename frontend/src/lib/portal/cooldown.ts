@@ -1,9 +1,11 @@
+import type { PortalMode } from '@/config/motion';
+
 /**
  * Reposo del cruce del portal.
  *
- * La coreografía completa (círculo gigante, anillos, geometría) sólo se
- * reproduce la primera vez o cuando hace tiempo que no se cruza; los cruces
- * recientes usan un fundido corto. El timestamp vive en `localStorage`, que
+ * La coreografía completa sólo se reproduce la primera vez o cuando hace
+ * tiempo que no se cruza; los cruces recientes abren el mismo iris a un
+ * ritmo más ágil. El timestamp vive en `localStorage`, que
  * sirve igual para visitantes anónimos y para cuentas locales (no hay
  * backend: el almacén es el mismo).
  */
@@ -54,4 +56,14 @@ export function markPortalCrossed(now: number = Date.now()): void {
   } catch {
     // Sin storage: la coreografía se mostrará siempre; no es un error.
   }
+}
+
+/**
+ * Coreografía de un cruce. El iris cubre la pantalla siempre; sólo cambia su
+ * ritmo según sea la primera vez o un cruce reciente. El movimiento reducido
+ * lo sustituye por el fundido.
+ */
+export function portalModeFor(reducedMotion: boolean, fullChoreography: boolean): PortalMode {
+  if (reducedMotion) return 'quick';
+  return fullChoreography ? 'full' : 'brief';
 }

@@ -18,7 +18,7 @@ import { useCrossPortal } from '@/hooks/use-cross-portal';
 import { useAmbientStore } from '@/stores/ambient-store';
 import { usePortalStore } from '@/stores/portal-store';
 
-const { full, quick } = PORTAL_TIMING;
+const { full, brief } = PORTAL_TIMING;
 
 describe('useCrossPortal', () => {
   beforeEach(() => {
@@ -79,7 +79,7 @@ describe('useCrossPortal', () => {
     expect(pushMock).toHaveBeenCalledExactlyOnceWith('/inicio');
   });
 
-  it('con un cruce reciente usa el fundido breve y navega al cubrir', () => {
+  it('con un cruce reciente abre el iris a ritmo ágil y navega al cubrir', () => {
     const { result } = renderHook(() => useCrossPortal());
 
     // Primera vez (storage vacío): coreografía completa.
@@ -89,16 +89,17 @@ describe('useCrossPortal', () => {
     });
     expect(pushMock).toHaveBeenCalledTimes(1);
 
-    // La coreografía termina y se cruza de nuevo enseguida: fundido corto.
+    // La coreografía termina y se cruza de nuevo enseguida: el iris vuelve a
+    // cubrir la pantalla, sólo que más deprisa.
     usePortalStore.setState({ phase: 'idle' });
     pushMock.mockClear();
 
     act(() => result.current());
-    expect(usePortalStore.getState().mode).toBe('quick');
+    expect(usePortalStore.getState().mode).toBe('brief');
     expect(pushMock).not.toHaveBeenCalled();
 
     act(() => {
-      vi.advanceTimersByTime(quick.cover);
+      vi.advanceTimersByTime(brief.cover);
     });
 
     expect(pushMock).toHaveBeenCalledExactlyOnceWith('/inicio');

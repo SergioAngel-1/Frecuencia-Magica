@@ -25,11 +25,13 @@
   will-change: transform, opacity;
 }
 
-/* Iris: disco de noche con el borde encendido. 150vmax cubre la diagonal de
-   cualquier viewport; el aro engorda con la escala, como algo que se acerca. */
+/* Iris: disco de noche con el borde encendido. La noche llega al 90% del
+   radio, así que 160vmax (72vmax opacos) cubre la media diagonal de cualquier
+   viewport, incluido el cuadrado (70,7vmax); el aro engorda con la escala,
+   como algo que se acerca. */
 .fm-portal-iris {
-  width: 150vmax;
-  height: 150vmax;
+  width: 160vmax;
+  height: 160vmax;
   background: radial-gradient(
     circle closest-side,
     var(--color-void) 0%,
@@ -45,8 +47,8 @@
 
 /* Onda que se adelanta al iris: sólo un filo, sin interior. */
 .fm-portal-ripple {
-  width: 150vmax;
-  height: 150vmax;
+  width: 160vmax;
+  height: 160vmax;
   background: radial-gradient(
     circle closest-side,
     transparent 96.4%,

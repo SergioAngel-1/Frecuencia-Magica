@@ -34,8 +34,9 @@ const ms = (value: number) => `${Math.round(value)}ms`;
  * pantalla es la misma noche del fondo de la app, de modo que la revelación
  * no deja lavado. Sólo se animan `transform` y `opacity`.
  *
- * En modo `quick` (cruce reciente o movimiento reducido) sólo hay noche y
- * punto de luz. La noche funde con Motion y no con keyframes: el modo
+ * El iris se abre en todos los cruces (`full` y `brief` sólo cambian de
+ * ritmo). En modo `quick` (movimiento reducido) sólo hay noche que funde. La
+ * noche funde con Motion y no con keyframes: el modo
  * simplificado anula las animaciones CSS, pero un fundido de opacidad sí debe
  * verse.
  */
@@ -58,7 +59,7 @@ export function PortalTransition() {
   if (phase === 'idle') return null;
 
   const { cover, reveal } = PORTAL_TIMING[mode];
-  const iris = mode === 'full' && !reduced;
+  const iris = mode !== 'quick' && !reduced;
   const covering = phase !== 'out';
   const nightFrom = iris ? cover * NIGHT_FROM : 0;
   const nightTo = iris ? cover * NIGHT_TO : cover;

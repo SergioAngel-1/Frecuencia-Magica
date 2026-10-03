@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { PORTAL_COOLDOWN_MS, shouldPlayPortalChoreography } from '@/lib/portal/cooldown';
+import {
+  PORTAL_COOLDOWN_MS,
+  portalModeFor,
+  shouldPlayPortalChoreography,
+} from '@/lib/portal/cooldown';
 
 describe('shouldPlayPortalChoreography', () => {
   it('la primera vez (sin cruce previo) siempre toca la coreografía', () => {
@@ -25,5 +29,20 @@ describe('shouldPlayPortalChoreography', () => {
     // readLastPortalCross() devuelve null para valores no numéricos; la
     // función pura con `null` siempre toca la coreografía.
     expect(shouldPlayPortalChoreography(null, 1_000_000)).toBe(true);
+  });
+});
+
+describe('portalModeFor', () => {
+  it('abre el iris completo la primera vez o tras el reposo', () => {
+    expect(portalModeFor(false, true)).toBe('full');
+  });
+
+  it('en un cruce reciente el iris sigue cubriendo la pantalla, a ritmo ágil', () => {
+    expect(portalModeFor(false, false)).toBe('brief');
+  });
+
+  it('con movimiento reducido funde sin iris, sea o no la primera vez', () => {
+    expect(portalModeFor(true, true)).toBe('quick');
+    expect(portalModeFor(true, false)).toBe('quick');
   });
 });

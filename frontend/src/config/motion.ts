@@ -48,11 +48,14 @@ export function cssEase(curve: readonly [number, number, number, number]): strin
  *   revelación, para que la vista nueva ya esté pintada debajo.
  * - `reveal`: lo que tarda la noche en disolverse sobre el destino.
  *
- * `full` es la coreografía del iris (primera vez o tras el reposo de 24 h);
- * `quick`, el fundido breve de los cruces recientes y del movimiento reducido.
+ * El iris se abre siempre hasta cubrir la pantalla: `full` es su coreografía
+ * completa (primera vez o tras el reposo de 24 h) y `brief`, la misma
+ * apertura más ágil para los cruces recientes. `quick` es el fundido sin
+ * iris, reservado al movimiento reducido.
  */
 export const PORTAL_TIMING = {
   full: { cover: 1150, settle: 140, reveal: 900 },
+  brief: { cover: 760, settle: 100, reveal: 640 },
   quick: { cover: 260, settle: 60, reveal: 480 },
 } as const;
 

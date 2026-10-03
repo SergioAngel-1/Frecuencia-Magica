@@ -191,9 +191,7 @@ export function AuthForm({ media }: AuthFormProps) {
             </div>
           ) : null}
 
-          <Button type="submit" variant="primary" className="mt-2 w-full"
-            disabled={submitting}
-          >
+          <Button type="submit" variant="primary" className="mt-2 w-full" disabled={submitting}>
             {cta}
           </Button>
         </form>
