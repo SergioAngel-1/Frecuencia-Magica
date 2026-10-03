@@ -6,20 +6,20 @@ import { useTranslations } from 'next-intl';
 import { AudioDisc } from '@/components/features/player/audio-disc';
 import { Badge, Button, EditorialBanner, EmptyState } from '@/components/ui';
 import { AUDIOS } from '@/data';
-import { discSlot, filterAudios, splitFeaturedAudio } from '@/lib/library/layout-slots';
+import { discSlot, filterAudios, splitFeaturedAudio } from '@/lib/resonario/layout-slots';
 import type { Audio } from '@/types/content';
 import type { EditorialMedia } from '@/types/editorial-media';
 
-import { LibraryFilters } from './library-filters';
+import { ResonarioFilters } from './resonario-filters';
 
-export type LibraryMedia = {
+export type ResonarioMedia = {
   featured: EditorialMedia;
   archiveBanner: EditorialMedia;
   audioCover: EditorialMedia;
 };
 
-export function LibrarySystem({ media }: { media: LibraryMedia }) {
-  const t = useTranslations('library');
+export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
+  const t = useTranslations('resonario');
   const statesT = useTranslations('states');
   const [filter, setFilter] = useState<string | null>(null);
 
@@ -36,7 +36,7 @@ export function LibrarySystem({ media }: { media: LibraryMedia }) {
 
   return (
     <>
-      <LibraryFilters active={filter} onChange={setFilter} />
+      <ResonarioFilters active={filter} onChange={setFilter} />
 
       <EditorialBanner
         media={media.archiveBanner}

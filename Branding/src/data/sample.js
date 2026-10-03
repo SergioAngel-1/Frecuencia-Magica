@@ -14,7 +14,7 @@ import { PRODUCTS } from '../../../frontend/src/data/products.ts'
 
 export { BANDS, COVERS, REALMS, NAV_REALMS }
 
-/** Resuelve una clave de traducción con puntos (`library.audios.a1.title`). */
+/** Resuelve una clave de traducción con puntos (`resonario.audios.a1.title`). */
 export function t(key) {
   return key.split('.').reduce((node, part) => node?.[part], es) ?? key
 }

@@ -8,7 +8,7 @@ export function Patterns() {
   const [featuredExp, exp] = experiences
   const academy = realmCopy('academia')
   const store = realmCopy('tienda')
-  const library = realmCopy('resonario')
+  const resonario = realmCopy('resonario')
 
   return (
     <Section id="patrones" kicker="Patrones · composición" title="Cómo se combinan" tone="lav" lead="Las tarjetas por realm, la banda editorial y la navegación de constelación. Todas viven sobre un placeholder deliberado —gradiente, geometría o zebra—, nunca una caja gris.">
@@ -18,7 +18,7 @@ export function Patterns() {
             <RealmCard featured band={BANDS.teal} emotion={academy.emotion} title={academy.name} description={academy.description} actionLabel="Entrar a la Academia" />
             <div className="grid gap-5 md:grid-cols-2">
               <RealmCard store band={BANDS.gold} emotion={store.emotion} title={store.name} description={store.description} actionLabel="Ver productos" />
-              <RealmCard band={BANDS.mix} emotion={library.emotion} title={library.name} description={library.description} />
+              <RealmCard band={BANDS.mix} emotion={resonario.emotion} title={resonario.name} description={resonario.description} />
             </div>
           </div>
         </Specimen>

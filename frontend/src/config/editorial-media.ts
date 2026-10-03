@@ -14,10 +14,10 @@ export const EDITORIAL_MEDIA_SLOTS = [
   'discover.question-atmosphere',
   'discover.tuning',
   'discover.result',
-  'library.hero',
-  'library.featured',
-  'library.archive-banner',
-  'library.audio-cover.*',
+  'resonario.hero',
+  'resonario.featured',
+  'resonario.archive-banner',
+  'resonario.audio-cover.*',
   'academy.hero',
   'academy.featured-course',
   'academy-course-cover',
@@ -202,7 +202,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     fallback: 'none',
     alt: 'El resultado de tu descubrimiento',
   },
-  'library.hero': {
+  'resonario.hero': {
     ...WIDE,
     aspect: '16:9',
     priority: false,
@@ -210,7 +210,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     fallback: 'zebra',
     alt: 'La resonario sonora de Frecuencia Mágica',
   },
-  'library.featured': {
+  'resonario.featured': {
     ...CENTER,
     aspect: '16:8',
     priority: false,
@@ -218,7 +218,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     fallback: 'band',
     alt: 'El audio destacado de la semana',
   },
-  'library.archive-banner': {
+  'resonario.archive-banner': {
     ...WIDE,
     aspect: '16:9',
     priority: false,
@@ -226,7 +226,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     fallback: 'none',
     alt: 'El archivo completo de sonidos',
   },
-  'library.audio-cover.*': {
+  'resonario.audio-cover.*': {
     ...CENTER,
     aspect: '1:1',
     priority: false,

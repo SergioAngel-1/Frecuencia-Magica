@@ -76,7 +76,7 @@ export function Surfaces() {
         <Specimen title="Skeleton editorial «zebra»" note="Fallback de los slots estructurales (héroes, retrato) sin fotografía: bandas de la paleta, quietas. Ángulo y fase salen del id del slot: dos bandas nunca son la misma textura. Los slots de contenido usan la banda del ítem y los de atmósfera no pintan nada. Nunca cajas grises.">
           <div className="grid grid-cols-3 gap-3">
             <MediaSkeleton slot="home.hero" label="Zebra 16:9" aspect="16:9" className="rounded-card" />
-            <MediaSkeleton slot="library.featured" label="Zebra 16:8" aspect="16:8" tone="teal" className="rounded-card" />
+            <MediaSkeleton slot="resonario.featured" label="Zebra 16:8" aspect="16:8" tone="teal" className="rounded-card" />
             <MediaSkeleton slot="home-marisol-portrait" label="Zebra 3:4" aspect="3:4" tone="lav" className="rounded-card" />
           </div>
         </Specimen>

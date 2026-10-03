@@ -22,7 +22,7 @@ type DailyFrequencyProps = {
   meta: string;
   cta: string;
   /** La resonario, como subsección: más frecuencias bajo la de hoy. */
-  library: {
+  resonario: {
     kicker: string;
     title: string;
     /** Enlace «Ver todo». */
@@ -46,7 +46,7 @@ export function DailyFrequency({
   description,
   meta,
   cta,
-  library,
+  resonario,
 }: DailyFrequencyProps) {
   const open = usePlayerStore((s) => s.open);
   const activeId = usePlayerStore((s) => s.audioId);
@@ -105,19 +105,19 @@ export function DailyFrequency({
         </div>
 
         <section
-          aria-labelledby="home-library-title"
+          aria-labelledby="home-resonario-title"
           className="border-ivory/10 mt-block pt-block border-t"
         >
           <header className="mb-10 flex flex-wrap items-end justify-between gap-x-5 gap-y-2">
             <div>
-              <Kicker tone="teal">{library.kicker}</Kicker>
-              <Display level="h3" size="sm" id="home-library-title" className="mt-2">
-                {library.title}
+              <Kicker tone="teal">{resonario.kicker}</Kicker>
+              <Display level="h3" size="sm" id="home-resonario-title" className="mt-2">
+                {resonario.title}
               </Display>
             </div>
-            {library.action}
+            {resonario.action}
           </header>
-          <FrequencyStrip items={library.audios} label={library.kicker} size="sm" />
+          <FrequencyStrip items={resonario.audios} label={resonario.kicker} size="sm" />
         </section>
       </div>
     </section>

@@ -4,15 +4,15 @@ import { useTranslations } from 'next-intl';
 
 import { Pill } from '@/components/ui';
 
-type LibraryFiltersProps = {
+type ResonarioFiltersProps = {
   active: string | null;
   onChange: (key: string | null) => void;
 };
 
 const FILTERS = ['all', 'meditation', 'frequency', 'rest', 'ritual'] as const;
 
-export function LibraryFilters({ active, onChange }: LibraryFiltersProps) {
-  const t = useTranslations('library');
+export function ResonarioFilters({ active, onChange }: ResonarioFiltersProps) {
+  const t = useTranslations('resonario');
 
   return (
     <div

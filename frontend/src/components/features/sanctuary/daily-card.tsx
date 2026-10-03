@@ -6,7 +6,7 @@ import { AudioDisc } from '@/components/features/player/audio-disc';
 import { FrequencyStrip } from '@/components/features/player/frequency-strip';
 import { ArrowGlyph, arrowLinkClasses, EditorialImage, GlassPanel, Kicker } from '@/components/ui';
 import { AUDIOS } from '@/data';
-import { suggestAudios } from '@/lib/library/suggestions';
+import { suggestAudios } from '@/lib/resonario/suggestions';
 import type { EditorialMedia } from '@/types/editorial-media';
 import { usePlayerStore } from '@/stores/player-store';
 
@@ -26,22 +26,22 @@ const SUGGESTION_COUNT = 3;
 
 export function DailyCard({ media, audioId }: DailyCardProps) {
   const t = useTranslations('sanctuary.daily');
-  const tLibrary = useTranslations('library');
+  const tResonario = useTranslations('resonario');
   const open = usePlayerStore((state) => state.open);
   const activeId = usePlayerStore((state) => state.audioId);
   const audio = AUDIOS.find((candidate) => candidate.id === audioId);
 
   if (!audio) return null;
 
-  const title = tLibrary(`audios.${audio.id}.title` as 'audios.a1.title');
-  const meta = `${tLibrary(`tags.${audio.tagId}` as 'tags.meditation')} · ${audio.duration}`;
+  const title = tResonario(`audios.${audio.id}.title` as 'audios.a1.title');
+  const meta = `${tResonario(`tags.${audio.tagId}` as 'tags.meditation')} · ${audio.duration}`;
   // TODO(backend): las sugerencias saldrán del historial de escucha; hasta
   // entonces, las más afines por intención a la frecuencia de hoy.
   const suggestions = suggestAudios(AUDIOS, audio.id, SUGGESTION_COUNT).map((candidate) => ({
     id: candidate.id,
     hz: candidate.hz,
     band: candidate.band,
-    title: tLibrary(`audios.${candidate.id}.title` as 'audios.a1.title'),
+    title: tResonario(`audios.${candidate.id}.title` as 'audios.a1.title'),
   }));
 
   return (

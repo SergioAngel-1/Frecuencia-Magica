@@ -12,9 +12,9 @@ const IDENTICAS_POR_DISENO = new Set([
   'nav.label',
   // "Nostalgia" se escribe igual en ambos idiomas.
   'journal.moods.nostalgia',
-  'library.tags.ritual',
-  'library.filters.ritual',
-  'library.tags.grounding',
+  'resonario.tags.ritual',
+  'resonario.filters.ritual',
+  'resonario.tags.grounding',
   'cart.total',
   'cart.subtotal',
   'auth.fields.password.placeholder',

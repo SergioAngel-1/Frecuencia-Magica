@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { PageShell, REALM_HERO_HEIGHT } from '@/components/layout';
 import { MediaSkeleton, Skeleton } from '@/components/ui';
 import { cn } from '@/lib/cn';
-import { discSlot } from '@/lib/library/layout-slots';
+import { discSlot } from '@/lib/resonario/layout-slots';
 
 const SMALL_DISCS = Array.from({ length: 6 }, (_, i) => discSlot(i));
 
@@ -12,7 +12,7 @@ const SMALL_DISCS = Array.from({ length: 6 }, (_, i) => discSlot(i));
  * banner del archivo y el sistema de discos antes de resolverlos.
  */
 export default async function Loading() {
-  const t = await getTranslations('library');
+  const t = await getTranslations('resonario');
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
@@ -22,7 +22,7 @@ export default async function Loading() {
           aspect="16:9"
           className={cn('fm-editorial-full-bleed', REALM_HERO_HEIGHT)}
           label={t('media.alt.hero')}
-          slot="library.hero"
+          slot="resonario.hero"
         />
 
         <div className="fm-editorial-full-bleed fm-container pt-block pb-section">

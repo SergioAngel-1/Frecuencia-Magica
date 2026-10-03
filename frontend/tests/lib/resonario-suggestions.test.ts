@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { suggestAudios } from '@/lib/library/suggestions';
+import { suggestAudios } from '@/lib/resonario/suggestions';
 import type { Audio, Intent } from '@/types/content';
 
 const audio = (id: string, intents: Intent[]): Audio => ({
   id,
-  titleKey: `library.audios.${id}.title`,
-  tagKey: 'library.tags.meditation',
+  titleKey: `resonario.audios.${id}.title`,
+  tagKey: 'resonario.tags.meditation',
   tagId: 'meditation',
   duration: '10:00',
   hz: 432,

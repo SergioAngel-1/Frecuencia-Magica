@@ -27,17 +27,17 @@ export default async function HomePage({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'home' });
   const common = await getTranslations('common');
-  const lib = await getTranslations('library');
+  const tResonario = await getTranslations('resonario');
   const nav = await getTranslations('nav');
 
   const firstAudio = AUDIOS[0]!;
   // La del día ya ocupa el disco grande: la muestra sigue con las cuatro siguientes.
-  const libraryAudios = AUDIOS.slice(1, 5).map((a) => ({
+  const resonarioAudios = AUDIOS.slice(1, 5).map((a) => ({
     id: a.id,
     hz: a.hz,
     band: a.band,
-    title: lib(`audios.${a.id}.title` as 'audios.a1.title'),
-    meta: `${lib(`tags.${a.tagId}` as 'tags.meditation')} · ${a.duration}`,
+    title: tResonario(`audios.${a.id}.title` as 'audios.a1.title'),
+    meta: `${tResonario(`tags.${a.tagId}` as 'tags.meditation')} · ${a.duration}`,
   }));
 
   const bandKey = (accent: string): 'gold' | 'teal' | 'lav' =>
@@ -96,7 +96,7 @@ export default async function HomePage({ params }: PageProps) {
           description={t('daily.description')}
           meta={`${t('daily.meta')} · ${firstAudio.duration}`}
           cta={t('daily.cta')}
-          library={{
+          resonario={{
             kicker: t('audio.kicker'),
             title: t('audio.title'),
             action: (
@@ -105,7 +105,7 @@ export default async function HomePage({ params }: PageProps) {
                 <ArrowGlyph />
               </Link>
             ),
-            audios: libraryAudios,
+            audios: resonarioAudios,
           }}
         />
 

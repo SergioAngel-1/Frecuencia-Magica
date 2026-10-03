@@ -8,30 +8,30 @@ import esMessages from '../../messages/es.json';
 import { AUDIOS } from '@/data';
 import { EDITORIAL_MEDIA_REGISTRY } from '@/config/editorial-media';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
-import { splitFeaturedAudio } from '@/lib/library/layout-slots';
+import { splitFeaturedAudio } from '@/lib/resonario/layout-slots';
 
 const SOURCE_ROOT = resolve(process.cwd(), 'src');
 const readSource = (relativePath: string) =>
   readFileSync(resolve(SOURCE_ROOT, relativePath), 'utf8');
 
 const pageSource = readSource('app/[locale]/resonario/page.tsx');
-const systemSource = readSource('components/features/library/library-system.tsx');
-const filtersSource = readSource('components/features/library/library-filters.tsx');
+const systemSource = readSource('components/features/resonario/resonario-system.tsx');
+const filtersSource = readSource('components/features/resonario/resonario-filters.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/resonario/loading.tsx');
 
-const LIBRARY_SLOTS = [
-  { slot: 'library.hero' as const, aspect: '16:9' as const, alt: 'hero' },
-  { slot: 'library.featured' as const, aspect: '16:8' as const, alt: 'featured' },
-  { slot: 'library.archive-banner' as const, aspect: '16:9' as const, alt: 'archiveBanner' },
-  { slot: 'library.audio-cover.*' as const, aspect: '1:1' as const, alt: 'audioCover' },
+const RESONARIO_SLOTS = [
+  { slot: 'resonario.hero' as const, aspect: '16:9' as const, alt: 'hero' },
+  { slot: 'resonario.featured' as const, aspect: '16:8' as const, alt: 'featured' },
+  { slot: 'resonario.archive-banner' as const, aspect: '16:9' as const, alt: 'archiveBanner' },
+  { slot: 'resonario.audio-cover.*' as const, aspect: '1:1' as const, alt: 'audioCover' },
 ];
 
-type LibraryMediaMessages = { media: { alt: Record<string, string> } };
-const esLibrary = esMessages.library as unknown as LibraryMediaMessages;
-const enLibrary = enMessages.library as unknown as LibraryMediaMessages;
+type ResonarioMediaMessages = { media: { alt: Record<string, string> } };
+const esResonario = esMessages.resonario as unknown as ResonarioMediaMessages;
+const enResonario = enMessages.resonario as unknown as ResonarioMediaMessages;
 
-describe('library editorial composition contracts', () => {
+describe('resonario editorial composition contracts', () => {
   it('separates one featured frequency from every secondary frequency', () => {
     const { featured, others } = splitFeaturedAudio(AUDIOS);
 
@@ -48,9 +48,9 @@ describe('library editorial composition contracts', () => {
     });
   });
 
-  it('resolves all library slots to localized zebra fallbacks without inventing media', () => {
-    for (const { slot, aspect } of LIBRARY_SLOTS) {
-      const media = resolveEditorialMedia(slot, { alt: `Library ${slot}` });
+  it('resolves all resonario slots to localized zebra fallbacks without inventing media', () => {
+    for (const { slot, aspect } of RESONARIO_SLOTS) {
+      const media = resolveEditorialMedia(slot, { alt: `Resonario ${slot}` });
 
       expect(media).toMatchObject({ kind: 'fallback', slot, aspect });
       expect(media.src).toBeUndefined();
@@ -58,10 +58,10 @@ describe('library editorial composition contracts', () => {
     }
   });
 
-  it('provides bilingual alt copy for each library slot', () => {
-    for (const { alt } of LIBRARY_SLOTS) {
-      const esAlt = esLibrary.media.alt[alt];
-      const enAlt = enLibrary.media.alt[alt];
+  it('provides bilingual alt copy for each resonario slot', () => {
+    for (const { alt } of RESONARIO_SLOTS) {
+      const esAlt = esResonario.media.alt[alt];
+      const enAlt = enResonario.media.alt[alt];
 
       expect(esAlt).toBeTruthy();
       expect(enAlt).toBeTruthy();
@@ -71,24 +71,24 @@ describe('library editorial composition contracts', () => {
 
   it('composes the full-width hero and localized media contracts before the client system', () => {
     expect(pageSource).toContain('const locale = await resolveLocale(params);');
-    expect(pageSource).toContain("getTranslations({ locale, namespace: 'library' })");
-    expect(pageSource).toContain("resolveEditorialMedia('library.hero'");
-    expect(pageSource).toContain("resolveEditorialMedia('library.featured'");
-    expect(pageSource).toContain("resolveEditorialMedia('library.archive-banner'");
-    expect(pageSource).toContain("resolveEditorialMedia('library.audio-cover.*'");
+    expect(pageSource).toContain("getTranslations({ locale, namespace: 'resonario' })");
+    expect(pageSource).toContain("resolveEditorialMedia('resonario.hero'");
+    expect(pageSource).toContain("resolveEditorialMedia('resonario.featured'");
+    expect(pageSource).toContain("resolveEditorialMedia('resonario.archive-banner'");
+    expect(pageSource).toContain("resolveEditorialMedia('resonario.audio-cover.*'");
     expect(pageSource).toContain("alt: t('media.alt.hero')");
     expect(pageSource).toContain("sizes: '(min-width: 1024px) 720px, 100vw'");
     expect(pageSource).toContain("sizes: '(min-width: 1024px) 150px, 150px'");
     expect(pageSource).toContain('<RealmHero');
     expect(heroSource).toContain('<FullBleedSection');
     expect(pageSource).toContain('fm-editorial-full-bleed');
-    expect(pageSource).toContain('<LibrarySystem media={libraryMedia}');
+    expect(pageSource).toContain('<ResonarioSystem media={resonarioMedia}');
   });
 
   it('paints featured and secondary frequencies with the shared AudioDisc, cover inside the sphere', () => {
     const discSource = readSource('components/features/player/audio-disc.tsx');
 
-    expect(systemSource).toContain('media: LibraryMedia');
+    expect(systemSource).toContain('media: ResonarioMedia');
     // Sin doble contenedor: ningún marco de imagen alrededor de los discos.
     expect(systemSource).not.toContain('<EditorialImage');
     expect(systemSource).not.toContain('<FrequencyDisc');
@@ -103,7 +103,7 @@ describe('library editorial composition contracts', () => {
     expect(systemSource).toContain('{others.map');
     expect(systemSource).not.toContain('{filtered.map');
     expect(systemSource).toContain('<EmptyState');
-    expect(systemSource).toContain('<LibraryFilters');
+    expect(systemSource).toContain('<ResonarioFilters');
   });
 
   it('keeps the orbital desktop stage and compact mobile secondary grid', () => {
@@ -117,7 +117,7 @@ describe('library editorial composition contracts', () => {
   });
 
   it('places the archive banner between filters and the catalog states', () => {
-    const filtersIndex = systemSource.indexOf('<LibraryFilters');
+    const filtersIndex = systemSource.indexOf('<ResonarioFilters');
     const bannerIndex = systemSource.indexOf('<EditorialBanner');
     const catalogIndex = systemSource.indexOf('{filtered.length === 0');
 
@@ -130,12 +130,12 @@ describe('library editorial composition contracts', () => {
   it('mirrors the editorial bands, media fields, filters and orbital geometry while loading', () => {
     expect(loadingSource).toContain('aria-busy="true"');
     expect(loadingSource).toContain('<MediaSkeleton');
-    expect(loadingSource).toContain('slot="library.hero"');
+    expect(loadingSource).toContain('slot="resonario.hero"');
     // El destacado es un disco, no un campo fotográfico: su silueta también.
-    expect(loadingSource).not.toContain('slot="library.featured"');
+    expect(loadingSource).not.toContain('slot="resonario.featured"');
     expect(loadingSource).toContain('variant="disc"');
-    // `library.archive-banner` es `none`: la silueta replica un banner sólo de texto.
-    expect(loadingSource).not.toContain('slot="library.archive-banner"');
+    // `resonario.archive-banner` es `none`: la silueta replica un banner sólo de texto.
+    expect(loadingSource).not.toContain('slot="resonario.archive-banner"');
     expect(loadingSource).toContain('role="group"');
     expect(loadingSource).toContain('data-editorial-stage="orbital"');
     expect(loadingSource).toContain('lg:hidden');

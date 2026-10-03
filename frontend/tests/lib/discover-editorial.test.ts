@@ -99,7 +99,7 @@ describe('Descúbrete editorial composition', () => {
     expect(resultSource).toContain('text-body');
   });
 
-  it('opens the resolved audio while preserving the localized library link', () => {
+  it('opens the resolved audio while preserving the localized resonario link', () => {
     expect(containerSource).toContain('open(result.audio.id)');
     expect(resultSource).toContain('onListen');
     expect(resultSource).toContain('asChild onClick={onListen}');

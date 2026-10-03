@@ -31,7 +31,7 @@ type ProductDetailProps = {
 
 export function ProductDetail({ product, media }: ProductDetailProps) {
   const t = useTranslations('store');
-  const lib = useTranslations('library');
+  const tResonario = useTranslations('resonario');
   const add = useCartStore((state) => state.add);
   const openPlayer = usePlayerStore((state) => state.open);
   const router = useRouter();
@@ -121,7 +121,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
                 {t('relatedFrequencyLabel')}
               </span>
               <span className="text-ivory font-serif text-[16px]">
-                {lib(`audios.${product.relatedAudioId}.title` as 'audios.a1.title')}
+                {tResonario(`audios.${product.relatedAudioId}.title` as 'audios.a1.title')}
               </span>
             </span>
           </button>

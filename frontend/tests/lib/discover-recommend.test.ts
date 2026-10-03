@@ -93,7 +93,7 @@ describe('recommend', () => {
     }
   });
 
-  it('can land on every intent and on every audio of the library', () => {
+  it('can land on every intent and on every audio of the resonario', () => {
     const intents = new Set<Intent>();
     const audios = new Set<string>();
 

@@ -280,7 +280,7 @@
       }
     }
   },
-  "library": {
+  "resonario": {
     "kicker": "Resonarium",
     "title": "Sound to return to you",
     "description": "Meditations, frequencies and soundscapes. Choose by what your body asks for today.",
@@ -401,7 +401,7 @@
       "title": "You have completed this course",
       "description": "Every step you took brought you here. What you learned now lives within you.",
       "back": "Back to Academy",
-      "exploreLibrary": "Explore the Resonarium"
+      "exploreResonario": "Explore the Resonarium"
     },
     "lessonTitles": [
       "The first breath",

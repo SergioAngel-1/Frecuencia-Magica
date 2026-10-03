@@ -285,7 +285,7 @@
       }
     }
   },
-  "library": {
+  "resonario": {
     "kicker": "Resonario",
     "title": "Sonido para volver a ti",
     "description": "Meditaciones, frecuencias y paisajes sonoros. Elige por lo que tu cuerpo pide hoy.",
@@ -406,7 +406,7 @@
       "title": "Has completado este curso",
       "description": "Cada paso que diste te trajo hasta aquí. Lo aprendido ya vive en ti.",
       "back": "Volver a la Academia",
-      "exploreLibrary": "Explorar el Resonario"
+      "exploreResonario": "Explorar el Resonario"
     },
     "lessonTitles": [
       "El primer suspiro",

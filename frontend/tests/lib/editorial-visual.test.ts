@@ -18,7 +18,7 @@ const ZEBRA: readonly EditorialMediaSlot[] = [
   'home-membership',
   'auth.hero',
   'discover.hero',
-  'library.hero',
+  'resonario.hero',
   'academy.hero',
   'experiences.hero',
   'store.hero',
@@ -27,8 +27,8 @@ const ZEBRA: readonly EditorialMediaSlot[] = [
 
 /** Contenido de un ítem del catálogo: su banda de color, no una textura común. */
 const BAND: readonly EditorialMediaSlot[] = [
-  'library.audio-cover.*',
-  'library.featured',
+  'resonario.audio-cover.*',
+  'resonario.featured',
   'academy.featured-course',
   'academy-course-cover',
   'academy-lesson-visual',

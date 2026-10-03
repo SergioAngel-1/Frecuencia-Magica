@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { discSlot, filterAudios } from '@/lib/library/layout-slots';
+import { discSlot, filterAudios } from '@/lib/resonario/layout-slots';
 import { AUDIOS } from '@/data';
 
 describe('discSlot', () => {

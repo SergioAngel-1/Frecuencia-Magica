@@ -78,10 +78,10 @@ El inventario completo (por slot: `id`, vista, propósito, orientación, ratio, 
 | `discover.question-atmosphere` | Descúbrete · pregunta (`quiz-step.tsx`) | 3:4 | P2 |
 | `discover.tuning` | Descúbrete · sintonización (`tuning-step.tsx`) | 16:8 | P1 |
 | `discover.result` | Descúbrete · resultado (`result-step.tsx`) | 16:9 | P1 |
-| `library.hero` | Resonario `/resonario` · cabecera (`library-system.tsx`) | 16:9 | P1 |
-| `library.featured` | Resonario · audio destacado | 16:8 | P1 |
-| `library.archive-banner` | Resonario · banner del archivo | 16:9 | P2 |
-| `library.audio-cover.*` | Resonario · portada por audio (por instancia) | 1:1 | P1 |
+| `resonario.hero` | Resonario `/resonario` · cabecera (`resonario-system.tsx`) | 16:9 | P1 |
+| `resonario.featured` | Resonario · audio destacado | 16:8 | P1 |
+| `resonario.archive-banner` | Resonario · banner del archivo | 16:9 | P2 |
+| `resonario.audio-cover.*` | Resonario · portada por audio (por instancia) | 1:1 | P1 |
 | `academy.hero` | Academia `/academia` · cabecera (`course-list.tsx`) | 16:9 | P1 |
 | `academy.featured-course` | Academia · curso destacado | 16:8 | P1 |
 | `academy-course-cover` | Academia · cards y detalle de curso (`course-card.tsx`, `course-detail.tsx`) | 16:8 (crop 1:1 en card) | P1 |

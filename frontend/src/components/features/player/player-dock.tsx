@@ -23,7 +23,7 @@ import { PlayerOrb } from './player-orb';
  */
 export function PlayerDock() {
   const t = useTranslations('player');
-  const lib = useTranslations('library');
+  const tResonario = useTranslations('resonario');
   const audioId = usePlayerStore((s) => s.audioId);
   const isPlaying = usePlayerStore((s) => s.isPlaying);
   const elapsed = usePlayerStore((s) => s.elapsed);
@@ -66,8 +66,8 @@ export function PlayerDock() {
 
   if (!audio) return null;
 
-  const title = lib(`audios.${audio.id}.title` as 'audios.a1.title');
-  const tag = lib(`tags.${audio.tagId}` as 'tags.meditation');
+  const title = tResonario(`audios.${audio.id}.title` as 'audios.a1.title');
+  const tag = tResonario(`tags.${audio.tagId}` as 'tags.meditation');
   const elapsedLabel = formatDuration(Math.min(elapsed, total));
 
   return (

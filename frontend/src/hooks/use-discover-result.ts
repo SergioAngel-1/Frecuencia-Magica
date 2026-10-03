@@ -24,7 +24,7 @@ export function useDiscoverResult(
   enabled: boolean,
 ): DiscoverResultView | null {
   const t = useTranslations('discover');
-  const tLibrary = useTranslations('library');
+  const tResonario = useTranslations('resonario');
   const tAcademy = useTranslations('academy');
   const tExperiences = useTranslations('experiences');
   const tStore = useTranslations('store');
@@ -43,7 +43,7 @@ export function useDiscoverResult(
     kicker: t('result.kicker'),
     intent: t(`intents.${reading.primary}.name`),
     description: t(`intents.${reading.primary}.description`),
-    audioTitle: tLibrary(`audios.${audio.id}.title` as 'audios.a1.title'),
+    audioTitle: tResonario(`audios.${audio.id}.title` as 'audios.a1.title'),
     ctaLabel: t('result.cta'),
     restartLabel: t('result.restart'),
     pathKicker: t('result.pathKicker'),
