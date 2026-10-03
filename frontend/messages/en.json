@@ -145,6 +145,76 @@
       }
     }
   },
+  "about": {
+    "metaTitle": "About Marisol",
+    "hero": {
+      "kicker": "About Marisol",
+      "title": "A life spent learning to listen",
+      "description": "Before it was a brand, Frecuencia Mágica was a way of being: quiet, attentive, beside whoever needs to return to themselves. This is the woman who holds it."
+    },
+    "story": {
+      "kicker": "Her path",
+      "title": "What she offers was born from what she once needed",
+      "p1": "Marisol did not come to sound, aromas or ritual out of curiosity. She came looking for calm, and stayed because she found it. What she shares today is what she first tried on herself, slowly and without shortcuts.",
+      "p2": "That is why nothing here is overpromised. Every frequency, every oil and every gathering has a single intention: that you hear yourself a little better than yesterday.",
+      "quote": "I am not here to teach you anything new. I am here to remind you of what you already know when you grow quiet."
+    },
+    "angels": {
+      "kicker": "Experiences with Angels",
+      "title": "Some company makes no sound",
+      "intro": "Marisol speaks of angels without solemnity, the way you speak of someone close. She does not explain them: she tells you how they feel and invites you to recognise them in your own life.",
+      "items": {
+        "sign": {
+          "title": "The sign",
+          "body": "A feather on the path, an hour that keeps returning, a song that arrives right then. Small things speak too, if you do not walk past them."
+        },
+        "presence": {
+          "title": "The presence",
+          "body": "Some silences are not empty. In a meditation or on a hard night, a calm that does not come from you holds you."
+        },
+        "message": {
+          "title": "The message",
+          "body": "It does not always come in words. Sometimes it is a gentle certainty pointing the way. Marisol helps you hear it; she does not interpret it for you."
+        }
+      },
+      "cta": "Live it in a gathering"
+    },
+    "paths": {
+      "kicker": "Her work",
+      "title": "Three ways to walk with her",
+      "items": {
+        "academia": {
+          "title": "Learn",
+          "body": "Courses at your own pace to understand what you feel and give it a place.",
+          "cta": "Go to the academy"
+        },
+        "experiencias": {
+          "title": "Gather",
+          "body": "Sound baths, circles and live rituals, guided by her.",
+          "cta": "See the experiences"
+        },
+        "tienda": {
+          "title": "Ritualise",
+          "body": "Oils, candles and objects made to accompany your practice at home.",
+          "cta": "Enter the store"
+        }
+      }
+    },
+    "closing": {
+      "kicker": "The first step",
+      "title": "Begin by listening to yourself",
+      "body": "A few unhurried questions to find what you need today.",
+      "cta1": "Discover yourself",
+      "cta2": "Listen to a frequency"
+    },
+    "media": {
+      "alt": {
+        "hero": "The space where Marisol listens and accompanies",
+        "portrait": "Portrait of Marisol beside the light of a window",
+        "angels": "A soft light descending through the dusk"
+      }
+    }
+  },
   "auth": {
     "kicker": "The threshold",
     "media": {

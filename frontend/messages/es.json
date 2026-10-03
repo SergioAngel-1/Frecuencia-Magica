@@ -145,6 +145,76 @@
       }
     }
   },
+  "about": {
+    "metaTitle": "Sobre Marisol",
+    "hero": {
+      "kicker": "Sobre Marisol",
+      "title": "Una vida aprendiendo a escuchar",
+      "description": "Antes que una marca, Frecuencia Mágica fue una manera de estar: en silencio, atenta, junto a quien necesita volver a sí. Esta es la mujer que la sostiene."
+    },
+    "story": {
+      "kicker": "Su camino",
+      "title": "Lo que acompaña nació de lo que ella misma necesitó",
+      "p1": "Marisol no llegó al sonido, a los aromas ni a los rituales por curiosidad. Llegó buscando calma, y se quedó porque la encontró. Lo que hoy comparte es lo que primero probó en su propia piel, despacio y sin atajos.",
+      "p2": "Por eso aquí nada se promete de más. Cada frecuencia, cada aceite y cada encuentro tienen una sola intención: que te escuches un poco mejor que ayer.",
+      "quote": "No vengo a enseñarte nada nuevo. Vengo a recordarte lo que ya sabes cuando haces silencio."
+    },
+    "angels": {
+      "kicker": "Experiencias con Ángeles",
+      "title": "Hay compañías que no hacen ruido",
+      "intro": "Marisol habla de los ángeles sin solemnidad, como se habla de alguien cercano. No los explica: te cuenta cómo se sienten y te invita a reconocerlos en tu propia vida.",
+      "items": {
+        "sign": {
+          "title": "La señal",
+          "body": "Una pluma en el camino, una hora que se repite, una canción que llega justo entonces. Lo pequeño también habla, si no pasas de largo."
+        },
+        "presence": {
+          "title": "La presencia",
+          "body": "Hay silencios que no están vacíos. En una meditación o en una noche difícil, una calma que no viene de ti te sostiene."
+        },
+        "message": {
+          "title": "El mensaje",
+          "body": "No siempre llega en palabras. A veces es una certeza suave que señala por dónde seguir. Marisol te acompaña a escucharla; no la interpreta por ti."
+        }
+      },
+      "cta": "Vivirlo en un encuentro"
+    },
+    "paths": {
+      "kicker": "Su trabajo",
+      "title": "Tres maneras de caminar con ella",
+      "items": {
+        "academia": {
+          "title": "Aprender",
+          "body": "Cursos a tu ritmo para entender lo que sientes y darle un lugar.",
+          "cta": "Ir a la academia"
+        },
+        "experiencias": {
+          "title": "Reunirte",
+          "body": "Baños de sonido, círculos y rituales en vivo, guiados por ella.",
+          "cta": "Ver las experiencias"
+        },
+        "tienda": {
+          "title": "Ritualizar",
+          "body": "Aceites, velas y objetos hechos para acompañar tu práctica en casa.",
+          "cta": "Entrar a la tienda"
+        }
+      }
+    },
+    "closing": {
+      "kicker": "El primer paso",
+      "title": "Empieza por escucharte",
+      "body": "Unas pocas preguntas, sin prisa, para saber qué necesitas hoy.",
+      "cta1": "Descúbrete",
+      "cta2": "Escuchar una frecuencia"
+    },
+    "media": {
+      "alt": {
+        "hero": "El espacio donde Marisol escucha y acompaña",
+        "portrait": "Retrato de Marisol junto a la luz de una ventana",
+        "angels": "Una luz suave que desciende en la penumbra"
+      }
+    }
+  },
   "auth": {
     "kicker": "El umbral",
     "media": {
