@@ -52,7 +52,6 @@ export async function ContinueCard({ media, resume }: ContinueCardProps) {
         <ProgressBar value={resume.percent} height={5} ariaLabel={t('continue.progress')} />
         <ButtonLink
           variant="accent"
-          size="sm"
           tone="teal"
           className="self-start"
           href={{

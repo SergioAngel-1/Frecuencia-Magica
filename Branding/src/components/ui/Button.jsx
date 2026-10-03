@@ -1,14 +1,11 @@
 import { cn } from '../../lib/cn'
 
 const BASE =
-  'relative inline-flex min-h-11 items-center justify-center rounded-pill font-serif tracking-soft ' +
+  'relative inline-flex min-h-11 items-center justify-center rounded-pill border border-transparent font-serif tracking-soft ' +
   'transition-[color,background-color,border-color,box-shadow,opacity] duration-300 ease-out active:scale-[0.98]'
 
-const SIZES = {
-  sm: 'px-[22px] py-[9px] text-[17px]',
-  md: 'px-[32px] py-[13px] text-[19px]',
-  lg: 'px-[42px] py-[17px] text-[21px]',
-}
+/** Un solo tamaño: el compacto del acceso. La jerarquía la dan las variantes. */
+const SIZE = 'px-[22px] py-[9px] text-[17px]'
 
 const VARIANTS = {
   primary:
@@ -34,7 +31,6 @@ const PRIMARY_DISABLED = 'bg-ivory/14 border border-ivory/20 text-fg-muted shado
  */
 export function Button({
   variant = 'primary',
-  size = 'md',
   tone = 'gold',
   loading = false,
   disabled = false,
@@ -46,7 +42,7 @@ export function Button({
 }) {
   const classes = cn(
     BASE,
-    SIZES[size],
+    SIZE,
     variant === 'accent' ? cn('border text-ivory', TONES[tone]) : VARIANTS[variant],
     (loading || disabled) && 'pointer-events-none',
     disabled && (variant === 'primary' ? PRIMARY_DISABLED : 'opacity-45'),

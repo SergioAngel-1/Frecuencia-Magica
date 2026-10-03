@@ -23,9 +23,6 @@ export function Controls() {
             <Button variant="accent" tone="lav">accent · lav</Button>
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <Button size="sm">sm</Button>
-            <Button size="md">md</Button>
-            <Button size="lg">lg</Button>
             <Button loading>Cargando</Button>
             <Button disabled>Deshabilitado</Button>
           </div>

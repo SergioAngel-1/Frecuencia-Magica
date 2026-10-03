@@ -29,7 +29,7 @@ export function MembershipSection({
         align="center"
         tone="gold"
         action={
-          <ButtonLink variant="primary" size="lg" href="/acceso">
+          <ButtonLink variant="primary" href="/acceso">
             {cta}
           </ButtonLink>
         }

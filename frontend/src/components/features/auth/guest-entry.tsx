@@ -26,7 +26,6 @@ export function GuestEntry() {
 
       <Button
         variant="outline"
-        size="sm"
         className="w-full"
         iconLeft={
           <span

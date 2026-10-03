@@ -21,7 +21,7 @@ function CopyButton({ text, children }) {
     }
   }
 
-  return <Button variant="outline" size="sm" onClick={copy}>{copied ? '✓ Copiado' : children}</Button>
+  return <Button variant="outline" onClick={copy}>{copied ? '✓ Copiado' : children}</Button>
 }
 
 function downloadBrief() {
@@ -88,7 +88,7 @@ export function Fotografia() {
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
           <Mono>P0 · {summary.byPriority.P0}</Mono><Mono>P1 · {summary.byPriority.P1}</Mono><Mono>P2 · {summary.byPriority.P2}</Mono>
-          <Button variant="accent" size="sm" onClick={downloadBrief}>Descargar brief (.md)</Button>
+          <Button variant="accent" onClick={downloadBrief}>Descargar brief (.md)</Button>
         </div>
       </header>
 

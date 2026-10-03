@@ -107,7 +107,6 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
         <div className="flex gap-3">
           <Button
             variant="primary"
-            size="sm"
             onClick={handleSave}
             disabled={!draft.text.trim() || draft.mood === null}
           >
@@ -115,7 +114,6 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
           </Button>
           <Button
             variant="ghost"
-            size="sm"
             onClick={discard}
             disabled={!draft.text.trim() && draft.mood === null}
           >

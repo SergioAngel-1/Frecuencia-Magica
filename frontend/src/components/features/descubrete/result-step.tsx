@@ -57,10 +57,10 @@ export function ResultStep({
       <p className="text-fg-soft text-body max-w-[48ch] text-center leading-[1.8]">{description}</p>
 
       <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
-        <Button variant="primary" size="lg" asChild onClick={onListen}>
+        <Button variant="primary" asChild onClick={onListen}>
           <Link href="/resonario">{ctaLabel}</Link>
         </Button>
-        <Button variant="ghost" size="sm" className="text-body" onClick={onRestart}>
+        <Button variant="ghost" className="text-body" onClick={onRestart}>
           {restartLabel}
         </Button>
       </div>

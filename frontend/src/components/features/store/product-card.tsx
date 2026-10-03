@@ -126,7 +126,7 @@ export function ProductCard({
         <span className="text-gold tracking-soft font-serif text-[21px]">
           {formatPrice(product.price)}
         </span>
-        <Button variant="accent" size="sm" tone="gold" onClick={() => add(product.id)}>
+        <Button variant="accent" tone="gold" onClick={() => add(product.id)}>
           {t('add')}
         </Button>
       </div>

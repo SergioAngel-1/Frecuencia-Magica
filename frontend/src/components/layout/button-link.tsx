@@ -9,7 +9,7 @@ type LinkHref = ComponentProps<typeof Link>['href'];
 
 type ButtonLinkProps = Pick<
   ButtonProps,
-  'variant' | 'size' | 'tone' | 'iconLeft' | 'iconRight' | 'className'
+  'variant' | 'tone' | 'iconLeft' | 'iconRight' | 'className'
 > & {
   /** Destino localizado: cadena o `{ pathname, params }` de `@/i18n/navigation`. */
   href: LinkHref;

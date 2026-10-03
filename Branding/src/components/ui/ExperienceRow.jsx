@@ -25,7 +25,7 @@ export function ExperienceRow({ slot, title, mode, modeLabel, dateLabel, date, d
             <Display level="h3" size="feature" className="mt-2 max-w-[13ch]">{title}</Display>
             {description ? <p className="text-fg-body mt-5 max-w-[48ch] text-[16px] leading-[1.7]">{description}</p> : null}
             <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
-              <Button size="lg">{bookLabel} →</Button>
+              <Button>{bookLabel} →</Button>
               <div className="text-fg-soft text-meta tracking-ui flex flex-wrap items-center gap-x-5 gap-y-2 font-sans">
                 <span>{date}</span>
                 <span>{duration}</span>
@@ -59,7 +59,7 @@ export function ExperienceRow({ slot, title, mode, modeLabel, dateLabel, date, d
             <span className="text-ivory mt-1 font-serif text-[26px]">{duration}</span>
           </div>
           <span className="text-gold font-serif text-[30px]">{price}</span>
-          <Button variant="accent" size="lg">{bookLabel} →</Button>
+          <Button variant="accent">{bookLabel} →</Button>
         </div>
       </div>
     </article>

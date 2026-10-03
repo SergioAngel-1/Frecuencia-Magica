@@ -119,7 +119,7 @@ export function AuthForm({ media }: AuthFormProps) {
           el formulario medía 400px y lo de alrededor el ancho del panel, así
           que los botones se veían de otro tamaño que los campos. */}
       <div className="relative z-10 mx-auto flex w-full max-w-[calc(420px+3rem)] flex-col px-6 pt-14 pb-16 min-[900px]:min-h-[100svh] min-[900px]:justify-center min-[900px]:pt-[112px] min-[900px]:pb-16">
-        <Button variant="ghost" size="sm" iconLeft="←" asChild className="mb-10 self-start">
+        <Button variant="ghost" iconLeft="←" asChild className="mb-10 self-start">
           <Link href="/">{t('auth.backHome')}</Link>
         </Button>
 
@@ -220,13 +220,7 @@ export function AuthForm({ media }: AuthFormProps) {
                 </div>
               ) : null}
 
-              <Button
-                type="submit"
-                variant="primary"
-                size="sm"
-                className="mt-2 w-full"
-                disabled={submitting}
-              >
+              <Button type="submit" variant="primary" className="mt-2 w-full" disabled={submitting}>
                 {cta}
               </Button>
             </form>

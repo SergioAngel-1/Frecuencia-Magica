@@ -51,7 +51,7 @@ export function QuizStep({
       </div>
 
       {currentIndex > 0 && (
-        <Button variant="ghost" size="sm" className="text-body mt-6" onClick={onBack}>
+        <Button variant="ghost" className="text-body mt-6" onClick={onBack}>
           {backLabel}
         </Button>
       )}

@@ -85,7 +85,7 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
                 {selectedDate} · {booking.state.time}
               </p>
             </div>
-            <Button variant="outline" size="lg" className="mt-8 self-start" asChild>
+            <Button variant="outline" className="mt-8 self-start" asChild>
               <Link href="/experiencias">{t('done.cta')}</Link>
             </Button>
           </div>
@@ -203,7 +203,7 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
 
               {booking.step === 1 && (
                 <div className="mt-8 flex max-w-[620px] flex-col gap-4">
-                  <Button variant="ghost" size="sm" className="self-start" onClick={booking.back}>
+                  <Button variant="ghost" className="self-start" onClick={booking.back}>
                     ← {t('backToDate')}
                   </Button>
                   <Field label={t('fields.name')} htmlFor="name">

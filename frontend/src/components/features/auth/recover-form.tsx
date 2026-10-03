@@ -49,7 +49,7 @@ export function RecoverForm({ initialEmail, onSent, onBack }: RecoverFormProps) 
           </span>
           {t('auth.recover.sentBody', { email: sentTo })}
         </p>
-        <Button variant="outline" size="sm" className="w-full" onClick={onBack}>
+        <Button variant="outline" className="w-full" onClick={onBack}>
           {t('auth.recover.back')}
         </Button>
       </div>
@@ -73,10 +73,10 @@ export function RecoverForm({ initialEmail, onSent, onBack }: RecoverFormProps) 
         />
       </Field>
 
-      <Button type="submit" variant="primary" size="sm" className="mt-2 w-full">
+      <Button type="submit" variant="primary" className="mt-2 w-full">
         {t('auth.recover.cta')}
       </Button>
-      <Button variant="ghost" size="sm" className="w-full" onClick={onBack}>
+      <Button variant="ghost" className="w-full" onClick={onBack}>
         {t('auth.recover.back')}
       </Button>
     </form>

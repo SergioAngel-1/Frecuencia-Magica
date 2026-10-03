@@ -32,7 +32,6 @@ function BookingLink({
   return (
     <ButtonLink
       variant={variant}
-      size="lg"
       href={{
         pathname: '/experiencias/[experienceId]/reservar',
         params: { experienceId: experience.id },

@@ -22,7 +22,7 @@ export function IntroStep({ kicker, title, intro, begin, onStart }: IntroStepPro
       <p className="text-fg-soft mx-auto mt-5 mb-10 max-w-[52ch] text-[16px] leading-[1.85]">
         {intro}
       </p>
-      <Button variant="primary" size="lg" onClick={onStart}>
+      <Button variant="primary" onClick={onStart}>
         {begin}
       </Button>
     </>

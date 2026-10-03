@@ -121,7 +121,7 @@ export function LessonPlayer({
 
       <div className="mt-7 flex flex-wrap items-center justify-between gap-3">
         {prevIndex !== null ? (
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="outline" asChild>
             <Link
               href={{
                 pathname: '/academia/[courseId]/[lessonId]',
@@ -136,7 +136,7 @@ export function LessonPlayer({
         )}
 
         {nextIndex !== null ? (
-          <Button variant="accent" size="sm" asChild>
+          <Button variant="accent" asChild>
             <Link
               href={{
                 pathname: '/academia/[courseId]/[lessonId]',
@@ -147,7 +147,7 @@ export function LessonPlayer({
             </Link>
           </Button>
         ) : (
-          <Button variant="accent" size="sm" asChild>
+          <Button variant="accent" asChild>
             <Link
               href={{
                 pathname: '/academia/[courseId]/[lessonId]',

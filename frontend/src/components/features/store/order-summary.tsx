@@ -41,7 +41,7 @@ export function OrderSummary({ lines, onPlaceOrder }: OrderSummaryProps) {
       </div>
 
       {count > 0 ? (
-        <Button variant="primary" size="md" className="mt-6 w-full" onClick={onPlaceOrder}>
+        <Button variant="primary" className="mt-6 w-full" onClick={onPlaceOrder}>
           {t('placeOrder')}
         </Button>
       ) : null}

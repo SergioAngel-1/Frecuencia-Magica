@@ -65,19 +65,19 @@ components:
     textColor: "{colors.ink}"
     typography: "{typography.lead}"
     rounded: "{rounded.pill}"
-    padding: "15px 34px"
+    padding: "11px 26px"
     height: "44px"
   button-outline:
     backgroundColor: "transparent"
     textColor: "{colors.ivory}"
     rounded: "{rounded.pill}"
-    padding: "15px 34px"
+    padding: "11px 26px"
     height: "44px"
   button-accent:
     backgroundColor: "rgba(216,185,120,0.12)"
     textColor: "{colors.ivory}"
     rounded: "{rounded.pill}"
-    padding: "15px 34px"
+    padding: "11px 26px"
     height: "44px"
   badge-solid:
     backgroundColor: "{colors.gold}"
@@ -226,6 +226,7 @@ Las bandas y héroes a sangre no llevan radio. El retrato de Marisol conserva su
 ## Components
 
 ### Buttons
+- **Size:** uno solo en todo el sitio (17px, 11px × 26px, 44px de alto mínimo). No hay prop `size`: la jerarquía entre botones la dan las variantes, no el tamaño.
 - **Shape:** píldora completa (999px), serif con tracking `soft`, altura mínima 44px, transición de .3s sólo de color/fondo/borde/sombra/opacidad.
 - **Primary:** marfil al 95% con texto `ink` y halo dorado; en hover sube a marfil pleno y el halo crece. Desactivado: la misma píldora como vidrio con borde, sin halo; nunca un relleno gris.
 - **Outline / Glass / Ghost:** borde marfil al 22%; `glass` añade blur de 8px; `ghost` es texto sans sin contenedor.

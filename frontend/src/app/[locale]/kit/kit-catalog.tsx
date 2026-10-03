@@ -108,11 +108,7 @@ export function KitCatalog() {
               kicker="Resonario"
               title="Sonido para volver a ti"
               kickerTone="teal"
-              action={
-                <Button variant="ghost" size="sm">
-                  Ver todo →
-                </Button>
-              }
+              action={<Button variant="ghost">Ver todo →</Button>}
             />
           </div>
         </Row>
@@ -131,11 +127,6 @@ export function KitCatalog() {
             Acento lavanda
           </Button>
           <Button variant="ghost">← Volver</Button>
-        </Row>
-        <Row label="Tamaños">
-          <Button size="sm">Pequeño</Button>
-          <Button size="md">Medio</Button>
-          <Button size="lg">Grande</Button>
         </Row>
         <Row label="Estados">
           <Button>Normal</Button>

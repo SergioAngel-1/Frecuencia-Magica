@@ -33,7 +33,7 @@ export function ProductCard({ slot, title, category, price, addLabel = 'Añadir'
 
       <div className={cn('mt-auto flex items-center justify-between gap-4 p-5 pt-3', featured && 'px-6 pb-6')}>
         <span className="text-gold tracking-soft font-serif text-[21px]">{price}</span>
-        <Button variant="accent" size="sm" tone="gold">{addLabel}</Button>
+        <Button variant="accent" tone="gold">{addLabel}</Button>
       </div>
     </article>
   )

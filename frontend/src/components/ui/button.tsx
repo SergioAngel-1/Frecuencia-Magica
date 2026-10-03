@@ -13,13 +13,11 @@ import { cn } from '@/lib/cn';
 import { Magnetic } from './magnetic';
 
 export type ButtonVariant = 'primary' | 'outline' | 'ghost' | 'glass' | 'accent';
-export type ButtonSize = 'sm' | 'md' | 'lg';
 /** Sólo tiene efecto sobre `variant="accent"`: vira el acento oro a teal o lavanda. */
 export type ButtonTone = 'gold' | 'teal' | 'lav';
 
 interface ButtonOwnProps {
   variant?: ButtonVariant;
-  size?: ButtonSize;
   tone?: ButtonTone;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
@@ -66,14 +64,17 @@ interface SlotProps {
  * que nunca puede matchear `:disabled`.
  */
 const BASE =
-  'relative inline-flex items-center justify-center rounded-pill font-serif tracking-soft ' +
+  // Borde transparente en todas: con o sin borde visible, miden lo mismo.
+  'relative inline-flex items-center justify-center rounded-pill border border-transparent font-serif tracking-soft ' +
   'transition-[color,background-color,border-color,box-shadow,opacity] duration-300 ease-out active:scale-[0.98]';
 
-const SIZE_CLASSES: Record<ButtonSize, string> = {
-  sm: 'min-h-11 px-[clamp(18px,3vw,26px)] py-[clamp(8px,1.2vw,11px)] text-lead',
-  md: 'min-h-11 px-[clamp(26px,4vw,34px)] py-[clamp(12px,1.6vw,15px)] text-[clamp(18px,2vw,19px)]',
-  lg: 'min-h-11 px-[clamp(32px,5vw,46px)] py-[clamp(16px,2vw,18px)] text-[clamp(19px,2.4vw,22px)]',
-};
+/**
+ * Un solo tamaño para todo el sitio: el compacto del acceso. Con tres
+ * escalas, cada vista elegía la suya y el mismo botón medía distinto según
+ * dónde estuviera; la jerarquía entre botones la dan las variantes, no el
+ * tamaño.
+ */
+const SIZE = 'min-h-11 px-[clamp(18px,3vw,26px)] py-[clamp(8px,1.2vw,11px)] text-lead';
 
 /** Variantes que no dependen de `tone` (todas salvo `accent`). */
 const VARIANT_CLASSES: Record<Exclude<ButtonVariant, 'accent'>, string> = {
@@ -122,7 +123,6 @@ const ACCENT_TONE_CLASSES: Record<ButtonTone, string> = {
  */
 export function Button({
   variant = 'primary',
-  size = 'md',
   tone = 'gold',
   iconLeft,
   iconRight,
@@ -147,7 +147,7 @@ export function Button({
     disabled && 'pointer-events-none',
     disabled && (variant === 'primary' ? PRIMARY_DISABLED : 'opacity-45'),
   );
-  const classes = cn(BASE, SIZE_CLASSES[size], variantClasses, stateClasses, className);
+  const classes = cn(BASE, SIZE, variantClasses, stateClasses, className);
 
   const handleClick = (event: ReactMouseEvent<HTMLButtonElement>): void => {
     if (disabled || loading) {

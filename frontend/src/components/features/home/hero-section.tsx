@@ -87,15 +87,10 @@ export function HeroSection({
             variants={item}
             className="mt-[36px] flex flex-wrap gap-[16px] max-sm:flex-col max-sm:*:w-full"
           >
-            <Button
-              variant="primary"
-              size="lg"
-              iconRight={<span aria-hidden="true">→</span>}
-              asChild
-            >
+            <Button variant="primary" iconRight={<span aria-hidden="true">→</span>} asChild>
               <Link href="/descubrete">{cta1}</Link>
             </Button>
-            <Button variant="glass" size="lg" iconLeft={<PlayIcon />} asChild>
+            <Button variant="glass" iconLeft={<PlayIcon />} asChild>
               <Link href="/resonario">{cta2}</Link>
             </Button>
           </Mdiv>

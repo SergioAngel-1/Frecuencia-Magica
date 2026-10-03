@@ -9,7 +9,7 @@ const BAG = (
 /** Acción de tienda: outline en reposo, acento dorado al añadir. */
 export function AddToCartButton({ children = 'Añadir', added = false, onClick }) {
   return (
-    <Button variant={added ? 'accent' : 'outline'} size="sm" onClick={onClick} iconRight={BAG}>
+    <Button variant={added ? 'accent' : 'outline'} onClick={onClick} iconRight={BAG}>
       {added ? '✓' : children}
     </Button>
   )
