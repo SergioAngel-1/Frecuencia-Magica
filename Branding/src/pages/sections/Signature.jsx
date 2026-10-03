@@ -6,12 +6,15 @@ export function Signature() {
   const [a1, a2, a3] = audios
 
   return (
-    <Section id="firma" kicker="Componentes · pieza identitaria" title="El disco de frecuencia" tone="gold" lead="Es el objeto del producto. En Biblioteca no hay una rejilla de tarjetas: son discos. Tres escalas, una sola implementación.">
-      <div className="grid items-end gap-[clamp(24px,4vw,56px)] md:grid-cols-[150px_190px_minmax(0,1fr)]">
-        <Specimen title="sm" note="150 px · flotante">
+    <Section id="firma" kicker="Componentes · pieza identitaria" title="El disco de frecuencia" tone="gold" lead="Es el objeto del producto. En Biblioteca no hay una rejilla de tarjetas: son discos. Cuatro escalas, una sola implementación.">
+      <div className="grid items-end gap-[clamp(24px,4vw,56px)] md:grid-cols-[92px_150px_190px_minmax(0,1fr)]">
+        <Specimen title="xs" note="92 px · sugerencias dentro de una tarjeta; sin meta">
+          <FrequencyDisc size="xs" hz={a2.hz} band={a2.band} title={a2.title} />
+        </Specimen>
+        <Specimen title="sm" note="150 px · flotante; aura de su banda">
           <FrequencyDisc size="sm" hz={a3.hz} band={a3.band} title={a3.title} meta={a3.tag} />
         </Specimen>
-        <Specimen title="md" note="190 px · rejilla de Home">
+        <Specimen title="md" note="190 px · rejilla">
           <FrequencyDisc size="md" hz={a2.hz} band={a2.band} title={a2.title} meta={`${a2.tag} · ${a2.duration}`} showPlay />
         </Specimen>
         <Specimen title="lg · activo" note="380 px · destacado; lleva ecualizador. `active` vira aros y borde a oro.">

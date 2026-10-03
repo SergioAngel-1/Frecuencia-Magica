@@ -2,10 +2,24 @@ import { cn } from '../../lib/cn'
 import { Equalizer } from './Equalizer'
 import { OrbitalRings } from './OrbitalRings'
 
-/** Luz especular del disco, idéntica en las tres escalas. */
+/** Luz especular del disco, idéntica en todas las escalas. */
 const SHEEN = 'radial-gradient(70% 80% at 32% 22%, rgba(247,244,234,0.24), transparent 62%)'
 
 const SIZES = {
+  xs: {
+    width: 92,
+    inset: 6,
+    hz: 'text-[20px]',
+    unit: 'text-label tracking-label',
+    title: 'text-body',
+    meta: null,
+    spin: 70,
+    play: null,
+    eq: null,
+    aura: '-10%',
+    restGlow: '0 0 18px rgba(216,185,120,0.14), inset 0 0 14px rgba(15,27,46,0.35)',
+    activeGlow: '0 0 30px rgba(216,185,120,0.42), inset 0 0 14px rgba(15,27,46,0.35)',
+  },
   sm: {
     width: 150,
     inset: 9,
@@ -16,8 +30,9 @@ const SIZES = {
     spin: 70,
     play: null,
     eq: null,
-    restGlow: '0 0 20px rgba(15,27,46,0.5)',
-    activeGlow: '0 0 40px rgba(216,185,120,0.4)',
+    aura: '-12%',
+    restGlow: '0 0 26px rgba(216,185,120,0.16), inset 0 0 20px rgba(15,27,46,0.35)',
+    activeGlow: '0 0 44px rgba(216,185,120,0.45), inset 0 0 20px rgba(15,27,46,0.35)',
   },
   md: {
     width: 190,
@@ -59,15 +74,16 @@ function ringsFor(size, active) {
     {
       r: 97,
       stroke: active ? 'rgba(216,185,120,0.6)' : 'rgba(247,244,234,0.22)',
-      width: size === 'sm' ? 1.2 : 1,
-      dash: size === 'sm' ? '1 8' : '1 7',
+      width: size === 'md' ? 1 : 1.2,
+      dash: size === 'md' ? '1 7' : '1 8',
     },
   ]
 }
 
 /**
- * Disco orbital de frecuencia — la pieza identitaria del producto. Tres escalas
- * (`sm` flotante, `md` de rejilla, `lg` destacado). En Biblioteca no hay rejilla de
+ * Disco orbital de frecuencia — la pieza identitaria del producto. Cuatro escalas
+ * (`xs` de sugerencia, `sm` flotante, `md` de rejilla, `lg` destacado). Las dos
+ * pequeñas irradian la banda del audio como aura. En Biblioteca no hay rejilla de
  * tarjetas: son discos.
  */
 export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = false, showPlay = false, showEqualizer = false, playing = true, width, className }) {
@@ -77,6 +93,15 @@ export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = fal
   return (
     <div className={cn('mx-auto w-full', className)} style={{ maxWidth: box }}>
       <div className="relative mx-auto aspect-square w-full">
+        {spec.aura ? (
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute transition-opacity duration-500"
+            style={{ inset: spec.aura, opacity: active ? 0.9 : 0.6 }}
+          >
+            <div className="animate-fm-breathe size-full rounded-full blur-[14px]" style={{ backgroundImage: band }} />
+          </div>
+        ) : null}
         <OrbitalRings
           size={box}
           rings={ringsFor(size, active)}
@@ -132,7 +157,7 @@ export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = fal
       </div>
 
       {title ? <p className={cn('mt-[10px] text-center font-serif leading-[1.08]', spec.title)}>{title}</p> : null}
-      {meta ? <p className={cn('text-fg-muted tracking-ui mt-[2px] text-center font-sans', spec.meta)}>{meta}</p> : null}
+      {meta && spec.meta ? <p className={cn('text-fg-muted tracking-ui mt-[2px] text-center font-sans', spec.meta)}>{meta}</p> : null}
     </div>
   )
 }

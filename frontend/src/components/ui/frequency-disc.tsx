@@ -6,9 +6,9 @@ import { cn } from '@/lib/cn';
 
 import { Equalizer, type EqualizerScale } from './equalizer';
 
-export type DiscSize = 'sm' | 'md' | 'lg';
+export type DiscSize = 'xs' | 'sm' | 'md' | 'lg';
 
-/** Luz especular del disco, idéntica en las tres escalas. */
+/** Luz especular del disco, idéntica en todas las escalas. */
 const SHEEN = 'radial-gradient(70% 80% at 32% 22%, rgba(247,244,234,0.24), transparent 62%)';
 
 type SizeSpec = {
@@ -18,16 +18,38 @@ type SizeSpec = {
   hz: string;
   unit: string;
   title: string;
-  meta: string;
+  /** `null`: la escala no tiene sitio para la línea de meta. */
+  meta: string | null;
   spin: number;
   play: number | null;
   eq: EqualizerScale | null;
   halo: string | null;
+  /**
+   * Aura de los discos pequeños: la propia banda del audio, difuminada y
+   * respirando detrás de la esfera. Cada frecuencia irradia su color en vez
+   * de recortarse contra una sombra oscura. Valor: cuánto sobresale.
+   */
+  aura: string | null;
   restGlow: string;
   activeGlow: string;
 };
 
 const SIZES: Record<DiscSize, SizeSpec> = {
+  xs: {
+    width: 92,
+    inset: 6,
+    hz: 'text-[20px]',
+    unit: 'text-label tracking-label',
+    title: 'text-body',
+    meta: null,
+    spin: 70,
+    play: null,
+    eq: null,
+    halo: null,
+    aura: '-10%',
+    restGlow: '0 0 18px rgba(216,185,120,0.14), inset 0 0 14px rgba(15,27,46,0.35)',
+    activeGlow: '0 0 30px rgba(216,185,120,0.42), inset 0 0 14px rgba(15,27,46,0.35)',
+  },
   sm: {
     width: 150,
     inset: 9,
@@ -39,8 +61,9 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     play: null,
     eq: null,
     halo: null,
-    restGlow: '0 0 20px rgba(15,27,46,0.5)',
-    activeGlow: '0 0 40px rgba(216,185,120,0.4)',
+    aura: '-12%',
+    restGlow: '0 0 26px rgba(216,185,120,0.16), inset 0 0 20px rgba(15,27,46,0.35)',
+    activeGlow: '0 0 44px rgba(216,185,120,0.45), inset 0 0 20px rgba(15,27,46,0.35)',
   },
   md: {
     width: 190,
@@ -55,6 +78,7 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     // lo tapaba y sólo asomaba una barra. Sólo el disco `lg` lo lleva.
     eq: null,
     halo: '-10%',
+    aura: null,
     restGlow: '0 0 22px rgba(15,27,46,0.5)',
     activeGlow: '0 0 44px rgba(216,185,120,0.4)',
   },
@@ -69,6 +93,7 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     play: 62,
     eq: 'lg',
     halo: '-12%',
+    aura: null,
     restGlow: '0 0 80px rgba(216,185,120,0.42), inset 0 0 40px rgba(15,27,46,0.4)',
     activeGlow: '0 0 90px rgba(216,185,120,0.5), inset 0 0 40px rgba(15,27,46,0.4)',
   },
@@ -89,8 +114,8 @@ function ringsFor(size: DiscSize, active: boolean): readonly Ring[] {
     {
       r: 97,
       stroke: active ? `rgba(216,185,120,${dim})` : 'rgba(247,244,234,0.22)',
-      width: size === 'sm' ? 1.2 : 1,
-      dash: size === 'sm' ? '1 8' : '1 7',
+      width: size === 'md' ? 1 : 1.2,
+      dash: size === 'md' ? '1 7' : '1 8',
     },
   ];
 }
@@ -122,8 +147,9 @@ interface FrequencyDiscProps {
 /**
  * Disco orbital de frecuencia — la pieza identitaria del producto.
  *
- * Cubre las tres escalas del prototipo con una sola implementación: pequeño
- * flotante (Biblioteca), medio en rejilla (Home) y destacado (Biblioteca).
+ * Cubre todas las escalas con una sola implementación: mínimo (sugerencias
+ * dentro de una tarjeta), pequeño flotante (Biblioteca, Home), medio en rejilla
+ * y destacado (Biblioteca).
  * En Biblioteca **no** se usa una rejilla de tarjetas: son discos.
  */
 export function FrequencyDisc({
@@ -154,6 +180,19 @@ export function FrequencyDisc({
     <>
       <div className="relative mx-auto aspect-square w-full" style={floatStyle}>
         {spec.halo ? <Halo color="rgba(216,185,120,0.22)" blur={14} inset={spec.halo} /> : null}
+        {spec.aura ? (
+          // La opacidad va en el envoltorio: `fm-breathe` anima la suya propia.
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute transition-opacity duration-500"
+            style={{ inset: spec.aura, opacity: active ? 0.9 : 0.6 }}
+          >
+            <div
+              className="animate-fm-breathe size-full rounded-full blur-[14px]"
+              style={{ backgroundImage: band }}
+            />
+          </div>
+        ) : null}
 
         {/* Los aros se dimensionan al 100% del contenedor, no a `box`: en
             pantallas estrechas el disco se clampa con `max-width` y unos aros
@@ -237,7 +276,7 @@ export function FrequencyDisc({
       {title ? (
         <p className={cn('mt-[10px] font-serif leading-[1.08]', spec.title)}>{title}</p>
       ) : null}
-      {meta ? (
+      {meta && spec.meta ? (
         <p className={cn('text-fg-muted tracking-ui mt-[2px] font-sans', spec.meta)}>{meta}</p>
       ) : null}
     </>
