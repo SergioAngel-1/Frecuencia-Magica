@@ -112,7 +112,7 @@ export function AuthForm({ media }: AuthFormProps) {
       {/* Una sola columna: conmutador, campos y botones comparten ancho. Antes
           el formulario medía 400px y lo de alrededor el ancho del panel, así
           que los botones se veían de otro tamaño que los campos. */}
-      <div className="relative z-10 mx-auto flex w-full max-w-[calc(420px+3rem)] flex-col px-6 pt-14 pb-16 min-[900px]:min-h-[100svh] min-[900px]:justify-center min-[900px]:py-16">
+      <div className="relative z-10 mx-auto flex w-full max-w-[calc(420px+3rem)] flex-col px-6 pt-14 pb-16 min-[900px]:min-h-[100svh] min-[900px]:justify-center min-[900px]:pt-[112px] min-[900px]:pb-16">
         <Button variant="ghost" size="sm" iconLeft="←" asChild className="mb-10 self-start">
           <Link href="/">{t('auth.backHome')}</Link>
         </Button>
@@ -134,7 +134,7 @@ export function AuthForm({ media }: AuthFormProps) {
           value={mode}
           onChange={(v) => setMode(v)}
           ariaLabel={t('auth.kicker')}
-          className="mb-8 max-w-none"
+          className="mb-6 max-w-none"
         />
 
         <form onSubmit={handleSubmit} className="space-y-4" noValidate>
@@ -191,7 +191,13 @@ export function AuthForm({ media }: AuthFormProps) {
             </div>
           ) : null}
 
-          <Button type="submit" variant="primary" className="mt-2 w-full" disabled={submitting}>
+          <Button
+            type="submit"
+            variant="primary"
+            size="sm"
+            className="mt-2 w-full"
+            disabled={submitting}
+          >
             {cta}
           </Button>
         </form>
@@ -210,6 +216,7 @@ export function AuthForm({ media }: AuthFormProps) {
             es la entrada sin cuenta: lleva al mismo sitio que el formulario. */}
         <Button
           variant="outline"
+          size="sm"
           className="w-full"
           iconLeft={
             <span
