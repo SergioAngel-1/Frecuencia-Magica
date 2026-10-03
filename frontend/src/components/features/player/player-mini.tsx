@@ -1,0 +1,33 @@
+import { PlayerOrb } from './player-orb';
+
+type PlayerMiniProps = {
+  hz: number;
+  band: string;
+  /** Avance 0–100 del audio. */
+  progress: number;
+  /** Nombre accesible completo: la acción y lo que suena. */
+  label: string;
+  onExpand: () => void;
+};
+
+/**
+ * El reproductor recogido: un disco flotante que sigue sonando. Su aro marca
+ * el avance y pulsarlo devuelve el dock. Vive en la esquina inferior derecha,
+ * bajo la barra de realms en móvil, donde no tapa el contenido ni el footer.
+ */
+export function PlayerMini({ hz, band, progress, label, onExpand }: PlayerMiniProps) {
+  return (
+    <button
+      type="button"
+      data-player-focus
+      data-magnetic
+      aria-label={label}
+      onClick={onExpand}
+      className="fm-surface-strong animate-fm-fade-up shadow-glow-card hover:border-gold/45 pointer-events-auto ml-auto block size-14 rounded-full transition-colors duration-300"
+    >
+      <PlayerOrb band={band} progress={progress} className="size-full">
+        <span className="text-ivory text-body font-serif leading-none">{hz}</span>
+      </PlayerOrb>
+    </button>
+  );
+}

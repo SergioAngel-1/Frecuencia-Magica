@@ -4,7 +4,7 @@ import { usePlayerStore } from '@/stores/player-store';
 
 describe('usePlayerStore', () => {
   beforeEach(() => {
-    usePlayerStore.setState({ audioId: null, isPlaying: false, elapsed: 0 });
+    usePlayerStore.setState({ audioId: null, isPlaying: false, elapsed: 0, minimized: false });
   });
 
   it('arranca sin audio y en pausa', () => {
@@ -65,5 +65,42 @@ describe('usePlayerStore', () => {
     const state = usePlayerStore.getState();
     expect(state.audioId).toBe('a1');
     expect(state.isPlaying).toBe(true);
+  });
+
+  it('recoger el dock no detiene la escucha ni pierde el tiempo', () => {
+    usePlayerStore.getState().open('a2');
+    usePlayerStore.getState().setElapsed(45);
+    usePlayerStore.getState().minimize();
+
+    const state = usePlayerStore.getState();
+    expect(state.minimized).toBe(true);
+    expect(state.audioId).toBe('a2');
+    expect(state.isPlaying).toBe(true);
+    expect(state.elapsed).toBe(45);
+  });
+
+  it('desplegar devuelve el dock y elegir un audio también lo despliega', () => {
+    usePlayerStore.getState().open('a2');
+    usePlayerStore.getState().minimize();
+    usePlayerStore.getState().expand();
+    expect(usePlayerStore.getState().minimized).toBe(false);
+
+    usePlayerStore.getState().minimize();
+    usePlayerStore.getState().open('a2');
+    expect(usePlayerStore.getState().minimized).toBe(false);
+
+    usePlayerStore.getState().minimize();
+    usePlayerStore.getState().open('a5');
+    expect(usePlayerStore.getState().minimized).toBe(false);
+  });
+
+  it('sin audio abierto no hay nada que recoger, y cerrar olvida el estado recogido', () => {
+    usePlayerStore.getState().minimize();
+    expect(usePlayerStore.getState().minimized).toBe(false);
+
+    usePlayerStore.getState().open('a2');
+    usePlayerStore.getState().minimize();
+    usePlayerStore.getState().close();
+    expect(usePlayerStore.getState().minimized).toBe(false);
   });
 });

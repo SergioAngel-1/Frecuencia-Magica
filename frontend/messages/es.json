@@ -344,9 +344,12 @@
     }
   },
   "player": {
+    "label": "Reproductor",
     "play": "Reproducir",
     "pause": "Pausar",
     "close": "Cerrar el reproductor",
+    "minimize": "Ocultar el reproductor",
+    "expand": "Mostrar el reproductor",
     "seek": "Buscar en la pista",
     "next": "Siguiente frecuencia",
     "previous": "Frecuencia anterior"

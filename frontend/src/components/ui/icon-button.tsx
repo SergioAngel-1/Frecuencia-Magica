@@ -6,6 +6,8 @@ import { cn } from '@/lib/cn';
 import { Magnetic } from './magnetic';
 
 export type IconButtonSize = 'sm' | 'md';
+/** `ghost`: sólo el icono, sin superficie; para acciones secundarias dentro de una barra. */
+export type IconButtonVariant = 'glass' | 'ghost';
 
 interface IconButtonOwnProps {
   /** Icono a mostrar; único contenido del botón. */
@@ -17,7 +19,11 @@ interface IconButtonOwnProps {
    */
   label: string;
   size?: IconButtonSize;
-  /** Estado activo (p. ej. el icono de sesión mientras estás en `/acceso`). */
+  variant?: IconButtonVariant;
+  /**
+   * Estado activo de un conmutador (p. ej. el sonido ambiental). Sólo cuando
+   * se pasa, el botón emite `aria-pressed`: una acción puntual no lo lleva.
+   */
   active?: boolean;
   /**
    * Aspecto normal más pulso de luz (`animate-fm-glow`); pone `aria-busy` y
@@ -66,7 +72,8 @@ export function IconButton({
   children,
   label,
   size = 'md',
-  active = false,
+  variant = 'glass',
+  active,
   loading = false,
   disabled = false,
   className,
@@ -86,14 +93,17 @@ export function IconButton({
     <span
       aria-hidden="true"
       className={cn(
-        'inline-flex items-center justify-center rounded-full border backdrop-blur-[10px]',
+        'inline-flex items-center justify-center rounded-full',
+        variant === 'glass' && 'border backdrop-blur-[10px]',
         'transition-[color,background-color,border-color,box-shadow,opacity] duration-300 ease-out group-active:scale-[0.98]',
         SURFACE_SIZE_CLASSES[size],
         loading && 'animate-fm-glow',
         disabled && 'opacity-45',
-        active
-          ? 'text-gold border-gold/60 bg-gold/18'
-          : 'border-glass-brd bg-glass text-ivory group-hover:border-gold/40 group-hover:bg-ivory/9',
+        variant === 'ghost'
+          ? 'text-fg-soft group-hover:text-ivory group-hover:bg-ivory/8'
+          : active
+            ? 'text-gold border-gold/60 bg-gold/18'
+            : 'border-glass-brd bg-glass text-ivory group-hover:border-gold/40 group-hover:bg-ivory/9',
       )}
     >
       {children}

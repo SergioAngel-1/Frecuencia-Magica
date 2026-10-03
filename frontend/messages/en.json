@@ -339,9 +339,12 @@
     }
   },
   "player": {
+    "label": "Player",
     "play": "Play",
     "pause": "Pause",
     "close": "Close the player",
+    "minimize": "Hide the player",
+    "expand": "Show the player",
     "seek": "Seek within the track",
     "next": "Next frequency",
     "previous": "Previous frequency"

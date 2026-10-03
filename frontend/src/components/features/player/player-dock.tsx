@@ -3,24 +3,35 @@
 import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { usePlayerStore } from '@/stores/player-store';
+import { IconButton, SeekBar } from '@/components/ui';
 import { getAudio } from '@/data';
+import { formatDuration, parseDuration } from '@/lib/format';
 import { progressPercent } from '@/lib/player/progress';
-import { parseDuration } from '@/lib/format';
-import { cn } from '@/lib/cn';
+import { usePlayerStore } from '@/stores/player-store';
 
+import { CloseIcon, MinimizeIcon, NextIcon, PlayPauseIcon, PreviousIcon } from './player-icons';
+import { PlayerMini } from './player-mini';
+import { PlayerOrb } from './player-orb';
+
+/**
+ * Reproductor persistente, al pie de todas las vistas.
+ *
+ * Tres estados: cerrado (no existe), desplegado (la barra) y recogido (un
+ * disco flotante que sigue sonando). Ocultar no es cerrar: recoge el dock
+ * para leer sin él delante y conserva la escucha; cerrar la termina. Elegir
+ * un audio en cualquier vista vuelve a desplegarlo.
+ */
 export function PlayerDock() {
   const t = useTranslations('player');
   const lib = useTranslations('library');
   const audioId = usePlayerStore((s) => s.audioId);
   const isPlaying = usePlayerStore((s) => s.isPlaying);
   const elapsed = usePlayerStore((s) => s.elapsed);
-  const setElapsed = usePlayerStore((s) => s.setElapsed);
-  const toggle = usePlayerStore((s) => s.toggle);
-  const close = usePlayerStore((s) => s.close);
-  const next = usePlayerStore((s) => s.next);
+  const minimized = usePlayerStore((s) => s.minimized);
+  const { setElapsed, toggle, close, next, previous, minimize, expand } = usePlayerStore.getState();
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const rootRef = useRef<HTMLElement>(null);
+  const wasMinimized = useRef(minimized);
 
   const audio = audioId ? getAudio(audioId) : null;
   const total = audio ? parseDuration(audio.duration) : 0;
@@ -44,102 +55,112 @@ export function PlayerDock() {
     }
   }, [elapsed, total, audio, next]);
 
+  // Al recoger o desplegar, el control pulsado desaparece: el foco pasa al
+  // que lo deshace, para que el teclado no se quede sin sitio.
+  useEffect(() => {
+    if (wasMinimized.current === minimized) return;
+
+    wasMinimized.current = minimized;
+    rootRef.current?.querySelector<HTMLElement>('[data-player-focus]')?.focus();
+  }, [minimized]);
+
   if (!audio) return null;
 
   const title = lib(`audios.${audio.id}.title` as 'audios.a1.title');
+  const tag = lib(`tags.${audio.tagId}` as 'tags.meditation');
+  const elapsedLabel = formatDuration(Math.min(elapsed, total));
 
   return (
-    <div
+    <section
+      ref={rootRef}
+      aria-label={t('label')}
       data-layout-layer="player"
-      className="z-player fixed inset-x-0 bottom-0 px-3 pt-0 pb-[max(12px,env(safe-area-inset-bottom))] sm:px-4"
+      data-player-state={minimized ? 'minimized' : 'expanded'}
+      className="z-player pointer-events-none fixed inset-x-0 bottom-0 px-3 pb-[max(12px,env(safe-area-inset-bottom))] sm:px-6 sm:pb-6"
     >
-      <div
-        className="border-glass-brd mx-auto flex w-full max-w-[920px] items-center gap-3 rounded-[20px] border px-3 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-[22px] sm:gap-5 sm:px-5 sm:py-[14px]"
-        style={{ background: 'rgba(15,27,46,0.72)' }}
-      >
-        {/* Miniatura */}
-        <div
-          aria-hidden="true"
-          className="animate-fm-breathe size-11 shrink-0 rounded-[14px] sm:size-14"
-          style={{
-            backgroundImage: audio.band,
-          }}
-        >
+      {minimized ? (
+        <PlayerMini
+          hz={audio.hz}
+          band={audio.band}
+          progress={pct}
+          label={`${t('expand')} — ${title}, ${audio.hz} Hz`}
+          onExpand={expand}
+        />
+      ) : (
+        <div className="fm-surface-strong animate-fm-fade-up rounded-card shadow-glow-card pointer-events-auto relative mx-auto flex w-full max-w-[980px] items-center gap-3 overflow-hidden px-3 py-2 sm:gap-4 sm:px-4 sm:py-3">
+          {/* En móvil no cabe la barra de posición: el avance es el filo superior. */}
           <div
             aria-hidden="true"
-            className="size-full"
-            style={{
-              background:
-                'radial-gradient(70% 80% at 32% 22%, rgba(247,244,234,0.24), transparent 62%)',
-            }}
-          />
-        </div>
-
-        {/* Texto */}
-        <div className="min-w-0 flex-1">
-          <p className="text-ivory text-lead truncate font-serif sm:text-[19px]">{title}</p>
-          <p className="text-fg-meta text-label tracking-ui font-sans">{audio.hz} Hz</p>
-        </div>
-
-        {/* Play/Pause */}
-        <button
-          type="button"
-          aria-label={isPlaying ? t('pause') : t('play')}
-          onClick={toggle}
-          className="text-ivory hover:border-gold/70 flex size-[52px] shrink-0 items-center justify-center rounded-full border transition-colors"
-          style={{ borderColor: 'rgba(216,185,120,0.55)', background: 'rgba(216,185,120,0.12)' }}
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="translate-x-[6%]"
+            className="bg-ivory/10 absolute inset-x-0 top-0 h-[2px] md:hidden"
           >
-            {isPlaying ? (
-              <>
-                <rect x="6" y="4" width="4" height="16" rx="1" />
-                <rect x="14" y="4" width="4" height="16" rx="1" />
-              </>
-            ) : (
-              <path d="M8 5v14l11-7z" />
-            )}
-          </svg>
-        </button>
+            <div
+              className="bg-gold h-full origin-left"
+              style={{ transform: `scaleX(${pct / 100})` }}
+            />
+          </div>
 
-        {/* Barra de progreso */}
-        <div className="hidden min-w-[120px] flex-[1.4] md:block">
-          <input
-            ref={inputRef}
-            type="range"
-            min={0}
-            max={total}
-            value={Math.min(elapsed, total)}
-            onChange={(e) => setElapsed(Number(e.target.value))}
-            aria-label={t('seek')}
-            className={cn(
-              'h-11 w-full cursor-pointer touch-pan-y appearance-none rounded-[3px]',
-              '[&::-webkit-slider-runnable-track]:bg-ivory/14 [&::-webkit-slider-runnable-track]:h-[5px] [&::-webkit-slider-runnable-track]:rounded-[3px]',
-              '[&::-webkit-slider-thumb]:bg-gold [&::-webkit-slider-thumb]:mt-[-5px] [&::-webkit-slider-thumb]:size-[15px] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full',
-              '[&::-moz-range-track]:bg-ivory/14 [&::-moz-range-track]:h-[5px] [&::-moz-range-track]:rounded-[3px]',
-              '[&::-moz-range-thumb]:bg-gold [&::-moz-range-thumb]:size-[15px] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0',
-            )}
-            style={{
-              background: `linear-gradient(90deg, var(--color-gold) 0%, var(--color-gold) ${pct}%, rgba(247,244,234,0.14) ${pct}%, rgba(247,244,234,0.14) 100%)`,
-            }}
-          />
+          <PlayerOrb band={audio.band} className="size-11 sm:size-[52px]" />
+
+          <div className="min-w-0 flex-1 md:w-[210px] md:flex-none">
+            <p className="text-ivory text-lead truncate font-serif leading-tight">{title}</p>
+            <p className="text-fg-meta text-meta tracking-ui truncate font-sans tabular-nums">
+              {audio.hz} Hz
+              <span className="max-md:hidden"> · {tag}</span>
+              <span className="md:hidden"> · {elapsedLabel}</span>
+            </p>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-1">
+            <IconButton
+              variant="ghost"
+              label={t('previous')}
+              onClick={previous}
+              className="max-md:hidden"
+            >
+              <PreviousIcon />
+            </IconButton>
+            <button
+              type="button"
+              aria-label={isPlaying ? t('pause') : t('play')}
+              onClick={toggle}
+              className="border-gold/55 bg-gold/12 text-ivory hover:bg-gold/20 hover:shadow-glow-gold flex size-11 items-center justify-center rounded-full border transition-[background-color,box-shadow] duration-300 sm:size-[52px]"
+            >
+              <PlayPauseIcon playing={isPlaying} />
+            </button>
+            <IconButton variant="ghost" label={t('next')} onClick={next} className="max-md:hidden">
+              <NextIcon />
+            </IconButton>
+          </div>
+
+          <div className="text-fg-meta text-meta flex min-w-0 flex-1 items-center gap-3 font-sans tabular-nums max-md:hidden">
+            <span>{elapsedLabel}</span>
+            <SeekBar
+              value={elapsed}
+              max={total}
+              onChange={setElapsed}
+              label={t('seek')}
+              valueText={`${elapsedLabel} / ${audio.duration}`}
+              className="flex-1"
+            />
+            <span>{audio.duration}</span>
+          </div>
+
+          <div className="flex shrink-0 items-center">
+            <IconButton
+              variant="ghost"
+              label={t('minimize')}
+              onClick={minimize}
+              data-player-focus
+              data-player-action="minimize"
+            >
+              <MinimizeIcon />
+            </IconButton>
+            <IconButton variant="ghost" label={t('close')} onClick={close}>
+              <CloseIcon />
+            </IconButton>
+          </div>
         </div>
-
-        {/* Cerrar */}
-        <button
-          type="button"
-          aria-label={t('close')}
-          onClick={close}
-          className="text-fg-meta hover:text-ivory flex size-11 shrink-0 items-center justify-center"
-        >
-          ×
-        </button>
-      </div>
-    </div>
+      )}
+    </section>
   );
 }

@@ -8,10 +8,16 @@ type PlayerState = {
   isPlaying: boolean;
   /** Segundos transcurridos del audio abierto. Acepta un actualizador funcional. */
   elapsed: number;
+  /** El dock está recogido en su disco flotante; el audio sigue sonando. */
+  minimized: boolean;
   /** Abre un audio y lo reproduce. Reabrir el mismo audio no reinicia el tiempo. */
   open(id: string): void;
   toggle(): void;
   close(): void;
+  /** Recoge el dock sin detener la escucha. */
+  minimize(): void;
+  /** Vuelve a desplegar el dock. */
+  expand(): void;
   setElapsed(seconds: number | ((elapsed: number) => number)): void;
   next(): void;
   previous(): void;
@@ -35,18 +41,22 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   audioId: null,
   isPlaying: false,
   elapsed: 0,
+  minimized: false,
   open: (id) => {
     // Pulsar el mismo disco no debe cortar la escucha: sólo reinicia el
-    // tiempo cuando el audio abierto cambia de verdad.
+    // tiempo cuando el audio abierto cambia de verdad. Elegir un audio siempre
+    // despliega el dock: es la confirmación de que ha empezado a sonar.
     if (get().audioId === id) {
-      set({ isPlaying: true });
+      set({ isPlaying: true, minimized: false });
       return;
     }
 
-    set({ audioId: id, isPlaying: true, elapsed: 0 });
+    set({ audioId: id, isPlaying: true, elapsed: 0, minimized: false });
   },
   toggle: () => set((state) => ({ isPlaying: !state.isPlaying })),
-  close: () => set({ audioId: null, isPlaying: false, elapsed: 0 }),
+  close: () => set({ audioId: null, isPlaying: false, elapsed: 0, minimized: false }),
+  minimize: () => set((state) => (state.audioId === null ? state : { minimized: true })),
+  expand: () => set({ minimized: false }),
   setElapsed: (seconds) =>
     set((state) => ({
       elapsed: typeof seconds === 'function' ? seconds(state.elapsed) : seconds,

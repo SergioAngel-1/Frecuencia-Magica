@@ -42,7 +42,13 @@ export {
   type GlassPanelTag,
 } from './glass-panel';
 export { GradientText } from './gradient-text';
-export { IconButton, type IconButtonProps, type IconButtonSize } from './icon-button';
+export {
+  IconButton,
+  type IconButtonProps,
+  type IconButtonSize,
+  type IconButtonVariant,
+} from './icon-button';
+export { SeekBar } from './seek-bar';
 export { Input, type InputProps } from './input';
 export { Kicker, type KickerSpacing, type KickerTone } from './kicker';
 export { LoadingOrb, type OrbTone } from './loading-orb';
