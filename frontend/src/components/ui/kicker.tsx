@@ -10,8 +10,13 @@ interface KickerProps {
   tone?: KickerTone;
   /** Nivel de tracking. Por defecto `wide`. */
   spacing?: KickerSpacing;
-  /** Elemento semántico. Por defecto `p`; usar `span` en contextos inline. */
-  as?: 'p' | 'span';
+  /**
+   * Elemento semántico. Por defecto `p`; `span` en contextos inline y `h3`
+   * cuando el kicker es el único encabezado de una subsección.
+   */
+  as?: 'p' | 'span' | 'h3';
+  /** Para `aria-labelledby` de la subsección que encabeza. */
+  id?: string;
   className?: string;
 }
 
@@ -45,12 +50,14 @@ export function Kicker({
   tone = 'gold',
   spacing = 'wide',
   as = 'p',
+  id,
   className,
 }: KickerProps) {
   const Tag = as;
 
   return (
     <Tag
+      id={id}
       className={cn(
         'text-label font-sans uppercase',
         TONE_CLASSES[tone],

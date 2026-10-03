@@ -43,6 +43,11 @@ export default async function Loading() {
               <Skeleton className="h-3 w-32" />
               <Skeleton variant="disc" className="max-w-[150px]" />
               <Skeleton className="h-4 w-40" />
+              <div className="border-ivory/10 mt-auto flex w-full justify-center gap-4 border-t pt-6">
+                {Array.from({ length: 3 }, (_, index) => (
+                  <Skeleton key={index} variant="disc" className="w-[92px]" />
+                ))}
+              </div>
             </GlassPanel>
           </div>
 

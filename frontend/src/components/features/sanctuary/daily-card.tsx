@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
+import { FrequencyStrip } from '@/components/features/player/frequency-strip';
 import {
   ArrowGlyph,
   arrowLinkClasses,
@@ -11,6 +12,7 @@ import {
   Kicker,
 } from '@/components/ui';
 import { AUDIOS } from '@/data';
+import { suggestAudios } from '@/lib/library/suggestions';
 import type { EditorialMedia } from '@/types/editorial-media';
 import { usePlayerStore } from '@/stores/player-store';
 
@@ -23,7 +25,11 @@ type DailyCardProps = {
 /**
  * La frecuencia de hoy. El disco y el enlace abren el audio en el reproductor
  * (el mismo gesto que en la Home y en la Biblioteca), no son decoración.
+ * Debajo, como subsección, tres frecuencias afines a la de hoy en discos
+ * mínimos: la tarjeta también es una puerta a seguir escuchando.
  */
+const SUGGESTION_COUNT = 3;
+
 export function DailyCard({ media, audioId }: DailyCardProps) {
   const t = useTranslations('sanctuary.daily');
   const tLibrary = useTranslations('library');
@@ -35,6 +41,14 @@ export function DailyCard({ media, audioId }: DailyCardProps) {
 
   const title = tLibrary(`audios.${audio.id}.title` as 'audios.a1.title');
   const meta = `${tLibrary(`tags.${audio.tagId}` as 'tags.meditation')} · ${audio.duration}`;
+  // TODO(backend): las sugerencias saldrán del historial de escucha; hasta
+  // entonces, las más afines por intención a la frecuencia de hoy.
+  const suggestions = suggestAudios(AUDIOS, audio.id, SUGGESTION_COUNT).map((candidate) => ({
+    id: candidate.id,
+    hz: candidate.hz,
+    band: candidate.band,
+    title: tLibrary(`audios.${candidate.id}.title` as 'audios.a1.title'),
+  }));
 
   return (
     <GlassPanel
@@ -78,6 +92,24 @@ export function DailyCard({ media, audioId }: DailyCardProps) {
         {t('cta')}
         <ArrowGlyph />
       </button>
+
+      {suggestions.length > 0 ? (
+        <section
+          aria-labelledby="sanctuary-suggestions-title"
+          className="border-ivory/10 mt-auto w-full border-t pt-6"
+        >
+          <Kicker
+            as="h3"
+            tone="muted"
+            spacing="tight"
+            id="sanctuary-suggestions-title"
+            className="mb-5"
+          >
+            {t('suggestions')}
+          </Kicker>
+          <FrequencyStrip items={suggestions} label={t('suggestions')} size="xs" />
+        </section>
+      ) : null}
     </GlassPanel>
   );
 }

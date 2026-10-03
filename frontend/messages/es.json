@@ -635,7 +635,8 @@
     "daily": {
       "kicker": "Frecuencia del día",
       "subtitle": "Elegida para tu mañana",
-      "cta": "Escuchar ahora"
+      "cta": "Escuchar ahora",
+      "suggestions": "Frecuencias que podrían gustarte"
     }
   },
   "journal": {

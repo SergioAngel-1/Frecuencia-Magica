@@ -630,7 +630,8 @@
     "daily": {
       "kicker": "Frequency of the day",
       "subtitle": "Chosen for your morning",
-      "cta": "Listen now"
+      "cta": "Listen now",
+      "suggestions": "Frequencies you might like"
     }
   },
   "journal": {
