@@ -53,7 +53,7 @@ Fuente de verdad, por orden: `AGENTS.md` → `docs/superpowers/specs/2026-08-11-
 | 1 | Accesibilidad | 3 | 3 | Sólida (landmarks, skip-link, foco, aria, 44px). Corregido: carrito sin `h1`, kickers 11px bajo AA sobre zebra, `<audio>` nativo claro. Pendiente: recorrido real con lector de pantalla |
 | 2 | Rendimiento | 3 | 3 | DPR capado, partículas reducidas, `LazyMotion`. Pero First Load JS ≈ 247 kB gz frente a 200 kB y a los 220 kB documentados |
 | 3 | Theming (tokens) | 2 | 3 | Faltaban escalas de texto, tracking, opacidades, eje y halos; ahora son tokens y `cn()` los conoce |
-| 4 | Responsive | 2 | 3 | Biblioteca rota en ≥768; barra inferior truncada; logo del hero sobre el texto en móvil |
+| 4 | Responsive | 2 | 3 | Resonario rota en ≥768; barra inferior truncada; logo del hero sobre el texto en móvil |
 | 5 | Integridad de implementación | 2 | 3 | Sistema propio y coherente, pero con CTAs ausentes, contenido duplicado y contratos en contradicción |
 | **Total** | | **12/20** *Acceptable* | **15/20** *Good* | |
 
@@ -74,7 +74,7 @@ Estado: ✅ resuelto y verificado en render · ⚠️ parcial · ⏳ pendiente.
 
 ### P1 — dificultad significativa
 
-**[P1] Biblioteca: el sistema orbital no se podía leer en ≥768px** ✅ — `library-system.tsx`. Un panel de 720×680 se posicionaba con `absolute` encima de los seis discos (`z-[4]` sobre `z-[3]`), el título del destacado aparecía duplicado y cortado tras el disco. Ahora el destacado es «el sol»: su foto se funde con una máscara radial, los discos orbitan a su alrededor y el título lo pinta sólo el disco. *(`/impeccable layout`)*
+**[P1] Resonario: el sistema orbital no se podía leer en ≥768px** ✅ — `resonario-system.tsx`. Un panel de 720×680 se posicionaba con `absolute` encima de los seis discos (`z-[4]` sobre `z-[3]`), el título del destacado aparecía duplicado y cortado tras el disco. Ahora el destacado es «el sol»: su foto se funde con una máscara radial, los discos orbitan a su alrededor y el título lo pinta sólo el disco. *(`/impeccable layout`)*
 
 **[P1] Barra de realms de móvil/tablet truncada y sin superficie** ✅ — `realm-nav.tsx`. Seis nombres en 390px se cortaban («DESCÚ…», «BIBLIOT…», «TIENDAMI SAN…») y se mezclaban con el contenido. Ahora es una barra de vidrio desplazable con nombres completos y el realm actual centrado. *(`/impeccable adapt`)*
 
@@ -86,7 +86,7 @@ Estado: ✅ resuelto y verificado en render · ⚠️ parcial · ⏳ pendiente.
 
 **[P1] Píldora dorada estirada a barra** ✅ — `Badge` dentro de un `flex-col` (curso destacado, experiencia destacada). Contradice «acentos como luz, no rellenos». `w-fit self-start` en el primitivo.
 
-**[P1] Tres ejes de alineación y bandas a medias** ✅ — en una misma vista el texto arrancaba en x=84, 144 y 224 (Biblioteca), y unas bandas eran inset (1280) y otras a sangre. `--page-inset` + `fm-container` (26 usos) fijan un eje único; bandas y héroes son siempre a sangre.
+**[P1] Tres ejes de alineación y bandas a medias** ✅ — en una misma vista el texto arrancaba en x=84, 144 y 224 (Resonario), y unas bandas eran inset (1280) y otras a sangre. `--page-inset` + `fm-container` (26 usos) fijan un eje único; bandas y héroes son siempre a sangre.
 
 **[P1] Kickers de 11px bajo AA sobre el zebra** ✅ — medido: 3.3–4.3:1 («Dentro del archivo», «El universo de Frecuencia Mágica», «Membresía»…). Tras el ajuste del zebra, 0 fallos reales (ver método).
 
@@ -100,7 +100,7 @@ Estado: ✅ resuelto y verificado en render · ⚠️ parcial · ⏳ pendiente.
 **[P2] `/tienda/carrito` sin `h1`** ✅ — `sr-only h1` en ambos estados.
 **[P2] Reproductor de lección con control nativo claro** ✅ — `color-scheme: dark`; sigue siendo el control nativo (el audio real está diferido).
 **[P2] Fila de experiencia: «PRESENCIAL» sobre «90 min»** ✅ — el rótulo de la columna era el modo, no la duración (`mode` y `modeLabel` eran la misma clave). Se añadió `experiences.durationLabel` y se quitó el kicker que repetía al badge.
-**[P2] Filtros de Biblioteca duplicados** ⚠️ — la lista inerte del hero (palabras con aspecto de filtro que no hacían nada) se eliminó. Sigue pendiente que los filtros reales queden lejos de lo que filtran (separados por un banner): es un contrato de test vigente, decisión de producto.
+**[P2] Filtros de Resonario duplicados** ⚠️ — la lista inerte del hero (palabras con aspecto de filtro que no hacían nada) se eliminó. Sigue pendiente que los filtros reales queden lejos de lo que filtran (separados por un banner): es un contrato de test vigente, decisión de producto.
 **[P2] Primario desactivado = píldora gris sólida** ✅ — ahora vidrio con borde y sin halo.
 **[P2] Logo flotante del hero sobre el párrafo (móvil) y stats que envolvían** ✅
 **[P2] Header fijo sin superficie** ✅ — scrim de vacío, sin borde.
@@ -149,7 +149,7 @@ Estado: ✅ resuelto y verificado en render · ⚠️ parcial · ⏳ pendiente.
 
 **Primitivas** — nuevas: `ButtonLink` (layout), `ArrowLink` (`arrowLinkClasses`, `ArrowGlyph`). Corregidas: `Badge`, `Button` (disabled, tonos), `Pill`, `EditorialBanner` (siempre a sangre, `Kicker`/`Display`, rellena bandas altas), `FullBleedSection`, `MediaSkeleton`, `FrequencyDisc`, `Display` (`feature`, `id`), `RealmNav`, `SiteHeader`.
 
-**Vistas** — Home (héroe, frecuencia del día, audios, bento, sobre Marisol, cierre), Biblioteca, Experiencias, Academia, Tienda, Mi Santuario, Portal y 404 (alts); `loading.tsx` de las rutas con esqueleto.
+**Vistas** — Home (héroe, frecuencia del día, audios, bento, sobre Marisol, cierre), Resonario, Experiencias, Academia, Tienda, Mi Santuario, Portal y 404 (alts); `loading.tsx` de las rutas con esqueleto.
 
 **Tests** — +3 guardas nuevas (paleta cerrada, alt traducido, `Button asChild`), +`cn`, +`zebra`; actualizados los contratos de nav, portal y experiencias que fijaban el comportamiento defectuoso.
 
@@ -160,7 +160,7 @@ Estado: ✅ resuelto y verificado en render · ⚠️ parcial · ⏳ pendiente.
 1. ~~**`Branding/`**~~ — **Decidida:** se actualiza al sistema de la web (ver sección 10).
 2. **Copy del cierre de la home** («Antes de irte · Tu luz seguirá aquí cuando vuelvas · Volver al umbral» / «Before you go · Your light will be here when you return · Back to the threshold»): escrito en la voz de marca, sin validar con Marisol.
 3. **Nav de escritorio**: se restituyó puntos + badge al acercarse (el diseño documentado). Si se prefieren etiquetas permanentes, hay que reservar el margen (`--page-inset` ≥ 152px desde 1024px) y aceptar contenido más estrecho.
-4. **Filtros de Biblioteca**: hoy están separados de los discos por un banner (contrato en `tests/lib/library-layout.test.ts`). Acercarlos es un cambio de arquitectura de la información.
+4. **Filtros de Resonario**: hoy están separados de los discos por un banner (contrato en `tests/lib/resonario-layout.test.ts`). Acercarlos es un cambio de arquitectura de la información.
 
 ## 9. Recomendaciones, por orden
 
@@ -169,7 +169,7 @@ Estado: ✅ resuelto y verificado en render · ⚠️ parcial · ⏳ pendiente.
 3. Sustituir el `<audio>` nativo por el reproductor propio cuando exista el audio real (hoy `lessonAudioDeferred`).
 4. Pasar el recorrido de teclado y lector de pantalla en dispositivo real (sigue manual en `accessibility.md`).
 5. Perfilar FPS en un móvil de gama media con las bandas a sangre y 14 superficies con `backdrop-filter`.
-6. `/impeccable critique` con sub-agentes aislados sobre Home y Biblioteca cuando entre la primera fotografía real: la zebra enmascara cómo se comportan escala, recorte y scrim con imagen.
+6. `/impeccable critique` con sub-agentes aislados sobre Home y Resonario cuando entre la primera fotografía real: la zebra enmascara cómo se comportan escala, recorte y scrim con imagen.
 
 ## 10. Método y límites
 

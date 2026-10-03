@@ -9,7 +9,7 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 | 3 | Fase 3 | Motor del mundo (canvas, cursor, audio, portal) | ✅ Completada | 2026-07-28 |
 | 4 | Fases 4–5 | UI Kit y layout | ✅ Completada | 2026-07-28 |
 | 5 | Fases 6–8 | Portal, Home, Descúbrete | ✅ Completada | 2026-07-28 |
-| 6 | Fases 9–11 | Biblioteca, Academia, Experiencias | ⚠️ Con huecos | 2026-07-28 |
+| 6 | Fases 9–11 | Resonario, Academia, Experiencias | ⚠️ Con huecos | 2026-07-28 |
 | 7 | Fases 12–14 | Tienda, Acceso, Mi Santuario | ⚠️ Con huecos | 2026-07-28 |
 | 8 | Fase 15 | 3D perezoso | ❌ No ejecutada | — |
 | 9 | Fase 16 | Estados, a11y, responsive, rendimiento | ✅ Completada (salvo 16.2.4/16.2.5 manuales) | 2026-08-11 |
@@ -58,7 +58,7 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 
 **Fase 2 · i18n, rutas y datos**
 
-- next-intl con rutas localizadas para las 14 rutas del plan: `/biblioteca` ↔ `/en/library`.
+- next-intl con rutas localizadas para las 14 rutas del plan: `/resonario` ↔ `/en/resonarium`.
 - Copy completo ES/EN portado del prototipo en 18 namespaces, más el copy nuevo de estados escrito en la voz de marca.
 - Tipado de mensajes: autocompletado de claves y error de compilación si no existen.
 - Catálogo tipado: 7 frecuencias, 3 cursos, 4 experiencias, 8 productos y 5 preguntas, con claves de traducción en lugar de textos.
@@ -158,7 +158,7 @@ Revisado y correcto. Ningún componente de `ui/` importa de `data/`, `stores/` n
 
 **Verificación**
 
-`lint`, `typecheck`, `test` (66 casos, +2 de esta fase), `format:check` y `build`, todos en verde; 18 rutas prerenderizadas en ambos idiomas. Sobre el servidor: los cuatro landmarks presentes, los seis enlaces de navegación a 44px con `aria-current` en el activo, y el conmutador de idioma probado con clic real — `/biblioteca` lleva a `/en/library` y relocaliza toda la navegación. Reglas de visibilidad confirmadas ruta por ruta: portal y acceso sin nav ni footer; descúbrete y santuario con nav y sin footer; biblioteca con ambos.
+`lint`, `typecheck`, `test` (66 casos, +2 de esta fase), `format:check` y `build`, todos en verde; 18 rutas prerenderizadas en ambos idiomas. Sobre el servidor: los cuatro landmarks presentes, los seis enlaces de navegación a 44px con `aria-current` en el activo, y el conmutador de idioma probado con clic real — `/resonario` lleva a `/en/resonarium` y relocaliza toda la navegación. Reglas de visibilidad confirmadas ruta por ruta: portal y acceso sin nav ni footer; descúbrete y santuario con nav y sin footer; resonario con ambos.
 
 **Decisiones acertadas del código heredado**
 
@@ -181,8 +181,8 @@ El *first load JS* por ruta es de **212 kB**, por encima del presupuesto de 200 
 - **6.1 Pantalla del portal.** `portal-scene.tsx` con geometría sagrada (dos SVG superpuestos, `fm-spin`/`fm-spin-r`), logo flotante con halo y aro expansivo, `EnterButton` de tres capas con glow animado y `Magnetic`, `Display size="hero"` con el título, kicker, subtítulo y pista al pie. `min-height: 100vh`, contenido centrado. Responsive: logo a 140px en móvil, geometría reducida.
 - **6.2 Cruzar el portal.** `useCrossPortal()` que activa el audio ambiental (gesto de usuario), dispara `cross()` del store y navega a `/inicio` a los 1000 ms. El botón se deshabilita durante la transición.
 - **7.1 Hero de la home.** `HeroSection` con rejilla 1.05fr/0.95fr, entradas escalonadas (`staggerContainer`/`staggerItem`), píldora de kicker con punto teal, título con gradiente lineal oro→teal→lavanda, `Stat` trío, columna derecha con `OrbitalRings` 192/150/108 + triángulo + logo flotante. Responsive a 1024px y 768px.
-- **7.2 Frecuencia del día y rejilla de audios.** `DailyFrequency` (botón full-width con disco, texto y play), `AudioGrid` (4 `FrequencyDisc` en grid `repeat(auto-fill, minmax(210px, 1fr))`). Sección con `SectionHeading` y enlace a biblioteca.
-- **7.3 Rejilla bento de realms.** `RealmsGrid` con jerarquía exacta: Academia arriba a ancho completo (rejilla 1.25fr/1fr), debajo 3 columnas con descúbrete, biblioteca, tienda (span 2 filas), experiencias, santuario. `RealmCard` con variante destacada y estándar. `WaveSeparator` al pie.
+- **7.2 Frecuencia del día y rejilla de audios.** `DailyFrequency` (botón full-width con disco, texto y play), `AudioGrid` (4 `FrequencyDisc` en grid `repeat(auto-fill, minmax(210px, 1fr))`). Sección con `SectionHeading` y enlace a resonario.
+- **7.3 Rejilla bento de realms.** `RealmsGrid` con jerarquía exacta: Academia arriba a ancho completo (rejilla 1.25fr/1fr), debajo 3 columnas con descúbrete, resonario, tienda (span 2 filas), experiencias, santuario. `RealmCard` con variante destacada y estándar. `WaveSeparator` al pie.
 - **7.4 Sobre Marisol y membresía.** `AboutSection` con retrato placeholder en arco de nicho + texto descriptivo. `MembershipSection` con panel centrado, `Display size="md"` y botón primario.
 - **8.1 Reducer del cuestionario.** `quiz-reducer.ts` puro con fases `intro`, `question`, `tuning`, `result`. `resultIndex` (suma módulo catálogo). `useQuiz` hook con `useReducer` y temporizador de 2600 ms. 11 tests.
 - **8.2 Pantallas del cuestionario.** `DiscoverIntro`, `QuizStep` (con `StepProgress`, radio group, transición `AnimatePresence`), `TuningScreen` (`LoadingOrb`), `QuizResult` (orbe, frecuencia, dos botones). Página completa en `descubrete/page.tsx`.
@@ -194,16 +194,16 @@ El *first load JS* por ruta es de **212 kB**, por encima del presupuesto de 200 
 
 ---
 
-## Sección 6 — Fases 9, 10 y 11 (Biblioteca, Academia, Experiencias)
+## Sección 6 — Fases 9, 10 y 11 (Resonario, Academia, Experiencias)
 
 **Entregado**
 
 - **9.1 Store del reproductor.** `player-store.ts` con zustand: `open` (no reinicia si mismo audio), `toggle`, `close`, `next`, `previous`, `setElapsed`. `progress.ts` con `progressPercent`, `nextAudioId`, `previousAudioId`. 17 tests (añadido `previousAudioId` no previsto en el plan).
 - **9.2 Dock del reproductor.** `PlayerDock`: `position: fixed` abajo con glassmorphism, miniatura con banda y respiración, título/meta, botón play/pausa de 52px, barra de progreso interactiva (`input[type=range]` con seek), botón de cierre. Avance automático con `setInterval`, salto al siguiente audio al final. Montado en `layout.tsx`. Responsivo: bloque de tiempo oculto en móvil.
-- **9.3 Sistema solar de la biblioteca.** `layout-slots.ts` con `discSlot` (6 posiciones orbitales exactas del prototipo) y `filterAudios` (filtra por `tagId`, no por texto traducido). `LibraryFilters` con 5 pills. `LibrarySystem` con disco central destacado (`FrequencyDisc` grande) + discos pequeños en posiciones absolutas. `EmptyState` si el filtro no da resultados. Página completa en `biblioteca/page.tsx`. 7 tests.
+- **9.3 Sistema solar del resonario.** `layout-slots.ts` con `discSlot` (6 posiciones orbitales exactas del prototipo) y `filterAudios` (filtra por `tagId`, no por texto traducido). `ResonarioFilters` con 5 pills. `ResonarioSystem` con disco central destacado (`FrequencyDisc` grande) + discos pequeños en posiciones absolutas. `EmptyState` si el filtro no da resultados. Página completa en `resonario/page.tsx`. 7 tests.
 - **10.1 Listado de cursos.** `CourseCard` con dos variantes: featured (rejilla 1.15fr/1fr, banda, aros, badge sólido) y estándar (`GlassPanel`, banda 180px, badge translúcido). `CourseList` con featured + grid 2 cols. Página completa en `academia/page.tsx`.
 - **10.2 Detalle de curso y temario.** `buildLessons` (genera lecciones con duración uniforme, 12 títulos ciclados). `CourseDetail` (rejilla 1.5fr/1fr, video placeholder, lista de lecciones). `LessonList` con checkmark ✓, current highlight, prev/next. Ruta dinámica con `generateStaticParams`. 4 tests.
-- **10.3 Reproductor de lección.** `LessonPlayer` con controls de play/pausa, navegación anterior/siguiente, pantalla de finalización con orbe dorado estático y dos botones (volver a academia / explorar biblioteca). Ruta anidada `[courseId]/[lessonId]` con `generateStaticParams`.
+- **10.3 Reproductor de lección.** `LessonPlayer` con controls de play/pausa, navegación anterior/siguiente, pantalla de finalización con orbe dorado estático y dos botones (volver a academia / explorar resonario). Ruta anidada `[courseId]/[lessonId]` con `generateStaticParams`.
 - **11.1 Listado de experiencias.** `ExperienceRow` con dos variantes: featured (rejilla 1.1fr/1fr, banda, aros desbordando, badge sólido, precio) y estándar (rejilla 220px/1fr/auto con `GlassPanel`). `ExperienceList` con featured + filas. Página completa en `experiencias/page.tsx`.
 - **11.2 Reducer del flujo de reserva.** `booking-reducer.ts` puro con acciones `PICK_DATE`, `PICK_TIME`, `CONTINUE`, `BACK`, `SET_FIELD`, `CONFIRM`, `RESET`. `dates.ts` con `upcomingDates` (locale-aware via `Intl.DateTimeFormat`) y `AVAILABLE_TIMES`. `useBooking` hook. 15 tests.
 - **11.3 Pantallas de reserva.** `BookingFlow`: selector de fecha (grid de botones), selector de hora, formulario de datos (nombre, email, nota), confirmación con orbe y resumen. Ruta `[experienceId]/reservar` con `generateStaticParams`. Flujo completo verificable.
@@ -216,7 +216,7 @@ El *first load JS* por ruta es de **212 kB**, por encima del presupuesto de 200 
 
 **Correcciones aplicadas en la auditoría (2026-07-28)**
 
-- Añadido layout responsive para biblioteca (<900px): rejilla `repeat(auto-fill, minmax(140px, 1fr))`.
+- Añadido layout responsive para resonario (<900px): rejilla `repeat(auto-fill, minmax(140px, 1fr))`.
 - Migrados los inputs nativos de `booking-flow.tsx` a `<Field>`/`<Input>`/`<Textarea>` del UI Kit.
 - Reemplazado el indicador de pasos manual por `<StepProgress variant="labeled">`.
 - Corregido el locale hardcodeado: `useLocale()` para formatear fechas según el idioma activo.
@@ -351,7 +351,7 @@ Auditoría de `frontend/` contra el plan y el prototipo tras ejecutar las fases 
 
 | Fase | Estado real | Nota |
 |---|---|---|
-| 9 · Biblioteca y reproductor | ✅ Construida | Falta el comentario `// TODO(backend)` en el dock (9.2.2). |
+| 9 · Resonario y reproductor | ✅ Construida | Falta el comentario `// TODO(backend)` en el dock (9.2.2). |
 | 10 · Academia | ✅ Construida | `lessonTitles` (12) y `completion` presentes. Completa. |
 | 11 · Experiencias y reserva | ✅ Construida | Falta `// TODO(backend)` en la confirmación (11.3.4). |
 | 12 · Tienda | ⚠️ **Incompleta** | 12.1/12.2 OK. **12.3 y 12.4 con huecos** (ver abajo). |
@@ -368,7 +368,7 @@ Auditoría de `frontend/` contra el plan y el prototipo tras ejecutar las fases 
 
 ### Fase 16 — desglose de lo que falta (ninguna de sus 5 tareas se hizo)
 
-- **16.1 Estados / 404 / error / loading — nada.** No existen `not-found.tsx`, `error.tsx`, `loading.tsx` (ni raíz ni por realm: biblioteca/academia/tienda/experiencias). Una ruta inválida cae al 404 por defecto de Next, sin marca y sin idioma; un error no controlado muestra la pantalla de error cruda de Next. **Riesgo real de producto.**
+- **16.1 Estados / 404 / error / loading — nada.** No existen `not-found.tsx`, `error.tsx`, `loading.tsx` (ni raíz ni por realm: resonario/academia/tienda/experiencias). Una ruta inválida cae al 404 por defecto de Next, sin marca y sin idioma; un error no controlado muestra la pantalla de error cruda de Next. **Riesgo real de producto.**
 - **16.2 A11y — no auditada.** Sin `@axe-core/cli`, sin `docs/accessibility.md`. (Sobreviven de fases previas: skip-link `#contenido`, `aria-label`/`aria-hidden` en componentes.)
 - **16.3 Responsive — parcial.** `min-h-dvh` aplicado en portal y home; **`auth-aside` sigue en `100vh`** (`calc(100vh-200px)`); no hay reducción de partículas en móvil.
 - **16.4 Rendimiento — no ejecutada, y presupuesto incumplido.** **First Load JS ≈ 215–218 kB por ruta, por encima del tope de 200 kB.** `motion` entra completo: **no se migró a `LazyMotion`/`domAnimation`** (la palanca que el propio plan y la Sección 4 señalaban). `CosmicCanvas` tiene `PARTICLE_COUNT = 54` fijo, sin bajar a 28 en móvil (16.4.3). Sin `docs/performance.md`.
@@ -398,7 +398,7 @@ Informe completo: [`../audits/2026-09-30-design-coherence-audit.md`](../audits/2
 - Auditoría técnica + lectura de diseño con la skill impeccable: 15 rutas × 3 anchos antes y después, contraste medido sobre píxeles reales, desborde/targets/consola. Puntuación 12/20 → 15/20.
 - Tokens: marfil en 5 peldaños, tamaños sans (`text-label|meta|body|lead`), tracking en 6 peldaños, halos, `--color-ink`, `--page-inset`/`fm-container`; `cn()` extendido; `config/covers.ts`.
 - Primitivas: `ButtonLink`, `ArrowLink`; `Badge`, `Button`, `Pill`, `EditorialBanner`, `FullBleedSection`, `MediaSkeleton`, `FrequencyDisc`, `Display`, `RealmNav`, `SiteHeader` corregidos.
-- Defectos: CTA de reserva y membresía ausentes (P0), Biblioteca orbital, nav móvil, bento, zebra, píldora estirada, ejes, contraste de kickers, membresía duplicada, alts, `h1` del carrito, audio nativo, etiqueta de duración, Mi Santuario (hero, continuar, diaria).
+- Defectos: CTA de reserva y membresía ausentes (P0), Resonario orbital, nav móvil, bento, zebra, píldora estirada, ejes, contraste de kickers, membresía duplicada, alts, `h1` del carrito, audio nativo, etiqueta de duración, Mi Santuario (hero, continuar, diaria).
 - Tests: +3 guardas (paleta cerrada, alt traducido, `Button asChild`), `cn`, `zebra`; 245 tests en verde.
 
 **Pendiente** (detalle en la auditoría): First Load JS ≈ 247 kB gz (presupuesto 200), `sanctuary.journal` y `sanctuary.empty`, estado del inventario editorial desfasado, `Branding/`, validar el copy del cierre de la home, recorrido real con lector de pantalla.

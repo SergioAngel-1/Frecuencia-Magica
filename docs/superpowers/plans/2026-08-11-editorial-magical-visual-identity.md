@@ -291,21 +291,21 @@
 
 ---
 
-## Task 8: Recompose Biblioteca as editorial archive plus solar system
+## Task 8: Recompose Resonario as editorial archive plus solar system
 
 **Files:**
-- Modify: `frontend/src/app/[locale]/biblioteca/page.tsx`
-- Modify: `frontend/src/components/features/library/library-system.tsx`
-- Modify: `frontend/src/components/features/library/library-filters.tsx`
-- Modify: `frontend/src/app/[locale]/biblioteca/loading.tsx`
-- Add slots: `library.hero`, `library.featured`, `library.archive-banner`, `library.audio-cover.*`.
+- Modify: `frontend/src/app/[locale]/resonario/page.tsx`
+- Modify: `frontend/src/components/features/resonario/resonario-system.tsx`
+- Modify: `frontend/src/components/features/resonario/resonario-filters.tsx`
+- Modify: `frontend/src/app/[locale]/resonario/loading.tsx`
+- Add slots: `resonario.hero`, `resonario.featured`, `resonario.archive-banner`, `resonario.audio-cover.*`.
 
 **Interfaces:**
 - The solar system remains the magical interaction signature, but the page gains a full-width archive hero and editorial bands.
 - Mobile retains one featured disc plus secondary discs without duplication.
 - Filter semantics and empty state remain unchanged.
 
-- [ ] **Step 1: Add tests asserting featured/secondary split and library slot contracts.
+- [ ] **Step 1: Add tests asserting featured/secondary split and resonario slot contracts.
 - [ ] **Step 2: Build a full-width archive hero with fallback zebra and category copy.
 - [ ] **Step 3: Place the featured frequency inside an editorial media field rather than an isolated floating card.
 - [ ] **Step 4: Preserve the orbital desktop layout and compact mobile grid; make imagery and geometry share the same focal hierarchy.
@@ -437,7 +437,7 @@
 - Modify: `frontend/src/app/[locale]/loading.tsx`
 - Modify: `frontend/src/app/[locale]/error.tsx`
 - Modify: `frontend/src/app/[locale]/not-found.tsx`
-- Modify: `frontend/src/app/[locale]/biblioteca/loading.tsx`
+- Modify: `frontend/src/app/[locale]/resonario/loading.tsx`
 - Modify: `frontend/src/app/[locale]/academia/loading.tsx`
 - Modify: `frontend/src/app/[locale]/experiencias/loading.tsx`
 - Modify: `frontend/src/app/[locale]/tienda/loading.tsx`
@@ -506,7 +506,7 @@
 - Produces: verified full view matrix and a clean handoff for future photographic asset insertion.
 
 - [ ] **Step 1: Start exactly one dev server only if no server is running; never run dev and build concurrently because they share `.next`.
-- [ ] **Step 2: Visit every localized route in the matrix: `/`, `/inicio`, `/acceso`, `/descubrete`, `/biblioteca`, `/academia`, course detail, lesson, `/experiencias`, booking, `/tienda`, product detail, cart and `/mi-santuario`, plus `/en` equivalents.
+- [ ] **Step 2: Visit every localized route in the matrix: `/`, `/inicio`, `/acceso`, `/descubrete`, `/resonario`, `/academia`, course detail, lesson, `/experiencias`, booking, `/tienda`, product detail, cart and `/mi-santuario`, plus `/en` equivalents.
 - [ ] **Step 3: Inspect at 390, 768, 1280 and 1440 px for full-bleed edges, crop/focal point, overlay contrast, player/nav stacking, no horizontal overflow and readable content.
 - [ ] **Step 4: Test keyboard focus, controls, `aria-pressed`, `aria-expanded`, form errors, empty/error/success states and route transitions.
 - [ ] **Step 5: Test reduced motion: no long JS waits, no decorative loops, no inaccessible hidden content.
@@ -517,7 +517,7 @@
     frontend/src/app/[locale]/inicio/page.tsx \
     frontend/src/app/[locale]/acceso/page.tsx \
     frontend/src/app/[locale]/descubrete/page.tsx \
-    frontend/src/app/[locale]/biblioteca/page.tsx \
+    frontend/src/app/[locale]/resonario/page.tsx \
     frontend/src/app/[locale]/academia/page.tsx \
     frontend/src/app/[locale]/experiencias/page.tsx \
     frontend/src/app/[locale]/tienda/page.tsx \
@@ -538,7 +538,7 @@
 | Home `/inicio` | hero edge-to-edge, long-form bands | `home.hero`, `home.daily-frequency`, `home.audio-banner`, `home.realms-banner`, `home.marisol`, `home.membership`, `home.footer-banner` | zebra hero/banner/portrait según slot |
 | Acceso `/acceso` | split full-height desktop, banner móvil | `auth.hero`, `auth.form-atmosphere` | zebra split/banner |
 | Descúbrete `/descubrete` | phase-based full-bleed atmosphere | `discover.hero`, `discover.question-atmosphere`, `discover.tuning`, `discover.result` | zebra phase field + geometry |
-| Biblioteca `/biblioteca` | archive hero + solar system + banner | `library.hero`, `library.featured`, `library.archive-banner`, `library.audio-cover.*` | zebra archive/cover |
+| Resonario `/resonario` | archive hero + solar system + banner | `resonario.hero`, `resonario.featured`, `resonario.archive-banner`, `resonario.audio-cover.*` | zebra archive/cover |
 | Academia `/academia` | featured spread + editorial rows | `academy.hero`, `academy.featured-course`, `academy.course.*` | zebra wide/portrait |
 | Curso `/academia/[courseId]` | media-led learning spread | `academy.course.*`, `academy.lesson-player` | zebra lesson media |
 | Lección | lesson viewport + reading rail | `academy.lesson-player`, `academy.completion` | zebra 16:9/quiet orb |
