@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useState, type FormEvent } from 'react';
 
-import { Button, Field, Input } from '@/components/ui';
+import { Button, Field, Input, Swap } from '@/components/ui';
 import { recoverErrors } from '@/lib/auth/validation';
 
 type RecoverFormProps = {
@@ -40,45 +40,45 @@ export function RecoverForm({ initialEmail, onSent, onBack }: RecoverFormProps) 
     onSent();
   };
 
-  if (sentTo) {
-    return (
-      <div role="status" className="animate-fm-fade-up">
-        <p className="text-fg-body text-body mb-8 leading-[1.7]">
-          <span aria-hidden="true" className="text-gold mr-2">
-            ✓
-          </span>
-          {t('auth.recover.sentBody', { email: sentTo })}
-        </p>
-        <Button variant="outline" className="w-full" onClick={onBack}>
-          {t('auth.recover.back')}
-        </Button>
-      </div>
-    );
-  }
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-      <Field
-        htmlFor="recover-email"
-        label={t('auth.fields.email.label')}
-        error={errorKey ? t(errorKey) : undefined}
-      >
-        <Input
-          type="email"
-          autoComplete="email"
-          placeholder={t('auth.fields.email.placeholder')}
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          onBlur={() => setTouched(true)}
-        />
-      </Field>
+    <Swap id={sentTo ? 'sent' : 'asking'}>
+      {sentTo ? (
+        <div role="status">
+          <p className="text-fg-body text-body mb-8 leading-[1.7]">
+            <span aria-hidden="true" className="text-gold mr-2">
+              ✓
+            </span>
+            {t('auth.recover.sentBody', { email: sentTo })}
+          </p>
+          <Button variant="outline" className="w-full" onClick={onBack}>
+            {t('auth.recover.back')}
+          </Button>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+          <Field
+            htmlFor="recover-email"
+            label={t('auth.fields.email.label')}
+            error={errorKey ? t(errorKey) : undefined}
+          >
+            <Input
+              type="email"
+              autoComplete="email"
+              placeholder={t('auth.fields.email.placeholder')}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              onBlur={() => setTouched(true)}
+            />
+          </Field>
 
-      <Button type="submit" variant="primary" className="mt-2 w-full">
-        {t('auth.recover.cta')}
-      </Button>
-      <Button variant="ghost" className="w-full" onClick={onBack}>
-        {t('auth.recover.back')}
-      </Button>
-    </form>
+          <Button type="submit" variant="primary" className="mt-2 w-full">
+            {t('auth.recover.cta')}
+          </Button>
+          <Button variant="ghost" className="w-full" onClick={onBack}>
+            {t('auth.recover.back')}
+          </Button>
+        </form>
+      )}
+    </Swap>
   );
 }

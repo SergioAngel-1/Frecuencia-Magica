@@ -11,6 +11,7 @@ import {
   Input,
   Kicker,
   SegmentedControl,
+  Swap,
 } from '@/components/ui';
 import { cn } from '@/lib/cn';
 import { Link, useRouter } from '@/i18n/navigation';
@@ -147,87 +148,96 @@ export function AuthForm({ media }: AuthFormProps) {
           </p>
         )}
 
-        {recovering ? (
-          <RecoverForm
-            initialEmail={values.email}
-            onSent={() => setRecovery('sent')}
-            onBack={() => setRecovery('off')}
-          />
-        ) : (
-          <>
-            <SegmentedControl<AuthMode>
-              options={tabs}
-              value={mode}
-              onChange={(v) => setMode(v)}
-              ariaLabel={t('auth.kicker')}
-              className="mb-6 max-w-none"
+        <Swap id={recovering ? 'recover' : 'access'}>
+          {recovering ? (
+            <RecoverForm
+              initialEmail={values.email}
+              onSent={() => setRecovery('sent')}
+              onBack={() => setRecovery('off')}
             />
+          ) : (
+            <>
+              <SegmentedControl<AuthMode>
+                options={tabs}
+                value={mode}
+                onChange={(v) => setMode(v)}
+                ariaLabel={t('auth.kicker')}
+                className="mb-6 max-w-none"
+              />
 
-            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-              {/* Apertura tipo "pergamino" sin animar altura (grid-rows 0fr→1fr,
+              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                {/* Apertura tipo "pergamino" sin animar altura (grid-rows 0fr→1fr,
                   transform-free; la regla del proyecto limita a transform/opacity).
                   `inert` + `aria-hidden` retiran el campo del tab y del árbol cuando
                   está colapsado; con prefers-reduced-motion el kill global de CSS
                   hace la transición instantánea. */}
-              <div
-                className={cn(
-                  'grid transition-[grid-template-rows,opacity] duration-[350ms] ease-[cubic-bezier(.2,.85,.25,1)]',
-                  mode === 'register' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
-                )}
-                aria-hidden={mode !== 'register'}
-                inert={mode !== 'register'}
-              >
-                <div className="overflow-hidden">{nameField}</div>
-              </div>
-
-              <Field
-                htmlFor="email"
-                label={t('auth.fields.email.label')}
-                error={fieldError('email')}
-              >
-                <Input
-                  type="email"
-                  placeholder={t('auth.fields.email.placeholder')}
-                  value={values.email}
-                  onChange={handleChange('email')}
-                  onBlur={handleBlur('email')}
-                />
-              </Field>
-
-              <Field
-                htmlFor="password"
-                label={t('auth.fields.password.label')}
-                error={fieldError('password')}
-              >
-                <Input
-                  type="password"
-                  placeholder={t('auth.fields.password.placeholder')}
-                  value={values.password}
-                  onChange={handleChange('password')}
-                  onBlur={handleBlur('password')}
-                />
-              </Field>
-
-              {mode === 'login' ? (
-                <div className="-mt-1 flex justify-end">
-                  <button
-                    type="button"
-                    onClick={() => setRecovery('asking')}
-                    className="rounded-pill hover:text-ivory text-meta tracking-soft text-fg-muted min-h-11 px-3 font-sans transition-colors"
-                  >
-                    {t('auth.forgot')}
-                  </button>
+                <div
+                  className={cn(
+                    'grid transition-[grid-template-rows,opacity] duration-[350ms] ease-[cubic-bezier(.2,.85,.25,1)]',
+                    mode === 'register'
+                      ? 'grid-rows-[1fr] opacity-100'
+                      : 'grid-rows-[0fr] opacity-0',
+                  )}
+                  aria-hidden={mode !== 'register'}
+                  inert={mode !== 'register'}
+                >
+                  <div className="overflow-hidden">{nameField}</div>
                 </div>
-              ) : null}
 
-              <Button type="submit" variant="primary" className="mt-2 w-full" disabled={submitting}>
-                {cta}
-              </Button>
-            </form>
+                <Field
+                  htmlFor="email"
+                  label={t('auth.fields.email.label')}
+                  error={fieldError('email')}
+                >
+                  <Input
+                    type="email"
+                    placeholder={t('auth.fields.email.placeholder')}
+                    value={values.email}
+                    onChange={handleChange('email')}
+                    onBlur={handleBlur('email')}
+                  />
+                </Field>
 
-            <GuestEntry />
-          </>
-        )}
+                <Field
+                  htmlFor="password"
+                  label={t('auth.fields.password.label')}
+                  error={fieldError('password')}
+                >
+                  <Input
+                    type="password"
+                    placeholder={t('auth.fields.password.placeholder')}
+                    value={values.password}
+                    onChange={handleChange('password')}
+                    onBlur={handleBlur('password')}
+                  />
+                </Field>
+
+                {mode === 'login' ? (
+                  <div className="-mt-1 flex justify-end">
+                    <button
+                      type="button"
+                      onClick={() => setRecovery('asking')}
+                      className="rounded-pill hover:text-ivory text-meta tracking-soft text-fg-muted min-h-11 px-3 font-sans transition-colors"
+                    >
+                      {t('auth.forgot')}
+                    </button>
+                  </div>
+                ) : null}
+
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="mt-2 w-full"
+                  disabled={submitting}
+                >
+                  {cta}
+                </Button>
+              </form>
+
+              <GuestEntry />
+            </>
+          )}
+        </Swap>
       </div>
     </div>
   );

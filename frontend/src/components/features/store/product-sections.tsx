@@ -9,9 +9,9 @@ const SECTION_KEYS = ['benefits', 'usage', 'ritual'] as const;
 type SectionKey = (typeof SECTION_KEYS)[number];
 
 /**
- * Product information stays readable and layout-safe: panels are hidden in
- * the closed state instead of animating height, while their ids remain stable
- * for the aria-controls contract.
+ * Product information stays readable and layout-safe: panels open and close
+ * through a grid row (0fr to 1fr) instead of animating height, and their ids
+ * remain stable for the aria-controls contract.
  */
 export function ProductSections() {
   const t = useTranslations('store');
@@ -46,16 +46,24 @@ export function ProductSections() {
               </span>
             </button>
 
+            {/* La fila de rejilla pasa de 0fr a 1fr: el panel se abre y se
+                cierra gradualmente sin animar `height`. Cerrado queda `inert`
+                y fuera del árbol de accesibilidad. */}
             <div
               id={bodyId}
               aria-hidden={!isOpen}
+              inert={!isOpen}
               data-editorial-accordion-panel={key}
-              hidden={!isOpen}
-              className={cn(isOpen && 'animate-fm-fade-up motion-reduce:animate-none')}
+              className={cn(
+                'grid transition-[grid-template-rows,opacity] duration-[350ms] ease-[cubic-bezier(.2,.85,.25,1)]',
+                isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
+              )}
             >
-              <p className="text-fg-soft text-body pb-5 font-sans leading-[1.9]">
-                {t(`productSections.${key}.body`)}
-              </p>
+              <div className="overflow-hidden">
+                <p className="text-fg-soft text-body pb-5 font-sans leading-[1.9]">
+                  {t(`productSections.${key}.body`)}
+                </p>
+              </div>
             </div>
           </div>
         );

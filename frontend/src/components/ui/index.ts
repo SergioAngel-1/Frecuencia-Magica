@@ -55,6 +55,7 @@ export { Prose, type ProseMaxWidth, type ProseSize } from './prose';
 export { SectionHeading, type SectionHeadingAlign } from './section-heading';
 export { SegmentedControl } from './segmented-control';
 export { Skeleton, type SkeletonVariant } from './skeleton';
+export { Swap } from './swap';
 export { Stat, type StatSize, type StatTone } from './stat';
 export { StepProgress, type StepProgressProps } from './step-progress';
 export { Textarea, type TextareaProps, type TextareaVariant } from './textarea';

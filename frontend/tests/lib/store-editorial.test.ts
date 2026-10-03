@@ -134,10 +134,15 @@ describe('store editorial composition contracts', () => {
     expect(detailSource).not.toContain('<Band');
   });
 
-  it('keeps accordions instant and accessible', () => {
+  it('keeps accordions fluid both ways and accessible', () => {
     expect(sectionsSource).toContain('aria-expanded={isOpen}');
     expect(sectionsSource).toContain('aria-controls={bodyId}');
-    expect(sectionsSource).toContain('hidden={!isOpen}');
+    // Closed panels leave the tab order and the accessibility tree, and the
+    // close is as gradual as the open: a grid row, never an animated height.
+    expect(sectionsSource).toContain('inert={!isOpen}');
+    expect(sectionsSource).toContain('aria-hidden={!isOpen}');
+    expect(sectionsSource).toContain('grid-rows-[1fr]');
+    expect(sectionsSource).toContain('grid-rows-[0fr]');
     expect(sectionsSource).toContain('data-editorial-accordion="product"');
     expect(sectionsSource).not.toMatch(/transition-(?:height|\[height\])/);
   });

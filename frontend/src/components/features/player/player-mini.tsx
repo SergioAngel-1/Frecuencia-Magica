@@ -23,7 +23,7 @@ export function PlayerMini({ hz, band, progress, label, onExpand }: PlayerMiniPr
       data-magnetic
       aria-label={label}
       onClick={onExpand}
-      className="fm-surface-strong animate-fm-fade-up shadow-glow-card hover:border-gold/45 pointer-events-auto ml-auto block size-14 rounded-full transition-colors duration-300"
+      className="fm-surface-strong shadow-glow-card hover:border-gold/45 pointer-events-auto block size-14 rounded-full transition-colors duration-300"
     >
       <PlayerOrb band={band} progress={progress} className="size-full">
         <span className="text-ivory text-body font-serif leading-none">{hz}</span>

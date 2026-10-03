@@ -267,6 +267,8 @@ Barra de cristal denso al pie, con halo de tarjeta (nunca sombra negra). Tres es
 ### Movimiento
 Entradas en fade-up escalonado (`.1s`, `.25s`, `.4s`, `.55s`), curva `cubic-bezier(.2,.85,.25,1)` sin rebote; el portal usa `cubic-bezier(.7,0,.3,1)`. Sólo `transform` y `opacity`. Con `prefers-reduced-motion` se congela lo decorativo y se conserva la narrativa.
 
+**Nada sale de golpe.** Toda transición tiene ida y vuelta: lo que entra con fundido también se va con fundido. Cuando una zona cambia su contenido (un paso por el siguiente, un formulario por su confirmación, una lista al filtrarse) se envuelve en `Swap` (UI Kit), que funde el contenido anterior antes de dejar entrar el nuevo. Las capas que aparecen y desaparecen (`Modal`, el dock del reproductor) animan su salida con `AnimatePresence` y sólo entonces se desmontan; los paneles que se pliegan usan una fila de rejilla de `0fr` a `1fr`, nunca `hidden` ni `height`. Un `animate-fm-fade-up` sobre algo que se monta y desmonta por condición sólo resuelve la entrada: no basta.
+
 ### Cruce del portal (signature)
 El único momento coreografiado de la web: se cruza un umbral de luz y se llega a la noche. Tiempos en `PORTAL_TIMING` (`frontend/src/config/motion.ts`), forma en `globals.css`, secuencia en `stores/portal-store.ts`.
 
