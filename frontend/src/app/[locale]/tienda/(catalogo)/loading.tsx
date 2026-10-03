@@ -27,7 +27,7 @@ function CardSkeleton({
       <MediaSkeleton
         animated
         aspect={featured ? '16:8' : '1:1'}
-        className={bandClass}
+        className={cn(bandClass, 'flex-1')}
         label={label}
         slot="store-product-visual"
       />
@@ -100,7 +100,7 @@ export default async function Loading() {
                 <CardSkeleton
                   label={productLabel}
                   bandClass={standardBand}
-                  cardClass={cn(standardCard, 'md:mt-auto')}
+                  cardClass={standardCard}
                 />
               </div>
 
@@ -124,12 +124,10 @@ export default async function Loading() {
             </div>
           </section>
 
-          <div
-            aria-hidden="true"
-            className="mt-section flex min-h-[clamp(280px,35vw,520px)] flex-col justify-end gap-4 py-[clamp(24px,6vw,84px)]"
-          >
+          <div aria-hidden="true" className="mt-section flex flex-col items-center gap-4">
             <Skeleton variant="text" className="h-3 w-36" />
             <Skeleton variant="text" className="h-12 w-[min(560px,90vw)]" />
+            <Skeleton variant="text" className="h-4 w-[min(420px,80vw)]" />
           </div>
         </div>
       </div>

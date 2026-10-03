@@ -7,8 +7,9 @@ import {
   type StoreProductMedia,
 } from '@/components/features/store/product-grid';
 import { PageShell, RealmHero } from '@/components/layout';
-import { EditorialBanner } from '@/components/ui';
+import { ArrowGlyph, arrowLinkClasses, EditorialBanner } from '@/components/ui';
 import { PRODUCTS } from '@/data';
+import { Link } from '@/i18n/navigation';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -69,7 +70,14 @@ export default async function StorePage({ params }: PageProps) {
           eyebrow={t('ritualBanner.kicker')}
           title={t('ritualBanner.title')}
           body={t('ritualBanner.body')}
-          className="fm-editorial-full-bleed mt-section"
+          align="center"
+          action={
+            <Link href="/biblioteca" className={arrowLinkClasses('gold')}>
+              {t('ritualBanner.cta')}
+              <ArrowGlyph />
+            </Link>
+          }
+          className="mt-section"
         />
       </div>
     </PageShell>

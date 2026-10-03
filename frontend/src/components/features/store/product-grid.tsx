@@ -42,10 +42,15 @@ export function ProductGrid({ media }: ProductGridProps) {
         </div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-7">
-          <div className="md:col-span-2">
-            <ProductCard featured media={media.products[featured.id]!} product={featured} />
-          </div>
-          <ProductCard className="md:mt-auto" media={media.products[side.id]!} product={side} />
+          {/* La pareja comparte fila: la lateral se estira al alto de la
+              destacada y su imagen absorbe la diferencia. */}
+          <ProductCard
+            featured
+            className="md:col-span-2"
+            media={media.products[featured.id]!}
+            product={featured}
+          />
+          <ProductCard stretch media={media.products[side.id]!} product={side} />
         </div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 md:gap-7">

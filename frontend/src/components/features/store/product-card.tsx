@@ -24,10 +24,21 @@ type ProductCardProps = {
   product: Product;
   media: EditorialMedia;
   featured?: boolean;
+  /**
+   * La tarjeta comparte fila con una más alta: su imagen crece hasta igualar
+   * el alto, en vez de dejar la tarjeta corta flotando junto a la grande.
+   */
+  stretch?: boolean;
   className?: string;
 };
 
-export function ProductCard({ product, media: baseMedia, featured, className }: ProductCardProps) {
+export function ProductCard({
+  product,
+  media: baseMedia,
+  featured,
+  stretch,
+  className,
+}: ProductCardProps) {
   const t = useTranslations('store');
   const add = useCartStore((s) => s.add);
   const title = t(`products.${product.id}.title`);
@@ -56,12 +67,14 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
       >
         <div
           className={cn(
-            'relative shrink-0',
+            'relative',
             featured
-              ? 'h-[clamp(210px,26vw,340px)]'
+              ? 'min-h-[clamp(210px,26vw,340px)] flex-1'
               : baseMedia.slot === 'product.related'
-                ? ASPECT_FIELD[media.aspect]
-                : 'h-[clamp(190px,22vw,260px)]',
+                ? cn('shrink-0', ASPECT_FIELD[media.aspect])
+                : stretch
+                  ? 'min-h-[clamp(190px,22vw,260px)] flex-1'
+                  : 'h-[clamp(190px,22vw,260px)] shrink-0',
           )}
         >
           <EditorialImage
