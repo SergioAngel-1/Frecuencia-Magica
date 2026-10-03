@@ -89,7 +89,7 @@ Un realm no es sólo una ruta: su id vive en varios sitios que hay que mantener 
 5. **Copy:** crear `realms.<id>` (lo lee `RealmNav`) y el namespace de la vista en `messages/es.json` y `messages/en.json` con las mismas claves (el test de integridad lo exige).
 6. **Datos:** el catálogo tipado en `src/data/` con claves de traducción, nunca textos.
 7. **Vista:** `src/app/[locale]/<realm>/page.tsx` (Server Component, empieza con `const locale = await resolveLocale(params);`) que compone componentes de `src/components/features/<realm>/`. Un realm de catálogo abre con `RealmHero` (`components/layout`).
-8. **Navegación y footer:** con `inNav: true` el realm aparece en `RealmNav` y en `RealmsGrid`; el footer se decide en `WITH_FOOTER` (`src/components/layout/realm-footer.tsx`).
+8. **Navegación y footer:** con `inNav: true` el realm aparece en `RealmNav` y en `RealmsGrid`; el footer cierra todos los realms salvo el portal (`src/components/layout/realm-footer.tsx`); un realm nuevo lo lleva sin tocar nada.
 
 ## Añadir un componente al UI Kit
 

@@ -1,30 +1,19 @@
 'use client';
 
 import { useRealm } from '@/hooks/use-realm';
-import type { RealmId } from '@/types/realm';
 
 import { SiteFooter } from './site-footer';
 
 /**
- * Realms que cierran con footer.
- *
- * Portal, acceso, descúbrete y santuario quedan fuera a propósito: son
- * experiencias a pantalla completa, y un footer debajo invitaría a
- * abandonarlas justo cuando piden atención.
+ * Todos los realms cierran con el mismo footer. La única excepción es el
+ * portal: es el umbral, una sola pantalla sin navegación, y lo que hay
+ * «debajo» de él es entrar. Las rutas desconocidas resuelven a `portal` y
+ * tampoco lo llevan.
  */
-const WITH_FOOTER: readonly RealmId[] = [
-  'home',
-  'biblioteca',
-  'academia',
-  'experiencias',
-  'tienda',
-];
-
-/** Decide si la vista actual lleva footer. */
 export function RealmFooter() {
   const { realmId } = useRealm();
 
-  if (!WITH_FOOTER.includes(realmId)) return null;
+  if (realmId === 'portal') return null;
 
   return (
     <div className="z-content relative">
