@@ -29,6 +29,10 @@ const COLUMNS = [
   },
 ] as const;
 
+/** Enlace de columna: serif, 44px de alto y el mismo hover en las tres columnas. */
+const LINK_CLASSES =
+  'text-fg-soft hover:text-ivory text-lead inline-flex min-h-11 items-center font-serif transition-colors duration-300';
+
 export function SiteFooter() {
   const { realmId } = useRealm();
   const t = useTranslations('footer');
@@ -81,11 +85,7 @@ export function SiteFooter() {
                 </Kicker>
                 {column.links.map((link) => (
                   <p key={link.key} className="mb-[10px]">
-                    <Link
-                      href={link.href as '/biblioteca'}
-                      data-magnetic
-                      className="text-fg-soft hover:text-ivory text-lead inline-flex min-h-11 items-center font-serif transition-colors duration-300"
-                    >
+                    <Link href={link.href as '/biblioteca'} data-magnetic className={LINK_CLASSES}>
                       {tNav(`realms.${link.key}` as 'realms.biblioteca')}
                     </Link>
                   </p>
@@ -100,20 +100,12 @@ export function SiteFooter() {
               {/* TODO(backend): «Sobre Marisol» apunta a la sección de la home;
                 contacto y membresía no tienen página propia todavía. */}
               <p className="mb-[10px]">
-                <Link
-                  href="/inicio"
-                  data-magnetic
-                  className="text-fg-soft hover:text-ivory text-lead inline-flex min-h-11 items-center font-serif transition-colors duration-300"
-                >
+                <Link href="/inicio" data-magnetic className={LINK_CLASSES}>
                   {t('links.about')}
                 </Link>
               </p>
               <p className="mb-[10px]">
-                <Link
-                  href="/mi-santuario"
-                  data-magnetic
-                  className="text-fg-soft hover:text-ivory text-lead inline-flex min-h-11 items-center font-serif transition-colors duration-300"
-                >
+                <Link href="/mi-santuario" data-magnetic className={LINK_CLASSES}>
                   {t('links.membership')}
                 </Link>
               </p>

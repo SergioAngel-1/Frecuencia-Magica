@@ -191,7 +191,6 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
                   ) : null}
                   <Button
                     variant="primary"
-                    size="lg"
                     className="w-full sm:w-auto"
                     disabled={!booking.canContinue}
                     aria-describedby={!booking.canContinue ? 'booking-continue-hint' : undefined}
@@ -238,7 +237,6 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
                       real de la reserva y la integración de calendario. */}
                   <Button
                     variant="primary"
-                    size="lg"
                     className="mt-2 w-full sm:w-auto"
                     disabled={!booking.canConfirm}
                     onClick={booking.confirm}
