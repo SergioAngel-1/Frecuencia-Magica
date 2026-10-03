@@ -68,7 +68,6 @@ El inventario completo (por slot: `id`, vista, propósito, orientación, ratio, 
 | `not-found.hero` | 404 · hero | 16:9 | P2 |
 | `home.hero` | Home `/inicio` · hero (`hero-section.tsx`) | 16:9 | P0 |
 | `home.daily-frequency` | Home · frecuencia diaria (`daily-frequency.tsx`) | 16:8 | P1 |
-| `home.audio-banner` | Home · banner de audio (`audio-grid.tsx`) | 16:9 | P2 |
 | `home.realms-banner` | Home · banner de realms (`realms-grid.tsx`) | 16:8 | P1 |
 | `home-marisol-portrait` | Home · Sobre Marisol (`about-section.tsx`) | 3:4 vertical, máscara de arco | P0 |
 | `home-membership` | Home · Membresía (`membership-section.tsx`) | 16:9 | P2 |

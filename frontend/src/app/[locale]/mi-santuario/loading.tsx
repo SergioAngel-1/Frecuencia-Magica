@@ -18,7 +18,7 @@ export default async function Loading() {
           slot="sanctuary.hero"
         />
 
-        <div className="fm-editorial-full-bleed fm-container pt-8 pb-section">
+        <div className="fm-editorial-full-bleed fm-container pb-section pt-8">
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
             {Array.from({ length: 4 }, (_, index) => (
               <Skeleton key={index} variant="card" className="h-[104px]" />

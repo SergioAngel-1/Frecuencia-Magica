@@ -1,5 +1,11 @@
 'use client';
 
+import type { ReactNode } from 'react';
+
+import {
+  FrequencyStrip,
+  type FrequencyStripItem,
+} from '@/components/features/player/frequency-strip';
 import {
   Display,
   EditorialImage,
@@ -21,8 +27,21 @@ type DailyFrequencyProps = {
   description: string;
   meta: string;
   cta: string;
+  /** La biblioteca, como subsección: más frecuencias bajo la de hoy. */
+  library: {
+    kicker: string;
+    title: string;
+    /** Enlace «Ver todo». */
+    action: ReactNode;
+    audios: readonly FrequencyStripItem[];
+  };
 };
 
+/**
+ * La frecuencia del día y, debajo y dentro de la misma banda, una muestra de
+ * la biblioteca. Una sola sección con dos niveles: el disco grande y su
+ * titular mandan; la hilera de discos pequeños es su continuación.
+ */
 export function DailyFrequency({
   media,
   hz,
@@ -33,17 +52,20 @@ export function DailyFrequency({
   description,
   meta,
   cta,
+  library,
 }: DailyFrequencyProps) {
   const open = usePlayerStore((s) => s.open);
   const activeId = usePlayerStore((s) => s.audioId);
   const isActive = activeId === audioId;
-  const dailyMedia = media;
 
   return (
-    <section className="fm-editorial-full-bleed relative isolate min-h-[clamp(360px,42vw,620px)] overflow-hidden">
+    <section
+      aria-labelledby="home-daily-title"
+      className="fm-editorial-full-bleed relative isolate overflow-hidden"
+    >
       <div className="absolute inset-0">
         <EditorialImage
-          media={dailyMedia}
+          media={media}
           aspect="16:8"
           className="h-full"
           focalPoint="50% 50%"
@@ -52,30 +74,48 @@ export function DailyFrequency({
         />
       </div>
 
-      <div className="fm-container relative z-20 grid min-h-[clamp(360px,42vw,620px)] w-full grid-cols-1 items-center gap-8 py-12 md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1fr)] md:gap-[clamp(34px,7vw,110px)] md:py-[clamp(44px,7vw,90px)]">
-        <div className="mx-auto w-full max-w-[380px] md:mx-0">
-          <FrequencyDisc size="lg" hz={hz} band={band} active={isActive} floatDuration="8s" />
-        </div>
+      <div className="fm-container py-block relative z-20 w-full">
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1fr)] md:gap-[clamp(34px,7vw,110px)]">
+          <div className="mx-auto w-full max-w-[380px] md:mx-0">
+            <FrequencyDisc size="lg" hz={hz} band={band} active={isActive} floatDuration="8s" />
+          </div>
 
-        <div className="max-w-[620px]">
-          <Kicker tone="gold">{kicker}</Kicker>
-          <Display level="h2" size="lg" className="mt-3 max-w-[16ch]">
-            {title}
-          </Display>
-          <p className="text-fg-body text-lead mt-5 max-w-[48ch] leading-[1.75]">{description}</p>
-          <div className="mt-6 flex min-h-11 items-center gap-4">
-            <button
-              type="button"
-              aria-pressed={isActive}
-              onClick={() => open(audioId)}
-              className={arrowLinkClasses('gold', isActive && 'bg-gold/4')}
-            >
-              {cta}
-              <ArrowGlyph />
-            </button>
-            <span className="text-fg-soft text-meta tracking-ui font-sans">{meta}</span>
+          <div className="max-w-[620px]">
+            <Kicker tone="gold">{kicker}</Kicker>
+            <Display level="h2" size="lg" id="home-daily-title" className="mt-3 max-w-[16ch]">
+              {title}
+            </Display>
+            <p className="text-fg-body text-lead mt-5 max-w-[48ch] leading-[1.75]">{description}</p>
+            <div className="mt-6 flex min-h-11 items-center gap-4">
+              <button
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => open(audioId)}
+                className={arrowLinkClasses('gold', isActive && 'bg-gold/4')}
+              >
+                {cta}
+                <ArrowGlyph />
+              </button>
+              <span className="text-fg-soft text-meta tracking-ui font-sans">{meta}</span>
+            </div>
           </div>
         </div>
+
+        <section
+          aria-labelledby="home-library-title"
+          className="border-ivory/10 mt-block pt-block border-t"
+        >
+          <header className="mb-10 flex flex-wrap items-end justify-between gap-x-5 gap-y-2">
+            <div>
+              <Kicker tone="teal">{library.kicker}</Kicker>
+              <Display level="h3" size="sm" id="home-library-title" className="mt-2">
+                {library.title}
+              </Display>
+            </div>
+            {library.action}
+          </header>
+          <FrequencyStrip items={library.audios} label={library.kicker} size="sm" />
+        </section>
       </div>
     </section>
   );

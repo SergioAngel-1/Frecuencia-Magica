@@ -4,7 +4,6 @@ export const EDITORIAL_MEDIA_SLOTS = [
   'not-found.hero',
   'home.hero',
   'home.daily-frequency',
-  'home.audio-banner',
   'home.realms-banner',
   'home-marisol-portrait',
   'home-membership',
@@ -124,13 +123,6 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:8',
     priority: false,
     priorityTier: 'P1',
-    fallback: 'none',
-  },
-  'home.audio-banner': {
-    ...WIDE,
-    aspect: '16:9',
-    priority: false,
-    priorityTier: 'P2',
     fallback: 'none',
   },
   'home.realms-banner': {

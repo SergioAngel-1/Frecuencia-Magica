@@ -52,7 +52,7 @@ export default async function CoursePage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      <div className="fm-editorial-full-bleed fm-container pt-[clamp(100px,12vw,160px)] pb-section">
+      <div className="fm-editorial-full-bleed fm-container pb-section pt-[clamp(100px,12vw,160px)]">
         <CourseDetail course={course} media={courseMedia} />
       </div>
     </PageShell>

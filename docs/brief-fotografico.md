@@ -3,7 +3,7 @@
 > Generado por `npm run export:photo-brief` desde `Branding/src/data/photography.js`. No editar a mano: cambia el dato y vuelve a generarlo.
 > El contrato que manda es `frontend/src/config/editorial-media.ts` (ratio, prioridad, focal); un test de la web falla si el brief se desvía.
 
-**65 imágenes** (42 slots registrados, varios por instancia; 5 fuera del registro): P0 4 · P1 45 · P2 16. 1 requiere sesión real (retrato de Marisol).
+**64 imágenes** (41 slots registrados, varios por instancia; 5 fuera del registro): P0 4 · P1 45 · P2 15. 1 requiere sesión real (retrato de Marisol).
 
 ## 1. Entrega
 
@@ -66,7 +66,6 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `not-found-hero.avif` | 404 | 16:9 | 2880×1620 | P2 |
 | `home-hero.avif` | Home · hero | 16:9 | 2880×1620 | P0 |
 | `home-daily-frequency.avif` | Home · frecuencia del día | 16:8 | 2880×1440 | P1 |
-| `home-audio-banner.avif` | Home · banner de audio | 16:9 | 2880×1620 | P2 |
 | `home-realms-banner.avif` | Home · banner de realms | 16:8 | 2880×1440 | P1 |
 | `home-marisol-portrait.avif` | Home · Sobre Marisol | 3:4 | 1440×1920 | P0 |
 | `home-membership.avif` | Home · membresía | 16:9 | 2880×1620 | P2 |
@@ -203,20 +202,6 @@ A sound-bath still life: a large crystal singing bowl glowing gold from within o
 
 ```text
 Sound made visible: a cymatic pattern, fine radial standing-wave geometry traced in dark water and lit by golden light, symmetrical sacred-geometry structure with delicate concentric rings and petals of light, top-down macro. Pattern centered and radially symmetric, dark water fading to near-black at all four edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
-```
-
-#### `home.audio-banner` — Home · banner de audio · P2
-
-- **Archivo:** `home-audio-banner.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 y reescalar · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Franja inferior despejada (el texto va abajo, sobre scrim)
-- **Contenido:** Franja fotográfica que invita a escuchar.
-
-**Prompt**
-
-```text
-Listening as landscape: a night clearing where layered translucent bands of teal mist and golden light stack across the scene like the strata of a waveform, dark pine silhouettes far away, suspended fireflies of light. Horizontal layered bands, brightest strata in the middle third, lower third dark and quiet for text. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
 #### `home.realms-banner` — Home · banner de realms · P1

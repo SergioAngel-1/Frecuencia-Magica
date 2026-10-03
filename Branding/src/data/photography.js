@@ -162,12 +162,6 @@ export const SLOTS = [
     'Pattern centered and radially symmetric, dark water fading to near-black at all four edges',
   ),
   slot(
-    'home.audio-banner', 'wide', '50% 40%', 'P2', 'teal', 'bottom', 'Home · banner de audio',
-    'Franja fotográfica que invita a escuchar.',
-    'Listening as landscape: a night clearing where layered translucent bands of teal mist and golden light stack across the scene like the strata of a waveform, dark pine silhouettes far away, suspended fireflies of light',
-    'Horizontal layered bands, brightest strata in the middle third, lower third dark and quiet for text',
-  ),
-  slot(
     'home.realms-banner', 'cinema', '50% 50%', 'P1', 'none', 'none', 'Home · banner de realms',
     'Mapa de los nueve reinos: la invitación a entrar.',
     'A constellation as a map of nine realms: nine small glowing points of gold, teal and lavender light joined by the faintest filaments across an immense dark nebula, photographic long-exposure night sky with a slow arc of stars',

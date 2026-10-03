@@ -1,7 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
 import { AboutSection } from '@/components/features/home/about-section';
-import { AudioGrid } from '@/components/features/home/audio-grid';
 import { DailyFrequency } from '@/components/features/home/daily-frequency';
 import { HeroSection } from '@/components/features/home/hero-section';
 import { MembershipSection } from '@/components/features/home/membership-section';
@@ -32,7 +31,8 @@ export default async function HomePage({ params }: PageProps) {
   const nav = await getTranslations('nav');
 
   const firstAudio = AUDIOS[0]!;
-  const homeAudios = AUDIOS.slice(0, 4).map((a) => ({
+  // La del día ya ocupa el disco grande: la muestra sigue con las cuatro siguientes.
+  const libraryAudios = AUDIOS.slice(1, 5).map((a) => ({
     id: a.id,
     hz: a.hz,
     band: a.band,
@@ -59,7 +59,6 @@ export default async function HomePage({ params }: PageProps) {
     daily: resolveEditorialMedia('home.daily-frequency', {
       alt: t('media.alt.dailyFrequency'),
     }),
-    audio: resolveEditorialMedia('home.audio-banner', { alt: t('media.alt.audioBanner') }),
     realms: resolveEditorialMedia('home.realms-banner', { alt: t('media.alt.realmsBanner') }),
     marisol: resolveEditorialMedia('home-marisol-portrait', {
       alt: t('media.alt.marisolPortrait'),
@@ -97,19 +96,17 @@ export default async function HomePage({ params }: PageProps) {
           description={t('daily.description')}
           meta={`${t('daily.meta')} · ${firstAudio.duration}`}
           cta={t('daily.cta')}
-        />
-
-        <AudioGrid
-          media={homeMedia.audio}
-          kicker={t('audio.kicker')}
-          title={t('audio.title')}
-          action={
-            <Link href="/biblioteca" className={arrowLinkClasses('teal')}>
-              {common('seeAll')}
-              <ArrowGlyph />
-            </Link>
-          }
-          audios={homeAudios}
+          library={{
+            kicker: t('audio.kicker'),
+            title: t('audio.title'),
+            action: (
+              <Link href="/biblioteca" className={arrowLinkClasses('teal')}>
+                {common('seeAll')}
+                <ArrowGlyph />
+              </Link>
+            ),
+            audios: libraryAudios,
+          }}
         />
 
         <RealmsGrid

@@ -25,7 +25,7 @@ export default async function Loading() {
           slot="library.hero"
         />
 
-        <div className="mx-auto w-full max-w-[1040px] px-6 pt-block pb-section">
+        <div className="pt-block pb-section mx-auto w-full max-w-[1040px] px-6">
           <div
             aria-label={t('filtersLabel')}
             className="mb-[38px] flex flex-wrap gap-[10px]"

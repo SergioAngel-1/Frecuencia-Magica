@@ -11,7 +11,6 @@ import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 type HomeMediaAlias =
   | 'home.hero'
   | 'home.daily-frequency'
-  | 'home.audio-banner'
   | 'home.realms-banner'
   | 'home.marisol'
   | 'home.membership'
@@ -20,7 +19,6 @@ type HomeMediaAlias =
 const HOME_MEDIA_SLOTS = {
   'home.hero': 'home.hero',
   'home.daily-frequency': 'home.daily-frequency',
-  'home.audio-banner': 'home.audio-banner',
   'home.realms-banner': 'home.realms-banner',
   'home.marisol': 'home-marisol-portrait',
   'home.membership': 'home-membership',
@@ -30,7 +28,6 @@ const HOME_MEDIA_SLOTS = {
 const HOME_MEDIA_ALT_KEYS = {
   'home.hero': 'hero',
   'home.daily-frequency': 'dailyFrequency',
-  'home.audio-banner': 'audioBanner',
   'home.realms-banner': 'realmsBanner',
   'home.marisol': 'marisolPortrait',
   'home.membership': 'membership',
@@ -47,7 +44,7 @@ const homeSources = [
   homePageSource,
   readSource('components/features/home/hero-section.tsx'),
   readSource('components/features/home/daily-frequency.tsx'),
-  readSource('components/features/home/audio-grid.tsx'),
+  readSource('components/features/player/frequency-strip.tsx'),
   readSource('components/features/home/realms-grid.tsx'),
   readSource('components/features/home/realm-card.tsx'),
   readSource('components/features/home/about-section.tsx'),
@@ -58,7 +55,6 @@ const homeSources = [
 const registryAspectBySlot = {
   'home.hero': '16:9',
   'home.daily-frequency': '16:8',
-  'home.audio-banner': '16:9',
   'home.realms-banner': '16:8',
   'home-marisol-portrait': '3:4',
   'home-membership': '16:9',
@@ -93,7 +89,11 @@ describe('home editorial composition contracts', () => {
     expect(homePageSource).toContain('const locale = await resolveLocale(params);');
     expect(homePageSource).toContain("getTranslations({ locale, namespace: 'home' })");
 
-    for (const altKey of Object.values(HOME_MEDIA_ALT_KEYS).slice(0, 6)) {
+    // El banner de cierre lo resuelve el footer, no la página.
+    const pageAltKeys = Object.values(HOME_MEDIA_ALT_KEYS).filter((key) => key !== 'footerBanner');
+    expect(pageAltKeys).toHaveLength(5);
+
+    for (const altKey of pageAltKeys) {
       expect(homePageSource).toContain(`alt: t('media.alt.${altKey}')`);
     }
 
@@ -101,7 +101,7 @@ describe('home editorial composition contracts', () => {
     expect(homeSources).not.toMatch(/alt:\s*['"][^'"]*[áéíóúñ]/i);
   });
 
-  it('wires the seven canonical home slots through the shared editorial resolver', () => {
+  it('wires the six canonical home slots through the shared editorial resolver', () => {
     for (const registeredSlot of Object.values(HOME_MEDIA_SLOTS)) {
       expect(homeSources).toContain(`resolveEditorialMedia('${registeredSlot}'`);
     }
