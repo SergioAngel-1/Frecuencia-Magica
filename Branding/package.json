@@ -1,16 +1,17 @@
 {
   "name": "fm-branding",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Showcase vivo del sistema de diseño de Frecuencia Mágica: importa los tokens reales de la web.",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "export:photo-brief": "node scripts/export-photo-brief.mjs"
   },
   "dependencies": {
-    "lucide-react": "^1.21.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-router-dom": "^7.18.0"

@@ -1,0 +1,415 @@
+export const EDITORIAL_MEDIA_SLOTS = [
+  'portal.hero',
+  'portal.portal-field',
+  'not-found.hero',
+  'home.hero',
+  'home.daily-frequency',
+  'home.realms-banner',
+  'home-marisol-portrait',
+  'home-membership',
+  'home.footer-banner',
+  'auth.hero',
+  'auth.form-atmosphere',
+  'discover.hero',
+  'discover.question-atmosphere',
+  'discover.tuning',
+  'discover.result',
+  'resonario.hero',
+  'resonario.featured',
+  'resonario.archive-banner',
+  'resonario.audio-cover.*',
+  'academy.hero',
+  'academy.featured-course',
+  'academy-course-cover',
+  'academy-lesson-visual',
+  'academy.completion',
+  'experiences.hero',
+  'experiences.featured',
+  'experiences-visual',
+  'booking.hero',
+  'booking.confirmation',
+  'store.hero',
+  'store-product-visual',
+  'store.ritual-banner',
+  'product.detail',
+  'product.related',
+  'cart.empty',
+  'checkout.confirmation',
+  'sanctuary.hero',
+  'sanctuary.continue',
+  'sanctuary.daily',
+  'sanctuary.journal',
+  'sanctuary.empty',
+] as const;
+
+export type EditorialMediaSlot = (typeof EDITORIAL_MEDIA_SLOTS)[number];
+
+export type EditorialMediaAspect = 'viewport' | '16:9' | '16:8' | '3:4' | '1:1';
+export type EditorialMediaPriority = 'P0' | 'P1' | 'P2';
+
+/**
+ * Qué pinta un slot mientras no tiene fotografía, según su trabajo en la vista:
+ *
+ * - `zebra`: materia estructural con texto encima (héroes, retrato de Marisol).
+ *   Bandas de la paleta, estáticas: la zebra es una ausencia deliberada, no
+ *   una carga, y no late.
+ * - `band`: contenido de un ítem del catálogo (curso, experiencia, producto,
+ *   audio). Usa la banda de color del propio ítem para no perder su identidad.
+ * - `none`: atmósfera sin trabajo narrativo propio. No pinta nada hasta que
+ *   llegue la foto; la vista descansa en el world engine.
+ */
+export type EditorialMediaFallback = 'zebra' | 'band' | 'none';
+
+export interface EditorialMediaDefinition {
+  aspect: EditorialMediaAspect;
+  position: string;
+  priority: boolean;
+  priorityTier: EditorialMediaPriority;
+  fallback: EditorialMediaFallback;
+  sizes: string;
+  alt?: string;
+}
+
+const WIDE: Pick<EditorialMediaDefinition, 'position' | 'sizes'> = {
+  position: '50% 40%',
+  sizes: '100vw',
+};
+
+const CENTER: Pick<EditorialMediaDefinition, 'position' | 'sizes'> = {
+  position: '50% 50%',
+  sizes: '100vw',
+};
+
+const PORTRAIT: Pick<EditorialMediaDefinition, 'position' | 'sizes'> = {
+  position: '50% 50%',
+  sizes: '(min-width: 768px) 50vw, 100vw',
+};
+
+export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMediaDefinition> = {
+  'portal.hero': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: true,
+    priorityTier: 'P0',
+    fallback: 'zebra',
+    alt: 'Luz y cosmos en el umbral de Frecuencia Mágica',
+  },
+  'portal.portal-field': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'none',
+    alt: 'El campo del portal entre mundos',
+  },
+  'not-found.hero': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+    alt: 'Un rincón sereno del cosmos para retomar el camino',
+  },
+  'home.hero': {
+    ...WIDE,
+    position: '62% 40%',
+    aspect: '16:9',
+    priority: true,
+    priorityTier: 'P0',
+    fallback: 'zebra',
+  },
+  'home.daily-frequency': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'none',
+  },
+  'home.realms-banner': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'none',
+  },
+  'home-marisol-portrait': {
+    ...PORTRAIT,
+    aspect: '3:4',
+    priority: true,
+    priorityTier: 'P0',
+    fallback: 'zebra',
+  },
+  'home-membership': {
+    ...WIDE,
+    position: '50% 15%',
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'zebra',
+  },
+  'home.footer-banner': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+  },
+  'auth.hero': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'zebra',
+    alt: 'La puerta de entrada a tu santuario',
+  },
+  'auth.form-atmosphere': {
+    ...PORTRAIT,
+    aspect: '3:4',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+    alt: 'Calma íntima alrededor del acceso',
+  },
+  'discover.hero': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'zebra',
+    alt: 'El comienzo de tu descubrimiento',
+  },
+  'discover.question-atmosphere': {
+    ...PORTRAIT,
+    aspect: '3:4',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+    alt: 'Atmósfera serena para escucharte',
+  },
+  'discover.tuning': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'none',
+    alt: 'Tu frecuencia encontrando su tono',
+  },
+  'discover.result': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'none',
+    alt: 'El resultado de tu descubrimiento',
+  },
+  'resonario.hero': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'zebra',
+    alt: 'La resonario sonora de Frecuencia Mágica',
+  },
+  'resonario.featured': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'band',
+    alt: 'El audio destacado de la semana',
+  },
+  'resonario.archive-banner': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+    alt: 'El archivo completo de sonidos',
+  },
+  'resonario.audio-cover.*': {
+    ...CENTER,
+    aspect: '1:1',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'band',
+    alt: 'Portada de audio de Frecuencia Mágica',
+  },
+  'academy.hero': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'zebra',
+    alt: 'La academia de prácticas de Frecuencia Mágica',
+  },
+  'academy.featured-course': {
+    ...WIDE,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'band',
+    alt: 'Curso destacado de Frecuencia Mágica',
+  },
+  'academy-course-cover': {
+    ...WIDE,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'band',
+    alt: 'Escena de la práctica del curso',
+  },
+  'academy-lesson-visual': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'band',
+    alt: 'Práctica de la lección',
+  },
+  'academy.completion': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'none',
+    alt: 'El curso completado: un ciclo cerrado con luz',
+  },
+  'experiences.hero': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'zebra',
+    alt: 'Las experiencias que te esperan',
+  },
+  'experiences.featured': {
+    ...WIDE,
+    position: '50% 45%',
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'band',
+    alt: 'Experiencia destacada de Frecuencia Mágica',
+  },
+  'experiences-visual': {
+    position: '62% 45%',
+    sizes: '100vw',
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'band',
+    alt: 'Atmósfera de la experiencia',
+  },
+  'booking.hero': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'band',
+    alt: 'El lugar de tu experiencia',
+  },
+  'booking.confirmation': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'none',
+    alt: 'Tu experiencia te espera',
+  },
+  'store.hero': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'zebra',
+    alt: 'La tienda de los objetos del ritual',
+  },
+  'store-product-visual': {
+    ...CENTER,
+    aspect: '1:1',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'band',
+    alt: 'Producto de Frecuencia Mágica',
+  },
+  'store.ritual-banner': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+    alt: 'Los objetos del ritual',
+  },
+  'product.detail': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'band',
+    alt: 'Detalle del producto',
+  },
+  'product.related': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'band',
+    alt: 'Objetos que acompañan al ritual',
+  },
+  'cart.empty': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+    alt: 'El carrito en calma, esperando tu elección',
+  },
+  'checkout.confirmation': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'none',
+    alt: 'Tu ritual está en camino',
+  },
+  'sanctuary.hero': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'zebra',
+    alt: 'Tu santuario te espera',
+  },
+  'sanctuary.continue': {
+    ...CENTER,
+    aspect: '16:8',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'band',
+    alt: 'Continúa tu práctica desde donde la dejaste',
+  },
+  'sanctuary.daily': {
+    ...CENTER,
+    aspect: '1:1',
+    priority: false,
+    priorityTier: 'P1',
+    fallback: 'none',
+    alt: 'La práctica de hoy en tu santuario',
+  },
+  'sanctuary.journal': {
+    ...PORTRAIT,
+    aspect: '3:4',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+    alt: 'Las páginas de tu diario',
+  },
+  'sanctuary.empty': {
+    ...WIDE,
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+    alt: 'Tu santuario espera sus primeras prácticas',
+  },
+};

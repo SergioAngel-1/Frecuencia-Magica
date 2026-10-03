@@ -1,46 +1,71 @@
-import { useState } from 'react';
+import { cn } from '../../lib/cn'
 
-const variants = {
-  primary:   { base: 'bg-fm-primary text-fm-carbon',   hover: 'hover:bg-fm-primary-hover',   active: 'active:bg-[#d47ba0]' },
-  secondary: { base: 'bg-fm-secondary text-fm-carbon',  hover: 'hover:bg-fm-secondary-hover', active: 'active:bg-[#a99fd4]' },
-  outline:   { base: 'bg-transparent text-fm-primary border-2 border-fm-primary', hover: 'hover:bg-fm-primary/10', active: 'active:bg-fm-primary/15' },
-  ghost:     { base: 'bg-transparent text-fm-primary',  hover: 'hover:bg-white/5',            active: 'active:bg-white/10' },
-  surface:   { base: 'bg-white/8 text-white border border-fm-border', hover: 'hover:bg-white/12', active: 'active:bg-white/15' },
-};
+const BASE =
+  'relative inline-flex min-h-11 items-center justify-center rounded-pill border border-transparent font-serif tracking-soft ' +
+  'transition-[color,background-color,border-color,box-shadow,opacity] duration-300 ease-out active:scale-[0.98]'
 
-const sizes = {
-  sm: 'px-4 py-2 text-sm',
-  md: 'px-6 py-3 text-base',
-  lg: 'px-8 py-4 text-lg',
-};
+/** Un solo tamaño: el compacto del acceso. La jerarquía la dan las variantes. */
+const SIZE = 'px-[22px] py-[9px] text-[17px]'
 
-export function Button({ children, variant = 'primary', size = 'md', disabled = false, fullWidth = false, onClick, className = '', ...props }) {
-  const [isPressed, setIsPressed] = useState(false);
-  const v = variants[variant] || variants.primary;
-
-  return (
-    <button
-      className={`
-        font-heading font-medium rounded-lg
-        transition-all duration-200 ease-in-out
-        ${v.base} ${v.hover}
-        ${isPressed ? v.active : ''}
-        ${sizes[size]}
-        ${fullWidth ? 'w-full' : ''}
-        ${disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}
-        shadow-md hover:shadow-lg
-        ${className}
-      `}
-      disabled={disabled}
-      onClick={onClick}
-      onMouseDown={() => setIsPressed(true)}
-      onMouseUp={() => setIsPressed(false)}
-      onMouseLeave={() => setIsPressed(false)}
-      {...props}
-    >
-      {children}
-    </button>
-  );
+const VARIANTS = {
+  primary:
+    'bg-ivory/95 text-ink font-medium shadow-[0_10px_40px_rgba(216,185,120,0.22)] hover:bg-ivory hover:shadow-[0_14px_48px_rgba(216,185,120,0.34)]',
+  outline: 'bg-transparent border border-ivory/22 text-ivory hover:bg-ivory/6 hover:border-ivory/34',
+  glass:
+    'bg-glass border border-ivory/22 text-ivory backdrop-blur-[8px] hover:bg-ivory/9 hover:border-ivory/34',
+  ghost: 'bg-transparent text-fg-muted font-sans text-meta tracking-ui hover:text-fg-body',
 }
 
-export default Button;
+const TONES = {
+  gold: 'bg-gold/12 border-gold/55 hover:bg-gold/20 hover:shadow-glow-gold',
+  teal: 'bg-teal/14 border-teal/50 hover:bg-teal/22 hover:shadow-glow-teal',
+  lav: 'bg-lav/14 border-lav/50 hover:bg-lav/22 hover:shadow-glow-lav',
+}
+
+// Un primario apagado como relleno al 45% se lee como una píldora gris sólida.
+const PRIMARY_DISABLED = 'bg-ivory/14 border border-ivory/20 text-fg-muted shadow-none'
+
+/**
+ * Cinco variantes (`primary`, `outline`, `glass`, `ghost`, `accent`). Con `href`
+ * renderiza un enlace; `loading` mantiene el aspecto y bloquea el click.
+ */
+export function Button({
+  variant = 'primary',
+  tone = 'gold',
+  loading = false,
+  disabled = false,
+  href,
+  iconRight,
+  className,
+  children,
+  ...rest
+}) {
+  const classes = cn(
+    BASE,
+    SIZE,
+    variant === 'accent' ? cn('border text-ivory', TONES[tone]) : VARIANTS[variant],
+    (loading || disabled) && 'pointer-events-none',
+    disabled && (variant === 'primary' ? PRIMARY_DISABLED : 'opacity-45'),
+    className,
+  )
+  const content = (
+    <span className="inline-flex items-center gap-2">
+      <span className={cn(loading && 'animate-fm-glow')}>{children}</span>
+      {iconRight ? <span aria-hidden="true">{iconRight}</span> : null}
+    </span>
+  )
+
+  if (href) {
+    return (
+      <a href={href} className={classes} aria-disabled={disabled || undefined} {...rest}>
+        {content}
+      </a>
+    )
+  }
+
+  return (
+    <button type="button" className={classes} disabled={disabled} aria-busy={loading} {...rest}>
+      {content}
+    </button>
+  )
+}

@@ -1,0 +1,64 @@
+import { useTranslations } from 'next-intl';
+
+import { PRODUCTS } from '@/data';
+import type { EditorialMedia } from '@/types/editorial-media';
+
+import { ProductCard } from './product-card';
+import { Display } from '@/components/ui';
+
+export type StoreProductMedia = Record<(typeof PRODUCTS)[number]['id'], EditorialMedia>;
+
+export type StoreMedia = {
+  hero: EditorialMedia;
+  products: StoreProductMedia;
+  ritualBanner: EditorialMedia;
+};
+
+type ProductGridProps = {
+  media: StoreMedia;
+};
+
+export function ProductGrid({ media }: ProductGridProps) {
+  const t = useTranslations('store');
+  const featured = PRODUCTS[0]!;
+  const others = PRODUCTS.slice(1);
+  const firstRow = others.slice(0, 3);
+  const side = others[3]!;
+  const lastRow = others.slice(4);
+
+  return (
+    <section data-editorial-archive="true" aria-labelledby="store-archive-title">
+      <div className="mb-8 max-w-[58ch]">
+        <Display level="h2" size="md" id="store-archive-title" className="mt-3">
+          {t('gridTitle')}
+        </Display>
+      </div>
+
+      <div className="grid gap-5 md:gap-7">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 md:gap-7">
+          {firstRow.map((product) => (
+            <ProductCard key={product.id} media={media.products[product.id]!} product={product} />
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-7">
+          {/* La pareja comparte fila: la lateral se estira al alto de la
+              destacada y su imagen absorbe la diferencia. */}
+          <ProductCard
+            featured
+            className="md:col-span-2"
+            media={media.products[featured.id]!}
+            product={featured}
+          />
+          <ProductCard stretch media={media.products[side.id]!} product={side} />
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 md:gap-7">
+          {lastRow.map((product) => (
+            <ProductCard key={product.id} media={media.products[product.id]!} product={product} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

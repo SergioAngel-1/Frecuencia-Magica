@@ -1,35 +1,18 @@
-import { useState } from 'react';
+import { cn } from '../../lib/cn'
 
-export function Checkbox({ label, checked: controlledChecked, onChange, disabled = false, error, className = '', ...props }) {
-  const [internalChecked, setInternalChecked] = useState(false);
-  const isControlled = controlledChecked !== undefined;
-  const isChecked = isControlled ? controlledChecked : internalChecked;
-
-  const handleChange = (e) => {
-    if (!isControlled) setInternalChecked(e.target.checked);
-    onChange?.(e);
-  };
-
+/** Casilla con ✓ (único carácter decorativo permitido) y foco dorado. */
+export function Checkbox({ label, className, ...rest }) {
   return (
-    <label className={`flex items-start gap-3 cursor-pointer ${disabled ? 'opacity-40 cursor-not-allowed' : ''} ${className}`}>
-      <div className="relative flex-shrink-0 mt-0.5">
-        <input type="checkbox" checked={isChecked} onChange={handleChange} disabled={disabled} className="sr-only" {...props} />
-        <div className={`
-          w-5 h-5 rounded border-2 transition-all duration-200 flex items-center justify-center
-          ${isChecked ? 'bg-fm-primary border-fm-primary' : 'bg-transparent border-fm-border hover:border-fm-primary'}
-          ${error ? 'border-red-500' : ''}
-        `}>
-          {isChecked && (
-            <svg className="w-3 h-3 text-fm-carbon" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M5 13l4 4L19 7" />
-            </svg>
-          )}
-        </div>
-      </div>
-      {label && <span className="text-sm text-white/75 leading-relaxed">{label}</span>}
-      {error && <p className="text-xs text-red-400 mt-0.5">{error}</p>}
+    <label className={cn('text-body text-fg-body flex min-h-11 cursor-pointer items-center gap-3 font-sans', className)}>
+      <input
+        type="checkbox"
+        className="peer border-glass-brd bg-glass checked:border-gold/60 checked:bg-gold/20 size-5 shrink-0 cursor-pointer appearance-none rounded-[6px] border transition-colors duration-300 disabled:opacity-45"
+        {...rest}
+      />
+      <span className="text-gold pointer-events-none -ml-[32px] w-5 text-center text-[13px] opacity-0 peer-checked:opacity-100" aria-hidden="true">
+        ✓
+      </span>
+      <span>{label}</span>
     </label>
-  );
+  )
 }
-
-export default Checkbox;

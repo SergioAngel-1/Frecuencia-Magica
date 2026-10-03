@@ -1,40 +1,11 @@
-import { useState } from 'react';
+import { cn } from '../../lib/cn'
 
-export function Input({ label, type = 'text', placeholder, value, onChange, error, required = false, disabled = false, helperText, className = '', ...props }) {
-  const [isFocused, setIsFocused] = useState(false);
+export const FIELD =
+  'rounded-field border-glass-brd bg-glass min-h-11 w-full border px-[16px] py-[14px] text-ivory text-body placeholder:text-fg-meta font-sans ' +
+  'transition-[border-color,box-shadow] duration-300 ease-out outline-none ' +
+  'focus:border-gold/55 focus:shadow-[0_0_0_3px_rgba(216,185,120,0.12)] aria-[invalid=true]:border-warn disabled:opacity-45'
 
-  return (
-    <div className={`flex flex-col gap-1.5 ${className}`}>
-      {label && (
-        <label className="font-body text-sm font-medium text-white/80">
-          {label}{required && <span className="text-fm-primary ml-1">*</span>}
-        </label>
-      )}
-      <input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        disabled={disabled}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        className={`
-          w-full px-4 py-3 h-[46px] rounded-lg font-body text-base
-          bg-fm-surface text-white
-          border-2 transition-all duration-200
-          ${isFocused ? 'border-fm-primary shadow-[0_0_0_3px_rgba(251,173,29,0.15)]' : 'border-fm-border hover:border-fm-primary/50'}
-          ${error ? 'border-red-500' : ''}
-          ${disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-text'}
-          placeholder:text-white/25
-          focus:outline-none
-        `}
-        {...props}
-      />
-      {(error || helperText) && (
-        <p className={`text-xs mt-1 ${error ? 'text-red-400' : 'text-white/40'}`}>{error || helperText}</p>
-      )}
-    </div>
-  );
+/** Campo de texto: cristal, borde `glass-brd`, radio 14px, 44px de alto, foco dorado con halo de 3px. */
+export function Input({ className, ...rest }) {
+  return <input className={cn(FIELD, className)} {...rest} />
 }
-
-export default Input;

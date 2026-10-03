@@ -1,0 +1,46 @@
+import { getTranslations } from 'next-intl/server';
+
+import { CourseList } from '@/components/features/academy/course-list';
+import { PageShell, RealmHero } from '@/components/layout';
+import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+
+type PageProps = { params: LocaleParams };
+
+export async function generateMetadata({ params }: PageProps) {
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'academy' });
+
+  return { title: t('title') };
+}
+
+export default async function AcademyPage({ params }: PageProps) {
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'academy' });
+  const featuredTitle = t('courses.c1.title');
+  const academyMedia = {
+    hero: resolveEditorialMedia('academy.hero', { alt: t('media.alt.hero') }),
+    featuredCourse: resolveEditorialMedia('academy.featured-course', {
+      alt: t('media.alt.featured', { title: featuredTitle }),
+      sizes: '(min-width: 1280px) 1040px, calc(100vw - 48px)',
+    }),
+    courseCover: resolveEditorialMedia('academy-course-cover', {
+      sizes: '(min-width: 1280px) 520px, (min-width: 768px) 42vw, calc(100vw - 48px)',
+    }),
+  };
+
+  return (
+    <PageShell width="wide" padding="none" fullBleed editorial>
+      <RealmHero
+        media={academyMedia.hero}
+        kicker={t('kicker')}
+        title={t('title')}
+        description={t('description')}
+      />
+
+      <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
+        <CourseList media={academyMedia} />
+      </div>
+    </PageShell>
+  );
+}

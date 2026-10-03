@@ -69,7 +69,7 @@ Estas reglas aplican a **todas** las tareas. No repetirlas en cada una, pero cum
 
 ### Alcance acordado
 
-- **Dentro:** los 9 realms del prototipo (portal, home, auth, descúbrete, biblioteca, academia, experiencias, tienda, mi santuario), responsive completo, estados de carga/vacío/error, 404, i18n ES/EN, dos escenas 3D puntuales y perezosas.
+- **Dentro:** los 9 realms del prototipo (portal, home, auth, descúbrete, resonario, academia, experiencias, tienda, mi santuario), responsive completo, estados de carga/vacío/error, 404, i18n ES/EN, dos escenas 3D puntuales y perezosas.
 - **Fuera (fase futura, documentar pero no construir):** blog, membresía como página propia, about, contacto, búsqueda global, perfil, favoritos, pedidos, reservas listadas, notificaciones, ajustes, recuperar contraseña, magic link, backend real, pagos reales, CMS.
 - **Testing:** sólo lógica — stores, reducers, hooks y utilidades puras con Vitest. No se testean componentes visuales ni se monta Playwright.
 
@@ -96,7 +96,7 @@ frontend/
 │   │       ├── inicio/page.tsx      # Home
 │   │       ├── acceso/page.tsx      # Auth
 │   │       ├── descubrete/page.tsx
-│   │       ├── biblioteca/page.tsx
+│   │       ├── resonario/page.tsx
 │   │       ├── academia/page.tsx
 │   │       ├── academia/[courseId]/page.tsx
 │   │       ├── academia/[courseId]/[lessonId]/page.tsx
@@ -192,7 +192,9 @@ Esperado: typecheck sin errores y build exitoso con la ruta `/` generada.
 cd "/home/sergi/Documentos/Proyectos/Frecuencia Mágica" && git add frontend && git commit -m "chore: scaffold Next.js 15 + React 19 + Tailwind v4 frontend"
 ```
 
-Nota: la raíz del proyecto **no es un repo git** todavía. Si `git status` falla, inicializar primero con `git init` en la raíz y crear un `.gitignore` que excluya `node_modules/`, `.next/`, `dist/`, `.env*` y `**/node_modules/`.
+> **Estado real verificado el 2026-07-28: esta tarea ya está completa.** El commit `ee80091` contiene el scaffold con Next 15.5.22, React 19.1.0, Tailwind v4, el `tsconfig.json` con los cinco flags estrictos del Paso 4 y el script `typecheck` del Paso 5. La raíz **sí** es un repositorio git (rama `feat/frontend-foundations`) y ya tiene `.gitignore`.
+>
+> Por tanto esta tarea pasa de *generar* a *verificar*: ejecutar los pasos 3 y 6 para confirmar versiones y que compila, y saltar los pasos 1, 2, 4, 5 y 7. **No ejecutar `create-next-app`**: fallaría por conflicto con los ficheros existentes y destruiría el trabajo commiteado.
 
 ---
 
@@ -317,9 +319,9 @@ git add frontend && git commit -m "test: set up vitest with happy-dom for logic 
 - Consumes: nada.
 - Produces: rutas de import estables para todas las fases siguientes; `/logo.png` servible.
 
-- [ ] **Paso 1: Crear el árbol de carpetas**
+- [x] **Paso 1: Crear el árbol de carpetas** — *ya ejecutado en la Sección 1 (2026-07-28)*
 
-Crear bajo `frontend/src/`: `components/ui`, `components/world`, `components/layout`, `components/features`, `config`, `data`, `hooks`, `i18n`, `lib`, `stores`, `types`. Crear también `frontend/messages` y `frontend/tests`.
+Crear bajo `frontend/src/`: `components/ui`, `components/world`, `components/layout`, `components/features`, `config`, `data`, `hooks`, `i18n`, `lib`, `stores`, `types`. Crear también `frontend/messages` y `frontend/tests`. Cada directorio lleva un `.gitkeep` para que git lo registre mientras esté vacío; borrarlo en cuanto el directorio reciba su primer fichero real.
 
 - [ ] **Paso 2: Copiar el logo oficial**
 
@@ -574,10 +576,10 @@ git add frontend && git commit -m "feat: add cn, format helpers, motion variants
 **Interfaces:**
 - Consumes: nada.
 - Produces:
-  - Tipo `RealmId` = unión literal de `'portal' | 'home' | 'auth' | 'descubrete' | 'biblioteca' | 'academia' | 'experiencias' | 'tienda' | 'sanctuario'`.
+  - Tipo `RealmId` = unión literal de `'portal' | 'home' | 'auth' | 'descubrete' | 'resonario' | 'academia' | 'experiencias' | 'tienda' | 'sanctuario'`.
   - Tipo `Realm` con campos: `id: RealmId`, `accent: string` (hex), `dotVar: string` (nombre de variable CSS), `baseNote: number` (Hz del drone), `inNav: boolean`.
   - `REALMS: readonly Realm[]` — los 9 realms.
-  - `NAV_REALMS: readonly Realm[]` — los 6 con `inNav: true`, en orden: descubrete, biblioteca, academia, experiencias, tienda, sanctuario.
+  - `NAV_REALMS: readonly Realm[]` — los 6 con `inNav: true`, en orden: descubrete, resonario, academia, experiencias, tienda, sanctuario.
   - `getRealm(id: RealmId)` → `Realm`.
   - `BANDS` — objeto con `gold`, `teal`, `lav`, `mix` (gradientes de realm) y `AUDIO_BANDS`/`PRODUCT_BANDS` no aquí, sino en `data/` junto a cada entidad.
 
@@ -585,11 +587,11 @@ git add frontend && git commit -m "feat: add cn, format helpers, motion variants
 
 Crear `frontend/tests/config/realms.test.ts` con:
 - `"expone los nueve realms"` → `REALMS` tiene longitud 9.
-- `"la navegación de constelación muestra seis realms"` → `NAV_REALMS` tiene longitud 6 y sus ids en orden son exactamente `['descubrete','biblioteca','academia','experiencias','tienda','sanctuario']`.
+- `"la navegación de constelación muestra seis realms"` → `NAV_REALMS` tiene longitud 6 y sus ids en orden son exactamente `['descubrete','resonario','academia','experiencias','tienda','sanctuario']`.
 - `"portal y auth quedan fuera de la navegación"` → ni `portal` ni `auth` ni `home` aparecen en `NAV_REALMS`.
 - `"cada realm tiene un acento de la paleta"` → todo `accent` pertenece al conjunto `{'#D8B978', '#96C6BC', '#B9B0D6'}`.
-- `"los acentos coinciden con el prototipo"` → comprobar uno a uno: portal `#D8B978`, home `#D8B978`, descubrete `#B9B0D6`, biblioteca `#D8B978`, academia `#96C6BC`, experiencias `#B9B0D6`, tienda `#D8B978`, sanctuario `#D8B978`, auth `#D8B978`.
-- `"cada realm tiene una nota base distinta para el drone"` → comprobar el mapa completo: portal 110, home 110, descubrete 98, biblioteca 130.8, academia 146.8, experiencias 123.4, tienda 116.5, sanctuario 103.8, auth 110.
+- `"los acentos coinciden con el prototipo"` → comprobar uno a uno: portal `#D8B978`, home `#D8B978`, descubrete `#B9B0D6`, resonario `#D8B978`, academia `#96C6BC`, experiencias `#B9B0D6`, tienda `#D8B978`, sanctuario `#D8B978`, auth `#D8B978`.
+- `"cada realm tiene una nota base distinta para el drone"` → comprobar el mapa completo: portal 110, home 110, descubrete 98, resonario 130.8, academia 146.8, experiencias 123.4, tienda 116.5, sanctuario 103.8, auth 110.
 - `"getRealm devuelve el realm pedido"` → `getRealm('academia').accent` es `'#96C6BC'`.
 
 - [ ] **Paso 2: Ejecutar el test para verlo fallar**
@@ -669,7 +671,7 @@ Crear `frontend/src/i18n/routing.ts` con `defineRouting`. El mapa `pathnames` de
 | `/inicio` | `/inicio` | `/home` |
 | `/acceso` | `/acceso` | `/auth` |
 | `/descubrete` | `/descubrete` | `/discover` |
-| `/biblioteca` | `/biblioteca` | `/library` |
+| `/resonario` | `/resonario` | `/resonarium` |
 | `/academia` | `/academia` | `/academy` |
 | `/academia/[courseId]` | `/academia/[courseId]` | `/academy/[courseId]` |
 | `/academia/[courseId]/[lessonId]` | `/academia/[courseId]/[lessonId]` | `/academy/[courseId]/[lessonId]` |
@@ -734,7 +736,7 @@ git add frontend && git commit -m "feat: set up next-intl routing with localized
 
 - [ ] **Paso 1: Definir la estructura de namespaces**
 
-Ambos ficheros comparten exactamente estas claves de primer nivel: `common`, `header`, `nav`, `footer`, `portal`, `home`, `auth`, `discover`, `library`, `player`, `academy`, `experiences`, `booking`, `store`, `cart`, `sanctuary`, `journal`, `states`.
+Ambos ficheros comparten exactamente estas claves de primer nivel: `common`, `header`, `nav`, `footer`, `portal`, `home`, `auth`, `discover`, `resonario`, `player`, `academy`, `experiences`, `booking`, `store`, `cart`, `sanctuary`, `journal`, `states`.
 
 - [ ] **Paso 2: Extraer el copy del header, nav y footer**
 
@@ -750,9 +752,9 @@ Auth: líneas 1394–1430 — `authKicker`, `authTitle` (dos variantes: login y 
 
 Descúbrete: líneas 1498–1529 — `descKicker`, `descTitle`, `descIntro`, `descBegin`, `dCount` (patrón "Pregunta {n} de {total}"), `dBackLabel`, `dLoadingText`, `resultKicker`, `resultTitle`, `resultHz`, `resultCta`, `resultRestart`, y el mapa `RDESC` de descripciones por frecuencia (línea ~1523) con las claves 432, 528, 396, 174, 639, 417.
 
-- [ ] **Paso 5: Extraer el copy de biblioteca, academia y experiencias**
+- [ ] **Paso 5: Extraer el copy de resonario, academia y experiencias**
 
-Biblioteca: líneas 1530–1555 — `libKicker`, `libTitle`, `libDesc`, los cinco filtros (`all`, `Meditación`, `Frecuencia`, `Descanso`, `Ritual`), `libFeaturedBadge`.
+Resonario: líneas 1530–1555 — `libKicker`, `libTitle`, `libDesc`, los cinco filtros (`all`, `Meditación`, `Frecuencia`, `Descanso`, `Ritual`), `libFeaturedBadge`.
 
 Academia: líneas 1556–1588 — `acKicker`, `acTitle`, `acDesc`, `acFeaturedBadge`, `acFeaturedDesc`, `acFeaturedCta`, `acBackLabel`, `courseContentLabel`, `courseDesc`, `lessonKicker`, `lessonBackLabel`, `lessonPrevLabel`, `lessonNextLabel`, y los títulos de lección generados.
 
@@ -804,7 +806,7 @@ git add frontend && git commit -m "feat: port full ES/EN copy from prototype int
 - Consumes: nada.
 - Produces:
   - `Audio` — `{ id: string; titleKey: string; tagKey: string; tagId: AudioTag; duration: string; hz: number; band: string }`.
-  - `AudioTag` — unión literal `'meditation' | 'frequency' | 'grounding' | 'rest' | 'ritual' | 'breath'`. Es el identificador estable e **independiente del idioma** por el que filtra la Biblioteca. El prototipo filtraba comparando contra el texto español (`a.tag.es`), lo que rompería el filtro en inglés; esta es la corrección. Asignación por audio: `a1` meditation, `a2` frequency, `a3` grounding, `a4` rest, `a5` ritual, `a6` breath, `a7` meditation.
+  - `AudioTag` — unión literal `'meditation' | 'frequency' | 'grounding' | 'rest' | 'ritual' | 'breath'`. Es el identificador estable e **independiente del idioma** por el que filtra el Resonario. El prototipo filtraba comparando contra el texto español (`a.tag.es`), lo que rompería el filtro en inglés; esta es la corrección. Asignación por audio: `a1` meditation, `a2` frequency, `a3` grounding, `a4` rest, `a5` ritual, `a6` breath, `a7` meditation.
   - `Course` — `{ id: string; titleKey: string; levelKey: string; lessons: number; hours: string; band: string }`.
   - `Experience` — `{ id: string; titleKey: string; modeKey: string; mode: 'online' | 'in-person'; dur: string; price: number; band: string }`. El campo `mode` es el identificador estable, por el mismo motivo que `tagId`: `e1` online, `e2` in-person, `e3` in-person, `e4` online.
   - `Product` — `{ id: string; titleKey: string; catKey: string; price: number; band: string; relatedAudioId: string }`. `relatedAudioId` alimenta el enlace "Frecuencia asociada" del detalle de producto (Task 12.3). Asignación: `p1`→`a5`, `p2`→`a2`, `p3`→`a1`, `p4`→`a3`, `p5`→`a5`, `p6`→`a4`, `p7`→`a1`, `p8`→`a6`.
@@ -844,7 +846,7 @@ Esperado: FALLA — `@/data` no existe.
 
 - [ ] **Paso 4: Portar las frecuencias**
 
-`frontend/src/data/audios.ts` con los 7 registros de las líneas 1098–1106 del prototipo. Conservar ids `a1`–`a7`, los `hz`, las `duration` como string, y las `band` literales. Las claves de traducción siguen el patrón `library.audios.a1.title` y `library.audios.a1.tag`.
+`frontend/src/data/audios.ts` con los 7 registros de las líneas 1098–1106 del prototipo. Conservar ids `a1`–`a7`, los `hz`, las `duration` como string, y las `band` literales. Las claves de traducción siguen el patrón `resonario.audios.a1.title` y `resonario.audios.a1.tag`.
 
 - [ ] **Paso 5: Portar cursos, experiencias, productos y preguntas**
 
@@ -905,8 +907,8 @@ Objetivo: la capa que hace que esto no parezca una web. Se monta **una sola vez*
 `frontend/tests/lib/realm-from-pathname.test.ts` con:
 - `"la raíz es el portal"` → `realmFromPathname('/')` es `'portal'`.
 - `"la raíz de un locale también es el portal"` → `realmFromPathname('/en')` es `'portal'`.
-- `"reconoce cada realm por su segmento en español"` → `/inicio`→`home`, `/acceso`→`auth`, `/descubrete`→`descubrete`, `/biblioteca`→`biblioteca`, `/academia`→`academia`, `/experiencias`→`experiencias`, `/tienda`→`tienda`, `/mi-santuario`→`sanctuario`.
-- `"reconoce cada realm por su segmento en inglés"` → `/home`→`home`, `/auth`→`auth`, `/discover`→`descubrete`, `/library`→`biblioteca`, `/academy`→`academia`, `/experiences`→`experiencias`, `/store`→`tienda`, `/my-sanctuary`→`sanctuario`.
+- `"reconoce cada realm por su segmento en español"` → `/inicio`→`home`, `/acceso`→`auth`, `/descubrete`→`descubrete`, `/resonario`→`resonario`, `/academia`→`academia`, `/experiencias`→`experiencias`, `/tienda`→`tienda`, `/mi-santuario`→`sanctuario`.
+- `"reconoce cada realm por su segmento en inglés"` → `/home`→`home`, `/auth`→`auth`, `/discover`→`descubrete`, `/resonarium`→`resonario`, `/academy`→`academia`, `/experiences`→`experiencias`, `/store`→`tienda`, `/my-sanctuary`→`sanctuario`.
 - `"las rutas anidadas heredan el realm del padre"` → `/academia/c1/3` es `'academia'`, `/tienda/carrito` es `'tienda'`, `/experiencias/e2/reservar` es `'experiencias'`.
 - `"una ruta desconocida cae en el portal"` → `/inexistente` es `'portal'`.
 
@@ -1125,7 +1127,7 @@ git add frontend && git commit -m "feat: add luminous cursor with magnetic hover
 - [ ] **Paso 1: Escribir los tests que fallan**
 
 `frontend/tests/lib/drone.test.ts`:
-- `"cada realm tiene su nota base"` → comprobar los 9 valores: portal 110, home 110, descubrete 98, biblioteca 130.8, academia 146.8, experiencias 123.4, tienda 116.5, sanctuario 103.8, auth 110.
+- `"cada realm tiene su nota base"` → comprobar los 9 valores: portal 110, home 110, descubrete 98, resonario 130.8, academia 146.8, experiencias 123.4, tienda 116.5, sanctuario 103.8, auth 110.
 - `"las tres voces forman el acorde del prototipo"` → `voiceFrequencies(110)` es `[110, 110.55, 165]`, comprobando con tolerancia de 0.001. La segunda voz es la base por 1.005 (batido lento) y la tercera es la quinta (base × 1.5).
 - `"la afinación por defecto es 110 Hz"` → un realm desconocido devuelve 110.
 
@@ -1273,7 +1275,7 @@ git add frontend && git commit -m "feat: add portal crossing transition overlay"
 
 - [ ] **Paso 1: Implementar `OrbitalRings`**
 
-Debe cubrir todos los usos del prototipo. Casos de referencia que deben ser expresables sólo con props: los aros del portal (radios 300/240/180 sobre `viewBox` 640, con líneas diagonales), los del hero (192/150/108, `fm-spin 130s`), los del disco destacado de biblioteca (98/86, `fm-spin 110s`), los de los discos pequeños (97 punteado `1 8`, `fm-spin 70s`), y los decorativos de las cards (130/96/62, `fm-spin 100s`).
+Debe cubrir todos los usos del prototipo. Casos de referencia que deben ser expresables sólo con props: los aros del portal (radios 300/240/180 sobre `viewBox` 640, con líneas diagonales), los del hero (192/150/108, `fm-spin 130s`), los del disco destacado de resonario (98/86, `fm-spin 110s`), los de los discos pequeños (97 punteado `1 8`, `fm-spin 70s`), y los decorativos de las cards (130/96/62, `fm-spin 100s`).
 
 La rotación se aplica con la animación `fm-spin` o `fm-spin-r` según `direction`, con la duración pasada en `spin`. Marcar `aria-hidden`.
 
@@ -1547,7 +1549,7 @@ Es la pieza que sustituye a todas las imágenes. Renderiza un div con el `gradie
 
 `Badge`: fuente sans, 10–11px, `letter-spacing` `.16em`–`.24em`, mayúsculas, radio 999px, padding `5–7px × 13–16px`.
 
-`Pill`: la usa el filtro de biblioteca y el selector de idioma. Inactiva: fondo `rgba(247,244,234,0.04)`, borde `rgba(247,244,234,0.14)`, texto `rgba(247,244,234,0.7)`. Activa: fondo `rgba(216,185,120,0.16)`, borde `rgba(216,185,120,0.55)`, texto marfil. Altura mínima 44px, transición `.3s`, y `aria-pressed` reflejando el estado.
+`Pill`: la usa el filtro de resonario y el selector de idioma. Inactiva: fondo `rgba(247,244,234,0.04)`, borde `rgba(247,244,234,0.14)`, texto `rgba(247,244,234,0.7)`. Activa: fondo `rgba(216,185,120,0.16)`, borde `rgba(216,185,120,0.55)`, texto marfil. Altura mínima 44px, transición `.3s`, y `aria-pressed` reflejando el estado.
 
 - [ ] **Paso 4: Verificar y commit**
 
@@ -1643,7 +1645,7 @@ git add frontend && git commit -m "feat(ui): add progress bar, step progress and
   - `<Equalizer bars?, size?, playing?>` — las barras animadas con `fm-wave-pulse`.
   - `<FrequencyDisc size, hz, title?, tag?, duration?, band, active?, showPlay?, showEqualizer?, onClick, floatDuration?, floatDelay?>` — el disco orbital completo.
 
-**Contexto:** este es el componente identitario del producto. Aparece en tres escalas: pequeño flotante en biblioteca (128–150px), mediano en la home (190px), y grande destacado en biblioteca (380px). Debe cubrir las tres con una sola implementación.
+**Contexto:** este es el componente identitario del producto. Aparece en tres escalas: pequeño flotante en resonario (128–150px), mediano en la home (190px), y grande destacado en resonario (380px). Debe cubrir las tres con una sola implementación.
 
 - [ ] **Paso 1: Implementar `Equalizer`**
 
@@ -1795,7 +1797,7 @@ Semántica: elemento `<header>` con `role="banner"`.
 
 - [ ] **Paso 5: Verificar**
 
-Comprobar que el cambio de idioma en `/biblioteca` lleva a `/en/library` y no a `/en/biblioteca`, y que el toggle de audio persiste tras recargar.
+Comprobar que el cambio de idioma en `/resonario` lleva a `/en/resonarium` y no a `/en/resonario`, y que el toggle de audio persiste tras recargar.
 
 - [ ] **Paso 6: Commit**
 
@@ -1865,7 +1867,7 @@ Accesibilidad: el input lleva `type="email"`, `required`, una etiqueta visualmen
 
 - [ ] **Paso 3: Definir dónde aparece el footer**
 
-El footer se renderiza **sólo** en home, biblioteca, academia, experiencias y tienda. No aparece en portal, auth, descúbrete ni santuario, que son experiencias a pantalla completa.
+El footer se renderiza **sólo** en home, resonario, academia, experiencias y tienda. No aparece en portal, auth, descúbrete ni santuario, que son experiencias a pantalla completa.
 
 - [ ] **Paso 4: Commit**
 
@@ -1889,7 +1891,7 @@ git add frontend && git commit -m "feat(layout): add site footer with newsletter
 
 - [ ] **Paso 1: Implementar `PageShell`**
 
-Anchos máximos reales por vista: 1280px (home, biblioteca), 1240px (tienda), 1200px (academia, experiencias, santuario), 1080px (about, membresía), 820px (checkout), 720px (reserva), 680px (resultado de descúbrete). Exponerlos como `width` con nombres semánticos (`'wide' | 'default' | 'narrow' | 'form' | 'focus'`).
+Anchos máximos reales por vista: 1280px (home, resonario), 1240px (tienda), 1200px (academia, experiencias, santuario), 1080px (about, membresía), 820px (checkout), 720px (reserva), 680px (resultado de descúbrete). Exponerlos como `width` con nombres semánticos (`'wide' | 'default' | 'narrow' | 'form' | 'focus'`).
 
 Padding estándar: `130px 8vw 90px` en las vistas de realm (los 130px superiores dejan sitio al header fijo), `120px 24px 80px` en las centradas. En móvil, el padding lateral baja a `24px` y el superior a `100px`.
 
@@ -2096,7 +2098,7 @@ Port de las líneas 334–360. `grid-template-columns: repeat(auto-fill, minmax(
 
 - [ ] **Paso 3: Componer la sección**
 
-Precede a ambos un `SectionHeading` con kicker teal, título y la acción "Ver todo →" enlazando a `/biblioteca`. Ancho máximo 1280px, padding `20px 8vw 40px`.
+Precede a ambos un `SectionHeading` con kicker teal, título y la acción "Ver todo →" enlazando a `/resonario`. Ancho máximo 1280px, padding `20px 8vw 40px`.
 
 - [ ] **Paso 4: Commit**
 
@@ -2115,7 +2117,7 @@ git add frontend && git commit -m "feat(home): build daily frequency card and au
 - Consumes: `NAV_REALMS`, `BANDS`, `RealmGlyph`, `OrbitalRings`, `Badge`, `Display`, `Link`.
 - Produces: `<RealmsGrid />` y `<RealmCard realm, featured?, size />`.
 
-**Jerarquía exacta a respetar** (líneas 364–415 y 1359–1377): Academia va **arriba, a ancho completo**, con rejilla interna `1.25fr 1fr`; debajo, una rejilla de **3 columnas** con los otros cinco realms en este orden — descúbrete, biblioteca, tienda, experiencias, santuario — donde **tienda ocupa dos filas** (`grid-row: span 2`) y es la única con tratamiento de destacado.
+**Jerarquía exacta a respetar** (líneas 364–415 y 1359–1377): Academia va **arriba, a ancho completo**, con rejilla interna `1.25fr 1fr`; debajo, una rejilla de **3 columnas** con los otros cinco realms en este orden — descúbrete, resonario, tienda, experiencias, santuario — donde **tienda ocupa dos filas** (`grid-row: span 2`) y es la única con tratamiento de destacado.
 
 - [ ] **Paso 1: Construir la card destacada de Academia**
 
@@ -2297,7 +2299,7 @@ Port de las líneas 525–539. Bloque centrado de máximo 680px con entrada `fad
 - `Display size="md"` con el título del audio.
 - Una línea en kicker oro con la frecuencia en Hz.
 - La descripción poética de esa frecuencia, tomada del mapa `RDESC` portado en la Task 2.2, de máximo 48ch a 17px con `line-height: 1.9`.
-- Dos botones: uno de acento oro que abre el reproductor con ese audio y navega a `/biblioteca`, y otro de contorno que reinicia el cuestionario.
+- Dos botones: uno de acento oro que abre el reproductor con ese audio y navega a `/resonario`, y otro de contorno que reinicia el cuestionario.
 
 - [ ] **Paso 5: Componer la experiencia**
 
@@ -2317,7 +2319,7 @@ git add frontend && git commit -m "feat(discover): build quiz intro, steps, tuni
 
 ---
 
-# FASE 9 — Biblioteca y reproductor
+# FASE 9 — Resonario y reproductor
 
 Objetivo: el "sistema solar" de discos y el dock del reproductor, que persiste al navegar entre realms.
 
@@ -2393,7 +2395,7 @@ git add frontend && git commit -m "feat(library): add player store and progress 
 - Consumes: `usePlayerStore`, `getAudio`, `formatDuration`, `progressPercent`, `ProgressBar`, `IconButton`, `Band`.
 - Produces: `<PlayerDock />` montado en el layout, visible en cualquier realm.
 
-**Decisión de arquitectura:** en el prototipo el dock sólo existía dentro de biblioteca. En el frontend real se monta en el layout, porque el PRD Parte 2 pide "mini player" y "floating player" persistentes y porque el resultado de Descúbrete abre audio desde otro realm.
+**Decisión de arquitectura:** en el prototipo el dock sólo existía dentro de resonario. En el frontend real se monta en el layout, porque el PRD Parte 2 pide "mini player" y "floating player" persistentes y porque el resultado de Descúbrete abre audio desde otro realm.
 
 - [ ] **Paso 1: Construir el dock**
 
@@ -2432,11 +2434,11 @@ git add frontend && git commit -m "feat(player): add persistent glass player doc
 
 ---
 
-### Task 9.3: Sistema solar de la biblioteca
+### Task 9.3: Sistema solar del resonario
 
 **Files:**
-- Create: `frontend/src/components/features/library/library-system.tsx`, `frontend/src/components/features/library/library-filters.tsx`, `frontend/src/lib/library/layout-slots.ts`
-- Create: `frontend/src/app/[locale]/biblioteca/page.tsx`
+- Create: `frontend/src/components/features/resonario/resonario-system.tsx`, `frontend/src/components/features/resonario/resonario-filters.tsx`, `frontend/src/lib/resonario/layout-slots.ts`
+- Create: `frontend/src/app/[locale]/resonario/page.tsx`
 - Create: `frontend/tests/lib/layout-slots.test.ts`
 
 **Interfaces:**
@@ -2444,7 +2446,7 @@ git add frontend && git commit -m "feat(player): add persistent glass player doc
 - Produces:
   - `discSlot(index: number)` → `{ top: string; left: string; size: string; duration: string; delay: string }`.
   - `filterAudios(audios, filterKey)` → `Audio[]`.
-  - `<LibrarySystem />` y `<LibraryFilters />`.
+  - `<ResonarioSystem />` y `<ResonarioFilters />`.
 
 **Regla visual innegociable:** aquí **no** se usa una rejilla de tarjetas. Es un disco central grande rodeado de discos pequeños en posiciones absolutas flotando.
 
@@ -2471,7 +2473,7 @@ Esperado: FALLA.
 
 - [ ] **Paso 3: Implementar los helpers**
 
-`lib/library/layout-slots.ts` con `discSlot` y `filterAudios`, usando los arrays exactos de la línea 194–197 del bloque de lógica del prototipo.
+`lib/resonario/layout-slots.ts` con `discSlot` y `filterAudios`, usando los arrays exactos de la línea 194–197 del bloque de lógica del prototipo.
 
 - [ ] **Paso 4: Ejecutar el test y verificar que pasa**
 
@@ -2646,7 +2648,7 @@ Los botones enlazan a la lección adyacente dentro del mismo curso. En la primer
 
 - [ ] **Paso 3: Construir la pantalla de finalización**
 
-Cuando se completa la última lección, mostrar en su lugar un bloque centrado con `LoadingOrb tone="gold"` en estado estático (un orbe dorado, no cargando), un título de felicitación en la voz de marca, un texto breve, y dos botones: volver a la Academia y explorar la Biblioteca. Añadir el copy correspondiente a `messages` bajo `academy.completion`.
+Cuando se completa la última lección, mostrar en su lugar un bloque centrado con `LoadingOrb tone="gold"` en estado estático (un orbe dorado, no cargando), un título de felicitación en la voz de marca, un texto breve, y dos botones: volver a la Academia y explorar el Resonario. Añadir el copy correspondiente a `messages` bajo `academy.completion`.
 
 - [ ] **Paso 4: Verificar el flujo**
 
@@ -3326,7 +3328,7 @@ Objetivo: la fase que separa un prototipo bonito de un producto. Ninguna tarea a
 
 **Files:**
 - Create: `frontend/src/app/[locale]/not-found.tsx`, `frontend/src/app/[locale]/error.tsx`, `frontend/src/app/[locale]/loading.tsx`
-- Create: `frontend/src/app/[locale]/biblioteca/loading.tsx`, `frontend/src/app/[locale]/academia/loading.tsx`, `frontend/src/app/[locale]/tienda/loading.tsx`, `frontend/src/app/[locale]/experiencias/loading.tsx`
+- Create: `frontend/src/app/[locale]/resonario/loading.tsx`, `frontend/src/app/[locale]/academia/loading.tsx`, `frontend/src/app/[locale]/tienda/loading.tsx`, `frontend/src/app/[locale]/experiencias/loading.tsx`
 
 **Interfaces:**
 - Consumes: `Skeleton`, `LoadingOrb`, `EmptyState`, `ErrorState`, namespace `states`.
@@ -3342,7 +3344,7 @@ Una pantalla completa en el lenguaje del mundo: la geometría sagrada aparece **
 - [ ] **Paso 3: Construir los esqueletos por realm**
 
 Cada `loading.tsx` reproduce la **silueta** de su vista con `Skeleton`, no un orbe genérico:
-- Biblioteca: un disco grande centrado y seis pequeños en sus posiciones orbitales, todos como `Skeleton variant="disc"`.
+- Resonario: un disco grande centrado y seis pequeños en sus posiciones orbitales, todos como `Skeleton variant="disc"`.
 - Academia: la card destacada y las dos secundarias como `Skeleton variant="card"`.
 - Tienda: la rejilla bento completa en esqueleto, respetando las proporciones 3 / destacado+lateral / 3.
 - Experiencias: la card destacada y tres filas.
@@ -3378,7 +3380,7 @@ cd frontend && npm i -D @axe-core/cli
 Con el servidor de desarrollo corriendo, ejecutar axe contra cada ruta en ambos idiomas y guardar los resultados.
 
 ```bash
-cd frontend && npx axe http://localhost:3000/ http://localhost:3000/inicio http://localhost:3000/acceso http://localhost:3000/descubrete http://localhost:3000/biblioteca http://localhost:3000/academia http://localhost:3000/experiencias http://localhost:3000/tienda http://localhost:3000/mi-santuario --exit
+cd frontend && npx axe http://localhost:3000/ http://localhost:3000/inicio http://localhost:3000/acceso http://localhost:3000/descubrete http://localhost:3000/resonario http://localhost:3000/academia http://localhost:3000/experiencias http://localhost:3000/tienda http://localhost:3000/mi-santuario --exit
 ```
 
 Esperado tras las correcciones: cero violaciones de nivel serio o crítico.
@@ -3395,7 +3397,7 @@ Añadir un enlace "Saltar al contenido" como primer elemento enfocable del layou
 
 - [ ] **Paso 5: Verificar con lector de pantalla**
 
-Recorrer portal, home, biblioteca y el flujo de reserva con un lector de pantalla. Comprobar que: los landmarks se anuncian, los cambios de página se anuncian, los estados de carga se anuncian, los controles sólo-icono tienen nombre, y las capas decorativas (canvas, nebulosas, cursor, aros) están todas ocultas con `aria-hidden`.
+Recorrer portal, home, resonario y el flujo de reserva con un lector de pantalla. Comprobar que: los landmarks se anuncian, los cambios de página se anuncian, los estados de carga se anuncian, los controles sólo-icono tienen nombre, y las capas decorativas (canvas, nebulosas, cursor, aros) están todas ocultas con `aria-hidden`.
 
 - [ ] **Paso 6: Documentar**
 
@@ -3420,11 +3422,11 @@ Comparar cada vista con el prototipo, que fue diseñado a 1440. A 1280 comprobar
 
 - [ ] **Paso 2: Revisar a 768**
 
-Punto crítico. Verificar los cambios ya especificados: navegación de constelación en barra inferior, hero de home apilado, sistema solar de biblioteca en rejilla, filas de experiencias apiladas, bento de tienda a una o dos columnas, acceso apilado con el panel arriba, santuario a una columna, y dock del reproductor compacto.
+Punto crítico. Verificar los cambios ya especificados: navegación de constelación en barra inferior, hero de home apilado, sistema solar de resonario en rejilla, filas de experiencias apiladas, bento de tienda a una o dos columnas, acceso apilado con el panel arriba, santuario a una columna, y dock del reproductor compacto.
 
 - [ ] **Paso 3: Revisar a 390**
 
-Comprobar: ningún desbordamiento horizontal en ninguna vista (verificar con `document.documentElement.scrollWidth` igual al ancho del viewport); todos los objetivos táctiles llegan a 44px; los títulos con `clamp` no se cortan; el disco destacado de biblioteca cabe; y el dock respeta el área segura inferior.
+Comprobar: ningún desbordamiento horizontal en ninguna vista (verificar con `document.documentElement.scrollWidth` igual al ancho del viewport); todos los objetivos táctiles llegan a 44px; los títulos con `clamp` no se cortan; el disco destacado de resonario cabe; y el dock respeta el área segura inferior.
 
 - [ ] **Paso 4: Revisar la orientación horizontal en móvil**
 
@@ -3446,7 +3448,7 @@ git add frontend && git commit -m "fix(responsive): polish all nine realms acros
 
 - [ ] **Paso 1: Medir la línea base**
 
-Construir en producción, servir, y medir con Lighthouse las rutas `/`, `/inicio` y `/biblioteca` en perfil móvil.
+Construir en producción, servir, y medir con Lighthouse las rutas `/`, `/inicio` y `/resonario` en perfil móvil.
 
 ```bash
 cd frontend && npm run build && npm run start
@@ -3553,4 +3555,4 @@ git add frontend && git commit -m "docs: add fidelity checklist and complete fro
 
 **Puntos de revisión recomendados:** al terminar la Fase 3 (el mundo debe sentirse vivo antes de construir contenido), al terminar la Fase 5 (la navegación completa debe funcionar), al terminar la Fase 7 (la home valida el sistema entero), y al terminar la Fase 16.
 
-**Qué hacer si el prototipo y este plan se contradicen:** manda el prototipo en lo visual y este plan en lo arquitectónico. Si la contradicción es de comportamiento (por ejemplo, el filtro de biblioteca atado al español), manda este plan, que ya documenta la corrección.
+**Qué hacer si el prototipo y este plan se contradicen:** manda el prototipo en lo visual y este plan en lo arquitectónico. Si la contradicción es de comportamiento (por ejemplo, el filtro de resonario atado al español), manda este plan, que ya documenta la corrección.

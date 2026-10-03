@@ -1,48 +1,30 @@
-const variants = {
-  text:   'h-3 rounded',
-  title:  'h-5 rounded w-3/4',
-  circle: 'rounded-full',
-  rect:   'rounded-xl',
-};
+import { cn } from '../../lib/cn'
 
-export function Skeleton({ variant = 'text', width, height, className = '', ...props }) {
-  const baseStyle = variants[variant] || variants.text;
-  const inlineStyle = {};
-  if (width) inlineStyle.width = width;
-  if (height) inlineStyle.height = height;
+const SHIMMER = 'linear-gradient(90deg, rgba(247,244,234,0.04), rgba(247,244,234,0.10), rgba(247,244,234,0.04))'
+const VARIANTS = { text: 'h-[1em] rounded-[4px]', disc: 'aspect-square rounded-full', card: 'rounded-card', band: 'rounded-card' }
 
+/** Silueta de carga con barrido de luz. Nunca un spinner como carga principal. */
+export function Skeleton({ variant = 'text', className, style }) {
   return (
     <div
-      className={`bg-white/8 animate-pulse ${baseStyle} ${className}`}
-      style={inlineStyle}
-      {...props}
+      aria-hidden="true"
+      className={cn('animate-fm-shimmer w-full', VARIANTS[variant], className)}
+      style={{ backgroundImage: SHIMMER, backgroundSize: '200% 100%', ...style }}
     />
-  );
+  )
 }
 
-export function SkeletonCard({ className = '' }) {
+/** Silueta de una tarjeta de producto: imagen, título y acción. */
+export function SkeletonCard({ className }) {
   return (
-    <div className={`bg-fm-surface rounded-xl p-5 border border-fm-border ${className}`}>
-      <Skeleton variant="rect" className="w-full h-[140px] mb-4" />
-      <Skeleton variant="text" className="w-1/3 h-2 mb-2" />
-      <Skeleton variant="title" className="mb-2" />
-      <Skeleton variant="text" className="w-full mb-1" />
-      <Skeleton variant="text" className="w-2/3" />
-    </div>
-  );
-}
-
-export function SkeletonCarousel({ className = '' }) {
-  return (
-    <div className={`relative ${className}`}>
-      <Skeleton variant="rect" className="w-full h-[320px] rounded-2xl" />
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-        <Skeleton variant="circle" className="w-2 h-2" />
-        <Skeleton variant="circle" className="w-2 h-2" />
-        <Skeleton variant="circle" className="w-2 h-2" />
+    <div aria-busy="true" className={cn('fm-surface rounded-card-lg flex flex-col gap-3 overflow-hidden p-4', className)}>
+      <Skeleton variant="band" className="aspect-square" />
+      <Skeleton className="h-3 w-1/3" />
+      <Skeleton className="h-5 w-3/4" />
+      <div className="mt-2 flex items-center justify-between">
+        <Skeleton className="h-5 w-14" />
+        <Skeleton className="h-11 w-24 rounded-pill" />
       </div>
     </div>
-  );
+  )
 }
-
-export default Skeleton;

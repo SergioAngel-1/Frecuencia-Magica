@@ -1,0 +1,49 @@
+import { getTranslations } from 'next-intl/server';
+
+import { ExperienceList } from '@/components/features/experiences/experience-list';
+import { PageShell, RealmHero } from '@/components/layout';
+import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+
+type PageProps = { params: LocaleParams };
+
+export async function generateMetadata({ params }: PageProps) {
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'experiences' });
+
+  return { title: t('title') };
+}
+
+export default async function ExperiencesPage({ params }: PageProps) {
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: 'experiences' });
+  const featuredTitle = t('items.e1.title');
+  const experienceMedia = {
+    hero: resolveEditorialMedia('experiences.hero', {
+      alt: t('media.alt.hero'),
+      sizes: '100vw',
+    }),
+    featured: resolveEditorialMedia('experiences.featured', {
+      alt: t('media.alt.featured', { title: featuredTitle }),
+      sizes: '100vw',
+    }),
+    row: resolveEditorialMedia('experiences-visual', {
+      sizes: '(min-width: 1280px) 1200px, calc(100vw - 48px)',
+    }),
+  };
+
+  return (
+    <PageShell width="wide" padding="none" fullBleed editorial>
+      <RealmHero
+        media={experienceMedia.hero}
+        kicker={t('kicker')}
+        title={t('title')}
+        description={t('description')}
+      />
+
+      <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
+        <ExperienceList media={experienceMedia} />
+      </div>
+    </PageShell>
+  );
+}

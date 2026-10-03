@@ -1,0 +1,210 @@
+'use client';
+
+import {
+  cloneElement,
+  isValidElement,
+  type ButtonHTMLAttributes,
+  type MouseEvent as ReactMouseEvent,
+  type ReactElement,
+  type ReactNode,
+} from 'react';
+
+import { cn } from '@/lib/cn';
+import { Magnetic } from './magnetic';
+
+export type ButtonVariant = 'primary' | 'outline' | 'ghost' | 'glass' | 'accent';
+/** Sólo tiene efecto sobre `variant="accent"`: vira el acento oro a teal o lavanda. */
+export type ButtonTone = 'gold' | 'teal' | 'lav';
+
+interface ButtonOwnProps {
+  variant?: ButtonVariant;
+  tone?: ButtonTone;
+  iconLeft?: ReactNode;
+  iconRight?: ReactNode;
+  /**
+   * Aspecto normal más pulso de luz (`animate-fm-glow`) sobre la etiqueta;
+   * pone `aria-busy` y bloquea el click, pero NO aplica la opacidad de
+   * `disabled` — ver el comentario de `Button` para el detalle.
+   */
+  loading?: boolean;
+  /**
+   * Traslada el estilo y el comportamiento del botón a su único hijo (p. ej.
+   * el `Link` de `@/i18n/navigation`) en vez de renderizar un `<button>`.
+   * El hijo asume la semántica interactiva (enlace, teclado, foco).
+   */
+  asChild?: boolean;
+  children: ReactNode;
+}
+
+export type ButtonProps = ButtonOwnProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | keyof ButtonOwnProps>;
+
+/** Props mínimas que necesitamos leer/escribir al clonar el hijo de `asChild`. */
+interface SlotProps {
+  className?: string;
+  children?: ReactNode;
+  // Índice de firma: permite fusionar el resto de props (aria-*, onClick...)
+  // sin que TypeScript rechace las claves por exceso de propiedades.
+  [key: string]: unknown;
+}
+
+/**
+ * Base común a las cinco variantes (paso 6 del brief 4.2): píldora completa,
+ * serif con tracking amplio, altura mínima de hit target y transición de
+ * .3s para los estados. El foco visible lo aporta ya la regla global
+ * `:focus-visible` de `globals.css`; aquí no se toca `outline`.
+ *
+ * La transición enumera sólo color/fondo/borde/sombra/opacidad — nunca
+ * `all`: `backdrop-filter` (variante `glass`) y propiedades de layout quedan
+ * fuera a propósito. El transform lo anima el muelle de `Magnetic`.
+ *
+ * Los estados `disabled`/`loading` NO se resuelven con el pseudo-selector
+ * `:disabled` (ver `stateClasses` más abajo): así el mismo cálculo sirve
+ * tanto para el `<button>` nativo como para el hijo clonado de `asChild`,
+ * que nunca puede matchear `:disabled`.
+ */
+const BASE =
+  // Borde transparente en todas: con o sin borde visible, miden lo mismo.
+  'relative inline-flex items-center justify-center rounded-pill border border-transparent font-serif tracking-soft ' +
+  'transition-[color,background-color,border-color,box-shadow,opacity] duration-300 ease-out active:scale-[0.98]';
+
+/**
+ * Un solo tamaño para todo el sitio: el compacto del acceso. Con tres
+ * escalas, cada vista elegía la suya y el mismo botón medía distinto según
+ * dónde estuviera; la jerarquía entre botones la dan las variantes, no el
+ * tamaño.
+ */
+const SIZE = 'min-h-11 px-[clamp(18px,3vw,26px)] py-[clamp(8px,1.2vw,11px)] text-lead';
+
+/** Variantes que no dependen de `tone` (todas salvo `accent`). */
+const VARIANT_CLASSES: Record<Exclude<ButtonVariant, 'accent'>, string> = {
+  primary:
+    'bg-ivory/95 text-ink font-medium shadow-[0_10px_40px_rgba(216,185,120,0.22)] ' +
+    'hover:bg-ivory hover:shadow-[0_14px_48px_rgba(216,185,120,0.34)]',
+  outline:
+    'bg-transparent border border-ivory/22 text-ivory ' + 'hover:bg-ivory/6 hover:border-ivory/34',
+  glass:
+    'bg-glass border border-ivory/22 text-ivory backdrop-blur-[8px] ' +
+    'hover:bg-ivory/9 hover:border-ivory/34',
+  ghost: 'bg-transparent text-fg-muted font-sans text-meta tracking-ui ' + 'hover:text-fg-body',
+};
+
+/**
+ * `disabled` del primario: un relleno marfil al 45% de opacidad se lee como
+ * una píldora gris sólida (la «caja gris» que el sistema prohíbe). Apagado
+ * = la misma píldora como vidrio con borde, sin halo y con texto atenuado.
+ */
+const PRIMARY_DISABLED = 'bg-ivory/14 border border-ivory/20 text-fg-muted shadow-none';
+
+/** `accent` vira de color según `tone`; el oro es el valor por defecto. */
+const ACCENT_TONE_CLASSES: Record<ButtonTone, string> = {
+  gold: 'bg-gold/12 border-gold/55 hover:bg-gold/20 hover:shadow-glow-gold',
+  teal: 'bg-teal/14 border-teal/50 hover:bg-teal/22 hover:shadow-glow-teal',
+  lav: 'bg-lav/14 border-lav/50 hover:bg-lav/22 hover:shadow-glow-lav',
+};
+
+/**
+ * Botón con cinco variantes de marca (`primary/outline/ghost/glass/accent`),
+ * magnetismo integrado y los seis estados que exige el PRD Parte 2 (default,
+ * hover, focus, pressed, loading, disabled).
+ *
+ * El contenido va siempre envuelto en `Magnetic` salvo que `disabled` sea
+ * verdadero (paso 6 del brief).
+ *
+ * `disabled` y `loading` son estados independientes, no un único apagado:
+ * - `disabled` aplica la opacidad reducida (.45) y anula los eventos de
+ *   puntero, vía clases explícitas — nunca vía `:disabled` — para que el
+ *   mismo cálculo funcione también en el hijo clonado de `asChild`.
+ * - `loading` mantiene el aspecto normal (más el pulso `animate-fm-glow`
+ *   sobre la etiqueta) y pone `aria-busy`. Bloquea el click — tanto por
+ *   puntero como por teclado — mediante `handleClick` y anula los eventos
+ *   de puntero de paso (silencia el magnetismo), pero sin la opacidad de
+ *   `disabled`.
+ */
+export function Button({
+  variant = 'primary',
+  tone = 'gold',
+  iconLeft,
+  iconRight,
+  loading = false,
+  disabled = false,
+  asChild = false,
+  className,
+  children,
+  type = 'button',
+  onClick,
+  ...rest
+}: ButtonProps) {
+  const variantClasses =
+    variant === 'accent'
+      ? cn('border', ACCENT_TONE_CLASSES[tone], 'text-ivory')
+      : VARIANT_CLASSES[variant];
+  // Estado explícito, no pseudo-clase: `disabled` trae opacidad + anula
+  // puntero; `loading` sólo anula puntero (el click además se bloquea en
+  // `handleClick`, que también cubre la activación por teclado).
+  const stateClasses = cn(
+    loading && !disabled && 'pointer-events-none',
+    disabled && 'pointer-events-none',
+    disabled && (variant === 'primary' ? PRIMARY_DISABLED : 'opacity-45'),
+  );
+  const classes = cn(BASE, SIZE, variantClasses, stateClasses, className);
+
+  const handleClick = (event: ReactMouseEvent<HTMLButtonElement>): void => {
+    if (disabled || loading) {
+      event.preventDefault();
+      return;
+    }
+    onClick?.(event);
+  };
+
+  const buildContent = (label: ReactNode) => (
+    <span className="inline-flex items-center gap-2">
+      {iconLeft ? (
+        <span aria-hidden="true" className="inline-flex shrink-0 items-center">
+          {iconLeft}
+        </span>
+      ) : null}
+      <span className={cn(loading && 'animate-fm-glow')}>{label}</span>
+      {iconRight ? (
+        <span aria-hidden="true" className="inline-flex shrink-0 items-center">
+          {iconRight}
+        </span>
+      ) : null}
+    </span>
+  );
+
+  if (asChild) {
+    if (!isValidElement(children)) return null;
+
+    const child = children as ReactElement<SlotProps>;
+
+    return cloneElement(child, {
+      ...rest,
+      onClick: handleClick,
+      className: cn(classes, child.props.className),
+      'aria-busy': loading,
+      // El hijo clonado (p. ej. un `Link`) no puede matchear `:disabled` ni
+      // recibir el atributo nativo: se anuncia vía `aria-disabled` y se
+      // corta la interacción con las clases explícitas de `stateClasses`.
+      'aria-disabled': disabled ? true : undefined,
+      children: disabled ? (
+        buildContent(child.props.children)
+      ) : (
+        <Magnetic>{buildContent(child.props.children)}</Magnetic>
+      ),
+    });
+  }
+
+  return (
+    <button
+      type={type}
+      disabled={disabled}
+      aria-busy={loading}
+      onClick={handleClick}
+      className={classes}
+      {...rest}
+    >
+      {disabled ? buildContent(children) : <Magnetic>{buildContent(children)}</Magnetic>}
+    </button>
+  );
+}
