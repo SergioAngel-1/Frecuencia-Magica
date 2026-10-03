@@ -13,7 +13,7 @@ type PlayerMiniProps = {
 /**
  * El reproductor recogido: un disco flotante que sigue sonando. Su aro marca
  * el avance y pulsarlo devuelve el dock. Vive en la esquina inferior derecha,
- * bajo la barra de realms en móvil, donde no tapa el contenido ni el footer.
+ * donde no tapa el contenido ni el footer.
  */
 export function PlayerMini({ hz, band, progress, label, onExpand }: PlayerMiniProps) {
   return (

@@ -9,6 +9,8 @@
   },
   "header": {
     "signIn": "Iniciar sesión",
+    "openMenu": "Abrir el menú de realms",
+    "closeMenu": "Cerrar el menú",
     "switchLanguage": "Cambiar a inglés",
     "languageLabel": "EN",
     "soundOn": "Silenciar el sonido ambiental",

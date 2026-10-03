@@ -180,11 +180,11 @@ Un cielo nocturno con tres luces y un marfil. Siete colores, ningún otro.
 
 **A sangre o dentro del eje, nunca a medias.** Bandas (`EditorialBanner`), héroes (`FullBleedSection`) y secciones editoriales ocupan el viewport completo (`fm-editorial-full-bleed`); su contenido se alinea con el eje. Una banda inset deja un borde duro junto a las que sí llegan al borde.
 
-**Rejilla y ritmo.** Retículas asimétricas de 12 columnas (bento de realms: 7+5, 4+4+4 con Tienda a dos filas, 8 + resto), gap de 16–28px. Separación generosa entre bloques, apretada dentro de un grupo, con **dos peldaños y sólo dos**: `section` (`clamp(56px, 8vw, 112px)`) separa secciones y cierra la página antes del footer; `block` (`clamp(28px, 5vw, 72px)`) separa un héroe o un encabezado de su contenido. Se usan como `py-section`, `gap-section`, `mt-block`; ninguna sección trae su propio margen exterior (lo pone el contenedor de la vista) y no se escriben `clamp()` sueltos para separar bloques. El hueco de los controles fijos (dock, barra de realms) lo reserva el footer, no cada vista. Los realms con vista centrada (Descúbrete, portal) se resuelven en `min-h-dvh`.
+**Rejilla y ritmo.** Retículas asimétricas de 12 columnas (bento de realms: 7+5, 4+4+4 con Tienda a dos filas, 8 + resto), gap de 16–28px. Separación generosa entre bloques, apretada dentro de un grupo, con **dos peldaños y sólo dos**: `section` (`clamp(56px, 8vw, 112px)`) separa secciones y cierra la página antes del footer; `block` (`clamp(28px, 5vw, 72px)`) separa un héroe o un encabezado de su contenido. Se usan como `py-section`, `gap-section`, `mt-block`; ninguna sección trae su propio margen exterior (lo pone el contenedor de la vista) y no se escriben `clamp()` sueltos para separar bloques. El hueco de los controles fijos (el dock del reproductor) lo reserva el footer, no cada vista. Los realms con vista centrada (Descúbrete, portal) se resuelven en `min-h-dvh`.
 
 **Breakpoints obligatorios:** 1440 / 1280 / 768 / 390. Utilidades de Tailwind en 640 (`sm`), 768 (`md`) y 1024 (`lg`); toda vista existe en móvil. Hit targets ≥44px; el texto corrido ≥15px.
 
-**Navegación y capas fijas.** La constelación de realms es una columna lateral de puntos desde 1024px (el nombre aparece al acercarse o enfocar) y una barra inferior de vidrio, desplazable y con nombres completos, por debajo. El dock del reproductor reserva 140px al pie (`fm-shell-reserve-bottom`). El header lleva un scrim de vacío para que logo y controles no floten sobre texto.
+**Navegación y capas fijas.** La constelación de realms es una columna lateral de puntos desde 1024px (el nombre aparece al acercarse o enfocar). Por debajo, un botón de menú en el header la despliega en una tarjeta modal (`RealmMenu` + `Modal`): no queda ninguna barra fija al pie compitiendo con el reproductor. El dock del reproductor ocupa el pie y el footer le reserva su hueco. El header lleva un scrim de vacío para que logo y controles no floten sobre texto.
 
 ## Elevation & Depth
 
@@ -250,7 +250,10 @@ Las bandas y héroes a sangre no llevan radio. El retrato de Marisol conserva su
 - **Error:** borde y etiqueta en terracota, mensaje con `aria-live="polite"`.
 
 ### Navigation
-La **constelación**: seis puntos de luz, uno por realm, tintados con el acento del realm; el activo brilla. En escritorio el nombre emerge al acercarse o enfocar; en móvil y tablet es una barra de cristal con los seis nombres en mayúsculas, desplazable, con el realm actual centrado. No aparece en portal ni acceso.
+La **constelación**: seis puntos de luz, uno por realm, tintados con el acento del realm; el activo brilla. En escritorio el nombre emerge al acercarse o enfocar. En móvil y tablet se abre desde el botón de menú del header como tarjeta modal: los seis realms de un vistazo, cada uno con su punto, su nombre en serif y su emoción, y el actual marcado. No aparece en portal ni acceso.
+
+### Modal
+`Modal` (UI Kit) es una tarjeta de cristal denso sobre la noche difuminada, montada sobre el `<dialog>` nativo: foco atrapado, Escape, cierre al pulsar fuera y scroll de página bloqueado. Cabecera con el título en kicker y el cierre como `IconButton` fantasma. `placement="top"` la cuelga bajo el header (menús); `center` la centra. Sólo para lo que de verdad pide interrumpir o proteger el foco.
 
 ### Editorial media (signature)
 `FullBleedSection` (héroe o banda con fotografía), `EditorialBanner` (franja con kicker, título y acción), `EditorialImage` (imagen o zebra más scrim) y `MediaSkeleton` (zebra: bandas oro/teal/lavanda/vacío a baja opacidad, ángulo y fase derivados del id del slot, capa del 124% para que el barrido de carga nunca deje ver el borde; estática salvo con `animated`, que sólo usan los `loading.tsx`). Sin asset, `EditorialImage` pinta el `fallback` del slot (`zebra`, `band` o `none`, resuelto por `editorialVisual`) y lleva `data-media-slot` y `data-media-visual`.

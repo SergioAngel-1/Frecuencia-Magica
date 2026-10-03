@@ -46,7 +46,7 @@ export function SiteFooter() {
   return (
     <footer
       data-layout-layer="footer"
-      className="fm-safe-area-bottom fm-container pb-[calc(150px+env(safe-area-inset-bottom))] lg:pb-[46px]"
+      className="fm-safe-area-bottom fm-container pb-[calc(104px+env(safe-area-inset-bottom))] lg:pb-[46px]"
     >
       <div className="border-ivory/10 pt-block border-t">
         {realmId === 'home' ? (

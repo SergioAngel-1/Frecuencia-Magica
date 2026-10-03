@@ -8,6 +8,7 @@ import type { Locale } from '@/i18n/routing';
 import { AudioToggle } from './audio-toggle';
 import { BrandMark } from './brand-mark';
 import { LanguageToggle } from './language-toggle';
+import { RealmMenu } from './realm-menu';
 import { SessionLink } from './session-link';
 
 /**
@@ -47,6 +48,7 @@ export function SiteHeader() {
         <LanguageToggle locale={locale} />
         <AudioToggle />
         <SessionLink label={t('signIn')} active={realmId === 'auth'} />
+        <RealmMenu />
       </div>
     </header>
   );

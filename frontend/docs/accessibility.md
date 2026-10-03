@@ -33,7 +33,7 @@ Primer elemento enfocable del documento: enlace «Saltar al contenido» (`#conte
 ## Foco y teclado
 
 - Foco visible en todos los controles (anillo dorado sobre fondo oscuro, `:focus-visible`).
-- La navegación de constelación despliega su badge al enfocar. En móvil/tablet (<1024px) es una barra inferior de vidrio con los seis nombres siempre visibles y **desplazable en horizontal** (seis nombres completos no caben en 390px y truncarlos los volvía ilegibles); el realm actual se centra al entrar. En escritorio sólo hay puntos: las etiquetas persistentes chocaban con los textos que arrancan en el eje de página.
+- La navegación de constelación despliega su badge al enfocar. En móvil/tablet (<1024px) se abre desde el botón de menú del header (`aria-haspopup="dialog"`, `aria-expanded`) como un `<dialog>` modal: foco atrapado, Escape y cierre al pulsar fuera; el realm actual lleva `aria-current="page"` y cada fila mide 60px.
 - Grupos de radio del quiz y rejillas de fecha de reserva: radio group nativo / botones con flechas.
 - El dock del reproductor es operable por teclado (la barra de progreso es un `input[type=range]` nativo).
 - `inert` + `aria-hidden` retiran el campo «nombre» del tab y del árbol accesible cuando el formulario está en modo login (apertura tipo pergamino con grid-rows).

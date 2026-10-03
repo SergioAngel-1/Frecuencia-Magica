@@ -47,6 +47,7 @@ export { Input, type InputProps } from './input';
 export { Kicker, type KickerSpacing, type KickerTone } from './kicker';
 export { LoadingOrb, type OrbTone } from './loading-orb';
 export { Magnetic } from './magnetic';
+export { Modal, type ModalPlacement } from './modal';
 export { MediaSkeleton, type MediaSkeletonProps } from './media-skeleton';
 export { Pill, type PillProps } from './pill';
 export { ProgressBar, type ProgressBarHeight } from './progress-bar';

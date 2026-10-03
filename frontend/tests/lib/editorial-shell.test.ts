@@ -12,6 +12,11 @@ const REALM_NAV_SOURCE = readFileSync(
   'utf8',
 );
 
+const REALM_MENU_SOURCE = readFileSync(
+  resolve(process.cwd(), 'src/components/layout/realm-menu.tsx'),
+  'utf8',
+);
+
 const EXPECTED_VISUAL_MODES = {
   portal: 'cosmic',
   home: 'editorial',
@@ -55,23 +60,26 @@ describe('editorial shell contracts', () => {
     expect(classes).toContain('fm-shell-reserve-bottom');
   });
 
-  it('keeps inactive realm labels above the contrast floor without stacked opacity', () => {
-    const labelClasses = REALM_NAV_SOURCE.match(
-      /className="([^"]*text-fg-muted[^"]*lg:hidden)"/,
-    )?.[1];
+  it('keeps inactive realm names in the mobile menu above the contrast floor without stacked opacity', () => {
+    const inactive = REALM_MENU_SOURCE.match(/active \? 'text-ivory' : '([^']*)'/)?.[1];
 
-    expect(labelClasses, 'inactive mobile label').toBeDefined();
-    expect(labelClasses).not.toContain('opacity-');
-
-    expect(REALM_NAV_SOURCE).toContain('group-aria-[current=page]:text-ivory');
-    expect(REALM_NAV_SOURCE).toContain('group-hover:text-ivory group-focus-visible:text-ivory');
+    expect(inactive, 'inactive menu row').toBeDefined();
+    expect(inactive).toContain('text-fg-body');
+    expect(REALM_MENU_SOURCE).not.toMatch(/\bopacity-\d/);
+    expect(REALM_MENU_SOURCE).toContain("aria-current={active ? 'page' : undefined}");
   });
 
-  it('never truncates realm names: the bottom bar scrolls and desktop shows dots only', () => {
+  it('never truncates realm names: a header menu below 1024px, dots only from there', () => {
     expect(REALM_NAV_SOURCE).not.toContain('truncate');
-    expect(REALM_NAV_SOURCE).not.toMatch(/max-w-\[68px\]/);
-    expect(REALM_NAV_SOURCE).toContain('max-lg:overflow-x-auto');
-    expect(REALM_NAV_SOURCE).toContain('max-lg:fm-surface-strong');
+    expect(REALM_MENU_SOURCE).not.toContain('truncate');
+    // Below 1024px the constellation lives in a modal opened from the header:
+    // the scrolling bottom bar is gone, and so is its fight with the player.
+    expect(REALM_NAV_SOURCE).toContain('hidden -translate-y-1/2 lg:block');
+    expect(REALM_NAV_SOURCE).not.toContain('max-lg:');
+    expect(REALM_MENU_SOURCE).toContain('lg:hidden');
+    expect(REALM_MENU_SOURCE).toContain('<Modal');
+    expect(REALM_MENU_SOURCE).toContain('NAV_REALMS.map');
+    expect(REALM_MENU_SOURCE).toContain('aria-haspopup="dialog"');
     // Persistent labels on desktop collided with content starting on the page
     // axis; the destination appears on hover/focus through the badge instead.
     expect(REALM_NAV_SOURCE).not.toContain('lg:inline');

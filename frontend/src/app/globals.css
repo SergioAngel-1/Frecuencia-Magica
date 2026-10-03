@@ -295,7 +295,7 @@
 }
 
 /* La vista llena el viewport y el scroll deja libre la franja de los controles
-   fijos (dock, barra de realms). El hueco al pie de página lo pone el footer,
+   fijos (el dock del reproductor). El hueco al pie de página lo pone el footer,
    que cierra todos los realms: reservarlo también aquí lo duplicaba. */
 @utility fm-shell-reserve-bottom {
   min-height: 100svh;
