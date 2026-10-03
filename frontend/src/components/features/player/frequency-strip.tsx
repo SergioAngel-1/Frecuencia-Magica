@@ -1,8 +1,7 @@
-'use client';
-
-import { FrequencyDisc, type DiscSize } from '@/components/ui';
+import type { DiscSize } from '@/components/ui';
 import { cn } from '@/lib/cn';
-import { usePlayerStore } from '@/stores/player-store';
+
+import { AudioDisc } from './audio-disc';
 
 export type FrequencyStripItem = {
   id: string;
@@ -39,24 +38,17 @@ const ITEM: Record<NonNullable<FrequencyStripProps['size']>, string> = {
  * gesto y el mismo estado activo en los dos sitios.
  */
 export function FrequencyStrip({ items, label, size = 'sm', className }: FrequencyStripProps) {
-  const open = usePlayerStore((state) => state.open);
-  const activeId = usePlayerStore((state) => state.audioId);
-
   return (
     <ul aria-label={label} className={cn(LAYOUT[size], className)}>
       {items.map((item, index) => (
         <li key={item.id} className={ITEM[size]}>
-          <FrequencyDisc
-            size={size}
-            hz={item.hz}
-            band={item.band}
+          <AudioDisc
+            audio={item}
             title={item.title}
             meta={item.meta}
-            active={activeId === item.id}
+            size={size}
             floatDuration={`${7 + (index % 4) * 0.6}s`}
             floatDelay={`${(index % 4) * 0.35}s`}
-            ariaLabel={[item.title, `${item.hz} Hz`, item.meta].filter(Boolean).join(' — ')}
-            onClick={() => open(item.id)}
           />
         </li>
       ))}

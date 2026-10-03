@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
 import { Halo } from '@/components/world/halo';
 import { OrbitalRings, type Ring } from '@/components/world/orbital-rings';
@@ -23,13 +23,15 @@ type SizeSpec = {
   spin: number;
   play: number | null;
   eq: EqualizerScale | null;
-  halo: string | null;
+  /** Halo dorado: resplandor amplio y tenue alrededor del disco. */
+  halo: { inset: string; blur: number; alpha: number } | null;
   /**
-   * Aura de los discos pequeños: la propia banda del audio, difuminada y
-   * respirando detrás de la esfera. Cada frecuencia irradia su color en vez
-   * de recortarse contra una sombra oscura. Valor: cuánto sobresale.
+   * Aura: la propia banda del audio, difuminada y respirando detrás de la
+   * esfera. Cada frecuencia irradia su color en vez de recortarse contra una
+   * sombra oscura. En el destacado se suma al halo dorado: el color cerca,
+   * el oro lejos.
    */
-  aura: string | null;
+  aura: { inset: string; blur: number; rest: number; active: number } | null;
   restGlow: string;
   activeGlow: string;
 };
@@ -46,7 +48,7 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     play: null,
     eq: null,
     halo: null,
-    aura: '-10%',
+    aura: { inset: '-10%', blur: 12, rest: 0.6, active: 0.9 },
     restGlow: '0 0 18px rgba(216,185,120,0.14), inset 0 0 14px rgba(15,27,46,0.35)',
     activeGlow: '0 0 30px rgba(216,185,120,0.42), inset 0 0 14px rgba(15,27,46,0.35)',
   },
@@ -61,7 +63,7 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     play: null,
     eq: null,
     halo: null,
-    aura: '-12%',
+    aura: { inset: '-12%', blur: 14, rest: 0.6, active: 0.9 },
     restGlow: '0 0 26px rgba(216,185,120,0.16), inset 0 0 20px rgba(15,27,46,0.35)',
     activeGlow: '0 0 44px rgba(216,185,120,0.45), inset 0 0 20px rgba(15,27,46,0.35)',
   },
@@ -77,7 +79,7 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     // El ecualizador no cabe entre la cifra y el play a esta escala: el play
     // lo tapaba y sólo asomaba una barra. Sólo el disco `lg` lo lleva.
     eq: null,
-    halo: '-10%',
+    halo: { inset: '-10%', blur: 14, alpha: 0.22 },
     aura: null,
     restGlow: '0 0 22px rgba(15,27,46,0.5)',
     activeGlow: '0 0 44px rgba(216,185,120,0.4)',
@@ -92,10 +94,10 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     spin: 110,
     play: 62,
     eq: 'lg',
-    halo: '-12%',
-    aura: null,
-    restGlow: '0 0 80px rgba(216,185,120,0.42), inset 0 0 40px rgba(15,27,46,0.4)',
-    activeGlow: '0 0 90px rgba(216,185,120,0.5), inset 0 0 40px rgba(15,27,46,0.4)',
+    halo: { inset: '-26%', blur: 34, alpha: 0.2 },
+    aura: { inset: '-9%', blur: 34, rest: 0.75, active: 1 },
+    restGlow: '0 0 46px rgba(216,185,120,0.26), inset 0 0 44px rgba(15,27,46,0.42)',
+    activeGlow: '0 0 64px rgba(216,185,120,0.44), inset 0 0 44px rgba(15,27,46,0.42)',
   },
 };
 
@@ -125,6 +127,11 @@ interface FrequencyDiscProps {
   hz: number;
   /** Gradiente de fondo del disco. */
   band: string;
+  /**
+   * Portada del audio, pintada dentro de la esfera bajo la luz especular. La
+   * foto vive en el disco: nunca en un marco propio a su alrededor.
+   */
+  cover?: ReactNode;
   title?: string;
   /** Línea de meta bajo el título, ya compuesta y traducida. */
   meta?: string;
@@ -156,6 +163,7 @@ export function FrequencyDisc({
   size = 'md',
   hz,
   band,
+  cover,
   title,
   meta,
   active = false,
@@ -179,17 +187,23 @@ export function FrequencyDisc({
   const disc = (
     <>
       <div className="relative mx-auto aspect-square w-full" style={floatStyle}>
-        {spec.halo ? <Halo color="rgba(216,185,120,0.22)" blur={14} inset={spec.halo} /> : null}
+        {spec.halo ? (
+          <Halo
+            color={`rgba(216,185,120,${spec.halo.alpha})`}
+            blur={spec.halo.blur}
+            inset={spec.halo.inset}
+          />
+        ) : null}
         {spec.aura ? (
           // La opacidad va en el envoltorio: `fm-breathe` anima la suya propia.
           <div
             aria-hidden="true"
             className="pointer-events-none absolute transition-opacity duration-500"
-            style={{ inset: spec.aura, opacity: active ? 0.9 : 0.6 }}
+            style={{ inset: spec.aura.inset, opacity: active ? spec.aura.active : spec.aura.rest }}
           >
             <div
-              className="animate-fm-breathe size-full rounded-full blur-[14px]"
-              style={{ backgroundImage: band }}
+              className="animate-fm-breathe size-full rounded-full"
+              style={{ backgroundImage: band, filter: `blur(${spec.aura.blur}px)` }}
             />
           </div>
         ) : null}
@@ -228,6 +242,7 @@ export function FrequencyDisc({
             transition: 'box-shadow .4s, border-color .4s',
           }}
         >
+          {cover ? <div className="absolute inset-0">{cover}</div> : null}
           <div aria-hidden="true" className="absolute inset-0" style={{ backgroundImage: SHEEN }} />
 
           {showEqualizer && spec.eq ? (

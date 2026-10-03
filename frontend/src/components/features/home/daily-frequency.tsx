@@ -2,18 +2,12 @@
 
 import type { ReactNode } from 'react';
 
+import { AudioDisc } from '@/components/features/player/audio-disc';
 import {
   FrequencyStrip,
   type FrequencyStripItem,
 } from '@/components/features/player/frequency-strip';
-import {
-  Display,
-  EditorialImage,
-  FrequencyDisc,
-  Kicker,
-  ArrowGlyph,
-  arrowLinkClasses,
-} from '@/components/ui';
+import { Display, EditorialImage, Kicker, ArrowGlyph, arrowLinkClasses } from '@/components/ui';
 import { usePlayerStore } from '@/stores/player-store';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -77,7 +71,16 @@ export function DailyFrequency({
       <div className="fm-container py-block relative z-20 w-full">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1fr)] md:gap-[clamp(34px,7vw,110px)]">
           <div className="mx-auto w-full max-w-[380px] md:mx-0">
-            <FrequencyDisc size="lg" hz={hz} band={band} active={isActive} floatDuration="8s" />
+            <AudioDisc
+              audio={{ id: audioId, hz, band }}
+              title={title}
+              meta={meta}
+              size="lg"
+              caption={false}
+              showPlay
+              showEqualizer
+              floatDuration="8s"
+            />
           </div>
 
           <div className="max-w-[620px]">

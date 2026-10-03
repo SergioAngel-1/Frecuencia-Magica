@@ -16,7 +16,7 @@ const SIZES = {
     spin: 70,
     play: null,
     eq: null,
-    aura: '-10%',
+    aura: { inset: '-10%', blur: 12, rest: 0.6, active: 0.9 },
     restGlow: '0 0 18px rgba(216,185,120,0.14), inset 0 0 14px rgba(15,27,46,0.35)',
     activeGlow: '0 0 30px rgba(216,185,120,0.42), inset 0 0 14px rgba(15,27,46,0.35)',
   },
@@ -30,7 +30,7 @@ const SIZES = {
     spin: 70,
     play: null,
     eq: null,
-    aura: '-12%',
+    aura: { inset: '-12%', blur: 14, rest: 0.6, active: 0.9 },
     restGlow: '0 0 26px rgba(216,185,120,0.16), inset 0 0 20px rgba(15,27,46,0.35)',
     activeGlow: '0 0 44px rgba(216,185,120,0.45), inset 0 0 20px rgba(15,27,46,0.35)',
   },
@@ -57,8 +57,10 @@ const SIZES = {
     spin: 110,
     play: 62,
     eq: 'lg',
-    restGlow: '0 0 80px rgba(216,185,120,0.42), inset 0 0 40px rgba(15,27,46,0.4)',
-    activeGlow: '0 0 90px rgba(216,185,120,0.5), inset 0 0 40px rgba(15,27,46,0.4)',
+    halo: { inset: '-26%', blur: 34, alpha: 0.2 },
+    aura: { inset: '-9%', blur: 34, rest: 0.75, active: 1 },
+    restGlow: '0 0 46px rgba(216,185,120,0.26), inset 0 0 44px rgba(15,27,46,0.42)',
+    activeGlow: '0 0 64px rgba(216,185,120,0.44), inset 0 0 44px rgba(15,27,46,0.42)',
   },
 }
 
@@ -82,8 +84,8 @@ function ringsFor(size, active) {
 
 /**
  * Disco orbital de frecuencia — la pieza identitaria del producto. Cuatro escalas
- * (`xs` de sugerencia, `sm` flotante, `md` de rejilla, `lg` destacado). Las dos
- * pequeñas irradian la banda del audio como aura. En Biblioteca no hay rejilla de
+ * (`xs` de sugerencia, `sm` flotante, `md` de rejilla, `lg` destacado). Las pequeñas
+ * y la destacada irradian la banda del audio como aura; la destacada suma un halo dorado amplio. En Biblioteca no hay rejilla de
  * tarjetas: son discos.
  */
 export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = false, showPlay = false, showEqualizer = false, playing = true, width, className }) {
@@ -93,13 +95,24 @@ export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = fal
   return (
     <div className={cn('mx-auto w-full', className)} style={{ maxWidth: box }}>
       <div className="relative mx-auto aspect-square w-full">
+        {spec.halo ? (
+          <div
+            aria-hidden="true"
+            className="animate-fm-breathe pointer-events-none absolute rounded-full"
+            style={{
+              inset: spec.halo.inset,
+              background: `radial-gradient(circle, rgba(216,185,120,${spec.halo.alpha}), transparent 66%)`,
+              filter: `blur(${spec.halo.blur}px)`,
+            }}
+          />
+        ) : null}
         {spec.aura ? (
           <div
             aria-hidden="true"
             className="pointer-events-none absolute transition-opacity duration-500"
-            style={{ inset: spec.aura, opacity: active ? 0.9 : 0.6 }}
+            style={{ inset: spec.aura.inset, opacity: active ? spec.aura.active : spec.aura.rest }}
           >
-            <div className="animate-fm-breathe size-full rounded-full blur-[14px]" style={{ backgroundImage: band }} />
+            <div className="animate-fm-breathe size-full rounded-full" style={{ backgroundImage: band, filter: `blur(${spec.aura.blur}px)` }} />
           </div>
         ) : null}
         <OrbitalRings

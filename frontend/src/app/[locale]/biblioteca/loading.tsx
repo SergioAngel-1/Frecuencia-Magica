@@ -9,7 +9,7 @@ const SMALL_DISCS = Array.from({ length: 6 }, (_, i) => discSlot(i));
 
 /**
  * Silueta editorial de la Biblioteca: conserva el hero, los filtros, el
- * banner del archivo y el campo destacado antes de resolver los discos.
+ * banner del archivo y el sistema de discos antes de resolverlos.
  */
 export default async function Loading() {
   const t = await getTranslations('library');
@@ -46,15 +46,9 @@ export default async function Loading() {
             className="relative isolate mx-auto w-full max-w-[1040px]"
             data-editorial-stage="orbital"
           >
-            {/* <1024px: campo destacado seguido de rejilla secundaria. */}
+            {/* <1024px: disco destacado seguido de rejilla secundaria. */}
             <div className="mx-auto block lg:hidden">
-              <MediaSkeleton
-                animated
-                aspect="16:8"
-                className="min-h-[clamp(430px,58vw,680px)]"
-                label={t('media.alt.featured')}
-                slot="library.featured"
-              />
+              <Skeleton variant="disc" className="mx-auto w-[min(380px,84vw)]" />
               <div className="mt-8 grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-5">
                 {SMALL_DISCS.map((_, i) => (
                   <Skeleton key={i} variant="disc" className="mx-auto w-[140px]" />
@@ -62,14 +56,11 @@ export default async function Loading() {
               </div>
             </div>
 
-            {/* >=1024px: el campo destacado y las posiciones orbitales. */}
+            {/* >=1024px: el disco destacado y las posiciones orbitales. */}
             <div className="relative hidden min-h-[720px] lg:block">
-              <MediaSkeleton
-                animated
-                aspect="16:8"
-                className="absolute top-1/2 left-1/2 z-[4] min-h-[clamp(430px,58vw,680px)] w-[min(70%,720px)] -translate-x-1/2 -translate-y-1/2"
-                label={t('media.alt.featured')}
-                slot="library.featured"
+              <Skeleton
+                variant="disc"
+                className="absolute top-1/2 left-1/2 z-[4] w-[380px] -translate-x-1/2 -translate-y-1/2"
               />
               {SMALL_DISCS.map((slot, i) => (
                 <Skeleton

@@ -85,19 +85,23 @@ describe('library editorial composition contracts', () => {
     expect(pageSource).toContain('<LibrarySystem media={libraryMedia}');
   });
 
-  it('keeps the featured frequency inside the editorial field and never maps it as a secondary', () => {
+  it('paints featured and secondary frequencies with the shared AudioDisc, cover inside the sphere', () => {
+    const discSource = readSource('components/features/player/audio-disc.tsx');
+
     expect(systemSource).toContain('media: LibraryMedia');
-    expect(systemSource).toContain('<EditorialImage');
-    expect(systemSource).toContain('{ ...media.featured, band: featured.band }');
-    expect(systemSource).toContain('media={audioCoverMedia(audio)}');
+    // Sin doble contenedor: ningún marco de imagen alrededor de los discos.
+    expect(systemSource).not.toContain('<EditorialImage');
+    expect(systemSource).not.toContain('<FrequencyDisc');
+    expect(systemSource.match(/<AudioDisc/g)).toHaveLength(2);
+    expect(systemSource).toContain('cover={{ ...media.featured, band: featured.band }}');
+    expect(systemSource).toContain('cover={audioCoverMedia(audio)}');
+    expect(discSource).toContain('<EditorialImage');
+    expect(discSource).toContain("editorialVisual(cover) === 'photo'");
+    expect(discSource).toContain('onClick={() => open(audio.id)}');
     expect(systemSource).toContain("alt: t('media.alt.audioCover', { title: audioTitle(audio) })");
     expect(systemSource).toContain('data-editorial-featured="true"');
     expect(systemSource).toContain('{others.map');
     expect(systemSource).not.toContain('{filtered.map');
-    expect(systemSource).toContain('<LibrarySecondaryDisc');
-    expect(readSource('components/features/library/library-secondary-disc.tsx')).toContain(
-      'onOpen(audio.id)',
-    );
     expect(systemSource).toContain('<EmptyState');
     expect(systemSource).toContain('<LibraryFilters');
   });
@@ -127,7 +131,9 @@ describe('library editorial composition contracts', () => {
     expect(loadingSource).toContain('aria-busy="true"');
     expect(loadingSource).toContain('<MediaSkeleton');
     expect(loadingSource).toContain('slot="library.hero"');
-    expect(loadingSource).toContain('slot="library.featured"');
+    // El destacado es un disco, no un campo fotográfico: su silueta también.
+    expect(loadingSource).not.toContain('slot="library.featured"');
+    expect(loadingSource).toContain('variant="disc"');
     // `library.archive-banner` es `none`: la silueta replica un banner sólo de texto.
     expect(loadingSource).not.toContain('slot="library.archive-banner"');
     expect(loadingSource).toContain('role="group"');

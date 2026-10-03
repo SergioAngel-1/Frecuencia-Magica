@@ -3,16 +3,14 @@
 import { useMemo, useState, type CSSProperties } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { Badge, Button, EditorialBanner, EditorialImage, EmptyState } from '@/components/ui';
-import { FrequencyDisc } from '@/components/ui/frequency-disc';
+import { AudioDisc } from '@/components/features/player/audio-disc';
+import { Badge, Button, EditorialBanner, EmptyState } from '@/components/ui';
 import { AUDIOS } from '@/data';
 import { discSlot, filterAudios, splitFeaturedAudio } from '@/lib/library/layout-slots';
-import { usePlayerStore } from '@/stores/player-store';
 import type { Audio } from '@/types/content';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { LibraryFilters } from './library-filters';
-import { LibrarySecondaryDisc } from './library-secondary-disc';
 
 export type LibraryMedia = {
   featured: EditorialMedia;
@@ -24,9 +22,6 @@ export function LibrarySystem({ media }: { media: LibraryMedia }) {
   const t = useTranslations('library');
   const statesT = useTranslations('states');
   const [filter, setFilter] = useState<string | null>(null);
-
-  const open = usePlayerStore((s) => s.open);
-  const currentAudioId = usePlayerStore((s) => s.audioId);
 
   const filtered = useMemo(() => filterAudios(AUDIOS, filter), [filter]);
   const { featured, others } = splitFeaturedAudio(filtered);
@@ -66,47 +61,30 @@ export function LibrarySystem({ media }: { media: LibraryMedia }) {
           className="relative isolate mx-auto w-full max-w-[1040px]"
           data-editorial-stage="orbital"
         >
-          {/* El destacado es el sol del sistema: su foto se funde en un halo
-              (máscara radial en desktop) y los discos orbitan a su alrededor.
-              En móvil y tablet es una tarjeta apilada sobre el archivo. El
-              título y la meta los pinta el propio disco: no se repiten al lado. */}
-          <div
-            className="relative isolate lg:absolute lg:top-1/2 lg:left-1/2 lg:z-[2] lg:w-[min(92%,900px)] lg:-translate-x-1/2 lg:-translate-y-1/2"
-            data-editorial-featured="true"
-          >
-            <div className="rounded-card-lg absolute inset-0 overflow-hidden lg:rounded-none lg:[mask-image:radial-gradient(closest-side,#000_58%,transparent)]">
-              <EditorialImage
-                aspect={media.featured.aspect}
-                className="h-full"
-                focalPoint={media.featured.position}
-                media={featured ? { ...media.featured, band: featured.band } : media.featured}
-                overlay="bottom"
-                scrim="bottom"
+          {/* El destacado es el sol del sistema y los demás orbitan a su
+              alrededor; en móvil y tablet va apilado sobre el archivo. Todos
+              son el mismo `AudioDisc` de la Home: la portada vive dentro de la
+              esfera y la luz es el aura del propio disco, sin marco alrededor. */}
+          {featured ? (
+            <div
+              className="relative mx-auto w-[min(380px,84vw)] py-6 lg:absolute lg:top-1/2 lg:left-1/2 lg:z-[2] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:py-0"
+              data-editorial-featured="true"
+            >
+              <div className="mb-4 flex justify-center">
+                <Badge solid>{t('featuredBadge')}</Badge>
+              </div>
+              <AudioDisc
+                audio={featured}
+                title={audioTitle(featured)}
+                meta={audioMeta(featured)}
+                size="lg"
+                cover={{ ...media.featured, band: featured.band }}
+                showEqualizer
+                showPlay
+                floatDuration="7s"
               />
             </div>
-            <div className="relative z-20 flex min-h-[clamp(470px,58vw,640px)] flex-col items-center justify-center px-6 py-12 text-center">
-              {featured ? (
-                <div className="mx-auto w-[min(380px,84vw)]">
-                  <div className="mb-3 flex justify-center">
-                    <Badge solid>{t('featuredBadge')}</Badge>
-                  </div>
-                  <FrequencyDisc
-                    size="lg"
-                    hz={featured.hz}
-                    band={featured.band}
-                    title={audioTitle(featured)}
-                    meta={audioMeta(featured)}
-                    showEqualizer
-                    showPlay
-                    active={currentAudioId === featured.id}
-                    floatDuration="7s"
-                    onClick={() => open(featured.id)}
-                    ariaLabel={audioTitle(featured)}
-                  />
-                </div>
-              ) : null}
-            </div>
-          </div>
+          ) : null}
 
           {/* Un único mapa mantiene un solo nodo por frecuencia en ambos breakpoints. */}
           <div
@@ -127,18 +105,15 @@ export function LibrarySystem({ media }: { media: LibraryMedia }) {
                     } as CSSProperties
                   }
                 >
-                  <div className="w-full">
-                    <LibrarySecondaryDisc
-                      audio={audio}
-                      media={audioCoverMedia(audio)}
-                      title={audioTitle(audio)}
-                      meta={audioMeta(audio)}
-                      active={currentAudioId === audio.id}
-                      floatDuration={slot.duration}
-                      floatDelay={slot.delay}
-                      onOpen={open}
-                    />
-                  </div>
+                  <AudioDisc
+                    audio={audio}
+                    title={audioTitle(audio)}
+                    meta={audioMeta(audio)}
+                    size="sm"
+                    cover={audioCoverMedia(audio)}
+                    floatDuration={slot.duration}
+                    floatDelay={slot.delay}
+                  />
                 </div>
               );
             })}

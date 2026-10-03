@@ -2,15 +2,9 @@
 
 import { useTranslations } from 'next-intl';
 
+import { AudioDisc } from '@/components/features/player/audio-disc';
 import { FrequencyStrip } from '@/components/features/player/frequency-strip';
-import {
-  ArrowGlyph,
-  arrowLinkClasses,
-  EditorialImage,
-  FrequencyDisc,
-  GlassPanel,
-  Kicker,
-} from '@/components/ui';
+import { ArrowGlyph, arrowLinkClasses, EditorialImage, GlassPanel, Kicker } from '@/components/ui';
 import { AUDIOS } from '@/data';
 import { suggestAudios } from '@/lib/library/suggestions';
 import type { EditorialMedia } from '@/types/editorial-media';
@@ -72,17 +66,7 @@ export function DailyCard({ media, audioId }: DailyCardProps) {
         </Kicker>
         <p className="text-fg-soft text-meta tracking-ui mt-2 font-sans">{t('subtitle')}</p>
       </div>
-      <FrequencyDisc
-        size="sm"
-        hz={audio.hz}
-        band={audio.band}
-        title={title}
-        meta={meta}
-        active={activeId === audio.id}
-        floatDuration="8s"
-        ariaLabel={`${title} — ${audio.hz} Hz — ${meta}`}
-        onClick={() => open(audio.id)}
-      />
+      <AudioDisc audio={audio} title={title} meta={meta} size="sm" floatDuration="8s" />
       <button
         type="button"
         aria-pressed={activeId === audio.id}
