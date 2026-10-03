@@ -40,7 +40,7 @@ export default async function LibraryPage({ params }: PageProps) {
         description={t('description')}
       />
 
-      <div className="fm-editorial-full-bleed fm-container pt-[clamp(28px,5vw,72px)] pb-[220px]">
+      <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
         <LibrarySystem media={libraryMedia} />
       </div>
     </PageShell>

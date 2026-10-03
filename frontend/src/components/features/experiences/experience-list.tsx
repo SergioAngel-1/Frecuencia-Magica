@@ -45,7 +45,7 @@ export function ExperienceList({ media }: ExperienceListProps) {
         modeLabel={t('featuredBadge')}
         title={titleFor(featured)}
         featured
-        className="fm-editorial-full-bleed mb-[clamp(46px,8vw,96px)]"
+        className="fm-editorial-full-bleed mb-section"
       />
 
       <section aria-labelledby="experiences-archive-title" data-editorial-archive="true">

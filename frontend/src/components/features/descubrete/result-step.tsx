@@ -66,7 +66,7 @@ export function ResultStep({
         </Button>
       </div>
 
-      <section aria-labelledby="discover-path-title" className="mt-[clamp(36px,6vw,72px)] w-full">
+      <section aria-labelledby="discover-path-title" className="mt-block w-full">
         <div className="mb-6 flex flex-col items-center gap-3 text-center">
           <Kicker tone="teal" spacing="wide">
             {pathKicker}

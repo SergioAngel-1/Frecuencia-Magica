@@ -28,7 +28,7 @@ export function AudioGrid({ media, kicker, title, action, audios }: AudioGridPro
   const audioMedia = media;
 
   return (
-    <section className="fm-editorial-full-bleed relative isolate min-h-[clamp(420px,48vw,680px)] overflow-hidden py-[clamp(42px,7vw,88px)]">
+    <section className="fm-editorial-full-bleed relative isolate min-h-[clamp(420px,48vw,680px)] overflow-hidden py-block">
       <div className="absolute inset-0">
         <EditorialImage
           media={audioMedia}

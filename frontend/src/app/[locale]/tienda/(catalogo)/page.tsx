@@ -62,14 +62,14 @@ export default async function StorePage({ params }: PageProps) {
         action={<CartButton className="mt-1 shrink-0" />}
       />
 
-      <div className="fm-editorial-full-bleed fm-container pt-[clamp(30px,5vw,76px)] pb-[220px]">
+      <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
         <ProductGrid media={storeMedia} />
         <EditorialBanner
           media={storeMedia.ritualBanner}
           eyebrow={t('ritualBanner.kicker')}
           title={t('ritualBanner.title')}
           body={t('ritualBanner.body')}
-          className="fm-editorial-full-bleed mt-[clamp(60px,10vw,140px)]"
+          className="fm-editorial-full-bleed mt-section"
         />
       </div>
     </PageShell>

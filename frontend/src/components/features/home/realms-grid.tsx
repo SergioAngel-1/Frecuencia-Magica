@@ -55,7 +55,7 @@ export function RealmsGrid({
   const panels = realms.slice(0, 5);
 
   return (
-    <section className="fm-editorial-full-bleed py-[clamp(46px,8vw,110px)]">
+    <section className="fm-editorial-full-bleed">
       <EditorialBanner
         media={realmsMedia}
         eyebrow={kicker}
@@ -65,7 +65,7 @@ export function RealmsGrid({
         className="w-full"
       />
 
-      <div className="fm-editorial-full-bleed fm-container mt-[clamp(28px,5vw,64px)] grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-12">
+      <div className="fm-editorial-full-bleed fm-container mt-block grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-12">
         <RealmCard
           href={academia.href}
           band={academia.band}
@@ -92,7 +92,7 @@ export function RealmsGrid({
         ))}
       </div>
 
-      <WaveSeparator className="mx-auto mt-[clamp(36px,6vw,72px)] max-w-[1000px]" />
+      <WaveSeparator className="mt-block mx-auto max-w-[1000px]" />
     </section>
   );
 }

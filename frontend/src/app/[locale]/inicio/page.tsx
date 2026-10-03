@@ -84,33 +84,33 @@ export default async function HomePage({ params }: PageProps) {
         ]}
       />
 
-      <div className="relative">
-        <div className="mx-auto flex max-w-[1280px] flex-col gap-[clamp(18px,4vw,56px)] px-0 pt-[clamp(18px,4vw,56px)]">
-          <DailyFrequency
-            media={homeMedia.daily}
-            hz={firstAudio.hz}
-            band={firstAudio.band}
-            audioId={firstAudio.id}
-            kicker={t('daily.kicker')}
-            title={t('daily.title')}
-            description={t('daily.description')}
-            meta={`${t('daily.meta')} · ${firstAudio.duration}`}
-            cta={t('daily.cta')}
-          />
+      {/* Un solo ritmo: cada sección se separa de la siguiente con `section`
+          y ninguna trae su propio margen exterior. */}
+      <div className="py-section gap-section relative flex flex-col">
+        <DailyFrequency
+          media={homeMedia.daily}
+          hz={firstAudio.hz}
+          band={firstAudio.band}
+          audioId={firstAudio.id}
+          kicker={t('daily.kicker')}
+          title={t('daily.title')}
+          description={t('daily.description')}
+          meta={`${t('daily.meta')} · ${firstAudio.duration}`}
+          cta={t('daily.cta')}
+        />
 
-          <AudioGrid
-            media={homeMedia.audio}
-            kicker={t('audio.kicker')}
-            title={t('audio.title')}
-            action={
-              <Link href="/biblioteca" className={arrowLinkClasses('teal')}>
-                {common('seeAll')}
-                <ArrowGlyph />
-              </Link>
-            }
-            audios={homeAudios}
-          />
-        </div>
+        <AudioGrid
+          media={homeMedia.audio}
+          kicker={t('audio.kicker')}
+          title={t('audio.title')}
+          action={
+            <Link href="/biblioteca" className={arrowLinkClasses('teal')}>
+              {common('seeAll')}
+              <ArrowGlyph />
+            </Link>
+          }
+          audios={homeAudios}
+        />
 
         <RealmsGrid
           media={homeMedia.realms}

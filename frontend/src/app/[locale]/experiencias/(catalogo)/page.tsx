@@ -41,7 +41,7 @@ export default async function ExperiencesPage({ params }: PageProps) {
         description={t('description')}
       />
 
-      <div className="fm-editorial-full-bleed fm-container pt-[clamp(30px,5vw,76px)] pb-[220px]">
+      <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
         <ExperienceList media={experienceMedia} />
       </div>
     </PageShell>

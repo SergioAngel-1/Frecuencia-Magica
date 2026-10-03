@@ -22,11 +22,11 @@ export default async function Loading() {
           slot="academy.hero"
         />
 
-        <div className="fm-editorial-full-bleed fm-container pt-[clamp(30px,5vw,76px)] pb-[220px]">
+        <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
           <MediaSkeleton
             animated
             aspect="16:8"
-            className="motion-safe:animate-fm-fade-up mb-[clamp(42px,7vw,90px)] min-h-[clamp(420px,42vw,600px)]"
+            className="motion-safe:animate-fm-fade-up mb-section min-h-[clamp(420px,42vw,600px)]"
             label={t('media.alt.featured', { title: t('courses.c1.title') })}
             slot="academy.featured-course"
           />

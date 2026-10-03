@@ -64,7 +64,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
         />
       </section>
 
-      <div className="mt-[clamp(34px,6vw,76px)] grid gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1fr)] lg:gap-16">
+      <div className="mt-block grid gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1fr)] lg:gap-16">
         <div>
           <Badge solid>{t(categoryKey(product.catKey))}</Badge>
           <Kicker tone="gold" spacing="widest" className="mt-6">
@@ -131,7 +131,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
       </div>
 
       {related.length > 0 ? (
-        <section className="mt-[clamp(64px,10vw,140px)]" data-editorial-media="product.related">
+        <section className="mt-section" data-editorial-media="product.related">
           <SectionHeading
             kicker={t('relatedHeading.kicker')}
             title={t('relatedHeading.title')}

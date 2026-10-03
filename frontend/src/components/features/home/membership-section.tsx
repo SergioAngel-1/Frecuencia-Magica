@@ -20,7 +20,7 @@ export function MembershipSection({
   const membershipMedia = media;
 
   return (
-    <section className="w-full py-[clamp(28px,6vw,84px)]">
+    <section className="w-full">
       <EditorialBanner
         media={membershipMedia}
         eyebrow={kicker}

@@ -180,7 +180,7 @@ Un cielo nocturno con tres luces y un marfil. Siete colores, ningún otro.
 
 **A sangre o dentro del eje, nunca a medias.** Bandas (`EditorialBanner`), héroes (`FullBleedSection`) y secciones editoriales ocupan el viewport completo (`fm-editorial-full-bleed`); su contenido se alinea con el eje. Una banda inset deja un borde duro junto a las que sí llegan al borde.
 
-**Rejilla y ritmo.** Retículas asimétricas de 12 columnas (bento de realms: 7+5, 4+4+4 con Tienda a dos filas, 8 + resto), gap de 16–28px. Separación generosa entre bloques (`clamp(46px, 8vw, 110px)`), apretada dentro de un grupo. Los realms con vista centrada (Descúbrete, portal) se resuelven en `min-h-dvh`.
+**Rejilla y ritmo.** Retículas asimétricas de 12 columnas (bento de realms: 7+5, 4+4+4 con Tienda a dos filas, 8 + resto), gap de 16–28px. Separación generosa entre bloques, apretada dentro de un grupo, con **dos peldaños y sólo dos**: `section` (`clamp(56px, 8vw, 112px)`) separa secciones y cierra la página antes del footer; `block` (`clamp(28px, 5vw, 72px)`) separa un héroe o un encabezado de su contenido. Se usan como `py-section`, `gap-section`, `mt-block`; ninguna sección trae su propio margen exterior (lo pone el contenedor de la vista) y no se escriben `clamp()` sueltos para separar bloques. El hueco de los controles fijos (dock, barra de realms) lo reserva el footer, no cada vista. Los realms con vista centrada (Descúbrete, portal) se resuelven en `min-h-dvh`.
 
 **Breakpoints obligatorios:** 1440 / 1280 / 768 / 390. Utilidades de Tailwind en 640 (`sm`), 768 (`md`) y 1024 (`lg`); toda vista existe en móvil. Hit targets ≥44px; el texto corrido ≥15px.
 

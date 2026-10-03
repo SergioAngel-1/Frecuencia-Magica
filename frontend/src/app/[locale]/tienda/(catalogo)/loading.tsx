@@ -64,7 +64,7 @@ export default async function Loading() {
           slot="store.hero"
         />
 
-        <div className="fm-editorial-full-bleed fm-container pt-[clamp(30px,5vw,76px)] pb-[220px]">
+        <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
           <section data-editorial-archive="true" aria-label={t('gridTitle')}>
             <div className="mb-8 max-w-[58ch]">
               <div className="bg-gold/20 h-3 w-28 rounded-full" />
@@ -126,7 +126,7 @@ export default async function Loading() {
 
           <div
             aria-hidden="true"
-            className="mt-[clamp(60px,10vw,140px)] flex min-h-[clamp(280px,35vw,520px)] flex-col justify-end gap-4 py-[clamp(24px,6vw,84px)]"
+            className="mt-section flex min-h-[clamp(280px,35vw,520px)] flex-col justify-end gap-4 py-[clamp(24px,6vw,84px)]"
           >
             <Skeleton variant="text" className="h-3 w-36" />
             <Skeleton variant="text" className="h-12 w-[min(560px,90vw)]" />

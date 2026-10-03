@@ -14,7 +14,7 @@ export function AboutSection({ media, kicker, title, p1, p2 }: AboutSectionProps
   const portraitMedia = media;
 
   return (
-    <section className="fm-editorial-full-bleed relative overflow-hidden py-[clamp(58px,10vw,140px)]">
+    <section className="fm-editorial-full-bleed relative">
       <div
         className="pointer-events-none absolute top-[18%] left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(150,198,188,0.1),transparent_68%)] blur-3xl"
         aria-hidden="true"

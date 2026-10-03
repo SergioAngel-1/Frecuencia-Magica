@@ -58,7 +58,7 @@ export function CourseList({ media }: { media: AcademyMedia }) {
     <div>
       <Link
         href={{ pathname: '/academia/[courseId]', params: { courseId: featured.id } }}
-        className="group text-ivory hover:text-gold mb-[clamp(42px,7vw,90px)] block min-h-11 transition-colors"
+        className="group text-ivory hover:text-gold mb-section block min-h-11 transition-colors"
       >
         <CourseCard
           course={featured}

@@ -42,11 +42,11 @@ export function SiteFooter() {
   return (
     <footer
       data-layout-layer="footer"
-      className="fm-safe-area-bottom fm-container pb-[calc(150px+env(safe-area-inset-bottom))] md:pb-[46px]"
+      className="fm-safe-area-bottom fm-container pb-[calc(150px+env(safe-area-inset-bottom))] lg:pb-[46px]"
     >
-      <div className="border-ivory/10 border-t pt-[60px]">
+      <div className="border-ivory/10 pt-block border-t">
         {realmId === 'home' ? (
-          <div className="mb-[clamp(42px,7vw,88px)]">
+          <div className="mb-section">
             {/* Cierre distinto de la oferta de membresía que lo precede: la
               despedida invita a volver, no repite la llamada a inscribirse. */}
             <EditorialBanner

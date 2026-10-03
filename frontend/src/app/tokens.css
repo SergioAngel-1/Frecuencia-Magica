@@ -58,6 +58,12 @@
   --tracking-kicker: 0.3em; /* kicker estándar */
   --tracking-eyebrow: 0.4em; /* cabeceras de realm */
 
+  /* Ritmo vertical: dos peldaños. `section` separa secciones y cierra la
+     página antes del footer; `block` separa un héroe o un encabezado de su
+     contenido. Se usan como `py-section`, `gap-section`, `mt-block`… */
+  --spacing-section: clamp(56px, 8vw, 112px);
+  --spacing-block: clamp(28px, 5vw, 72px);
+
   /* Radios */
   --radius-card: 22px;
   --radius-card-lg: 26px;

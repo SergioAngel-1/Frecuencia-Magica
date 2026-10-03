@@ -54,7 +54,7 @@ export default async function SanctuaryPage({ params }: PageProps) {
         </div>
       </FullBleedSection>
 
-      <div className="fm-editorial-full-bleed fm-container pt-8 pb-[220px]">
+      <div className="fm-editorial-full-bleed fm-container pt-8 pb-section">
         <StatsRow
           days={profile.daysPracticed}
           frequencies={profile.frequenciesHeard}

@@ -9,6 +9,8 @@ import { extendTailwindMerge } from 'tailwind-merge';
  */
 const twMerge = extendTailwindMerge({
   extend: {
+    // Ritmo vertical de `tokens.css` (`py-section`, `gap-block`…).
+    theme: { spacing: ['section', 'block'] },
     classGroups: {
       'font-size': [{ text: ['label', 'meta', 'body', 'lead'] }],
       'text-color': [{ text: ['fg', 'fg-body', 'fg-soft', 'fg-muted', 'fg-meta'] }],

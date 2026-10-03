@@ -292,8 +292,10 @@
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
+/* La vista llena el viewport y el scroll deja libre la franja de los controles
+   fijos (dock, barra de realms). El hueco al pie de página lo pone el footer,
+   que cierra todos los realms: reservarlo también aquí lo duplicaba. */
 @utility fm-shell-reserve-bottom {
-  min-height: calc(100svh + 140px);
-  padding-bottom: calc(140px + env(safe-area-inset-bottom));
+  min-height: 100svh;
   scroll-padding-bottom: calc(140px + env(safe-area-inset-bottom));
 }
