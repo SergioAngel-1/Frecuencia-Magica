@@ -44,7 +44,7 @@ export function ResultStep({
   onRestart,
 }: ResultStepProps) {
   return (
-    <div className="flex w-full max-w-[1040px] flex-col items-center gap-6 py-[clamp(96px,12vw,140px)]">
+    <div className="pb-block flex w-full max-w-[1040px] flex-col items-center gap-6">
       <Kicker tone="gold" spacing="widest">
         {kicker}
       </Kicker>
