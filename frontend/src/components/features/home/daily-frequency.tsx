@@ -55,9 +55,12 @@ export function DailyFrequency({
   return (
     <section
       aria-labelledby="home-daily-title"
-      className="fm-editorial-full-bleed relative isolate overflow-hidden"
+      // Sin `overflow-hidden`: el aura del disco es más grande que la banda y
+      // debe poder derramarse sobre el aire de arriba. La foto se recorta en
+      // su propia capa.
+      className="fm-editorial-full-bleed relative isolate"
     >
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 overflow-hidden">
         <EditorialImage
           media={media}
           aspect="16:8"
