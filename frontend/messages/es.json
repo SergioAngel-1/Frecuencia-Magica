@@ -184,6 +184,14 @@
       "passwordShort": "Al menos ocho caracteres."
     },
     "forgot": "¿Olvidaste tu contraseña?",
+    "recover": {
+      "title": "Recupera tu acceso",
+      "subtitle": "Escribe tu correo y te enviaremos un enlace para elegir una contraseña nueva.",
+      "cta": "Enviar enlace",
+      "back": "Volver a entrar",
+      "sentTitle": "Revisa tu correo",
+      "sentBody": "Si hay un santuario con {email}, en unos minutos te llegará un enlace para volver. Mira también en la carpeta de no deseados."
+    },
     "or": "o",
     "sso": "Continuar con tu luz interior",
     "quote": "La luz que buscas ya vive en ti. Solo necesitas recordarlo.",

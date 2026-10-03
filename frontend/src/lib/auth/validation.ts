@@ -47,6 +47,14 @@ export function authErrors(mode: AuthMode, values: AuthFormValues): AuthFieldErr
   return errors;
 }
 
+/**
+ * Valida el único campo de la recuperación de contraseña: el correo. Misma
+ * regla y misma clave de error que en el acceso.
+ */
+export function recoverErrors(email: string): Pick<AuthFieldErrors, 'email'> {
+  return EMAIL_RE.test(email.trim()) ? {} : { email: 'auth.errors.emailInvalid' };
+}
+
 /** `true` si ningún campo aplicable al modo tiene error. */
 export function isAuthValid(mode: AuthMode, values: AuthFormValues): boolean {
   return Object.keys(authErrors(mode, values)).length === 0;

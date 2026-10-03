@@ -184,6 +184,14 @@
       "passwordShort": "At least eight characters."
     },
     "forgot": "Forgot your password?",
+    "recover": {
+      "title": "Recover your access",
+      "subtitle": "Enter your email and we will send you a link to choose a new password.",
+      "cta": "Send link",
+      "back": "Back to sign in",
+      "sentTitle": "Check your inbox",
+      "sentBody": "If there is a sanctuary for {email}, a link to return will arrive in a few minutes. Look in your spam folder too."
+    },
     "or": "or",
     "sso": "Continue with your inner light",
     "quote": "The light you seek already lives in you. You only need to remember it.",

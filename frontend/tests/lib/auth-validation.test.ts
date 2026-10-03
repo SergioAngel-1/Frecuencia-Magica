@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { authErrors, isAuthValid } from '@/lib/auth/validation';
+import { authErrors, isAuthValid, recoverErrors } from '@/lib/auth/validation';
 
 describe('authErrors', () => {
   it('marca un correo con forma inválida y acepta uno válido', () => {
@@ -61,5 +61,17 @@ describe('isAuthValid', () => {
     expect(
       isAuthValid('login', { name: '', email: 'ana@ejemplo.com', password: 'password123' }),
     ).toBe(true);
+  });
+});
+
+describe('recoverErrors', () => {
+  it('sólo exige un correo con forma válida', () => {
+    expect(recoverErrors('')).toEqual({ email: 'auth.errors.emailInvalid' });
+    expect(recoverErrors('ana@ejemplo')).toEqual({ email: 'auth.errors.emailInvalid' });
+    expect(recoverErrors('ana@ejemplo.com')).toEqual({});
+  });
+
+  it('ignora los espacios alrededor del correo', () => {
+    expect(recoverErrors('  ana@ejemplo.com ')).toEqual({});
   });
 });
