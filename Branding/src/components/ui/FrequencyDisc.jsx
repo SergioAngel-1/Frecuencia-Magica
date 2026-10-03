@@ -85,7 +85,7 @@ function ringsFor(size, active) {
 /**
  * Disco orbital de frecuencia — la pieza identitaria del producto. Cuatro escalas
  * (`xs` de sugerencia, `sm` flotante, `md` de rejilla, `lg` destacado). Las pequeñas
- * y la destacada irradian la banda del audio como aura; la destacada suma un halo dorado amplio. En Biblioteca no hay rejilla de
+ * y la destacada irradian la banda del audio como aura; la destacada suma un halo dorado amplio. En Resonario no hay rejilla de
  * tarjetas: son discos.
  */
 export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = false, showPlay = false, showEqualizer = false, playing = true, width, className }) {

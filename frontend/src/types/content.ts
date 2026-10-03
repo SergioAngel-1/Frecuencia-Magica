@@ -26,7 +26,7 @@ export type Audio = IntentAffine & {
   id: string;
   titleKey: string;
   tagKey: string;
-  /** Por lo que filtra la Biblioteca. Nunca filtrar por el texto traducido. */
+  /** Por lo que filtra el Resonario. Nunca filtrar por el texto traducido. */
   tagId: AudioTag;
   /** Etiqueta `mm:ss`. */
   duration: string;

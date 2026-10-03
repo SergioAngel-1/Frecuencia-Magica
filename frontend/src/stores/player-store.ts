@@ -32,7 +32,7 @@ function indexInCatalog(audioId: string | null): number {
 
 /**
  * Estado del reproductor de audio. Transversal: la Home y el resultado de
- * Descúbrete lo abren desde fuera de la Biblioteca.
+ * Descúbrete lo abren desde fuera del Resonario.
  *
  * Sin persistencia deliberada: el reproductor no debe resucitar solo al
  * recargar la página.

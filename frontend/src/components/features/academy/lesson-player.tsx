@@ -61,7 +61,7 @@ export function LessonPlayer({
               <Link href="/academia">{t('completion.back')}</Link>
             </Button>
             <Button variant="accent" asChild>
-              <Link href="/biblioteca">{t('completion.exploreLibrary')}</Link>
+              <Link href="/resonario">{t('completion.exploreLibrary')}</Link>
             </Button>
           </div>
         </div>

@@ -72,7 +72,7 @@ export default async function StorePage({ params }: PageProps) {
           body={t('ritualBanner.body')}
           align="center"
           action={
-            <Link href="/biblioteca" className={arrowLinkClasses('gold')}>
+            <Link href="/resonario" className={arrowLinkClasses('gold')}>
               {t('ritualBanner.cta')}
               <ArrowGlyph />
             </Link>

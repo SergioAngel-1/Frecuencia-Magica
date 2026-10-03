@@ -37,7 +37,7 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 - [x] Hero con rejilla 1.05fr/0.95fr, kicker en píldora, título con gradiente, trío de stats.
 - [x] Columna derecha con aros orbitales + triángulo + logo flotante.
 - [x] Frecuencia del día (botón full-width con `FrequencyDisc`) y rejilla de 4 audios.
-- [x] Bento de realms de 12 columnas que tesela: Academia (7) + Descúbrete (5) / Biblioteca (4) + Experiencias (4) + Tienda (4, dos filas) / Mi Santuario (8); 2 columnas en tablet. _(Hasta 2026-09-30 los spans sumaban 13 y dejaban huecos pese a esta casilla.)_
+- [x] Bento de realms de 12 columnas que tesela: Academia (7) + Descúbrete (5) / Resonario (4) + Experiencias (4) + Tienda (4, dos filas) / Mi Santuario (8); 2 columnas en tablet. _(Hasta 2026-09-30 los spans sumaban 13 y dejaban huecos pese a esta casilla.)_
 - [x] Sobre Marisol (retrato en arco de nicho) y membresía.
 - [x] `WaveSeparator` entre secciones.
 
@@ -53,10 +53,10 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 
 - [x] Flujo intro → pregunta → sintonización → resultado (reducer puro + temporizador 2600 ms).
 - [x] Radio group accesible, `StepProgress`, `AnimatePresence` entre pasos.
-- [x] Resultado: orbe, frecuencia asignada, dos botones (repetir / biblioteca).
+- [x] Resultado: orbe, frecuencia asignada, dos botones (repetir / resonario).
 - [x] Vista centrada verticalmente (`min-h-dvh`), con nav y sin footer.
 
-### Biblioteca (`/biblioteca`)
+### Resonario (`/resonario`)
 
 - [x] Sistema solar: disco destacado («el sol», su foto se funde con una máscara radial) + 6 discos en posiciones orbitales exactas, sin columna de texto duplicada. Apilado en <1024px.
 - [x] Filtros por tags (5 pills), `EmptyState` cuando no hay resultados.

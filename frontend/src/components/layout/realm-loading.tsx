@@ -4,7 +4,7 @@ import { LoadingOrb } from '@/components/ui';
 
 /**
  * Espera neutra de los realms sin silueta propia (home, acceso, descúbrete).
- * Los que tienen forma reconocible (biblioteca, academia, tienda,
+ * Los que tienen forma reconocible (resonario, academia, tienda,
  * experiencias, santuario) usan su propio esqueleto.
  *
  * No vive en `[locale]/loading.tsx`: ahí envolvería también el catch-all de

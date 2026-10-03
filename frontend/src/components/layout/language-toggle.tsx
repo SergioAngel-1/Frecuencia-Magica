@@ -12,7 +12,7 @@ import { routing, type Locale } from '@/i18n/routing';
  * Cambia de idioma conservando la ruta actual.
  *
  * Navega al pathname **interno** con el otro locale, de modo que
- * `/biblioteca` lleva a `/en/library` y no a `/en/biblioteca`. Los segmentos
+ * `/resonario` lleva a `/en/resonarium` y no a `/en/resonario`. Los segmentos
  * dinámicos viajan en `params`.
  */
 export function LanguageToggle({ locale }: { locale: Locale }) {

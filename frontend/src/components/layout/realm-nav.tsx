@@ -68,12 +68,12 @@ export function RealmNav() {
         >
           {NAV_REALMS.map((realm) => {
             const active = realm.id === realmId;
-            const name = t(`realms.${realm.id as RealmId}` as 'realms.biblioteca');
+            const name = t(`realms.${realm.id as RealmId}` as 'realms.resonario');
 
             return (
               <Link
                 key={realm.id}
-                href={realm.href as '/biblioteca'}
+                href={realm.href as '/resonario'}
                 data-magnetic
                 aria-current={active ? 'page' : undefined}
                 className={cn(

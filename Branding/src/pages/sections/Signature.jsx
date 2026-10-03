@@ -6,7 +6,7 @@ export function Signature() {
   const [a1, a2, a3] = audios
 
   return (
-    <Section id="firma" kicker="Componentes · pieza identitaria" title="El disco de frecuencia" tone="gold" lead="Es el objeto del producto. En Biblioteca no hay una rejilla de tarjetas: son discos. Cuatro escalas, una sola implementación.">
+    <Section id="firma" kicker="Componentes · pieza identitaria" title="El disco de frecuencia" tone="gold" lead="Es el objeto del producto. En Resonario no hay una rejilla de tarjetas: son discos. Cuatro escalas, una sola implementación.">
       <div className="grid items-end gap-[clamp(24px,4vw,56px)] md:grid-cols-[92px_150px_190px_minmax(0,1fr)]">
         <Specimen title="xs" note="92 px · sugerencias dentro de una tarjeta; sin meta">
           <FrequencyDisc size="xs" hz={a2.hz} band={a2.band} title={a2.title} />

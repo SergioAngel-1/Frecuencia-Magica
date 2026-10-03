@@ -100,7 +100,7 @@ export default async function HomePage({ params }: PageProps) {
             kicker: t('audio.kicker'),
             title: t('audio.title'),
             action: (
-              <Link href="/biblioteca" className={arrowLinkClasses('teal')}>
+              <Link href="/resonario" className={arrowLinkClasses('teal')}>
                 {common('seeAll')}
                 <ArrowGlyph />
               </Link>

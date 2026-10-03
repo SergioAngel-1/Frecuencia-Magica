@@ -58,7 +58,7 @@ export function ResultStep({
 
       <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
         <Button variant="primary" size="lg" asChild onClick={onListen}>
-          <Link href="/biblioteca">{ctaLabel}</Link>
+          <Link href="/resonario">{ctaLabel}</Link>
         </Button>
         <Button variant="ghost" size="sm" className="text-body" onClick={onRestart}>
           {restartLabel}

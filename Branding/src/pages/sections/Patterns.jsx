@@ -8,7 +8,7 @@ export function Patterns() {
   const [featuredExp, exp] = experiences
   const academy = realmCopy('academia')
   const store = realmCopy('tienda')
-  const library = realmCopy('biblioteca')
+  const library = realmCopy('resonario')
 
   return (
     <Section id="patrones" kicker="Patrones · composición" title="Cómo se combinan" tone="lav" lead="Las tarjetas por realm, la banda editorial y la navegación de constelación. Todas viven sobre un placeholder deliberado —gradiente, geometría o zebra—, nunca una caja gris.">
@@ -52,7 +52,7 @@ export function Patterns() {
 
         <Specimen title="Navegación de constelación" note="Un punto de luz por realm. En desktop es una columna cuyo nombre aparece al acercarse; en móvil, una barra con los nombres siempre visibles.">
           <div className="flex flex-wrap items-start gap-10">
-            <div className="fm-surface rounded-card p-3"><RealmNav realms={navRealms} current="biblioteca" /></div>
+            <div className="fm-surface rounded-card p-3"><RealmNav realms={navRealms} current="resonario" /></div>
             <RealmNav realms={navRealms} current="academia" layout="bar" />
           </div>
         </Specimen>

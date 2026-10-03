@@ -19,7 +19,7 @@
     "label": "Realms",
     "realms": {
       "descubrete": "Descúbrete",
-      "biblioteca": "Biblioteca",
+      "resonario": "Resonario",
       "academia": "Academia",
       "experiencias": "Experiencias",
       "tienda": "Tienda",
@@ -27,7 +27,7 @@
     },
     "emotions": {
       "descubrete": "Reflexión",
-      "biblioteca": "Sabiduría",
+      "resonario": "Sabiduría",
       "academia": "Transformación",
       "experiencias": "Encuentro",
       "tienda": "Abundancia",
@@ -100,7 +100,7 @@
       "cta": "Escuchar"
     },
     "audio": {
-      "kicker": "Biblioteca de Frecuencias",
+      "kicker": "Resonario",
       "title": "Sonido para volver a ti"
     },
     "realms": {
@@ -113,7 +113,7 @@
       "featuredBadge": "Destacado",
       "descriptions": {
         "descubrete": "Un compás interior que escucha tu momento presente.",
-        "biblioteca": "Frecuencias, meditaciones y sonido para volver a ti.",
+        "resonario": "Frecuencias, meditaciones y sonido para volver a ti.",
         "academia": "Cursos que acompañan procesos reales de transformación.",
         "experiencias": "Encuentros en vivo y presenciales para reunirte.",
         "tienda": "Aceites, velas y cristales nacidos de una convicción: cuando transformas tu interior, cambia tu mundo.",
@@ -286,12 +286,12 @@
     }
   },
   "library": {
-    "kicker": "Biblioteca de Frecuencias",
+    "kicker": "Resonario",
     "title": "Sonido para volver a ti",
     "description": "Meditaciones, frecuencias y paisajes sonoros. Elige por lo que tu cuerpo pide hoy.",
     "media": {
       "alt": {
-        "hero": "Paisaje sonoro de la Biblioteca de Frecuencia Mágica",
+        "hero": "Paisaje sonoro del Resonario de Frecuencia Mágica",
         "featured": "Campo editorial para la frecuencia destacada",
         "archiveBanner": "Textura sonora que acompaña el archivo completo",
         "audioCover": "Portada sonora de {title}"
@@ -406,7 +406,7 @@
       "title": "Has completado este curso",
       "description": "Cada paso que diste te trajo hasta aquí. Lo aprendido ya vive en ti.",
       "back": "Volver a la Academia",
-      "exploreLibrary": "Explorar la Biblioteca"
+      "exploreLibrary": "Explorar el Resonario"
     },
     "lessonTitles": [
       "El primer suspiro",

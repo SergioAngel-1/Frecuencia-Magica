@@ -18,7 +18,7 @@ const TONE_CLASSES: Record<ArrowLinkTone, string> = {
  * realm, etiqueta en mayúsculas y hit target de 44px.
  *
  * ```tsx
- * <Link href="/biblioteca" className={arrowLinkClasses('teal')}>
+ * <Link href="/resonario" className={arrowLinkClasses('teal')}>
  *   {label}
  *   <ArrowGlyph />
  * </Link>

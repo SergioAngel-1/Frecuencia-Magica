@@ -31,7 +31,7 @@ export function RealmCard({
   if (featured) {
     return (
       <Link
-        href={href as '/biblioteca'}
+        href={href as '/resonario'}
         data-editorial-panel="featured"
         className={cn(
           'group border-teal/35 focus-visible:ring-teal rounded-card relative grid min-h-[360px] overflow-hidden border transition-transform duration-500 outline-none hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(150,198,188,0.14)] focus-visible:ring-2 sm:min-h-[400px] lg:grid-cols-[1.15fr_0.85fr]',
@@ -80,7 +80,7 @@ export function RealmCard({
 
   return (
     <Link
-      href={href as '/biblioteca'}
+      href={href as '/resonario'}
       data-editorial-panel={store ? 'conversion' : 'secondary'}
       className={cn(
         'group border-glass-brd focus-visible:ring-gold rounded-card relative flex min-h-[230px] flex-col justify-end overflow-hidden border p-[clamp(24px,3vw,38px)] transition-transform duration-500 outline-none hover:-translate-y-1 hover:shadow-[0_0_34px_rgba(216,185,120,0.12)] focus-visible:ring-2',

@@ -28,7 +28,7 @@ type RealmsGridProps = {
  * Bento de 12 columnas: cada fila suma 12 y Tienda ocupa dos filas.
  *
  *   Academia (7)        | Descúbrete (5)
- *   Biblioteca (4) | Experiencias (4) | Tienda (4, 2 filas)
+ *   Resonario (4) | Experiencias (4) | Tienda (4, 2 filas)
  *   Mi Santuario (8)                  | ↑
  *
  * En tablet (2 columnas) Academia y Mi Santuario ocupan la fila entera.

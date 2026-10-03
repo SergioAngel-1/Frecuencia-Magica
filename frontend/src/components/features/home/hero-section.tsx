@@ -96,7 +96,7 @@ export function HeroSection({
               <Link href="/descubrete">{cta1}</Link>
             </Button>
             <Button variant="glass" size="lg" iconLeft={<PlayIcon />} asChild>
-              <Link href="/biblioteca">{cta2}</Link>
+              <Link href="/resonario">{cta2}</Link>
             </Button>
           </Mdiv>
 

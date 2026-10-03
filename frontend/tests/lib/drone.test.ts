@@ -9,7 +9,7 @@ describe('baseNoteForRealm', () => {
     expect(baseNoteForRealm('home')).toBe(110);
     expect(baseNoteForRealm('auth')).toBe(110);
     expect(baseNoteForRealm('descubrete')).toBe(98);
-    expect(baseNoteForRealm('biblioteca')).toBe(130.8);
+    expect(baseNoteForRealm('resonario')).toBe(130.8);
     expect(baseNoteForRealm('academia')).toBe(146.8);
     expect(baseNoteForRealm('experiencias')).toBe(123.4);
     expect(baseNoteForRealm('tienda')).toBe(116.5);

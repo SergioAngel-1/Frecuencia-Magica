@@ -58,7 +58,7 @@ Tres capas, sin saltárselas:
 
 El copy **nunca** se escribe en un componente. Cada entidad de `data/` guarda una clave (`titleKey`) y el texto vive en `messages/{es,en}.json`. Un test verifica que ambos catálogos tienen exactamente las mismas claves y que nada queda sin traducir.
 
-Las rutas están localizadas: `/biblioteca` en español, `/en/library` en inglés. Todo enlace interno usa el `Link` de `@/i18n/navigation`, nunca el de `next/link`.
+Las rutas están localizadas: `/resonario` en español, `/en/resonarium` en inglés. Todo enlace interno usa el `Link` de `@/i18n/navigation`, nunca el de `next/link`.
 
 Toda página bajo `[locale]` empieza resolviendo el idioma:
 

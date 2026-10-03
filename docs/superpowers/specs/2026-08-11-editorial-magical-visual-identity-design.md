@@ -34,7 +34,7 @@ Nada de esto cambia con la dirección editorial-mágica:
 - **Rendimiento:** 60 FPS desktop / 30 FPS móvil de gama media, `devicePixelRatio` capado a 2, animar sólo `transform` y `opacity`, pausas fuera de pantalla, First Load JS ≤ 200 kB (deuda documentada en `performance.md`).
 - **i18n y arquitectura:** rutas localizadas con `@/i18n/navigation`, tres capas (UI Kit puro / world / features), `src/data/` sin textos, Server Components por defecto.
 - **Estados y marcos:** estados de carga/vacío/error, `Skeleton` (variantes `disc`/`card`/`line`), `LoadingOrb` sólo en navegación, 404 y error boundary con copy de marca.
-- **Fotografía en las nueve vistas.** Todas las vistas reciben fotografía según sus slots del inventario (§5): portal (`/`), home (`/inicio`), acceso (`/acceso`), descúbrete (`/descubrete`), biblioteca (`/biblioteca`), academia (`/academia`), experiencias (`/experiencias`), tienda (`/tienda`) y mi santuario (`/mi-santuario`) — además de los estados y el 404. Ninguna vista queda excluida del contrato fotográfico. El world engine permanece en todas como energía viva: canvas, partículas, halos, aros, geometría, cursor y audio siguen respirando detrás y alrededor de la materia. La columna derecha del hero de la home (aros orbitales + logo) se conserva como capa de energía; su materia entra por el slot `home.hero`.
+- **Fotografía en las nueve vistas.** Todas las vistas reciben fotografía según sus slots del inventario (§5): portal (`/`), home (`/inicio`), acceso (`/acceso`), descúbrete (`/descubrete`), resonario (`/resonario`), academia (`/academia`), experiencias (`/experiencias`), tienda (`/tienda`) y mi santuario (`/mi-santuario`) — además de los estados y el 404. Ninguna vista queda excluida del contrato fotográfico. El world engine permanece en todas como energía viva: canvas, partículas, halos, aros, geometría, cursor y audio siguen respirando detrás y alrededor de la materia. La columna derecha del hero de la home (aros orbitales + logo) se conserva como capa de energía; su materia entra por el slot `home.hero`.
 
 ## 3. Lo que cambia
 
@@ -52,7 +52,7 @@ Nada de esto cambia con la dirección editorial-mágica:
 - **No se producen imágenes en esta fase:** ni fotografías reales ni generadas. Esta fase sólo formaliza el contrato; los assets entran más adelante, únicamente por los slots del inventario.
 - **No se usa stock ni Unsplash**, ni placeholders genéricos de ningún proveedor.
 - **No se sustituye la magia por una galería fotográfica convencional:** el world engine permanece como identidad viva en todas las vistas; la fotografía nunca desplaza a la energía, se asienta sobre ella.
-- **No se convierte a todos los realms en la misma plantilla:** cada vista conserva su identidad (quiz, sistema solar, bento, filas de reserva, diario…); la fotografía se adapta al trabajo de cada realm, no al revés. Las nueve vistas —incluidos portal, acceso, descúbrete, biblioteca y mi santuario— reciben fotografía según sus slots del inventario, pero ninguna pierde su identidad.
+- **No se convierte a todos los realms en la misma plantilla:** cada vista conserva su identidad (quiz, sistema solar, bento, filas de reserva, diario…); la fotografía se adapta al trabajo de cada realm, no al revés. Las nueve vistas —incluidos portal, acceso, descúbrete, resonario y mi santuario— reciben fotografía según sus slots del inventario, pero ninguna pierde su identidad.
 - **No se introducen colores ni fuentes arbitrarios:** la paleta y la tipografía de la sección 2 son cerradas. La fotografía debe armonizar: luz dorada sobre fondo oscuro, tonos de la paleta, retratos íntimos y materia natural.
 - **No se añade backend, pagos reales, CMS ni rutas aplazadas.** Los assets se versionan en `frontend/public/editorial/`; no hay servidor de medios ni CMS.
 - **No se toca el prototipo perdido ni los `.dc.html` de otras marcas** (`~/Descargas/siu-premium-web-design-system/` es de otra marca). La referencia visual sigue siendo el Brand Book de `~/Descargas/` y el sistema codificado.
@@ -78,10 +78,10 @@ El inventario completo (por slot: `id`, vista, propósito, orientación, ratio, 
 | `discover.question-atmosphere` | Descúbrete · pregunta (`quiz-step.tsx`) | 3:4 | P2 |
 | `discover.tuning` | Descúbrete · sintonización (`tuning-step.tsx`) | 16:8 | P1 |
 | `discover.result` | Descúbrete · resultado (`result-step.tsx`) | 16:9 | P1 |
-| `library.hero` | Biblioteca `/biblioteca` · cabecera (`library-system.tsx`) | 16:9 | P1 |
-| `library.featured` | Biblioteca · audio destacado | 16:8 | P1 |
-| `library.archive-banner` | Biblioteca · banner del archivo | 16:9 | P2 |
-| `library.audio-cover.*` | Biblioteca · portada por audio (por instancia) | 1:1 | P1 |
+| `library.hero` | Resonario `/resonario` · cabecera (`library-system.tsx`) | 16:9 | P1 |
+| `library.featured` | Resonario · audio destacado | 16:8 | P1 |
+| `library.archive-banner` | Resonario · banner del archivo | 16:9 | P2 |
+| `library.audio-cover.*` | Resonario · portada por audio (por instancia) | 1:1 | P1 |
 | `academy.hero` | Academia `/academia` · cabecera (`course-list.tsx`) | 16:9 | P1 |
 | `academy.featured-course` | Academia · curso destacado | 16:8 | P1 |
 | `academy-course-cover` | Academia · cards y detalle de curso (`course-card.tsx`, `course-detail.tsx`) | 16:8 (crop 1:1 en card) | P1 |
@@ -109,7 +109,7 @@ El inventario completo (por slot: `id`, vista, propósito, orientación, ratio, 
 | `states.error` | Estados · error | 16:9 | P2 |
 | `states.offline` | Estados · sin conexión | 16:9 | P2 |
 
-Los slots de contenido (curso, experiencia, producto, portada de audio) se aplican por instancia: cada ítem del catálogo tiene su propio asset del mismo slot. Los slots aún sin componente cableado (portal, acceso, descúbrete, biblioteca, mi santuario, estados) registran su vista y propósito según el plan; este inventario es la lista normativa completa de lugares fotográficos del portal.
+Los slots de contenido (curso, experiencia, producto, portada de audio) se aplican por instancia: cada ítem del catálogo tiene su propio asset del mismo slot. Los slots aún sin componente cableado (portal, acceso, descúbrete, resonario, mi santuario, estados) registran su vista y propósito según el plan; este inventario es la lista normativa completa de lugares fotográficos del portal.
 
 ## 6. Reglas que todas las vistas deberán seguir
 

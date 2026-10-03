@@ -155,9 +155,9 @@ interface FrequencyDiscProps {
  * Disco orbital de frecuencia — la pieza identitaria del producto.
  *
  * Cubre todas las escalas con una sola implementación: mínimo (sugerencias
- * dentro de una tarjeta), pequeño flotante (Biblioteca, Home), medio en rejilla
- * y destacado (Biblioteca).
- * En Biblioteca **no** se usa una rejilla de tarjetas: son discos.
+ * dentro de una tarjeta), pequeño flotante (Resonario, Home), medio en rejilla
+ * y destacado (Resonario).
+ * En Resonario **no** se usa una rejilla de tarjetas: son discos.
  */
 export function FrequencyDisc({
   size = 'md',
@@ -300,7 +300,7 @@ export function FrequencyDisc({
   // `mx-auto`: el frame tiene ancho explícito (`box`) y, como bloque, quedaba
   // alineado a la izquierda en contenedores más anchos — el disco se veía
   // descentrado respecto a badges/títulos centrados encima (p. ej. el badge
-  // "Destacado" de Biblioteca). En celdas de grid o slots con maxWidth lo
+  // "Destacado" de Resonario). En celdas de grid o slots con maxWidth lo
   // centra igual sin alterar la constelación.
   const frame = cn('mx-auto block text-center', className);
   const style: CSSProperties = { width: box, maxWidth: '100%' };

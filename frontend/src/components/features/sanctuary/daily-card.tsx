@@ -18,7 +18,7 @@ type DailyCardProps = {
 
 /**
  * La frecuencia de hoy. El disco y el enlace abren el audio en el reproductor
- * (el mismo gesto que en la Home y en la Biblioteca), no son decoración.
+ * (el mismo gesto que en la Home y en el Resonario), no son decoración.
  * Debajo, como subsección, tres frecuencias afines a la de hoy en discos
  * mínimos: la tarjeta también es una puerta a seguir escuchando.
  */

@@ -14,11 +14,11 @@ const SOURCE_ROOT = resolve(process.cwd(), 'src');
 const readSource = (relativePath: string) =>
   readFileSync(resolve(SOURCE_ROOT, relativePath), 'utf8');
 
-const pageSource = readSource('app/[locale]/biblioteca/page.tsx');
+const pageSource = readSource('app/[locale]/resonario/page.tsx');
 const systemSource = readSource('components/features/library/library-system.tsx');
 const filtersSource = readSource('components/features/library/library-filters.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
-const loadingSource = readSource('app/[locale]/biblioteca/loading.tsx');
+const loadingSource = readSource('app/[locale]/resonario/loading.tsx');
 
 const LIBRARY_SLOTS = [
   { slot: 'library.hero' as const, aspect: '16:9' as const, alt: 'hero' },

@@ -4,7 +4,7 @@ export type RealmId =
   | 'home'
   | 'auth'
   | 'descubrete'
-  | 'biblioteca'
+  | 'resonario'
   | 'academia'
   | 'experiencias'
   | 'tienda'

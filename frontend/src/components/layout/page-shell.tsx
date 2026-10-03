@@ -10,7 +10,7 @@ import { cn } from '@/lib/cn';
 export type ShellWidth = 'wide' | 'store' | 'default' | 'narrow' | 'form' | 'focus' | 'result';
 
 const WIDTH_CLASSES: Record<ShellWidth, string> = {
-  wide: 'max-w-[1280px]', // home, biblioteca
+  wide: 'max-w-[1280px]', // home, resonario
   store: 'max-w-[1240px]', // tienda
   default: 'max-w-[1200px]', // academia, experiencias, santuario
   narrow: 'max-w-[1080px]', // sobre Marisol, membresía, camino de Descúbrete

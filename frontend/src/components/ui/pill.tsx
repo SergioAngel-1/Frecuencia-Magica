@@ -16,7 +16,7 @@ export type PillProps = PillOwnProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | keyof PillOwnProps>;
 
 /**
- * Píldora de filtro/toggle: la usa el filtro de biblioteca y el selector de
+ * Píldora de filtro/toggle: la usa el filtro de resonario y el selector de
  * idioma. Cliente porque es interactiva (`onClick`, estado `active`).
  * El `<button>` es la raíz y `Magnetic` envuelve sólo el contenido interno,
  * igual que `Button`/`IconButton`: el prototipo marca sus pills de filtro

@@ -8,7 +8,7 @@ import { discSlot } from '@/lib/library/layout-slots';
 const SMALL_DISCS = Array.from({ length: 6 }, (_, i) => discSlot(i));
 
 /**
- * Silueta editorial de la Biblioteca: conserva el hero, los filtros, el
+ * Silueta editorial del Resonario: conserva el hero, los filtros, el
  * banner del archivo y el sistema de discos antes de resolverlos.
  */
 export default async function Loading() {

@@ -105,7 +105,7 @@ export function KitCatalog() {
         <Row label="SectionHeading">
           <div className="w-full">
             <SectionHeading
-              kicker="Biblioteca de Frecuencias"
+              kicker="Resonario"
               title="Sonido para volver a ti"
               kickerTone="teal"
               action={

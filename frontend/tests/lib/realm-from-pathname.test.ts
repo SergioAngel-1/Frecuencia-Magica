@@ -15,7 +15,7 @@ describe('realmFromPathname', () => {
     expect(realmFromPathname('/inicio')).toBe('home');
     expect(realmFromPathname('/acceso')).toBe('auth');
     expect(realmFromPathname('/descubrete')).toBe('descubrete');
-    expect(realmFromPathname('/biblioteca')).toBe('biblioteca');
+    expect(realmFromPathname('/resonario')).toBe('resonario');
     expect(realmFromPathname('/academia')).toBe('academia');
     expect(realmFromPathname('/experiencias')).toBe('experiencias');
     expect(realmFromPathname('/tienda')).toBe('tienda');
@@ -26,7 +26,7 @@ describe('realmFromPathname', () => {
     expect(realmFromPathname('/home')).toBe('home');
     expect(realmFromPathname('/auth')).toBe('auth');
     expect(realmFromPathname('/discover')).toBe('descubrete');
-    expect(realmFromPathname('/library')).toBe('biblioteca');
+    expect(realmFromPathname('/resonarium')).toBe('resonario');
     expect(realmFromPathname('/academy')).toBe('academia');
     expect(realmFromPathname('/experiences')).toBe('experiencias');
     expect(realmFromPathname('/store')).toBe('tienda');
@@ -44,7 +44,7 @@ describe('realmFromPathname', () => {
   });
 
   it('las rutas anidadas en inglés con prefijo de locale también heredan', () => {
-    expect(realmFromPathname('/en/library')).toBe('biblioteca');
+    expect(realmFromPathname('/en/resonarium')).toBe('resonario');
     expect(realmFromPathname('/en/academy/c1/3')).toBe('academia');
   });
 });

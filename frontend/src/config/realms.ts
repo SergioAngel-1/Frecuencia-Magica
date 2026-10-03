@@ -62,8 +62,8 @@ export const REALMS: readonly EditorialRealm[] = [
     photoTreatment: 'lav',
   },
   {
-    id: 'biblioteca',
-    href: '/biblioteca',
+    id: 'resonario',
+    href: '/resonario',
     accent: GOLD,
     accentVar: '--color-gold',
     baseNote: 130.8,

@@ -208,7 +208,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     priority: false,
     priorityTier: 'P1',
     fallback: 'zebra',
-    alt: 'La biblioteca sonora de Frecuencia Mágica',
+    alt: 'La resonario sonora de Frecuencia Mágica',
   },
   'library.featured': {
     ...CENTER,

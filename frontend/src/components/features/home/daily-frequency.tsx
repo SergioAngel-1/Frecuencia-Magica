@@ -21,7 +21,7 @@ type DailyFrequencyProps = {
   description: string;
   meta: string;
   cta: string;
-  /** La biblioteca, como subsección: más frecuencias bajo la de hoy. */
+  /** La resonario, como subsección: más frecuencias bajo la de hoy. */
   library: {
     kicker: string;
     title: string;
@@ -33,7 +33,7 @@ type DailyFrequencyProps = {
 
 /**
  * La frecuencia del día y, debajo y dentro de la misma banda, una muestra de
- * la biblioteca. Una sola sección con dos niveles: el disco grande y su
+ * el resonario. Una sola sección con dos niveles: el disco grande y su
  * titular mandan; la hilera de discos pequeños es su continuación.
  */
 export function DailyFrequency({

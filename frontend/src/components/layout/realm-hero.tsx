@@ -21,7 +21,7 @@ export interface RealmHeroProps {
 }
 
 /**
- * Héroe de los realms de catálogo (biblioteca, academia, experiencias,
+ * Héroe de los realms de catálogo (resonario, academia, experiencias,
  * tienda): foto a sangre con el kicker, el título y la entrada centrados en
  * vertical sobre el eje de página. Presentacional: recibe el texto traducido.
  */

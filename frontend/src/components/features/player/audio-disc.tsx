@@ -32,7 +32,7 @@ type AudioDiscProps = {
 /**
  * Disco de frecuencia conectado al reproductor: el único disco que suena.
  *
- * Home, Biblioteca (destacado y secundarios) y Mi Santuario pintan sus
+ * Home, Resonario (destacado y secundarios) y Mi Santuario pintan sus
  * frecuencias con esta pieza, de modo que el gesto (pulsar abre el audio), el
  * estado activo y el nombre accesible son los mismos en todas partes.
  */

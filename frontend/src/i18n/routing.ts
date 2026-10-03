@@ -7,7 +7,7 @@ export const defaultLocale: Locale = 'es';
 
 /**
  * Rutas localizadas: cada realm tiene su propio segmento en cada idioma.
- * `/biblioteca` en español, `/en/library` en inglés — nunca `/en/biblioteca`.
+ * `/resonario` en español, `/en/resonarium` en inglés — nunca `/en/resonario`.
  *
  * El orden importa: `/tienda/carrito` se declara antes que `/tienda/[productId]`
  * para que el segmento dinámico no lo capture.
@@ -21,7 +21,7 @@ export const routing = defineRouting({
     '/inicio': { es: '/inicio', en: '/home' },
     '/acceso': { es: '/acceso', en: '/auth' },
     '/descubrete': { es: '/descubrete', en: '/discover' },
-    '/biblioteca': { es: '/biblioteca', en: '/library' },
+    '/resonario': { es: '/resonario', en: '/resonarium' },
     '/academia': { es: '/academia', en: '/academy' },
     '/academia/[courseId]': {
       es: '/academia/[courseId]',

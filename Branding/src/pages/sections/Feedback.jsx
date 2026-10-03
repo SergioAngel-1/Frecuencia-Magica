@@ -38,7 +38,7 @@ export function Feedback() {
 
         <Specimen title="Vacío" note="Una constelación dormida y una invitación, nunca un lamento.">
           <div className="fm-surface rounded-card">
-            <EmptyState title="Aún no hay frecuencias guardadas" body="Cuando escuches una, aparecerá aquí." action={<Button variant="accent" size="sm">Explorar la biblioteca</Button>} />
+            <EmptyState title="Aún no hay frecuencias guardadas" body="Cuando escuches una, aparecerá aquí." action={<Button variant="accent" size="sm">Explorar el resonario</Button>} />
           </div>
         </Specimen>
 

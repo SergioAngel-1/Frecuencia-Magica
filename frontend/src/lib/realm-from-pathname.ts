@@ -4,7 +4,7 @@ import type { RealmId } from '@/types/realm';
 /**
  * Primer segmento de ruta → realm, en ambos idiomas.
  *
- * Se compara contra el segmento crudo de la URL (`/library`), nunca contra un
+ * Se compara contra el segmento crudo de la URL (`/resonarium`), nunca contra un
  * texto traducido: es lo que hace que derivar el realm funcione igual en ES y EN.
  * El portal (`/`) no tiene segmento y es el valor por defecto.
  */
@@ -13,7 +13,7 @@ const SEGMENT_TO_REALM: Record<string, RealmId> = {
   inicio: 'home',
   acceso: 'auth',
   descubrete: 'descubrete',
-  biblioteca: 'biblioteca',
+  resonario: 'resonario',
   academia: 'academia',
   experiencias: 'experiencias',
   tienda: 'tienda',
@@ -22,7 +22,7 @@ const SEGMENT_TO_REALM: Record<string, RealmId> = {
   home: 'home',
   auth: 'auth',
   discover: 'descubrete',
-  library: 'biblioteca',
+  resonarium: 'resonario',
   academy: 'academia',
   experiences: 'experiencias',
   store: 'tienda',

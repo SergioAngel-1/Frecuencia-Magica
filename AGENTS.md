@@ -57,7 +57,7 @@ npm run format:check && npm run lint && npm run typecheck && npm run test && npm
 
 - TS `strict` + `noUncheckedIndexedAccess`; cero `any` sin comentario que lo justifique. Type-imports (`import type`).
 - Copy siempre en ES **y** EN, nunca hardcodeado en un componente; `tests/i18n/messages.test.ts` verifica que ambos catálogos tienen las mismas claves. Voz de marca: íntima, serena, poética, en segunda persona ("vuelve a ti", "respira") — nunca marketing agresivo ni jerga wellness.
-- Enlaces internos: `Link` de `@/i18n/navigation`, nunca `next/link` (traduce `/biblioteca` ↔ `/en/library`).
+- Enlaces internos: `Link` de `@/i18n/navigation`, nunca `next/link` (traduce `/resonario` ↔ `/en/resonarium`).
 - Server Components por defecto; `"use client"` sólo con estado, efectos, listeners o animación imperativa. Un componente por archivo (~200 líneas máx).
 - Reducers puros: las funciones reciben sus dependencias no deterministas (`Math.random`, `Date`) por parámetro para poder testearlas.
 - ESLint: `no-console` es error (sólo `warn`/`error`); vars no usadas son error salvo prefijo `_`.
@@ -66,7 +66,7 @@ npm run format:check && npm run lint && npm run typecheck && npm run test && npm
 - Movimiento: nada es estático (fondo vivo, elementos que respiran/flotan/orbitan); entradas con fade-up escalonado (`.1s`, `.25s`, `.4s`, `.55s`); nada aparece de golpe.
 - Escalas con nombre (ver `DESIGN.md`): texto sobre fondo oscuro en cinco peldaños de marfil (`text-ivory`, `text-fg-body|soft|muted|meta`, nunca por debajo de 55%); sans en `text-label` (11px, sólo kickers y labels en MAYÚSCULAS), `text-meta` (13px), `text-body` (15px) y `text-lead` (17px); tracking en seis peldaños (`tracking-soft|ui|label|caps|kicker|eyebrow`); titulares con `Display` (reparte sus líneas con `text-balance`), eyebrows con `Kicker`, enlaces con flecha con `arrowLinkClasses`. Nada de `text-[Npx]`, `tracking-[…]`, `text-ivory/NN` ni `rgba()` de la paleta sueltos. Entre capas del layout se apila con la escala `z-*` con nombre (`z-content`, `z-header`, `z-cursor`…; ver `DESIGN.md`), nunca con `z-[N]`. Las escalas viven en el `@theme` de `frontend/src/app/tokens.css` (no en `globals.css`); al añadir una, registrarla en `src/lib/cn.ts` (`tailwind-merge` no la conoce).
 - Ritmo vertical: dos peldaños, `section` (entre secciones y antes del footer) y `block` (héroe o encabezado → contenido), como `py-section`, `gap-section`, `mt-block`. Nada de `clamp()` sueltos ni `pb-[220px]` para separar bloques; el hueco de los controles fijos lo reserva el footer.
-- Eje de página: héroes, bandas y contenido arrancan en el mismo margen (`--page-inset` + `fm-container`); `FullBleedSection` y `EditorialBanner` son siempre a sangre. Los realms de catálogo (biblioteca, academia, experiencias, tienda) abren con `RealmHero` (`components/layout`), que también fija el alto que reutiliza su `loading.tsx`.
+- Eje de página: héroes, bandas y contenido arrancan en el mismo margen (`--page-inset` + `fm-container`); `FullBleedSection` y `EditorialBanner` son siempre a sangre. Los realms de catálogo (resonario, academia, experiencias, tienda) abren con `RealmHero` (`components/layout`), que también fija el alto que reutiliza su `loading.tsx`.
 - En Server Components, un botón-enlace es `ButtonLink` (`components/layout`): `Button asChild` + `Link` desaparece en silencio fuera de una frontera cliente (lo vigila un test).
 - Accesibilidad/rendimiento: hit targets ≥ 44px, texto corrido y UI ≥ 15px (kickers 11px y meta 13px son las únicas excepciones, con los peldaños de arriba), foco visible sobre fondo oscuro, `aria-label` en todo control sólo-icono, `aria-hidden` en toda capa decorativa, `prefers-reduced-motion` respetado siempre. 60 FPS en desktop / 30 FPS en móvil de gama media; `devicePixelRatio` capado a 2; animar sólo `transform` y `opacity`.
 - Breakpoints obligatorios: 1440 / 1280 / 768 / 390. Toda vista debe existir en móvil.
@@ -85,5 +85,5 @@ npm run format:check && npm run lint && npm run typecheck && npm run test && npm
 
 ## Alcance
 
-- **Dentro:** los 9 realms (portal, home, acceso, descúbrete, biblioteca, academia, experiencias, tienda, mi santuario), responsive, estados de carga/vacío/error, 404, i18n ES/EN, dos escenas 3D puntuales y perezosas.
+- **Dentro:** los 9 realms (portal, home, acceso, descúbrete, resonario, academia, experiencias, tienda, mi santuario), responsive, estados de carga/vacío/error, 404, i18n ES/EN, dos escenas 3D puntuales y perezosas.
 - **Aplazado (no construir sin pedirlo):** blog, membresía, about, contacto, búsqueda, perfil, favoritos, pedidos, notificaciones, ajustes, pagos, CMS.

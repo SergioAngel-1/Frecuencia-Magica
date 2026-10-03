@@ -76,16 +76,16 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `discover-question-atmosphere.avif` | Descúbrete · pregunta | 3:4 | 1440×1920 | P2 |
 | `discover-tuning.avif` | Descúbrete · afinación | 16:8 | 2880×1440 | P1 |
 | `discover-result.avif` | Descúbrete · resultado | 16:9 | 2880×1620 | P1 |
-| `library-hero.avif` | Biblioteca · hero | 16:9 | 2880×1620 | P1 |
-| `library-featured.avif` | Biblioteca · destacado | 16:8 | 2880×1440 | P1 |
-| `library-archive-banner.avif` | Biblioteca · archivo | 16:9 | 2880×1620 | P2 |
-| `library-audio-cover-a1.avif` | Biblioteca · portadas · Regreso a la Calma | 1:1 | 1024×1024 | P1 |
-| `library-audio-cover-a2.avif` | Biblioteca · portadas · Luz Interior | 1:1 | 1024×1024 | P1 |
-| `library-audio-cover-a3.avif` | Biblioteca · portadas · Raíces Profundas | 1:1 | 1024×1024 | P1 |
-| `library-audio-cover-a4.avif` | Biblioteca · portadas · Umbral del Sueño | 1:1 | 1024×1024 | P1 |
-| `library-audio-cover-a5.avif` | Biblioteca · portadas · Aroma de Cedro | 1:1 | 1024×1024 | P1 |
-| `library-audio-cover-a6.avif` | Biblioteca · portadas · Respirar el Cielo | 1:1 | 1024×1024 | P1 |
-| `library-audio-cover-a7.avif` | Biblioteca · portadas · Corazón Abierto | 1:1 | 1024×1024 | P1 |
+| `library-hero.avif` | Resonario · hero | 16:9 | 2880×1620 | P1 |
+| `library-featured.avif` | Resonario · destacado | 16:8 | 2880×1440 | P1 |
+| `library-archive-banner.avif` | Resonario · archivo | 16:9 | 2880×1620 | P2 |
+| `library-audio-cover-a1.avif` | Resonario · portadas · Regreso a la Calma | 1:1 | 1024×1024 | P1 |
+| `library-audio-cover-a2.avif` | Resonario · portadas · Luz Interior | 1:1 | 1024×1024 | P1 |
+| `library-audio-cover-a3.avif` | Resonario · portadas · Raíces Profundas | 1:1 | 1024×1024 | P1 |
+| `library-audio-cover-a4.avif` | Resonario · portadas · Umbral del Sueño | 1:1 | 1024×1024 | P1 |
+| `library-audio-cover-a5.avif` | Resonario · portadas · Aroma de Cedro | 1:1 | 1024×1024 | P1 |
+| `library-audio-cover-a6.avif` | Resonario · portadas · Respirar el Cielo | 1:1 | 1024×1024 | P1 |
+| `library-audio-cover-a7.avif` | Resonario · portadas · Corazón Abierto | 1:1 | 1024×1024 | P1 |
 | `academy-hero.avif` | Academia · hero | 16:9 | 2880×1620 | P1 |
 | `academy-featured-course.avif` | Academia · curso destacado | 16:8 | 2880×1440 | P1 |
 | `academy-course-cover-c1.avif` | Academia · portadas de curso · El Arte de Volver a Ti | 16:8 | 2880×1440 | P1 |
@@ -356,9 +356,9 @@ Tuning in: a brass tuning fork just struck in the dark, a halo of golden light r
 Revelation: a clear glass sphere on a dark surface catching a single beam of warm light and splitting it into soft gold, teal and lavender glows that fall across the surface, a moment of clarity. Sphere centered slightly below the middle, light coming from the upper left, dark background. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
-### Biblioteca
+### Resonario
 
-#### `library.hero` — Biblioteca · hero · P1
+#### `library.hero` — Resonario · hero · P1
 
 - **Archivo:** `library-hero.avif`
 - **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 y reescalar · peso ≤ 260 KB (P0 ≤ 320 KB)
@@ -372,7 +372,7 @@ Revelation: a clear glass sphere on a dark surface catching a single beam of war
 A vast dark resonant space: rows of softly glowing translucent discs suspended at different depths like a solar system, warm gold rims, drifting haze, cinematic depth of field. Discs receding from the upper right toward the center, the left third dark and empty for the headline. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
-#### `library.featured` — Biblioteca · destacado · P1
+#### `library.featured` — Resonario · destacado · P1
 
 - **Archivo:** `library-featured.avif`
 - **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 y reescalar · peso ≤ 220 KB
@@ -386,7 +386,7 @@ A vast dark resonant space: rows of softly glowing translucent discs suspended a
 A backdrop for a featured disc: soft concentric rings of golden light radiating from an empty center across a dark misty space, faint teal and lavender halos at the edges. Empty calm center (a disc is placed on top in the UI), rings fading to near-black at the edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
-#### `library.archive-banner` — Biblioteca · archivo · P2
+#### `library.archive-banner` — Resonario · archivo · P2
 
 - **Archivo:** `library-archive-banner.avif`
 - **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 y reescalar · peso ≤ 260 KB (P0 ≤ 320 KB)
@@ -400,7 +400,7 @@ A backdrop for a featured disc: soft concentric rings of golden light radiating 
 The archive as a place: a long dim hall lined with tall shelves holding softly glowing vessels — brass bowls, glass discs, ceramic jars — lavender haze, a few warm lamps far away. One-point perspective down the hall, lower third dark for text. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
-#### `library.audio-cover.* · Regreso a la Calma` — Biblioteca · portadas · P1
+#### `library.audio-cover.* · Regreso a la Calma` — Resonario · portadas · P1
 
 - **Archivo:** `library-audio-cover-a1.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
@@ -414,7 +414,7 @@ The archive as a place: a long dim hall lined with tall shelves holding softly g
 Still water at dusk, a single pebble just dropped, perfect concentric ripples spreading in teal and gold light, calm and cool. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
-#### `library.audio-cover.* · Luz Interior` — Biblioteca · portadas · P1
+#### `library.audio-cover.* · Luz Interior` — Resonario · portadas · P1
 
 - **Archivo:** `library-audio-cover-a2.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
@@ -428,7 +428,7 @@ Still water at dusk, a single pebble just dropped, perfect concentric ripples sp
 A single warm orb of light glowing inside a dark lavender crystal geode, facets catching the glow, inner light. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
-#### `library.audio-cover.* · Raíces Profundas` — Biblioteca · portadas · P1
+#### `library.audio-cover.* · Raíces Profundas` — Resonario · portadas · P1
 
 - **Archivo:** `library-audio-cover-a3.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
@@ -442,7 +442,7 @@ A single warm orb of light glowing inside a dark lavender crystal geode, facets 
 Dark moss-covered stones and fine exposed roots in earth, a thread of gold light running between them, grounded and quiet. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
-#### `library.audio-cover.* · Umbral del Sueño` — Biblioteca · portadas · P1
+#### `library.audio-cover.* · Umbral del Sueño` — Resonario · portadas · P1
 
 - **Archivo:** `library-audio-cover-a4.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
@@ -456,7 +456,7 @@ Dark moss-covered stones and fine exposed roots in earth, a thread of gold light
 An indigo night room with a doorway of soft hazy light at the far end and a drifting veil of mist, heavy and soothing. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
-#### `library.audio-cover.* · Aroma de Cedro` — Biblioteca · portadas · P1
+#### `library.audio-cover.* · Aroma de Cedro` — Resonario · portadas · P1
 
 - **Archivo:** `library-audio-cover-a5.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
@@ -470,7 +470,7 @@ An indigo night room with a doorway of soft hazy light at the far end and a drif
 Amber cedar smoke curling upward from a small brass burner against darkness, a bundle of cedar sprigs beside it, warm glow. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
-#### `library.audio-cover.* · Respirar el Cielo` — Biblioteca · portadas · P1
+#### `library.audio-cover.* · Respirar el Cielo` — Resonario · portadas · P1
 
 - **Archivo:** `library-audio-cover-a6.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
@@ -484,7 +484,7 @@ Amber cedar smoke curling upward from a small brass burner against darkness, a b
 A lagoon-teal sky at blue hour with soft layered clouds lit from below by faint gold, open air, spacious. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
-#### `library.audio-cover.* · Corazón Abierto` — Biblioteca · portadas · P1
+#### `library.audio-cover.* · Corazón Abierto` — Resonario · portadas · P1
 
 - **Archivo:** `library-audio-cover-a7.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB

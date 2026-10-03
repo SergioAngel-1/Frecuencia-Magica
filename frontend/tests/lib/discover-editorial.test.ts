@@ -103,6 +103,6 @@ describe('Descúbrete editorial composition', () => {
     expect(containerSource).toContain('open(result.audio.id)');
     expect(resultSource).toContain('onListen');
     expect(resultSource).toContain('asChild onClick={onListen}');
-    expect(resultSource).toContain('href="/biblioteca"');
+    expect(resultSource).toContain('href="/resonario"');
   });
 });

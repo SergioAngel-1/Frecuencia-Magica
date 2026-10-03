@@ -15,7 +15,7 @@ const COLUMNS = [
     title: 'explore',
     links: [
       { key: 'descubrete', href: '/descubrete' },
-      { key: 'biblioteca', href: '/biblioteca' },
+      { key: 'resonario', href: '/resonario' },
       { key: 'academia', href: '/academia' },
     ],
   },
@@ -85,8 +85,8 @@ export function SiteFooter() {
                 </Kicker>
                 {column.links.map((link) => (
                   <p key={link.key} className="mb-[10px]">
-                    <Link href={link.href as '/biblioteca'} data-magnetic className={LINK_CLASSES}>
-                      {tNav(`realms.${link.key}` as 'realms.biblioteca')}
+                    <Link href={link.href as '/resonario'} data-magnetic className={LINK_CLASSES}>
+                      {tNav(`realms.${link.key}` as 'realms.resonario')}
                     </Link>
                   </p>
                 ))}

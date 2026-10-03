@@ -231,27 +231,27 @@ export const SLOTS = [
     'Sphere centered slightly below the middle, light coming from the upper left, dark background',
   ),
 
-  /* Biblioteca */
+  /* Resonario */
   slot(
-    'library.hero', 'wide', '50% 40%', 'P1', 'warm', 'left-bottom', 'Biblioteca · hero',
+    'library.hero', 'wide', '50% 40%', 'P1', 'warm', 'left-bottom', 'Resonario · hero',
     'Cabecera del archivo sonoro: la escucha como paisaje.',
     'A vast dark resonant space: rows of softly glowing translucent discs suspended at different depths like a solar system, warm gold rims, drifting haze, cinematic depth of field',
     'Discs receding from the upper right toward the center, the left third dark and empty for the headline',
   ),
   slot(
-    'library.featured', 'cinema', '50% 50%', 'P1', 'warm', 'center', 'Biblioteca · destacado',
+    'library.featured', 'cinema', '50% 50%', 'P1', 'warm', 'center', 'Resonario · destacado',
     'Fondo del audio destacado de la semana.',
     'A backdrop for a featured disc: soft concentric rings of golden light radiating from an empty center across a dark misty space, faint teal and lavender halos at the edges',
     'Empty calm center (a disc is placed on top in the UI), rings fading to near-black at the edges',
   ),
   slot(
-    'library.archive-banner', 'wide', '50% 40%', 'P2', 'lav', 'bottom', 'Biblioteca · archivo',
+    'library.archive-banner', 'wide', '50% 40%', 'P2', 'lav', 'bottom', 'Resonario · archivo',
     'La colección completa como lugar.',
     'The archive as a place: a long dim hall lined with tall shelves holding softly glowing vessels — brass bowls, glass discs, ceramic jars — lavender haze, a few warm lamps far away',
     'One-point perspective down the hall, lower third dark for text',
   ),
   slot(
-    'library.audio-cover.*', 'square', '50% 50%', 'P1', 'none', 'center', 'Biblioteca · portadas',
+    'library.audio-cover.*', 'square', '50% 50%', 'P1', 'none', 'center', 'Resonario · portadas',
     'Portada de cada audio del archivo: el sonido con rostro (7 audios).',
     '', 'Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc',
     { family: 'audio' },

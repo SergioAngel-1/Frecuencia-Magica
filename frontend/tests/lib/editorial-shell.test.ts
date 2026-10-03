@@ -17,7 +17,7 @@ const EXPECTED_VISUAL_MODES = {
   home: 'editorial',
   auth: 'quiet',
   descubrete: 'editorial',
-  biblioteca: 'editorial',
+  resonario: 'editorial',
   academia: 'editorial',
   experiencias: 'editorial',
   tienda: 'editorial',
