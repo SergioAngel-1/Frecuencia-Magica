@@ -1,7 +1,7 @@
 'use client';
 
+import { AudioDisc, type AudioDiscItem } from '@/components/features/player/audio-disc';
 import { Button, Display, Kicker } from '@/components/ui';
-import { FrequencyDisc } from '@/components/ui/frequency-disc';
 import { Link } from '@/i18n/navigation';
 
 import { RecommendationCard, type RecommendationCardProps } from './recommendation-card';
@@ -11,8 +11,8 @@ export type ResultStepProps = {
   /** Nombre de la intención dominante («Calma», «Raíz»…). */
   intent: string;
   description: string;
-  hz: number;
-  band: string;
+  /** La frecuencia recomendada: su disco abre el reproductor, como en el resto del sitio. */
+  audio: AudioDiscItem;
   audioTitle: string;
   ctaLabel: string;
   restartLabel: string;
@@ -32,8 +32,7 @@ export function ResultStep({
   kicker,
   intent,
   description,
-  hz,
-  band,
+  audio,
   audioTitle,
   ctaLabel,
   restartLabel,
@@ -49,7 +48,7 @@ export function ResultStep({
         {kicker}
       </Kicker>
 
-      <FrequencyDisc hz={hz} band={band} size="lg" title={audioTitle} />
+      <AudioDisc audio={audio} title={audioTitle} size="lg" showPlay showEqualizer />
 
       <Display level="h1" size="lg" className="text-center">
         {intent}

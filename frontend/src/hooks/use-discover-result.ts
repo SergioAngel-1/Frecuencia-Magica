@@ -43,8 +43,6 @@ export function useDiscoverResult(
     kicker: t('result.kicker'),
     intent: t(`intents.${reading.primary}.name`),
     description: t(`intents.${reading.primary}.description`),
-    hz: audio.hz,
-    band: audio.band,
     audioTitle: tLibrary(`audios.${audio.id}.title` as 'audios.a1.title'),
     ctaLabel: t('result.cta'),
     restartLabel: t('result.restart'),
