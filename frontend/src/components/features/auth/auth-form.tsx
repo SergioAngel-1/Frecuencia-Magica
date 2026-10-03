@@ -3,7 +3,15 @@
 import { useTranslations } from 'next-intl';
 import { useMemo, useState, type ChangeEvent, type FormEvent } from 'react';
 
-import { Button, EditorialImage, Field, Input, Kicker, SegmentedControl } from '@/components/ui';
+import {
+  Button,
+  Display,
+  EditorialImage,
+  Field,
+  Input,
+  Kicker,
+  SegmentedControl,
+} from '@/components/ui';
 import { cn } from '@/lib/cn';
 import { Link, useRouter } from '@/i18n/navigation';
 import { authErrors, type AuthFormValues, type AuthMode } from '@/lib/auth/validation';
@@ -101,7 +109,10 @@ export function AuthForm({ media }: AuthFormProps) {
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(15,27,46,0.68),rgba(10,18,32,0.94))]"
       />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[620px] flex-col px-6 pt-14 pb-16 min-[900px]:min-h-[100svh] min-[900px]:justify-center min-[900px]:px-[clamp(36px,5vw,88px)] min-[900px]:pt-16 min-[900px]:pb-16">
+      {/* Una sola columna: conmutador, campos y botones comparten ancho. Antes
+          el formulario medía 400px y lo de alrededor el ancho del panel, así
+          que los botones se veían de otro tamaño que los campos. */}
+      <div className="relative z-10 mx-auto flex w-full max-w-[calc(420px+3rem)] flex-col px-6 pt-14 pb-16 min-[900px]:min-h-[100svh] min-[900px]:justify-center min-[900px]:py-16">
         <Button variant="ghost" size="sm" iconLeft="←" asChild className="mb-10 self-start">
           <Link href="/">{t('auth.backHome')}</Link>
         </Button>
@@ -110,9 +121,9 @@ export function AuthForm({ media }: AuthFormProps) {
           {t('auth.kicker')}
         </Kicker>
 
-        <h1 className="text-ivory mb-2 font-serif text-[clamp(26px,4vw,38px)] leading-tight">
+        <Display level="h1" size="xs" className="mb-2">
           {mode === 'login' ? t('auth.login.title') : t('auth.register.title')}
-        </h1>
+        </Display>
 
         <p className="text-fg-muted text-body mb-8 font-sans leading-relaxed">
           {mode === 'login' ? t('auth.login.subtitle') : t('auth.register.subtitle')}
@@ -123,10 +134,10 @@ export function AuthForm({ media }: AuthFormProps) {
           value={mode}
           onChange={(v) => setMode(v)}
           ariaLabel={t('auth.kicker')}
-          className="mb-8"
+          className="mb-8 max-w-none"
         />
 
-        <form onSubmit={handleSubmit} className="max-w-[400px] space-y-[15px]" noValidate>
+        <form onSubmit={handleSubmit} className="space-y-4" noValidate>
           {/* Apertura tipo "pergamino" sin animar altura (grid-rows 0fr→1fr,
               transform-free; la regla del proyecto limita a transform/opacity).
               `inert` + `aria-hidden` retiran el campo del tab y del árbol cuando
@@ -180,31 +191,27 @@ export function AuthForm({ media }: AuthFormProps) {
             </div>
           ) : null}
 
-          <Button
-            type="submit"
-            variant="primary"
-            size="lg"
-            className="mt-2 w-full"
+          <Button type="submit" variant="primary" className="mt-2 w-full"
             disabled={submitting}
           >
             {cta}
           </Button>
         </form>
 
-        <div className="relative my-8">
-          <div className="absolute inset-0 flex items-center">
-            <div className="border-ivory/10 w-full border-t" />
-          </div>
-          <div className="relative flex justify-center">
-            <span className="text-fg-meta text-label tracking-caps bg-[var(--void)] px-4 font-sans uppercase">
-              {t('auth.or')}
-            </span>
-          </div>
+        {/* Dos líneas a los lados del texto: un parche de fondo tras la «o»
+            no casaba con el degradado del panel. */}
+        <div className="my-7 flex items-center gap-4">
+          <span aria-hidden="true" className="bg-ivory/10 h-px flex-1" />
+          <span className="text-fg-meta text-label tracking-caps font-sans uppercase">
+            {t('auth.or')}
+          </span>
+          <span aria-hidden="true" className="bg-ivory/10 h-px flex-1" />
         </div>
 
+        {/* TODO(backend): acceso con proveedor externo. Sin autenticación real
+            es la entrada sin cuenta: lleva al mismo sitio que el formulario. */}
         <Button
           variant="outline"
-          size="lg"
           className="w-full"
           iconLeft={
             <span
@@ -212,8 +219,9 @@ export function AuthForm({ media }: AuthFormProps) {
               style={{ boxShadow: '0 0 8px 1px var(--color-gold)' }}
             />
           }
+          asChild
         >
-          {t('auth.sso')}
+          <Link href="/mi-santuario">{t('auth.sso')}</Link>
         </Button>
       </div>
     </div>
