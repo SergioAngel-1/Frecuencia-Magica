@@ -106,6 +106,14 @@ describe('photography brief', () => {
     }
   });
 
+  it('keeps interface wording out of the prompts, where the model draws it as an object', () => {
+    for (const row of expandAll() as { id: string; prompt: string }[]) {
+      expect(row.prompt, row.id).not.toMatch(
+        /glass form|scrim|check mark|sits on top of this image/i,
+      );
+    }
+  });
+
   it('is committed as docs/brief-fotografico.md in sync with its data', () => {
     const committed = readFileSync(resolve(process.cwd(), '../docs/brief-fotografico.md'), 'utf8');
 
