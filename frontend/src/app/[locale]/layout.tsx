@@ -10,6 +10,7 @@ import {
   RealmNav,
   RouteTransition,
   SiteHeader,
+  TalkFloat,
 } from '@/components/layout';
 import { RealmProvider } from '@/components/world/realm-provider';
 import { SmoothScroll } from '@/components/world/smooth-scroll';
@@ -90,6 +91,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
                   <RouteTransition>{children}</RouteTransition>
                   <RealmFooter />
                 </main>
+                <TalkFloat />
                 <PlayerDock />
                 <OfflineVeil />
               </SmoothScroll>

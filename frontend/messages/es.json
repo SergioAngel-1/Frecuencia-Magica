@@ -18,6 +18,11 @@
     "soundOff": "Activar el sonido ambiental",
     "skipToContent": "Saltar al contenido"
   },
+  "talk": {
+    "label": "Hablar ahora",
+    "aria": "Hablar ahora con Marisol por WhatsApp (se abre en otra pestaña)",
+    "message": "Hola, Marisol. Vengo de Frecuencia Mágica y me gustaría hablar contigo."
+  },
   "nav": {
     "label": "Realms",
     "realms": {

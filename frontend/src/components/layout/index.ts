@@ -21,4 +21,5 @@ export { RouteTransition } from './route-transition';
 export { SessionLink } from './session-link';
 export { SiteFooter } from './site-footer';
 export { SiteHeader } from './site-header';
+export { TalkFloat } from './talk-float';
 export { ButtonLink } from './button-link';

@@ -18,6 +18,11 @@
     "soundOff": "Turn on ambient sound",
     "skipToContent": "Skip to content"
   },
+  "talk": {
+    "label": "Talk now",
+    "aria": "Talk now with Marisol on WhatsApp (opens in a new tab)",
+    "message": "Hello, Marisol. I am coming from Frecuencia Mágica and I would love to talk with you."
+  },
   "nav": {
     "label": "Realms",
     "realms": {
