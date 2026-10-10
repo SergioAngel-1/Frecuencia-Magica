@@ -11,6 +11,7 @@ import type { RealmId } from '@/types/realm';
 const SEGMENT_TO_REALM: Record<string, RealmId> = {
   // Español (locale por defecto, sin prefijo)
   inicio: 'home',
+  'sobre-marisol': 'home',
   acceso: 'auth',
   descubrete: 'descubrete',
   resonario: 'resonario',
@@ -20,6 +21,7 @@ const SEGMENT_TO_REALM: Record<string, RealmId> = {
   'mi-santuario': 'sanctuario',
   // Inglés
   home: 'home',
+  'about-marisol': 'home',
   auth: 'auth',
   discover: 'descubrete',
   resonarium: 'resonario',

@@ -5,7 +5,7 @@ import { DailyFrequency } from '@/components/features/home/daily-frequency';
 import { HeroSection } from '@/components/features/home/hero-section';
 import { MembershipSection } from '@/components/features/home/membership-section';
 import { RealmsGrid } from '@/components/features/home/realms-grid';
-import { PageShell } from '@/components/layout';
+import { ButtonLink, PageShell } from '@/components/layout';
 import { Link } from '@/i18n/navigation';
 import { AUDIOS } from '@/data';
 import { BANDS } from '@/config/bands';
@@ -130,6 +130,11 @@ export default async function HomePage({ params }: PageProps) {
           title={t('about.title')}
           p1={t('about.p1')}
           p2={t('about.p2')}
+          action={
+            <ButtonLink variant="outline" href="/sobre-marisol">
+              {t('about.cta')} →
+            </ButtonLink>
+          }
         />
 
         <MembershipSection

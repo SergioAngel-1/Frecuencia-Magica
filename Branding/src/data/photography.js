@@ -191,6 +191,20 @@ export const SLOTS = [
     'Horizon at 40% vertical, sky above, dark ground below fading to near-black for text',
   ),
 
+  /* Sobre Marisol */
+  slot(
+    'about.hero', 'wide', '50% 40%', 'P1', 'warm', 'left-bottom', 'Sobre Marisol · hero',
+    'Cabecera de la vista de Marisol: el lugar desde el que acompaña.',
+    'The room where the work begins: a quiet studio at dusk with a low wooden table, a crystal singing bowl, an open notebook and a single lit candle, a linen shawl left over a chair as if someone had just stepped out, warm golden light from a window on the right, deep navy shadows',
+    'Table and candle at 60% horizontal and 40% vertical, left third dark and empty for the title, lower edge fading to near-black',
+  ),
+  slot(
+    'about.angels', 'cinema', '50% 30%', 'P1', 'lav', 'bottom', 'Sobre Marisol · Experiencias con Ángeles',
+    'La presencia sin figura: luz que desciende, nunca un ángel literal.',
+    'Presence without a figure: a soft shaft of pale lavender and gold light descending through still dark air, a single white feather suspended mid-fall, fine luminous dust around it, no wings, no faces, no statues, no religious iconography',
+    'Light source and feather in the upper third at 30% vertical, lower half dark and calm for the headline',
+  ),
+
   /* Acceso */
   slot(
     'auth.hero', 'wide', '50% 40%', 'P1', 'soft', 'left', 'Acceso · hero',

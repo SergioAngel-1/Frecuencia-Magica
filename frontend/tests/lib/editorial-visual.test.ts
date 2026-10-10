@@ -16,6 +16,8 @@ const ZEBRA: readonly EditorialMediaSlot[] = [
   'home.hero',
   'home-marisol-portrait',
   'home-membership',
+  'about.hero',
+  'about.angels',
   'auth.hero',
   'discover.hero',
   'resonario.hero',

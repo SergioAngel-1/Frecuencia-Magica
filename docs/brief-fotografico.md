@@ -3,7 +3,7 @@
 > Generado por `npm run export:photo-brief` desde `Branding/src/data/photography.js`. No editar a mano: cambia el dato y vuelve a generarlo.
 > El contrato que manda es `frontend/src/config/editorial-media.ts` (ratio, prioridad, focal); un test de la web falla si el brief se desvía.
 
-**64 imágenes** (41 slots registrados, varios por instancia; 5 fuera del registro): P0 4 · P1 45 · P2 15. 1 requiere sesión real (retrato de Marisol).
+**66 imágenes** (43 slots registrados, varios por instancia; 5 fuera del registro): P0 4 · P1 47 · P2 15. 1 requiere sesión real (retrato de Marisol).
 
 ## 1. Entrega
 
@@ -70,6 +70,8 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `home-marisol-portrait.avif` | Home · Sobre Marisol | 3:4 | 1440×1920 | P0 |
 | `home-membership.avif` | Home · membresía | 16:9 | 2880×1620 | P2 |
 | `home-footer-banner.avif` | Home · cierre | 16:9 | 2880×1620 | P2 |
+| `about-hero.avif` | Sobre Marisol · hero | 16:9 | 2880×1620 | P1 |
+| `about-angels.avif` | Sobre Marisol · Experiencias con Ángeles | 16:8 | 2880×1440 | P1 |
 | `auth-hero.avif` | Acceso · hero | 16:9 | 2880×1620 | P1 |
 | `auth-form-atmosphere.avif` | Acceso · formulario | 3:4 | 1440×1920 | P2 |
 | `discover-hero.avif` | Descúbrete · hero | 16:9 | 2880×1620 | P1 |
@@ -266,6 +268,36 @@ Golden light pouring from above into a serene empty communal space: a long low w
 
 ```text
 The horizon after the page: a dusk sky with faint lavender clouds above a dark calm plain, a single thin line of gold light along the horizon, the first stars appearing, vast stillness. Horizon at 40% vertical, sky above, dark ground below fading to near-black for text. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+```
+
+### Sobre Marisol
+
+#### `about.hero` — Sobre Marisol · hero · P1
+
+- **Archivo:** `about-hero.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 y reescalar · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo e inferior despejados (titular y CTA)
+- **Contenido:** Cabecera de la vista de Marisol: el lugar desde el que acompaña.
+
+**Prompt**
+
+```text
+The room where the work begins: a quiet studio at dusk with a low wooden table, a crystal singing bowl, an open notebook and a single lit candle, a linen shawl left over a chair as if someone had just stepped out, warm golden light from a window on the right, deep navy shadows. Table and candle at 60% horizontal and 40% vertical, left third dark and empty for the title, lower edge fading to near-black. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+```
+
+#### `about.angels` — Sobre Marisol · Experiencias con Ángeles · P1
+
+- **Archivo:** `about-angels.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 y reescalar · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 30%
+- **Zona de texto:** Franja inferior despejada (el texto va abajo, sobre scrim)
+- **Contenido:** La presencia sin figura: luz que desciende, nunca un ángel literal.
+
+**Prompt**
+
+```text
+Presence without a figure: a soft shaft of pale lavender and gold light descending through still dark air, a single white feather suspended mid-fall, fine luminous dust around it, no wings, no faces, no statues, no religious iconography. Light source and feather in the upper third at 30% vertical, lower half dark and calm for the headline. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
 ```
 
 ### Acceso

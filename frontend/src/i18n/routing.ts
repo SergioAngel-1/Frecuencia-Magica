@@ -19,6 +19,8 @@ export const routing = defineRouting({
   pathnames: {
     '/': '/',
     '/inicio': { es: '/inicio', en: '/home' },
+    // Vista interna del home: no es un realm, hereda el suyo.
+    '/sobre-marisol': { es: '/sobre-marisol', en: '/about-marisol' },
     '/acceso': { es: '/acceso', en: '/auth' },
     '/descubrete': { es: '/descubrete', en: '/discover' },
     '/resonario': { es: '/resonario', en: '/resonarium' },

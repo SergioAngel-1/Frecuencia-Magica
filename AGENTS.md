@@ -86,5 +86,5 @@ npm run format:check && npm run lint && npm run typecheck && npm run test && npm
 
 ## Alcance
 
-- **Dentro:** los 9 realms (portal, home, acceso, descúbrete, resonario, academia, experiencias, tienda, mi santuario), responsive, estados de carga/vacío/error, 404, i18n ES/EN, dos escenas 3D puntuales y perezosas.
-- **Aplazado (no construir sin pedirlo):** blog, membresía, about, contacto, búsqueda, perfil, favoritos, pedidos, notificaciones, ajustes, pagos, CMS.
+- **Dentro:** los 9 realms (portal, home, acceso, descúbrete, resonario, academia, experiencias, tienda, mi santuario), responsive, estados de carga/vacío/error, 404, i18n ES/EN, dos escenas 3D puntuales y perezosas, y la vista interna «Sobre Marisol» (`/sobre-marisol`, hereda el realm `home`).
+- **Aplazado (no construir sin pedirlo):** blog, membresía, contacto, búsqueda, perfil, favoritos, pedidos, notificaciones, ajustes, pagos, CMS.
