@@ -234,6 +234,9 @@
 @utility z-header {
   z-index: 220;
 }
+@utility z-offline {
+  z-index: 8000;
+}
 @utility z-portal {
   z-index: 9000;
 }

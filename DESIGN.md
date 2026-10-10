@@ -212,6 +212,7 @@ Sin sombras de bloque. La profundidad se construye con **luz y vidrio**: superfi
 | `z-player` | 180 | Dock del reproductor |
 | `z-nav` | 210 | Constelación de realms |
 | `z-header` | 220 | Header |
+| `z-offline` | 8000 | Velo de sin conexión (`OfflineVeil`) |
 | `z-portal` | 9000 | Cruce del portal |
 | `z-veil` | 9500 | Velo de transición de ruta |
 | `z-cursor` | 9800 | Cursor luminoso |

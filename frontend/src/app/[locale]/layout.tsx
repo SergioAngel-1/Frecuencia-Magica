@@ -4,7 +4,13 @@ import { getTranslations } from 'next-intl/server';
 import { LazyMotion, domAnimation } from 'motion/react';
 
 import { PlayerDock } from '@/components/features/player/player-dock';
-import { RealmFooter, RealmNav, RouteTransition, SiteHeader } from '@/components/layout';
+import {
+  OfflineVeil,
+  RealmFooter,
+  RealmNav,
+  RouteTransition,
+  SiteHeader,
+} from '@/components/layout';
 import { RealmProvider } from '@/components/world/realm-provider';
 import { SmoothScroll } from '@/components/world/smooth-scroll';
 import { WorldEngine } from '@/components/world/world-engine';
@@ -85,6 +91,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
                   <RealmFooter />
                 </main>
                 <PlayerDock />
+                <OfflineVeil />
               </SmoothScroll>
             </RealmProvider>
           </NextIntlClientProvider>
