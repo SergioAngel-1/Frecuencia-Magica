@@ -56,12 +56,12 @@
 - Consume: `resolveEditorialMedia(slot, { instance })` (ya existe; el resonario es el patrón a imitar).
 - Produce: una media resuelta por curso y por producto, sin cambiar la forma de los props que reciben los componentes de cliente.
 
-- [ ] Ampliar los guardias de academia y tienda para exigir `instance` en cada resolución de `academy-course-cover` y `store-product-visual`. Ejecutarlos y comprobar que **fallan**.
-- [ ] Academia: el catálogo resuelve una portada por curso (`instance: course.id`); `c1` sigue usando `academy.featured-course` como destacado. El detalle pasa `instance: course.id`.
-- [ ] Tienda: el catálogo, el detalle, los relacionados y el carrito resuelven `store-product-visual` con `instance: product.id`.
-- [ ] Vaciar en `PENDING_NOTES` las notas sobre `instance`, porque el trabajo que pedían ya está hecho. Regenerar el brief (`npm run export:photo-brief` desde `Branding/`).
-- [ ] Verificar: guardias en verde y gate de la tarea. Hoy nada cambia en pantalla, porque esos slots siguen sin imagen y pintan su banda: compruébalo en `/academia` y `/tienda`.
-- [ ] Commit: `refactor(editorial): resolve course and product media per instance`.
+- [x] Ampliar los guardias de academia y tienda para exigir `instance` en cada resolución de `academy-course-cover` y `store-product-visual`. Ejecutarlos y comprobar que **fallan**.
+- [x] Academia: el catálogo resuelve una portada por curso (`instance: course.id`); `c1` sigue usando `academy.featured-course` como destacado. El detalle pasa `instance: course.id`.
+- [x] Tienda: el catálogo, el detalle, los relacionados y el carrito resuelven `store-product-visual` con `instance: product.id`.
+- [x] Vaciar en `PENDING_NOTES` las notas sobre `instance`, porque el trabajo que pedían ya está hecho. Regenerar el brief (`npm run export:photo-brief` desde `Branding/`).
+- [x] Verificar: guardias en verde y gate de la tarea. Hoy nada cambia en pantalla, porque esos slots siguen sin imagen y pintan su banda: compruébalo en `/academia` y `/tienda`.
+- [x] Commit: `refactor(editorial): resolve course and product media per instance`.
 
 **Aceptación:** al publicar en el manifiesto una clave `academy-course-cover:c2` o `store-product-visual:p3`, la imagen aparece sin tocar ninguna vista. Pruébalo temporalmente con una imagen existente y **revierte** la prueba.
 
@@ -72,14 +72,14 @@
 **Interfaces:**
 - Produce: `EditorialMediaDefinition.mobilePosition?: string`, `EditorialMediaDefinition.backdrop?: true`, y `EditorialMedia.mobilePosition?: string` (lo propaga `resolveEditorialMedia`; la vista puede sobrescribirlo como el resto de campos).
 
-- [ ] Tests primero:
+- [x] Tests primero:
   - el brief declara el mismo `mobilePosition` y `backdrop` que el contrato;
   - sólo `home.hero` lleva `mobilePosition`;
   - sólo `discover.question-atmosphere` lleva `backdrop`;
   - `resolveEditorialMedia` propaga `mobilePosition`.
-- [ ] Añadir los campos al contrato y a los tipos, y propagarlos en el resolvedor.
-- [ ] Reflejarlos en el brief (dato y render del Markdown) y en el inventario. Regenerar el brief y los prompts.
-- [ ] Gate de la tarea y commit: `feat(editorial): add mobile focal point and backdrop to the slot contract`.
+- [x] Añadir los campos al contrato y a los tipos, y propagarlos en el resolvedor.
+- [x] Reflejarlos en el brief (dato y render del Markdown) y en el inventario. Regenerar el brief y los prompts.
+- [x] Gate de la tarea y commit: `feat(editorial): add mobile focal point and backdrop to the slot contract`.
 
 **Aceptación:** ningún otro campo del contrato cambia (compruébalo con `git diff`), y el brief generado muestra los dos campos.
 

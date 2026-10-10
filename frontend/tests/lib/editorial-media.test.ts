@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
+import { EDITORIAL_MEDIA_REGISTRY, EDITORIAL_MEDIA_SLOTS } from '@/config/editorial-media';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { mediaLayout } from '@/lib/editorial/media-layout';
 
@@ -72,6 +73,36 @@ describe('editorial media contracts', () => {
     expect(withoutPhoto.kind).toBe('fallback');
     expect(withoutPhoto.src).toBeUndefined();
     expect(noInstance.src).toBeUndefined();
+  });
+
+  it('gives a mobile focal point only to home.hero, without moving its desktop focus', () => {
+    const withMobile = EDITORIAL_MEDIA_SLOTS.filter(
+      (slot) => EDITORIAL_MEDIA_REGISTRY[slot].mobilePosition !== undefined,
+    );
+
+    expect(withMobile).toEqual(['home.hero']);
+    expect(EDITORIAL_MEDIA_REGISTRY['home.hero']).toMatchObject({
+      position: '62% 40%',
+      mobilePosition: '75% 40%',
+    });
+  });
+
+  it('marks only discover.question-atmosphere as a full-screen backdrop', () => {
+    const backdrops = EDITORIAL_MEDIA_SLOTS.filter(
+      (slot) => EDITORIAL_MEDIA_REGISTRY[slot].backdrop,
+    );
+
+    expect(backdrops).toEqual(['discover.question-atmosphere']);
+  });
+
+  it('propagates the mobile focal point, and lets the view override it', () => {
+    expect(resolveEditorialMedia('home.hero', { alt: 'x' }).mobilePosition).toBe('75% 40%');
+    expect(
+      resolveEditorialMedia('home.hero', { alt: 'x', mobilePosition: '80% 40%' }).mobilePosition,
+    ).toBe('80% 40%');
+    expect(resolveEditorialMedia('discover.hero', { alt: 'x' })).not.toHaveProperty(
+      'mobilePosition',
+    );
   });
 
   it('returns deterministic layout contracts for each editorial mode', () => {

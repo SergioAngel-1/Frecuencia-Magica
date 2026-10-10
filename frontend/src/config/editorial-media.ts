@@ -74,6 +74,17 @@ export interface EditorialMediaDefinition {
   fallback: EditorialMediaFallback;
   sizes: string;
   alt?: string;
+  /**
+   * Foco por debajo de 768 px, cuando el de escritorio deja el sujeto fuera de
+   * la ventana visible en móvil. No sustituye a `position`: lo complementa.
+   */
+  mobilePosition?: string;
+  /**
+   * Atmósfera pintada como fondo a pantalla completa, por encima de su ratio.
+   * Única excepción a «cada slot con su ratio»: sólo vale para una imagen de
+   * bajo contraste y nada nítido, donde la ampliación no se percibe.
+   */
+  backdrop?: true;
 }
 
 const WIDE: Pick<EditorialMediaDefinition, 'position' | 'sizes'> = {
@@ -119,6 +130,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
   'home.hero': {
     ...WIDE,
     position: '62% 40%',
+    mobilePosition: '75% 40%',
     aspect: '16:9',
     priority: true,
     priorityTier: 'P0',
@@ -202,6 +214,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
   'discover.question-atmosphere': {
     ...PORTRAIT,
     aspect: '3:4',
+    backdrop: true,
     priority: false,
     priorityTier: 'P2',
     fallback: 'none',

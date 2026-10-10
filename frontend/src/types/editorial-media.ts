@@ -23,6 +23,8 @@ export type EditorialMedia = {
   /** Gradiente del ítem del catálogo para los slots `band` (`product.band`…). */
   band?: string;
   position?: string;
+  /** Foco por debajo de 768 px; sin él, `position` vale en todos los anchos. */
+  mobilePosition?: string;
   priority?: boolean;
   sizes: string;
 };

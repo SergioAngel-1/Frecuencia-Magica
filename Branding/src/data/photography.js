@@ -279,6 +279,11 @@ export const SLOTS = [
     'El universo entero en una imagen: materia del hero con kicker, título y CTA sobre scrim. Cuerpo de luz: la imagen firma de la marca.',
     `The brand signature image: an ${BODY_OF_LIGHT}, resting on its side across the surface of dark still water, seen softly from behind with the head turned away from the camera, its head close to the water where a soft diffuse spiral-galaxy glow gathers beneath it in the water and ripples outward in concentric rings, the silhouette edged in warm gold with faint teal and lavender light flowing through it like fine veins of current, ${filaments('rising behind it')}, sparse fine stars in the upper third, deep navy background`,
     'The whole figure is small, only about a quarter of the frame width, and sits entirely inside the band between 62% and 88% of the frame width, never left of 62% and never closer to the right edge than 12%: its head at 62% horizontal and 40% vertical, its body extending to the right and ending at 88%, so a strip of dark empty water stays between its feet and the right edge and no part of it touches or crosses that edge; the left 55% of the frame is dark and empty for the headline, low camera angle at water level',
+    {
+      mobileFocal: '75% 40%',
+      notes:
+        'El foco móvil rige por debajo de 768 px: así el cuerpo de luz (62–88 % del ancho) queda dentro de la ventana visible.',
+    },
   ),
   slot(
     'home.daily-frequency', 'cinema', '50% 50%', 'P1', 'warm', 'none', 'Home · frecuencia del día',
@@ -356,6 +361,11 @@ export const SLOTS = [
     'Respiro visual que acompaña cada pregunta.',
     'Soft-focus ambient abstraction: drifting translucent veils of lavender and teal mist with tiny golden specks like slow snowfall, very dark, almost abstract, the whole frame a single continuous field of soft mist with no object, no shape and no outline anywhere, the veils faint and low in saturation, and the golden specks few, tiny and out of focus',
     'Vertical, very low contrast: the brightest part of the frame is no lighter than a deep navy-lavender haze, nothing sharp and nothing with an edge, the lower third as dark as the rest (the question text is laid over the center)',
+    {
+      backdrop: true,
+      notes:
+        'Por eso es de bajo contraste y sin nada nítido: la ampliación no se percibe.',
+    },
   ),
   slot(
     'discover.tuning', 'cinema', '50% 50%', 'P1', 'teal', 'none', 'Descúbrete · afinación',
