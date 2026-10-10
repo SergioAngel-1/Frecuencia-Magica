@@ -230,6 +230,8 @@
 
 ### Tarea 11: Ampliar los originales a 2880 px — fuera del repo, con revisión
 
+> **Descartada por el cliente (2026-10-10).** Se probó Real-ESRGAN x4plus con transferencia del grano del original, pero el cliente la descartó tras validar el frontend en pantalla grande: con los fundidos y el aura de la página, las fuentes actuales se ven bien. La ingesta usa los originales a su tamaño (1672, 1774, 1086 y 1254 px). Si más adelante se quiere la nitidez del máster, la vía preferida es regenerar la imagen a su medida desde el brief, no ampliarla. Ninguna casilla de esta tarea se ejecuta.
+
 **Archivos:** `frontend/.editorial-originals/` (ignorada por git) y `Branding/src/data/photography-status.js` (notas). Herramientas y scripts **fuera del repo**, en el scratchpad de la sesión.
 
 - [ ] Elegir y probar una herramienta de super-resolución offline (por ejemplo, Real-ESRGAN ncnn), instalada fuera del repo.
@@ -246,6 +248,8 @@
 
 ### Tarea 12: Ingesta de variantes y calibración AVIF
 
+> **Hecha sin la Tarea 11:** ingiere los originales a su tamaño; calidad elegida q80 (el porqué, en el script).
+
 **Archivos:** el nuevo `frontend/scripts/editorial-ingest.mjs`, `frontend/package.json` (script `editorial:ingest`), `frontend/public/editorial/*.avif`, `src/config/editorial-assets.generated.ts` y los tests `photography-status` y `editorial-media`.
 
 **Interfaces:**
@@ -255,14 +259,14 @@
   - `<archivo>.avif` = la variante mayor;
   - el manifiesto: `EDITORIAL_ASSETS` con la misma forma y `EDITORIAL_ASSET_WIDTHS: Readonly<Record<string, readonly number[]>>`, indexado por el `src` de `EDITORIAL_ASSETS`.
 
-- [ ] **Calibración:** generar q64, q72 y q80 de tres imágenes (degradado oscuro: `home-footer-banner`; grano con cuerpo de luz: `home-hero`; objeto con detalle: `product-detail`) y compararlas a 1:1 y en pantalla a DPR 2. Elegir la menor calidad sin banding ni pérdida de grano, y dejar el porqué en un comentario del script.
-- [ ] Tests primero:
+- [x] **Calibración:** generar q64, q72 y q80 de tres imágenes (degradado oscuro: `home-footer-banner`; grano con cuerpo de luz: `home-hero`; objeto con detalle: `product-detail`) y compararlas a 1:1 y en pantalla a DPR 2. Elegir la menor calidad sin banding ni pérdida de grano, y dejar el porqué en un comentario del script.
+- [x] Tests primero:
   - cada `src` de `EDITORIAL_ASSETS` tiene sus anchos en `EDITORIAL_ASSET_WIDTHS`, en orden creciente y sin superar la fuente;
   - cada variante declarada existe en disco.
-- [ ] Script idempotente: lee los ampliados, escribe las variantes y regenera el manifiesto en orden estable. No toca `.editorial-trials/` ni `_to_delete/`.
-- [ ] Ejecutarlo y revisar el peso total de `public/editorial/`, que se anota en `frontend/docs/performance.md`.
-- [ ] Actualizar `frontend/public/editorial/README.md` (cómo ingerir y columna «Estado» derivada del manifiesto, P3-3 de la auditoría) y `CLAUDE.md` / `AGENTS.md` si el flujo de ingesta lo exige.
-- [ ] Gate de la tarea y commit (scripts y manifiesto por un lado; imágenes por otro, si conviene revisarlos por separado): `feat(editorial): ingest width variants from upscaled originals`.
+- [x] Script idempotente: lee los ampliados, escribe las variantes y regenera el manifiesto en orden estable. No toca `.editorial-trials/` ni `_to_delete/`.
+- [x] Ejecutarlo y revisar el peso total de `public/editorial/`, que se anota en `frontend/docs/performance.md`.
+- [x] Actualizar `frontend/public/editorial/README.md` (cómo ingerir y columna «Estado» derivada del manifiesto, P3-3 de la auditoría) y `CLAUDE.md` / `AGENTS.md` si el flujo de ingesta lo exige.
+- [x] Gate de la tarea y commit (scripts y manifiesto por un lado; imágenes por otro, si conviene revisarlos por separado): `feat(editorial): ingest width variants from upscaled originals`.
 
 ### Tarea 13: Loader de variantes
 

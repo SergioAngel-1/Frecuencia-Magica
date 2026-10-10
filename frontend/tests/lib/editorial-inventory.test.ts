@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
+import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import { EDITORIAL_MEDIA_SLOTS } from '@/config/editorial-media';
 
 import { readSource, SRC, sourceFiles } from '../helpers/source-files';
@@ -35,6 +36,18 @@ describe('editorial slot inventory', () => {
       } else {
         expect(row, `${slot} is not wired in code`).toContain('sin cablear');
       }
+    }
+  });
+
+  it('reports as published exactly the slots that the manifest publishes', () => {
+    const keys = Object.keys(EDITORIAL_ASSETS);
+    for (const slot of EDITORIAL_MEDIA_SLOTS) {
+      const stem = slot.endsWith('.*') ? slot.slice(0, -2) : slot;
+      const published = keys.some((key) => key === slot || key.startsWith(`${stem}:`));
+      const row = inventoryRow(slot) ?? '';
+
+      expect(row.includes('Publicado'), `${slot} published: ${published}`).toBe(published);
+      expect(row.includes('Pendiente de asset'), slot).toBe(!published);
     }
   });
 });

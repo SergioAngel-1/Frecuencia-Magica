@@ -1,6 +1,7 @@
 /**
  * Slot (o `slot:instancia`) → imagen publicada en `public/editorial/`.
- * Lo escribe el procesado de imágenes: un slot que no figura aquí pinta el fallback de su contrato.
+ * Lo escribe `npm run editorial:ingest`: un slot que no figura aquí pinta el fallback de su contrato.
+ * La ruta es la variante mayor; `EDITORIAL_ASSET_WIDTHS` lista las demás.
  */
 export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
   'about.angels': '/editorial/about-angels.avif',
@@ -53,4 +54,61 @@ export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
   'states.offline': '/editorial/states-offline.avif',
   'store.hero': '/editorial/store-hero.avif',
   'store.ritual-banner': '/editorial/store-ritual-banner.avif',
+};
+
+/**
+ * `src` de `EDITORIAL_ASSETS` → anchos publicados como `<archivo>-<ancho>.avif`, en orden
+ * creciente. Los lee el loader de `next/image` (`lib/editorial/image-loader.ts`).
+ */
+export const EDITORIAL_ASSET_WIDTHS: Readonly<Record<string, readonly number[]>> = {
+  '/editorial/about-angels.avif': [640, 828, 1200, 1672],
+  '/editorial/about-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/academy-featured-course.avif': [640, 828, 1200, 1672],
+  '/editorial/academy-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/academy-lesson-visual.avif': [640, 828, 1200, 1672],
+  '/editorial/auth-form-atmosphere.avif': [640, 828, 1086],
+  '/editorial/auth-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/booking-confirmation.avif': [640, 828, 1200, 1672],
+  '/editorial/booking-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/cart-empty.avif': [640, 828, 1200, 1672],
+  '/editorial/checkout-confirmation.avif': [640, 828, 1200, 1672],
+  '/editorial/discover-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/discover-question-atmosphere.avif': [640, 828, 1086],
+  '/editorial/discover-result.avif': [640, 828, 1200, 1672],
+  '/editorial/discover-tuning.avif': [640, 828, 1200, 1672],
+  '/editorial/experiences-featured.avif': [640, 828, 1200, 1672],
+  '/editorial/experiences-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/experiences-visual-e1.avif': [640, 828, 1200, 1672],
+  '/editorial/home-daily-frequency.avif': [640, 828, 1200, 1672],
+  '/editorial/home-footer-banner.avif': [640, 828, 1200, 1672],
+  '/editorial/home-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/home-marisol-portrait.avif': [640, 828, 1086],
+  '/editorial/home-membership.avif': [640, 828, 1200, 1672],
+  '/editorial/home-realms-banner.avif': [640, 828, 1200, 1672],
+  '/editorial/not-found-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/portal-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/portal-portal-field.avif': [640, 828, 1200, 1774],
+  '/editorial/product-detail.avif': [640, 828, 1200, 1672],
+  '/editorial/product-related.avif': [640, 828, 1200, 1774],
+  '/editorial/resonario-archive-banner.avif': [640, 828, 1200, 1672],
+  '/editorial/resonario-audio-cover-a1.avif': [640, 828, 1200, 1254],
+  '/editorial/resonario-audio-cover-a2.avif': [640, 828, 1200, 1254],
+  '/editorial/resonario-audio-cover-a3.avif': [640, 828, 1200, 1254],
+  '/editorial/resonario-audio-cover-a4.avif': [640, 828, 1200, 1254],
+  '/editorial/resonario-audio-cover-a5.avif': [640, 828, 1200, 1254],
+  '/editorial/resonario-audio-cover-a6.avif': [640, 828, 1200, 1254],
+  '/editorial/resonario-audio-cover-a7.avif': [640, 828, 1200, 1254],
+  '/editorial/resonario-featured.avif': [640, 828, 1200, 1774],
+  '/editorial/resonario-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/sanctuary-continue.avif': [640, 828, 1200, 1672],
+  '/editorial/sanctuary-daily.avif': [640, 828, 1200, 1254],
+  '/editorial/sanctuary-empty.avif': [640, 828, 1200, 1672],
+  '/editorial/sanctuary-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/sanctuary-journal.avif': [640, 828, 1086],
+  '/editorial/states-empty.avif': [640, 828, 1200, 1672],
+  '/editorial/states-error.avif': [640, 828, 1200, 1672],
+  '/editorial/states-loading.avif': [640, 828, 1200, 1672],
+  '/editorial/states-offline.avif': [640, 828, 1200, 1672],
+  '/editorial/store-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/store-ritual-banner.avif': [640, 828, 1200, 1672],
 };

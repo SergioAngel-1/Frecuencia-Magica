@@ -54,6 +54,21 @@ Presupuestos, métricas y decisiones de rendimiento del frontend (Task 16.4 del 
 | resto      | ~23 kB     | chunks menores                                       |
 | **Total**  | **220 kB** |                                                      |
 
+## Imagen editorial (2026-10-10)
+
+Las imágenes se comprimen **una sola vez**, desde el PNG original de `.editorial-originals/`, con `npm run editorial:ingest` (AVIF q80, `effort` 6; la calidad se calibró a 1:1 contra el PNG, ver el comentario de `scripts/editorial-ingest.mjs`). Cada imagen se publica en variantes por ancho (`<archivo>-<ancho>.avif`) y el loader de `next/image` (`src/lib/editorial/image-loader.ts`) elige la menor que cubre el ancho pedido: `next/image` ya no re-codifica a WebP. Las fuentes miden 1672/1774 px (16:9 y 2:1), 1086 px (3:4) y 1254 px (1:1); no se amplían (decisión de 2026-10-10), así que la variante mayor es el ancho de la fuente.
+
+| Variante                                                           | Archivos | Peso total  | Media | Máximo |
+| ------------------------------------------------------------------ | -------- | ----------- | ----- | ------ |
+| 640                                                                | 50       | 0,65 MB     | 13 KB | 43 KB  |
+| 828                                                                | 50       | 1,00 MB     | 20 KB | 66 KB  |
+| 1200                                                               | 46       | 1,67 MB     | 37 KB | 111 KB |
+| Ancho de la fuente (1086–1774)                                     | 50       | 2,65 MB     | 54 KB | 132 KB |
+| `<archivo>.avif` (copia de la mayor, para consumidores sin loader) | 50       | 2,65 MB     | 54 KB | 132 KB |
+| **`public/editorial/` (AVIF)**                                     | **246**  | **8,62 MB** |       |        |
+
+Cada visitante descarga una sola variante por imagen visible: en 390 px las de 828 o 1200 (20–40 KB); en 1440 a DPR 2, la mayor (≤ 132 KB, dentro del presupuesto del brief de ≤ 260 KB).
+
 ## Deuda restante (documentada, no bloqueante)
 
 - **~13–16 kB sobre el presupuesto de 200 kB**, concentrados en React DOM (59 kB gz) y el runtime de Next/Turbopack (~39 kB gz). No reducible desde la aplicación sin cambiar de framework o de estrategia de renderizado.
