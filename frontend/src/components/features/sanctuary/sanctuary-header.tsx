@@ -15,7 +15,9 @@ type SanctuaryHeaderProps = {
  */
 export function SanctuaryHeader({ kicker, title }: SanctuaryHeaderProps) {
   return (
-    <div className="flex items-center gap-5 sm:gap-6">
+    // El orbe va encima del saludo: así el saludo arranca en el eje de página,
+    // la misma arista que las tarjetas de la vista.
+    <div className="flex flex-col items-start gap-4">
       <div
         aria-hidden="true"
         className="size-[56px] shrink-0 rounded-full sm:size-[70px]"

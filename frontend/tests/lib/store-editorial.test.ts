@@ -239,6 +239,14 @@ describe('store editorial composition contracts', () => {
     expect(cardSource).toContain('md:flex-row');
     expect(cardSource).toContain('md:w-1/2');
   });
+  it('keeps the cart on the page axis and the related products readable at 768', () => {
+    expect(cartPageSource).toContain('px-[var(--page-inset)]');
+    expect(cartPageSource).not.toContain('md:px-0');
+    // Dos líneas antes que truncar el nombre a una palabra.
+    expect(cartSource).toContain('line-clamp-2');
+    expect(cartSource).not.toMatch(/text-lead truncate/);
+    expect(detailSource).toContain('md:grid-cols-2 lg:grid-cols-3');
+  });
 });
 
 export {};

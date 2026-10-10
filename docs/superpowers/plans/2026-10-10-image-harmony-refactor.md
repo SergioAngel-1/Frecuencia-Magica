@@ -214,11 +214,11 @@
 
 **Archivos:** `components/features/store/cart-view.tsx` (o su contenedor), la cabecera y las tarjetas de mi-santuario, el componente de relacionados de producto y, si los hay, los guardias afectados.
 
-- [ ] Carrito en 768: la columna recupera el eje (`fm-container` o el `PageShell` correcto) y los nombres de producto pasan a dos líneas con `line-clamp-2`, sin truncar a una palabra.
-- [ ] Mi Santuario: el saludo del héroe y las tarjetas comparten la arista izquierda del eje.
-- [ ] Relacionados: dos columnas desde 768 px y tres desde 1024 px.
-- [ ] Verificar con la medición de aristas de la auditoría: ninguna arista de contenido fuera del eje dentro de una misma vista (los títulos dentro de tarjetas son la excepción esperada).
-- [ ] Gate de la tarea y commit: `fix(layout): restore the page axis in cart and sanctuary`.
+- [x] Carrito en 768: la columna recupera el eje (`fm-container` o el `PageShell` correcto) y los nombres de producto pasan a dos líneas con `line-clamp-2`, sin truncar a una palabra.
+- [x] Mi Santuario: el saludo del héroe y las tarjetas comparten la arista izquierda del eje.
+- [x] Relacionados: dos columnas desde 768 px y tres desde 1024 px.
+- [x] Verificar con la medición de aristas de la auditoría: ninguna arista de contenido fuera del eje dentro de una misma vista (los títulos dentro de tarjetas son la excepción esperada).
+- [x] Gate de la tarea y commit: `fix(layout): restore the page axis in cart and sanctuary`.
 
 ### Tarea 10: `sharp` como devDependency
 

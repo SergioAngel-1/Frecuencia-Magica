@@ -162,4 +162,8 @@ describe('sanctuary editorial composition contracts', () => {
     expect(dailySource).toContain('absolute inset-x-0 top-0 -z-10 aspect-square');
     expect(dailySource).not.toContain('absolute inset-0 -z-10');
   });
+  it('starts the greeting on the page axis, like the cards below it', () => {
+    const header = readSource('components/features/sanctuary/sanctuary-header.tsx');
+    expect(header).toContain('flex flex-col items-start');
+  });
 });

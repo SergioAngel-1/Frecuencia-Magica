@@ -35,17 +35,20 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
   });
 
   return (
-    <GlassPanel className="grid grid-cols-[64px_minmax(0,1fr)] gap-x-4 gap-y-3 p-4 sm:grid-cols-[80px_minmax(0,1fr)_auto_auto] sm:items-center">
-      <div className="relative row-span-2 aspect-square overflow-hidden rounded-[14px] sm:row-span-1">
+    // Una sola fila cuando la columna es ancha (de `sm` a `lg`); con el resumen
+    // al lado, desde `lg`, la columna se estrecha y la fila vuelve a dos
+    // líneas para no recortar el nombre.
+    <GlassPanel className="grid grid-cols-[64px_minmax(0,1fr)] gap-x-4 gap-y-3 p-4 sm:grid-cols-[80px_minmax(0,1fr)_auto_auto] sm:items-center lg:grid-cols-[80px_minmax(0,1fr)] lg:items-start">
+      <div className="relative row-span-2 aspect-square overflow-hidden rounded-[14px] sm:row-span-1 lg:row-span-2">
         <EditorialImage aspect="1:1" className="h-full" media={productMedia} />
       </div>
       <div className="min-w-0">
-        <p className="text-ivory text-lead truncate font-serif">
+        <p className="text-ivory text-lead line-clamp-2 font-serif">
           {tStore(`products.${product.id}.title`)}
         </p>
         <p className="text-fg-meta text-meta font-sans">{tStore(categoryKey(product.catKey))}</p>
       </div>
-      <div className="col-start-2 flex min-h-11 items-center justify-between gap-4 sm:contents">
+      <div className="col-start-2 flex min-h-11 items-center justify-between gap-4 sm:contents lg:flex">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -106,7 +109,7 @@ export function CartView({ media, onPlaceOrder }: CartViewProps) {
   }
 
   return (
-    <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] md:gap-12">
+    <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:gap-12">
       <h1 className="sr-only">{t('title')}</h1>
       <div>
         <div className="mb-6 flex flex-wrap items-end justify-between gap-3">

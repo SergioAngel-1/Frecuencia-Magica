@@ -11,7 +11,6 @@ import { useRouter } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
 import { categoryKey } from '@/lib/store/category-key';
 import { relatedProducts } from '@/lib/store/related';
-import { cn } from '@/lib/cn';
 import { useCartStore } from '@/stores/cart-store';
 import { usePlayerStore } from '@/stores/player-store';
 import type { EditorialMedia } from '@/types/editorial-media';
@@ -137,7 +136,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
             title={t('relatedHeading.title')}
             className="mb-8"
           />
-          <div className={cn('grid gap-6 sm:grid-cols-3')}>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {related.map((relatedProduct) => (
               <ProductCard
                 key={relatedProduct.id}
