@@ -56,20 +56,20 @@ Presupuestos, métricas y decisiones de rendimiento del frontend (Task 16.4 del 
 
 ## Imagen editorial (2026-10-10)
 
-Las imágenes se comprimen **una sola vez**, desde el PNG original de `.editorial-originals/`, con `npm run editorial:ingest` (AVIF q80, `effort` 6; la calidad se calibró a 1:1 contra el PNG, ver el comentario de `scripts/editorial-ingest.mjs`). Cada imagen se publica en variantes por ancho (`<archivo>-<ancho>.avif`) y el loader de `next/image` (`src/lib/editorial/image-loader.ts`) elige la menor que cubre el ancho pedido: `next/image` ya no re-codifica a WebP. Las fuentes miden 1672/1774 px (16:9 y 2:1), 1086 px (3:4) y 1254 px (1:1); no se amplían (decisión de 2026-10-10), así que la variante mayor es el ancho de la fuente.
+Las imágenes se comprimen **una sola vez**, desde el PNG original de `.editorial-originals/`, con `npm run editorial:ingest` (AVIF q88, `effort` 6; la calidad se calibró a 1:1 contra el PNG, ver el comentario de `scripts/editorial-ingest.mjs`). Cada imagen se publica en variantes por ancho (`<archivo>-<ancho>.avif`) y el loader de `next/image` (`src/lib/editorial/image-loader.ts`) elige la menor que cubre el ancho pedido: `next/image` ya no re-codifica a WebP. Las fuentes miden 1672/1774 px (16:9 y 2:1), 1086 px (3:4) y 1254 px (1:1); no se amplían (decisión de 2026-10-10), así que la variante mayor es el ancho de la fuente.
 
-| Variante                                                           | Archivos | Peso total  | Media | Máximo |
-| ------------------------------------------------------------------ | -------- | ----------- | ----- | ------ |
-| 640                                                                | 50       | 0,65 MB     | 13 KB | 43 KB  |
-| 828                                                                | 50       | 1,00 MB     | 20 KB | 66 KB  |
-| 1200                                                               | 46       | 1,67 MB     | 37 KB | 111 KB |
-| Ancho de la fuente (1086–1774)                                     | 50       | 2,65 MB     | 54 KB | 132 KB |
-| `<archivo>.avif` (copia de la mayor, para consumidores sin loader) | 50       | 2,65 MB     | 54 KB | 132 KB |
-| **`public/editorial/` (AVIF)**                                     | **246**  | **8,62 MB** |       |        |
+| Variante                                                           | Archivos | Peso total   | Media | Máximo |
+| ------------------------------------------------------------------ | -------- | ------------ | ----- | ------ |
+| 640                                                                | 50       | 1,04 MB      | 21 KB | 63 KB  |
+| 828                                                                | 50       | 1,62 MB      | 33 KB | 97 KB  |
+| 1200                                                               | 46       | 2,74 MB      | 61 KB | 167 KB |
+| Ancho de la fuente (1086–1774)                                     | 50       | 4,41 MB      | 90 KB | 200 KB |
+| `<archivo>.avif` (copia de la mayor, para consumidores sin loader) | 50       | 4,41 MB      | 90 KB | 200 KB |
+| **`public/editorial/` (AVIF)**                                     | **246**  | **14,22 MB** |       |        |
 
 El logo (`/logo.png`) no está en el manifiesto: sus cuatro usos llevan `unoptimized`, así que se sirve tal cual y no pasa ni por el loader ni por el optimizador. **Deuda:** es un PNG de 500×500 y 81 KB que el header pinta a 46 px; supera de largo lo razonable para el header (~30 KB). Conviene exportarlo a la medida de sus usos (46, 110–190 px a DPR 2) en una pasada propia.
 
-Cada visitante descarga una sola variante por imagen visible: en 390 px las de 828 o 1200 (20–40 KB); en 1440 a DPR 2, la mayor (≤ 132 KB, dentro del presupuesto del brief de ≤ 260 KB).
+Cada visitante descarga una sola variante por imagen visible: en 390 px las de 828 o 1200 (33–61 KB de media); en 1440 a DPR 2, la mayor (90 KB de media, ≤ 200 KB, dentro del presupuesto del brief de ≤ 260 KB y ≤ 320 KB en P0).
 
 ## Deuda restante (documentada, no bloqueante)
 

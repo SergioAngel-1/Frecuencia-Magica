@@ -43,22 +43,23 @@ const STAMP = join(ORIGINALS, '.ingest-stamp.json');
 export const WIDTHS = [640, 828, 1200, 1920, 2880];
 
 /**
- * Calidad AVIF, calibrada el 2026-10-10 a 1:1 y ampliada a 3× (lo que se ve a
- * DPR 2 con la imagen ampliada) contra el PNG, en q64, q72 y q80:
+ * Calidad AVIF, calibrada el 2026-10-10 con el sharp del proyecto (0.34.5,
+ * libaom 3.13) a 1:1 y ampliada a 3× (lo que se ve a DPR 2 con la imagen
+ * ampliada) contra el PNG, en q72, q80 y q88. La escala depende del codificador:
+ * otro sharp da otros pesos y otro grano para la misma cifra.
  *
- * - degradado oscuro (`home-footer-banner`): q64 vuelve bandas lisas el grano
- *   horizontal del agua y deja algún bloque; q72 todavía lo alisa; q80 lo
- *   conserva (PSNR 46,9 / 47,2 / 47,6 dB);
- * - grano con cuerpo de luz (`home-hero`): q64 suaviza las motas del agua;
- *   q72 y q80 casi iguales (41,8 / 43,0 / 44,0 dB);
+ * - degradado oscuro (`home-footer-banner`): q72 y q80 vuelven bandas lisas
+ *   el grano horizontal del agua; q88 lo conserva (PSNR 46,9 / 47,2 / 47,8 dB);
+ * - grano con cuerpo de luz (`home-hero`): q72 suaviza las motas del agua;
+ *   q80 y q88 casi iguales (42,5 / 43,7 / 45,3 dB);
  * - objeto con detalle (`product-detail`): sin diferencia visible
- *   (45,6 / 45,8 / 46,2 dB).
+ *   (45,5 / 45,8 / 46,4 dB).
  *
- * q80 es la menor calidad que no pierde el grano de la noche, que es la
- * materia de casi todas las imágenes. A 1672 px pesa 39–55 KB por imagen,
+ * q88 es la menor calidad que no pierde el grano de la noche, que es la
+ * materia de casi todas las imágenes. A 1672 px pesa 46–66 KB por imagen,
  * muy por debajo del presupuesto del brief (≤ 260 KB).
  */
-export const AVIF_QUALITY = 80;
+export const AVIF_QUALITY = 88;
 export const AVIF_EFFORT = 6;
 
 /** Una imagen se sirve si el brief la da por completada, sin uso o a corregir pero publicada. */
