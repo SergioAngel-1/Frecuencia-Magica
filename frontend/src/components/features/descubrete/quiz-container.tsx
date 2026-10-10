@@ -13,6 +13,7 @@ import type { DiscoverCatalog } from '@/lib/discover/recommend';
 import { usePlayerStore } from '@/stores/player-store';
 
 import { IntroStep } from './intro-step';
+import { PhaseScene } from './phase-scene';
 import { QuizLayout } from './quiz-layout';
 import { QuizStep } from './quiz-step';
 import { ResultStep } from './result-step';
@@ -45,44 +46,50 @@ export function QuizContainer({ catalog, media }: QuizContainerProps) {
   const question = QUESTIONS[quiz.currentQuestion];
 
   return (
-    <QuizLayout phase={quiz.step} media={selectDiscoverMedia(quiz.step, media)}>
-      {/* Cada paso —y cada pregunta— sale antes de que entre el siguiente. */}
-      <Swap
-        id={quiz.step === 'questions' ? `question-${quiz.currentQuestion}` : quiz.step}
-        pace="calm"
-      >
-        {quiz.step === 'intro' && (
-          <IntroStep
-            kicker={t('kicker')}
-            title={t('title')}
-            intro={t('intro')}
-            begin={t('begin')}
-            onStart={quiz.start}
-          />
-        )}
+    // Cada fase es una escena: la anterior se funde a la noche y la nueva
+    // amanece despacio (también de la última pregunta a la sintonía).
+    <PhaseScene phase={quiz.step}>
+      <QuizLayout phase={quiz.step} media={selectDiscoverMedia(quiz.step, media)}>
+        {/* Cada paso —y cada pregunta— sale antes de que entre el siguiente. */}
+        <Swap
+          id={quiz.step === 'questions' ? `question-${quiz.currentQuestion}` : quiz.step}
+          pace="calm"
+        >
+          {quiz.step === 'intro' && (
+            <IntroStep
+              kicker={t('kicker')}
+              title={t('title')}
+              intro={t('intro')}
+              begin={t('begin')}
+              onStart={quiz.start}
+            />
+          )}
 
-        {quiz.step === 'questions' && question && (
-          <QuizStep
-            prompt={t(`questions.${question.id}.prompt` as 'questions.q1.prompt')}
-            options={question.options.map(({ key }) => t(key as 'questions.q1.options.0'))}
-            currentIndex={quiz.currentQuestion}
-            total={quiz.totalQuestions}
-            progressLabel={t('questionCount', {
-              current: quiz.currentQuestion + 1,
-              total: quiz.totalQuestions,
-            })}
-            backLabel={t('back')}
-            onAnswer={quiz.answer}
-            onBack={quiz.goBack}
-          />
-        )}
+          {quiz.step === 'questions' && question && (
+            <QuizStep
+              prompt={t(`questions.${question.id}.prompt` as 'questions.q1.prompt')}
+              options={question.options.map(({ key }) => t(key as 'questions.q1.options.0'))}
+              currentIndex={quiz.currentQuestion}
+              total={quiz.totalQuestions}
+              progressLabel={t('questionCount', {
+                current: quiz.currentQuestion + 1,
+                total: quiz.totalQuestions,
+              })}
+              backLabel={t('back')}
+              onAnswer={quiz.answer}
+              onBack={quiz.goBack}
+            />
+          )}
 
-        {quiz.step === 'tuning' && <TuningStep tuningLabel={t('tuning')} onFinish={revealResult} />}
+          {quiz.step === 'tuning' && (
+            <TuningStep tuningLabel={t('tuning')} onFinish={revealResult} />
+          )}
 
-        {quiz.step === 'result' && result && (
-          <ResultStep {...result} onListen={() => open(result.audio.id)} onRestart={quiz.reset} />
-        )}
-      </Swap>
-    </QuizLayout>
+          {quiz.step === 'result' && result && (
+            <ResultStep {...result} onListen={() => open(result.audio.id)} onRestart={quiz.reset} />
+          )}
+        </Swap>
+      </QuizLayout>
+    </PhaseScene>
   );
 }

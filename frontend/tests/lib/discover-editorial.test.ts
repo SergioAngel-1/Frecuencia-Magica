@@ -151,4 +151,17 @@ describe('Descúbrete editorial composition', () => {
     expect(hookSource).toContain('clearTimeout');
     expect(hookSource).not.toMatch(/useRouter|useAmbientStore|markPortalCrossed/);
   });
+
+  it('fades the whole scene between phases, background included', () => {
+    const scene = readFileSync(
+      resolve(SOURCE_ROOT, 'components/features/descubrete/phase-scene.tsx'),
+      'utf8',
+    );
+    // La escena (fondo, halo y paso) cambia por fase con fundido de ida y vuelta.
+    expect(containerSource).toContain('<PhaseScene phase={quiz.step}>');
+    expect(scene).toContain('<AnimatePresence mode="wait"');
+    expect(scene).toContain('exit={');
+    expect(scene).toContain('PHASE_FADE');
+    expect(scene).toContain('inert={!present}');
+  });
 });

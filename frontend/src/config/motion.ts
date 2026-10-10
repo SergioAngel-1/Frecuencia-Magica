@@ -40,6 +40,14 @@ export const SWAP_PACE = {
 
 export type SwapPace = keyof typeof SWAP_PACE;
 
+/**
+ * Cambio de fase de Descúbrete (intro → preguntas → sintonía → resultado):
+ * la escena entera, fondo incluido, se funde a la noche y la siguiente
+ * amanece despacio. Más lento que `SWAP_PACE.calm`, que sólo cambia el texto
+ * entre preguntas de una misma fase.
+ */
+export const PHASE_FADE = { exit: 0.6, enter: 1.1 } as const;
+
 /** Retardos de las entradas escalonadas, en segundos. */
 export const STAGGER = [0.1, 0.25, 0.4, 0.55] as const;
 
