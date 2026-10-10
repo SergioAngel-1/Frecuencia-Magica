@@ -10,6 +10,8 @@
 
 **ES:** Para producir las imágenes: `docs/brief-fotografico.md` (raíz del repo) trae la medida, el contenido y un prompt por cada una; se genera desde `Branding/src/data/photography.js`. **EN:** To produce the images, `docs/brief-fotografico.md` (repo root) gives size, content and a prompt for each one; it is generated from `Branding/src/data/photography.js`.
 
+**ES:** Dirección de imagen vigente (enmienda 2026-10-10): paisaje luminoso nocturno —agua, bruma, cielo cósmico— con una silueta de luz sin rasgos en seis slots; sin neón, ADN ni rostros. Los ratios, focales y fallbacks de abajo no cambian. **EN:** Current image direction (2026-10-10 amendment): luminous night landscape — water, mist, cosmic sky — with a featureless light silhouette in six slots; no neon, DNA or faces. The ratios, focal points and fallbacks below are unchanged.
+
 ---
 
 ## Reglas globales / Global rules

@@ -138,3 +138,25 @@ Con los 42 slots sin asset, la zebra en todos ellos homogeneizaba las vistas (la
 
 El barrido de la zebra queda reservado a las siluetas de `loading.tsx`, donde sí significa espera. Esta enmienda sustituye a las reglas «Sin asset → zebra» (§ 6.2) y «Skeleton zebra como fallback de slot» en lo que contradigan.
 
+
+## 9. Enmienda 2026-10-10 — la imagen es el paisaje luminoso
+
+La clienta compartió una referencia (cuerpo de luz sobre una galaxia, ondas de frecuencia de colores, ADN) y pidió «cambiar las imágenes de fondo: paisajes, agua». Se traduce a la paleta cerrada sin tocar el contrato de slots.
+
+**Tesis revisada.** *La imagen es el paisaje; el world engine es su energía.* Sigue siendo materia estructural sobre energía viva (§ 1); lo que cambia es el medio: del bodegón fotográfico (cuencos, velas, interiores) al **paisaje luminoso nocturno** (agua, bruma, cielo cósmico). Las imágenes generadas son materia de ambiente y dirección de arte, y se sustituyen por fotografía real cuando exista (productos, Marisol).
+
+**Qué cambia**
+- **Medio del brief.** De «cinematic fine-art photograph, natural film look» a «cinematic luminous fine-art image, photorealistic with ethereal light». El prompt base, el negativo y las reglas viven en `Branding/src/data/photography.js` (`GLOBAL`); `docs/brief-fotografico.md` se regenera.
+- **Cielo arriba, materia abajo.** El cosmos de una imagen ocupa como mucho el tercio superior, con estrellas escasas. El world engine ya pinta el campo estelar y las partículas: una imagen con el cielo completo las duplicaría y competiría con el canvas.
+- **Vocabulario de cuatro elementos** (`LANGUAGE` en `photography.js`): **agua** (Resonario, Portal, Santuario), **bruma y montaña** (Descúbrete, Experiencias, Acceso, Academia), **cielo cósmico** (Portal, Home, Sobre Marisol) y **cuerpo de luz**. Cada slot toma uno como protagonista; los realms no comparten plantilla (§ 4).
+- **Cuerpo de luz en seis slots:** `home.hero` (imagen firma), `discover.tuning`, `discover.result`, `experiences.featured`, `academy.completion` y `sanctuary.hero`. Es una silueta translúcida **sin rasgos faciales**, bordeada de oro con teal y lavanda por dentro. `about.angels` sigue sin figura.
+- **Filamentos de frecuencia** (firma opcional): como máximo tres líneas ondulantes (oro, teal y lavanda) a baja opacidad. Es la traducción de las ondas de colores de la referencia al espectro cerrado de la marca.
+
+**Qué no cambia**
+- Los 43 slots, sus ids, ratios, focales, prioridades y `fallback` (`zebra` / `band` / `none`, § 8), los `alt` y todo el código de la web.
+- Paleta y tipografía cerradas (§ 2). El neón, el arcoíris y la saturación alta de la referencia **no** entran: oro, teal y lavanda a baja saturación.
+- El retrato de Marisol sigue siendo sesión real; los productos siguen siendo objetos (es lo que se vende), bañados en la misma luz.
+
+**Anti-goals añadidos.** Sin ADN, cerebros ni anatomía (la energía se sugiere con luz, agua y geometría sagrada, no con ilustración médica). Sin rasgos faciales fuera del retrato real. Sin marcas ni nombres de canal. Sin campos de estrellas a pantalla completa.
+
+Esta enmienda amplía § 1 («materia estructural») y sustituye al estilo «fine-art photograph, natural film look» del brief; el resto del contrato permanece.
