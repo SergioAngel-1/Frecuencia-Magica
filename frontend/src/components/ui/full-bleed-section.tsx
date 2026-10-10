@@ -105,6 +105,7 @@ export function FullBleedSection({
         >
           <EditorialImage
             aspect={media.aspect}
+            bandMedia
             className="h-full"
             fade={anchored ? anchoredFade(fade) : fade}
             focalPoint={media.position ?? layout.objectPosition}

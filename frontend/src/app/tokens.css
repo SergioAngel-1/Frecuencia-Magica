@@ -482,6 +482,36 @@
   );
 }
 
+/* Bandas encadenadas (`BandChain`): sin hueco entre ellas, cada banda funde
+   el borde que comparte con su vecina, pida o no `fade`, y las dos se
+   encuentran en una línea de noche. La máscara es la misma de `fm-fade-*`;
+   aquí sólo cambia qué lados se abren. */
+[data-band-chain] > :not(:first-child) [data-band-media] {
+  --fm-fade-top: var(--fade-band);
+}
+
+[data-band-chain] > :not(:last-child) [data-band-media],
+[data-band-chain='footer'] > :last-child [data-band-media] {
+  --fm-fade-bottom: var(--fade-band);
+}
+
+[data-band-chain] [data-band-media] {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+}
+
 /* Campo de luz sin aristas: la materia se disuelve en elipse desde el centro. */
 @utility fm-fade-radial {
   -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent 100%);

@@ -80,6 +80,7 @@ export function EditorialBanner({
         <div className="absolute inset-0">
           <EditorialImage
             aspect={media.aspect}
+            bandMedia
             fade={fade}
             focalPoint={media.position}
             media={media}

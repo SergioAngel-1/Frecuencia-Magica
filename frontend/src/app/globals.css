@@ -258,6 +258,15 @@
   isolation: isolate;
 }
 
+/* La única excepción implícita del ritmo: una vista que termina en una
+   `BandChain intoFooter` encadena su última banda con el banner del footer,
+   que vive en el layout. El footer pierde su filete y su hueco superior. Es el
+   único `:has()` del proyecto (lo vigila `tests/lib/band-chain.test.ts`). */
+main:has([data-band-chain='footer']) [data-footer-lead] {
+  border-top-width: 0;
+  padding-top: 0;
+}
+
 /* Marco para una vista que mezcla imagen editorial y el motor cósmico. */
 @utility fm-editorial-shell {
   position: relative;

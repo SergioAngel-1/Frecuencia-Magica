@@ -25,6 +25,11 @@ export interface EditorialImageProps {
   fade?: EditorialFade;
   /** `sizes` de la caja, cuando quien la pinta sabe más que el contrato del slot. */
   sizes?: string;
+  /**
+   * Materia de una banda a sangre: dentro de una `BandChain`, el borde que
+   * comparte con su vecina funde aunque `fade` no lo pida.
+   */
+  bandMedia?: boolean;
   className?: string;
 }
 
@@ -64,6 +69,7 @@ export function EditorialImage({
   focalPoint,
   fade = 'none',
   sizes,
+  bandMedia = false,
   className,
 }: EditorialImageProps) {
   const visual = editorialVisual(media);
@@ -79,6 +85,7 @@ export function EditorialImage({
         FADE_CLASSES[fade],
         className,
       )}
+      data-band-media={bandMedia ? 'true' : undefined}
       data-media-slot={media.slot}
       data-media-visual={visual}
     >

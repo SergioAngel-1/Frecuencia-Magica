@@ -129,16 +129,16 @@
 - Consume: `fade` de la Tarea 3.
 - Produce: `BandChain` con `children` e `intoFooter?: boolean`. Las bandas hijas funden el borde que comparten con su vecina, sin solaparse, y se encuentran en una línea de noche. Con `intoFooter`, la cadena escribe `data-band-chain="footer"` y el footer anula su hueco superior. El mecanismo de contexto (contexto de React, atributos de datos o CSS) es decisión del agente, siempre que **siga siendo compatible con Server Components** (`BandChain` no debe obligar a convertir las bandas en cliente).
 
-- [ ] Guardia primero:
+- [x] Guardia primero:
   - existe un solo `:has(` en el CSS del proyecto;
   - `FullBleedSection` y `EditorialBanner` no llevan márgenes exteriores propios;
   - `BandChain` no importa de `data/`, `stores/` ni `i18n/`.
 
   Las cadenas por vista se exigen en la Tarea 5.
-- [ ] Implementar `BandChain` y la lectura de posición en las bandas.
-- [ ] `RealmFooter`: anular el hueco superior del banner del footer sólo bajo `data-band-chain="footer"`.
-- [ ] `DESIGN.md`, *Layout*: la enmienda literal del spec, sección 4 («Las bandas a sangre consecutivas se encadenan…»). En *Editorial media*: el fundido por máscara y `BandChain`.
-- [ ] Gate de la tarea y commit: `feat(ui): chain consecutive full-bleed bands without a gap`.
+- [x] Implementar `BandChain` y la lectura de posición en las bandas.
+- [x] `RealmFooter`: anular el hueco superior del banner del footer sólo bajo `data-band-chain="footer"`.
+- [x] `DESIGN.md`, *Layout*: la enmienda literal del spec, sección 4 («Las bandas a sangre consecutivas se encadenan…»). En *Editorial media*: el fundido por máscara y `BandChain`.
+- [x] Gate de la tarea y commit: `feat(ui): chain consecutive full-bleed bands without a gap`.
 
 **Aceptación:** una cadena de prueba (en `/kit`, que está cerrado en producción) muestra dos bandas que se tocan sin arista ni hueco, en 1440 y en 390.
 
