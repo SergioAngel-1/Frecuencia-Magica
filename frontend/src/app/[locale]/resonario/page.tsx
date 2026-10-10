@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { ResonarioSystem } from '@/components/features/resonario/resonario-system';
 import { PageShell, RealmHero } from '@/components/layout';
+import { AUDIOS } from '@/data';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -29,6 +30,16 @@ export default async function ResonarioPage({ params }: PageProps) {
     audioCover: resolveEditorialMedia('resonario.audio-cover.*', {
       sizes: '(min-width: 1024px) 150px, 150px',
     }),
+    // Una portada por audio: la que no tenga foto publicada pinta la banda del ítem.
+    audioCovers: Object.fromEntries(
+      AUDIOS.map((audio) => [
+        audio.id,
+        resolveEditorialMedia('resonario.audio-cover.*', {
+          instance: audio.id,
+          sizes: '(min-width: 1024px) 150px, 150px',
+        }),
+      ]),
+    ),
   };
 
   return (

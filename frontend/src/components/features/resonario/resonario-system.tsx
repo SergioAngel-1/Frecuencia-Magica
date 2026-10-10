@@ -16,6 +16,8 @@ export type ResonarioMedia = {
   featured: EditorialMedia;
   archiveBanner: EditorialMedia;
   audioCover: EditorialMedia;
+  /** Portada resuelta por id de audio; sin entrada, vale `audioCover`. */
+  audioCovers: Record<string, EditorialMedia>;
 };
 
 export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
@@ -29,7 +31,7 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
   const audioMeta = (audio: Audio) =>
     `${t(`tags.${audio.tagId}` as 'tags.meditation')} · ${audio.duration}`;
   const audioCoverMedia = (audio: Audio): EditorialMedia => ({
-    ...media.audioCover,
+    ...(media.audioCovers[audio.id] ?? media.audioCover),
     alt: t('media.alt.audioCover', { title: audioTitle(audio) }),
     band: audio.band,
   });
