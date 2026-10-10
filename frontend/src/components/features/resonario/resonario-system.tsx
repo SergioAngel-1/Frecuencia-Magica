@@ -25,6 +25,9 @@ export type ResonarioMedia = {
   audioCovers: Record<string, EditorialMedia>;
 };
 
+/** Ritmo del flotado del disco central; su etiqueta lo comparte. */
+const FEATURED_FLOAT = '7s';
+
 export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
   const t = useTranslations('resonario');
   const statesT = useTranslations('states');
@@ -89,7 +92,12 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
                 className="relative mx-auto w-[min(380px,84vw)] py-6 lg:absolute lg:top-1/2 lg:left-1/2 lg:z-[2] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:py-0"
                 data-editorial-featured="true"
               >
-                <div className="mb-4 flex justify-center">
+                {/* La etiqueta flota con el disco: misma animación y duración,
+                    montadas a la vez, así suben y bajan juntas. */}
+                <div
+                  className="mb-9 flex justify-center"
+                  style={{ animation: `fm-float ${FEATURED_FLOAT} ease-in-out infinite` }}
+                >
                   <Badge solid>{centerIsFeatured ? t('featuredBadge') : t('nowPlaying')}</Badge>
                 </div>
                 <AudioDisc
@@ -100,7 +108,7 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
                   cover={centerCover(center)}
                   showEqualizer
                   showPlay
-                  floatDuration="7s"
+                  floatDuration={FEATURED_FLOAT}
                 />
               </Mdiv>
             ) : null}
