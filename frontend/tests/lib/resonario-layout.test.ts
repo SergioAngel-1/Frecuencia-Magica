@@ -119,15 +119,22 @@ describe('resonario editorial composition contracts', () => {
     expect(systemSource).not.toContain('lg:hidden');
   });
 
-  it('places the archive banner between filters and the catalog states', () => {
-    const filtersIndex = systemSource.indexOf('<ResonarioFilters');
-    const bannerIndex = systemSource.indexOf('<EditorialBanner');
-    const catalogIndex = systemSource.indexOf('{filtered.length === 0');
+  it('chains the archive banner to the hero and keeps the filters above the catalog states', () => {
+    // El banner sigue al héroe en la misma cadena: dos bandas consecutivas, sin hueco.
+    const chain = pageSource.slice(
+      pageSource.indexOf('<BandChain>'),
+      pageSource.indexOf('</BandChain>'),
+    );
+    expect(chain.indexOf('<RealmHero')).toBeGreaterThan(-1);
+    expect(chain.indexOf('<EditorialBanner')).toBeGreaterThan(chain.indexOf('<RealmHero'));
+    expect(chain).toContain('media={archiveBanner}');
+    expect(systemSource).not.toContain('<EditorialBanner');
 
+    // Los filtros quedan justo encima de lo que filtran.
+    const filtersIndex = systemSource.indexOf('<ResonarioFilters');
+    const catalogIndex = systemSource.indexOf('{filtered.length === 0');
     expect(filtersIndex).toBeGreaterThan(-1);
-    expect(bannerIndex).toBeGreaterThan(filtersIndex);
-    expect(catalogIndex).toBeGreaterThan(bannerIndex);
-    expect(systemSource).toContain('media={media.archiveBanner}');
+    expect(catalogIndex).toBeGreaterThan(filtersIndex);
   });
 
   it('mirrors the editorial bands, media fields, filters and orbital geometry while loading', () => {

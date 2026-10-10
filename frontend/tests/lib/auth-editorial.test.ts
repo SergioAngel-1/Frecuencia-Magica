@@ -57,7 +57,11 @@ describe('auth editorial composition', () => {
 
     expect(authAsideSource).toContain('<EditorialImage');
     expect(authAsideSource).toContain('media: EditorialMedia');
-    expect(authAsideSource).toContain('h-[clamp(230px,42vw,360px)]');
+    // En móvil, el héroe se ancla a su 16:9 y crece con su texto; partido, ocupa la pantalla.
+    expect(authAsideSource).toContain('aspect-[16/9]');
+    expect(authAsideSource).toContain('min-[900px]:aspect-auto');
+    // Sin filete entre el héroe y el formulario en móvil (la línea de 1 px).
+    expect(authFormSource).not.toMatch(/(?<!min-\[900px\]:)border-t\b/);
     expect(authAsideSource).toContain('min-[900px]:min-h-[100svh]');
     expect(authFormSource).toContain('<EditorialImage');
     expect(authFormSource).toContain('data-auth-layout="form"');

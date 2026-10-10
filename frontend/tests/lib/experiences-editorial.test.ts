@@ -82,8 +82,10 @@ describe('experiences editorial composition contracts', () => {
     expect(pageSource).toContain("resolveEditorialMedia('experiences-visual'");
     expect(pageSource).toContain('<RealmHero');
     expect(heroSource).toContain('<FullBleedSection');
-    expect(pageSource).toContain('fm-editorial-full-bleed');
-    expect(pageSource).toContain('<ExperienceList media={experienceMedia}');
+    expect(listSource).toContain('fm-editorial-full-bleed');
+    expect(pageSource).toContain('<ExperienceList');
+    expect(pageSource).toContain('media={experienceMedia}');
+    expect(pageSource).toContain('hero={');
     expect(listSource).toContain('media: ExperienceMedia');
     expect(listSource).toContain('media={{ ...media.featured, band: featured.band }}');
     expect(listSource).toContain('media={experienceMedia(exp)}');

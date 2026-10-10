@@ -18,8 +18,9 @@ export interface AuthAsideProps {
  * Umbral editorial del acceso: la materia de la imagen ocupa el panel y el
  * world engine permanece visible en forma de aros, halos y logo respirando.
  *
- * En móvil se convierte en un banner breve para que el formulario siga siendo
- * la acción principal. En desktop recupera toda la altura de la pantalla.
+ * En móvil se convierte en un banner breve, anclado a su 16:9, que se
+ * encadena con la atmósfera del formulario: el formulario sigue siendo la
+ * acción principal. Con el panel partido recupera toda la altura.
  */
 export async function AuthAside({ media }: AuthAsideProps) {
   const t = await getTranslations('auth');
@@ -28,14 +29,24 @@ export async function AuthAside({ media }: AuthAsideProps) {
   return (
     <aside
       aria-label={brand}
-      className="relative isolate flex h-[clamp(230px,42vw,360px)] flex-col overflow-hidden px-6 py-8 min-[900px]:h-full min-[900px]:min-h-[100svh] min-[900px]:px-[clamp(32px,6vw,96px)] min-[900px]:py-14"
-      style={{ backgroundImage: ASIDE_GRADIENT }}
+      className="relative isolate flex aspect-[16/9] flex-col overflow-hidden px-6 py-8 min-[900px]:aspect-auto min-[900px]:h-full min-[900px]:min-h-[100svh] min-[900px]:px-[clamp(32px,6vw,96px)] min-[900px]:py-14"
     >
-      <div className="absolute inset-0">
+      {/* El tinte del panel sólo existe con el panel partido: en móvil el
+          héroe es una banda que se funde en la noche, sin caja alrededor. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 hidden min-[900px]:block"
+        style={{ backgroundImage: ASIDE_GRADIENT }}
+      />
+      {/* En móvil la imagen se ancla arriba a su 16:9 (el panel mide al menos
+          eso y crece con su texto); con el panel partido ocupa toda la altura. */}
+      <div className="absolute inset-x-0 top-0 aspect-[16/9] min-[900px]:inset-0 min-[900px]:aspect-auto">
         <EditorialImage
           media={media}
           aspect="16:9"
+          bandMedia
           className="h-full"
+          fade="bottom"
           overlay="bottom"
           scrim="left"
         />
@@ -47,7 +58,7 @@ export async function AuthAside({ media }: AuthAsideProps) {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-10"
+        className="pointer-events-none absolute inset-0 z-10 hidden min-[900px]:block"
         style={{ backgroundImage: ASIDE_FADE }}
       />
 

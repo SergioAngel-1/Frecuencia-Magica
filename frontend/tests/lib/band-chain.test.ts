@@ -45,6 +45,39 @@ describe('band chain', () => {
     expect(tokens).toContain('[data-band-chain] > :not(:last-child) [data-band-media]');
   });
 
+  it('chains the consecutive full-bleed bands of each view listed in the spec', () => {
+    const view = (path: string) => readSource(`${SRC}/${path}`);
+    const chainOf = (source: string, attrs = '') => {
+      const start = source.indexOf(`<BandChain${attrs}>`);
+      expect(start, `<BandChain${attrs}>`).toBeGreaterThan(-1);
+      return source.slice(start, source.indexOf('</BandChain>', start));
+    };
+
+    // Inicio: héroe → frecuencia del día → banner de realms; membresía → banner del footer.
+    const home = view('app/[locale]/inicio/page.tsx');
+    const homeChain = chainOf(home);
+    expect(homeChain.indexOf('<HeroSection')).toBeGreaterThan(-1);
+    expect(homeChain.indexOf('<DailyFrequency')).toBeGreaterThan(homeChain.indexOf('<HeroSection'));
+    expect(homeChain.indexOf('<RealmsGrid')).toBeGreaterThan(homeChain.indexOf('<DailyFrequency'));
+    expect(chainOf(home, ' intoFooter')).toContain('<MembershipSection');
+    expect(view('components/features/home/daily-frequency.tsx')).toContain('mode="anchored"');
+
+    // Resonario: héroe → banner del archivo.
+    const resonario = chainOf(view('app/[locale]/resonario/page.tsx'));
+    expect(resonario).toContain('<RealmHero');
+    expect(resonario).toContain('<EditorialBanner');
+
+    // Experiencias: héroe → destacada.
+    const experiences = chainOf(view('components/features/experiences/experience-list.tsx'));
+    expect(experiences).toContain('{hero}');
+    expect(experiences).toContain('featured');
+
+    // Acceso: héroe → atmósfera del formulario (en móvil, una sobre otra).
+    const access = view('app/[locale]/acceso/page.tsx');
+    expect(access).toContain('<BandChain');
+    expect(access.indexOf('<AuthForm')).toBeGreaterThan(access.indexOf('<AuthAside'));
+  });
+
   it('stays a pure UI Kit primitive that works in Server Components', () => {
     expect(CHAIN).not.toMatch(/from '@\/(data|stores|i18n)/);
     expect(CHAIN).not.toContain("'use client'");

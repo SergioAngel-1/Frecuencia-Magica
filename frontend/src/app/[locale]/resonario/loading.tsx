@@ -8,8 +8,8 @@ import { discSlot } from '@/lib/resonario/layout-slots';
 const SMALL_DISCS = Array.from({ length: 6 }, (_, i) => discSlot(i));
 
 /**
- * Silueta editorial del Resonario: conserva el hero, los filtros, el
- * banner del archivo y el sistema de discos antes de resolverlos.
+ * Silueta editorial del Resonario: conserva el hero, el banner del
+ * archivo, los filtros y el sistema de discos antes de resolverlos.
  */
 export default async function Loading() {
   const t = await getTranslations('resonario');
@@ -26,6 +26,12 @@ export default async function Loading() {
         />
 
         <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
+          <div aria-hidden="true" className="mb-block flex flex-col gap-4">
+            <Skeleton variant="text" className="h-3 w-36" />
+            <Skeleton variant="text" className="h-12 w-[min(560px,90vw)]" />
+            <Skeleton variant="text" className="h-4 w-[min(420px,80vw)]" />
+          </div>
+
           <div
             aria-label={t('filtersLabel')}
             className="mb-[38px] flex flex-wrap gap-[10px]"
@@ -34,12 +40,6 @@ export default async function Loading() {
             {Array.from({ length: 5 }, (_, i) => (
               <Skeleton key={i} variant="band" className="h-11 w-[104px]" />
             ))}
-          </div>
-
-          <div aria-hidden="true" className="mb-block flex flex-col gap-4">
-            <Skeleton variant="text" className="h-3 w-36" />
-            <Skeleton variant="text" className="h-12 w-[min(560px,90vw)]" />
-            <Skeleton variant="text" className="h-4 w-[min(420px,80vw)]" />
           </div>
 
           <div

@@ -111,7 +111,9 @@ describe('home editorial composition contracts', () => {
 
     expect(homeSources).toContain('<FullBleedSection');
     expect(homeSources).toContain('<EditorialBanner');
-    expect(homeSources).toContain('<EditorialImage');
+    // La frecuencia del día pinta su foto a su ratio, anclada, dentro de la cadena.
+    expect(homeSources).toContain('mode="anchored"');
+    expect(homeSources).toContain('<BandChain');
     expect(homeSources).toContain('<PageShell');
     expect(homeSources).toContain('export function SiteFooter');
   });

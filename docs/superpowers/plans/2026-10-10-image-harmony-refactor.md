@@ -149,12 +149,12 @@
 **Interfaces:**
 - Consume: `BandChain` (Tarea 4) y `mode="anchored"` (Tarea 3).
 
-- [ ] Ampliar el guardia: cada cadena de la tabla del spec (sección 4) existe en su vista; la de membresía lleva `intoFooter`. Comprobar que falla.
-- [ ] Envolver cada cadena. La frecuencia del día pasa a `mode="anchored"` (16:8), dentro de su cadena. Respetar el orden y la semántica (landmarks, encabezados) de cada sección.
-- [ ] Acceso: por debajo de 1024 px, el héroe pasa a `anchored` 16:9 y se encadena con la atmósfera; desaparece la línea de 1 px. Desde 1024 px no cambia la composición partida.
-- [ ] Sobre Marisol: sin cadena; sólo comprobar que sus bandas funden ambos bordes.
-- [ ] Verificar a ojo en 1440, 768 y 390: ninguna arista ni franja de fondo entre bandas encadenadas, y el hueco de membresía→footer igual a cero.
-- [ ] Gate de la tarea y commit: `feat(editorial): chain the full-bleed bands of home, resonario, experiences and access`.
+- [x] Ampliar el guardia: cada cadena de la tabla del spec (sección 4) existe en su vista; la de membresía lleva `intoFooter`. Comprobar que falla.
+- [x] Envolver cada cadena. La frecuencia del día pasa a `mode="anchored"` (16:8), dentro de su cadena. Respetar el orden y la semántica (landmarks, encabezados) de cada sección.
+- [x] Acceso: por debajo de 1024 px, el héroe pasa a `anchored` 16:9 y se encadena con la atmósfera; desaparece la línea de 1 px. Desde 1024 px no cambia la composición partida.
+- [x] Sobre Marisol: sin cadena; sólo comprobar que sus bandas funden ambos bordes.
+- [x] Verificar a ojo en 1440, 768 y 390: ninguna arista ni franja de fondo entre bandas encadenadas, y el hueco de membresía→footer igual a cero.
+- [x] Gate de la tarea y commit: `feat(editorial): chain the full-bleed bands of home, resonario, experiences and access`.
 
 **Aceptación:** la medición de costuras de la auditoría da hueco 0 en todas las cadenas, y ningún otro hueco entre bandas fuera de `section`.
 

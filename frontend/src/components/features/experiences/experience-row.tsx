@@ -69,7 +69,9 @@ export function ExperienceRow({
         <div className="absolute inset-0">
           <EditorialImage
             aspect="16:8"
+            bandMedia
             className="h-full"
+            fade="both"
             focalPoint={media.position}
             media={media}
             overlay="left"

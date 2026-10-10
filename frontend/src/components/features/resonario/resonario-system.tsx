@@ -4,7 +4,7 @@ import { useMemo, useState, type CSSProperties } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { AudioDisc } from '@/components/features/player/audio-disc';
-import { Badge, Button, EditorialBanner, EmptyState, Swap } from '@/components/ui';
+import { Badge, Button, EmptyState, Swap } from '@/components/ui';
 import { AUDIOS } from '@/data';
 import { discSlot, filterAudios, splitFeaturedAudio } from '@/lib/resonario/layout-slots';
 import type { Audio } from '@/types/content';
@@ -14,7 +14,6 @@ import { ResonarioFilters } from './resonario-filters';
 
 export type ResonarioMedia = {
   featured: EditorialMedia;
-  archiveBanner: EditorialMedia;
   /** Vacío del filtro sin resultados (`states.empty`). */
   empty: EditorialMedia;
   audioCover: EditorialMedia;
@@ -40,15 +39,8 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
 
   return (
     <>
+      {/* El banner del archivo vive en la página, encadenado con el héroe. */}
       <ResonarioFilters active={filter} onChange={setFilter} />
-
-      <EditorialBanner
-        media={media.archiveBanner}
-        eyebrow={t('archive.eyebrow')}
-        title={t('archive.title')}
-        body={t('archive.description')}
-        className="mb-block"
-      />
 
       {/* Al filtrar, el sistema anterior se funde antes de que entre el nuevo. */}
       <Swap id={filter ?? 'all'}>

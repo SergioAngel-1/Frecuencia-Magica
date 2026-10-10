@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
 import { EXPERIENCES } from '@/data';
@@ -5,7 +6,7 @@ import { upcomingDates } from '@/lib/booking/dates';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ExperienceRow } from './experience-row';
-import { Kicker, Display } from '@/components/ui';
+import { BandChain, Kicker, Display } from '@/components/ui';
 
 export type ExperienceMedia = {
   hero: EditorialMedia;
@@ -17,9 +18,11 @@ export type ExperienceMedia = {
 
 type ExperienceListProps = {
   media: ExperienceMedia;
+  /** Héroe del realm: banda consecutiva de la destacada, se encadena con ella. */
+  hero: ReactNode;
 };
 
-export function ExperienceList({ media }: ExperienceListProps) {
+export function ExperienceList({ media, hero }: ExperienceListProps) {
   const locale = useLocale();
   const t = useTranslations('experiences');
   const featured = EXPERIENCES[0]!;
@@ -34,23 +37,30 @@ export function ExperienceList({ media }: ExperienceListProps) {
   });
 
   return (
-    <div>
-      <ExperienceRow
-        bookLabel={t('book')}
-        date={dates[0]!}
-        dateLabel={t('dateLabel')}
-        durationLabel={t('durationLabel')}
-        description={t('featuredDescription')}
-        experience={featured}
-        media={{ ...media.featured, band: featured.band }}
-        mode={t(`modes.${featured.mode}` as 'modes.online')}
-        modeLabel={t('featuredBadge')}
-        title={titleFor(featured)}
-        featured
-        className="fm-editorial-full-bleed mb-section"
-      />
+    <>
+      <BandChain>
+        {hero}
+        <ExperienceRow
+          bookLabel={t('book')}
+          date={dates[0]!}
+          dateLabel={t('dateLabel')}
+          durationLabel={t('durationLabel')}
+          description={t('featuredDescription')}
+          experience={featured}
+          media={{ ...media.featured, band: featured.band }}
+          mode={t(`modes.${featured.mode}` as 'modes.online')}
+          modeLabel={t('featuredBadge')}
+          title={titleFor(featured)}
+          featured
+          className="fm-editorial-full-bleed"
+        />
+      </BandChain>
 
-      <section aria-labelledby="experiences-archive-title" data-editorial-archive="true">
+      <section
+        aria-labelledby="experiences-archive-title"
+        className="fm-editorial-full-bleed fm-container py-section"
+        data-editorial-archive="true"
+      >
         <div className="mb-8 max-w-[58ch]">
           <Kicker tone="teal">{t('all')}</Kicker>
           <Display level="h2" size="md" id="experiences-archive-title" className="mt-3">
@@ -75,6 +85,6 @@ export function ExperienceList({ media }: ExperienceListProps) {
           ))}
         </div>
       </section>
-    </div>
+    </>
   );
 }

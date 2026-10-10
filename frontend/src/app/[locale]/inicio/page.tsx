@@ -12,7 +12,7 @@ import { BANDS } from '@/config/bands';
 import { NAV_REALMS } from '@/config/realms';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
-import { ArrowGlyph, arrowLinkClasses } from '@/components/ui';
+import { ArrowGlyph, arrowLinkClasses, BandChain } from '@/components/ui';
 
 type PageProps = { params: LocaleParams };
 
@@ -68,24 +68,24 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      <HeroSection
-        media={homeMedia.hero}
-        kicker={t('heroKicker')}
-        titlePre={t('heroTitlePre')}
-        titleEm={t('heroTitleEm')}
-        subtitle={t('heroSubtitle')}
-        cta1={t('heroCta1')}
-        cta2={t('heroCta2')}
-        stats={[
-          { value: t('stats.daily.value'), label: t('stats.daily.label') },
-          { value: t('stats.meditations.value'), label: t('stats.meditations.label') },
-          { value: t('stats.realms.value'), label: t('stats.realms.label') },
-        ]}
-      />
+      {/* Las bandas consecutivas se encadenan sin hueco y se encuentran en la
+          noche; entre bloques que no son bandas, el ritmo es `section`. */}
+      <BandChain>
+        <HeroSection
+          media={homeMedia.hero}
+          kicker={t('heroKicker')}
+          titlePre={t('heroTitlePre')}
+          titleEm={t('heroTitleEm')}
+          subtitle={t('heroSubtitle')}
+          cta1={t('heroCta1')}
+          cta2={t('heroCta2')}
+          stats={[
+            { value: t('stats.daily.value'), label: t('stats.daily.label') },
+            { value: t('stats.meditations.value'), label: t('stats.meditations.label') },
+            { value: t('stats.realms.value'), label: t('stats.realms.label') },
+          ]}
+        />
 
-      {/* Un solo ritmo: cada sección se separa de la siguiente con `section`
-          y ninguna trae su propio margen exterior. */}
-      <div className="py-section gap-section relative flex flex-col">
         <DailyFrequency
           media={homeMedia.daily}
           hz={firstAudio.hz}
@@ -123,7 +123,10 @@ export default async function HomePage({ params }: PageProps) {
           storeCta={t('realms.storeCta')}
           featuredBadge={t('realms.featuredBadge')}
         />
+      </BandChain>
 
+      {/* Ninguna sección trae su propio margen exterior: lo pone este contenedor. */}
+      <div className="py-section relative flex flex-col">
         <AboutSection
           media={homeMedia.marisol}
           kicker={t('about.kicker')}
@@ -136,7 +139,10 @@ export default async function HomePage({ params }: PageProps) {
             </ButtonLink>
           }
         />
+      </div>
 
+      {/* La membresía continúa en el banner de cierre del footer. */}
+      <BandChain intoFooter>
         <MembershipSection
           media={homeMedia.membership}
           kicker={t('membership.kicker')}
@@ -144,7 +150,7 @@ export default async function HomePage({ params }: PageProps) {
           description={t('membership.description')}
           cta={t('membership.cta')}
         />
-      </div>
+      </BandChain>
     </PageShell>
   );
 }

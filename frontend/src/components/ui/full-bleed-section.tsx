@@ -26,6 +26,8 @@ export interface FullBleedSectionProps {
   /** `sizes` explícito; sin él se deriva del modo y del ratio (`mediaSizes`). */
   sizes?: string;
   minHeight?: string;
+  /** Id del titular que nombra la sección (`aria-labelledby`). */
+  labelledBy?: string;
   className?: string;
   contentClassName?: string;
 }
@@ -67,6 +69,7 @@ export function FullBleedSection({
   fade = 'both',
   sizes,
   minHeight,
+  labelledBy,
   className,
   contentClassName,
 }: FullBleedSectionProps) {
@@ -87,10 +90,14 @@ export function FullBleedSection({
       className={cn(
         // `grid` estira el contenido al alto mínimo: un `h-full` contra un
         // `min-height` no resuelve y `items-center|end` quedaba sin efecto.
-        'fm-editorial-full-bleed relative isolate grid overflow-hidden',
+        // En `anchored` la imagen se recorta en su propia capa: la sección no,
+        // para que lo que flota sobre la noche (un aura) pueda derramarse.
+        'fm-editorial-full-bleed relative isolate grid',
+        !anchored && 'overflow-hidden',
         MODE_CLASSES[mode],
         className,
       )}
+      aria-labelledby={labelledBy}
       style={getMinHeightStyle(minHeight)}
     >
       {media ? (
