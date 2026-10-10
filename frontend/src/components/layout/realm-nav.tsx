@@ -6,6 +6,7 @@ import { NAV_REALMS, NAV_STORY } from '@/config/navigation';
 import { useRealm } from '@/hooks/use-realm';
 import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
+import { useNavMenuStore } from '@/stores/nav-menu-store';
 import type { RealmId } from '@/types/realm';
 
 /**
@@ -26,6 +27,9 @@ import type { RealmId } from '@/types/realm';
  */
 export function RealmNav() {
   const t = useTranslations('nav');
+  const tHeader = useTranslations('header');
+  const menuOpen = useNavMenuStore((state) => state.open);
+  const openMenu = useNavMenuStore((state) => state.openMenu);
   const { realmId } = useRealm();
   const pathname = usePathname();
   const storyActive = pathname === NAV_STORY.href;
@@ -107,6 +111,41 @@ export function RealmNav() {
             </Link>
           );
         })}
+
+        {/* Cierra la columna: no es un destino sino la llave del menú (el
+            mismo modal del header en móvil). Un aro hueco con núcleo de oro,
+            para que no se confunda con los puntos de los realms. */}
+        <button
+          type="button"
+          onClick={openMenu}
+          aria-haspopup="dialog"
+          aria-expanded={menuOpen}
+          aria-label={tHeader('openMenu')}
+          data-magnetic
+          className="group relative mt-3 flex h-11 items-center px-[3px]"
+        >
+          <span
+            aria-hidden="true"
+            className="border-ivory/55 group-hover:border-gold group-focus-visible:border-gold flex size-[15px] flex-none items-center justify-center rounded-full border transition-[transform,border-color] duration-300 group-hover:scale-[1.15] group-focus-visible:scale-[1.15]"
+          >
+            <span className="bg-gold size-[4px] rounded-full" />
+          </span>
+          <span
+            aria-hidden="true"
+            className={cn(
+              'fm-surface-strong pointer-events-none absolute flex items-center gap-[9px] whitespace-nowrap',
+              'rounded-pill shadow-glow-card py-2 pr-[18px] pl-[15px]',
+              'opacity-0 transition-[opacity,transform] duration-300 ease-[cubic-bezier(.2,.85,.25,1)]',
+              'group-hover:opacity-100 group-focus-visible:opacity-100',
+              'top-1/2 left-[30px] origin-[left_center] translate-x-[-10px] -translate-y-1/2 scale-x-[.8]',
+              'group-hover:translate-x-0 group-hover:scale-x-100 group-focus-visible:translate-x-0 group-focus-visible:scale-x-100',
+            )}
+          >
+            <span className="text-fg-meta text-label tracking-caps font-sans uppercase">
+              {t('menu')}
+            </span>
+          </span>
+        </button>
       </div>
     </nav>
   );

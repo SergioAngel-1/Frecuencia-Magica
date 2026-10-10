@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { IconButton, Modal } from '@/components/ui';
@@ -8,16 +8,19 @@ import { NAV_REALMS, NAV_STORY } from '@/config/navigation';
 import { useRealm } from '@/hooks/use-realm';
 import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
+import { useNavMenuStore } from '@/stores/nav-menu-store';
 import type { RealmId } from '@/types/realm';
 
 /**
- * Menú de realms por debajo de 1024px: un botón en el header que despliega
- * la constelación en una tarjeta modal.
+ * Menú de navegación: la constelación en una tarjeta modal. Por debajo de
+ * 1024 px lo abre un botón del header; desde ahí, el aro que cierra la
+ * columna de puntos (`RealmNav`). Es el mismo modal, con su estado en
+ * `useNavMenuStore`.
  *
  * Sustituye a la barra inferior, que había que desplazar para ver los seis
  * nombres, competía con el reproductor por el pie de la pantalla y tapaba
  * contenido. En la tarjeta caben los seis de un vistazo, con su emoción y el
- * realm actual marcado. Desde 1024px manda la columna de puntos (`RealmNav`).
+ * realm actual marcado.
  *
  * Igual que la constelación, no aparece en el portal ni en el acceso.
  */
@@ -26,22 +29,27 @@ export function RealmMenu() {
   const tHeader = useTranslations('header');
   const { realmId } = useRealm();
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const open = useNavMenuStore((state) => state.open);
+  const openMenu = useNavMenuStore((state) => state.openMenu);
+  const closeMenu = useNavMenuStore((state) => state.closeMenu);
 
   // Cualquier cambio de ruta cierra el menú, también los que no nacen de él.
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+    closeMenu();
+  }, [pathname, closeMenu]);
 
   if (realmId === 'portal' || realmId === 'auth') return null;
 
   return (
-    <div className="pointer-events-auto lg:hidden">
+    <div className="pointer-events-auto">
+      {/* El botón sólo existe por debajo de 1024 px; desde ahí abre el mismo
+          menú el aro de la constelación (`RealmNav`). El modal, en todos. */}
       <IconButton
         label={tHeader('openMenu')}
         aria-haspopup="dialog"
         aria-expanded={open}
-        onClick={() => setOpen(true)}
+        onClick={openMenu}
+        className="lg:hidden"
       >
         <svg
           width="18"
@@ -59,7 +67,7 @@ export function RealmMenu() {
 
       <Modal
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={closeMenu}
         title={t('label')}
         closeLabel={tHeader('closeMenu')}
         placement="top"
@@ -74,7 +82,7 @@ export function RealmMenu() {
                   <Link
                     href={realm.href as '/resonario'}
                     aria-current={active ? 'page' : undefined}
-                    onClick={() => setOpen(false)}
+                    onClick={closeMenu}
                     className={cn(
                       'group rounded-field flex min-h-[60px] items-center gap-4 px-3 transition-colors duration-300',
                       active ? 'text-ivory' : 'text-fg-body hover:text-ivory',
@@ -104,7 +112,7 @@ export function RealmMenu() {
               <Link
                 href={NAV_STORY.href}
                 aria-current={pathname === NAV_STORY.href ? 'page' : undefined}
-                onClick={() => setOpen(false)}
+                onClick={closeMenu}
                 className={cn(
                   'group rounded-field flex min-h-[60px] items-center gap-4 px-3 transition-colors duration-300',
                   pathname === NAV_STORY.href ? 'text-ivory' : 'text-fg-body hover:text-ivory',

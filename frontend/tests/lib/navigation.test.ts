@@ -33,4 +33,14 @@ describe('site navigation', () => {
     expect(en.nav.story.label).not.toBe(es.nav.story.label);
     expect(en.nav.story.emotion).not.toBe(es.nav.story.emotion);
   });
+
+  it('opens the same menu from the header below 1024px and from the constellation above', () => {
+    expect(MENU).toContain('useNavMenuStore');
+    expect(MENU).toContain('className="lg:hidden"');
+    expect(NAV).toContain('useNavMenuStore');
+    expect(NAV).toContain('onClick={openMenu}');
+    expect(NAV).toContain('aria-haspopup="dialog"');
+    // Un aro hueco, no un punto: no se confunde con un realm.
+    expect(NAV).toContain('rounded-full border');
+  });
 });
