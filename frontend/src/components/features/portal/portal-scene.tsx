@@ -105,6 +105,7 @@ export function PortalScene({
             <Halo color="rgba(216,185,120,0.22), rgba(150,198,188,0.10) 55%" inset="-8%" />
             <Image
               src="/logo.png"
+              unoptimized
               alt={title}
               width={210}
               height={210}

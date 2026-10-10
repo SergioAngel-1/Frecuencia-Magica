@@ -18,6 +18,7 @@ export function BrandMark({ label }: { label: string }) {
     >
       <Image
         src="/logo.png"
+        unoptimized
         alt=""
         width={46}
         height={46}

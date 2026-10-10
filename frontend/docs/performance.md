@@ -67,6 +67,8 @@ Las imágenes se comprimen **una sola vez**, desde el PNG original de `.editoria
 | `<archivo>.avif` (copia de la mayor, para consumidores sin loader) | 50       | 2,65 MB     | 54 KB | 132 KB |
 | **`public/editorial/` (AVIF)**                                     | **246**  | **8,62 MB** |       |        |
 
+El logo (`/logo.png`) no está en el manifiesto: sus cuatro usos llevan `unoptimized`, así que se sirve tal cual y no pasa ni por el loader ni por el optimizador. **Deuda:** es un PNG de 500×500 y 81 KB que el header pinta a 46 px; supera de largo lo razonable para el header (~30 KB). Conviene exportarlo a la medida de sus usos (46, 110–190 px a DPR 2) en una pasada propia.
+
 Cada visitante descarga una sola variante por imagen visible: en 390 px las de 828 o 1200 (20–40 KB); en 1440 a DPR 2, la mayor (≤ 132 KB, dentro del presupuesto del brief de ≤ 260 KB).
 
 ## Deuda restante (documentada, no bloqueante)

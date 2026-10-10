@@ -85,6 +85,7 @@ export async function AuthAside({ media }: AuthAsideProps) {
           <Halo color="rgba(216,185,120,0.28), transparent 68%" blur={12} inset="-16%" />
           <Image
             src="/logo.png"
+            unoptimized
             alt={brand}
             width={170}
             height={170}

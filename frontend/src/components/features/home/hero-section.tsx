@@ -120,6 +120,7 @@ export function HeroSection({
           />
           <Image
             src="/logo.png"
+            unoptimized
             alt=""
             aria-hidden="true"
             width={190}

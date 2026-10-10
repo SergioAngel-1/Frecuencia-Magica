@@ -276,11 +276,11 @@
 - Consume: `EDITORIAL_ASSET_WIDTHS` (Tarea 12).
 - Produce: el loader por defecto que exige `images.loaderFile`. Para un `src` del manifiesto, devuelve la variante disponible más pequeña ≥ al ancho pedido (o la mayor, si ninguna llega). Para cualquier otro `src`, lo devuelve tal cual.
 
-- [ ] Tests primero: ancho exacto, ancho intermedio (redondea hacia arriba), ancho por encima del techo (la mayor), `src` ajeno (el logo) y `src` con query.
-- [ ] Implementar el loader y declararlo en `next.config.ts`.
-- [ ] Comprobar el logo: se sirve tal cual. Mide su peso; si supera lo razonable para el header (~30 KB), anótalo en `performance.md` como deuda en lugar de resolverlo aquí.
-- [ ] Verificar en el dev server que el `srcset` apunta a `/editorial/<archivo>-<ancho>.avif` y que ninguna petición va a `/_next/image`.
-- [ ] Gate de la tarea y commit: `feat(editorial): serve pre-built AVIF variants through a next/image loader`.
+- [x] Tests primero: ancho exacto, ancho intermedio (redondea hacia arriba), ancho por encima del techo (la mayor), `src` ajeno (el logo) y `src` con query.
+- [x] Implementar el loader y declararlo en `next.config.ts`.
+- [x] Comprobar el logo: se sirve tal cual. Mide su peso; si supera lo razonable para el header (~30 KB), anótalo en `performance.md` como deuda en lugar de resolverlo aquí.
+- [x] Verificar en el dev server que el `srcset` apunta a `/editorial/<archivo>-<ancho>.avif` y que ninguna petición va a `/_next/image`.
+- [x] Gate de la tarea y commit: `feat(editorial): serve pre-built AVIF variants through a next/image loader`.
 
 ### Tarea 14: Brief, estado e inventario al día
 
