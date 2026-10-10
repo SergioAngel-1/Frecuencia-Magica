@@ -21,8 +21,9 @@ type ErrorPageProps = {
  * un botón que invoca `reset()` para reintentar el render del segmento.
  *
  * Es el mismo umbral editorial que el 404: la vela de `states.error` ocupa
- * el viewport y el mensaje se queda en el espacio tranquilo de arriba, sin
- * tapar la llama.
+ * el viewport con la llama en medio. El mensaje se queda en el espacio
+ * tranquilo de arriba y «Reintentar», sobre el agua: con `cover` en vertical
+ * la vela no se mueve, así que nada puede apilarse encima de ella.
  */
 export default function Error({ error, reset }: ErrorPageProps) {
   const t = useTranslations('states');
@@ -40,18 +41,16 @@ export default function Error({ error, reset }: ErrorPageProps) {
       className="fm-editorial-shell"
       contentClassName="min-h-[100svh]"
     >
-      <div className="flex min-h-[100svh] flex-col items-center justify-start px-6 pt-[108px] pb-[150px] md:px-10 md:pt-[124px] md:pb-[90px]">
+      <div className="flex min-h-[100svh] flex-col items-center justify-between px-6 pt-[108px] pb-[150px] md:px-10 md:pt-[124px] md:pb-[90px]">
         <ErrorState
           tone="warn"
           title={t('errorTitle')}
           body={t('errorBody')}
-          className="max-w-[680px]"
-          action={
-            <Button variant="outline" onClick={reset}>
-              {t('errorCta')}
-            </Button>
-          }
+          className="max-w-[680px] py-0"
         />
+        <Button variant="outline" onClick={reset}>
+          {t('errorCta')}
+        </Button>
       </div>
     </FullBleedSection>
   );
