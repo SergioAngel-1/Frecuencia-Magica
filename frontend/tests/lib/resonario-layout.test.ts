@@ -152,19 +152,14 @@ describe('resonario editorial composition contracts', () => {
     expect(catalogIndex).toBeGreaterThan(filtersIndex);
   });
 
-  it('mirrors the editorial bands, media fields, filters and orbital geometry while loading', () => {
-    expect(loadingSource).toContain('aria-busy="true"');
-    expect(loadingSource).toContain('<MediaSkeleton');
-    expect(loadingSource).toContain('slot="resonario.hero"');
-    // El destacado es un disco, no un campo fotográfico: su silueta también.
-    expect(loadingSource).not.toContain('slot="resonario.featured"');
-    expect(loadingSource).toContain('variant="disc"');
-    // `resonario.archive-banner` es `none`: la silueta replica un banner sólo de texto.
-    expect(loadingSource).not.toContain('slot="resonario.archive-banner"');
-    expect(loadingSource).toContain('role="group"');
-    expect(loadingSource).toContain('data-editorial-stage="orbital"');
-    expect(loadingSource).toContain('lg:hidden');
-    expect(loadingSource).toContain('lg:block');
+  it('waits with the shared loading scene, like every other view', () => {
+    // Una sola espera en todo el sitio: la esfera de `states.loading` (ver `loading-flow`).
+    expect(loadingSource.trim()).toBe(
+      "export { RealmLoading as default } from '@/components/layout';",
+    );
+  });
+
+  it('clears the filter back to the whole archive from the «all» pill', () => {
     expect(filtersSource).toContain("onChange(key === 'all' ? null : key)");
   });
 });

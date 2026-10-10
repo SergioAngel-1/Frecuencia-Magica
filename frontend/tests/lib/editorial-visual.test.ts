@@ -95,15 +95,12 @@ describe('zebra motion', () => {
     expect(readSource(`${SRC}/components/ui/media-skeleton.tsx`)).toContain('animated = false');
   });
 
-  it('animates only the loading silhouettes, where the sweep does mean waiting', () => {
-    const loadingFiles = sourceFiles(`${SRC}/app`, /loading\.tsx$/).filter((path) =>
-      readSource(path).includes('<MediaSkeleton'),
-    );
-
-    expect(loadingFiles.length).toBeGreaterThan(0);
-    for (const path of loadingFiles) {
+  it('never animates a zebra in a view: the only wait is the loading scene', () => {
+    // Con una sola espera (`LoadingScene`) ninguna silueta barre: un barrido
+    // en una vista se leería como «cargando» donde no se carga nada.
+    for (const path of sourceFiles(SRC, /\.tsx$/)) {
       const skeletons = readSource(path).match(/<MediaSkeleton[^>]*>/g) ?? [];
-      for (const skeleton of skeletons) expect(skeleton).toMatch(/\banimated\b/);
+      for (const skeleton of skeletons) expect(skeleton, path).not.toMatch(/\banimated\b/);
     }
   });
 });

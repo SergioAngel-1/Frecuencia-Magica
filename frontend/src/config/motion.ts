@@ -21,6 +21,13 @@ export const DURATION = {
 } as const;
 
 /**
+ * Cuánto espera `RouteTransition` antes de mostrar la escena de carga entre
+ * vistas. Una vista precargada llega antes y no hace falta tapar nada: una
+ * imagen a pantalla completa en cada clic se leería como un parpadeo.
+ */
+export const ROUTE_WAIT_DELAY_MS = 250;
+
+/**
  * Ritmos de `Swap`, en segundos: lo que tarda en irse el contenido anterior
  * (`exit`) y en llegar el nuevo (`enter`). `default` es el intercambio ágil
  * de formularios y filtros; `calm`, el de un recorrido que se lee paso a paso

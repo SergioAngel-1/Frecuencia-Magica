@@ -138,14 +138,11 @@ describe('experiences editorial composition contracts', () => {
     expect(bookingSource).not.toMatch(/unsplash|https?:\/\//i);
   });
 
-  it('mirrors the image-led listing in loading with zebra slots instead of gray placeholders', () => {
-    expect(loadingSource).toContain('aria-busy="true"');
-    expect(loadingSource).toContain('<MediaSkeleton');
-    for (const { slot } of EXPERIENCE_SLOTS.slice(0, 3)) {
-      expect(loadingSource).toContain(`slot="${slot}"`);
-    }
-    expect(loadingSource).toContain('motion-safe:');
-    expect(loadingSource).not.toContain('bg-gray');
+  it('waits with the shared loading scene, like every other view', () => {
+    // Una sola espera en todo el sitio: la esfera de `states.loading` (ver `loading-flow`).
+    expect(loadingSource.trim()).toBe(
+      "export { RealmLoading as default } from '@/components/layout';",
+    );
   });
   it('anchors the booking hero at its 16:9 on top of the card instead of stretching it', () => {
     const hero = bookingSource.slice(

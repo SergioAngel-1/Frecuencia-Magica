@@ -208,20 +208,11 @@ describe('store editorial composition contracts', () => {
     expect(confirmationSource).toContain('href="/tienda"');
   });
 
-  it('mirrors the full image-led bento rhythm in loading with zebra slots', () => {
-    expect(loadingSource).toContain('aria-busy="true"');
-    expect(loadingSource).toContain('<MediaSkeleton');
-    expect(loadingSource).toContain('slot="store.hero"');
-    expect(loadingSource).toContain('slot="store-product-visual"');
-    // `store.ritual-banner` es `none`: la silueta replica un banner sólo de texto.
-    expect(loadingSource).not.toContain('slot="store.ritual-banner"');
-    // La silueta repite las cajas reales: producto a 1:1, destacado en columnas.
-    expect(loadingSource).toContain('aspect-square');
-    expect(loadingSource).toContain('md:flex-row');
-    expect(loadingSource).not.toContain("'16:8'");
-    expect(loadingSource).toContain('mt-auto');
-    expect(loadingSource).toContain('motion-safe:');
-    expect(loadingSource).not.toContain('bg-gray');
+  it('waits with the shared loading scene, like every other view', () => {
+    // Una sola espera en todo el sitio: la esfera de `states.loading` (ver `loading-flow`).
+    expect(loadingSource.trim()).toBe(
+      "export { RealmLoading as default } from '@/components/layout';",
+    );
   });
   it('paints every product visual at its 1:1, the featured one included', () => {
     // Ninguna resolución de `store-product-visual` fuerza otro ratio.
@@ -253,7 +244,6 @@ describe('store editorial composition contracts', () => {
     expect(backdrop).toMatch(/\bblur-/);
     // …y el objeto nítido conserva la caja del slot, a su 1:1.
     expect(cardSource).toContain("'relative w-full', ASPECT_FIELD[media.aspect]");
-    expect(loadingSource).toContain('md:flex md:w-1/2 md:items-center md:self-stretch');
   });
   it('keeps the cart on the page axis and the related products readable at 768', () => {
     expect(cartPageSource).toContain('px-[var(--page-inset)]');

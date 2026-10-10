@@ -130,17 +130,11 @@ describe('sanctuary editorial composition contracts', () => {
     expect(headerSource).toContain('fm-breathe');
   });
 
-  it('mirrors the layout in loading with zebra slots instead of gray placeholders', () => {
-    expect(loadingSource).toContain('aria-busy="true"');
-    expect(loadingSource).toContain('<MediaSkeleton');
-
-    for (const slot of ['sanctuary.hero', 'sanctuary.continue']) {
-      expect(loadingSource).toContain(`slot="${slot}"`);
-    }
-    // `sanctuary.journal` es `none`: sin foto no hay columna lateral que esperar.
-    expect(loadingSource).not.toContain('slot="sanctuary.journal"');
-
-    expect(loadingSource).not.toContain('bg-gray');
+  it('waits with the shared loading scene, like every other view', () => {
+    // Una sola espera en todo el sitio: la esfera de `states.loading` (ver `loading-flow`).
+    expect(loadingSource.trim()).toBe(
+      "export { RealmLoading as default } from '@/components/layout';",
+    );
   });
   it('keeps the journal and daily media at their slot ratio, empty or not', () => {
     // El vacío del diario no impone alto: así no estira la columna de su retrato.

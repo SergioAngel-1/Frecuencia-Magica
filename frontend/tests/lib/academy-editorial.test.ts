@@ -137,14 +137,11 @@ describe('academy editorial composition contracts', () => {
     expect(playerSource).not.toMatch(/unsplash|https?:\/\//i);
   });
 
-  it('mirrors the editorial spread in loading without gray placeholders', () => {
-    expect(loadingSource).toContain('aria-busy="true"');
-    expect(loadingSource).toContain('<MediaSkeleton');
-    for (const { slot } of ACADEMY_SLOTS.slice(0, 3)) {
-      expect(loadingSource).toContain(`slot="${slot}"`);
-    }
-    expect(loadingSource).toContain('data-editorial-archive="true"');
-    expect(loadingSource).toContain('motion-safe:');
+  it('waits with the shared loading scene, like every other view', () => {
+    // Una sola espera en todo el sitio: la esfera de `states.loading` (ver `loading-flow`).
+    expect(loadingSource.trim()).toBe(
+      "export { RealmLoading as default } from '@/components/layout';",
+    );
   });
 
   it('keeps the editorial sweep on transform rather than background-position', () => {

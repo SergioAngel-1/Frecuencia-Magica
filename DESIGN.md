@@ -111,13 +111,14 @@ components:
 
 **Creative North Star: "El Umbral Luminoso"**
 
-Frecuencia Mágica no es un sitio sobre bienestar: es un lugar al que se entra. El visitante cruza un portal y llega a nueve *realms* que comparten una sola atmósfera, noche azul profunda atravesada por oro, teal y lavanda, donde todo respira. La tesis es una frase de dos mitades: **la imagen es el paisaje; el world engine es su energía viva**. La imagen (agua, bruma, cielo cósmico, a veces una silueta de luz) aporta peso, escala y ritmo editorial; el canvas cósmico, los halos, los aros, la geometría sagrada, el cursor luminoso y el audio ambiental la atraviesan, la iluminan y la recortan. La imagen se asienta *sobre* la energía; nunca la sustituye. Desde la enmienda de 2026-10-10 el medio es el paisaje luminoso nocturno y no el bodegón fotográfico (ver *Imagery*).
+Frecuencia Mágica no es un sitio sobre bienestar: es un lugar al que se entra. El visitante cruza un portal y llega a nueve _realms_ que comparten una sola atmósfera, noche azul profunda atravesada por oro, teal y lavanda, donde todo respira. La tesis es una frase de dos mitades: **la imagen es el paisaje; el world engine es su energía viva**. La imagen (agua, bruma, cielo cósmico, a veces una silueta de luz) aporta peso, escala y ritmo editorial; el canvas cósmico, los halos, los aros, la geometría sagrada, el cursor luminoso y el audio ambiental la atraviesan, la iluminan y la recortan. La imagen se asienta _sobre_ la energía; nunca la sustituye. Desde la enmienda de 2026-10-10 el medio es el paisaje luminoso nocturno y no el bodegón fotográfico (ver _Imagery_).
 
 El tono visual es íntimo, sereno y poético. Se habla en segunda persona ("vuelve a ti", "respira"), se escribe con serif ligera a gran tamaño y se deja aire. Los acentos son luz (halos, bordes finos, resplandores), jamás rellenos. Nada es estático: los fondos viven, los elementos flotan, orbitan o laten, y toda entrada llega en fade-up escalonado.
 
-Mientras no hay fotografía real, cada slot pinta el fallback de su contrato: la **zebra** (bandas de la paleta a baja opacidad, quietas) en héroes y retrato; la banda de color del ítem en cursos, experiencias, productos y audios; nada en las atmósferas sin trabajo narrativo. Es arte dirigido, no un hueco; nunca una caja gris, ni stock, ni Unsplash. La zebra no late: un barrido en bucle se lee como «cargando», y sólo las siluetas de carga lo usan.
+Mientras no hay fotografía real, cada slot pinta el fallback de su contrato: la **zebra** (bandas de la paleta a baja opacidad, quietas) en héroes y retrato; la banda de color del ítem en cursos, experiencias, productos y audios; nada en las atmósferas sin trabajo narrativo. Es arte dirigido, no un hueco; nunca una caja gris, ni stock, ni Unsplash. La zebra no late: un barrido en bucle se lee como «cargando», y la única espera del sitio es la escena de `states.loading`.
 
 **Key Characteristics:**
+
 - Paleta cerrada de siete colores; el acento entra como luz, no como superficie.
 - Serif Cormorant Garamond ligera (peso 300) para voz y números; Jost 300 para interfaz; kickers en mayúsculas espaciadas.
 - Composición editorial: héroes y bandas a sangre, una sola línea de contenido, jerarquía por escala y no por cajas.
@@ -132,19 +133,23 @@ Mientras no hay fotografía real, cada slot pinta el fallback de su contrato: la
 Un cielo nocturno con tres luces y un marfil. Siete colores, ningún otro.
 
 ### Primary
+
 - **Oro Atardecer** (`#D8B978`, `--color-gold`): la luz principal. Enlaces, bordes activos, badge «Destacado», kickers, halos de los realms Resonario, Tienda y Santuario, foco visible. Se usa como borde, brillo o texto; el único relleno permitido es pequeño (badge, botón de suscripción).
 
 ### Secondary
+
 - **Teal Niebla** (`#96C6BC`, `--color-teal`): acento del realm Academia y de la voz informativa (kickers de archivo, enlaces «Ver todo»).
 - **Lavanda Bruma** (`#B9B0D6`, `--color-lav`): acento de Descúbrete y Experiencias; tono de lo introspectivo.
 
 ### Neutral
+
 - **Vacío** (`#0F1B2E`, `--color-void`): el fondo. Con `Vacío Hondo` (`#0a1220`) y `Vacío Elevado` (`#16273f`) forma el gradiente de la app: `radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0F1B2E 45%, #0a1220 100%)`.
 - **Marfil** (`#F7F4EA`, `--color-ivory`): todo el texto y los rellenos claros. Nunca blanco puro.
 - **Tinta** (`#12213a`, `--color-ink`): texto oscuro sobre rellenos marfil u oro (botón primario, badge). Valor del prototipo.
 - **Terracota** (`#C98B7A`, `--color-warn`): exclusivamente errores de formulario y estados de fallo.
 
 ### Named Rules
+
 **La Regla de los Cinco Marfiles.** El texto sobre fondo oscuro usa cinco peldaños y sólo cinco: `text-ivory` (100%, títulos y énfasis), `text-fg-body` (82%, párrafos), `text-fg-soft` (70%, descripciones), `text-fg-muted` (60%, apoyo) y `text-fg-meta` (55%, kickers y meta mínima). Todos cumplen AA (4.5:1) contra el punto más claro del fondo (`#16273f`). Nunca por debajo de 55%; si un diseño pide más sutileza, se cambia tamaño, peso o tracking, no la opacidad.
 
 **La Regla de la Luz, no del Relleno.** Oro, teal y lavanda aparecen como halo, borde de 1px o brillo. Un relleno sólido grande de acento (una barra, un panel, una píldora estirada) rompe el sistema. El relleno sólido se reserva para elementos pequeños: badge, botón circular, marfil del botón primario.
@@ -162,6 +167,7 @@ Un cielo nocturno con tres luces y un marfil. Siete colores, ningún otro.
 **Character:** La serif ligera y cursiva pone la voz poética (títulos, cifras de frecuencia, precios, citas); la sans geométrica y fina se queda en la interfaz. El contraste entre ambas es la firma tipográfica del sitio.
 
 ### Hierarchy
+
 - **Display** (300, `clamp(46px, 8vw, 104px)`, 0.98): el título del portal y el hero. Sólo `Display size="hero"`.
 - **Headline** (300, `clamp(36px, 5.5vw, 72px)`, 1): títulos de sección y de banda editorial (`lg`); `xl` (`clamp(46px, 6.2vw, 86px)`) para héroes de realm; `feature` (`clamp(38px, 6vw, 78px)`, 0.92) para la pieza destacada de una vista.
 - **Title** (400, `clamp(26px, 3vw, 34px)`, 1.05): nombre de un ítem dentro de una tarjeta o fila. Precios y cifras en serif, peso 300–400.
@@ -173,6 +179,7 @@ Un cielo nocturno con tres luces y un marfil. Siete colores, ningún otro.
 **Tracking: seis peldaños.** `soft` .05em (botones serif, nav), `ui` .1em (pills, meta sans), `label` .14em (stats), `caps` .2em (badges, enlaces con flecha), `kicker` .3em (kicker estándar), `eyebrow` .4em (cabecera de realm).
 
 ### Named Rules
+
 **La Regla de los Tamaños Nombrados.** La sans usa `text-label`, `text-meta`, `text-body` y `text-lead`; nunca `text-[Npx]` suelto por debajo de 16px. Los titulares pasan por `Display`; el eyebrow, por `Kicker`. `cn()` conoce estos tokens (`frontend/src/lib/cn.ts`): al añadir uno a `@theme`, se registra allí.
 
 **La Regla del Kicker.** Un kicker es 11px, mayúsculas, con tracking `label`, `kicker` o `eyebrow`, en `gold`, `teal`, `lav` o `muted`. Nunca se repite el mismo texto en kicker y badge, ni el kicker de la vista encima del kicker de su sección.
@@ -196,28 +203,30 @@ Un cielo nocturno con tres luces y un marfil. Siete colores, ningún otro.
 Sin sombras de bloque. La profundidad se construye con **luz y vidrio**: superficies de cristal sobre el fondo vivo, halos de acento alrededor de lo importante y scrims del gradiente de la app sobre la fotografía. Las sombras que existen son resplandores suaves de acento.
 
 ### Shadow Vocabulary
+
 - **Cristal astral** (`background: rgba(247,244,234,0.045); border: 1px solid rgba(216,185,120,0.20); backdrop-filter: blur(12px)`): `fm-surface`, la superficie de todas las tarjetas.
 - **Cristal denso** (`background: rgba(15,27,46,0.72); backdrop-filter: blur(22px)`): `fm-surface-strong`, dock del reproductor, badge de la nav y barra inferior de móvil.
 - **Halo** (`--shadow-glow-gold|teal|lav: 0 0 24px rgb(… / 0.25)`, `--shadow-glow-card: 0 0 60px rgb(216 185 120 / 0.18)`): el acento como luz, en hover y en tarjetas destacadas.
 - **Scrim** (degradado de `#0F1B2E`/`#0a1220` al 70–88% según la dirección): legibilidad del texto sobre fotografía, definido una sola vez en `EditorialOverlay`.
 
 ### Named Rules
+
 **La Regla del Halo.** Un resplandor es de acento (oro, teal o lavanda), de baja opacidad y gran radio. Nunca gris, nunca negro duro, nunca un desplazamiento de bloque.
 
 **La Regla de las Capas con Nombre.** Entre capas del layout se apila con la escala `z-*` de `frontend/src/app/globals.css`, nunca con `z-[N]`:
 
-| Capa | `z-index` | Quién la ocupa |
-|---|---|---|
-| `z-world` | 0 | Canvas cósmico |
-| `z-atmosphere` | 1 | Nebulosa y figuras de marca |
-| `z-content` | 100 | `<main>` y footer |
-| `z-player` | 180 | Dock del reproductor |
-| `z-nav` | 210 | Constelación de realms |
-| `z-header` | 220 | Header |
-| `z-offline` | 8000 | Velo de sin conexión (`OfflineVeil`) |
-| `z-portal` | 9000 | Cruce del portal |
-| `z-veil` | 9500 | Velo de transición de ruta |
-| `z-cursor` | 9800 | Cursor luminoso |
+| Capa           | `z-index` | Quién la ocupa                       |
+| -------------- | --------- | ------------------------------------ |
+| `z-world`      | 0         | Canvas cósmico                       |
+| `z-atmosphere` | 1         | Nebulosa y figuras de marca          |
+| `z-content`    | 100       | `<main>` y footer                    |
+| `z-player`     | 180       | Dock del reproductor                 |
+| `z-nav`        | 210       | Constelación de realms               |
+| `z-header`     | 220       | Header                               |
+| `z-offline`    | 8000      | Velo de sin conexión (`OfflineVeil`) |
+| `z-portal`     | 9000      | Cruce del portal                     |
+| `z-veil`       | 9500      | Velo de transición de ruta           |
+| `z-cursor`     | 9800      | Cursor luminoso                      |
 
 El cursor va encima de todo: es el puntero, no decoración. Dentro de un componente aislado (`isolate`) bastan `z-10`/`z-20`. Los nombres están registrados en `frontend/src/lib/cn.ts` y `tests/lib/z-layers.test.ts` prohíbe los `z-[N]` de tres cifras o más.
 
@@ -238,6 +247,7 @@ Las bandas y héroes a sangre no llevan radio. El retrato de Marisol conserva su
 **Cielo arriba, materia abajo.** El cosmos ocupa como mucho el tercio superior de la imagen, con estrellas escasas. El campo estelar, las partículas y la nebulosa son del world engine; una imagen con el cielo completo las duplicaría y competiría con el canvas.
 
 **Cuatro elementos y una firma.**
+
 - **Agua:** espejo en calma, ondas concéntricas, cimática. Resonario, Portal, Santuario.
 - **Bruma y montaña:** horizontes, valles, amanecer. Descúbrete, Experiencias, Acceso, Academia.
 - **Cielo cósmico:** galaxia en espiral o vía láctea baja. Portal, Home, Sobre Marisol.
@@ -251,6 +261,7 @@ Las bandas y héroes a sangre no llevan radio. El retrato de Marisol conserva su
 ## Components
 
 ### Buttons
+
 - **Size:** uno solo en todo el sitio (17px, 11px × 26px, 44px de alto mínimo). No hay prop `size`: la jerarquía entre botones la dan las variantes, no el tamaño.
 - **Shape:** píldora completa (999px), serif con tracking `soft`, altura mínima 44px, transición de .3s sólo de color/fondo/borde/sombra/opacidad.
 - **Primary:** marfil al 95% con texto `ink` y halo dorado; en hover sube a marfil pleno y el halo crece. Desactivado: la misma píldora como vidrio con borde, sin halo; nunca un relleno gris.
@@ -259,46 +270,61 @@ Las bandas y héroes a sangre no llevan radio. El retrato de Marisol conserva su
 - **En Server Components** se usa `ButtonLink` (`components/layout`), nunca `Button asChild` con `Link`: desaparece en silencio.
 
 ### Kicker, Display y ArrowLink
+
 `Kicker` (eyebrow), `Display` (titulares, con `id` para `aria-labelledby`; reparte sus líneas con `text-balance`, así que ningún titular deja una palabra suelta) y `arrowLinkClasses` + `ArrowGlyph` («Ver todo →»: subrayado fino del acento del realm, mayúsculas, 44px) son las tres piezas tipográficas del UI Kit; se prefieren a cualquier `<p>`/`<h*>` con clases sueltas.
 
 ### Cards / Containers
+
 - **Corner Style:** 22px (`rounded-card`); 26px para destacadas.
 - **Background:** cristal astral; halo opcional (`glow`).
 - **Internal Padding:** 20–38px según escala (`clamp`). Una tarjeta contiene o complementa la imagen; no la sustituye. Nunca tarjetas anidadas.
 
 ### Badge y Pill
+
 `Badge` es una píldora de 11px en mayúsculas con tracking `caps`; la variante sólida (oro 92%, texto `ink`) marca lo «Destacado» y **siempre mide lo que su texto** (`w-fit self-start`). `Pill` es el filtro/toggle: borde y fondo marfil tenues, activo en oro, `aria-pressed`.
 
 ### Inputs / Fields
+
 - **Style:** fondo cristal, borde `glass-brd`, radio 14px, 44px de alto, placeholder `fg-meta`.
 - **Focus:** borde dorado al 55% + halo de 3px; el foco global es un aro dorado de 2px con offset de 3px.
 - **Error:** borde y etiqueta en terracota, mensaje con `aria-live="polite"`.
 
 ### Navigation
+
 La **constelación**: seis puntos de luz, uno por realm, tintados con el acento del realm; el activo brilla. En escritorio el nombre emerge al acercarse o enfocar. En móvil y tablet se abre desde el botón de menú del header como tarjeta modal: los seis realms de un vistazo, cada uno con su punto, su nombre en serif y su emoción, y el actual marcado. No aparece en portal ni acceso.
 
 ### Modal
+
 `Modal` (UI Kit) es una tarjeta de cristal denso sobre la noche difuminada, montada sobre el `<dialog>` nativo: foco atrapado, Escape, cierre al pulsar fuera y scroll de página bloqueado. Cabecera con el título en kicker y el cierre como `IconButton` fantasma. `placement="top"` la cuelga bajo el header (menús); `center` la centra. Sólo para lo que de verdad pide interrumpir o proteger el foco.
 
 ### Editorial media (signature)
-`FullBleedSection` (héroe o banda con fotografía), `EditorialBanner` (franja con kicker, título y acción), `EditorialImage` (imagen o zebra más scrim) y `MediaSkeleton` (zebra: bandas oro/teal/lavanda/vacío a baja opacidad, ángulo y fase derivados del id del slot, capa del 124% para que el barrido de carga nunca deje ver el borde; estática salvo con `animated`, que sólo usan los `loading.tsx`). Sin asset, `EditorialImage` pinta el `fallback` del slot (`zebra`, `band` o `none`, resuelto por `editorialVisual`) y lleva `data-media-slot` y `data-media-visual`.
+
+`FullBleedSection` (héroe o banda con fotografía), `EditorialBanner` (franja con kicker, título y acción), `EditorialImage` (imagen o zebra más scrim) y `MediaSkeleton` (zebra: bandas oro/teal/lavanda/vacío a baja opacidad, ángulo y fase derivados del id del slot, capa del 124% para que el barrido de carga nunca deje ver el borde; estática: ninguna vista usa `animated`, porque la espera es la escena de `states.loading`). Sin asset, `EditorialImage` pinta el `fallback` del slot (`zebra`, `band` o `none`, resuelto por `editorialVisual`) y lleva `data-media-slot` y `data-media-visual`.
 
 **Bordes fundidos.** Una banda a sangre no termina en arista: `FullBleedSection` y `EditorialBanner` funden por defecto sus dos bordes (`fade`, por defecto `'both'`) con las máscaras `fm-fade-top` / `fm-fade-bottom` de `tokens.css`, que miden `--fade-band` (un peldaño `section`). La máscara cubre la capa de medios entera, materia y scrim con el mismo alfa (un scrim sin fundir dibujaría la arista él solo); el contenido nunca se enmascara. Lo que roza el header funde sólo el borde inferior. `BandChain` (UI Kit) encadena bandas consecutivas sin hueco y, por posición, abre en cada una el borde que comparte con su vecina; con `intoFooter`, la última continúa en el banner del footer, que anula su filete y su hueco (el único `:has()` del proyecto). `portal.portal-field` usa `fm-fade-radial`: un campo de luz sin aristas.
 
 **Cajas con el ratio del slot.** Una sección cuyo alto decide su contenido usa `mode="anchored"`: la imagen se pinta con el ratio del slot, anclada arriba y a todo el ancho, y funde su borde inferior; el contenido sigue sobre la noche. El foco viaja como variables (`--fm-pos`, y `--fm-pos-mobile` por debajo de 768 px cuando el slot declara `mobilePosition`). `sizes` se deriva de cómo ocupa la imagen su caja (`mediaSizes`): a viewport, por el alto.
 
 ### Frequency Disc (signature)
+
 El disco orbital de frecuencia es la pieza identitaria: esfera con luz especular, aros contrarrotados, cifra en serif y unidad «Hz». Cuatro escalas (`xs` 92px, `sm` 150px, `md` 190px, `lg` 380px); sólo la grande lleva ecualizador. Las pequeñas y la destacada llevan un **aura**: la banda del propio audio, difuminada y respirando detrás de la esfera, de modo que cada frecuencia irradia su color; la destacada le suma un halo dorado amplio y tenue (el color cerca, el oro lejos). La portada fotográfica de un audio se pinta **dentro** de la esfera (`cover`), nunca en un marco propio alrededor del disco. Todo disco que abre el reproductor pasa por `AudioDisc` (`components/features/player`). En el Resonario no hay rejilla de tarjetas: el destacado es el sol y seis discos orbitan a su alrededor.
 
 ### Reproductor (dock)
+
 Barra de cristal denso al pie, con halo de tarjeta (nunca sombra negra). Tres estados: cerrado, **desplegado** y **recogido**. Desplegado: la esfera del audio (`PlayerOrb`), título y meta, anterior / reproducir / siguiente, la barra de posición (`SeekBar`: línea de 3px, tramo recorrido en oro, punto de luz al acercarse) y, al final, ocultar y cerrar como `IconButton variant="ghost"`. En móvil se quedan la esfera, el título, reproducir, ocultar y cerrar, y el avance es el filo superior de la barra. **Ocultar no es cerrar**: recoge el dock en un disco flotante en la esquina inferior derecha, con un aro dorado de avance, que sigue sonando y lo despliega al pulsarlo; cerrar termina la escucha. Elegir cualquier audio vuelve a desplegarlo. Los iconos son SVG de un solo trazo (`player-icons.tsx`), no glifos de texto.
 
 ### Movimiento
+
 Entradas en fade-up escalonado (`.1s`, `.25s`, `.4s`, `.55s`), curva `cubic-bezier(.2,.85,.25,1)` sin rebote; el portal usa `cubic-bezier(.7,0,.3,1)`. Sólo `transform` y `opacity`. Con `prefers-reduced-motion` se congela lo decorativo y se conserva la narrativa.
 
 **Nada sale de golpe.** Toda transición tiene ida y vuelta: lo que entra con fundido también se va con fundido. Cuando una zona cambia su contenido (un paso por el siguiente, un formulario por su confirmación, una lista al filtrarse) se envuelve en `Swap` (UI Kit), que funde el contenido anterior antes de dejar entrar el nuevo. Las capas que aparecen y desaparecen (`Modal`, el dock del reproductor) animan su salida con `AnimatePresence` y sólo entonces se desmontan; los paneles que se pliegan usan una fila de rejilla de `0fr` a `1fr`, nunca `hidden` ni `height`. Un `animate-fm-fade-up` sobre algo que se monta y desmonta por condición sólo resuelve la entrada: no basta.
 
+### Espera (signature)
+
+Una sola forma de esperar en todo el sitio: la esfera de `states.loading` respira sobre el agua y el orbe espera en el tercio inferior (`LoadingScene`). La pintan los `loading.tsx` (`RealmLoading`) en una carga directa y `RouteTransition` entre vistas, sólo si la navegación tarda más de `ROUTE_WAIT_DELAY_MS` (250 ms): una vista precargada llega antes y una imagen a pantalla completa en cada clic se leería como un parpadeo. Entra y sale con fundido; nunca un velo desenfocado propio ni siluetas zebra. La imagen se precarga cuando el navegador queda libre, para que esté cuando la red es lenta, que es cuando la espera se ve.
+
 ### Cruce del portal (signature)
+
 El único momento coreografiado de la web: se cruza un umbral de luz y se llega a la noche. Tiempos en `PORTAL_TIMING` (`frontend/src/config/motion.ts`), forma en `globals.css`, secuencia en `stores/portal-store.ts`.
 
 - **Entrada** (`cover`, 1150 ms): la luz se reúne en el centro como halo, una onda lavanda se adelanta y el **iris** —un disco de noche con el borde encendido en marfil y oro— se abre hasta que el aro sale de pantalla. La noche del fondo (`--fm-night`) se asienta detrás y la luz queda como un punto.
@@ -312,6 +338,7 @@ El único momento coreografiado de la web: se cruza un umbral de luz y se llega 
 ## Do's and Don'ts
 
 ### Do:
+
 - **Do** usar los cinco marfiles (`text-ivory`, `text-fg-body`, `text-fg-soft`, `text-fg-muted`, `text-fg-meta`) y los tamaños nombrados (`text-label`, `text-meta`, `text-body`, `text-lead`).
 - **Do** alinear héroe, filtros, bandas y cuadrícula al eje de página con `fm-container`, y dejar las bandas a sangre (`fm-editorial-full-bleed`).
 - **Do** componer la imagen con cielo arriba y materia abajo, y dejar el campo de estrellas y las partículas al world engine.
@@ -321,6 +348,7 @@ El único momento coreografiado de la web: se cruza un umbral de luz y se llega 
 - **Do** registrar cualquier escala nueva de `@theme` en `frontend/src/lib/cn.ts`.
 
 ### Don't:
+
 - **Don't** añadir hex, fuentes ni colores de acento fuera de la paleta; ni `rgba()` de la paleta en clases cuando existe el token con opacidad (`border-gold/20`).
 - **Don't** usar rellenos sólidos grandes de acento, cajas grises, stock, Unsplash ni emojis.
 - **Don't** escribir `text-[Npx]` (<16px), `tracking-[…]` ni `text-ivory/NN` sueltos: hay tokens.

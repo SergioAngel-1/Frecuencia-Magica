@@ -67,6 +67,8 @@ Las imágenes se comprimen **una sola vez**, desde el PNG original de `.editoria
 | `<archivo>.avif` (copia de la mayor, para consumidores sin loader) | 50       | 4,41 MB      | 90 KB | 200 KB |
 | **`public/editorial/` (AVIF)**                                     | **246**  | **14,22 MB** |       |        |
 
+La imagen de la espera (`states.loading`) se precarga cuando el navegador queda libre tras la primera carga (`RouteTransition`, `requestIdleCallback`), en la misma variante que pedirá la escena: la espera entre vistas sólo se ve con la red lenta, justo cuando una imagen pedida en ese momento ya no llegaría. Cuesta una descarga de 50–90 KB por visita.
+
 El logo (`/logo.png`) no está en el manifiesto: sus cuatro usos llevan `unoptimized`, así que se sirve tal cual y no pasa ni por el loader ni por el optimizador. **Deuda:** es un PNG de 500×500 y 81 KB que el header pinta a 46 px; supera de largo lo razonable para el header (~30 KB). Conviene exportarlo a la medida de sus usos (46, 110–190 px a DPR 2) en una pasada propia.
 
 Cada visitante descarga una sola variante por imagen visible: en 390 px las de 828 o 1200 (33–61 KB de media); en 1440 a DPR 2, la mayor (90 KB de media, ≤ 200 KB, dentro del presupuesto del brief de ≤ 260 KB y ≤ 320 KB en P0).
