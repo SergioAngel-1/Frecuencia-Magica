@@ -25,6 +25,20 @@ const wrapStyle: CSSProperties = {
   willChange: 'transform',
 };
 
+/**
+ * Raíz del cursor. Además de anclarse como `wrapStyle`, neutraliza la hoja
+ * del navegador para `[popover]` (caja centrada, con borde, fondo y recorte).
+ */
+const rootStyle: CSSProperties = {
+  inset: 'auto',
+  ...wrapStyle,
+  margin: 0,
+  padding: 0,
+  border: 'none',
+  background: 'transparent',
+  overflow: 'visible',
+};
+
 const dotStyle: CSSProperties = {
   position: 'absolute',
   top: -DOT_BASE / 2,
@@ -58,6 +72,12 @@ const ringStyle: CSSProperties = {
  * proyecto limita las animaciones a `transform` y `opacity`, y animar
  * `width/height/margin` provocaba layout en cada cambio de tamaño.
  *
+ * Vive en la capa superior del navegador (`popover="manual"`): un `<dialog>`
+ * modal —el menú de navegación, cualquier `Modal`— se pinta ahí, por encima
+ * de toda la escala `z-*`, y dejaba el cursor debajo. Dentro de esa capa manda
+ * el orden de llegada, así que el cursor vuelve a entrar cada vez que se abre
+ * un diálogo. Sin soporte de popover queda en `z-cursor`, como antes.
+ *
  * Port de `setupCursor`. No se monta en dispositivos táctiles; con movimiento
  * reducido el anillo no interpola (sin estela).
  */
@@ -66,7 +86,37 @@ export function LuminousCursor() {
   const dotScaleRef = useRef<HTMLDivElement>(null);
   const ringTranslateRef = useRef<HTMLDivElement>(null);
   const ringScaleRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotionSafe();
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root || typeof root.showPopover !== 'function') return;
+
+    // Salir y volver a entrar lo deja el último de la capa superior.
+    const promote = () => {
+      if (root.matches(':popover-open')) root.hidePopover();
+      root.showPopover();
+    };
+    promote();
+
+    const observer = new MutationObserver((records) => {
+      const opened = records.some(
+        ({ target }) => target instanceof HTMLDialogElement && target.open,
+      );
+      if (opened) promote();
+    });
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['open'],
+      subtree: true,
+    });
+
+    return () => {
+      observer.disconnect();
+      if (root.matches(':popover-open')) root.hidePopover();
+    };
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia('(hover: none)').matches) return;
@@ -118,17 +168,19 @@ export function LuminousCursor() {
   }, [reduced]);
 
   return (
-    <>
-      <div aria-hidden="true" className="fm-cursor z-cursor" style={wrapStyle}>
-        <div ref={dotTranslateRef} style={wrapStyle}>
-          <div ref={dotScaleRef} style={dotStyle} />
-        </div>
+    <div
+      ref={rootRef}
+      popover="manual"
+      aria-hidden="true"
+      className="fm-cursor z-cursor"
+      style={rootStyle}
+    >
+      <div ref={dotTranslateRef} style={wrapStyle}>
+        <div ref={dotScaleRef} style={dotStyle} />
       </div>
-      <div aria-hidden="true" className="fm-cursor z-cursor" style={wrapStyle}>
-        <div ref={ringTranslateRef} style={wrapStyle}>
-          <div ref={ringScaleRef} style={ringStyle} />
-        </div>
+      <div ref={ringTranslateRef} style={wrapStyle}>
+        <div ref={ringScaleRef} style={ringStyle} />
       </div>
-    </>
+    </div>
   );
 }
