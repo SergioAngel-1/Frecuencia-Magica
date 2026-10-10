@@ -295,19 +295,19 @@
 
 **Archivos:** ninguno de producción. Medición fuera del repo. Si hace falta, `docs/superpowers/audits/2026-10-10-image-harmony-audit.md` (sección «Estado tras el refactor») y `docs/superpowers/plans/sections-plan-completed.md`.
 
-- [ ] Re-ejecutar la medición Playwright de la auditoría (método en su sección 10: fuera del repo, `channel: 'chrome'`, DPR 2, `reducedMotion: 'reduce'`, recorrido de scroll y tope de espera de imágenes) en 1440, 1280, 768 y 390, sobre las mismas 27 vistas. Las vistas de carga y error necesitan rutas temporales bajo `/kit`, que se borran al terminar.
-- [ ] Comprobar los umbrales del spec (sección 9):
+- [x] Re-ejecutar la medición Playwright de la auditoría (método en su sección 10: fuera del repo, `channel: 'chrome'`, DPR 2, `reducedMotion: 'reduce'`, recorrido de scroll y tope de espera de imágenes) en 1440, 1280, 768 y 390, sobre las mismas 27 vistas. Las vistas de carga y error necesitan rutas temporales bajo `/kit`, que se borran al terminar.
+- [x] Comprobar los umbrales del spec (sección 9):
   - ampliación ≤ 1,2× en escritorio y ≤ 1,9× a viewport en móvil;
   - ≤ 1,3× en cajas ancladas;
   - ventana de `home.hero` en 390 que contiene 0,62–0,88;
   - hueco 0 dentro de las cadenas y ninguna costura fuera de ellas;
   - aristas en el eje;
   - sin desborde.
-- [ ] Recorte 1:1 de original frente a servido en tres imágenes: una sola compresión.
-- [ ] Gate completo, con el dev server parado: `npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build`, y `npm run build` de `Branding/`. Reiniciar el dev server después.
-- [ ] Comprobar el 404 real con `next build` + `next start` en una ruta inexistente y en un id de curso o producto inválido.
-- [ ] Añadir a la auditoría una sección «Estado tras el refactor», con cada hallazgo en ✅ / ⚠️ / ⏳ y su medida nueva. Anotar lo que no se pudo verificar.
-- [ ] Commit: `docs(audit): record image harmony after the refactor`.
+- [x] Recorte 1:1 de original frente a servido en tres imágenes: una sola compresión.
+- [x] Gate completo, con el dev server parado: `npm run format:check && npm run lint && npm run typecheck && npm run test && npm run build`, y `npm run build` de `Branding/`. Reiniciar el dev server después.
+- [x] Comprobar el 404 real con `next build` + `next start` en una ruta inexistente y en un id de curso o producto inválido.
+- [x] Añadir a la auditoría una sección «Estado tras el refactor», con cada hallazgo en ✅ / ⚠️ / ⏳ y su medida nueva. Anotar lo que no se pudo verificar.
+- [x] Commit: `docs(audit): record image harmony after the refactor`.
 
 **Aceptación:** todos los P1 de la auditoría en ✅, o ⚠️ con causa explicada y decisión del cliente.
 
