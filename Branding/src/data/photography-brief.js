@@ -2,7 +2,7 @@
  * Renderiza el brief fotográfico como Markdown. JS puro: lo usan la página `/fotografia`
  * (botón de descarga) y `scripts/export-photo-brief.mjs`, que escribe `docs/brief-fotografico.md`.
  */
-import { DELIVERY, GLOBAL, PRESETS, SAFE, expandAll, formatSize, negativeFor, summarize } from './photography.js'
+import { DELIVERY, GLOBAL, LANGUAGE, PRESETS, SAFE, expandAll, formatSize, negativeFor, summarize } from './photography.js'
 
 const fence = (text) => ['```text', text, '```'].join('\n')
 
@@ -53,6 +53,7 @@ export function renderBrief() {
     '',
     '> Generado por `npm run export:photo-brief` desde `Branding/src/data/photography.js`. No editar a mano: cambia el dato y vuelve a generarlo.',
     '> El contrato que manda es `frontend/src/config/editorial-media.ts` (ratio, prioridad, focal); un test de la web falla si el brief se desvía.',
+    '> Dirección vigente: enmienda 2026-10-10 de `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md` — la imagen es el paisaje luminoso; el world engine es su energía.',
     '',
     `**${summary.total} imágenes** (${summary.registeredSlots} slots registrados, varios por instancia; ${summary.unregistered} fuera del registro): ` +
       `P0 ${summary.byPriority.P0} · P1 ${summary.byPriority.P1} · P2 ${summary.byPriority.P2}. ` +
@@ -81,6 +82,12 @@ export function renderBrief() {
     '**Tratamientos por acento**',
     '',
     ...Object.entries(GLOBAL.treatments).map(([key, text]) => `- \`${key}\`: ${text}`),
+    '',
+    '**Vocabulario visual** (la imagen es el paisaje; el world engine es su energía)',
+    '',
+    ...LANGUAGE.elements.map((el) => `- **${el.name}:** ${el.feel} Realms: ${el.realms}.`),
+    `- **${LANGUAGE.signature.name}:** ${LANGUAGE.signature.feel}`,
+    `- **Slots con cuerpo de luz:** ${LANGUAGE.bodyOfLight.slots.map((id) => `\`${id}\``).join(', ')}.`,
     '',
     '**Reglas**',
     '',

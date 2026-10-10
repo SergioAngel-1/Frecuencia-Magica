@@ -14,6 +14,7 @@ import es from '../../messages/es.json';
 import {
   FAMILIES,
   GLOBAL,
+  LANGUAGE,
   PRESETS,
   SAFE,
   SLOTS,
@@ -41,6 +42,12 @@ describe('photography brief', () => {
       expect(PRESETS[slot.preset as keyof typeof PRESETS].ratio, slot.id).toBe(contract.aspect);
       expect(slot.priority, slot.id).toBe(contract.priorityTier);
       expect(slot.focal, slot.id).toBe(contract.position);
+    }
+  });
+
+  it('only places the body of light in registered slots', () => {
+    for (const id of LANGUAGE.bodyOfLight.slots) {
+      expect(EDITORIAL_MEDIA_SLOTS, id).toContain(id);
     }
   });
 

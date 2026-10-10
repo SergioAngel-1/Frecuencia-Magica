@@ -2,6 +2,7 @@
 
 > Generado por `npm run export:photo-brief` desde `Branding/src/data/photography.js`. No editar a mano: cambia el dato y vuelve a generarlo.
 > El contrato que manda es `frontend/src/config/editorial-media.ts` (ratio, prioridad, focal); un test de la web falla si el brief se desvía.
+> Dirección vigente: enmienda 2026-10-10 de `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md` — la imagen es el paisaje luminoso; el world engine es su energía.
 
 **66 imágenes** (43 slots registrados, varios por instancia; 5 fuera del registro): P0 4 · P1 47 · P2 15. 1 requiere sesión real (retrato de Marisol).
 
@@ -20,13 +21,13 @@ Cada prompt ya incluye este bloque al final; se repite aquí para ajustarlo en u
 **Prompt base**
 
 ```text
-Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 **Prompt negativo** (pegarlo tal cual en el campo de negativo del agente)
 
 ```text
-text, letters, numbers, captions, watermark, logo, signature, UI elements, frame, border, baked vignette, baked gradient overlay, stock photo look, wellness clichés (lotus on a sunset beach, yoga pose on a mountain, stacked zen stones, om symbol, buddha statue), neon, oversaturated colors, HDR, pastel candy colors, bright white or grey background, plastic skin, distorted hands, extra fingers, cartoon, 3D render look, emojis, recognizable faces
+text, letters, numbers, captions, watermark, logo, signature, channel name, UI elements, frame, border, baked vignette, baked gradient overlay, stock photo look, wellness clichés (lotus on a sunset beach, yoga pose on a mountain, stacked zen stones, om symbol, buddha statue), neon, rainbow spectrum, saturated magenta, electric blue, oversaturated colors, HDR, pastel candy colors, bright white or grey background, DNA helix, brain, anatomical or medical detail, dense starfield filling the frame, lens flare, sci-fi, plastic skin, distorted hands, extra fingers, cartoon, CGI plastic look, game-engine render, emojis, recognizable faces, visible facial features, eyes, mouth
 ```
 
 **Tratamientos por acento**
@@ -37,12 +38,24 @@ text, letters, numbers, captions, watermark, logo, signature, UI elements, frame
 - `soft`: Balanced gold, teal and lavender, ultra calm, very low contrast.
 - `none`: Balanced gold, teal and lavender, cosmic and immersive.
 
+**Vocabulario visual** (la imagen es el paisaje; el world engine es su energía)
+
+- **Agua:** Espejo en calma, ondas concéntricas, cimática: la frecuencia hecha visible. Realms: Resonario, Portal, Santuario.
+- **Bruma y montaña:** Horizontes, valles, amanecer y niebla: el camino que se abre. Realms: Descúbrete, Experiencias, Acceso, Academia (teal).
+- **Cielo cósmico:** Galaxia en espiral o vía láctea baja, sólo en el tercio superior. Realms: Portal, Home, Sobre Marisol.
+- **Cuerpo de luz:** Silueta translúcida sin rasgos, bordeada de oro con teal y lavanda por dentro. Realms: Seis slots narrativos (ver abajo).
+- **Filamentos de frecuencia:** Tres líneas verticales ondulantes —oro, teal y lavanda— a baja opacidad. Motivo recurrente, no obligatorio.
+- **Slots con cuerpo de luz:** `home.hero`, `discover.tuning`, `discover.result`, `experiences.featured`, `academy.completion`, `sanctuary.hero`.
+
 **Reglas**
 
-- Sin texto, logos, marcas ni etiquetas legibles dentro de la imagen: el copy lo pone la web.
-- Sin rostros reconocibles (salvo el retrato de Marisol, que es una sesión real): manos, espaldas, siluetas lejanas u objetos.
+- Sin texto, logos, marcas, nombres de canal ni etiquetas legibles dentro de la imagen: el copy lo pone la web.
+- Sin rasgos faciales: el cuerpo de luz es una silueta translúcida sin ojos, boca ni nariz, y el único rostro es el retrato real de Marisol. Fuera de esos casos: manos, espaldas, siluetas lejanas u objetos.
+- Cielo arriba, materia abajo: el cosmos ocupa como mucho el tercio superior, con estrellas escasas. El world engine ya pinta el campo de estrellas y las partículas; la imagen no los duplica.
 - Luz dorada sobre fondo oscuro: los bordes de la imagen tienden a --void para que el scrim de CSS funda sin corte.
-- Nada de fondos blancos, grises ni pasteles: es un universo nocturno. Tonos de oro, teal y lavanda, nunca saturados.
+- Nada de fondos blancos, grises ni pasteles, ni neón ni arcoíris: es un universo nocturno. Oro, teal y lavanda, a baja saturación.
+- Filamentos de frecuencia: como máximo tres líneas ondulantes (oro, teal y lavanda), a baja opacidad, nunca un espectro completo.
+- Sin ADN, cerebros ni anatomía: la energía se sugiere con luz, agua y geometría sagrada, no con ilustración médica.
 - Sin stock ni Unsplash. Lo generado es materia de ambiente y dirección de arte: cuando exista el producto físico o la persona real, se sustituye por fotografía real.
 - Sin máscaras, viñetas ni degradados horneados: los aplica el CSS.
 
@@ -143,7 +156,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 **Prompt**
 
 ```text
-A vast nocturnal threshold: a circular opening of warm golden light hovering in an immense dark indigo space, fine luminous dust suspended in the air, faint concentric arcs of light emerging from the haze like sacred geometry, distant teal and lavender nebula glow at the far edges. Symmetrical wide composition, the light source at 50% horizontal and 40% vertical, deep dark negative space all around, lower third quiet for a logo and a button. Balanced gold, teal and lavender, cosmic and immersive. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A vast nocturnal threshold over still water: a circular opening of warm golden light hovering low above a mirror-calm dark sea at the horizon, its reflection stretching toward the viewer, a sparse arc of fine stars and a faint spiral-galaxy glow in the upper third, three thin vertical filaments of gold, teal and lavender light rising out of the haze like frequencies, distant teal and lavender glow at the far edges. Symmetrical wide composition, the light source at 50% horizontal and 40% vertical, deep dark negative space all around, lower third quiet for a logo and a button. Balanced gold, teal and lavender, cosmic and immersive. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `portal.portal-field` — Portal · campo · P1
@@ -157,7 +170,7 @@ A vast nocturnal threshold: a circular opening of warm golden light hovering in 
 **Prompt**
 
 ```text
-A horizontal field of suspended luminous matter: slow streams of golden particles crossing a dark plane, a soft beam of teal light and a soft beam of lavender light meeting at the center like a crossing of paths, long-exposure feel. Wide and horizontal, the crossing at dead center, dark margins on both sides. Balanced gold, teal and lavender, cosmic and immersive. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A horizontal field of luminous water at night: slow streams of golden light crossing a dark mirror-still surface, a soft beam of teal light and a soft beam of lavender light meeting at the center like a crossing of paths, faint concentric ripples where they meet, long-exposure feel. Wide and horizontal, the crossing at dead center, dark margins on both sides. Balanced gold, teal and lavender, cosmic and immersive. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### 404
@@ -173,7 +186,7 @@ A horizontal field of suspended luminous matter: slow streams of golden particle
 **Prompt**
 
 ```text
-A serene empty corner of the cosmos: a single small warm lantern glowing on the surface of dark still water, a faint reflection beneath it, distant teal mist, absolute calm, nobody present. Lantern slightly above center, large calm dark water surface around it, empty sky above. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A serene empty corner of the cosmos: a single small warm lantern glowing on the surface of dark still water, a faint reflection beneath it, distant teal mist, a few fine stars far above, absolute calm, nobody present. Lantern slightly above center, large calm dark water surface around it, empty sky above. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Home
@@ -184,12 +197,12 @@ A serene empty corner of the cosmos: a single small warm lantern glowing on the 
 - **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 y reescalar · peso ≤ 260 KB (P0 ≤ 320 KB)
 - **Ratio / focal:** 16:9 · foco 62% 40%
 - **Zona de texto:** Tercio izquierdo e inferior despejados (titular y CTA)
-- **Contenido:** El universo entero en una imagen: materia del hero con kicker, título y CTA sobre scrim.
+- **Contenido:** El universo entero en una imagen: materia del hero con kicker, título y CTA sobre scrim. Cuerpo de luz: la imagen firma de la marca.
 
 **Prompt**
 
 ```text
-A sound-bath still life: a large crystal singing bowl glowing gold from within on dark stone, curls of incense smoke rising from beside it, fine rings of light rippling outward from the bowl, deep navy background with soft teal and lavender bokeh. The bowl sits in the right half at 62% horizontal and 40% vertical, the left 55% of the frame is dark and empty for the headline, slightly low camera angle. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+The brand signature image: a translucent figure of pure light, faceless and featureless, resting on its side across the surface of dark still water, its head close to the water where a soft spiral-galaxy glow gathers beneath it and ripples outward in concentric rings, the body edged in warm gold with faint teal and lavender light flowing through it like fine veins of current, three thin vertical filaments of gold, teal and lavender light rising behind it, sparse fine stars in the upper third, deep navy background. The figure sits in the right half at 62% horizontal and 40% vertical, the left 55% of the frame is dark and empty for the headline, low camera angle at water level. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `home.daily-frequency` — Home · frecuencia del día · P1
@@ -203,7 +216,7 @@ A sound-bath still life: a large crystal singing bowl glowing gold from within o
 **Prompt**
 
 ```text
-Sound made visible: a cymatic pattern, fine radial standing-wave geometry traced in dark water and lit by golden light, symmetrical sacred-geometry structure with delicate concentric rings and petals of light, top-down macro. Pattern centered and radially symmetric, dark water fading to near-black at all four edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Sound made visible: a cymatic pattern, fine radial standing-wave geometry traced in dark water and lit by golden light, symmetrical sacred-geometry structure with delicate concentric rings and petals of light, top-down macro. Pattern centered and radially symmetric, dark water fading to near-black at all four edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `home.realms-banner` — Home · banner de realms · P1
@@ -217,7 +230,7 @@ Sound made visible: a cymatic pattern, fine radial standing-wave geometry traced
 **Prompt**
 
 ```text
-A constellation as a map of nine realms: nine small glowing points of gold, teal and lavender light joined by the faintest filaments across an immense dark nebula, photographic long-exposure night sky with a slow arc of stars. Nine points spread across the width with the brightest near the center, deep dark edges. Balanced gold, teal and lavender, cosmic and immersive. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A constellation as a map of nine realms: nine small glowing points of gold, teal and lavender light joined by the faintest filaments across an immense dark nebula, long-exposure night sky with a slow arc of stars, a thin line of still water along the lower edge mirroring the points. Nine points spread across the width with the brightest near the center, deep dark edges. Balanced gold, teal and lavender, cosmic and immersive. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `home-marisol-portrait` — Home · Sobre Marisol · P0
@@ -233,13 +246,13 @@ A constellation as a map of nine realms: nine small glowing points of gold, teal
 **Prompt**
 
 ```text
-Mood reference only — the published photograph must come from a real session with Marisol. Intimate half-length portrait of a calm woman seated beside a window at dusk, warm candlelight on one side of her face, natural linen clothing in ivory tones, soft gaze, quiet smile, dark navy room behind her. Vertical 3:4, face in the upper third with generous headroom because a niche-arch mask is applied in CSS, shoulders and hands softly out of focus, dark edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Mood reference only — the published photograph must come from a real session with Marisol. Intimate half-length portrait of a calm woman seated beside a window at dusk, warm candlelight on one side of her face, natural linen clothing in ivory tones, soft gaze, quiet smile, dark navy room behind her. Vertical 3:4, face in the upper third with generous headroom because a niche-arch mask is applied in CSS, shoulders and hands softly out of focus, dark edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 **Negativo (moodboard):**
 
 ```text
-text, letters, numbers, captions, watermark, logo, signature, UI elements, frame, border, baked vignette, baked gradient overlay, stock photo look, wellness clichés (lotus on a sunset beach, yoga pose on a mountain, stacked zen stones, om symbol, buddha statue), neon, oversaturated colors, HDR, pastel candy colors, bright white or grey background, plastic skin, distorted hands, extra fingers, cartoon, 3D render look, emojis
+text, letters, numbers, captions, watermark, logo, signature, channel name, UI elements, frame, border, baked vignette, baked gradient overlay, stock photo look, wellness clichés (lotus on a sunset beach, yoga pose on a mountain, stacked zen stones, om symbol, buddha statue), neon, rainbow spectrum, saturated magenta, electric blue, oversaturated colors, HDR, pastel candy colors, bright white or grey background, DNA helix, brain, anatomical or medical detail, dense starfield filling the frame, lens flare, sci-fi, plastic skin, distorted hands, extra fingers, cartoon, CGI plastic look, game-engine render, emojis
 ```
 
 #### `home-membership` — Home · membresía · P2
@@ -253,7 +266,7 @@ text, letters, numbers, captions, watermark, logo, signature, UI elements, frame
 **Prompt**
 
 ```text
-Golden light pouring from above into a serene empty communal space: a long low wooden table surrounded by floor cushions in a circle, a warm beam of light falling from the top of the frame, dust motes drifting, deep shadows in the corners. The light source sits near the top edge at 15% vertical, table and cushions in the middle distance, lower third dark for text. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Golden light pouring from above onto a still lake at dawn: a warm beam of light falling from the top of the frame onto mist-covered water, a ring of low smooth stones at the shore arranged in a circle as a gathering place, dust motes and mist drifting, deep shadows in the corners. The light source sits near the top edge at 15% vertical, the ring of stones in the middle distance, lower third dark for text. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `home.footer-banner` — Home · cierre · P2
@@ -267,7 +280,7 @@ Golden light pouring from above into a serene empty communal space: a long low w
 **Prompt**
 
 ```text
-The horizon after the page: a dusk sky with faint lavender clouds above a dark calm plain, a single thin line of gold light along the horizon, the first stars appearing, vast stillness. Horizon at 40% vertical, sky above, dark ground below fading to near-black for text. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+The horizon after the page: a dusk sky with faint lavender clouds above a dark mirror-calm sea, a single thin line of gold light along the horizon, the first stars appearing, vast stillness. Horizon at 40% vertical, sky above, dark water below fading to near-black for text. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Sobre Marisol
@@ -283,7 +296,7 @@ The horizon after the page: a dusk sky with faint lavender clouds above a dark c
 **Prompt**
 
 ```text
-The room where the work begins: a quiet studio at dusk with a low wooden table, a crystal singing bowl, an open notebook and a single lit candle, a linen shawl left over a chair as if someone had just stepped out, warm golden light from a window on the right, deep navy shadows. Table and candle at 60% horizontal and 40% vertical, left third dark and empty for the title, lower edge fading to near-black. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+The place where the work begins: a quiet terrace of dark stone at dusk opening onto a still lake and distant mountains in lavender mist, a low wooden table with a crystal singing bowl and a single lit candle in the foreground, a linen shawl left over a stone bench as if someone had just stepped out, warm golden light, a faint spiral of galaxy glow in the upper sky. Table and candle at 60% horizontal and 40% vertical, left third dark and empty for the title, lower edge fading to near-black. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `about.angels` — Sobre Marisol · Experiencias con Ángeles · P1
@@ -297,7 +310,7 @@ The room where the work begins: a quiet studio at dusk with a low wooden table, 
 **Prompt**
 
 ```text
-Presence without a figure: a soft shaft of pale lavender and gold light descending through still dark air, a single white feather suspended mid-fall, fine luminous dust around it, no wings, no faces, no statues, no religious iconography. Light source and feather in the upper third at 30% vertical, lower half dark and calm for the headline. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Presence without a figure: a soft shaft of pale lavender and gold light descending through still dark air onto a mist-covered lake, a single white feather suspended mid-fall, fine luminous dust around it, no wings, no faces, no statues, no religious iconography. Light source and feather in the upper third at 30% vertical, lower half dark and calm for the headline. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Acceso
@@ -313,7 +326,7 @@ Presence without a figure: a soft shaft of pale lavender and gold light descendi
 **Prompt**
 
 ```text
-A tall arched doorway of soft golden light set into a dark stone wall, seen from a few steps back, a warm path of light spilling across the floor toward the viewer, quiet, inviting, nobody in the frame. Arch placed in the right half, the left third dark stone and empty for a quote. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A tall arched doorway of soft golden light set into a dark stone wall at the edge of still water, seen from a few steps back, a warm path of light spilling across the wet stone and the water toward the viewer, mist at its base, quiet, inviting, nobody in the frame. Arch placed in the right half, the left third dark stone and empty for a quote. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `auth.form-atmosphere` — Acceso · formulario · P2
@@ -327,7 +340,7 @@ A tall arched doorway of soft golden light set into a dark stone wall, seen from
 **Prompt**
 
 ```text
-Intimate calm: a single lit candle and a small ceramic bowl of water on a dark wooden table, blurred velvet-dark background, a soft warm glow at the bottom of the frame. Vertical, very dark and low contrast (it sits behind a glass form), candle in the lower third, generous dark space above. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Intimate calm: a surface of nearly black still water with a single soft golden point of light reflected in it and faint teal mist drifting low, blurred velvet-dark background, a soft warm glow at the bottom of the frame. Vertical, very dark and low contrast (it sits behind a glass form), the point of light in the lower third, generous dark space above. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Descúbrete
@@ -343,7 +356,7 @@ Intimate calm: a single lit candle and a small ceramic bowl of water on a dark w
 **Prompt**
 
 ```text
-The beginning of a discovery: a narrow path of dark stone steps dissolving upward into soft lavender and gold dawn mist, a sense of a first step, no people. Path entering from the lower right toward a bright vanishing point at 50% horizontal and 40% vertical, left third dark. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+The beginning of a discovery: a narrow path of dark stone steps rising from still water into soft lavender and gold dawn mist over distant mountain ridges, a sense of a first step, no people. Path entering from the lower right toward a bright vanishing point at 50% horizontal and 40% vertical, left third dark. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `discover.question-atmosphere` — Descúbrete · pregunta · P2
@@ -357,7 +370,7 @@ The beginning of a discovery: a narrow path of dark stone steps dissolving upwar
 **Prompt**
 
 ```text
-Soft-focus ambient abstraction: drifting translucent veils of lavender and teal mist with tiny golden specks like slow snowfall, very dark, almost abstract. Vertical, very low contrast, nothing sharp (it sits behind the question text). Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Soft-focus ambient abstraction: drifting translucent veils of lavender and teal mist with tiny golden specks like slow snowfall, very dark, almost abstract. Vertical, very low contrast, nothing sharp (it sits behind the question text). Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `discover.tuning` — Descúbrete · afinación · P1
@@ -366,12 +379,12 @@ Soft-focus ambient abstraction: drifting translucent veils of lavender and teal 
 - **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 y reescalar · peso ≤ 220 KB
 - **Ratio / focal:** 16:8 · foco 50% 50%
 - **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** El momento de la afinación personal: la materia que sintoniza.
+- **Contenido:** El momento de la afinación personal: la materia que sintoniza. Cuerpo de luz.
 
 **Prompt**
 
 ```text
-Tuning in: a brass tuning fork just struck in the dark, a halo of golden light ripples spreading around it, macro photograph, shallow depth of field, subtle teal reflections on the metal. Fork centered, ripples fanning left and right across the wide frame, dark edges. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Tuning in: a faceless figure of translucent light seated at the edge of dark still water, head slightly bowed, as a halo of golden ripples spreads across the surface toward it from a single struck point, soft teal reflections in the water, three fine filaments of gold, teal and lavender light rising from the ripples. Figure centered, ripples fanning left and right across the wide frame, dark edges. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `discover.result` — Descúbrete · resultado · P1
@@ -380,12 +393,12 @@ Tuning in: a brass tuning fork just struck in the dark, a halo of golden light r
 - **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 y reescalar · peso ≤ 260 KB (P0 ≤ 320 KB)
 - **Ratio / focal:** 16:9 · foco 50% 40%
 - **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** El resultado del quiz como revelación visual.
+- **Contenido:** El resultado del quiz como revelación visual. Cuerpo de luz.
 
 **Prompt**
 
 ```text
-Revelation: a clear glass sphere on a dark surface catching a single beam of warm light and splitting it into soft gold, teal and lavender glows that fall across the surface, a moment of clarity. Sphere centered slightly below the middle, light coming from the upper left, dark background. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Revelation: a faceless figure of translucent light standing upright with open arms at the edge of dark still water, a single soft beam of warm light from above splitting into gold, teal and lavender glows that run through the body and fall across the water as its reflection, a moment of clarity. Figure small and centered in the lower third, the beam descending gently from the top center, the middle of the frame calm and dark for the result text. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Resonario
@@ -401,7 +414,7 @@ Revelation: a clear glass sphere on a dark surface catching a single beam of war
 **Prompt**
 
 ```text
-A vast dark resonant space: rows of softly glowing translucent discs suspended at different depths like a solar system, warm gold rims, drifting haze, cinematic depth of field. Discs receding from the upper right toward the center, the left third dark and empty for the headline. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A vast dark resonant space over still water: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm surface that doubles them, warm gold rims, drifting haze, cinematic depth of field. Discs receding from the upper right toward the center, the left third dark and empty for the headline. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `resonario.featured` — Resonario · destacado · P1
@@ -415,7 +428,7 @@ A vast dark resonant space: rows of softly glowing translucent discs suspended a
 **Prompt**
 
 ```text
-A backdrop for a featured disc: soft concentric rings of golden light radiating from an empty center across a dark misty space, faint teal and lavender halos at the edges. Empty calm center (a disc is placed on top in the UI), rings fading to near-black at the edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A backdrop for a featured disc: soft concentric rings of golden light radiating from an empty center across dark still water, faint teal and lavender halos at the edges. Empty calm center (a disc is placed on top in the UI), rings fading to near-black at the edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `resonario.archive-banner` — Resonario · archivo · P2
@@ -429,7 +442,7 @@ A backdrop for a featured disc: soft concentric rings of golden light radiating 
 **Prompt**
 
 ```text
-The archive as a place: a long dim hall lined with tall shelves holding softly glowing vessels — brass bowls, glass discs, ceramic jars — lavender haze, a few warm lamps far away. One-point perspective down the hall, lower third dark for text. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+The archive as a place: a long colonnade of dark stone opening onto still water at dusk, tall niches holding softly glowing vessels — brass bowls, glass discs, ceramic jars — lavender haze, a few warm lamps far away reflected in the floor-water. One-point perspective down the colonnade, lower third dark for text. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `resonario.audio-cover.* · Regreso a la Calma` — Resonario · portadas · P1
@@ -443,7 +456,7 @@ The archive as a place: a long dim hall lined with tall shelves holding softly g
 **Prompt**
 
 ```text
-Still water at dusk, a single pebble just dropped, perfect concentric ripples spreading in teal and gold light, calm and cool. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Still water at dusk, a single pebble just dropped, perfect concentric ripples spreading in teal and gold light, calm and cool. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `resonario.audio-cover.* · Luz Interior` — Resonario · portadas · P1
@@ -457,7 +470,7 @@ Still water at dusk, a single pebble just dropped, perfect concentric ripples sp
 **Prompt**
 
 ```text
-A single warm orb of light glowing inside a dark lavender crystal geode, facets catching the glow, inner light. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A single warm orb of light glowing inside a dark lavender crystal geode, facets catching the glow, inner light. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `resonario.audio-cover.* · Raíces Profundas` — Resonario · portadas · P1
@@ -471,7 +484,7 @@ A single warm orb of light glowing inside a dark lavender crystal geode, facets 
 **Prompt**
 
 ```text
-Dark moss-covered stones and fine exposed roots in earth, a thread of gold light running between them, grounded and quiet. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Dark moss-covered stones half-submerged at the edge of black water, fine exposed roots in earth, a thread of gold light running between them, grounded and quiet. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `resonario.audio-cover.* · Umbral del Sueño` — Resonario · portadas · P1
@@ -485,7 +498,7 @@ Dark moss-covered stones and fine exposed roots in earth, a thread of gold light
 **Prompt**
 
 ```text
-An indigo night room with a doorway of soft hazy light at the far end and a drifting veil of mist, heavy and soothing. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+An indigo night lake under a drifting veil of mist, a doorway of soft hazy light far away on the shore, heavy and soothing. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `resonario.audio-cover.* · Aroma de Cedro` — Resonario · portadas · P1
@@ -499,7 +512,7 @@ An indigo night room with a doorway of soft hazy light at the far end and a drif
 **Prompt**
 
 ```text
-Amber cedar smoke curling upward from a small brass burner against darkness, a bundle of cedar sprigs beside it, warm glow. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Amber cedar smoke curling upward from a small brass burner against darkness, a bundle of cedar sprigs beside it, warm glow. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `resonario.audio-cover.* · Respirar el Cielo` — Resonario · portadas · P1
@@ -513,7 +526,7 @@ Amber cedar smoke curling upward from a small brass burner against darkness, a b
 **Prompt**
 
 ```text
-A lagoon-teal sky at blue hour with soft layered clouds lit from below by faint gold, open air, spacious. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A lagoon-teal sky at blue hour with soft layered clouds lit from below by faint gold, open air, spacious. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `resonario.audio-cover.* · Corazón Abierto` — Resonario · portadas · P1
@@ -527,7 +540,7 @@ A lagoon-teal sky at blue hour with soft layered clouds lit from below by faint 
 **Prompt**
 
 ```text
-Two cupped hands holding a small warm glow of light against a sage-green dark background, tender and open. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Two cupped hands holding a small warm glow of light against a sage-green dark background, tender and open. Square, center kept calm and low contrast because the frequency number (Hz) is overlaid on the disc. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Academia
@@ -543,7 +556,7 @@ Two cupped hands holding a small warm glow of light against a sage-green dark ba
 **Prompt**
 
 ```text
-Study as a scene: a low wooden desk beside a window at blue hour with an open blank notebook, a ceramic bowl, a lit candle and a small stack of books, teal dusk light, no people. Desk in the right half, the left third quiet and dark for the headline. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Study as a scene: a low wooden desk on a quiet lakeside terrace at blue hour with an open blank notebook, a ceramic bowl and a lit candle, teal mist over the water and the far hills, no people. Desk in the right half, the left third quiet and dark for the headline. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `academy.featured-course` — Academia · curso destacado · P1
@@ -557,7 +570,7 @@ Study as a scene: a low wooden desk beside a window at blue hour with an open bl
 **Prompt**
 
 ```text
-The featured practice: a pair of hands cradling a small brass singing bowl with a wooden striker resting on its rim, golden candlelight on the hands, teal mist behind, close framing. Hands and bowl in the right-center, the left third dark for the course title. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+The featured practice: a pair of hands cradling a small brass singing bowl with a wooden striker resting on its rim, golden candlelight on the hands, teal mist behind, close framing. Hands and bowl in the right-center, the left third dark for the course title. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `academy-course-cover · El Arte de Volver a Ti` — Academia · portadas de curso · P1
@@ -571,7 +584,7 @@ The featured practice: a pair of hands cradling a small brass singing bowl with 
 **Prompt**
 
 ```text
-A person seen from behind sitting cross-legged before a tall window at dawn, silhouetted against lavender and gold light, deep calm, no face visible. Keep the subject inside the central 50% of the width so the 1:1 crop of the card still contains it. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A person seen from behind sitting cross-legged on a rock at the edge of still water at dawn, silhouetted against lavender and gold light over distant mountains, deep calm, no face visible. Keep the subject inside the central 50% of the width so the 1:1 crop of the card still contains it. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `academy-course-cover · Rituales Conscientes` — Academia · portadas de curso · P1
@@ -585,7 +598,7 @@ A person seen from behind sitting cross-legged before a tall window at dawn, sil
 **Prompt**
 
 ```text
-Hands arranging ritual objects on dark stone — a ceramic bowl, a candle, a sprig of cedar — moss-green and gold light, unhurried gesture. Keep the subject inside the central 50% of the width so the 1:1 crop of the card still contains it. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Hands arranging ritual objects on dark stone — a ceramic bowl, a candle, a sprig of cedar — moss-green and gold light, unhurried gesture. Keep the subject inside the central 50% of the width so the 1:1 crop of the card still contains it. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `academy-course-cover · Aromas que Sanan` — Academia · portadas de curso · P1
@@ -599,7 +612,7 @@ Hands arranging ritual objects on dark stone — a ceramic bowl, a candle, a spr
 **Prompt**
 
 ```text
-Amber glass vials of essential oils, dried cedar and herbs on a dark wooden tray, warm golden light and a thread of fragrant smoke. Keep the subject inside the central 50% of the width so the 1:1 crop of the card still contains it. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Amber glass vials of essential oils, dried cedar and herbs on a dark wooden tray, warm golden light and a thread of fragrant smoke. Keep the subject inside the central 50% of the width so the 1:1 crop of the card still contains it. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `academy-lesson-visual` — Academia · lección · P1
@@ -613,7 +626,7 @@ Amber glass vials of essential oils, dried cedar and herbs on a dark wooden tray
 **Prompt**
 
 ```text
-A soft-focus practice backdrop: out-of-focus candle flames as warm bokeh and a pair of hands resting on knees in the far distance, teal shadows, almost abstract. Very low contrast, nothing sharp in the lower third (the player controls sit there). Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A soft-focus practice backdrop: out-of-focus candle flames as warm bokeh and a pair of hands resting on knees in the far distance, teal shadows, almost abstract. Very low contrast, nothing sharp in the lower third (the player controls sit there). Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `academy.completion` — Academia · curso completado · P1
@@ -622,12 +635,12 @@ A soft-focus practice backdrop: out-of-focus candle flames as warm bokeh and a p
 - **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 y reescalar · peso ≤ 220 KB
 - **Ratio / focal:** 16:8 · foco 50% 50%
 - **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Celebración del curso terminado: el logro con luz.
+- **Contenido:** Celebración del curso terminado: el logro con luz. Cuerpo de luz.
 
 **Prompt**
 
 ```text
-A completed cycle closed in light: a ring of small candles lit in a circle on dark stone, every flame steady and one slightly brighter, a warm golden glow radiating outward, slightly oblique overhead view. Ring centered, enough dark space in the middle for a check mark and a line of text. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A completed cycle closed in light: a ring of small golden lights floating on dark still water seen from a slightly oblique overhead angle, a small faceless figure of translucent light seated cross-legged at the far side of the ring, every light steady and one slightly brighter, concentric ripples radiating outward. Ring centered with its middle empty and dark for a check mark and a line of text, the small figure at the far edge of the ring at 50% horizontal and 30% vertical. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Experiencias
@@ -643,7 +656,7 @@ A completed cycle closed in light: a ring of small candles lit in a circle on da
 **Prompt**
 
 ```text
-The journey as a promise: a lantern-lit path through a dark garden leading to a softly glowing pavilion, lavender dusk mist between the trees, nobody present. Pavilion at 55% horizontal and 40% vertical, lanterns leading in from the lower left, left third dark. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+The journey as a promise: a lantern-lit path of stepping stones across still water toward a softly glowing pavilion on the far shore, lavender dusk mist between dark trees and hills, nobody present. Pavilion at 55% horizontal and 40% vertical, lanterns leading in from the lower left, left third dark. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `experiences.featured` — Experiencias · destacada · P1
@@ -652,12 +665,12 @@ The journey as a promise: a lantern-lit path through a dark garden leading to a 
 - **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 y reescalar · peso ≤ 220 KB
 - **Ratio / focal:** 16:8 · foco 50% 45%
 - **Zona de texto:** Tercio izquierdo oscuro y despejado (el texto va a la izquierda)
-- **Contenido:** La experiencia destacada con presencia propia: el baño de sonido.
+- **Contenido:** La experiencia destacada con presencia propia: el baño de sonido. Cuerpo de luz.
 
 **Prompt**
 
 ```text
-A sound bath in progress: a ring of crystal singing bowls glowing lavender and gold from within on a dark wooden floor, candles between them, low camera angle, no people, drifting haze above. Ring of bowls in the right two thirds at 45% vertical, left third dark for the title and the booking button. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A sound bath in progress: a circle of faceless figures of translucent light seated around a ring of crystal singing bowls glowing lavender and gold from within, set on dark still water that mirrors them, concentric rings of light spreading across the surface, drifting haze above. Ring of bowls and figures in the right two thirds at 45% vertical, left third dark for the title and the booking button. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `experiences-visual · Baño de Sonido en Vivo` — Experiencias · filas · P1
@@ -671,7 +684,7 @@ A sound bath in progress: a ring of crystal singing bowls glowing lavender and g
 **Prompt**
 
 ```text
-Crystal and brass singing bowls glowing from within on a dark floor, candles between them, rings of light, a soft haze; nobody present. The subject sits on the right at 62% horizontal and 45% vertical, the left 45% is dark and empty because a left scrim carries the text. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Crystal and brass singing bowls glowing from within on a dark wooden platform over still water, candles between them, rings of light spreading across the surface, a soft haze; nobody present. The subject sits on the right at 62% horizontal and 45% vertical, the left 45% is dark and empty because a left scrim carries the text. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `experiences-visual · Círculo de Luna Nueva` — Experiencias · filas · P1
@@ -685,7 +698,7 @@ Crystal and brass singing bowls glowing from within on a dark floor, candles bet
 **Prompt**
 
 ```text
-A circle of cushions and small candles on a dark floor beneath a tall window showing a thin new-moon crescent, quiet and ceremonial. The subject sits on the right at 62% horizontal and 45% vertical, the left 45% is dark and empty because a left scrim carries the text. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A circle of small candles on a dark stone shore beneath a thin new-moon crescent over still water, quiet and ceremonial. The subject sits on the right at 62% horizontal and 45% vertical, the left 45% is dark and empty because a left scrim carries the text. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `experiences-visual · Ritual de Aromas` — Experiencias · filas · P1
@@ -699,7 +712,7 @@ A circle of cushions and small candles on a dark floor beneath a tall window sho
 **Prompt**
 
 ```text
-A brass burner with copal smoke rising in slow spirals, amber oil bottles and dried herbs beside it on a dark table, golden light. The subject sits on the right at 62% horizontal and 45% vertical, the left 45% is dark and empty because a left scrim carries the text. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A brass burner with copal smoke rising in slow spirals, amber oil bottles and dried herbs beside it on a dark table, golden light. The subject sits on the right at 62% horizontal and 45% vertical, the left 45% is dark and empty because a left scrim carries the text. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `experiences-visual · Meditación al Amanecer` — Experiencias · filas · P1
@@ -713,7 +726,7 @@ A brass burner with copal smoke rising in slow spirals, amber oil bottles and dr
 **Prompt**
 
 ```text
-A small terrace at first light with a cushion and a steaming cup, teal mist over distant hills, the first gold on the horizon; nobody present. The subject sits on the right at 62% horizontal and 45% vertical, the left 45% is dark and empty because a left scrim carries the text. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A small terrace at first light with a cushion and a steaming cup, teal mist over distant hills and still water, the first gold on the horizon; nobody present. The subject sits on the right at 62% horizontal and 45% vertical, the left 45% is dark and empty because a left scrim carries the text. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Reserva
@@ -729,7 +742,7 @@ A small terrace at first light with a cushion and a steaming cup, teal mist over
 **Prompt**
 
 ```text
-An empty serene room ready to receive: floor cushions arranged in a circle, a tall window showing a twilight sky, a few unlit candles waiting, a soft lavender light on the wooden floor. Wide symmetrical interior, circle of cushions in the middle distance, left third dark. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+An empty serene place ready to receive: floor cushions arranged in a circle on a wooden deck over still water at twilight, a few unlit candles waiting, a soft lavender light on the planks and the mountains beyond. Wide symmetrical, circle of cushions in the middle distance, left third dark. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `booking.confirmation` — Reserva · confirmación · P1
@@ -743,7 +756,7 @@ An empty serene room ready to receive: floor cushions arranged in a circle, a ta
 **Prompt**
 
 ```text
-The same serene room now with its candles lit: a warm golden glow over the circle of cushions, a steaming cup set on the floor, a door ajar letting in soft light. Warm center, dark edges, calm space in the middle for a check mark and a line of text. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+The same serene place now with its candles lit: a warm golden glow over the circle of cushions on the deck, reflected in the still water, a steaming cup set beside them, a soft light on the horizon. Warm center, dark edges, calm space in the middle for a check mark and a line of text. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Tienda
@@ -759,7 +772,7 @@ The same serene room now with its candles lit: a warm golden glow over the circl
 **Prompt**
 
 ```text
-The ritual of acquiring: a dark wooden altar shelf with a still life of an amber glass bottle, a honey-coloured candle, a rose quartz point and a bundle of incense, low golden light raking across the objects. Objects in the right half at 40% vertical, the left third dark and empty for the headline. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+The ritual of acquiring: a dark stone ledge at the edge of still water at night with a still life of an amber glass bottle, a honey-coloured candle, a rose quartz point and a bundle of incense, low golden light raking across the objects and reflecting in the water behind them. Objects in the right half at 40% vertical, the left third dark and empty for the headline. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `store-product-visual · Aceite Esencial · Cedro Sagrado` — Tienda · productos · P1
@@ -773,7 +786,7 @@ The ritual of acquiring: a dark wooden altar shelf with a still life of an amber
 **Prompt**
 
 ```text
-An amber glass dropper bottle with a plain unmarked label and a cedar sprig beside it. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+An amber glass dropper bottle with a plain unmarked label and a cedar sprig beside it. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `store-product-visual · Vela Ritual · Luz de Vela` — Tienda · productos · P1
@@ -787,7 +800,7 @@ An amber glass dropper bottle with a plain unmarked label and a cedar sprig besi
 **Prompt**
 
 ```text
-A honey-coloured wax candle in a dark glass vessel, lit, the flame reflected in the glass. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A honey-coloured wax candle in a dark glass vessel, lit, the flame reflected in the glass. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `store-product-visual · Cuarzo de Serenidad` — Tienda · productos · P1
@@ -801,7 +814,7 @@ A honey-coloured wax candle in a dark glass vessel, lit, the flame reflected in 
 **Prompt**
 
 ```text
-A clear quartz crystal point standing upright with faint lavender internal light and a soft warm rim light. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A clear quartz crystal point standing upright with faint lavender internal light and a soft warm rim light. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `store-product-visual · Bruma de Enraizamiento` — Tienda · productos · P1
@@ -815,7 +828,7 @@ A clear quartz crystal point standing upright with faint lavender internal light
 **Prompt**
 
 ```text
-A small dark-green glass spray bottle with a fine mist drifting from it, moss and stone beneath. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A small dark-green glass spray bottle with a fine mist drifting from it, moss and stone beneath. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `store-product-visual · Incienso · Bosque de Copal` — Tienda · productos · P1
@@ -829,7 +842,7 @@ A small dark-green glass spray bottle with a fine mist drifting from it, moss an
 **Prompt**
 
 ```text
-Chunks of pale copal resin in a small clay dish with a thin ribbon of smoke rising. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Chunks of pale copal resin in a small clay dish with a thin ribbon of smoke rising. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `store-product-visual · Sal de Baño · Luna Llena` — Tienda · productos · P1
@@ -843,7 +856,7 @@ Chunks of pale copal resin in a small clay dish with a thin ribbon of smoke risi
 **Prompt**
 
 ```text
-A glass jar of pale bath salts with a hint of lavender, a wooden scoop beside it, soft moonlit sheen. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A glass jar of pale bath salts with a hint of lavender, a wooden scoop beside it, soft moonlit sheen. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `store-product-visual · Infusión · Calma de Cedro` — Tienda · productos · P1
@@ -857,7 +870,7 @@ A glass jar of pale bath salts with a hint of lavender, a wooden scoop beside it
 **Prompt**
 
 ```text
-A handmade ceramic cup of steaming herbal infusion with dried herbs scattered near it, amber light. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A handmade ceramic cup of steaming herbal infusion with dried herbs scattered near it, amber light. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `store-product-visual · Diario de Frecuencias` — Tienda · productos · P1
@@ -871,7 +884,7 @@ A handmade ceramic cup of steaming herbal infusion with dried herbs scattered ne
 **Prompt**
 
 ```text
-A linen-bound blank notebook closed, a brass pen lying across its cover, no title and no text on it. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A linen-bound blank notebook closed, a brass pen lying across its cover, no title and no text on it. Single object centered on a dark surface with a pool of warm light beneath it, full object visible with breathing room on all sides. Dominant tone: soft teal (#96C6BC) mist with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `store.ritual-banner` — Tienda · banner ritual · P2
@@ -885,7 +898,7 @@ A linen-bound blank notebook closed, a brass pen lying across its cover, no titl
 **Prompt**
 
 ```text
-Objects of ritual as matter: a top-down flat lay on dark slate of matches, copal resin, a small brass dish, dried herbs and a quartz point, a warm rim light from the left. Objects grouped in the upper two thirds, the bottom third dark slate for text. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Objects of ritual as matter: a top-down flat lay on dark slate of matches, copal resin, a small brass dish, dried herbs and a quartz point, a warm rim light from the left. Objects grouped in the upper two thirds, the bottom third dark slate for text. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `product.detail` — Tienda · detalle · P1
@@ -900,7 +913,7 @@ Objects of ritual as matter: a top-down flat lay on dark slate of matches, copal
 **Prompt**
 
 ```text
-A contemplation backdrop for a product: a dark surface with a soft pool of golden light and a single slow ribbon of smoke rising, faint teal haze at the edges. Empty center-right for the product to be overlaid, light pool at center, near-black edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A contemplation backdrop for a product: a dark surface with a soft pool of golden light and a single slow ribbon of smoke rising, faint teal haze at the edges. Empty center-right for the product to be overlaid, light pool at center, near-black edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `product.related` — Tienda · relacionados · P2
@@ -914,7 +927,7 @@ A contemplation backdrop for a product: a dark surface with a soft pool of golde
 **Prompt**
 
 ```text
-A sweep of a dark slate shelf with a line of softly out-of-focus ritual objects receding into warm bokeh, amber and honey tones, gentle depth. Horizontal line of objects at 50% vertical, dark upper and lower edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A sweep of a dark slate shelf with a line of softly out-of-focus ritual objects receding into warm bokeh, amber and honey tones, gentle depth. Horizontal line of objects at 50% vertical, dark upper and lower edges. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Carrito
@@ -930,7 +943,7 @@ A sweep of a dark slate shelf with a line of softly out-of-focus ritual objects 
 **Prompt**
 
 ```text
-A small empty ceramic dish on a dark wooden table, a single ray of warm light falling across it, a thread of steam rising, serene and open, nothing inside. Dish at center slightly below the middle, dark table and background, calm space above. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A small empty ceramic dish on a dark stone ledge beside still water, a single ray of warm light falling across it, a thread of steam rising, serene and open, nothing inside. Dish at center slightly below the middle, dark ledge and background, calm space above. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Compra
@@ -946,7 +959,7 @@ A small empty ceramic dish on a dark wooden table, a single ray of warm light fa
 **Prompt**
 
 ```text
-Your ritual is on its way: a small parcel wrapped in plain linen paper and tied with natural thread, a sprig of dried cedar tucked under the knot, warm candlelight, no writing on the wrapping. Parcel centered, dark wooden surface, warm glow, calm space above for a check mark. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Your ritual is on its way: a small parcel wrapped in plain linen paper and tied with natural thread, a sprig of dried cedar tucked under the knot, warm candlelight, no writing on the wrapping. Parcel centered, dark wooden surface, warm glow, calm space above for a check mark. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Mi Santuario
@@ -957,12 +970,12 @@ Your ritual is on its way: a small parcel wrapped in plain linen paper and tied 
 - **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 y reescalar · peso ≤ 260 KB (P0 ≤ 320 KB)
 - **Ratio / focal:** 16:9 · foco 50% 40%
 - **Zona de texto:** Tercio izquierdo e inferior despejados (titular y CTA)
-- **Contenido:** El espacio personal: la materia que recibe al volver.
+- **Contenido:** El espacio personal: la materia que recibe al volver. Cuerpo de luz.
 
 **Prompt**
 
 ```text
-A personal meditation nook at night: a cushion beside a large window with moonlight, sheer curtains, a lit candle and a small plant, teal moonlight balanced with golden candle glow, nobody present. Window on the right with the cushion beneath it, left third dark and calm. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A personal sanctuary at night: a faceless figure of translucent light resting on a cushion beside a large window that opens onto a moonlit lake, sheer curtains stirring, a lit candle on the sill, teal moonlight balanced with golden glow, three fine filaments of light rising from the water outside. Window on the right with the figure beneath it, left third dark and calm. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `sanctuary.continue` — Mi Santuario · continuar · P1
@@ -976,7 +989,7 @@ A personal meditation nook at night: a cushion beside a large window with moonli
 **Prompt**
 
 ```text
-Continuity: the same cushion with a half-burned candle beside it and a blank open book, a soft warm glow, a feeling that someone has just stepped away and will return. Objects in the right half, the left third dark for the lesson title. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Continuity: the same cushion with a half-burned candle beside it and a blank open book, a soft warm glow, a feeling that someone has just stepped away and will return. Objects in the right half, the left third dark for the lesson title. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `sanctuary.daily` — Mi Santuario · práctica diaria · P1
@@ -990,7 +1003,7 @@ Continuity: the same cushion with a half-burned candle beside it and a blank ope
 **Prompt**
 
 ```text
-Today's practice: a small brass bowl of still water on dark stone, a single beam of early morning light falling into it and making it glow gold, tiny ripples. Bowl centered, beam entering from the upper left, dark surroundings. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Today's practice: a small brass bowl of still water on dark stone, a single beam of early morning light falling into it and making it glow gold, tiny ripples. Bowl centered, beam entering from the upper left, dark surroundings. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `sanctuary.journal` — Mi Santuario · diario · P2
@@ -1004,7 +1017,7 @@ Today's practice: a small brass bowl of still water on dark stone, a single beam
 **Prompt**
 
 ```text
-The journal as intimate matter: an open linen-bound notebook with blank pages and a brass pen on dark wood, candlelight raking across the paper, a dried sprig of lavender, no legible writing. Vertical, notebook in the lower two thirds, upper third dark and calm. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+The journal as intimate matter: an open linen-bound notebook with blank pages and a brass pen on dark wood, candlelight raking across the paper, a dried sprig of lavender, no legible writing. Vertical, notebook in the lower two thirds, upper third dark and calm. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `sanctuary.empty` — Mi Santuario · vacío · P2
@@ -1018,7 +1031,7 @@ The journal as intimate matter: an open linen-bound notebook with blank pages an
 **Prompt**
 
 ```text
-Luminous emptiness: an empty dark room with a soft pool of light gathering in the center of the floor, dust motes drifting in it, no objects, the quiet of a place that is new. Light pool at center, slightly below the middle, dark room around it. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Luminous emptiness: an empty dark space opening onto still water, a soft pool of light gathering in the center of the floor and reflecting in the water beyond, dust motes drifting, no objects, the quiet of a place that is new. Light pool at center, slightly below the middle, dark space around it. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Estados
@@ -1035,7 +1048,7 @@ Luminous emptiness: an empty dark room with a soft pool of light gathering in th
 **Prompt**
 
 ```text
-Waiting with matter: a single soft sphere of golden light floating in a dark misty space as if breathing, faint halo, slow and calm. Sphere at center, dark calm space around it. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Waiting with matter: a single soft sphere of golden light floating in a dark misty space above still water as if breathing, faint halo, slow and calm. Sphere at center, dark calm space around it. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `states.empty` — Estados · vacío · P2
@@ -1050,7 +1063,7 @@ Waiting with matter: a single soft sphere of golden light floating in a dark mis
 **Prompt**
 
 ```text
-An empty dark room with one soft window of pale lavender light on the floor, dust motes drifting through it, open space. Light on the floor just below center, dark room around it. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+An empty dark space with one soft window of pale lavender light on the still water, dust motes drifting through it, open space. Light on the water just below center, dark space around it. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `states.error` — Estados · error · P2
@@ -1065,7 +1078,7 @@ An empty dark room with one soft window of pale lavender light on the floor, dus
 **Prompt**
 
 ```text
-Something interrupted: a single candle flickering in a dark room with a wisp of smoke still rising, calm and unbothered, warm faint glow. Candle at center, dark room, quiet space above. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+Something interrupted: a single candle flickering on a dark stone ledge by still water with a wisp of smoke still rising, calm and unbothered, warm faint glow. Candle at center, dark surroundings, quiet space above. Balanced gold, teal and lavender, ultra calm, very low contrast. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 #### `states.offline` — Estados · sin conexión · P2
@@ -1080,7 +1093,7 @@ Something interrupted: a single candle flickering in a dark room with a wisp of 
 **Prompt**
 
 ```text
-A brief retreat: a quiet cabin window at night with a warm lamp inside and lavender mist outside, a sense of pausing, nobody in the frame. Window slightly right of center, dark surroundings. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+A brief retreat: a quiet cabin window at night with a warm lamp inside and lavender mist over a still lake outside, a sense of pausing, nobody in the frame. Window slightly right of center, dark surroundings. Dominant tone: lavender (#B9B0D6) dusk with gold accents. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```
 
 ### Metadatos
@@ -1098,5 +1111,5 @@ A brief retreat: a quiet cabin window at night with a warm lamp inside and laven
 **Prompt**
 
 ```text
-The Frecuencia Mágica universe in one frame: a glowing golden circle of light surrounded by fine concentric arcs in a deep navy cosmos, teal and lavender dust at the edges, empty center for the logo to be composited later. Landscape 1.91:1, the circle centered, dark edges, keep everything important within the central 80% because platforms crop. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.
+The Frecuencia Mágica universe in one frame: a glowing golden circle of light hovering above a mirror-calm dark sea at the horizon, fine concentric arcs in a deep navy cosmos above, teal and lavender dust at the edges, three thin vertical filaments of gold, teal and lavender light, empty center for the logo to be composited later. Landscape 1.91:1, the circle centered, dark edges, keep everything important within the central 80% because platforms crop. Dominant tone: warm gold (#D8B978) glow on dark ground. Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, dark edges that melt into the background, no text.
 ```

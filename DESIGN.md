@@ -1,6 +1,6 @@
 ---
 name: Frecuencia Mágica
-description: Portal inmersivo de bienestar (marca Marisol). Fotografía como materia estructural sobre un world engine vivo, en una paleta cerrada de noche, oro, teal y lavanda.
+description: Portal inmersivo de bienestar (marca Marisol). Paisaje luminoso nocturno como materia estructural sobre un world engine vivo, en una paleta cerrada de noche, oro, teal y lavanda.
 colors:
   void: "#0F1B2E"
   void-deep: "#0a1220"
@@ -111,7 +111,7 @@ components:
 
 **Creative North Star: "El Umbral Luminoso"**
 
-Frecuencia Mágica no es un sitio sobre bienestar: es un lugar al que se entra. El visitante cruza un portal y llega a nueve *realms* que comparten una sola atmósfera, noche azul profunda atravesada por oro, teal y lavanda, donde todo respira. La tesis aprobada es una frase de dos mitades: **la fotografía es la materia estructural; el world engine es su energía viva**. La imagen aporta peso, escala y ritmo editorial; el canvas cósmico, los halos, los aros, la geometría sagrada, el cursor luminoso y el audio ambiental la atraviesan, la iluminan y la recortan. La fotografía se asienta *sobre* la energía; nunca la sustituye.
+Frecuencia Mágica no es un sitio sobre bienestar: es un lugar al que se entra. El visitante cruza un portal y llega a nueve *realms* que comparten una sola atmósfera, noche azul profunda atravesada por oro, teal y lavanda, donde todo respira. La tesis es una frase de dos mitades: **la imagen es el paisaje; el world engine es su energía viva**. La imagen (agua, bruma, cielo cósmico, a veces una silueta de luz) aporta peso, escala y ritmo editorial; el canvas cósmico, los halos, los aros, la geometría sagrada, el cursor luminoso y el audio ambiental la atraviesan, la iluminan y la recortan. La imagen se asienta *sobre* la energía; nunca la sustituye. Desde la enmienda de 2026-10-10 el medio es el paisaje luminoso nocturno y no el bodegón fotográfico (ver *Imagery*).
 
 El tono visual es íntimo, sereno y poético. Se habla en segunda persona ("vuelve a ti", "respira"), se escribe con serif ligera a gran tamaño y se deja aire. Los acentos son luz (halos, bordes finos, resplandores), jamás rellenos. Nada es estático: los fondos viven, los elementos flotan, orbitan o laten, y toda entrada llega en fade-up escalonado.
 
@@ -121,6 +121,7 @@ Mientras no hay fotografía real, cada slot pinta el fallback de su contrato: la
 - Paleta cerrada de siete colores; el acento entra como luz, no como superficie.
 - Serif Cormorant Garamond ligera (peso 300) para voz y números; Jost 300 para interfaz; kickers en mayúsculas espaciadas.
 - Composición editorial: héroes y bandas a sangre, una sola línea de contenido, jerarquía por escala y no por cajas.
+- Imagen de paisaje luminoso: cielo arriba y materia abajo, para no duplicar el campo de estrellas que ya pinta el engine.
 - Cada realm conserva su identidad (quiz, sistema orbital, bento, filas de reserva, diario); la fotografía se adapta al realm, no al revés.
 - Movimiento siempre presente y siempre contenido: sólo `transform` y `opacity`, con `prefers-reduced-motion` respetado.
 
@@ -147,6 +148,8 @@ Un cielo nocturno con tres luces y un marfil. Siete colores, ningún otro.
 **La Regla de los Cinco Marfiles.** El texto sobre fondo oscuro usa cinco peldaños y sólo cinco: `text-ivory` (100%, títulos y énfasis), `text-fg-body` (82%, párrafos), `text-fg-soft` (70%, descripciones), `text-fg-muted` (60%, apoyo) y `text-fg-meta` (55%, kickers y meta mínima). Todos cumplen AA (4.5:1) contra el punto más claro del fondo (`#16273f`). Nunca por debajo de 55%; si un diseño pide más sutileza, se cambia tamaño, peso o tracking, no la opacidad.
 
 **La Regla de la Luz, no del Relleno.** Oro, teal y lavanda aparecen como halo, borde de 1px o brillo. Un relleno sólido grande de acento (una barra, un panel, una píldora estirada) rompe el sistema. El relleno sólido se reserva para elementos pequeños: badge, botón circular, marfil del botón primario.
+
+**La Regla del Espectro Cerrado.** La frecuencia no es un arcoíris: sus líneas son de oro, teal y lavanda, nunca un espectro de colores saturados ni neón. Ni en imagen ni en componentes.
 
 **La Regla de la Paleta Cerrada.** Ningún hex nuevo en componentes. Las portadas de audio, curso, experiencia y producto usan los nueve tintes de `frontend/src/config/covers.ts` (mezclas desaturadas de la paleta con el vacío); `tests/lib/palette.test.ts` lo verifica.
 
@@ -223,6 +226,25 @@ Lenguaje de formas redondo y de línea fina, con geometría sagrada como ornamen
 
 Las bandas y héroes a sangre no llevan radio. El retrato de Marisol conserva su **arco de nicho** (esquinas superiores de 200px). Los radios de 2–4px existen sólo en pistas y líneas (barras de progreso, líneas de skeleton, ticks del ecualizador), nunca en contenedores.
 
+## Imagery
+
+> Dirección vigente tras la enmienda de 2026-10-10 de `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md`. El inventario, los prompts y las reglas por imagen viven en `docs/brief-fotografico.md` (generado desde `Branding/src/data/photography.js`).
+
+**Paisaje luminoso nocturno.** Las imágenes de fondo son paisajes de noche, no bodegones: agua en calma, bruma y montaña, cielo cósmico. La luz es un único foco dorado; teal y lavanda son los únicos matices. Es una referencia de sensación (energía, quietud, cosmos), traducida a la paleta cerrada: nunca neón, arcoíris ni saturación alta.
+
+**Cielo arriba, materia abajo.** El cosmos ocupa como mucho el tercio superior de la imagen, con estrellas escasas. El campo estelar, las partículas y la nebulosa son del world engine; una imagen con el cielo completo las duplicaría y competiría con el canvas.
+
+**Cuatro elementos y una firma.**
+- **Agua:** espejo en calma, ondas concéntricas, cimática. Resonario, Portal, Santuario.
+- **Bruma y montaña:** horizontes, valles, amanecer. Descúbrete, Experiencias, Acceso, Academia.
+- **Cielo cósmico:** galaxia en espiral o vía láctea baja. Portal, Home, Sobre Marisol.
+- **Cuerpo de luz:** silueta translúcida **sin rasgos faciales**, oro en el borde y teal y lavanda por dentro. Sólo en seis slots narrativos (`home.hero`, `discover.tuning`, `discover.result`, `experiences.featured`, `academy.completion`, `sanctuary.hero`); `about.angels` permanece sin figura.
+- **Filamentos de frecuencia** (firma opcional): como máximo tres líneas verticales ondulantes —oro, teal y lavanda— a baja opacidad.
+
+**Lo que no entra.** ADN, cerebros ni anatomía (la energía se sugiere con luz, agua y geometría sagrada); rasgos faciales fuera del retrato real de Marisol; marcas o nombres de canal; campos de estrellas a pantalla completa. El retrato de Marisol sigue siendo sesión real; los productos siguen siendo objetos, bañados en la misma luz.
+
+**No cambia.** Los ratios, focales, prioridades y `fallback` de cada slot, los scrims y las máscaras en CSS, y el rol de la zebra: el contrato de slots permanece intacto.
+
 ## Components
 
 ### Buttons
@@ -285,6 +307,7 @@ El único momento coreografiado de la web: se cruza un umbral de luz y se llega 
 ### Do:
 - **Do** usar los cinco marfiles (`text-ivory`, `text-fg-body`, `text-fg-soft`, `text-fg-muted`, `text-fg-meta`) y los tamaños nombrados (`text-label`, `text-meta`, `text-body`, `text-lead`).
 - **Do** alinear héroe, filtros, bandas y cuadrícula al eje de página con `fm-container`, y dejar las bandas a sangre (`fm-editorial-full-bleed`).
+- **Do** componer la imagen con cielo arriba y materia abajo, y dejar el campo de estrellas y las partículas al world engine.
 - **Do** dar a cada slot fotográfico su ratio (3:4, 1:1, 16:8, 16:9), su alt traducido (`messages/{es,en}.json`) y un `fallback` según su trabajo (`zebra`, `band` o `none`); a los slots `band`, el `band` del ítem.
 - **Do** usar `ButtonLink` para botones-enlace en Server Components y `Kicker`/`Display`/`arrowLinkClasses` antes que clases sueltas.
 - **Do** verificar en 1440, 1280, 768 y 390: sin desbordes, sin solapes con la nav, hit targets ≥44px.
@@ -297,5 +320,7 @@ El único momento coreografiado de la web: se cruza un umbral de luz y se llega 
 - **Don't** repetir el mismo mensaje en dos bandas de una misma vista, ni el mismo texto en kicker y badge.
 - **Don't** dibujar scrims propios sobre fotografía ni poner texto sobre imagen por debajo de AA.
 - **Don't** reintroducir `Button asChild` con `Link` en un Server Component.
+- **Don't** usar neón, arcoíris ni más de tres filamentos de frecuencia (oro, teal, lavanda) en una imagen.
+- **Don't** poner rasgos faciales, ADN, cerebros ni anatomía en las imágenes; el cuerpo de luz es una silueta sin rostro.
 - **Don't** convertir los nueve realms en la misma plantilla: la fotografía se adapta al trabajo de cada uno.
 - **Don't** declarar tokens en `Branding/` ni en `globals.css`: van en `tokens.css`. `Branding/` refleja este documento, no lo define (el showcase claro/pastel de junio de 2026 fue sustituido el 2026-09-30).
