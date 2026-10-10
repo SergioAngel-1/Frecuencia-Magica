@@ -23,6 +23,7 @@ const detailSource = readSource('components/features/store/product-detail.tsx');
 const sectionsSource = readSource('components/features/store/product-sections.tsx');
 const cartButtonSource = readSource('components/features/store/cart-button.tsx');
 const cartSource = readSource('components/features/store/cart-view.tsx');
+const emptyStateSource = readSource('components/ui/empty-state.tsx');
 const summarySource = readSource('components/features/store/order-summary.tsx');
 const confirmationSource = readSource('components/features/store/order-confirmation.tsx');
 const checkoutSource = readSource('components/features/store/checkout.tsx');
@@ -156,7 +157,8 @@ describe('store editorial composition contracts', () => {
     expect(cartPageSource).toContain('<CheckoutView media={checkoutMedia}');
     expect(cartSource).toContain('media: CheckoutMedia');
     expect(cartSource).toContain('<EditorialImage');
-    expect(cartSource).toContain('data-editorial-media="cart.empty"');
+    expect(cartSource).toContain('media={media.empty}');
+    expect(emptyStateSource).toContain('data-editorial-media={media.slot}');
     expect(cartSource).toContain('cartLines(items, PRODUCTS)');
     expect(cartSource).toContain('const count = lines.reduce');
     expect(cartSource).toContain('sm:contents');

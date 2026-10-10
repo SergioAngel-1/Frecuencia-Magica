@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function ResonarioPage({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'resonario' });
+  const tStates = await getTranslations({ locale, namespace: 'states' });
   const resonarioMedia = {
     hero: resolveEditorialMedia('resonario.hero', { alt: t('media.alt.hero') }),
     featured: resolveEditorialMedia('resonario.featured', {
@@ -27,6 +28,8 @@ export default async function ResonarioPage({ params }: PageProps) {
     archiveBanner: resolveEditorialMedia('resonario.archive-banner', {
       alt: t('media.alt.archiveBanner'),
     }),
+    // El filtro sin resultados: el vacío de marca, no el del archivo.
+    empty: resolveEditorialMedia('states.empty', { alt: tStates('media.alt.empty') }),
     audioCover: resolveEditorialMedia('resonario.audio-cover.*', {
       sizes: '(min-width: 1024px) 150px, 150px',
     }),

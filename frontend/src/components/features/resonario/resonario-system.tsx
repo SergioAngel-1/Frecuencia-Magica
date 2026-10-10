@@ -15,6 +15,8 @@ import { ResonarioFilters } from './resonario-filters';
 export type ResonarioMedia = {
   featured: EditorialMedia;
   archiveBanner: EditorialMedia;
+  /** Vacío del filtro sin resultados (`states.empty`). */
+  empty: EditorialMedia;
   audioCover: EditorialMedia;
   /** Portada resuelta por id de audio; sin entrada, vale `audioCover`. */
   audioCovers: Record<string, EditorialMedia>;
@@ -52,6 +54,7 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
       <Swap id={filter ?? 'all'}>
         {filtered.length === 0 ? (
           <EmptyState
+            media={media.empty}
             title={statesT('emptySearch')}
             action={
               <Button variant="accent" onClick={() => setFilter(null)}>

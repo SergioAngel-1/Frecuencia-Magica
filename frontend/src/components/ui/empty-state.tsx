@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 
 import { OrbitalRings } from '@/components/world/orbital-rings';
 import { cn } from '@/lib/cn';
+import type { EditorialMedia } from '@/types/editorial-media';
+import { EditorialImage } from './editorial-image';
 
 interface EmptyStateProps {
   /** Encabezado. Una invitación a actuar, nunca un lamento. */
@@ -12,6 +14,12 @@ interface EmptyStateProps {
   action?: ReactNode;
   /** Sustituye la constelación apagada por otra composición. */
   illustration?: ReactNode;
+  /**
+   * Materia del vacío, ya resuelta por la vista (`resolveEditorialMedia`).
+   * Con ella el vacío se pinta en su propio marco, sobre la imagen y su scrim.
+   */
+  media?: EditorialMedia;
+  /** Con `media`, clases del marco; sin ella, del bloque de texto. */
   className?: string;
 }
 
@@ -21,8 +29,38 @@ interface EmptyStateProps {
  * La ilustración por defecto es una constelación dormida: los mismos aros
  * del resto del mundo, pero tenues y con el nodo apagado. Nunca una caja
  * gris ni un icono genérico — el vacío sigue perteneciendo al universo.
+ *
+ * Con `media` todos los vacíos comparten composición: un marco de tarjeta a
+ * sangre de su imagen, con el texto centrado y el scrim de `EditorialOverlay`.
  */
-export function EmptyState({ title, body, action, illustration, className }: EmptyStateProps) {
+export function EmptyState({ media, className, ...content }: EmptyStateProps) {
+  if (!media) return <EmptyContent {...content} className={className} />;
+
+  return (
+    <div
+      className={cn(
+        'rounded-card relative isolate grid min-h-[clamp(380px,48vw,600px)] place-items-center overflow-hidden',
+        className,
+      )}
+      data-editorial-media={media.slot}
+    >
+      <div className="absolute inset-0">
+        <EditorialImage
+          aspect={media.aspect}
+          className="h-full"
+          media={media}
+          overlay="bottom"
+          scrim="bottom"
+        />
+      </div>
+      <EmptyContent {...content} className="relative z-10" />
+    </div>
+  );
+}
+
+type EmptyContentProps = Omit<EmptyStateProps, 'media'>;
+
+function EmptyContent({ title, body, action, illustration, className }: EmptyContentProps) {
   return (
     <div className={cn('flex flex-col items-center px-6 py-[50px] text-center', className)}>
       {illustration ?? (

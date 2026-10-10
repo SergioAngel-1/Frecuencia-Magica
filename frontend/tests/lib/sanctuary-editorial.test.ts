@@ -23,6 +23,7 @@ const continueSource = readSource('components/features/sanctuary/continue-card.t
 const dailySource = readSource('components/features/sanctuary/daily-card.tsx');
 const journalSource = readSource('components/features/sanctuary/journal-panel.tsx');
 const emptySource = readSource('components/features/sanctuary/journal-empty.tsx');
+const emptyStateSource = readSource('components/ui/empty-state.tsx');
 
 const SANCTUARY_SLOTS = [
   { slot: 'sanctuary.hero' as const, aspect: '16:9' as const, alt: 'hero' },
@@ -115,7 +116,9 @@ describe('sanctuary editorial composition contracts', () => {
   it('gives the journal its portrait and an editorial empty state', () => {
     expect(journalSource).toContain('data-editorial-media="sanctuary.journal"');
     expect(journalSource).toContain('<JournalEmpty');
-    expect(emptySource).toContain('data-editorial-media="sanctuary.empty"');
+    expect(pageSource).toContain("resolveEditorialMedia('sanctuary.empty'");
+    expect(emptySource).toContain('<EmptyState media={media}');
+    expect(emptyStateSource).toContain('data-editorial-media={media.slot}');
     expect(emptySource).toContain("t('emptyJournal')");
     expect(journalSource).toContain('aria-live="polite"');
     expect(journalSource).toContain('aria-pressed={draft.mood === index}');
