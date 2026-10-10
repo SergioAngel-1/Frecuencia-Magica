@@ -22,6 +22,7 @@ export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
   'experiences.featured': '/editorial/experiences-featured.avif',
   'experiences.hero': '/editorial/experiences-hero.avif',
   'home-marisol-portrait': '/editorial/home-marisol-portrait.avif',
+  'home-membership': '/editorial/home-membership.avif',
   'home.daily-frequency': '/editorial/home-daily-frequency.avif',
   'home.footer-banner': '/editorial/home-footer-banner.avif',
   'home.hero': '/editorial/home-hero.avif',

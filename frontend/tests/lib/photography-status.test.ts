@@ -48,12 +48,14 @@ describe('photography status', () => {
     expect(new Set(all).size, 'an image is listed in two states').toBe(all.length);
   });
 
-  it('marks as delivered exactly what is published', () => {
+  it('marks as served exactly what is published', () => {
     for (const file of FILES) {
-      const { state } = statusOf(file) as { state: string };
-      const delivered = ['completada', 'corregir', 'sin-uso'].includes(state);
+      const { state, published } = statusOf(file) as { state: string; published?: boolean };
+      // Una imagen a corregir sólo sigue servida si lo declara: las demás se retiraron a trials.
+      const served =
+        ['completada', 'sin-uso'].includes(state) || (state === 'corregir' && published === true);
 
-      expect(PUBLISHED.has(file), `${file} (${state})`).toBe(delivered);
+      expect(PUBLISHED.has(file), `${file} (${state})`).toBe(served);
     }
   });
 

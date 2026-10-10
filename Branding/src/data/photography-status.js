@@ -21,68 +21,24 @@ export const STATE_LABELS = {
 
 export const SEVERITIES = ['alta', 'media', 'baja']
 
+/** Prioridad de la vista, de más a menos importante (el contrato de `editorial-media.ts`). */
+const PRIORITIES = ['P0', 'P1', 'P2']
+
 /**
  * Entregadas y publicadas, pero desviadas del brief o de su prompt. La gravedad es criterio visual:
  * `alta` se ve y estorba; `media` se aparta de lo pedido; `baja` es una cota que no justifica regenerar
  * salvo que se vea mal en pantalla.
+ *
+ * - `note`: qué salió mal en el resultado.
+ * - `part`: la parte del prompt donde nació la desviación, según el resultado. Muchas veces es una
+ *   contradicción interna del prompt, no falta de énfasis.
+ * - `fix`: el refuerzo que ya lleva el prompt de `photography.js`. La imagen sigue «a corregir» hasta
+ *   que se regenere con él.
+ * - `published`: sólo `true` si la imagen sigue servida. Las demás se retiraron de
+ *   `frontend/public/editorial/` a `frontend/.editorial-trials/` (ignorada por git) y su slot pinta el
+ *   fallback hasta que llegue la regenerada.
  */
 export const CORRECT = {
-  'discover-question-atmosphere.avif': {
-    severity: 'alta',
-    note: 'Esfera de vidrio nítida que el prompt no pedía («nada nítido») y contraste mayor del indicado: va detrás del texto de la pregunta y compite con él. Causa probable: la frase «A glass form sits on top of this image» se dibujó como objeto.',
-  },
-  'resonario-audio-cover-a2.avif': {
-    severity: 'alta',
-    note: 'La geoda tiene el centro brillante y de alto contraste; el brief pide el centro calmo y de bajo contraste porque el Hz va superpuesto al disco.',
-  },
-  'home-hero.avif': {
-    severity: 'media',
-    note: 'La cabeza queda hacia el 51 % horizontal (brief: 62 %) y el cuerpo llega al borde derecho, cuando el brief pedía que terminara antes.',
-  },
-  'portal-hero.avif': {
-    severity: 'media',
-    note: 'El aro es una línea fina y nítida; el brief pide un halo suave y difuso, «nunca un tubo de neón fino». 1672 px de ancho.',
-  },
-  'auth-form-atmosphere.avif': {
-    severity: 'media',
-    note: 'Esfera de vidrio con un punto de luz dentro, no pedida: el prompt describía agua negra con un punto de luz reflejado y ningún objeto. Misma causa que en la pregunta del quiz.',
-  },
-  'resonario-audio-cover-a7.avif': {
-    severity: 'media',
-    note: 'El resplandor entre las manos cae justo en el centro, donde va el Hz; el brief pide el centro calmo y de bajo contraste.',
-  },
-  'discover-result.avif': {
-    severity: 'media',
-    note: 'El haz cruza el centro, que el brief pedía calmo y oscuro para el texto del resultado, y se abre en bandas de color que rozan el «arcoíris» de la lista de evitar.',
-  },
-  'home-marisol-portrait.avif': {
-    severity: 'media',
-    note: 'Sesión real (confirmada). La llama de la vela toca el borde inferior izquierdo (el brief: «nada brillante tocando el borde») y 1086 px de ancho quedan blandos en retina: pedir el original a 1440 px o más.',
-  },
-  'booking-hero.avif': {
-    severity: 'baja',
-    note: 'Las velas están encendidas (el prompt pedía apagadas) y el tercio izquierdo oscuro se aplicó con un degradado vertical recto que corta la bruma y las montañas.',
-  },
-  'sanctuary-journal.avif': {
-    severity: 'baja',
-    note: 'Esfera de vidrio desenfocada añadida arriba a la derecha, no pedida. Queda de fondo y no compite con el cuaderno.',
-  },
-  'discover-hero.avif': {
-    severity: 'baja',
-    note: 'El punto de fuga queda hacia el 64 % horizontal (brief: 50 %).',
-  },
-  'experiences-hero.avif': {
-    severity: 'baja',
-    note: 'El pabellón queda hacia el 61 % horizontal (brief: 55 %) y su arquitectura es de pagoda de Asia oriental, más específica que el «pavilion» del prompt.',
-  },
-  'about-hero.avif': {
-    severity: 'baja',
-    note: 'La mesa y la vela quedan hacia el 61 % vertical (brief: 40 %).',
-  },
-  'home-footer-banner.avif': {
-    severity: 'baja',
-    note: 'El horizonte queda hacia el 47 % vertical (brief: 40 %).',
-  },
 }
 
 /**
@@ -151,10 +107,66 @@ export const COMPLETED = [
   'sanctuary-continue.avif',
   'sanctuary-daily.avif',
   'sanctuary-empty.avif',
+  'discover-question-atmosphere.avif',
+  'resonario-audio-cover-a2.avif',
+  'portal-hero.avif',
+  'home-hero.avif',
+  'home-marisol-portrait.avif',
+  'resonario-audio-cover-a7.avif',
+  'auth-form-atmosphere.avif',
   'og-image.jpg',
+  'discover-hero.avif',
+  'about-hero.avif',
+  'experiences-hero.avif',
+  'discover-result.avif',
+  'booking-hero.avif',
+  'home-footer-banner.avif',
+  'sanctuary-journal.avif',
+  'home-membership.avif',
 ]
 
-/** `{ state, severity?, note? }` de una imagen del brief, por su nombre de archivo. */
+/**
+ * Agrupa las filas del brief por estado, en el orden de las secciones. «A corregir» va de más a menos
+ * urgente (gravedad y, a igual gravedad, prioridad P0 → P2); dentro de cada grupo, y de cada empate, se
+ * conserva el orden de las vistas. Lo usan el brief y los prompts, para que ambos documentos sigan
+ * siempre el mismo orden.
+ */
+export function groupByState(rows) {
+  const byState = new Map(STATES.map((state) => [state, []]))
+
+  for (const row of rows) {
+    const status = statusOf(row.file)
+    byState.get(status.state).push({ row, status })
+  }
+
+  // Urgencia de una imagen a corregir: primero la gravedad y, a igual gravedad, la prioridad de su vista.
+  byState
+    .get('corregir')
+    .sort(
+      (a, b) =>
+        SEVERITIES.indexOf(a.status.severity) - SEVERITIES.indexOf(b.status.severity) ||
+        PRIORITIES.indexOf(a.row.priority) - PRIORITIES.indexOf(b.row.priority),
+    )
+
+  return byState
+}
+
+/**
+ * Viñetas de una imagen «a corregir»: el resultado, la parte del prompt donde nació la desviación, el
+ * refuerzo ya aplicado y si sigue servida o está retirada. Las usan el brief y los prompts.
+ */
+export function correctionLines(status) {
+  return [
+    `- **Desviación (${status.severity}):** ${status.note}`,
+    `- **Parte del prompt desviada:** ${status.part}`,
+    `- **Refuerzo aplicado:** ${status.fix}`,
+    status.published
+      ? '- **Estado:** sigue publicada: es la imagen Open Graph (JPEG) y retirarla dejaría sin imagen al compartir el enlace.'
+      : '- **Estado:** retirada de `frontend/public/editorial/` (copia en `frontend/.editorial-trials/`); el slot pinta su fallback hasta regenerarla.',
+  ]
+}
+
+/** `{ state, severity?, note?, part?, fix? }` de una imagen del brief, por su nombre de archivo. */
 export function statusOf(file) {
   if (CORRECT[file]) return { state: 'corregir', ...CORRECT[file] }
   if (UNWIRED[file]) return { state: 'por-cablear', note: UNWIRED[file] }
