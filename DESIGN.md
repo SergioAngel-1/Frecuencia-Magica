@@ -319,6 +319,9 @@ Entradas en fade-up escalonado (`.1s`, `.25s`, `.4s`, `.55s`), curva `cubic-bezi
 
 **Nada sale de golpe.** Toda transición tiene ida y vuelta: lo que entra con fundido también se va con fundido. Cuando una zona cambia su contenido (un paso por el siguiente, un formulario por su confirmación, una lista al filtrarse) se envuelve en `Swap` (UI Kit), que funde el contenido anterior antes de dejar entrar el nuevo. Las capas que aparecen y desaparecen (`Modal`, el dock del reproductor) animan su salida con `AnimatePresence` y sólo entonces se desmontan; los paneles que se pliegan usan una fila de rejilla de `0fr` a `1fr`, nunca `hidden` ni `height`. Un `animate-fm-fade-up` sobre algo que se monta y desmonta por condición sólo resuelve la entrada: no basta.
 
+### Barras de desplazamiento
+La pista es la noche (`void-2`) y el pulgar, una línea de luz fina y en píldora con el espectro de la frecuencia (oro, teal y lavanda) a baja opacidad, que se enciende con un halo al acercarse. Firefox sólo admite color y grosor (`scrollbar-color`, `thin`), acotado a él porque en Chrome la propiedad estándar anularía los estilos de WebKit. Vive en la base de `tokens.css`.
+
 ### Espera (signature)
 
 Una sola forma de esperar en todo el sitio: la esfera de `states.loading` respira sobre el agua y el orbe espera en el tercio inferior (`LoadingScene`). La pintan los `loading.tsx` (`RealmLoading`) en una carga directa y `RouteTransition` entre vistas, sólo si la navegación tarda más de `ROUTE_WAIT_DELAY_MS` (250 ms): una vista precargada llega antes y una imagen a pantalla completa en cada clic se leería como un parpadeo. Entra y sale con fundido; nunca un velo desenfocado propio ni siluetas zebra. La imagen se precarga cuando el navegador queda libre, para que esté cuando la red es lenta, que es cuando la espera se ve.
