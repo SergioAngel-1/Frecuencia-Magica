@@ -172,6 +172,9 @@ describe('home editorial composition contracts', () => {
     // La imagen llena el alto en móvil: el foco vertical no la mueve, la caja sí.
     expect(heroSource).toMatch(/mediaClassName="[^"]*max-md:top-\[/);
     expect(heroSource).toContain('max-md:fm-fade-top');
+    // Las cifras bajan al pie del héroe: la figura queda entre los CTA y ellas.
+    expect(heroSource).toContain('max-md:self-stretch');
+    expect(heroSource).toContain('max-md:mt-auto');
     expect(readSource('components/ui/full-bleed-section.tsx')).toContain('mediaClassName');
   });
 

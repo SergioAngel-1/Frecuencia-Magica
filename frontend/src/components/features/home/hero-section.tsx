@@ -58,8 +58,8 @@ export function HeroSection({
       fade="bottom"
       className="fm-editorial-viewport-media"
       // En móvil la imagen ya llena el alto: su foco vertical no mueve nada.
-      // La caja baja para que la figura quede bajo los CTA y funde su borde
-      // superior en la noche, donde se lee el texto.
+      // La caja baja para que la figura quede entre los CTA y las cifras (que
+      // bajan al pie del héroe) y funde su borde superior en la noche.
       mediaClassName="max-md:top-[45%] max-md:fm-fade-top"
       contentClassName="flex min-h-[100svh] items-center"
     >
@@ -79,18 +79,18 @@ export function HeroSection({
           unoptimized
           alt=""
           aria-hidden="true"
-          width={76}
-          height={76}
-          sizes="76px"
-          className="h-[48px] w-auto drop-shadow-[0_0_10px_rgba(216,185,120,0.35)] md:h-[64px] lg:h-[76px]"
+          width={64}
+          height={64}
+          sizes="64px"
+          className="h-[48px] w-auto drop-shadow-[0_0_10px_rgba(216,185,120,0.35)] md:h-[64px]"
         />
       </Mdiv>
-      <div className="fm-container relative grid min-h-[100svh] w-full grid-cols-1 items-center gap-10 pt-[112px] pb-[140px] lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.9fr)] lg:gap-12 lg:pt-[126px] lg:pb-[78px]">
+      <div className="fm-container relative grid min-h-[100svh] w-full grid-cols-1 items-center gap-10 pt-[112px] pb-[112px] md:pb-[140px] lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.9fr)] lg:gap-12 lg:pt-[126px] lg:pb-[78px]">
         <Mdiv
           variants={container}
           initial="hidden"
           animate="visible"
-          className="relative z-20 order-2 flex max-w-[680px] flex-col lg:order-1"
+          className="relative z-20 order-2 flex max-w-[680px] flex-col max-md:self-stretch lg:order-1"
           data-editorial-zone="reading"
         >
           <Mdiv variants={item} className="mb-[14px]">
@@ -125,7 +125,7 @@ export function HeroSection({
 
           <Mdiv
             variants={item}
-            className="mt-[44px] grid grid-cols-3 gap-x-4 gap-y-[22px] sm:flex sm:flex-wrap sm:gap-x-[40px]"
+            className="mt-[44px] grid grid-cols-3 gap-x-4 gap-y-[22px] max-md:mt-auto max-md:pt-10 sm:flex sm:flex-wrap sm:gap-x-[40px]"
           >
             <Stat value={stats[0].value} label={stats[0].label} tone="teal" />
             <Stat value={stats[1].value} label={stats[1].label} tone="gold" />
