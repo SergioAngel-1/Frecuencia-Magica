@@ -46,6 +46,7 @@ export default async function SanctuaryPage({ params }: PageProps) {
         media={media.hero}
         mode="quiet"
         overlay="bottom"
+        fade="bottom"
         contentClassName="flex items-end"
         minHeight="clamp(300px, 34vw, 460px)"
       >

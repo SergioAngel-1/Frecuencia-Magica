@@ -295,6 +295,9 @@
   );
   --page-inset: 24px;
   --container-max: 1240px;
+  /* Alto del fundido de una banda a sangre: un peldaño `section`, para que el
+     borde que se disuelve ocupe el mismo aire que separaría dos bloques. */
+  --fade-band: clamp(56px, 8vw, 112px);
 }
 
 @media (min-width: 640px) {
@@ -421,6 +424,68 @@
    más aire. Con `[--container-max:Npx]` se estrecha por uso. */
 @utility fm-container {
   padding-inline: max(var(--page-inset), calc((100vw - var(--container-max)) / 2));
+}
+
+/* Fundido de bordes de la materia editorial (foto, zebra o banda): una
+   máscara, no un degradado de color, para que la imagen se disuelva en lo que
+   haya detrás sin desajuste de tono. Se aplica a la capa de medios de
+   `EditorialImage` (materia y scrim, con el mismo alfa); el contenido no se
+   enmascara nunca.
+   `fm-fade-top` y `fm-fade-bottom` se combinan: cada una fija su lado y las
+   dos leen la misma máscara. Las variables no se heredan, así que una imagen
+   dentro de otra con fundido no arrastra el del padre. */
+@property --fm-fade-top {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --fm-fade-bottom {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@utility fm-fade-top {
+  --fm-fade-top: var(--fade-band);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+}
+
+@utility fm-fade-bottom {
+  --fm-fade-bottom: var(--fade-band);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+}
+
+/* Campo de luz sin aristas: la materia se disuelve en elipse desde el centro. */
+@utility fm-fade-radial {
+  -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 35%, transparent 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

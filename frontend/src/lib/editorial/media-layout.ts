@@ -24,6 +24,7 @@ const DEFAULT_POSITIONS: Record<EditorialMediaMode, string> = {
   cover: '50% 50%',
   split: '62% 45%',
   quiet: '50% 50%',
+  anchored: '50% 50%',
 };
 
 const RATIOS: Record<EditorialMediaMode, MediaLayout['ratio']> = {
@@ -33,6 +34,7 @@ const RATIOS: Record<EditorialMediaMode, MediaLayout['ratio']> = {
   cover: '1:1',
   split: '16:9',
   quiet: '16:8',
+  anchored: '16:9',
 };
 
 const OVERLAYS: Record<EditorialMediaMode, EditorialOverlayDirection> = {
@@ -42,6 +44,7 @@ const OVERLAYS: Record<EditorialMediaMode, EditorialOverlayDirection> = {
   cover: 'bottom',
   split: 'left',
   quiet: 'bottom',
+  anchored: 'bottom',
 };
 
 const SIZES: Record<EditorialMediaMode, Record<EditorialViewport, string>> = {
@@ -71,6 +74,11 @@ const SIZES: Record<EditorialMediaMode, Record<EditorialViewport, string>> = {
     desktop: '50vw',
   },
   quiet: {
+    mobile: '100vw',
+    tablet: '100vw',
+    desktop: '100vw',
+  },
+  anchored: {
     mobile: '100vw',
     tablet: '100vw',
     desktop: '100vw',

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
 import { hasEditorialVisual } from '@/lib/editorial/visual';
-import type { EditorialMedia, EditorialTone } from '@/types/editorial-media';
+import type { EditorialFade, EditorialMedia, EditorialTone } from '@/types/editorial-media';
 import { Display } from './display';
 import { EditorialImage } from './editorial-image';
 import { Kicker, type KickerTone } from './kicker';
@@ -22,6 +22,8 @@ export interface EditorialBannerProps {
    * banda). Sin materia se ignora: la banda mide lo que su texto.
    */
   heightClassName?: string;
+  /** Bordes de la materia que se funden con la noche; por defecto, los dos. */
+  fade?: EditorialFade;
   className?: string;
 }
 
@@ -60,6 +62,7 @@ export function EditorialBanner({
   align = 'left',
   tone = 'gold',
   heightClassName = 'min-h-[clamp(280px,35vw,520px)]',
+  fade = 'both',
   className,
 }: EditorialBannerProps) {
   const framed = media ? hasEditorialVisual(media) : false;
@@ -77,6 +80,7 @@ export function EditorialBanner({
         <div className="absolute inset-0">
           <EditorialImage
             aspect={media.aspect}
+            fade={fade}
             focalPoint={media.position}
             media={media}
             overlay="bottom"

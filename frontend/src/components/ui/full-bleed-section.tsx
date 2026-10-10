@@ -2,11 +2,14 @@ import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
 import type {
+  EditorialFade,
   EditorialMedia,
+  EditorialMediaAspect,
   EditorialMediaMode,
   EditorialOverlayDirection,
 } from '@/types/editorial-media';
 import { mediaLayout } from '@/lib/editorial/media-layout';
+import { mediaSizes } from '@/lib/editorial/media-sizes';
 import { EditorialImage } from './editorial-image';
 
 export interface FullBleedSectionProps {
@@ -14,6 +17,14 @@ export interface FullBleedSectionProps {
   mode: EditorialMediaMode;
   children: ReactNode;
   overlay?: EditorialOverlayDirection | boolean;
+  /**
+   * Bordes de la imagen que se funden con la noche. Por defecto los dos: una
+   * banda a sangre nunca termina en arista. Lo que roza el header funde sólo
+   * el inferior (`'bottom'`). En `anchored` el borde inferior funde siempre.
+   */
+  fade?: EditorialFade;
+  /** `sizes` explícito; sin él se deriva del modo y del ratio (`mediaSizes`). */
+  sizes?: string;
   minHeight?: string;
   className?: string;
   contentClassName?: string;
@@ -26,6 +37,16 @@ const MODE_CLASSES: Record<EditorialMediaMode, string> = {
   cover: 'min-h-[clamp(320px,52vw,640px)]',
   split: 'min-h-[clamp(420px,70vh,860px)]',
   quiet: 'min-h-[clamp(280px,32vw,480px)]',
+  // El alto lo decide el contenido; la imagen, su ratio.
+  anchored: '',
+};
+
+const ANCHORED_ASPECT: Record<EditorialMediaAspect, string> = {
+  viewport: 'aspect-[16/9]',
+  '16:9': 'aspect-[16/9]',
+  '16:8': 'aspect-[16/8]',
+  '3:4': 'aspect-[3/4]',
+  '1:1': 'aspect-square',
 };
 
 function getMinHeightStyle(minHeight?: string): { minHeight?: string } | undefined {
@@ -33,11 +54,18 @@ function getMinHeightStyle(minHeight?: string): { minHeight?: string } | undefin
   return { minHeight };
 }
 
+/** En `anchored` la imagen termina antes que la sección: su borde inferior funde siempre. */
+function anchoredFade(fade: EditorialFade): EditorialFade {
+  return fade === 'top' || fade === 'both' ? 'both' : 'bottom';
+}
+
 export function FullBleedSection({
   media,
   mode,
   children,
   overlay,
+  fade = 'both',
+  sizes,
   minHeight,
   className,
   contentClassName,
@@ -52,6 +80,7 @@ export function FullBleedSection({
         : overlay === true || media
           ? defaultOverlay
           : false;
+  const anchored = mode === 'anchored';
 
   return (
     <section
@@ -65,18 +94,36 @@ export function FullBleedSection({
       style={getMinHeightStyle(minHeight)}
     >
       {media ? (
-        <div className="absolute inset-0">
+        <div
+          className={cn(
+            anchored
+              ? // Imagen y contenido comparten celda: la sección mide lo que
+                // el mayor de los dos, y la foto nunca se estira con el texto.
+                cn('col-start-1 row-start-1 w-full self-start', ANCHORED_ASPECT[media.aspect])
+              : 'absolute inset-0',
+          )}
+        >
           <EditorialImage
             aspect={media.aspect}
             className="h-full"
+            fade={anchored ? anchoredFade(fade) : fade}
             focalPoint={media.position ?? layout.objectPosition}
             media={media}
             overlay={overlayDirection}
             scrim={overlayDirection}
+            sizes={sizes ?? mediaSizes(mode, media.aspect)}
           />
         </div>
       ) : null}
-      <div className={cn('relative z-20 min-w-0', contentClassName)}>{children}</div>
+      <div
+        className={cn(
+          'relative z-20 min-w-0',
+          anchored && 'col-start-1 row-start-1',
+          contentClassName,
+        )}
+      >
+        {children}
+      </div>
     </section>
   );
 }

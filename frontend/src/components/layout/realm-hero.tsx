@@ -49,6 +49,7 @@ export function RealmHero({
       media={media}
       mode="banner"
       overlay="left"
+      fade="bottom"
       className={cn(REALM_HERO_HEIGHT, className)}
       contentClassName="flex items-center"
     >

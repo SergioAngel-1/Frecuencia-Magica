@@ -24,6 +24,7 @@ export async function RealmLoading() {
       media={media}
       mode="viewport"
       overlay="bottom"
+      fade="bottom"
       className="fm-editorial-shell"
       contentClassName="min-h-[100svh]"
     >

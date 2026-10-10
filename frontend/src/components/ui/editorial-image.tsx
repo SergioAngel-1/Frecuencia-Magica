@@ -1,8 +1,10 @@
+import type { CSSProperties } from 'react';
 import Image from 'next/image';
 
 import { cn } from '@/lib/cn';
 import { editorialVisual } from '@/lib/editorial/visual';
 import type {
+  EditorialFade,
   EditorialMedia,
   EditorialMediaAspect,
   EditorialOverlayDirection,
@@ -15,13 +17,23 @@ import { MediaSkeleton } from './media-skeleton';
 export interface EditorialImageProps {
   media: EditorialMedia;
   aspect?: EditorialMediaAspect;
-  fill?: boolean;
   priority?: boolean;
   scrim?: EditorialOverlayDirection | boolean;
   overlay?: EditorialOverlayDirection | boolean;
   focalPoint?: string;
+  /** Bordes de la materia que se funden con la noche. Por defecto, ninguno. */
+  fade?: EditorialFade;
+  /** `sizes` de la caja, cuando quien la pinta sabe más que el contrato del slot. */
+  sizes?: string;
   className?: string;
 }
+
+const FADE_CLASSES: Record<EditorialFade, string> = {
+  both: 'fm-fade-top fm-fade-bottom',
+  top: 'fm-fade-top',
+  bottom: 'fm-fade-bottom',
+  none: '',
+};
 
 function directionOrDefault(
   value: EditorialOverlayDirection | boolean | undefined,
@@ -36,15 +48,22 @@ function directionOrDefault(
  * Materia fotográfica de un slot. Sin `src` pinta el fallback del contrato
  * (`editorialVisual`): zebra estática, la banda del ítem o nada. Un slot `none`
  * no deja marco ni scrim: la vista descansa sobre el world engine.
+ *
+ * El fundido (`fade`) enmascara la capa de medios entera, materia y scrim
+ * con el mismo alfa: si sólo se fundiera la foto, el scrim (88 % de noche en
+ * su borde) seguiría dibujando la arista. El contenido vive fuera de este
+ * componente y nunca se enmascara; en el borde fundido, el texto queda sobre
+ * la noche, que ya cumple el contraste por sí sola.
  */
 export function EditorialImage({
   media,
   aspect,
-  fill = true,
   priority,
   scrim,
   overlay,
   focalPoint,
+  fade = 'none',
+  sizes,
   className,
 }: EditorialImageProps) {
   const visual = editorialVisual(media);
@@ -56,8 +75,8 @@ export function EditorialImage({
   return (
     <div
       className={cn(
-        'relative isolate overflow-hidden',
-        fill ? 'h-full min-h-full' : 'w-full',
+        'relative isolate h-full min-h-full overflow-hidden',
+        FADE_CLASSES[fade],
         className,
       )}
       data-media-slot={media.slot}
@@ -65,10 +84,10 @@ export function EditorialImage({
     >
       <EditorialMatter
         aspect={aspect}
-        fill={fill}
         focalPoint={focalPoint}
         media={media}
         priority={priority}
+        sizes={sizes}
         visual={visual}
       />
       {scrimDirection ? <EditorialOverlay direction={scrimDirection} /> : null}
@@ -79,7 +98,7 @@ export function EditorialImage({
 
 type EditorialMatterProps = Pick<
   EditorialImageProps,
-  'media' | 'aspect' | 'fill' | 'priority' | 'focalPoint'
+  'media' | 'aspect' | 'priority' | 'focalPoint' | 'sizes'
 > & {
   visual: Exclude<EditorialVisual, 'none'>;
 };
@@ -88,9 +107,9 @@ type EditorialMatterProps = Pick<
 function EditorialMatter({
   media,
   aspect,
-  fill,
   priority,
   focalPoint,
+  sizes,
   visual,
 }: EditorialMatterProps) {
   if (visual === 'band' && media.band) {
@@ -112,28 +131,21 @@ function EditorialMatter({
     );
   }
 
-  const objectPosition = focalPoint ?? media.position ?? '50% 50%';
+  // El foco viaja como variables: el de móvil sólo rige por debajo de 768 px.
+  const focus = {
+    '--fm-pos': focalPoint ?? media.position ?? '50% 50%',
+    ...(media.mobilePosition ? { '--fm-pos-mobile': media.mobilePosition } : {}),
+  } as CSSProperties;
 
-  return fill ? (
+  return (
     <Image
       alt={media.alt}
-      className="object-cover"
+      className="object-cover object-[var(--fm-pos-mobile,var(--fm-pos))] md:object-[var(--fm-pos)]"
       fill
       priority={priority ?? media.priority}
-      sizes={media.sizes}
+      sizes={sizes ?? media.sizes}
       src={media.src}
-      style={{ objectPosition }}
-    />
-  ) : (
-    <Image
-      alt={media.alt}
-      className="h-auto w-full object-cover"
-      height={900}
-      priority={priority ?? media.priority}
-      sizes={media.sizes}
-      src={media.src}
-      style={{ objectPosition }}
-      width={1600}
+      style={focus}
     />
   );
 }

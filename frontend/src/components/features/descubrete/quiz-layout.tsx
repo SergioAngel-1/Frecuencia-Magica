@@ -28,6 +28,7 @@ export function QuizLayout({ children, media, phase, className }: QuizLayoutProp
       media={media}
       mode={phaseMode(phase)}
       overlay={phase === 'questions' ? 'left' : 'bottom'}
+      fade="bottom"
       className={cn('fm-editorial-full-bleed fm-editorial-shell', className)}
       contentClassName="flex items-center justify-center"
     >

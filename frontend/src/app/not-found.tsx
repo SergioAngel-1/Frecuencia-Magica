@@ -26,6 +26,7 @@ export default function RootNotFound() {
           media={media}
           mode="viewport"
           overlay="bottom"
+          fade="bottom"
           className="fm-editorial-full-bleed fm-editorial-shell"
           contentClassName="min-h-[100svh]"
         >

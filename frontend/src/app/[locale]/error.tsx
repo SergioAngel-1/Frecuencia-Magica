@@ -38,6 +38,7 @@ export default function Error({ error, reset }: ErrorPageProps) {
       media={media}
       mode="viewport"
       overlay="top"
+      fade="bottom"
       className="fm-editorial-shell"
       contentClassName="min-h-[100svh]"
     >

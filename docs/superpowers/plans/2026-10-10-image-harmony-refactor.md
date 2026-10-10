@@ -97,24 +97,24 @@
   - `EditorialBanner` con `fade?: EditorialFade`;
   - `mediaSizes(mode: EditorialMediaMode, aspect: EditorialMediaAspect): string`.
 
-- [ ] Tests primero:
+- [x] Tests primero:
   - `mediaSizes`: para `viewport` 16:9 incluye el término por alto (`100svh` × ratio) con `max-aspect-ratio`; para `anchored` y `banner` devuelve `100vw`;
   - guardia de máscaras: las utilidades viven en `tokens.css` con prefijo `-webkit-`, y ningún componente escribe su propio `mask-image`;
   - guardia de que la rama `fill={false}` ya no existe.
-- [ ] Implementar las utilidades y el token en `tokens.css` (no en `globals.css`). Valor del spec: `--fade-band` igual a `section`.
-- [ ] `EditorialImage`:
+- [x] Implementar las utilidades y el token en `tokens.css` (no en `globals.css`). Valor del spec: `--fade-band` igual a `section`.
+- [x] `EditorialImage`:
   - aplicar `fade` a la materia;
   - pasar el foco como `--fm-pos` / `--fm-pos-mobile`, con el móvil sólo por debajo de 768 px;
   - eliminar la rama `fill={false}` y su prop.
-- [ ] `FullBleedSection`:
+- [x] `FullBleedSection`:
   - `fade` por defecto `'both'`;
   - `mode="anchored"`: la imagen con `aspect-ratio` del slot, anclada arriba y a todo el ancho, con fundido inferior siempre;
   - si la vista no fija `sizes`, usar `mediaSizes`.
-- [ ] `EditorialBanner`: `fade` por defecto `'both'`.
-- [ ] Todas las bandas que rozan el header (`RealmHero`, 404, portal, estados, el velo sin conexión) pasan a `fade="bottom"`.
-- [ ] Puertos de `Branding/`: `EditorialBanner` con `fade`; si hay showcase de bandas, mostrar el fundido. Comprobar el `build` de `Branding/`.
-- [ ] Verificar a ojo en el dev server (1440 y 390): el inicio y el resonario ya no tienen arista inferior en los héroes; el hueco `section` sigue existiendo (se elimina en la Tarea 5).
-- [ ] Gate de la tarea y commit (uno o dos, a criterio): `feat(ui): fade full-bleed media edges with a mask and size boxes by slot`.
+- [x] `EditorialBanner`: `fade` por defecto `'both'`.
+- [x] Todas las bandas que rozan el header (`RealmHero`, 404, portal, estados, el velo sin conexión) pasan a `fade="bottom"`.
+- [x] Puertos de `Branding/`: `EditorialBanner` con `fade`; si hay showcase de bandas, mostrar el fundido. Comprobar el `build` de `Branding/`.
+- [x] Verificar a ojo en el dev server (1440 y 390): el inicio y el resonario ya no tienen arista inferior en los héroes; el hueco `section` sigue existiendo (se elimina en la Tarea 5).
+- [x] Gate de la tarea y commit (uno o dos, a criterio): `feat(ui): fade full-bleed media edges with a mask and size boxes by slot`.
 
 **Aceptación:**
 - con `prefers-reduced-motion` nada cambia, porque la máscara es estática;

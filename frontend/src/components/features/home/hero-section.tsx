@@ -54,6 +54,7 @@ export function HeroSection({
       media={heroMedia}
       mode="viewport"
       overlay="left"
+      fade="bottom"
       className="fm-editorial-viewport-media"
       contentClassName="flex min-h-[100svh] items-center"
     >
