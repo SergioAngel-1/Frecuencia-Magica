@@ -35,7 +35,12 @@
       "experiencias": "Encuentro",
       "tienda": "Abundancia",
       "sanctuario": "Intimidad"
-    }
+    },
+    "story": {
+      "label": "Nuestra esencia",
+      "emotion": "Origen"
+    },
+    "menu": "Menú"
   },
   "footer": {
     "tagline": "Acompañamos procesos reales de transformación. Porque no necesitas ser alguien diferente: solo recordar quién siempre has sido.",

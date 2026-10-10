@@ -2,16 +2,17 @@
 
 import { useTranslations } from 'next-intl';
 
-import { NAV_REALMS } from '@/config/realms';
+import { NAV_REALMS, NAV_STORY } from '@/config/navigation';
 import { useRealm } from '@/hooks/use-realm';
-import { Link } from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
 import type { RealmId } from '@/types/realm';
 
 /**
  * Navegación de constelación, desde 1024px.
  *
- * Seis puntos de luz, uno por realm, en una columna lateral: el nombre sólo
+ * Seis puntos de luz, uno por realm, y uno en marfil para la narrativa del
+ * sitio («Sobre Marisol»), en una columna lateral: el nombre sólo
  * aparece al acercarse —hover o foco de teclado—, de modo que la navegación
  * no compite con el contenido ni se superpone a los textos que arrancan en el
  * eje de página (`--page-inset`). El `sr-only` mantiene el nombre en el árbol
@@ -26,8 +27,28 @@ import type { RealmId } from '@/types/realm';
 export function RealmNav() {
   const t = useTranslations('nav');
   const { realmId } = useRealm();
+  const pathname = usePathname();
+  const storyActive = pathname === NAV_STORY.href;
 
   if (realmId === 'portal' || realmId === 'auth') return null;
+
+  const entries = [
+    ...NAV_REALMS.map((realm) => ({
+      id: realm.id,
+      href: realm.href,
+      accent: realm.accent,
+      active: !storyActive && realm.id === realmId,
+      name: t(`realms.${realm.id as RealmId}` as 'realms.resonario'),
+    })),
+    // La narrativa del sitio cierra la constelación, en marfil y un poco aparte.
+    {
+      id: NAV_STORY.id,
+      href: NAV_STORY.href,
+      accent: NAV_STORY.accent,
+      active: storyActive,
+      name: t('story.label'),
+    },
+  ];
 
   return (
     <nav
@@ -35,17 +56,17 @@ export function RealmNav() {
       className="animate-fm-fade-in z-nav fixed top-1/2 left-[26px] hidden -translate-y-1/2 lg:block"
     >
       <div className="flex flex-col items-stretch gap-1">
-        {NAV_REALMS.map((realm) => {
-          const active = realm.id === realmId;
-          const name = t(`realms.${realm.id as RealmId}` as 'realms.resonario');
-
+        {entries.map(({ id, href, accent, active, name }) => {
           return (
             <Link
-              key={realm.id}
-              href={realm.href as '/resonario'}
+              key={id}
+              href={href as '/resonario'}
               data-magnetic
               aria-current={active ? 'page' : undefined}
-              className="group relative flex h-11 items-center px-[6px]"
+              className={cn(
+                'group relative flex h-11 items-center px-[6px]',
+                id === NAV_STORY.id && 'mt-2',
+              )}
             >
               {/* El nombre siempre está en el árbol de accesibilidad: el
                     badge visual es un refuerzo, no la única forma de conocer
@@ -60,8 +81,8 @@ export function RealmNav() {
                   !active && 'opacity-60',
                 )}
                 style={{
-                  background: realm.accent,
-                  boxShadow: active ? `0 0 12px 2px ${realm.accent}` : undefined,
+                  background: accent,
+                  boxShadow: active ? `0 0 12px 2px ${accent}` : undefined,
                 }}
               />
 
@@ -79,7 +100,7 @@ export function RealmNav() {
               >
                 <span
                   className="h-[6px] w-[6px] flex-none rounded-full"
-                  style={{ background: realm.accent, boxShadow: `0 0 8px 1px ${realm.accent}` }}
+                  style={{ background: accent, boxShadow: `0 0 8px 1px ${accent}` }}
                 />
                 <span className="text-ivory tracking-soft font-serif text-[16px]">{name}</span>
               </span>
