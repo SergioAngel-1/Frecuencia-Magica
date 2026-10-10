@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 
 import enMessages from '../../messages/en.json';
 import esMessages from '../../messages/es.json';
+import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import { EDITORIAL_MEDIA_REGISTRY } from '@/config/editorial-media';
 import { PRODUCTS } from '@/data';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -22,6 +23,7 @@ const detailSource = readSource('components/features/store/product-detail.tsx');
 const sectionsSource = readSource('components/features/store/product-sections.tsx');
 const cartButtonSource = readSource('components/features/store/cart-button.tsx');
 const cartSource = readSource('components/features/store/cart-view.tsx');
+const emptyStateSource = readSource('components/ui/empty-state.tsx');
 const summarySource = readSource('components/features/store/order-summary.tsx');
 const confirmationSource = readSource('components/features/store/order-confirmation.tsx');
 const checkoutSource = readSource('components/features/store/checkout.tsx');
@@ -45,12 +47,14 @@ const esCart = esMessages.cart as unknown as MediaMessages;
 const enCart = enMessages.cart as unknown as MediaMessages;
 
 describe('store editorial composition contracts', () => {
-  it('resolves every store slot to a zebra fallback without inventing media', () => {
+  it('resolves every store slot to its published photo or a fallback, never invented media', () => {
     for (const { slot, aspect } of STORE_SLOTS) {
       const media = resolveEditorialMedia(slot, { alt: `Editorial ${slot}` });
+      // La única fuente legítima es la publicada en el manifiesto; nada se inventa.
+      const published = EDITORIAL_ASSETS[slot];
 
-      expect(media).toMatchObject({ kind: 'fallback', slot, aspect });
-      expect(media.src).toBeUndefined();
+      expect(media).toMatchObject({ kind: published ? 'photo' : 'fallback', slot, aspect });
+      expect(media.src).toBe(published);
       expect(EDITORIAL_MEDIA_REGISTRY[slot]).toBeDefined();
     }
   });
@@ -153,7 +157,8 @@ describe('store editorial composition contracts', () => {
     expect(cartPageSource).toContain('<CheckoutView media={checkoutMedia}');
     expect(cartSource).toContain('media: CheckoutMedia');
     expect(cartSource).toContain('<EditorialImage');
-    expect(cartSource).toContain('data-editorial-media="cart.empty"');
+    expect(cartSource).toContain('media={media.empty}');
+    expect(emptyStateSource).toContain('data-editorial-media={media.slot}');
     expect(cartSource).toContain('cartLines(items, PRODUCTS)');
     expect(cartSource).toContain('const count = lines.reduce');
     expect(cartSource).toContain('sm:contents');

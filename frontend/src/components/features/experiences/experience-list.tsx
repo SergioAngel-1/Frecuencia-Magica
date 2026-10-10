@@ -11,6 +11,8 @@ export type ExperienceMedia = {
   hero: EditorialMedia;
   featured: EditorialMedia;
   row: EditorialMedia;
+  /** Foto resuelta por id de experiencia; sin entrada, vale `row`. */
+  rows: Record<string, EditorialMedia>;
 };
 
 type ExperienceListProps = {
@@ -26,7 +28,7 @@ export function ExperienceList({ media }: ExperienceListProps) {
   const titleFor = (experience: (typeof EXPERIENCES)[number]) =>
     t(`items.${experience.id}.title` as 'items.e1.title');
   const experienceMedia = (experience: (typeof EXPERIENCES)[number]): EditorialMedia => ({
-    ...media.row,
+    ...(media.rows[experience.id] ?? media.row),
     alt: t('media.alt.row', { title: titleFor(experience) }),
     band: experience.band,
   });

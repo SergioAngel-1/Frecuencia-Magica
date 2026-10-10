@@ -42,6 +42,10 @@ export const EDITORIAL_MEDIA_SLOTS = [
   'sanctuary.daily',
   'sanctuary.journal',
   'sanctuary.empty',
+  'states.loading',
+  'states.empty',
+  'states.error',
+  'states.offline',
 ] as const;
 
 export type EditorialMediaSlot = (typeof EDITORIAL_MEDIA_SLOTS)[number];
@@ -428,5 +432,37 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     priorityTier: 'P2',
     fallback: 'none',
     alt: 'Tu santuario espera sus primeras prácticas',
+  },
+  'states.loading': {
+    ...WIDE,
+    position: '50% 42%',
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+  },
+  'states.empty': {
+    ...WIDE,
+    position: '50% 55%',
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+  },
+  'states.error': {
+    ...WIDE,
+    position: '50% 58%',
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
+  },
+  'states.offline': {
+    ...WIDE,
+    position: '70% 45%',
+    aspect: '16:9',
+    priority: false,
+    priorityTier: 'P2',
+    fallback: 'none',
   },
 };

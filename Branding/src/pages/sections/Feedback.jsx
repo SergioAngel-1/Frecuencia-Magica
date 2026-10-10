@@ -42,6 +42,10 @@ export function Feedback() {
           </div>
         </Specimen>
 
+        <Specimen title="Vacío con materia" note="Con `media`, el vacío se pinta en su marco sobre la imagen del slot (`states.empty`, `cart.empty`, `sanctuary.empty`) y el scrim único.">
+          <EmptyState media={{ slot: 'states.empty', label: 'Estados · vacío' }} title="No encontramos nada con ese nombre. Prueba con otra palabra." action={<Button variant="accent">Ver todo</Button>} />
+        </Specimen>
+
         <Specimen title="Geometría sagrada" note="Aros concéntricos que giran despacio; `reverse` contrarrota. Decorativa: siempre aria-hidden.">
           <div className="flex flex-wrap items-center gap-8">
             <OrbitalRings size={140} spin={90} rings={[{ r: 98, stroke: 'rgba(216,185,120,0.55)', width: 0.7 }, { r: 76, stroke: 'rgba(185,176,214,0.35)', width: 0.6, dash: '1 7' }]} nodes={[{ angle: -90, radius: 98, color: 'var(--color-gold)', size: 6 }]} />

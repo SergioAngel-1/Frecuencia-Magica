@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { ExperienceList } from '@/components/features/experiences/experience-list';
 import { PageShell, RealmHero } from '@/components/layout';
+import { EXPERIENCES } from '@/data';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -30,6 +31,16 @@ export default async function ExperiencesPage({ params }: PageProps) {
     row: resolveEditorialMedia('experiences-visual', {
       sizes: '(min-width: 1280px) 1200px, calc(100vw - 48px)',
     }),
+    // Una foto por experiencia: la que no tenga publicada pinta la banda del ítem.
+    rows: Object.fromEntries(
+      EXPERIENCES.map((experience) => [
+        experience.id,
+        resolveEditorialMedia('experiences-visual', {
+          instance: experience.id,
+          sizes: '(min-width: 1280px) 1200px, calc(100vw - 48px)',
+        }),
+      ]),
+    ),
   };
 
   return (

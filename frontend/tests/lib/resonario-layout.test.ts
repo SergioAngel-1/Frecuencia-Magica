@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 import enMessages from '../../messages/en.json';
 import esMessages from '../../messages/es.json';
 import { AUDIOS } from '@/data';
+import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import { EDITORIAL_MEDIA_REGISTRY } from '@/config/editorial-media';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { splitFeaturedAudio } from '@/lib/resonario/layout-slots';
@@ -48,12 +49,14 @@ describe('resonario editorial composition contracts', () => {
     });
   });
 
-  it('resolves all resonario slots to localized zebra fallbacks without inventing media', () => {
+  it('resolves all resonario slots to their published photo or a fallback, never invented media', () => {
     for (const { slot, aspect } of RESONARIO_SLOTS) {
       const media = resolveEditorialMedia(slot, { alt: `Resonario ${slot}` });
+      // La única fuente legítima es la publicada en el manifiesto; nada se inventa.
+      const published = EDITORIAL_ASSETS[slot];
 
-      expect(media).toMatchObject({ kind: 'fallback', slot, aspect });
-      expect(media.src).toBeUndefined();
+      expect(media).toMatchObject({ kind: published ? 'photo' : 'fallback', slot, aspect });
+      expect(media.src).toBe(published);
       expect(EDITORIAL_MEDIA_REGISTRY[slot]).toBeDefined();
     }
   });

@@ -10,6 +10,7 @@ export { AudioToggle } from './audio-toggle';
 export { BrandMark } from './brand-mark';
 export { LanguageToggle } from './language-toggle';
 export { NewsletterForm } from './newsletter-form';
+export { OfflineVeil } from './offline-veil';
 export { PageShell, type ShellPadding, type ShellWidth } from './page-shell';
 export { RealmFooter } from './realm-footer';
 export { REALM_HERO_HEIGHT, RealmHero, type RealmHeroProps } from './realm-hero';

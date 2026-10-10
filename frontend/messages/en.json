@@ -2,6 +2,7 @@
   "common": {
     "brand": "Frecuencia Mágica",
     "tagline": "A sanctuary to return to yourself.",
+    "ogImageAlt": "A ring of golden light above a calm night sea, under a cosmic sky",
     "seeAll": "See all",
     "back": "Back",
     "continue": "Continue",
@@ -747,12 +748,18 @@
     "errorBody": "The frequency was lost for a moment. Breathe and try again.",
     "errorCta": "Try again",
     "offline": "You are offline. The sanctuary awaits your return.",
+    "offlineKicker": "Offline",
+    "offlineDismiss": "Stay here",
     "payFailedTitle": "The payment did not go through",
     "payFailedBody": "Nothing has been charged yet. Breathe and try again whenever you're ready.",
     "payFailedCta": "Try again",
     "media": {
       "alt": {
-        "notFound": "A serene corner of the cosmos to find your way again"
+        "notFound": "A serene corner of the cosmos to find your way again",
+        "loading": "A sphere of golden light breathing above the water while you wait",
+        "empty": "A column of lavender light on still water: open space for you",
+        "error": "A candle still lit beside the water: something was interrupted, not your light",
+        "offline": "A lit cabin beside a misty lake: your brief retreat until the connection returns"
       }
     }
   }

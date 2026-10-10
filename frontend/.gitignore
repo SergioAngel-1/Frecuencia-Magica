@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editorial originals (PNG fuente; sólo public/editorial/*.avif se publica)
+/.editorial-originals/
+
+# prueba de imágenes retiradas para regenerar (AVIF y su PNG original)
+/.editorial-trials/

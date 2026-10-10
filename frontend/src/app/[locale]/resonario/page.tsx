@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { ResonarioSystem } from '@/components/features/resonario/resonario-system';
 import { PageShell, RealmHero } from '@/components/layout';
+import { AUDIOS } from '@/data';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -17,6 +18,7 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function ResonarioPage({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'resonario' });
+  const tStates = await getTranslations({ locale, namespace: 'states' });
   const resonarioMedia = {
     hero: resolveEditorialMedia('resonario.hero', { alt: t('media.alt.hero') }),
     featured: resolveEditorialMedia('resonario.featured', {
@@ -26,9 +28,21 @@ export default async function ResonarioPage({ params }: PageProps) {
     archiveBanner: resolveEditorialMedia('resonario.archive-banner', {
       alt: t('media.alt.archiveBanner'),
     }),
+    // El filtro sin resultados: el vacío de marca, no el del archivo.
+    empty: resolveEditorialMedia('states.empty', { alt: tStates('media.alt.empty') }),
     audioCover: resolveEditorialMedia('resonario.audio-cover.*', {
       sizes: '(min-width: 1024px) 150px, 150px',
     }),
+    // Una portada por audio: la que no tenga foto publicada pinta la banda del ítem.
+    audioCovers: Object.fromEntries(
+      AUDIOS.map((audio) => [
+        audio.id,
+        resolveEditorialMedia('resonario.audio-cover.*', {
+          instance: audio.id,
+          sizes: '(min-width: 1024px) 150px, 150px',
+        }),
+      ]),
+    ),
   };
 
   return (

@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 
 import enMessages from '../../messages/en.json';
 import esMessages from '../../messages/es.json';
+import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import { EDITORIAL_MEDIA_REGISTRY, type EditorialMediaSlot } from '@/config/editorial-media';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -71,16 +72,18 @@ describe('home editorial composition contracts', () => {
       const esAlt = esMessages.home.media.alt[altKey];
       const enAlt = enMessages.home.media.alt[altKey];
       const media = resolveEditorialMedia(registeredSlot, { alt: esAlt });
+      // La única fuente legítima es la publicada en el manifiesto; nada se inventa.
+      const published = EDITORIAL_ASSETS[registeredSlot];
 
       expect(enAlt).not.toBe(esAlt);
       expect(EDITORIAL_MEDIA_REGISTRY[registeredSlot]).not.toHaveProperty('alt');
       expect(media).toMatchObject({
         alt: esAlt,
         aspect: registryAspectBySlot[registeredSlot as keyof typeof registryAspectBySlot],
-        kind: 'fallback',
+        kind: published ? 'photo' : 'fallback',
         slot: registeredSlot,
       });
-      expect(media.src).toBeUndefined();
+      expect(media.src).toBe(published);
       expect(requestedSlot).toMatch(/^home\./);
     }
   });

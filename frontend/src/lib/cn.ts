@@ -26,6 +26,7 @@ const twMerge = extendTailwindMerge({
             'player',
             'nav',
             'header',
+            'offline',
             'portal',
             'veil',
             'cursor',

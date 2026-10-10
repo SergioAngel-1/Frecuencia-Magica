@@ -87,31 +87,19 @@ export function CartView({ media, onPlaceOrder }: CartViewProps) {
 
   if (lines.length === 0) {
     return (
-      <section
-        className="rounded-card-lg relative isolate min-h-[clamp(420px,55vw,620px)] overflow-hidden"
-        data-editorial-media="cart.empty"
-      >
-        <h1 className="sr-only">{t('title')}</h1>
-        <div className="absolute inset-0">
-          <EditorialImage
-            aspect="16:9"
-            className="h-full"
-            media={media.empty}
-            overlay="bottom"
-            scrim="bottom"
-          />
-        </div>
-        <div className="relative z-10 flex min-h-[clamp(420px,55vw,620px)] items-center justify-center px-4">
-          <EmptyState
-            title={t('empty.text')}
-            className="max-w-[34rem]"
-            action={
-              <Button variant="outline" asChild>
-                <Link href="/tienda">{t('empty.cta')}</Link>
-              </Button>
-            }
-          />
-        </div>
+      <section aria-labelledby="cart-title">
+        <h1 id="cart-title" className="sr-only">
+          {t('title')}
+        </h1>
+        <EmptyState
+          media={media.empty}
+          title={t('empty.text')}
+          action={
+            <Button variant="outline" asChild>
+              <Link href="/tienda">{t('empty.cta')}</Link>
+            </Button>
+          }
+        />
       </section>
     );
   }

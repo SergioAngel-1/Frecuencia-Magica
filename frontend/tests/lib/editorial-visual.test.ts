@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import {
   EDITORIAL_MEDIA_REGISTRY,
@@ -9,6 +9,9 @@ import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { editorialVisual, hasEditorialVisual } from '@/lib/editorial/visual';
 
 import { readSource, SRC, sourceFiles } from '../helpers/source-files';
+
+// La política de fallback es la de un slot sin foto: no puede depender de las imágenes publicadas.
+vi.mock('@/config/editorial-assets.generated', () => ({ EDITORIAL_ASSETS: {} }));
 
 /** Materia estructural con texto encima: lo único que conserva la zebra. */
 const ZEBRA: readonly EditorialMediaSlot[] = [

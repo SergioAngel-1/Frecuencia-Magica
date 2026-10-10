@@ -4,7 +4,13 @@ import { getTranslations } from 'next-intl/server';
 import { LazyMotion, domAnimation } from 'motion/react';
 
 import { PlayerDock } from '@/components/features/player/player-dock';
-import { RealmFooter, RealmNav, RouteTransition, SiteHeader } from '@/components/layout';
+import {
+  OfflineVeil,
+  RealmFooter,
+  RealmNav,
+  RouteTransition,
+  SiteHeader,
+} from '@/components/layout';
 import { RealmProvider } from '@/components/world/realm-provider';
 import { SmoothScroll } from '@/components/world/smooth-scroll';
 import { WorldEngine } from '@/components/world/world-engine';
@@ -23,17 +29,25 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+/** Imagen al compartir el enlace (1200×630 JPEG: las redes no leen AVIF de forma fiable). */
+const OG_IMAGE = { url: '/editorial/og-image.jpg', width: 1200, height: 630 } as const;
+
 export async function generateMetadata({ params }: { params: LocaleParams }): Promise<Metadata> {
   const { locale } = await params;
   const active = hasLocale(routing.locales, locale) ? locale : routing.defaultLocale;
   const t = await getTranslations({ locale: active, namespace: 'common' });
+  const images = [{ ...OG_IMAGE, alt: t('ogImageAlt') }];
 
   return {
+    // Las URLs de og:image deben ser absolutas: en producción define NEXT_PUBLIC_SITE_URL.
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
     title: {
       default: t('brand'),
       template: `%s · ${t('brand')}`,
     },
     description: t('tagline'),
+    openGraph: { type: 'website', siteName: t('brand'), images },
+    twitter: { card: 'summary_large_image', images },
   };
 }
 
@@ -77,6 +91,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
                   <RealmFooter />
                 </main>
                 <PlayerDock />
+                <OfflineVeil />
               </SmoothScroll>
             </RealmProvider>
           </NextIntlClientProvider>

@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 
 import enMessages from '../../messages/en.json';
 import esMessages from '../../messages/es.json';
+import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import { EDITORIAL_MEDIA_REGISTRY } from '@/config/editorial-media';
 import { AUDIOS, COURSES } from '@/data';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -22,6 +23,7 @@ const continueSource = readSource('components/features/sanctuary/continue-card.t
 const dailySource = readSource('components/features/sanctuary/daily-card.tsx');
 const journalSource = readSource('components/features/sanctuary/journal-panel.tsx');
 const emptySource = readSource('components/features/sanctuary/journal-empty.tsx');
+const emptyStateSource = readSource('components/ui/empty-state.tsx');
 
 const SANCTUARY_SLOTS = [
   { slot: 'sanctuary.hero' as const, aspect: '16:9' as const, alt: 'hero' },
@@ -40,12 +42,14 @@ const es = esMessages.sanctuary as unknown as SanctuaryMessages;
 const en = enMessages.sanctuary as unknown as SanctuaryMessages;
 
 describe('sanctuary editorial composition contracts', () => {
-  it('resolves all five sanctuary slots to zebra fallbacks without inventing media', () => {
+  it('resolves all five sanctuary slots to their published photo or a fallback, never invented media', () => {
     for (const { slot, aspect } of SANCTUARY_SLOTS) {
       const media = resolveEditorialMedia(slot, { alt: `Sanctuary ${slot}` });
+      // La única fuente legítima es la publicada en el manifiesto; nada se inventa.
+      const published = EDITORIAL_ASSETS[slot];
 
-      expect(media).toMatchObject({ kind: 'fallback', slot, aspect });
-      expect(media.src).toBeUndefined();
+      expect(media).toMatchObject({ kind: published ? 'photo' : 'fallback', slot, aspect });
+      expect(media.src).toBe(published);
       expect(EDITORIAL_MEDIA_REGISTRY[slot]).toBeDefined();
     }
   });
@@ -112,7 +116,9 @@ describe('sanctuary editorial composition contracts', () => {
   it('gives the journal its portrait and an editorial empty state', () => {
     expect(journalSource).toContain('data-editorial-media="sanctuary.journal"');
     expect(journalSource).toContain('<JournalEmpty');
-    expect(emptySource).toContain('data-editorial-media="sanctuary.empty"');
+    expect(pageSource).toContain("resolveEditorialMedia('sanctuary.empty'");
+    expect(emptySource).toContain('<EmptyState media={media}');
+    expect(emptyStateSource).toContain('data-editorial-media={media.slot}');
     expect(emptySource).toContain("t('emptyJournal')");
     expect(journalSource).toContain('aria-live="polite"');
     expect(journalSource).toContain('aria-pressed={draft.mood === index}');
