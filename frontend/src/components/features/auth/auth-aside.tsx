@@ -29,7 +29,7 @@ export async function AuthAside({ media }: AuthAsideProps) {
   return (
     <aside
       aria-label={brand}
-      className="relative isolate flex aspect-[16/9] flex-col overflow-hidden px-6 py-8 min-[900px]:aspect-auto min-[900px]:h-full min-[900px]:min-h-[100svh] min-[900px]:px-[clamp(32px,6vw,96px)] min-[900px]:py-14"
+      className="relative isolate flex aspect-[16/9] flex-col overflow-hidden px-6 py-8 min-[900px]:aspect-auto min-[900px]:h-full min-[900px]:min-h-[100svh] min-[900px]:py-14 min-[900px]:pr-[clamp(32px,6vw,96px)] min-[900px]:pl-[var(--page-inset)]"
     >
       {/* El tinte del panel sólo existe con el panel partido: en móvil el
           héroe es una banda que se funde en la noche, sin caja alrededor. */}
@@ -47,6 +47,10 @@ export async function AuthAside({ media }: AuthAsideProps) {
           bandMedia
           className="h-full"
           fade="bottom"
+          // El arco de luz ocupa el 62–78 % del ancho de la imagen: con el foco
+          // al 75 % queda entero en la columna, del panel partido de 1100 px
+          // hacia arriba, y el texto descansa en la noche de la izquierda.
+          focalPoint="75% 40%"
           overlay="bottom"
           scrim="left"
         />
@@ -94,8 +98,8 @@ export async function AuthAside({ media }: AuthAsideProps) {
           />
         </div>
 
-        <div className="relative z-10 mt-4 max-w-[38ch] min-[900px]:mt-8">
-          <p className="text-fg-body font-serif text-[clamp(20px,2.2vw,28px)] leading-[1.35] italic">
+        <div className="relative z-10 mt-4 min-[900px]:mt-8">
+          <p className="text-fg-body max-w-[22ch] font-serif text-[clamp(24px,3vw,44px)] leading-[1.25] text-balance italic">
             &ldquo;{t('quote')}&rdquo;
           </p>
           <Kicker tone="gold" className="mt-3">

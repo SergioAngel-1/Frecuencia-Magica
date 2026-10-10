@@ -27,10 +27,13 @@ export default async function AuthPage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      {/* En móvil el héroe y la atmósfera del formulario son bandas
-          consecutivas: la cadena las une sin hueco ni filete. */}
-      <div data-auth-layout="split">
-        <BandChain className="grid min-h-[100svh] grid-cols-1 min-[900px]:grid-cols-[minmax(0,1.2fr)_minmax(360px,0.8fr)]">
+      {/* El módulo ocupa el viewport entero: el formulario conserva su ancho
+          (hasta 512 px) y la imagen absorbe el resto, así no queda una caja
+          de 1280 px recortada en las pantallas anchas. En móvil el héroe y
+          la atmósfera del formulario son bandas consecutivas: la cadena las
+          une sin hueco ni filete. */}
+      <div data-auth-layout="split" className="fm-editorial-full-bleed">
+        <BandChain className="grid min-h-[100svh] grid-cols-1 min-[900px]:grid-cols-[minmax(0,1fr)_minmax(360px,512px)]">
           <AuthAside media={authMedia.hero} />
           <AuthForm media={authMedia.formAtmosphere} />
         </BandChain>
