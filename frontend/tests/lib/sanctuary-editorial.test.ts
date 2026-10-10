@@ -147,20 +147,33 @@ describe('sanctuary editorial composition contracts', () => {
     expect(emptySource).toContain('fill');
     const emptyState = readSource('components/ui/empty-state.tsx');
     expect(emptyState).toContain('fill?: boolean');
-    // El retrato del diario a su 3:4 en todos los anchos, nunca a 16:8.
-    const aside = journalSource.slice(
-      journalSource.lastIndexOf(
-        '<div',
-        journalSource.indexOf('data-editorial-media="sanctuary.journal"'),
-      ),
+    // La columna del retrato mide lo que la tarjeta del diario desde lg (y es el
+    // propio 3:4 apilada); el retrato sigue a su 3:4, anclado arriba y fundido,
+    // nunca estirado ni a 16:8.
+    const asideStart = journalSource.lastIndexOf(
+      '<div',
       journalSource.indexOf('data-editorial-media="sanctuary.journal"'),
     );
-    expect(aside).toContain('aspect-[3/4]');
-    expect(aside).toContain('self-start');
+    const aside = journalSource.slice(
+      asideStart,
+      journalSource.indexOf('data-editorial-media="sanctuary.journal"'),
+    );
+    expect(aside).toContain('lg:self-stretch');
+    expect(aside).toContain('max-lg:aspect-[3/4]');
+    expect(aside).toContain('rounded-card-lg');
+    expect(aside).not.toContain('self-start');
+    const portrait = journalSource.slice(asideStart);
+    expect(portrait).toContain('absolute inset-x-0 top-0 aspect-[3/4]');
+    expect(portrait).toContain('fade="bottom"');
+    expect(portrait).not.toContain('absolute inset-0');
     expect(journalSource).not.toContain('aspect-[16/8]');
     // La foto de la práctica diaria se ancla a su 1:1 en vez de estirarse con la tarjeta.
     expect(dailySource).toContain('absolute inset-x-0 top-0 -z-10 aspect-square');
     expect(dailySource).not.toContain('absolute inset-0 -z-10');
+    // Retomar el curso, con el mismo fondo: la foto a su 16:8 se funde, no se corta.
+    expect(continueSource).toContain('absolute inset-x-0 top-0 -z-10 aspect-[16/8]');
+    expect(continueSource).toContain('fade="bottom"');
+    expect(continueSource).toContain('relative isolate');
   });
   it('starts the greeting on the page axis, like the cards below it', () => {
     const header = readSource('components/features/sanctuary/sanctuary-header.tsx');
