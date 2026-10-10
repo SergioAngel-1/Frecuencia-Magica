@@ -60,7 +60,7 @@ export const UNUSED = {
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
   'academy-course-cover-c1.avif': 'En la lista, `c1` es el curso destacado y usa `academy.featured-course`: su portada sólo se ve en el detalle de curso.',
-  'store-product-visual-p1.avif': 'Es el producto destacado, a 16:8.',
+  'store-product-visual-p1.avif': 'Es el producto destacado: desde 768 px se compone a 1:1 junto a su texto, en dos columnas.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */

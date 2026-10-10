@@ -279,7 +279,7 @@ A small terrace at first light with a cushion and a steaming cup placed in the m
 
 #### `store-product-visual · Aceite Esencial · Cedro Sagrado` — Tienda · productos · P1
 
-- **Qué falta:** Es el producto destacado, a 16:8.
+- **Qué falta:** Es el producto destacado: desde 768 px se compone a 1:1 junto a su texto, en dos columnas.
 - **Archivo:** `store-product-visual-p1.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
 - **Ratio / focal:** 1:1 · foco 50% 50%

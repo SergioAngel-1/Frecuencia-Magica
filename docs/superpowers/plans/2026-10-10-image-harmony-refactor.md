@@ -198,15 +198,15 @@
 
 **Archivos:** `components/features/store/product-card.tsx`, la página del catálogo de tienda (quitar el `aspect: '16:8'` del destacado), el componente de relacionados, `components/features/experiences/experience-row.tsx`, y los guardias `store-editorial` y `experiences-editorial`.
 
-- [ ] Guardias primero:
+- [x] Guardias primero:
   - ninguna resolución de `store-product-visual` lleva `aspect` distinto de `1:1`;
   - las tarjetas de producto usan `aspect-square`;
   - la columna de imagen de la fila de experiencia fija 16:9 desde `md`.
-- [ ] Destacado de tienda: en escritorio, imagen 1:1 + texto en columnas; en móvil, apilado. Conserva el badge «Destacado», la acción de añadir separada del enlace y los hit targets de 44 px.
-- [ ] Tarjetas de producto a 1:1 en todos los anchos.
-- [ ] Fila de experiencia: imagen 16:9 desde 768 px, sin perder la composición de fila del realm.
-- [ ] Verificar en los cuatro breakpoints. Hoy pintan banda, porque faltan `p1…p8` y `e2…e4`: verifica la caja, no la foto.
-- [ ] Gate de la tarea y commit: `feat(store): paint product and experience media at their slot ratio`.
+- [x] Destacado de tienda: en escritorio, imagen 1:1 + texto en columnas; en móvil, apilado. Conserva el badge «Destacado», la acción de añadir separada del enlace y los hit targets de 44 px.
+- [x] Tarjetas de producto a 1:1 en todos los anchos.
+- [x] Fila de experiencia: imagen 16:9 desde 768 px, sin perder la composición de fila del realm.
+- [x] Verificar en los cuatro breakpoints. Hoy pintan banda, porque faltan `p1…p8` y `e2…e4`: verifica la caja, no la foto.
+- [x] Gate de la tarea y commit: `feat(store): paint product and experience media at their slot ratio`.
 
 **Aceptación:** la proporción medida de todas las cajas de `store-product-visual` es 1,00 ± 0,02, y la de `experiences-visual` desde 768 px es 1,78 ± 0,03.
 

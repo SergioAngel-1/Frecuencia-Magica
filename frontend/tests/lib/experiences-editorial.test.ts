@@ -160,6 +160,13 @@ describe('experiences editorial composition contracts', () => {
     expect(hero).not.toContain('inset-0');
     expect(hero).toContain('fade="bottom"');
   });
+  it('paints each experience row at 16:9 from 768px', () => {
+    const row = rowSource.slice(
+      rowSource.indexOf('data-editorial-media="experiences-visual"') - 400,
+    );
+    expect(row).toContain('md:aspect-[16/9]');
+    expect(row).toContain('md:min-h-0');
+  });
 });
 
 export {};
