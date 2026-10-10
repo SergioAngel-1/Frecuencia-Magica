@@ -36,7 +36,11 @@ export default async function SanctuaryPage({ params }: PageProps) {
       band: resume?.course.band,
     }),
     daily: resolveEditorialMedia('sanctuary.daily', { alt: t('media.alt.daily') }),
-    journal: resolveEditorialMedia('sanctuary.journal', { alt: t('media.alt.journal') }),
+    // Columna de 340 px junto al diario desde 1024; por debajo, a todo el ancho.
+    journal: resolveEditorialMedia('sanctuary.journal', {
+      alt: t('media.alt.journal'),
+      sizes: '(min-width: 1024px) 340px, 100vw',
+    }),
     empty: resolveEditorialMedia('sanctuary.empty', { alt: t('media.alt.empty') }),
   };
 

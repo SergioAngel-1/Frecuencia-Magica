@@ -53,7 +53,9 @@ export function PortalScene({
       >
         <EditorialImage
           aspect="16:8"
-          className="fm-fade-radial absolute top-[12%] right-0 left-0 h-[58%] opacity-35 mix-blend-screen md:top-[4%] md:h-[80%]"
+          className="fm-fade-radial absolute top-[12%] right-0 left-0 h-[58%] min-h-0 opacity-35 mix-blend-screen md:top-[4%] md:h-[80%]"
+          // La caja mide 58 % (móvil) u 80 % del alto y `cover` escala la 2:1 por el alto.
+          sizes="(max-width: 767px) calc(58svh * 2), (max-aspect-ratio: 2/1) calc(80svh * 2), 100vw"
           media={portalFieldMedia}
           overlay={false}
           scrim={false}

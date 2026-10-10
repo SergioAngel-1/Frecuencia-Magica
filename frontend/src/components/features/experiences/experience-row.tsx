@@ -76,6 +76,8 @@ export function ExperienceRow({
             media={media}
             overlay="left"
             scrim="left"
+            // Por debajo de 1024 px la fila crece con su texto y `cover` escala por el alto.
+            sizes="(max-width: 1023px) 840px, 100vw"
           />
         </div>
         <div
