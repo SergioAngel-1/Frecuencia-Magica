@@ -57,10 +57,13 @@ export function RouteTransition({ children }: { children: ReactNode }) {
   const [pending, setPending] = useState(false);
   const [waiting, setWaiting] = useState(false);
   const prevPathname = useRef(pathname);
-  // Siempre con la ruta actual (se escribe en cada render): el listener de
-  // clics la compara con el destino sin volver a suscribirse.
+  // Siempre con la ruta actual: el listener de clics la compara con el
+  // destino sin volver a suscribirse. Se escribe en un efecto, no durante el
+  // render (un render descartado dejaría aquí una ruta que nunca se pintó).
   const pathnameRef = useRef(pathname);
-  pathnameRef.current = pathname;
+  useEffect(() => {
+    pathnameRef.current = pathname;
+  }, [pathname]);
   const portalBusy = portalPhase !== 'idle';
   const loadingMedia = resolveEditorialMedia('states.loading', {
     alt: t('media.alt.loading'),

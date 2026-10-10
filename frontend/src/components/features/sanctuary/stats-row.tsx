@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
 import { GlassPanel, Stat } from '@/components/ui';
@@ -26,7 +27,8 @@ export function StatsRow({ days, frequencies, courses }: StatsRowProps) {
   const locale = useLocale();
   const mounted = useMounted();
   const entries = useJournalStore((state) => state.entries.length);
-  const format = (value: number) => new Intl.NumberFormat(locale).format(value);
+  const formatter = useMemo(() => new Intl.NumberFormat(locale), [locale]);
+  const format = (value: number) => formatter.format(value);
 
   const stats = [
     { id: 'days', value: days, tone: 'gold' },
