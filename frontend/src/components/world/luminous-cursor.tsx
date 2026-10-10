@@ -9,6 +9,9 @@ const DOT_HOVER = 16;
 const RING_BASE = 34;
 const RING_HOVER = 54;
 const LERP = 0.14;
+/** Por debajo de esto el anillo ya está sobre el puntero: se posa y el bucle para. */
+const SETTLE_PX = 0.1;
+const SETTLE_SCALE = 0.002;
 
 /** Crecimiento por `transform: scale` (sólo compositor), nunca `width/height`. */
 const DOT_SCALE = DOT_HOVER / DOT_BASE;
@@ -145,20 +148,34 @@ export function LuminousCursor() {
       const magnetic = target?.closest('[data-magnetic], a, button') != null;
       targetScale = magnetic ? RING_SCALE : 1;
       dotScale.style.transform = `scale(${magnetic ? DOT_SCALE : 1})`;
+      if (!raf) raf = requestAnimationFrame(follow);
     };
-    window.addEventListener('mousemove', onMove);
 
+    // El anillo persigue al puntero y se duerme al alcanzarlo: con el ratón
+    // quieto no queda ningún bucle pidiendo frames. El siguiente movimiento
+    // lo despierta.
     let raf = 0;
     let currentScale = 1;
     const follow = () => {
       ringX += (pointerX - ringX) * (reduced ? 1 : LERP);
       ringY += (pointerY - ringY) * (reduced ? 1 : LERP);
-      ringTranslate.style.transform = `translate(${ringX}px, ${ringY}px)`;
-
       currentScale += (targetScale - currentScale) * (reduced ? 1 : LERP);
+
+      const settled =
+        Math.abs(pointerX - ringX) < SETTLE_PX &&
+        Math.abs(pointerY - ringY) < SETTLE_PX &&
+        Math.abs(targetScale - currentScale) < SETTLE_SCALE;
+      if (settled) {
+        ringX = pointerX;
+        ringY = pointerY;
+        currentScale = targetScale;
+      }
+
+      ringTranslate.style.transform = `translate(${ringX}px, ${ringY}px)`;
       ringScale.style.transform = `scale(${currentScale})`;
-      raf = requestAnimationFrame(follow);
+      raf = settled ? 0 : requestAnimationFrame(follow);
     };
+    window.addEventListener('mousemove', onMove);
     raf = requestAnimationFrame(follow);
 
     return () => {
