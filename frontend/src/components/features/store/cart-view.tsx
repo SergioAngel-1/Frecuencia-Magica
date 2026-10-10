@@ -26,6 +26,7 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
   const tStore = useTranslations('store');
   const setQuantity = useCartStore((state) => state.setQuantity);
   const productMedia = resolveEditorialMedia('store-product-visual', {
+    instance: product.id,
     alt: tStore('media.alt.product', {
       title: tStore(`products.${product.id}.title`),
     }),

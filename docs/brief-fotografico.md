@@ -175,7 +175,7 @@ Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota
 
 #### `academy-course-cover · El Arte de Volver a Ti` — Academia · portadas de curso · P1
 
-- **Qué falta:** Al llegar hay que pasar `instance` en el detalle de curso: hoy resuelve una portada compartida. En la lista, `c1` es el curso destacado y usa `academy.featured-course`.
+- **Qué falta:** En la lista, `c1` es el curso destacado y usa `academy.featured-course`: su portada sólo se ve en el detalle de curso.
 - **Archivo:** `academy-course-cover-c1.avif`
 - **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 y reescalar · peso ≤ 220 KB
 - **Ratio / focal:** 16:8 · foco 50% 40%
@@ -190,7 +190,6 @@ A person seen from behind sitting cross-legged on a rock at the edge of still wa
 
 #### `academy-course-cover · Rituales Conscientes` — Academia · portadas de curso · P1
 
-- **Qué falta:** Al llegar hay que pasar `instance` en la lista y en el detalle de curso (hoy comparten una portada).
 - **Archivo:** `academy-course-cover-c2.avif`
 - **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 y reescalar · peso ≤ 220 KB
 - **Ratio / focal:** 16:8 · foco 50% 40%
@@ -205,7 +204,6 @@ Hands arranging ritual objects on dark stone — a ceramic bowl, a candle, a spr
 
 #### `academy-course-cover · Aromas que Sanan` — Academia · portadas de curso · P1
 
-- **Qué falta:** Al llegar hay que pasar `instance` en la lista y en el detalle de curso (hoy comparten una portada).
 - **Archivo:** `academy-course-cover-c3.avif`
 - **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 y reescalar · peso ≤ 220 KB
 - **Ratio / focal:** 16:8 · foco 50% 40%
@@ -276,7 +274,7 @@ A small terrace at first light with a cushion and a steaming cup placed in the m
 
 #### `store-product-visual · Aceite Esencial · Cedro Sagrado` — Tienda · productos · P1
 
-- **Qué falta:** Al llegar hay que pasar `instance` en el catálogo de la tienda (hoy resuelve cada producto sin él). Es el producto destacado, a 16:8.
+- **Qué falta:** Es el producto destacado, a 16:8.
 - **Archivo:** `store-product-visual-p1.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
 - **Ratio / focal:** 1:1 · foco 50% 50%
@@ -291,7 +289,6 @@ An amber glass dropper bottle with a plain unmarked label and a cedar sprig besi
 
 #### `store-product-visual · Vela Ritual · Luz de Vela` — Tienda · productos · P1
 
-- **Qué falta:** Al llegar hay que pasar `instance` en el catálogo de la tienda.
 - **Archivo:** `store-product-visual-p2.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
 - **Ratio / focal:** 1:1 · foco 50% 50%
@@ -306,7 +303,6 @@ A honey-coloured wax candle in a dark glass vessel, lit, the flame reflected in 
 
 #### `store-product-visual · Cuarzo de Serenidad` — Tienda · productos · P1
 
-- **Qué falta:** Al llegar hay que pasar `instance` en el catálogo de la tienda.
 - **Archivo:** `store-product-visual-p3.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
 - **Ratio / focal:** 1:1 · foco 50% 50%
@@ -321,7 +317,6 @@ A clear quartz crystal point standing upright with faint lavender internal light
 
 #### `store-product-visual · Bruma de Enraizamiento` — Tienda · productos · P1
 
-- **Qué falta:** Al llegar hay que pasar `instance` en el catálogo de la tienda.
 - **Archivo:** `store-product-visual-p4.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
 - **Ratio / focal:** 1:1 · foco 50% 50%
@@ -336,7 +331,6 @@ A small dark-green glass spray bottle with a fine mist drifting from it, moss an
 
 #### `store-product-visual · Incienso · Bosque de Copal` — Tienda · productos · P1
 
-- **Qué falta:** Al llegar hay que pasar `instance` en el catálogo de la tienda.
 - **Archivo:** `store-product-visual-p5.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
 - **Ratio / focal:** 1:1 · foco 50% 50%
@@ -351,7 +345,6 @@ Chunks of pale copal resin in a small clay dish with a thin ribbon of smoke risi
 
 #### `store-product-visual · Sal de Baño · Luna Llena` — Tienda · productos · P1
 
-- **Qué falta:** Al llegar hay que pasar `instance` en el catálogo de la tienda.
 - **Archivo:** `store-product-visual-p6.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
 - **Ratio / focal:** 1:1 · foco 50% 50%
@@ -366,7 +359,6 @@ A glass jar of pale bath salts with a hint of lavender, a wooden scoop beside it
 
 #### `store-product-visual · Infusión · Calma de Cedro` — Tienda · productos · P1
 
-- **Qué falta:** Al llegar hay que pasar `instance` en el catálogo de la tienda.
 - **Archivo:** `store-product-visual-p7.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
 - **Ratio / focal:** 1:1 · foco 50% 50%
@@ -381,7 +373,6 @@ A handmade ceramic cup of steaming herbal infusion with dried herbs scattered ne
 
 #### `store-product-visual · Diario de Frecuencias` — Tienda · productos · P1
 
-- **Qué falta:** Al llegar hay que pasar `instance` en el catálogo de la tienda.
 - **Archivo:** `store-product-visual-p8.avif`
 - **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 y reescalar · peso ≤ 120 KB
 - **Ratio / focal:** 1:1 · foco 50% 50%

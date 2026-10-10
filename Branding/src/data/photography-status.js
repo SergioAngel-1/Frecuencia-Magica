@@ -59,17 +59,8 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
-  'academy-course-cover-c1.avif': 'Al llegar hay que pasar `instance` en el detalle de curso: hoy resuelve una portada compartida. En la lista, `c1` es el curso destacado y usa `academy.featured-course`.',
-  'academy-course-cover-c2.avif': 'Al llegar hay que pasar `instance` en la lista y en el detalle de curso (hoy comparten una portada).',
-  'academy-course-cover-c3.avif': 'Al llegar hay que pasar `instance` en la lista y en el detalle de curso (hoy comparten una portada).',
-  'store-product-visual-p1.avif': 'Al llegar hay que pasar `instance` en el catálogo de la tienda (hoy resuelve cada producto sin él). Es el producto destacado, a 16:8.',
-  'store-product-visual-p2.avif': 'Al llegar hay que pasar `instance` en el catálogo de la tienda.',
-  'store-product-visual-p3.avif': 'Al llegar hay que pasar `instance` en el catálogo de la tienda.',
-  'store-product-visual-p4.avif': 'Al llegar hay que pasar `instance` en el catálogo de la tienda.',
-  'store-product-visual-p5.avif': 'Al llegar hay que pasar `instance` en el catálogo de la tienda.',
-  'store-product-visual-p6.avif': 'Al llegar hay que pasar `instance` en el catálogo de la tienda.',
-  'store-product-visual-p7.avif': 'Al llegar hay que pasar `instance` en el catálogo de la tienda.',
-  'store-product-visual-p8.avif': 'Al llegar hay que pasar `instance` en el catálogo de la tienda.',
+  'academy-course-cover-c1.avif': 'En la lista, `c1` es el curso destacado y usa `academy.featured-course`: su portada sólo se ve en el detalle de curso.',
+  'store-product-visual-p1.avif': 'Es el producto destacado, a 16:8.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */

@@ -34,6 +34,7 @@ export default async function StorePage({ params }: PageProps) {
       return [
         product.id,
         resolveEditorialMedia('store-product-visual', {
+          instance: product.id,
           alt: t('media.alt.product', { title }),
           aspect: featured ? '16:8' : '1:1',
           sizes: featured

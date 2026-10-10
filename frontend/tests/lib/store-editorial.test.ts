@@ -115,6 +115,22 @@ describe('store editorial composition contracts', () => {
     expect(PRODUCTS).toHaveLength(8);
   });
 
+  it('resolves every product visual per product, so each published instance paints itself', () => {
+    // Sin `instance`, `store-product-visual:p3` nunca se vería.
+    const sources = [
+      { source: storePageSource, instance: 'instance: product.id' },
+      { source: cartSource, instance: 'instance: product.id' },
+      { source: productPageSource, instance: 'instance: relatedProduct.id' },
+    ];
+    for (const { source, instance } of sources) {
+      const resolutions = source.split("resolveEditorialMedia('store-product-visual'").slice(1);
+      expect(resolutions.length).toBeGreaterThan(0);
+      for (const call of resolutions) {
+        expect(call.slice(0, call.indexOf('})'))).toContain(instance);
+      }
+    }
+  });
+
   it('recomposes detail around dominant media and keeps purchase and frequency seams', () => {
     expect(productPageSource).toContain('const locale = await resolveLocale(params);');
     expect(productPageSource).toContain("getTranslations({ locale, namespace: 'store' })");

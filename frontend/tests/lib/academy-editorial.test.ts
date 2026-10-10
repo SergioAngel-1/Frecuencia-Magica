@@ -77,6 +77,21 @@ describe('academy editorial composition contracts', () => {
     expect(listSource).toContain('data-editorial-archive="true"');
   });
 
+  it('resolves one course cover per course, so each published instance paints itself', () => {
+    // Una portada compartida haría que `academy-course-cover:c2` nunca se viera.
+    expect(pageSource).toContain('COURSES.map((course)');
+    expect(pageSource).toContain('instance: course.id');
+    expect(listSource).toContain('media.courseCovers[course.id]');
+    expect(coursePageSource).toContain('instance: course.id');
+    for (const source of [pageSource, coursePageSource]) {
+      const resolutions = source.split("resolveEditorialMedia('academy-course-cover'").slice(1);
+      expect(resolutions.length).toBeGreaterThan(0);
+      for (const call of resolutions) {
+        expect(call.slice(0, call.indexOf('})'))).toContain('instance: course.id');
+      }
+    }
+  });
+
   it('keeps course covers as EditorialImage fields with the card crop and localized alt', () => {
     expect(cardSource).toContain('<EditorialImage');
     expect(cardSource).toContain('data-editorial-media="academy-course-cover"');
