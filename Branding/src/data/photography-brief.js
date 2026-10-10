@@ -2,8 +2,19 @@
  * Renderiza el brief fotográfico como Markdown. JS puro: lo usan la página `/fotografia`
  * (botón de descarga) y `scripts/export-photo-brief.mjs`, que escribe `docs/brief-fotografico.md`.
  */
-import { DELIVERY, GLOBAL, LANGUAGE, PRESETS, SAFE, expandAll, formatSize, negativeFor, summarize } from './photography.js'
-import { SEVERITIES, STATES, STATE_LABELS, statusOf } from './photography-status.js'
+import {
+  DELIVERY,
+  GLOBAL,
+  LANGUAGE,
+  PRESETS,
+  PROMPT_WRITING,
+  SAFE,
+  expandAll,
+  formatSize,
+  negativeFor,
+  summarize,
+} from './photography.js'
+import { STATES, STATE_LABELS, correctionLines, groupByState, statusOf } from './photography-status.js'
 
 const fence = (text) => ['```text', text, '```'].join('\n')
 const cell = (text) => String(text).replaceAll('|', '\\|')
@@ -18,12 +29,14 @@ function sizeLine(row) {
   return `${formatSize(row.size)} · ${row.ratio}`
 }
 
-/** Línea de estado de una entrada completa: la desviación de las que se corrigen, o lo que falta. */
-function statusBullet(status) {
-  if (!status.note) return null
-  if (status.state === 'corregir') return `- **Desviación (${status.severity}):** ${status.note}`
+/**
+ * Líneas de estado de una entrada completa: en las que se corrigen, el resultado, la parte del prompt
+ * donde nació la desviación y el refuerzo ya aplicado; en las demás, lo que falta.
+ */
+function statusLines(status) {
+  if (status.state === 'corregir') return correctionLines(status)
 
-  return `- **Qué falta:** ${status.note}`
+  return status.note ? [`- **Qué falta:** ${status.note}`] : []
 }
 
 const ratioOf = (row) => (row.preset ? PRESETS[row.preset].ratio : row.ratio)
@@ -31,8 +44,10 @@ const ratioOf = (row) => (row.preset ? PRESETS[row.preset].ratio : row.ratio)
 /** Qué cuenta cada sección, antes de sus imágenes. */
 const INTRO = {
   corregir:
-    'Entregadas y publicadas, pero desviadas del brief o de su prompt. Van de más a menos grave; la gravedad es criterio visual, ' +
-    'y la baja no justifica regenerar salvo que se vea mal en pantalla. Cada entrada trae el prompt para regenerarla.',
+    'Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente: primero la gravedad y, a igual gravedad, la ' +
+    'prioridad de la vista (P0 → P2). La gravedad es criterio visual, y la baja no justifica regenerar salvo que se vea mal en pantalla. ' +
+    'Cada entrada dice qué parte del prompt falló según el resultado ' +
+    'y trae ya el prompt con ese punto reforzado, listo para regenerarla.',
   faltante: 'Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.',
   'por-cablear':
     'Entregadas, pero sin slot en el registro (`frontend/src/config/editorial-media.ts`) ni pantalla que las pinte. ' +
@@ -66,9 +81,9 @@ function renderTable(state, items) {
 function renderRow(row, status) {
   const heading = row.title ? `${row.slotId} · ${row.title}` : row.slotId
   const lines = [
-    `#### \`${heading}\` — ${row.view} · ${row.priority}`,
+    `#### \`${heading}\` — ${row.view} · ${row.priority}${status.severity ? ` · gravedad ${status.severity}` : ''}`,
     '',
-    ...(statusBullet(status) ? [statusBullet(status)] : []),
+    ...statusLines(status),
     `- **Archivo:** \`${row.file}\``,
     `- **Medidas:** ${sizeLine(row)}`,
     `- **Ratio / focal:** ${row.preset ? PRESETS[row.preset].ratio : row.ratio} · foco ${row.focal}`,
@@ -90,16 +105,7 @@ function renderRow(row, status) {
 export function renderBrief() {
   const rows = expandAll()
   const summary = summarize()
-  const byState = new Map(STATES.map((state) => [state, []]))
-
-  for (const row of rows) {
-    const status = statusOf(row.file)
-    byState.get(status.state).push({ row, status })
-  }
-
-  // Dentro de «a corregir», primero lo que más se nota (el orden estable conserva el de las vistas).
-  byState.get('corregir').sort((a, b) => SEVERITIES.indexOf(a.status.severity) - SEVERITIES.indexOf(b.status.severity))
-
+  const byState = groupByState(rows)
   const count = (state) => byState.get(state).length
 
   const out = [
@@ -150,6 +156,10 @@ export function renderBrief() {
     '**Reglas**',
     '',
     ...GLOBAL.rules.map((rule) => `- ${rule}`),
+    '',
+    '**Cómo redactar el prompt** (aprendido de las desviaciones: casi todas nacieron de una contradicción o una frase ambigua del propio prompt)',
+    '',
+    ...PROMPT_WRITING.map((rule) => `- ${rule}`),
     '',
     '## 3. Medidas',
     '',

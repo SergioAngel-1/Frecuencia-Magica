@@ -8,6 +8,7 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { expandAll } from '../src/data/photography.js'
+import { STATES, STATE_LABELS, correctionLines, groupByState } from '../src/data/photography-status.js'
 
 const AVOID =
   'Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, ' +
@@ -23,30 +24,59 @@ const FORMAT = {
   '1.91:1': 'Wide landscape image, 16:9 aspect ratio (it will be cropped to 1.91:1).',
 }
 const RATIO = { wide: '16:9', cinema: '16:8', portrait: '3:4', square: '1:1' }
-const ORDER = { P0: 0, P1: 1, P2: 2 }
 
-const rows = expandAll()
-  .map((row, index) => ({ ...row, index, ratio: row.ratio ?? RATIO[row.preset] }))
-  .sort((a, b) => ORDER[a.priority] - ORDER[b.priority] || a.index - b.index)
+/** Qué hacer con cada sección, antes de sus imágenes. */
+const INTRO = {
+  corregir:
+    'Entregadas con una desviación. Cada entrada dice qué parte del prompt falló según el resultado y trae ya el prompt con ese punto reforzado: regenera con él en un chat nuevo. Van de más a menos urgente: primero la gravedad y, a igual gravedad, la prioridad de la vista (P0 → P2). La baja no justifica regenerar salvo que se vea mal en pantalla.',
+  faltante: 'Aún sin entregar. Guárdalas con el nombre indicado para que se procesen solas.',
+  'por-cablear':
+    'Entregadas (los `states-<estado>.png` ya están en `frontend/public/editorial/`); lo que falta es la vista. El prompt sólo sirve si hay que repetirlas.',
+  'sin-uso': 'Publicadas, pero ninguna vista las pinta hoy. El prompt sólo sirve si se rehacen.',
+  completada: 'Entregadas y sin desviación conocida. Se conserva el prompt por si hay que repetirlas.',
+}
+
+const rows = expandAll().map((row) => ({ ...row, ratio: row.ratio ?? RATIO[row.preset] }))
+const byState = groupByState(rows)
+const SHORT = {
+  corregir: 'a corregir',
+  faltante: 'faltantes',
+  'por-cablear': 'por cablear',
+  'sin-uso': 'no tenidas en cuenta',
+  completada: 'completadas',
+}
+const counts = STATES.map((state) => `${byState.get(state).length} ${SHORT[state]}`).join(' · ')
 
 const out = [
   '# Prompts para ChatGPT — Frecuencia Mágica',
   '',
   '> Generado por `npm run export:chatgpt-prompts` (desde `Branding/`) con los mismos datos que `docs/brief-fotografico.md`. No editar a mano.',
   '> Uso: un chat nuevo de ChatGPT por imagen (así no arrastra el estilo de la anterior), pega el bloque entero sin adjuntar nada, descarga y guarda con el nombre indicado en `frontend/public/editorial/`. Si cambia algo, pide la corrección concreta en el mismo chat en vez de regenerar desde cero.',
+  '> El orden y las secciones son los de la sección 5 de `docs/brief-fotografico.md`; el estado de cada imagen vive en `Branding/src/data/photography-status.js`.',
   '',
-  `**${rows.length} imágenes**, ordenadas por prioridad (P0 → P2).`,
+  `**${rows.length} imágenes:** ${counts}. Lo que hay que generar o regenerar está en las dos primeras secciones.`,
   '',
 ]
 
-for (const [n, row] of rows.entries()) {
-  const label = row.title ? `${row.view} · ${row.title}` : row.view
-  const avoid = row.realShoot ? AVOID_PORTRAIT : AVOID
-  out.push(`## ${n + 1}. ${row.priority} · ${label}`, '')
-  out.push(`- **Guardar como:** \`${row.file.replace(/\.(avif|jpg)$/, '.png')}\` (luego se convierte a \`${row.file}\`)`)
-  out.push(`- **Formato:** ${row.ratio}`)
-  if (row.realShoot) out.push('- **Ojo:** sólo moodboard; la imagen publicada sale de una sesión real con Marisol.')
-  out.push('', '```text', `Create an image. Follow this description exactly and do not add elements, text or effects that are not described. ${FORMAT[row.ratio]} ${row.prompt} ${avoid}`, '```', '')
+for (const [index, state] of STATES.entries()) {
+  const items = byState.get(state)
+
+  out.push(`## ${index + 1}. ${STATE_LABELS[state]} (${items.length})`, '', INTRO[state], '')
+  if (items.length === 0) out.push('Ninguna.', '')
+
+  for (const [position, { row, status }] of items.entries()) {
+    const label = row.title ? `${row.view} · ${row.title}` : row.view
+    const avoid = row.realShoot ? AVOID_PORTRAIT : AVOID
+    // En «a corregir» el título lleva la gravedad: el orden es el de urgencia y así se lee de un vistazo.
+    const level = state === 'corregir' ? ` · ${status.severity}` : ''
+    out.push(`### ${index + 1}.${position + 1}${level} · ${row.priority} · ${label}`, '')
+    out.push(`- **Guardar como:** \`${row.file.replace(/\.(avif|jpg)$/, '.png')}\` (luego se convierte a \`${row.file}\`)`)
+    out.push(`- **Formato:** ${row.ratio}`)
+    if (state === 'corregir') out.push(...correctionLines(status))
+    else if (status.note) out.push(`- **Nota:** ${status.note}`)
+    if (row.realShoot) out.push('- **Ojo:** sólo moodboard; la imagen publicada sale de una sesión real con Marisol.')
+    out.push('', '```text', `Create an image. Follow this description exactly and do not add elements, text or effects that are not described. ${FORMAT[row.ratio]} ${row.prompt} ${avoid}`, '```', '')
+  }
 }
 
 const target = resolve(dirname(fileURLToPath(import.meta.url)), '../../docs/prompts-chatgpt.md')
