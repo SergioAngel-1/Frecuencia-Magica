@@ -9,7 +9,8 @@
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "export:photo-brief": "node scripts/export-photo-brief.mjs"
+    "export:photo-brief": "node scripts/export-photo-brief.mjs",
+    "export:chatgpt-prompts": "node scripts/export-chatgpt-prompts.mjs"
   },
   "dependencies": {
     "react": "^19.2.7",
