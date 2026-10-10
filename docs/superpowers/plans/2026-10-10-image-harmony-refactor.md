@@ -224,9 +224,9 @@
 
 **Archivos:** `frontend/package.json` y `frontend/package-lock.json`.
 
-- [ ] Declarar `sharp` en `devDependencies`, con la versión que ya resuelve `next` (`npm ls sharp`), para no duplicarlo.
-- [ ] Verificar que `npm ci` sigue limpio y que el gate pasa.
-- [ ] Commit: `build(frontend): declare sharp for the editorial ingest`.
+- [x] Declarar `sharp` en `devDependencies`, con la versión que ya resuelve `next` (`npm ls sharp`), para no duplicarlo.
+- [x] Verificar que `npm ci` sigue limpio y que el gate pasa.
+- [x] Commit: `build(frontend): declare sharp for the editorial ingest`.
 
 ### Tarea 11: Ampliar los originales a 2880 px — fuera del repo, con revisión
 
