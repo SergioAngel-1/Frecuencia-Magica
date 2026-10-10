@@ -125,8 +125,18 @@ export default async function HomePage({ params }: PageProps) {
         />
       </BandChain>
 
-      {/* Ninguna sección trae su propio margen exterior: lo pone este contenedor. */}
-      <div className="py-section relative flex flex-col">
+      {/* Ninguna sección trae su propio margen exterior: lo pone este contenedor.
+          La membresía sigue al bento de realms y Marisol cierra la página antes
+          de la despedida del footer: entre una y otra, el ritmo es `section`. */}
+      <div className="py-section gap-section relative flex flex-col">
+        <MembershipSection
+          media={homeMedia.membership}
+          kicker={t('membership.kicker')}
+          title={t('membership.title')}
+          description={t('membership.description')}
+          cta={t('membership.cta')}
+        />
+
         <AboutSection
           media={homeMedia.marisol}
           kicker={t('about.kicker')}
@@ -140,17 +150,6 @@ export default async function HomePage({ params }: PageProps) {
           }
         />
       </div>
-
-      {/* La membresía continúa en el banner de cierre del footer. */}
-      <BandChain intoFooter>
-        <MembershipSection
-          media={homeMedia.membership}
-          kicker={t('membership.kicker')}
-          title={t('membership.title')}
-          description={t('membership.description')}
-          cta={t('membership.cta')}
-        />
-      </BandChain>
     </PageShell>
   );
 }

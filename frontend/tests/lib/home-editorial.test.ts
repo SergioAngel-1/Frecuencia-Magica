@@ -178,6 +178,14 @@ describe('home editorial composition contracts', () => {
     expect(readSource('components/ui/full-bleed-section.tsx')).toContain('mediaClassName');
   });
 
+  it('keeps the face of Marisol clear: frame and sub-frame, no rings over the portrait', () => {
+    const portrait = readSource('components/features/about/marisol-portrait.tsx');
+
+    expect(portrait).toContain('rounded-[200px_200px_8px_8px] border');
+    expect(portrait).toContain('rounded-[45%] border');
+    expect(portrait).not.toContain('OrbitalRings');
+  });
+
   it('makes absent editorial media fill its positioned wrapper', () => {
     const imageSource = readSource('components/ui/editorial-image.tsx');
 

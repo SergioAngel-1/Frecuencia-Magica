@@ -53,7 +53,7 @@ export function SiteFooter() {
       <div className="border-ivory/10 pt-block border-t" data-footer-lead>
         {realmId === 'home' ? (
           <div className="mb-section">
-            {/* Cierre distinto de la oferta de membresía que lo precede: la
+            {/* Cierre distinto de la oferta de membresía de la home: la
               despedida invita a volver, no repite la llamada a inscribirse. */}
             <EditorialBanner
               media={footerMedia}

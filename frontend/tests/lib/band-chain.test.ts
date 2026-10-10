@@ -53,13 +53,25 @@ describe('band chain', () => {
       return source.slice(start, source.indexOf('</BandChain>', start));
     };
 
-    // Inicio: héroe → frecuencia del día → banner de realms; membresía → banner del footer.
+    // Inicio: héroe → frecuencia del día → banner de realms, encadenados. Después,
+    // con el ritmo `section`, la membresía (banda suelta) y Marisol, que cierra
+    // la página antes de la despedida del footer.
     const home = view('app/[locale]/inicio/page.tsx');
     const homeChain = chainOf(home);
     expect(homeChain.indexOf('<HeroSection')).toBeGreaterThan(-1);
     expect(homeChain.indexOf('<DailyFrequency')).toBeGreaterThan(homeChain.indexOf('<HeroSection'));
     expect(homeChain.indexOf('<RealmsGrid')).toBeGreaterThan(homeChain.indexOf('<DailyFrequency'));
-    expect(chainOf(home, ' intoFooter')).toContain('<MembershipSection');
+    expect(homeChain).not.toContain('<MembershipSection');
+    const afterChain = home.slice(home.indexOf('</BandChain>'));
+    expect(afterChain).toContain('py-section gap-section');
+    expect(afterChain.indexOf('<MembershipSection')).toBeGreaterThan(-1);
+    expect(afterChain.indexOf('<AboutSection')).toBeGreaterThan(
+      afterChain.indexOf('<MembershipSection'),
+    );
+    // Marisol no es una banda: el footer recupera su filete y su hueco.
+    expect(home).not.toContain('<BandChain intoFooter>');
+    // `intoFooter` sigue siendo una primitiva disponible del UI Kit.
+    expect(CHAIN).toMatch(/data-band-chain=\{intoFooter \? 'footer' : 'true'\}/);
     expect(view('components/features/home/daily-frequency.tsx')).toContain('mode="anchored"');
 
     // Resonario: héroe → banner del archivo.
