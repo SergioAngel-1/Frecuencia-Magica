@@ -47,6 +47,8 @@ export async function generateMetadata({ params }: { params: LocaleParams }): Pr
       template: `%s · ${t('brand')}`,
     },
     description: t('tagline'),
+    // Sin icono declarado, cada vista pedía un `/favicon.ico` que no existe (404).
+    icons: { icon: '/logo.png', apple: '/logo.png' },
     openGraph: { type: 'website', siteName: t('brand'), images },
     twitter: { card: 'summary_large_image', images },
   };
