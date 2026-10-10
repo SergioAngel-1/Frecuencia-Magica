@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 
 import enMessages from '../../messages/en.json';
 import esMessages from '../../messages/es.json';
+import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
 const SOURCE_ROOT = resolve(process.cwd(), 'src');
@@ -21,12 +22,14 @@ const AUTH_SLOTS = [
 ];
 
 describe('auth editorial composition', () => {
-  it('resolves both access surfaces to named zebra fallbacks without inventing a source', () => {
+  it('resolves both access surfaces to their published photo or a named fallback, never an invented source', () => {
     for (const { slot, aspect } of AUTH_SLOTS) {
       const media = resolveEditorialMedia(slot, { alt: 'Editorial access atmosphere' });
+      // La única fuente legítima es la publicada en el manifiesto; nada se inventa.
+      const published = EDITORIAL_ASSETS[slot];
 
-      expect(media.kind).toBe('fallback');
-      expect(media.src).toBeUndefined();
+      expect(media.kind).toBe(published ? 'photo' : 'fallback');
+      expect(media.src).toBe(published);
       expect(media.slot).toBe(slot);
       expect(media.aspect).toBe(aspect);
     }

@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 
 import enMessages from '../../messages/en.json';
 import esMessages from '../../messages/es.json';
+import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import { EDITORIAL_MEDIA_REGISTRY } from '@/config/editorial-media';
 import { AUDIOS, COURSES } from '@/data';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -40,12 +41,14 @@ const es = esMessages.sanctuary as unknown as SanctuaryMessages;
 const en = enMessages.sanctuary as unknown as SanctuaryMessages;
 
 describe('sanctuary editorial composition contracts', () => {
-  it('resolves all five sanctuary slots to zebra fallbacks without inventing media', () => {
+  it('resolves all five sanctuary slots to their published photo or a fallback, never invented media', () => {
     for (const { slot, aspect } of SANCTUARY_SLOTS) {
       const media = resolveEditorialMedia(slot, { alt: `Sanctuary ${slot}` });
+      // La única fuente legítima es la publicada en el manifiesto; nada se inventa.
+      const published = EDITORIAL_ASSETS[slot];
 
-      expect(media).toMatchObject({ kind: 'fallback', slot, aspect });
-      expect(media.src).toBeUndefined();
+      expect(media).toMatchObject({ kind: published ? 'photo' : 'fallback', slot, aspect });
+      expect(media.src).toBe(published);
       expect(EDITORIAL_MEDIA_REGISTRY[slot]).toBeDefined();
     }
   });

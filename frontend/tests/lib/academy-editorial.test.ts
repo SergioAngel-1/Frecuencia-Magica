@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 
 import enMessages from '../../messages/en.json';
 import esMessages from '../../messages/es.json';
+import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import { EDITORIAL_MEDIA_REGISTRY } from '@/config/editorial-media';
 import { COURSES } from '@/data';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -37,12 +38,14 @@ const esAcademy = esMessages.academy as unknown as AcademyMediaMessages;
 const enAcademy = enMessages.academy as unknown as AcademyMediaMessages;
 
 describe('academy editorial composition contracts', () => {
-  it('resolves every academy slot to a localized zebra fallback without inventing media', () => {
+  it('resolves every academy slot to its published photo or a fallback, never invented media', () => {
     for (const { slot, aspect } of ACADEMY_SLOTS) {
       const media = resolveEditorialMedia(slot, { alt: `Academy ${slot}` });
+      // La única fuente legítima es la publicada en el manifiesto; nada se inventa.
+      const published = EDITORIAL_ASSETS[slot];
 
-      expect(media).toMatchObject({ kind: 'fallback', slot, aspect });
-      expect(media.src).toBeUndefined();
+      expect(media).toMatchObject({ kind: published ? 'photo' : 'fallback', slot, aspect });
+      expect(media.src).toBe(published);
       expect(EDITORIAL_MEDIA_REGISTRY[slot]).toBeDefined();
     }
   });

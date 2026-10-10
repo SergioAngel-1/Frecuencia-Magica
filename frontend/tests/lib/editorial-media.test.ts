@@ -1,7 +1,15 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { mediaLayout } from '@/lib/editorial/media-layout';
+
+// El manifiesto real crece con cada imagen publicada: el contrato no puede depender de él.
+vi.mock('@/config/editorial-assets.generated', () => ({
+  EDITORIAL_ASSETS: {
+    'discover.hero': '/editorial/discover-hero.avif',
+    'resonario.audio-cover:a1': '/editorial/resonario-audio-cover-a1.avif',
+  },
+}));
 
 describe('editorial media contracts', () => {
   it('uses a zebra fallback without inventing a URL when a slot has no source', () => {
@@ -30,6 +38,40 @@ describe('editorial media contracts', () => {
       slot: 'portal.hero',
       kind: 'photo',
     });
+  });
+
+  it('takes the published asset of a slot when the view passes no source', () => {
+    expect(resolveEditorialMedia('discover.hero', { alt: 'x' })).toMatchObject({
+      src: '/editorial/discover-hero.avif',
+      kind: 'photo',
+    });
+  });
+
+  it('lets an explicit source win over the published asset', () => {
+    const media = resolveEditorialMedia('discover.hero', { src: '/editorial/otra.avif', alt: 'x' });
+
+    expect(media.src).toBe('/editorial/otra.avif');
+  });
+
+  it('resolves a per-item slot by instance, replacing the wildcard of the slot id', () => {
+    const withPhoto = resolveEditorialMedia('resonario.audio-cover.*', {
+      instance: 'a1',
+      alt: 'x',
+    });
+    const withoutPhoto = resolveEditorialMedia('resonario.audio-cover.*', {
+      instance: 'a2',
+      alt: 'x',
+    });
+    const noInstance = resolveEditorialMedia('resonario.audio-cover.*', { alt: 'x' });
+
+    expect(withPhoto).toMatchObject({
+      src: '/editorial/resonario-audio-cover-a1.avif',
+      kind: 'photo',
+    });
+    // Un ítem sin foto no hereda la de otro: pinta el fallback de su contrato.
+    expect(withoutPhoto.kind).toBe('fallback');
+    expect(withoutPhoto.src).toBeUndefined();
+    expect(noInstance.src).toBeUndefined();
   });
 
   it('returns deterministic layout contracts for each editorial mode', () => {

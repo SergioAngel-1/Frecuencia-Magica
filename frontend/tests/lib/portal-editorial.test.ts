@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
+import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import { EDITORIAL_MEDIA_REGISTRY } from '@/config/editorial-media';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -20,18 +21,20 @@ const localizedNotFoundSource = readFileSync(
 const FALLBACK_SLOTS = ['portal.hero', 'portal.portal-field', 'not-found.hero'] as const;
 
 describe('portal editorial threshold contracts', () => {
-  it('resolves every threshold slot to a named zebra fallback without inventing a source', () => {
+  it('resolves every threshold slot to its published photo or a named fallback, never an invented source', () => {
     for (const slot of FALLBACK_SLOTS) {
       const media = resolveEditorialMedia(slot, {
         alt: EDITORIAL_MEDIA_REGISTRY[slot].alt,
       });
+      // La única fuente legítima es la publicada en el manifiesto; nada se inventa.
+      const published = EDITORIAL_ASSETS[slot];
 
       expect(media).toMatchObject({
         alt: EDITORIAL_MEDIA_REGISTRY[slot].alt,
-        kind: 'fallback',
+        kind: published ? 'photo' : 'fallback',
         slot,
       });
-      expect(media.src).toBeUndefined();
+      expect(media.src).toBe(published);
     }
   });
 

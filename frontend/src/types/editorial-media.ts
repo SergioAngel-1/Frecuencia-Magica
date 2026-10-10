@@ -27,7 +27,10 @@ export type EditorialMedia = {
   sizes: string;
 };
 
-export type EditorialMediaInput = Partial<Omit<EditorialMedia, 'slot' | 'fallback'>>;
+export type EditorialMediaInput = Partial<Omit<EditorialMedia, 'slot' | 'fallback'>> & {
+  /** Id del ítem del catálogo (`a1`, `c1`, `p1`…) para los slots que se repiten por ítem. */
+  instance?: string;
+};
 
 /** Lo que `EditorialImage` pinta de verdad para un slot resuelto. */
 export type EditorialVisual = 'photo' | 'zebra' | 'band' | 'none';

@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 
 import enMessages from '../../messages/en.json';
 import esMessages from '../../messages/es.json';
+import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import { EDITORIAL_MEDIA_REGISTRY } from '@/config/editorial-media';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { DISCOVER_MEDIA_SLOTS, selectDiscoverMedia } from '@/lib/discover/media';
@@ -59,9 +60,12 @@ describe('Descúbrete editorial composition', () => {
       const selected = selectDiscoverMedia(phase, media);
       const slot = DISCOVER_MEDIA_SLOTS[phase];
 
+      // La única fuente legítima es la publicada en el manifiesto; nada se inventa.
+      const published = EDITORIAL_ASSETS[slot];
+
       expect(selected).toBe(phaseMedia[phase]);
-      expect(selected.kind).toBe('fallback');
-      expect(selected.src).toBeUndefined();
+      expect(selected.kind).toBe(published ? 'photo' : 'fallback');
+      expect(selected.src).toBe(published);
       expect(selected.slot).toBe(slot);
       expect(EDITORIAL_MEDIA_REGISTRY[slot]).toBeDefined();
     }
