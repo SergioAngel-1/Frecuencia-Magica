@@ -753,12 +753,18 @@
     "errorBody": "La frecuencia se perdió un momento. Respira e inténtalo otra vez.",
     "errorCta": "Reintentar",
     "offline": "Estás sin conexión. El santuario te espera cuando vuelvas.",
+    "offlineKicker": "Sin conexión",
+    "offlineDismiss": "Seguir aquí",
     "payFailedTitle": "El pago no se completó",
     "payFailedBody": "Nada se ha cargado todavía. Respira e inténtalo de nuevo cuando quieras.",
     "payFailedCta": "Intentar de nuevo",
     "media": {
       "alt": {
-        "notFound": "Un rincón sereno del cosmos para retomar el camino"
+        "notFound": "Un rincón sereno del cosmos para retomar el camino",
+        "loading": "Una esfera de luz dorada respira sobre el agua mientras esperas",
+        "empty": "Una columna de luz lavanda sobre el agua quieta: espacio abierto para ti",
+        "error": "Una vela sigue encendida junto al agua: algo se interrumpió, tu luz no",
+        "offline": "Una cabaña encendida junto a un lago en bruma: tu retiro breve hasta que vuelva la conexión"
       }
     }
   }

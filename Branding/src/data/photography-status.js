@@ -43,13 +43,9 @@ export const CORRECT = {
 
 /**
  * Entregadas, pero sin slot en el registro ni pantalla que las pinte: hay que crear ambos.
- * Los archivos están en `frontend/public/editorial/` como `states-<estado>.png`, sin convertir.
+ * Se dejan como `<slot>.png` sin convertir en `frontend/public/editorial/` hasta cablearlas.
  */
 export const UNWIRED = {
-  'states-loading.avif': 'Pantalla de carga: `RealmLoading` y los `loading.tsx`.',
-  'states-empty.avif': 'Pantalla de vacío: `EmptyState`, del UI Kit puro, así que habría que pasarle la imagen por props.',
-  'states-error.avif': 'Pantalla de error: `app/[locale]/error.tsx`.',
-  'states-offline.avif': 'No existe ninguna pantalla de sin conexión: el texto `states.offline` está en los mensajes, pero nada lo pinta. Hay que crear la vista.',
 }
 
 /**
@@ -78,6 +74,10 @@ export const PENDING_NOTES = {
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
 export const COMPLETED = [
+  'states-loading.avif',
+  'states-empty.avif',
+  'states-error.avif',
+  'states-offline.avif',
   'portal-portal-field.avif',
   'not-found-hero.avif',
   'home-daily-frequency.avif',

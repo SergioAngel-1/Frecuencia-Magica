@@ -5,9 +5,9 @@
 > El contrato que manda es `frontend/src/config/editorial-media.ts` (ratio, prioridad, focal); un test de la web falla si el brief se desvía.
 > Dirección vigente: enmienda 2026-10-10 de `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md` — la imagen es el paisaje luminoso; el world engine es su energía.
 
-**66 imágenes** (43 slots registrados, varios por instancia; 5 fuera del registro): P0 4 · P1 47 · P2 15. 1 requiere sesión real (retrato de Marisol).
+**66 imágenes** (47 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 47 · P2 15. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 45 completadas · 0 a corregir · 15 faltantes · 4 por cablear · 2 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 49 completadas · 0 a corregir · 15 faltantes · 0 por cablear · 2 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -151,10 +151,10 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `sanctuary-daily.avif` | Mi Santuario · práctica diaria | 1:1 | 1024×1024 | P1 | Completadas |
 | `sanctuary-journal.avif` | Mi Santuario · diario | 3:4 | 1440×1920 | P2 | Completadas |
 | `sanctuary-empty.avif` | Mi Santuario · vacío | 16:9 | 2880×1620 | P2 | Completadas |
-| `states-loading.avif` | Estados · carga | 16:9 | 2880×1620 | P2 | Por cablear (crear vistas) |
-| `states-empty.avif` | Estados · vacío | 16:9 | 2880×1620 | P2 | Por cablear (crear vistas) |
-| `states-error.avif` | Estados · error | 16:9 | 2880×1620 | P2 | Por cablear (crear vistas) |
-| `states-offline.avif` | Estados · sin conexión | 16:9 | 2880×1620 | P2 | Por cablear (crear vistas) |
+| `states-loading.avif` | Estados · carga | 16:9 | 2880×1620 | P2 | Completadas |
+| `states-empty.avif` | Estados · vacío | 16:9 | 2880×1620 | P2 | Completadas |
+| `states-error.avif` | Estados · error | 16:9 | 2880×1620 | P2 | Completadas |
+| `states-offline.avif` | Estados · sin conexión | 16:9 | 2880×1620 | P2 | Completadas |
 | `og-image.jpg` | Metadatos · Open Graph | 1.91:1 | 1200×630 | P0 | Completadas |
 
 ## 5. Estado de las imágenes
@@ -394,16 +394,11 @@ A handmade ceramic cup of steaming herbal infusion with dried herbs scattered ne
 A linen-bound notebook closed, its cover plain unmarked linen, a brass pen lying across it. One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
 ```
 
-### 5.3 Por cablear (crear vistas) (4)
+### 5.3 Por cablear (crear vistas) (0)
 
 Entregadas, pero sin slot en el registro (`frontend/src/config/editorial-media.ts`) ni pantalla que las pinte. Los archivos están en `frontend/public/editorial/` como `states-<estado>.png`, sin convertir.
 
-| Archivo | Vista | Qué falta |
-|---|---|---|
-| `states-loading.avif` | Estados · carga | Pantalla de carga: `RealmLoading` y los `loading.tsx`. |
-| `states-empty.avif` | Estados · vacío | Pantalla de vacío: `EmptyState`, del UI Kit puro, así que habría que pasarle la imagen por props. |
-| `states-error.avif` | Estados · error | Pantalla de error: `app/[locale]/error.tsx`. |
-| `states-offline.avif` | Estados · sin conexión | No existe ninguna pantalla de sin conexión: el texto `states.offline` está en los mensajes, pero nada lo pinta. Hay que crear la vista. |
+Ninguna.
 
 ### 5.4 No tenidas en cuenta (2)
 
@@ -414,7 +409,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 | `resonario-audio-cover-a1.avif` | Resonario · portadas · Regreso a la Calma | `a1` es siempre el audio destacado del resonario, que usa `resonario.featured`. Hay que usarla en otra vista o retirarla. |
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (45)
+### 5.5 Completadas (49)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -464,4 +459,8 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `sanctuary-daily.avif` | Mi Santuario · práctica diaria | `sanctuary.daily` | 1:1 | P1 |
 | `sanctuary-journal.avif` | Mi Santuario · diario | `sanctuary.journal` | 3:4 | P2 |
 | `sanctuary-empty.avif` | Mi Santuario · vacío | `sanctuary.empty` | 16:9 | P2 |
+| `states-loading.avif` | Estados · carga | `states.loading` | 16:9 | P2 |
+| `states-empty.avif` | Estados · vacío | `states.empty` | 16:9 | P2 |
+| `states-error.avif` | Estados · error | `states.error` | 16:9 | P2 |
+| `states-offline.avif` | Estados · sin conexión | `states.offline` | 16:9 | P2 |
 | `og-image.jpg` | Metadatos · Open Graph | `og-image` | 1.91:1 | P0 |

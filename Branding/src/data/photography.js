@@ -539,6 +539,32 @@ export const SLOTS = [
     'Luminous emptiness: an empty dark space opening onto still water, a soft pool of light gathering in the center of the floor and reflecting in the water beyond, dust motes drifting, no objects, the quiet of a place that is new',
     'Light pool at center, slightly below the middle, dark space around it',
   ),
+
+  /* Estados */
+  slot(
+    'states.loading', 'wide', '50% 42%', 'P2', 'soft', 'center', 'Estados · carga',
+    'La espera con materia: cargar es también respirar.',
+    'Waiting with matter: a single soft sphere of golden light floating in a dark misty space above still water as if breathing, faint halo, slow and calm',
+    'Sphere at center, dark calm space around it',
+  ),
+  slot(
+    'states.empty', 'wide', '50% 55%', 'P2', 'soft', 'center', 'Estados · vacío',
+    'El vacío de marca en cualquier vista.',
+    'An empty dark space with one soft window of pale lavender light on the still water, dust motes drifting through it, open space',
+    'Light on the water just below center, dark space around it',
+  ),
+  slot(
+    'states.error', 'wide', '50% 58%', 'P2', 'soft', 'center', 'Estados · error',
+    'El error sin ruido: compañía en el tropiezo.',
+    'Something interrupted: a single candle flickering on a dark stone ledge by still water with a wisp of smoke still rising, calm and unbothered, warm faint glow',
+    'Candle at center, dark surroundings, quiet space above',
+  ),
+  slot(
+    'states.offline', 'wide', '70% 45%', 'P2', 'lav', 'center', 'Estados · sin conexión',
+    'La desconexión como retiro, no como fallo.',
+    'A brief retreat: a quiet cabin window at night with a warm lamp inside and lavender mist over a still lake outside, a sense of pausing, nobody in the frame',
+    'Window slightly right of center, dark surroundings',
+  ),
 ]
 
 /* --------------------------------------------------------------- instancias */
@@ -599,34 +625,6 @@ export const FAMILIES = {
 
 /** Imágenes que aún no son un slot registrado: el inventario las lista como «sin cablear» o no existen. */
 export const EXTRAS = [
-  slot(
-    'states.loading', 'wide', '50% 50%', 'P2', 'soft', 'center', 'Estados · carga',
-    'La espera con materia: cargar es también respirar.',
-    'Waiting with matter: a single soft sphere of golden light floating in a dark misty space above still water as if breathing, faint halo, slow and calm',
-    'Sphere at center, dark calm space around it',
-    { unregistered: true },
-  ),
-  slot(
-    'states.empty', 'wide', '50% 50%', 'P2', 'soft', 'center', 'Estados · vacío',
-    'El vacío de marca en cualquier vista.',
-    'An empty dark space with one soft window of pale lavender light on the still water, dust motes drifting through it, open space',
-    'Light on the water just below center, dark space around it',
-    { unregistered: true },
-  ),
-  slot(
-    'states.error', 'wide', '50% 40%', 'P2', 'soft', 'center', 'Estados · error',
-    'El error sin ruido: compañía en el tropiezo.',
-    'Something interrupted: a single candle flickering on a dark stone ledge by still water with a wisp of smoke still rising, calm and unbothered, warm faint glow',
-    'Candle at center, dark surroundings, quiet space above',
-    { unregistered: true },
-  ),
-  slot(
-    'states.offline', 'wide', '50% 40%', 'P2', 'lav', 'center', 'Estados · sin conexión',
-    'La desconexión como retiro, no como fallo.',
-    'A brief retreat: a quiet cabin window at night with a warm lamp inside and lavender mist over a still lake outside, a sense of pausing, nobody in the frame',
-    'Window slightly right of center, dark surroundings',
-    { unregistered: true },
-  ),
   {
     id: 'og-image',
     file: 'og-image.jpg',

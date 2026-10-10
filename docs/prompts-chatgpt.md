@@ -4,7 +4,7 @@
 > Uso: un chat nuevo de ChatGPT por imagen (así no arrastra el estilo de la anterior), pega el bloque entero sin adjuntar nada, descarga y guarda con el nombre indicado en `frontend/public/editorial/`. Si cambia algo, pide la corrección concreta en el mismo chat en vez de regenerar desde cero.
 > El orden y las secciones son los de la sección 5 de `docs/brief-fotografico.md`; el estado de cada imagen vive en `Branding/src/data/photography-status.js`.
 
-**66 imágenes:** 0 a corregir · 15 faltantes · 4 por cablear · 2 no tenidas en cuenta · 45 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
+**66 imágenes:** 0 a corregir · 15 faltantes · 0 por cablear · 2 no tenidas en cuenta · 49 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
 
 ## 1. A corregir por desviación de la IA (0)
 
@@ -162,49 +162,11 @@ Create an image. Follow this description exactly and do not add elements, text o
 Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Square image, 1:1 aspect ratio. A linen-bound notebook closed, its cover plain unmarked linen, a brass pen lying across it. One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
 ```
 
-## 3. Por cablear (crear vistas) (4)
+## 3. Por cablear (crear vistas) (0)
 
 Entregadas (los `states-<estado>.png` ya están en `frontend/public/editorial/`); lo que falta es la vista. El prompt sólo sirve si hay que repetirlas.
 
-### 3.1 · P2 · Estados · carga
-
-- **Guardar como:** `states-loading.png` (luego se convierte a `states-loading.avif`)
-- **Formato:** 16:9
-- **Nota:** Pantalla de carga: `RealmLoading` y los `loading.tsx`.
-
-```text
-Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Waiting with matter: a single soft sphere of golden light floating in a dark misty space above still water as if breathing, faint halo, slow and calm. Sphere at center, dark calm space around it. Wide landscape framing. Balanced faint gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
-```
-
-### 3.2 · P2 · Estados · vacío
-
-- **Guardar como:** `states-empty.png` (luego se convierte a `states-empty.avif`)
-- **Formato:** 16:9
-- **Nota:** Pantalla de vacío: `EmptyState`, del UI Kit puro, así que habría que pasarle la imagen por props.
-
-```text
-Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. An empty dark space with one soft window of pale lavender light on the still water, dust motes drifting through it, open space. Light on the water just below center, dark space around it. Wide landscape framing. Balanced faint gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
-```
-
-### 3.3 · P2 · Estados · error
-
-- **Guardar como:** `states-error.png` (luego se convierte a `states-error.avif`)
-- **Formato:** 16:9
-- **Nota:** Pantalla de error: `app/[locale]/error.tsx`.
-
-```text
-Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Something interrupted: a single candle flickering on a dark stone ledge by still water with a wisp of smoke still rising, calm and unbothered, warm faint glow. Candle at center, dark surroundings, quiet space above. Wide landscape framing. Balanced faint gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
-```
-
-### 3.4 · P2 · Estados · sin conexión
-
-- **Guardar como:** `states-offline.png` (luego se convierte a `states-offline.avif`)
-- **Formato:** 16:9
-- **Nota:** No existe ninguna pantalla de sin conexión: el texto `states.offline` está en los mensajes, pero nada lo pinta. Hay que crear la vista.
-
-```text
-Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A brief retreat: a quiet cabin window at night with a warm lamp inside and lavender mist over a still lake outside, a sense of pausing, nobody in the frame. Window slightly right of center, dark surroundings. Wide landscape framing. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
-```
+Ninguna.
 
 ## 4. No tenidas en cuenta (2)
 
@@ -230,7 +192,7 @@ Create an image. Follow this description exactly and do not add elements, text o
 Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Crystal and brass singing bowls glowing from within on a dark wooden platform over still water, candles between them, rings of light spreading across the surface, a soft haze; nobody present. The subject sits on the right, spanning roughly 50% to 80% of the frame width and centered at 45% vertical, and the left 45% of the frame is dark and empty because that side of the scene is unlit shore, water and sky, continuing across the whole width with no gradient, band or vertical edge; text is laid over that side later. Wide landscape framing. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
 ```
 
-## 5. Completadas (45)
+## 5. Completadas (49)
 
 Entregadas y sin desviación conocida. Se conserva el prompt por si hay que repetirlas.
 
@@ -631,7 +593,43 @@ Create an image. Follow this description exactly and do not add elements, text o
 Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Luminous emptiness: an empty dark space opening onto still water, a soft pool of light gathering in the center of the floor and reflecting in the water beyond, dust motes drifting, no objects, the quiet of a place that is new. Light pool at center, slightly below the middle, dark space around it. Wide landscape framing. Balanced faint gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
 ```
 
-### 5.45 · P0 · Metadatos · Open Graph
+### 5.45 · P2 · Estados · carga
+
+- **Guardar como:** `states-loading.png` (luego se convierte a `states-loading.avif`)
+- **Formato:** 16:9
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Waiting with matter: a single soft sphere of golden light floating in a dark misty space above still water as if breathing, faint halo, slow and calm. Sphere at center, dark calm space around it. Wide landscape framing. Balanced faint gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 5.46 · P2 · Estados · vacío
+
+- **Guardar como:** `states-empty.png` (luego se convierte a `states-empty.avif`)
+- **Formato:** 16:9
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. An empty dark space with one soft window of pale lavender light on the still water, dust motes drifting through it, open space. Light on the water just below center, dark space around it. Wide landscape framing. Balanced faint gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 5.47 · P2 · Estados · error
+
+- **Guardar como:** `states-error.png` (luego se convierte a `states-error.avif`)
+- **Formato:** 16:9
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Something interrupted: a single candle flickering on a dark stone ledge by still water with a wisp of smoke still rising, calm and unbothered, warm faint glow. Candle at center, dark surroundings, quiet space above. Wide landscape framing. Balanced faint gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 5.48 · P2 · Estados · sin conexión
+
+- **Guardar como:** `states-offline.png` (luego se convierte a `states-offline.avif`)
+- **Formato:** 16:9
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A brief retreat: a quiet cabin window at night with a warm lamp inside and lavender mist over a still lake outside, a sense of pausing, nobody in the frame. Window slightly right of center, dark surroundings. Wide landscape framing. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 5.49 · P0 · Metadatos · Open Graph
 
 - **Guardar como:** `og-image.png` (luego se convierte a `og-image.jpg`)
 - **Formato:** 1.91:1

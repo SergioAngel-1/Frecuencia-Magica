@@ -47,6 +47,10 @@ export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
   'sanctuary.empty': '/editorial/sanctuary-empty.avif',
   'sanctuary.hero': '/editorial/sanctuary-hero.avif',
   'sanctuary.journal': '/editorial/sanctuary-journal.avif',
+  'states.empty': '/editorial/states-empty.avif',
+  'states.error': '/editorial/states-error.avif',
+  'states.loading': '/editorial/states-loading.avif',
+  'states.offline': '/editorial/states-offline.avif',
   'store.hero': '/editorial/store-hero.avif',
   'store.ritual-banner': '/editorial/store-ritual-banner.avif',
 };
