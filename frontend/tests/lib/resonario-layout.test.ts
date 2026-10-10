@@ -41,6 +41,18 @@ describe('resonario editorial composition contracts', () => {
     expect(others.map((audio) => audio.id)).not.toContain(featured?.id);
   });
 
+  it('gives the centre to the active frequency, read from the player store', () => {
+    expect(systemSource).toContain('const activeId = useActiveAudioId();');
+    expect(systemSource).toContain('orbitalLayout(filtered, orbital ? activeId : null)');
+    expect(systemSource).toContain("t('nowPlaying')");
+    expect(esMessages.resonario.nowPlaying).toBeTruthy();
+    expect(enMessages.resonario.nowPlaying).not.toBe(esMessages.resonario.nowPlaying);
+    // Sólo se desliza la posición, en escritorio y sin movimiento reducido.
+    expect(systemSource).toContain('const glide = orbital && !reduced;');
+    expect(systemSource).toContain("layout={glide ? 'position' : false}");
+    expect(systemSource).not.toMatch(/createContext|Provider/);
+  });
+
   it('keeps the featured split total and stable for empty or single-item catalogs', () => {
     expect(splitFeaturedAudio([])).toEqual({ featured: undefined, others: [] });
     expect(splitFeaturedAudio([AUDIOS[0]!])).toEqual({
@@ -96,14 +108,17 @@ describe('resonario editorial composition contracts', () => {
     expect(systemSource).not.toContain('<EditorialImage');
     expect(systemSource).not.toContain('<FrequencyDisc');
     expect(systemSource.match(/<AudioDisc/g)).toHaveLength(2);
-    expect(systemSource).toContain('cover={{ ...media.featured, band: featured.band }}');
+    // El destacado en el centro conserva su foto; otro audio activo, su portada.
+    expect(systemSource).toContain('{ ...media.featured, band: audio.band }');
+    expect(systemSource).toContain('cover={centerCover(center)}');
+    expect(systemSource).toContain("sizes: '(min-width: 1024px) 380px, 84vw'");
     expect(systemSource).toContain('cover={audioCoverMedia(audio)}');
     expect(discSource).toContain('<EditorialImage');
     expect(discSource).toContain("editorialVisual(cover) === 'photo'");
     expect(discSource).toContain('onClick={() => open(audio.id)}');
     expect(systemSource).toContain("alt: t('media.alt.audioCover', { title: audioTitle(audio) })");
     expect(systemSource).toContain('data-editorial-featured="true"');
-    expect(systemSource).toContain('{others.map');
+    expect(systemSource).toContain('{orbit.map');
     expect(systemSource).not.toContain('{filtered.map');
     expect(systemSource).toContain('<EmptyState');
     expect(systemSource).toContain('<ResonarioFilters');
@@ -113,7 +128,7 @@ describe('resonario editorial composition contracts', () => {
     expect(systemSource).toContain('grid-cols-[repeat(auto-fill,minmax(140px,1fr))]');
     expect(systemSource).toContain('lg:block');
     expect(systemSource).toContain('lg:min-h-[720px]');
-    expect(systemSource).toContain('const slot = discSlot(i)');
+    expect(systemSource).toContain('const slot = discSlot(index)');
     expect(systemSource).toContain('data-editorial-stage="orbital"');
     expect(systemSource).toContain('data-editorial-secondary="true"');
     expect(systemSource).not.toContain('lg:hidden');

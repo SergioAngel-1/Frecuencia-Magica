@@ -378,6 +378,7 @@
       "description": "Escucha despacio. Cada pieza abre un espacio distinto para descansar, enraizarte o volver a respirar."
     },
     "featuredBadge": "Frecuencia destacada",
+    "nowPlaying": "Sonando ahora",
     "filtersLabel": "Filtrar frecuencias",
     "filters": {
       "all": "Todo",

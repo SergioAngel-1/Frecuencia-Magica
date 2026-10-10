@@ -74,3 +74,20 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     set({ audioId: previousAudioId(audioId, AUDIOS), isPlaying: true, elapsed: 0 });
   },
 }));
+
+/**
+ * La frecuencia activa: el audio abierto en el reproductor, o `null`.
+ *
+ * El store es la única fuente de verdad de lo que suena (un solo `audioId`):
+ * abrir otro audio sustituye al anterior, así que dos frecuencias nunca se
+ * solapan. Cualquier vista consulta la activa con este selector, sin un
+ * proveedor de React: Zustand no lo necesita.
+ */
+export function useActiveAudioId(): string | null {
+  return usePlayerStore((state) => state.audioId);
+}
+
+/** `true` mientras una frecuencia suena de verdad (abierta y sin pausa). */
+export function useIsPlayerSounding(): boolean {
+  return usePlayerStore((state) => state.audioId !== null && state.isPlaying);
+}

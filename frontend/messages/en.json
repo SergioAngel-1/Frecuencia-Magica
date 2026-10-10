@@ -373,6 +373,7 @@
       "description": "Listen slowly. Each piece opens a different space to rest, find your roots or breathe again."
     },
     "featuredBadge": "Featured frequency",
+    "nowPlaying": "Now playing",
     "filtersLabel": "Filter frequencies",
     "filters": {
       "all": "All",

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { discSlot, filterAudios } from '@/lib/resonario/layout-slots';
+import { discSlot, filterAudios, orbitalLayout } from '@/lib/resonario/layout-slots';
 import { AUDIOS } from '@/data';
 
 describe('discSlot', () => {
@@ -49,5 +49,50 @@ describe('filterAudios', () => {
 
   it('null devuelve el catálogo completo', () => {
     expect(filterAudios(AUDIOS, null)).toHaveLength(7);
+  });
+});
+
+describe('orbitalLayout', () => {
+  const ids = (layout: ReturnType<typeof orbitalLayout>) =>
+    layout.orbit.map(({ audio, slot }) => `${audio.id}@${slot}`);
+
+  it('sin audio activo, el destacado es el centro y cada secundario su posición', () => {
+    const layout = orbitalLayout(AUDIOS, null);
+
+    expect(layout.center?.id).toBe('a1');
+    expect(layout.centerIsFeatured).toBe(true);
+    expect(ids(layout)).toEqual(['a2@0', 'a3@1', 'a4@2', 'a5@3', 'a6@4', 'a7@5']);
+  });
+
+  it('el activo toma el centro y el destacado ocupa la posición que deja libre', () => {
+    const layout = orbitalLayout(AUDIOS, 'a4');
+
+    expect(layout.center?.id).toBe('a4');
+    expect(layout.centerIsFeatured).toBe(false);
+    expect(ids(layout)).toEqual(['a2@0', 'a3@1', 'a1@2', 'a5@3', 'a6@4', 'a7@5']);
+  });
+
+  it('el destacado activo, o un activo fuera del filtro, deja el sistema como está', () => {
+    expect(orbitalLayout(AUDIOS, 'a1')).toEqual(orbitalLayout(AUDIOS, null));
+
+    const meditation = filterAudios(AUDIOS, 'meditation');
+    const outside = AUDIOS.find((audio) => !meditation.includes(audio))!;
+    expect(orbitalLayout(meditation, outside.id)).toEqual(orbitalLayout(meditation, null));
+  });
+
+  it('nunca repite ni pierde una frecuencia', () => {
+    for (const audio of AUDIOS) {
+      const layout = orbitalLayout(AUDIOS, audio.id);
+      const all = [layout.center!.id, ...layout.orbit.map((o) => o.audio.id)].sort();
+      expect(all).toEqual(AUDIOS.map((a) => a.id).sort());
+    }
+  });
+
+  it('un catálogo vacío no tiene centro', () => {
+    expect(orbitalLayout([], 'a1')).toEqual({
+      center: undefined,
+      centerIsFeatured: false,
+      orbit: [],
+    });
   });
 });
