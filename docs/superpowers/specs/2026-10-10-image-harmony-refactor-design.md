@@ -6,7 +6,7 @@
 | Rama | `feat/state-views` (el refactor parte de aquí) |
 | Origen | [`docs/superpowers/audits/2026-10-10-image-harmony-audit.md`](../audits/2026-10-10-image-harmony-audit.md) |
 | Criterio | [`DESIGN.md`](../../../DESIGN.md) y el contrato de slots (`frontend/src/config/editorial-media.ts`) |
-| Estado | Diseño validado por secciones (1 y 2 aprobadas una a una; de la 3 a la 5, delegadas al autor). Pendiente de revisión del spec escrito. |
+| Estado | Aprobado (2026-10-10). Secciones 1 y 2 aprobadas una a una; de la 3 a la 5, delegadas al autor; las decisiones abiertas 1–3 entran en el alcance. |
 
 ## 1. Objetivo y criterio de éxito
 
@@ -106,7 +106,16 @@ El script es idempotente y no toca `.editorial-trials/` ni `_to_delete/`. Los AV
 
 `FullBleedSection` lo usa cuando la vista no fija `sizes`. Con la fuente de 1672 px, un héroe a viewport en 390 pasa de 3,6× a ~1,8×.
 
-**Fuentes de 2880 px: fuera de este refactor.** El código queda preparado: re-ingerir una fuente mayor genera sus variantes sin cambiar nada más. Subir de resolución las 50 imágenes es trabajo de assets (sección 10).
+**`sharp` declarado.** Pasa a `devDependencies` de `frontend/package.json`, con la misma versión que ya resuelve `next`.
+
+**Fuentes de 2880 px (dentro del alcance).** Antes de ingerir, los 50 originales de `.editorial-originals/` se amplían a 2880 px de ancho (las verticales 3:4 y las cuadradas a su equivalente del brief) con super-resolución offline, fuera del repo. Las reglas:
+- conservar la paleta;
+- no inventar rasgos: ninguna cara, ninguna textura nueva en el cuerpo de luz;
+- conservar el grano.
+
+Cada imagen se revisa a 1:1 contra su original. Si una super-resolución altera el contenido, esa imagen se amplía con un reescalado clásico (Lanczos y un enfoque suave) o se queda en su tamaño, y se anota en `photography-status.js`. Los originales sin ampliar se conservan en `.editorial-originals/` (los ampliados, en una subcarpeta) para poder re-ingerir.
+
+**Calidad AVIF calibrada (dentro del alcance).** Se compara q64 / q72 / q80 en tres imágenes representativas (degradado oscuro, grano con cuerpo de luz, objeto con detalle) a 1:1 y en pantalla a DPR 2. Se elige la menor calidad sin banding visible ni pérdida de grano, y se fija en el script con el porqué.
 
 ## 7. Eje y responsive
 
@@ -137,7 +146,7 @@ Para que `c1…c3` y `p1…p8` se pinten en cuanto lleguen:
 - `academy-editorial` y `store-editorial`: exigen `instance`.
 
 **Verificación visual:** se re-ejecuta la medición Playwright de la auditoría (fuera del repo) en los cuatro breakpoints, y el plan fija los umbrales de la sección 1 como criterio de aceptación:
-- ampliación ≤ 1,9× a viewport y ≤ 1,3× anclada;
+- ampliación ≤ 1,9× a viewport y ≤ 1,3× anclada (con las fuentes ampliadas a 2880 px, el objetivo baja a ≤ 1,2× en escritorio);
 - ventana de `home.hero` en 390 que contiene 0,62–0,88;
 - cero costuras con hueco fuera de una cadena;
 - aristas izquierdas en el eje.
@@ -148,12 +157,9 @@ Además, un recorte 1:1 del original frente a lo servido, en tres imágenes.
 
 ## 10. Decisiones abiertas
 
-1. **`sharp` como devDependency.** Hoy llega de forma transitiva con `next`. El script de ingesta lo usa directamente: conviene declararlo en `frontend/package.json` (`devDependencies`), y eso requiere tu visto bueno.
-2. **Subir las fuentes a 2880 px** (regenerar o ampliar por super-resolución). Es trabajo de assets, fuera del plan de código. Sin él, el techo de nitidez en escritorio grande sigue siendo ~1,7×.
-3. **Calidad AVIF definitiva.** Se parte de q72; la tarea de verificación puede subirla si aparece banding en los degradados oscuros.
-4. **Los 15 slots pendientes** (`e2…e4`, `p1…p8`, `c1…c3`, `academy.completion`) se verificarán al llegar. El refactor deja sus cajas con el ratio del contrato, pero `academy.completion` no se ha podido medir, porque hoy no pinta nada.
+1. **Los 15 slots pendientes** (`e2…e4`, `p1…p8`, `c1…c3`, `academy.completion`) se verificarán al llegar. El refactor deja sus cajas con el ratio del contrato, pero `academy.completion` no se ha podido medir, porque hoy no pinta nada. Cuando lleguen, pasan por la misma ampliación e ingesta.
 
 ## 11. Fuera de alcance
 
-- Generar o regenerar imágenes, y el service worker / PWA para el modo sin conexión.
+- Generar o regenerar imágenes con IA (la ampliación de la sección 6 no es regenerar), y el service worker / PWA para el modo sin conexión.
 - Rediseñar las tarjetas con foto (P2-1), el presupuesto de First Load JS y el contraste del texto sobre foto (sin medir en la auditoría; se recomienda una pasada aparte).
