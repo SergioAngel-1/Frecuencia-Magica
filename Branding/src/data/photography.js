@@ -1,5 +1,5 @@
 /**
- * Brief fotográfico de Frecuencia Mágica: una fila por imagen que la web necesita, con medidas,
+ * Brief de imagen de Frecuencia Mágica: una fila por imagen que la web necesita, con medidas,
  * contenido y un prompt para un agente de imágenes.
  *
  * Es JS puro y sin imports a propósito: lo consumen la página `/fotografia` (Vite) y el script
@@ -7,8 +7,10 @@
  * manda es `frontend/src/config/editorial-media.ts` (ratio, prioridad, focal); un test de la web
  * (`frontend/tests/lib/photography-brief.test.ts`) falla si este archivo se desvía de él.
  *
- * Dirección: «fotografía como materia; world engine como energía». La foto es oscura y cálida, con
- * bordes que se funden con `--void`; los scrims y las máscaras los aplica el CSS, nunca el archivo.
+ * Dirección (enmienda 2026-10-10): «la imagen es el paisaje; el world engine es su energía». Paisaje
+ * luminoso de noche —agua, bruma, cielo cósmico— con una silueta de luz en seis slots narrativos. La
+ * imagen es oscura y cálida, con bordes que se funden con `--void`; los scrims y las máscaras los
+ * aplica el CSS, nunca el archivo.
  */
 
 /* ------------------------------------------------------------------ medidas */
@@ -71,13 +73,17 @@ export const DELIVERY = {
 
 /* ------------------------------------------------------------------ estilo */
 
+/** Cláusula de rostros del negativo: va al final para que el retrato real de Marisol pueda quitarla. */
+const FACE_CLAUSE = ', recognizable faces, visible facial features, eyes, mouth'
+
 export const GLOBAL = {
   /** Se añade al final de todos los prompts, después del sujeto y el encuadre. */
   base:
-    'Cinematic fine-art photograph, natural film look with subtle grain, shallow depth of field, soft atmospheric haze, ' +
-    'low-key lighting from a single warm golden source (candlelight or low sun) against deep midnight-navy shadows (#0F1B2E), ' +
-    'faint teal (#96C6BC) and lavender (#B9B0D6) ambient reflections, ivory (#F7F4EA) highlights, muted desaturated palette, ' +
-    'serene, intimate, poetic, timeless, editorial wellness photography, dark edges that melt into the background, no text.',
+    'Cinematic luminous fine-art image, photorealistic with ethereal light, long-exposure feel, soft atmospheric haze and mist, ' +
+    'low-key scene against deep midnight-navy shadows (#0F1B2E), a single warm golden (#D8B978) light source with soft teal (#96C6BC) ' +
+    'and lavender (#B9B0D6) glows as the only other hues, ivory (#F7F4EA) highlights, muted and refined, never neon, ' +
+    'sparse fine stars only in the upper part of the frame when the sky is visible, serene, intimate, poetic, timeless, ' +
+    'dark edges that melt into the background, no text.',
   treatments: {
     warm: 'Dominant tone: warm gold (#D8B978) glow on dark ground.',
     teal: 'Dominant tone: soft teal (#96C6BC) mist with gold accents.',
@@ -86,18 +92,68 @@ export const GLOBAL = {
     none: 'Balanced gold, teal and lavender, cosmic and immersive.',
   },
   negative:
-    'text, letters, numbers, captions, watermark, logo, signature, UI elements, frame, border, baked vignette, baked gradient overlay, ' +
-    'stock photo look, wellness clichés (lotus on a sunset beach, yoga pose on a mountain, stacked zen stones, om symbol, buddha statue), ' +
-    'neon, oversaturated colors, HDR, pastel candy colors, bright white or grey background, plastic skin, distorted hands, extra fingers, ' +
-    'cartoon, 3D render look, emojis, recognizable faces',
+    'text, letters, numbers, captions, watermark, logo, signature, channel name, UI elements, frame, border, baked vignette, ' +
+    'baked gradient overlay, stock photo look, wellness clichés (lotus on a sunset beach, yoga pose on a mountain, stacked zen stones, ' +
+    'om symbol, buddha statue), neon, rainbow spectrum, saturated magenta, electric blue, oversaturated colors, HDR, ' +
+    'pastel candy colors, bright white or grey background, DNA helix, brain, anatomical or medical detail, ' +
+    'dense starfield filling the frame, lens flare, sci-fi, plastic skin, distorted hands, extra fingers, cartoon, ' +
+    'CGI plastic look, game-engine render, emojis' +
+    FACE_CLAUSE,
   rules: [
-    'Sin texto, logos, marcas ni etiquetas legibles dentro de la imagen: el copy lo pone la web.',
-    'Sin rostros reconocibles (salvo el retrato de Marisol, que es una sesión real): manos, espaldas, siluetas lejanas u objetos.',
+    'Sin texto, logos, marcas, nombres de canal ni etiquetas legibles dentro de la imagen: el copy lo pone la web.',
+    'Sin rasgos faciales: el cuerpo de luz es una silueta translúcida sin ojos, boca ni nariz, y el único rostro es el retrato real de Marisol. Fuera de esos casos: manos, espaldas, siluetas lejanas u objetos.',
+    'Cielo arriba, materia abajo: el cosmos ocupa como mucho el tercio superior, con estrellas escasas. El world engine ya pinta el campo de estrellas y las partículas; la imagen no los duplica.',
     'Luz dorada sobre fondo oscuro: los bordes de la imagen tienden a --void para que el scrim de CSS funda sin corte.',
-    'Nada de fondos blancos, grises ni pasteles: es un universo nocturno. Tonos de oro, teal y lavanda, nunca saturados.',
+    'Nada de fondos blancos, grises ni pasteles, ni neón ni arcoíris: es un universo nocturno. Oro, teal y lavanda, a baja saturación.',
+    'Filamentos de frecuencia: como máximo tres líneas ondulantes (oro, teal y lavanda), a baja opacidad, nunca un espectro completo.',
+    'Sin ADN, cerebros ni anatomía: la energía se sugiere con luz, agua y geometría sagrada, no con ilustración médica.',
     'Sin stock ni Unsplash. Lo generado es materia de ambiente y dirección de arte: cuando exista el producto físico o la persona real, se sustituye por fotografía real.',
     'Sin máscaras, viñetas ni degradados horneados: los aplica el CSS.',
   ],
+}
+
+/**
+ * Vocabulario visual (enmienda 2026-10-10): cuatro elementos y una firma. Cada slot toma uno como
+ * protagonista; no todos los realms comparten plantilla. `bodyOfLight.slots` son los únicos slots
+ * donde aparece la silueta de luz (un test comprueba que existen en el registro).
+ */
+export const LANGUAGE = {
+  elements: [
+    {
+      name: 'Agua',
+      feel: 'Espejo en calma, ondas concéntricas, cimática: la frecuencia hecha visible.',
+      realms: 'Resonario, Portal, Santuario',
+    },
+    {
+      name: 'Bruma y montaña',
+      feel: 'Horizontes, valles, amanecer y niebla: el camino que se abre.',
+      realms: 'Descúbrete, Experiencias, Acceso, Academia (teal)',
+    },
+    {
+      name: 'Cielo cósmico',
+      feel: 'Galaxia en espiral o vía láctea baja, sólo en el tercio superior.',
+      realms: 'Portal, Home, Sobre Marisol',
+    },
+    {
+      name: 'Cuerpo de luz',
+      feel: 'Silueta translúcida sin rasgos, bordeada de oro con teal y lavanda por dentro.',
+      realms: 'Seis slots narrativos (ver abajo)',
+    },
+  ],
+  signature: {
+    name: 'Filamentos de frecuencia',
+    feel: 'Tres líneas verticales ondulantes —oro, teal y lavanda— a baja opacidad. Motivo recurrente, no obligatorio.',
+  },
+  bodyOfLight: {
+    slots: [
+      'home.hero',
+      'discover.tuning',
+      'discover.result',
+      'experiences.featured',
+      'academy.completion',
+      'sanctuary.hero',
+    ],
+  },
 }
 
 /** Zona despejada para el texto que se superpone (lo decide el scrim del componente). */
@@ -132,28 +188,28 @@ export const SLOTS = [
   slot(
     'portal.hero', 'wide', '50% 40%', 'P0', 'none', 'center', 'Portal · umbral',
     'Umbral de entrada al universo: lo primero que ve el visitante.',
-    'A vast nocturnal threshold: a circular opening of warm golden light hovering in an immense dark indigo space, fine luminous dust suspended in the air, faint concentric arcs of light emerging from the haze like sacred geometry, distant teal and lavender nebula glow at the far edges',
+    'A vast nocturnal threshold over still water: a circular opening of warm golden light hovering low above a mirror-calm dark sea at the horizon, its reflection stretching toward the viewer, a sparse arc of fine stars and a faint spiral-galaxy glow in the upper third, three thin vertical filaments of gold, teal and lavender light rising out of the haze like frequencies, distant teal and lavender glow at the far edges',
     'Symmetrical wide composition, the light source at 50% horizontal and 40% vertical, deep dark negative space all around, lower third quiet for a logo and a button',
   ),
   slot(
     'portal.portal-field', 'cinema', '50% 50%', 'P1', 'none', 'none', 'Portal · campo',
     'El campo de energía donde se elige el camino: materia suspendida en el cruce.',
-    'A horizontal field of suspended luminous matter: slow streams of golden particles crossing a dark plane, a soft beam of teal light and a soft beam of lavender light meeting at the center like a crossing of paths, long-exposure feel',
+    'A horizontal field of luminous water at night: slow streams of golden light crossing a dark mirror-still surface, a soft beam of teal light and a soft beam of lavender light meeting at the center like a crossing of paths, faint concentric ripples where they meet, long-exposure feel',
     'Wide and horizontal, the crossing at dead center, dark margins on both sides',
   ),
   slot(
     'not-found.hero', 'wide', '50% 40%', 'P2', 'soft', 'center', '404',
     'Acompañar al visitante extraviado sin romper el hechizo.',
-    'A serene empty corner of the cosmos: a single small warm lantern glowing on the surface of dark still water, a faint reflection beneath it, distant teal mist, absolute calm, nobody present',
+    'A serene empty corner of the cosmos: a single small warm lantern glowing on the surface of dark still water, a faint reflection beneath it, distant teal mist, a few fine stars far above, absolute calm, nobody present',
     'Lantern slightly above center, large calm dark water surface around it, empty sky above',
   ),
 
   /* Home */
   slot(
     'home.hero', 'wide', '62% 40%', 'P0', 'warm', 'left-bottom', 'Home · hero',
-    'El universo entero en una imagen: materia del hero con kicker, título y CTA sobre scrim.',
-    'A sound-bath still life: a large crystal singing bowl glowing gold from within on dark stone, curls of incense smoke rising from beside it, fine rings of light rippling outward from the bowl, deep navy background with soft teal and lavender bokeh',
-    'The bowl sits in the right half at 62% horizontal and 40% vertical, the left 55% of the frame is dark and empty for the headline, slightly low camera angle',
+    'El universo entero en una imagen: materia del hero con kicker, título y CTA sobre scrim. Cuerpo de luz: la imagen firma de la marca.',
+    'The brand signature image: a translucent figure of pure light, faceless and featureless, resting on its side across the surface of dark still water, its head close to the water where a soft spiral-galaxy glow gathers beneath it and ripples outward in concentric rings, the body edged in warm gold with faint teal and lavender light flowing through it like fine veins of current, three thin vertical filaments of gold, teal and lavender light rising behind it, sparse fine stars in the upper third, deep navy background',
+    'The figure sits in the right half at 62% horizontal and 40% vertical, the left 55% of the frame is dark and empty for the headline, low camera angle at water level',
   ),
   slot(
     'home.daily-frequency', 'cinema', '50% 50%', 'P1', 'warm', 'none', 'Home · frecuencia del día',
@@ -164,7 +220,7 @@ export const SLOTS = [
   slot(
     'home.realms-banner', 'cinema', '50% 50%', 'P1', 'none', 'none', 'Home · banner de realms',
     'Mapa de los nueve reinos: la invitación a entrar.',
-    'A constellation as a map of nine realms: nine small glowing points of gold, teal and lavender light joined by the faintest filaments across an immense dark nebula, photographic long-exposure night sky with a slow arc of stars',
+    'A constellation as a map of nine realms: nine small glowing points of gold, teal and lavender light joined by the faintest filaments across an immense dark nebula, long-exposure night sky with a slow arc of stars, a thin line of still water along the lower edge mirroring the points',
     'Nine points spread across the width with the brightest near the center, deep dark edges',
   ),
   slot(
@@ -181,27 +237,27 @@ export const SLOTS = [
   slot(
     'home-membership', 'wide', '50% 15%', 'P2', 'warm', 'bottom', 'Home · membresía',
     'Atmósfera cálida que invita a la comunidad.',
-    'Golden light pouring from above into a serene empty communal space: a long low wooden table surrounded by floor cushions in a circle, a warm beam of light falling from the top of the frame, dust motes drifting, deep shadows in the corners',
-    'The light source sits near the top edge at 15% vertical, table and cushions in the middle distance, lower third dark for text',
+    'Golden light pouring from above onto a still lake at dawn: a warm beam of light falling from the top of the frame onto mist-covered water, a ring of low smooth stones at the shore arranged in a circle as a gathering place, dust motes and mist drifting, deep shadows in the corners',
+    'The light source sits near the top edge at 15% vertical, the ring of stones in the middle distance, lower third dark for text',
   ),
   slot(
     'home.footer-banner', 'wide', '50% 40%', 'P2', 'soft', 'bottom', 'Home · cierre',
     'Cierre editorial: la despedida que invita a quedarse.',
-    'The horizon after the page: a dusk sky with faint lavender clouds above a dark calm plain, a single thin line of gold light along the horizon, the first stars appearing, vast stillness',
-    'Horizon at 40% vertical, sky above, dark ground below fading to near-black for text',
+    'The horizon after the page: a dusk sky with faint lavender clouds above a dark mirror-calm sea, a single thin line of gold light along the horizon, the first stars appearing, vast stillness',
+    'Horizon at 40% vertical, sky above, dark water below fading to near-black for text',
   ),
 
   /* Sobre Marisol */
   slot(
     'about.hero', 'wide', '50% 40%', 'P1', 'warm', 'left-bottom', 'Sobre Marisol · hero',
     'Cabecera de la vista de Marisol: el lugar desde el que acompaña.',
-    'The room where the work begins: a quiet studio at dusk with a low wooden table, a crystal singing bowl, an open notebook and a single lit candle, a linen shawl left over a chair as if someone had just stepped out, warm golden light from a window on the right, deep navy shadows',
+    'The place where the work begins: a quiet terrace of dark stone at dusk opening onto a still lake and distant mountains in lavender mist, a low wooden table with a crystal singing bowl and a single lit candle in the foreground, a linen shawl left over a stone bench as if someone had just stepped out, warm golden light, a faint spiral of galaxy glow in the upper sky',
     'Table and candle at 60% horizontal and 40% vertical, left third dark and empty for the title, lower edge fading to near-black',
   ),
   slot(
     'about.angels', 'cinema', '50% 30%', 'P1', 'lav', 'bottom', 'Sobre Marisol · Experiencias con Ángeles',
     'La presencia sin figura: luz que desciende, nunca un ángel literal.',
-    'Presence without a figure: a soft shaft of pale lavender and gold light descending through still dark air, a single white feather suspended mid-fall, fine luminous dust around it, no wings, no faces, no statues, no religious iconography',
+    'Presence without a figure: a soft shaft of pale lavender and gold light descending through still dark air onto a mist-covered lake, a single white feather suspended mid-fall, fine luminous dust around it, no wings, no faces, no statues, no religious iconography',
     'Light source and feather in the upper third at 30% vertical, lower half dark and calm for the headline',
   ),
 
@@ -209,21 +265,21 @@ export const SLOTS = [
   slot(
     'auth.hero', 'wide', '50% 40%', 'P1', 'soft', 'left', 'Acceso · hero',
     'El umbral personal que recibe antes del formulario.',
-    'A tall arched doorway of soft golden light set into a dark stone wall, seen from a few steps back, a warm path of light spilling across the floor toward the viewer, quiet, inviting, nobody in the frame',
+    'A tall arched doorway of soft golden light set into a dark stone wall at the edge of still water, seen from a few steps back, a warm path of light spilling across the wet stone and the water toward the viewer, mist at its base, quiet, inviting, nobody in the frame',
     'Arch placed in the right half, the left third dark stone and empty for a quote',
   ),
   slot(
     'auth.form-atmosphere', 'portrait', '50% 50%', 'P2', 'soft', 'low', 'Acceso · formulario',
     'Fondo atmosférico del formulario de acceso.',
-    'Intimate calm: a single lit candle and a small ceramic bowl of water on a dark wooden table, blurred velvet-dark background, a soft warm glow at the bottom of the frame',
-    'Vertical, very dark and low contrast (it sits behind a glass form), candle in the lower third, generous dark space above',
+    'Intimate calm: a surface of nearly black still water with a single soft golden point of light reflected in it and faint teal mist drifting low, blurred velvet-dark background, a soft warm glow at the bottom of the frame',
+    'Vertical, very dark and low contrast (it sits behind a glass form), the point of light in the lower third, generous dark space above',
   ),
 
   /* Descúbrete */
   slot(
     'discover.hero', 'wide', '50% 40%', 'P1', 'lav', 'left-bottom', 'Descúbrete · hero',
     'Bienvenida del quiz: la materia que abre la exploración.',
-    'The beginning of a discovery: a narrow path of dark stone steps dissolving upward into soft lavender and gold dawn mist, a sense of a first step, no people',
+    'The beginning of a discovery: a narrow path of dark stone steps rising from still water into soft lavender and gold dawn mist over distant mountain ridges, a sense of a first step, no people',
     'Path entering from the lower right toward a bright vanishing point at 50% horizontal and 40% vertical, left third dark',
   ),
   slot(
@@ -234,35 +290,35 @@ export const SLOTS = [
   ),
   slot(
     'discover.tuning', 'cinema', '50% 50%', 'P1', 'teal', 'none', 'Descúbrete · afinación',
-    'El momento de la afinación personal: la materia que sintoniza.',
-    'Tuning in: a brass tuning fork just struck in the dark, a halo of golden light ripples spreading around it, macro photograph, shallow depth of field, subtle teal reflections on the metal',
-    'Fork centered, ripples fanning left and right across the wide frame, dark edges',
+    'El momento de la afinación personal: la materia que sintoniza. Cuerpo de luz.',
+    'Tuning in: a faceless figure of translucent light seated at the edge of dark still water, head slightly bowed, as a halo of golden ripples spreads across the surface toward it from a single struck point, soft teal reflections in the water, three fine filaments of gold, teal and lavender light rising from the ripples',
+    'Figure centered, ripples fanning left and right across the wide frame, dark edges',
   ),
   slot(
     'discover.result', 'wide', '50% 40%', 'P1', 'warm', 'center', 'Descúbrete · resultado',
-    'El resultado del quiz como revelación visual.',
-    'Revelation: a clear glass sphere on a dark surface catching a single beam of warm light and splitting it into soft gold, teal and lavender glows that fall across the surface, a moment of clarity',
-    'Sphere centered slightly below the middle, light coming from the upper left, dark background',
+    'El resultado del quiz como revelación visual. Cuerpo de luz.',
+    'Revelation: a faceless figure of translucent light standing upright with open arms at the edge of dark still water, a single soft beam of warm light from above splitting into gold, teal and lavender glows that run through the body and fall across the water as its reflection, a moment of clarity',
+    'Figure small and centered in the lower third, the beam descending gently from the top center, the middle of the frame calm and dark for the result text',
   ),
 
   /* Resonario */
   slot(
     'resonario.hero', 'wide', '50% 40%', 'P1', 'warm', 'left-bottom', 'Resonario · hero',
     'Cabecera del archivo sonoro: la escucha como paisaje.',
-    'A vast dark resonant space: rows of softly glowing translucent discs suspended at different depths like a solar system, warm gold rims, drifting haze, cinematic depth of field',
+    'A vast dark resonant space over still water: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm surface that doubles them, warm gold rims, drifting haze, cinematic depth of field',
     'Discs receding from the upper right toward the center, the left third dark and empty for the headline',
   ),
   slot(
     'resonario.featured', 'cinema', '50% 50%', 'P1', 'warm', 'center', 'Resonario · destacado',
     'Fondo del audio destacado de la semana.',
-    'A backdrop for a featured disc: soft concentric rings of golden light radiating from an empty center across a dark misty space, faint teal and lavender halos at the edges',
+    'A backdrop for a featured disc: soft concentric rings of golden light radiating from an empty center across dark still water, faint teal and lavender halos at the edges',
     'Empty calm center (a disc is placed on top in the UI), rings fading to near-black at the edges',
   ),
   slot(
     'resonario.archive-banner', 'wide', '50% 40%', 'P2', 'lav', 'bottom', 'Resonario · archivo',
     'La colección completa como lugar.',
-    'The archive as a place: a long dim hall lined with tall shelves holding softly glowing vessels — brass bowls, glass discs, ceramic jars — lavender haze, a few warm lamps far away',
-    'One-point perspective down the hall, lower third dark for text',
+    'The archive as a place: a long colonnade of dark stone opening onto still water at dusk, tall niches holding softly glowing vessels — brass bowls, glass discs, ceramic jars — lavender haze, a few warm lamps far away reflected in the floor-water',
+    'One-point perspective down the colonnade, lower third dark for text',
   ),
   slot(
     'resonario.audio-cover.*', 'square', '50% 50%', 'P1', 'none', 'center', 'Resonario · portadas',
@@ -275,7 +331,7 @@ export const SLOTS = [
   slot(
     'academy.hero', 'wide', '50% 40%', 'P1', 'teal', 'left-bottom', 'Academia · hero',
     'Cabecera de la academia: el estudio como escena.',
-    'Study as a scene: a low wooden desk beside a window at blue hour with an open blank notebook, a ceramic bowl, a lit candle and a small stack of books, teal dusk light, no people',
+    'Study as a scene: a low wooden desk on a quiet lakeside terrace at blue hour with an open blank notebook, a ceramic bowl and a lit candle, teal mist over the water and the far hills, no people',
     'Desk in the right half, the left third quiet and dark for the headline',
   ),
   slot(
@@ -298,23 +354,23 @@ export const SLOTS = [
   ),
   slot(
     'academy.completion', 'cinema', '50% 50%', 'P1', 'warm', 'center', 'Academia · curso completado',
-    'Celebración del curso terminado: el logro con luz.',
-    'A completed cycle closed in light: a ring of small candles lit in a circle on dark stone, every flame steady and one slightly brighter, a warm golden glow radiating outward, slightly oblique overhead view',
-    'Ring centered, enough dark space in the middle for a check mark and a line of text',
+    'Celebración del curso terminado: el logro con luz. Cuerpo de luz.',
+    'A completed cycle closed in light: a ring of small golden lights floating on dark still water seen from a slightly oblique overhead angle, a small faceless figure of translucent light seated cross-legged at the far side of the ring, every light steady and one slightly brighter, concentric ripples radiating outward',
+    'Ring centered with its middle empty and dark for a check mark and a line of text, the small figure at the far edge of the ring at 50% horizontal and 30% vertical',
   ),
 
   /* Experiencias */
   slot(
     'experiences.hero', 'wide', '50% 40%', 'P1', 'lav', 'left-bottom', 'Experiencias · hero',
     'Cabecera de experiencias: el viaje como promesa.',
-    'The journey as a promise: a lantern-lit path through a dark garden leading to a softly glowing pavilion, lavender dusk mist between the trees, nobody present',
+    'The journey as a promise: a lantern-lit path of stepping stones across still water toward a softly glowing pavilion on the far shore, lavender dusk mist between dark trees and hills, nobody present',
     'Pavilion at 55% horizontal and 40% vertical, lanterns leading in from the lower left, left third dark',
   ),
   slot(
     'experiences.featured', 'cinema', '50% 45%', 'P1', 'lav', 'left', 'Experiencias · destacada',
-    'La experiencia destacada con presencia propia: el baño de sonido.',
-    'A sound bath in progress: a ring of crystal singing bowls glowing lavender and gold from within on a dark wooden floor, candles between them, low camera angle, no people, drifting haze above',
-    'Ring of bowls in the right two thirds at 45% vertical, left third dark for the title and the booking button',
+    'La experiencia destacada con presencia propia: el baño de sonido. Cuerpo de luz.',
+    'A sound bath in progress: a circle of faceless figures of translucent light seated around a ring of crystal singing bowls glowing lavender and gold from within, set on dark still water that mirrors them, concentric rings of light spreading across the surface, drifting haze above',
+    'Ring of bowls and figures in the right two thirds at 45% vertical, left third dark for the title and the booking button',
   ),
   slot(
     'experiences-visual', 'wide', '62% 45%', 'P1', 'lav', 'left', 'Experiencias · filas',
@@ -325,13 +381,13 @@ export const SLOTS = [
   slot(
     'booking.hero', 'wide', '50% 40%', 'P1', 'lav', 'left-bottom', 'Reserva · hero',
     'El lugar de la experiencia elegida, antes de reservar.',
-    'An empty serene room ready to receive: floor cushions arranged in a circle, a tall window showing a twilight sky, a few unlit candles waiting, a soft lavender light on the wooden floor',
-    'Wide symmetrical interior, circle of cushions in the middle distance, left third dark',
+    'An empty serene place ready to receive: floor cushions arranged in a circle on a wooden deck over still water at twilight, a few unlit candles waiting, a soft lavender light on the planks and the mountains beyond',
+    'Wide symmetrical, circle of cushions in the middle distance, left third dark',
   ),
   slot(
     'booking.confirmation', 'cinema', '50% 50%', 'P1', 'warm', 'center', 'Reserva · confirmación',
     'Confirmación con la materia del lugar: el sí con imagen.',
-    'The same serene room now with its candles lit: a warm golden glow over the circle of cushions, a steaming cup set on the floor, a door ajar letting in soft light',
+    'The same serene place now with its candles lit: a warm golden glow over the circle of cushions on the deck, reflected in the still water, a steaming cup set beside them, a soft light on the horizon',
     'Warm center, dark edges, calm space in the middle for a check mark and a line of text',
   ),
 
@@ -339,7 +395,7 @@ export const SLOTS = [
   slot(
     'store.hero', 'wide', '50% 40%', 'P1', 'warm', 'left-bottom', 'Tienda · hero',
     'Cabecera de la tienda: el ritual de adquirir.',
-    'The ritual of acquiring: a dark wooden altar shelf with a still life of an amber glass bottle, a honey-coloured candle, a rose quartz point and a bundle of incense, low golden light raking across the objects',
+    'The ritual of acquiring: a dark stone ledge at the edge of still water at night with a still life of an amber glass bottle, a honey-coloured candle, a rose quartz point and a bundle of incense, low golden light raking across the objects and reflecting in the water behind them',
     'Objects in the right half at 40% vertical, the left third dark and empty for the headline',
   ),
   slot(
@@ -373,8 +429,8 @@ export const SLOTS = [
   slot(
     'cart.empty', 'wide', '50% 40%', 'P2', 'soft', 'center', 'Carrito · vacío',
     'El vacío del carrito como calma, no como castigo.',
-    'A small empty ceramic dish on a dark wooden table, a single ray of warm light falling across it, a thread of steam rising, serene and open, nothing inside',
-    'Dish at center slightly below the middle, dark table and background, calm space above',
+    'A small empty ceramic dish on a dark stone ledge beside still water, a single ray of warm light falling across it, a thread of steam rising, serene and open, nothing inside',
+    'Dish at center slightly below the middle, dark ledge and background, calm space above',
   ),
   slot(
     'checkout.confirmation', 'cinema', '50% 50%', 'P1', 'warm', 'center', 'Compra · confirmación',
@@ -386,9 +442,9 @@ export const SLOTS = [
   /* Mi santuario */
   slot(
     'sanctuary.hero', 'wide', '50% 40%', 'P1', 'soft', 'left-bottom', 'Mi Santuario · hero',
-    'El espacio personal: la materia que recibe al volver.',
-    'A personal meditation nook at night: a cushion beside a large window with moonlight, sheer curtains, a lit candle and a small plant, teal moonlight balanced with golden candle glow, nobody present',
-    'Window on the right with the cushion beneath it, left third dark and calm',
+    'El espacio personal: la materia que recibe al volver. Cuerpo de luz.',
+    'A personal sanctuary at night: a faceless figure of translucent light resting on a cushion beside a large window that opens onto a moonlit lake, sheer curtains stirring, a lit candle on the sill, teal moonlight balanced with golden glow, three fine filaments of light rising from the water outside',
+    'Window on the right with the figure beneath it, left third dark and calm',
   ),
   slot(
     'sanctuary.continue', 'cinema', '50% 50%', 'P1', 'warm', 'left', 'Mi Santuario · continuar',
@@ -411,8 +467,8 @@ export const SLOTS = [
   slot(
     'sanctuary.empty', 'wide', '50% 40%', 'P2', 'soft', 'center', 'Mi Santuario · vacío',
     'El santuario recién estrenado: vacío luminoso, no ausencia.',
-    'Luminous emptiness: an empty dark room with a soft pool of light gathering in the center of the floor, dust motes drifting in it, no objects, the quiet of a place that is new',
-    'Light pool at center, slightly below the middle, dark room around it',
+    'Luminous emptiness: an empty dark space opening onto still water, a soft pool of light gathering in the center of the floor and reflecting in the water beyond, dust motes drifting, no objects, the quiet of a place that is new',
+    'Light pool at center, slightly below the middle, dark space around it',
   ),
 ]
 
@@ -430,8 +486,8 @@ export const FAMILIES = {
     instances: [
       { slug: 'a1', es: 'Regreso a la Calma', en: 'Return to Calm', hz: 432, treatment: 'teal', subject: 'Still water at dusk, a single pebble just dropped, perfect concentric ripples spreading in teal and gold light, calm and cool' },
       { slug: 'a2', es: 'Luz Interior', en: 'Inner Light', hz: 528, treatment: 'lav', subject: 'A single warm orb of light glowing inside a dark lavender crystal geode, facets catching the glow, inner light' },
-      { slug: 'a3', es: 'Raíces Profundas', en: 'Deep Roots', hz: 396, treatment: 'teal', subject: 'Dark moss-covered stones and fine exposed roots in earth, a thread of gold light running between them, grounded and quiet' },
-      { slug: 'a4', es: 'Umbral del Sueño', en: 'Threshold of Sleep', hz: 174, treatment: 'lav', subject: 'An indigo night room with a doorway of soft hazy light at the far end and a drifting veil of mist, heavy and soothing' },
+      { slug: 'a3', es: 'Raíces Profundas', en: 'Deep Roots', hz: 396, treatment: 'teal', subject: 'Dark moss-covered stones half-submerged at the edge of black water, fine exposed roots in earth, a thread of gold light running between them, grounded and quiet' },
+      { slug: 'a4', es: 'Umbral del Sueño', en: 'Threshold of Sleep', hz: 174, treatment: 'lav', subject: 'An indigo night lake under a drifting veil of mist, a doorway of soft hazy light far away on the shore, heavy and soothing' },
       { slug: 'a5', es: 'Aroma de Cedro', en: 'Cedar Aroma', hz: 639, treatment: 'warm', subject: 'Amber cedar smoke curling upward from a small brass burner against darkness, a bundle of cedar sprigs beside it, warm glow' },
       { slug: 'a6', es: 'Respirar el Cielo', en: 'Breathe the Sky', hz: 417, treatment: 'teal', subject: 'A lagoon-teal sky at blue hour with soft layered clouds lit from below by faint gold, open air, spacious' },
       { slug: 'a7', es: 'Corazón Abierto', en: 'Open Heart', hz: 528, treatment: 'soft', subject: 'Two cupped hands holding a small warm glow of light against a sage-green dark background, tender and open' },
@@ -441,7 +497,7 @@ export const FAMILIES = {
     slotId: 'academy-course-cover',
     filePrefix: 'academy-course-cover',
     instances: [
-      { slug: 'c1', es: 'El Arte de Volver a Ti', en: 'The Art of Returning to You', treatment: 'lav', subject: 'A person seen from behind sitting cross-legged before a tall window at dawn, silhouetted against lavender and gold light, deep calm, no face visible' },
+      { slug: 'c1', es: 'El Arte de Volver a Ti', en: 'The Art of Returning to You', treatment: 'lav', subject: 'A person seen from behind sitting cross-legged on a rock at the edge of still water at dawn, silhouetted against lavender and gold light over distant mountains, deep calm, no face visible' },
       { slug: 'c2', es: 'Rituales Conscientes', en: 'Conscious Rituals', treatment: 'teal', subject: 'Hands arranging ritual objects on dark stone — a ceramic bowl, a candle, a sprig of cedar — moss-green and gold light, unhurried gesture' },
       { slug: 'c3', es: 'Aromas que Sanan', en: 'Aromas that Heal', treatment: 'warm', subject: 'Amber glass vials of essential oils, dried cedar and herbs on a dark wooden tray, warm golden light and a thread of fragrant smoke' },
     ],
@@ -450,10 +506,10 @@ export const FAMILIES = {
     slotId: 'experiences-visual',
     filePrefix: 'experiences-visual',
     instances: [
-      { slug: 'e1', es: 'Baño de Sonido en Vivo', en: 'Live Sound Bath', treatment: 'lav', subject: 'Crystal and brass singing bowls glowing from within on a dark floor, candles between them, rings of light, a soft haze; nobody present' },
-      { slug: 'e2', es: 'Círculo de Luna Nueva', en: 'New Moon Circle', treatment: 'lav', subject: 'A circle of cushions and small candles on a dark floor beneath a tall window showing a thin new-moon crescent, quiet and ceremonial' },
+      { slug: 'e1', es: 'Baño de Sonido en Vivo', en: 'Live Sound Bath', treatment: 'lav', subject: 'Crystal and brass singing bowls glowing from within on a dark wooden platform over still water, candles between them, rings of light spreading across the surface, a soft haze; nobody present' },
+      { slug: 'e2', es: 'Círculo de Luna Nueva', en: 'New Moon Circle', treatment: 'lav', subject: 'A circle of small candles on a dark stone shore beneath a thin new-moon crescent over still water, quiet and ceremonial' },
       { slug: 'e3', es: 'Ritual de Aromas', en: 'Aroma Ritual', treatment: 'warm', subject: 'A brass burner with copal smoke rising in slow spirals, amber oil bottles and dried herbs beside it on a dark table, golden light' },
-      { slug: 'e4', es: 'Meditación al Amanecer', en: 'Sunrise Meditation', treatment: 'teal', subject: 'A small terrace at first light with a cushion and a steaming cup, teal mist over distant hills, the first gold on the horizon; nobody present' },
+      { slug: 'e4', es: 'Meditación al Amanecer', en: 'Sunrise Meditation', treatment: 'teal', subject: 'A small terrace at first light with a cushion and a steaming cup, teal mist over distant hills and still water, the first gold on the horizon; nobody present' },
     ],
   },
   product: {
@@ -477,28 +533,28 @@ export const EXTRAS = [
   slot(
     'states.loading', 'wide', '50% 50%', 'P2', 'soft', 'center', 'Estados · carga',
     'La espera con materia: cargar es también respirar.',
-    'Waiting with matter: a single soft sphere of golden light floating in a dark misty space as if breathing, faint halo, slow and calm',
+    'Waiting with matter: a single soft sphere of golden light floating in a dark misty space above still water as if breathing, faint halo, slow and calm',
     'Sphere at center, dark calm space around it',
     { unregistered: true },
   ),
   slot(
     'states.empty', 'wide', '50% 50%', 'P2', 'soft', 'center', 'Estados · vacío',
     'El vacío de marca en cualquier vista.',
-    'An empty dark room with one soft window of pale lavender light on the floor, dust motes drifting through it, open space',
-    'Light on the floor just below center, dark room around it',
+    'An empty dark space with one soft window of pale lavender light on the still water, dust motes drifting through it, open space',
+    'Light on the water just below center, dark space around it',
     { unregistered: true },
   ),
   slot(
     'states.error', 'wide', '50% 40%', 'P2', 'soft', 'center', 'Estados · error',
     'El error sin ruido: compañía en el tropiezo.',
-    'Something interrupted: a single candle flickering in a dark room with a wisp of smoke still rising, calm and unbothered, warm faint glow',
-    'Candle at center, dark room, quiet space above',
+    'Something interrupted: a single candle flickering on a dark stone ledge by still water with a wisp of smoke still rising, calm and unbothered, warm faint glow',
+    'Candle at center, dark surroundings, quiet space above',
     { unregistered: true },
   ),
   slot(
     'states.offline', 'wide', '50% 40%', 'P2', 'lav', 'center', 'Estados · sin conexión',
     'La desconexión como retiro, no como fallo.',
-    'A brief retreat: a quiet cabin window at night with a warm lamp inside and lavender mist outside, a sense of pausing, nobody in the frame',
+    'A brief retreat: a quiet cabin window at night with a warm lamp inside and lavender mist over a still lake outside, a sense of pausing, nobody in the frame',
     'Window slightly right of center, dark surroundings',
     { unregistered: true },
   ),
@@ -515,7 +571,7 @@ export const EXTRAS = [
     view: 'Metadatos · Open Graph',
     role: 'Imagen al compartir el enlace en redes y mensajería. No está cableada: hay que añadirla a los metadatos.',
     subject:
-      'The Frecuencia Mágica universe in one frame: a glowing golden circle of light surrounded by fine concentric arcs in a deep navy cosmos, teal and lavender dust at the edges, empty center for the logo to be composited later',
+      'The Frecuencia Mágica universe in one frame: a glowing golden circle of light hovering above a mirror-calm dark sea at the horizon, fine concentric arcs in a deep navy cosmos above, teal and lavender dust at the edges, three thin vertical filaments of gold, teal and lavender light, empty center for the logo to be composited later',
     frame: 'Landscape 1.91:1, the circle centered, dark edges, keep everything important within the central 80% because platforms crop',
     unregistered: true,
     notes: 'JPEG (las plataformas sociales no leen AVIF de forma fiable), 1200×630, ≤ 300 KB. Componer el logo encima, no generarlo.',
@@ -548,7 +604,7 @@ export function composePrompt(entry, instance) {
 
 /** Negativo del agente. El retrato de Marisol es la única imagen donde un rostro es lo que se busca. */
 export function negativeFor(entry) {
-  return entry.realShoot ? GLOBAL.negative.replace(', recognizable faces', '') : GLOBAL.negative
+  return entry.realShoot ? GLOBAL.negative.replace(FACE_CLAUSE, '') : GLOBAL.negative
 }
 
 /** Todas las imágenes a producir, con las familias ya expandidas por instancia. */
