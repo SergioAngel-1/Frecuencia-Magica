@@ -150,6 +150,31 @@ describe('home editorial composition contracts', () => {
     expect(homePageSource).not.toContain('reserveBottomUi={false}');
   });
 
+  it('keeps the hero logo off the image and the ambient rings without the triangle', () => {
+    const heroSource = readSource('components/features/home/hero-section.tsx');
+    const energy = heroSource.slice(
+      heroSource.indexOf('data-editorial-zone="energy"'),
+      heroSource.indexOf('</FullBleedSection>'),
+    );
+
+    // El isotipo vive en la esquina, bajo los controles, fuera de la zona de la imagen.
+    expect(heroSource).toContain('data-editorial-zone="brand"');
+    expect(energy).not.toContain('/logo.png');
+    expect(heroSource).not.toMatch(/\bfixed\b|\bsticky\b/);
+    // Los aros de ambiente se quedan; el triángulo de geometría, no.
+    expect(energy).toContain('<OrbitalRings');
+    expect(energy).not.toContain('<polygon');
+  });
+
+  it('lowers the hero media below the calls to action on mobile, at the view level', () => {
+    const heroSource = readSource('components/features/home/hero-section.tsx');
+
+    // La imagen llena el alto en móvil: el foco vertical no la mueve, la caja sí.
+    expect(heroSource).toMatch(/mediaClassName="[^"]*max-md:top-\[/);
+    expect(heroSource).toContain('max-md:fm-fade-top');
+    expect(readSource('components/ui/full-bleed-section.tsx')).toContain('mediaClassName');
+  });
+
   it('makes absent editorial media fill its positioned wrapper', () => {
     const imageSource = readSource('components/ui/editorial-image.tsx');
 

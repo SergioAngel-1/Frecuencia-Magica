@@ -15,6 +15,7 @@ import {
 import { Halo, OrbitalRings } from '@/components/world';
 import { Link } from '@/i18n/navigation';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { DURATION, EASE, STAGGER } from '@/config/motion';
 import { staggerContainer, staggerItem } from '@/lib/motion-variants';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -56,8 +57,34 @@ export function HeroSection({
       overlay="left"
       fade="bottom"
       className="fm-editorial-viewport-media"
+      // En móvil la imagen ya llena el alto: su foco vertical no mueve nada.
+      // La caja baja para que la figura quede bajo los CTA y funde su borde
+      // superior en la noche, donde se lee el texto.
+      mediaClassName="max-md:top-[45%] max-md:fm-fade-top"
       contentClassName="flex min-h-[100svh] items-center"
     >
+      {/* El isotipo, fuera de la imagen: en la esquina superior derecha, bajo
+          los controles del header y alineado con ellos. Se desplaza con la
+          página (no es fijo como los controles). */}
+      <Mdiv
+        aria-hidden="true"
+        initial={reduced ? false : { opacity: 0 }}
+        animate={{ opacity: 0.9 }}
+        transition={{ duration: DURATION.slow, delay: STAGGER[1], ease: EASE.soft }}
+        className="pointer-events-none absolute top-[84px] right-5 z-20 md:top-[100px] md:right-[34px]"
+        data-editorial-zone="brand"
+      >
+        <Image
+          src="/logo.png"
+          unoptimized
+          alt=""
+          aria-hidden="true"
+          width={76}
+          height={76}
+          sizes="76px"
+          className="h-[48px] w-auto drop-shadow-[0_0_10px_rgba(216,185,120,0.35)] md:h-[64px] lg:h-[76px]"
+        />
+      </Mdiv>
       <div className="fm-container relative grid min-h-[100svh] w-full grid-cols-1 items-center gap-10 pt-[112px] pb-[140px] lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.9fr)] lg:gap-12 lg:pt-[126px] lg:pb-[78px]">
         <Mdiv
           variants={container}
@@ -108,7 +135,8 @@ export function HeroSection({
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 right-0 z-10 flex w-full items-center justify-center lg:w-[52%]"
+          // En móvil la energía baja con la imagen: los aros siguen rodeando la figura.
+          className="pointer-events-none absolute inset-y-0 right-0 z-10 flex w-full items-center justify-center max-md:top-[45%] lg:w-[52%]"
           data-editorial-zone="energy"
         >
           <div className="absolute inset-0 bg-[radial-gradient(50%_58%_at_58%_48%,rgba(216,185,120,0.16),transparent_70%)]" />
@@ -117,16 +145,6 @@ export function HeroSection({
             inset="-12%"
             className="!animate-fm-breathe"
             style={{ width: 'min(72vw, 560px)', filter: 'blur(18px)' }}
-          />
-          <Image
-            src="/logo.png"
-            unoptimized
-            alt=""
-            aria-hidden="true"
-            width={190}
-            height={190}
-            sizes="(min-width: 1024px) 190px, 28vw"
-            className="absolute z-10 h-[clamp(104px,16vw,190px)] w-auto opacity-90 max-lg:hidden"
           />
           <OrbitalRings
             size={520}
@@ -143,17 +161,10 @@ export function HeroSection({
             <OrbitalRings.Node angle={120} radius={188} color="var(--color-teal)" size={5} />
             <OrbitalRings.Node angle={240} radius={134} color="var(--color-lav)" size={5} />
           </OrbitalRings>
-          <svg
-            viewBox="0 0 400 340"
-            className="animate-fm-spin-r absolute h-auto w-[min(72vw,480px)] opacity-55"
-          >
-            <polygon
-              points="200,40 340,290 60,290"
-              fill="none"
-              stroke="rgba(150,198,188,0.14)"
-              strokeWidth={1}
-            />
-            <circle cx="200" cy="172" r="92" fill="none" stroke="rgba(185,176,214,0.12)" />
+          {/* Sólo aros de ambiente alrededor de la figura: sin triángulo, que
+              competía con ella. */}
+          <svg viewBox="0 0 400 400" className="absolute h-auto w-[min(72vw,480px)] opacity-55">
+            <circle cx="200" cy="200" r="92" fill="none" stroke="rgba(185,176,214,0.12)" />
           </svg>
         </div>
       </div>

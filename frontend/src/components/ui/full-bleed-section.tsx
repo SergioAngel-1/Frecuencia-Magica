@@ -29,6 +29,13 @@ export interface FullBleedSectionProps {
   /** Id del titular que nombra la sección (`aria-labelledby`). */
   labelledBy?: string;
   className?: string;
+  /**
+   * Clases de la capa de medios. Para recomponer la caja de la imagen en un
+   * breakpoint (p. ej. bajarla en móvil para que el sujeto quede bajo el
+   * texto) sin tocar el foco del contrato, que no mueve nada cuando la imagen
+   * ya llena la caja en ese eje.
+   */
+  mediaClassName?: string;
   contentClassName?: string;
 }
 
@@ -71,6 +78,7 @@ export function FullBleedSection({
   minHeight,
   labelledBy,
   className,
+  mediaClassName,
   contentClassName,
 }: FullBleedSectionProps) {
   const layout = mediaLayout(mode, 'desktop');
@@ -108,6 +116,7 @@ export function FullBleedSection({
                 // el mayor de los dos, y la foto nunca se estira con el texto.
                 cn('col-start-1 row-start-1 w-full self-start', ANCHORED_ASPECT[media.aspect])
               : 'absolute inset-0',
+            mediaClassName,
           )}
         >
           <EditorialImage
