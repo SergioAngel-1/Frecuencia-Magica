@@ -27,13 +27,18 @@ function CardSkeleton({
         className,
       )}
     >
-      <MediaSkeleton
-        animated
-        aspect="1:1"
-        className={cn('aspect-square shrink-0', featured && 'md:w-1/2 md:self-center')}
-        label={label}
-        slot="store-product-visual"
-      />
+      {/* El destacado: la columna llena el alto de la ficha y el 1:1 se centra en ella. */}
+      <div
+        className={cn('shrink-0', featured && 'md:flex md:w-1/2 md:items-center md:self-stretch')}
+      >
+        <MediaSkeleton
+          animated
+          aspect="1:1"
+          className="aspect-square w-full"
+          label={label}
+          slot="store-product-visual"
+        />
+      </div>
       <div className={cn('flex flex-1 flex-col', featured && 'md:justify-center')}>
         <div className={cn('flex flex-col gap-2', featured ? 'p-5' : 'p-4')}>
           {featured ? null : <div className="bg-ivory/10 h-3 w-16 rounded-full" />}

@@ -25,7 +25,8 @@ type ProductCardProps = {
   media: EditorialMedia;
   /**
    * El destacado: imagen 1:1 y texto en columnas desde `md` (apilados en
-   * móvil), en vez de una franja ancha que recortaría el objeto.
+   * móvil), en vez de una franja ancha que recortaría el objeto. Su columna
+   * de imagen llena el alto de la ficha con la misma materia difuminada.
    */
   featured?: boolean;
   className?: string;
@@ -61,21 +62,40 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
         )}
       >
         {/* La caja de la imagen tiene el ratio del slot: un producto a 1:1, el
-            ambiente de relacionados a su 16:8. */}
+            ambiente de relacionados a su 16:8. En el destacado, la columna
+            ocupa todo el alto de la ficha: la misma materia, difuminada, la
+            llena por detrás y el objeto nítido queda centrado a su 1:1, sin
+            recortarse nunca. */}
         <div
           className={cn(
             'relative shrink-0',
-            ASPECT_FIELD[media.aspect],
-            featured && 'md:w-1/2 md:self-center',
+            featured && 'md:flex md:w-1/2 md:items-center md:self-stretch md:overflow-hidden',
           )}
+          data-featured-column={featured ? 'true' : undefined}
         >
-          <EditorialImage
-            aspect={media.aspect}
-            className="h-full"
-            media={media}
-            overlay="bottom"
-            scrim="bottom"
-          />
+          {featured ? (
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 hidden scale-110 opacity-45 blur-2xl md:block"
+              data-featured-backdrop="true"
+            >
+              <EditorialImage
+                aspect={media.aspect}
+                className="h-full"
+                media={media}
+                overlay={false}
+              />
+            </div>
+          ) : null}
+          <div className={cn('relative w-full', ASPECT_FIELD[media.aspect])}>
+            <EditorialImage
+              aspect={media.aspect}
+              className="h-full"
+              media={media}
+              overlay="bottom"
+              scrim="bottom"
+            />
+          </div>
           {featured ? (
             <div className="absolute top-5 left-5 z-10">
               <Badge solid>{t('featuredBadge')}</Badge>

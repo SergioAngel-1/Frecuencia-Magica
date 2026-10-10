@@ -239,6 +239,22 @@ describe('store editorial composition contracts', () => {
     expect(cardSource).toContain('md:flex-row');
     expect(cardSource).toContain('md:w-1/2');
   });
+  it('fills the featured card height behind the 1:1 object without cropping it', () => {
+    // La columna del destacado se estira a todo el alto de la ficha…
+    expect(cardSource).toContain('md:flex md:w-1/2 md:items-center md:self-stretch');
+    expect(cardSource).not.toContain('md:self-center');
+    // …la misma materia, difuminada y decorativa, la llena por detrás…
+    const backdrop = cardSource.slice(
+      cardSource.lastIndexOf('<div', cardSource.indexOf('data-featured-backdrop="true"')),
+      cardSource.indexOf('</div>', cardSource.indexOf('data-featured-backdrop="true"')),
+    );
+    expect(backdrop).toContain('aria-hidden="true"');
+    expect(backdrop).toContain('media={media}');
+    expect(backdrop).toMatch(/\bblur-/);
+    // …y el objeto nítido conserva la caja del slot, a su 1:1.
+    expect(cardSource).toContain("'relative w-full', ASPECT_FIELD[media.aspect]");
+    expect(loadingSource).toContain('md:flex md:w-1/2 md:items-center md:self-stretch');
+  });
   it('keeps the cart on the page axis and the related products readable at 768', () => {
     expect(cartPageSource).toContain('px-[var(--page-inset)]');
     expect(cartPageSource).not.toContain('md:px-0');
