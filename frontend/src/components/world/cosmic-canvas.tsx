@@ -6,208 +6,196 @@ import type { VisualMode } from '@/config/realms';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { useRealm } from '@/hooks/use-realm';
 import { hexToRgb, type Rgb } from '@/lib/cosmic/colors';
-import { advanceParticle, createParticles, createStars } from '@/lib/cosmic/particles';
+import type { CosmicMessage, CosmicReply } from '@/lib/cosmic/protocol';
+import { createCosmicDriver, createCosmicScene, type CosmicViewport } from '@/lib/cosmic/scene';
 
-const STAR_COUNT = 220;
-/** Partículas en desktop; se baja a 28 por debajo de 768px (presupuesto 16.4). */
-const PARTICLE_COUNT = 54;
-const PARTICLE_COUNT_MOBILE = 28;
 const MOBILE_QUERY = '(max-width: 767px)';
+const RESIZE_DEBOUNCE_MS = 150;
 const VISUAL_MODE_OPACITY: Record<VisualMode, number> = {
   cosmic: 1,
   editorial: 0.52,
   quiet: 0.34,
 };
 
-/** Nebulosas fijas del canvas. La tercera se recolorea con el acento del realm. */
-const NEBULAE: readonly { x: number; y: number; r: number; color: Rgb | null }[] = [
-  { x: 0.22, y: 0.3, r: 0.42, color: [150, 198, 188] },
-  { x: 0.78, y: 0.7, r: 0.4, color: [185, 176, 214] },
-  { x: 0.55, y: 0.45, r: 0.34, color: null },
-];
+/** Lo que el componente le pide al fondo, pinte quien pinte. */
+type Painter = {
+  resize: (viewport: CosmicViewport) => void;
+  setAccent: (accent: Rgb) => void;
+  setReduced: (reduced: boolean) => void;
+  setVisible: (visible: boolean) => void;
+  destroy: () => void;
+};
 
-/** ¿Pantalla pequeña? Según el mismo breakpoint que la rejilla móvil. */
-function isSmallScreen(): boolean {
-  return typeof window !== 'undefined' && window.matchMedia(MOBILE_QUERY).matches;
+/** Tamaño del viewport, densidad capada a 2 y breakpoint de la rejilla móvil. */
+function readViewport(): CosmicViewport {
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight,
+    dpr: Math.min(window.devicePixelRatio || 1, 2),
+    small: window.matchMedia(MOBILE_QUERY).matches,
+  };
 }
 
-/**
- * Gradiente de una partícula, pre-horneado en coordenadas locales centradas
- * en el origen: el bucle lo dibuja con `translate` en lugar de crear 54
- * gradientes por frame (Task 16.4 — presupuesto de animación).
- */
-function makeParticleGradient(
-  ctx: CanvasRenderingContext2D,
-  color: Rgb,
-  alpha: number,
-  radius: number,
-): CanvasGradient {
-  const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius);
-  gradient.addColorStop(0, `rgba(${color[0]},${color[1]},${color[2]},${alpha})`);
-  gradient.addColorStop(1, `rgba(${color[0]},${color[1]},${color[2]},0)`);
-  return gradient;
+function createCanvas(host: HTMLElement): HTMLCanvasElement {
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'display:block;width:100%;height:100%';
+  host.replaceChildren(canvas);
+  return canvas;
+}
+
+/** Pinta en el hilo principal: el camino de los navegadores sin `OffscreenCanvas`. */
+function paintOnMainThread(host: HTMLElement, accent: Rgb): Painter | null {
+  const ctx = createCanvas(host).getContext('2d');
+  if (!ctx) return null;
+
+  const scene = createCosmicScene(ctx, readViewport(), accent);
+  const driver = createCosmicDriver(scene, requestAnimationFrame, cancelAnimationFrame);
+
+  return {
+    resize: (viewport) => {
+      scene.resize(viewport);
+      driver.refresh();
+    },
+    setAccent: (next) => {
+      scene.setAccent(next);
+      driver.refresh();
+    },
+    setReduced: driver.setReduced,
+    setVisible: driver.setVisible,
+    destroy: driver.stop,
+  };
+}
+
+/** Pinta en un worker. Si el worker no puede, `onFailed` pide el otro camino. */
+function paintInWorker(host: HTMLElement, accent: Rgb, onFailed: () => void): Painter | null {
+  const canvas = createCanvas(host);
+  if (typeof Worker === 'undefined' || typeof canvas.transferControlToOffscreen !== 'function') {
+    return null;
+  }
+
+  let worker: Worker;
+  try {
+    worker = new Worker(new URL('../../lib/cosmic/cosmic.worker.ts', import.meta.url));
+  } catch {
+    return null;
+  }
+
+  const send = (message: CosmicMessage, transfer: Transferable[] = []) =>
+    worker.postMessage(message, transfer);
+
+  worker.onmessage = ({ data }: MessageEvent<CosmicReply>) => {
+    if (data.type === 'failed') onFailed();
+  };
+  worker.onerror = onFailed;
+
+  const offscreen = canvas.transferControlToOffscreen();
+  send(
+    {
+      type: 'init',
+      canvas: offscreen,
+      viewport: readViewport(),
+      accent,
+      reduced: false,
+      visible: !document.hidden,
+    },
+    [offscreen],
+  );
+
+  return {
+    resize: (viewport) => send({ type: 'resize', viewport }),
+    setAccent: (next) => send({ type: 'accent', accent: next }),
+    setReduced: (reduced) => send({ type: 'reduced', reduced }),
+    setVisible: (visible) => send({ type: 'visible', visible }),
+    destroy: () => worker.terminate(),
+  };
 }
 
 /**
  * Fondo cósmico: estrellas que parpadean, polen dorado que asciende y tres
- * nebulosas a la deriva. Se recolorea al acento del realm sin regenerar nada.
+ * nebulosas a la deriva, recoloreadas al acento del realm (`lib/cosmic/scene`).
  *
- * Port literal de `setupCanvas` / `drawFrame` del prototipo. Los valores mágicos
- * son intencionales.
+ * Se pinta en un worker sobre un `OffscreenCanvas`: es la única capa que
+ * dibuja en cada frame, y fuera del hilo principal deja de competir con el
+ * scroll y las transiciones. Además, sin su `requestAnimationFrame` aquí, el
+ * navegador ya no tiene que producir un frame de página 60 veces por segundo
+ * y las animaciones CSS corren solas en el compositor. Donde no hay
+ * `OffscreenCanvas`, o si el worker falla, pinta en el hilo principal con el
+ * mismo código.
+ *
+ * El `<canvas>` se crea a mano dentro del efecto: una vez transferido a un
+ * worker no admite otro contexto, y así cada montaje estrena el suyo.
  */
 export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMode }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const hostRef = useRef<HTMLDivElement>(null);
+  const painterRef = useRef<Painter | null>(null);
   const { accent } = useRealm();
   const reduced = useReducedMotionSafe();
 
-  // El acento vive en un ref para que el bucle lo lea sin reiniciarse.
-  const accentRef = useRef<Rgb>(hexToRgb(accent));
-  // Rebuild de los sprites de partículas, expuesto por el efecto del canvas;
-  // se llama desde abajo cuando cambia el acento (el color pre-horneado debe
-  // seguir al realm, no congelarse con el primero).
-  const rebuildSpritesRef = useRef<(() => void) | null>(null);
-  useEffect(() => {
-    accentRef.current = hexToRgb(accent);
-    rebuildSpritesRef.current?.();
-  }, [accent]);
+  // Lo último que se le dijo al fondo: el pintor que se monte lo recibe.
+  const accentRef = useRef(accent);
+  const reducedRef = useRef(reduced);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const host = hostRef.current;
+    if (!host) return;
 
-    let width = 0;
-    let height = 0;
-
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const adopt = (painter: Painter | null) => {
+      painterRef.current = painter;
+      painter?.setReduced(reducedRef.current);
     };
-    resize();
-
-    const stars = createStars(STAR_COUNT, Math.random);
-    let particles = createParticles(
-      isSmallScreen() ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT,
-      Math.random,
-    );
-    // Sprites pre-horneados en coordenadas locales; se regeneran al cambiar
-    // el acento (rebuildSpritesRef) o el tamaño de pantalla (onResize).
-    let sprites: CanvasGradient[] = [];
-    const rebuildSprites = () => {
-      sprites = particles.map((p) => makeParticleGradient(ctx, accentRef.current, p.a, p.r * 4));
-    };
-    rebuildSprites();
-    rebuildSpritesRef.current = rebuildSprites;
-
-    const draw = (time: number, twinkleFrozen: boolean) => {
-      ctx.clearRect(0, 0, width, height);
-      const max = Math.max(width, height);
-
-      // Nebulosas radiales a la deriva.
-      NEBULAE.forEach((nebula, i) => {
-        const color = nebula.color ?? accentRef.current;
-        const dx = Math.sin(time * (0.6 + i * 0.3)) * 0.03;
-        const dy = Math.cos(time * (0.5 + i * 0.25)) * 0.03;
-        const cx = (nebula.x + dx) * width;
-        const cy = (nebula.y + dy) * height;
-        const r = nebula.r * max;
-        const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        gradient.addColorStop(0, `rgba(${color[0]},${color[1]},${color[2]},0.11)`);
-        gradient.addColorStop(1, `rgba(${color[0]},${color[1]},${color[2]},0)`);
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, width, height);
-      });
-
-      // Estrellas: parpadeo senoidal.
-      for (const star of stars) {
-        const tw = twinkleFrozen ? 0.7 : 0.5 + 0.5 * Math.sin(time * 6 * star.sp + star.tw);
-        ctx.beginPath();
-        ctx.arc(star.x * width, star.y * height, star.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(247,244,234,${0.25 + 0.6 * tw})`;
-        ctx.fill();
-      }
-
-      // Partículas de polen con el color de acento, dibujadas con el sprite
-      // pre-horneado (translate + arc; sin gradientes por frame).
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        const sprite = sprites[i];
-        if (!p || !sprite) continue;
-        ctx.save();
-        ctx.translate(p.x * width, p.y * height);
-        ctx.fillStyle = sprite;
-        ctx.beginPath();
-        ctx.arc(0, 0, p.r * 4, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
+    const fallBack = () => {
+      painterRef.current?.destroy();
+      adopt(paintOnMainThread(host, hexToRgb(accentRef.current)));
     };
 
-    // Movimiento reducido: un único frame quieto, sin encadenar rAF.
-    if (reduced) {
-      draw(0, true);
-      const onResizeStatic = () => {
-        resize();
-        draw(0, true);
-      };
-      window.addEventListener('resize', onResizeStatic);
-      return () => window.removeEventListener('resize', onResizeStatic);
-    }
+    const initialAccent = hexToRgb(accentRef.current);
+    adopt(paintInWorker(host, initialAccent, fallBack) ?? paintOnMainThread(host, initialAccent));
 
-    let raf = 0;
+    // El frame quieto de movimiento reducido se repinta al momento; el bucle
+    // espera a que el tamaño se asiente.
     let resizeTimer: ReturnType<typeof setTimeout> | null = null;
-
-    const loop = (timestamp: number) => {
-      const time = timestamp * 0.0001;
-      particles = particles.map((p) => advanceParticle(p));
-      draw(time, false);
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
-
     const onResize = () => {
       if (resizeTimer) clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        resize();
-        // Cambio de breakpoint: regenerar partículas (54 → 28) y sus sprites.
-        const count = isSmallScreen() ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT;
-        if (particles.length !== count) {
-          particles = createParticles(count, Math.random);
-          rebuildSprites();
-        }
-      }, 150);
-    };
-    window.addEventListener('resize', onResize);
-
-    // Pausar fuera de pantalla para no gastar batería.
-    const onVisibility = () => {
-      if (document.hidden) {
-        cancelAnimationFrame(raf);
-      } else {
-        raf = requestAnimationFrame(loop);
+      if (reducedRef.current) {
+        painterRef.current?.resize(readViewport());
+        return;
       }
+      resizeTimer = setTimeout(
+        () => painterRef.current?.resize(readViewport()),
+        RESIZE_DEBOUNCE_MS,
+      );
     };
+    // Pausar fuera de pantalla para no gastar batería.
+    const onVisibility = () => painterRef.current?.setVisible(!document.hidden);
+
+    window.addEventListener('resize', onResize);
     document.addEventListener('visibilitychange', onVisibility);
 
     return () => {
-      cancelAnimationFrame(raf);
       if (resizeTimer) clearTimeout(resizeTimer);
-      rebuildSpritesRef.current = null;
       window.removeEventListener('resize', onResize);
       document.removeEventListener('visibilitychange', onVisibility);
+      painterRef.current?.destroy();
+      painterRef.current = null;
+      host.replaceChildren();
     };
+  }, []);
+
+  useEffect(() => {
+    accentRef.current = accent;
+    painterRef.current?.setAccent(hexToRgb(accent));
+  }, [accent]);
+
+  useEffect(() => {
+    reducedRef.current = reduced;
+    painterRef.current?.setReduced(reduced);
   }, [reduced]);
 
   return (
-    <canvas
-      ref={canvasRef}
+    <div
+      ref={hostRef}
       aria-hidden="true"
-      className="z-world pointer-events-none fixed inset-0 h-full w-full"
+      className="z-world pointer-events-none fixed inset-0"
       style={{ opacity: VISUAL_MODE_OPACITY[visualMode] }}
     />
   );

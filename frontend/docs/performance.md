@@ -35,6 +35,7 @@ Presupuestos, métricas y decisiones de rendimiento del frontend (Task 16.4 del 
    - Gradientes de partículas **pre-horneados** (se crean una vez por partícula y por cambio de realm; el bucle dibuja con `translate` + `arc` en lugar de 54 `createRadialGradient` por frame). Las 3 nebulosas mantienen su gradiente por frame (sólo son 3).
    - **54 partículas en desktop, 28 por debajo de 768px** (`PARTICLE_COUNT_MOBILE`), regeneradas al cruzar el breakpoint.
    - Sin cambio: DPR ≤ 2, pausa con pestaña oculta (`visibilitychange`), frame único quieto con movimiento reducido.
+   - **Fuera del hilo principal (2026-10-10):** la escena (`lib/cosmic/scene.ts`) se pinta en un worker sobre un `OffscreenCanvas` (`lib/cosmic/cosmic.worker.ts`); sin soporte, o si el worker falla, el mismo código pinta en el hilo principal. Sin su `requestAnimationFrame` en la página, el navegador deja de producir un frame de documento por cada frame del fondo. El alfa de las estrellas va en `globalAlpha` (sin 220 cadenas `rgba()` por frame) y el bucle no pinta por encima de 60 fps en pantallas de 120 Hz.
 4. **Logo:** `next/image` con `sizes` correcto en los 4 usos; `priority` sólo en el portal y el header (ya era así).
 5. **Pausas verificadas:** canvas (visibilitychange ✓), Lenis (`destroy()` al desmontar ✓), cursor (`cancelAnimationFrame` ✓), reproductor (interval limpio al pausar ✓ — con el `setElapsed` funcional ya no se recrea cada tick). No hay escenas 3D (Fase 15 no ejecutada): el punto «desmontar al salir del viewport» queda N/A.
 
