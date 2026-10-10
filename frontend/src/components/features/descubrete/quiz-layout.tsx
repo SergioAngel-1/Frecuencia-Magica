@@ -35,6 +35,10 @@ export function QuizLayout({ children, media, phase, className }: QuizLayoutProp
       media={media}
       mode={phaseMode(phase)}
       overlay={phase === 'questions' ? 'left' : 'bottom'}
+      // Las preguntas leen sobre una atmósfera de bajo contraste que ya trae su
+      // aurora: un solo velo, sin el tinte que lo doblaba. En móvil el kicker
+      // cae sobre la aurora más clara y el tinte se queda para cumplir AA.
+      tint={phase === 'questions' ? 'mobile' : true}
       fade="bottom"
       // El fondo de pregunta y la sintonía cubren la pantalla por encima de su
       // ratio: `sizes` por alto, o el navegador sirve una variante pequeña.
@@ -57,7 +61,7 @@ export function QuizLayout({ children, media, phase, className }: QuizLayoutProp
         <Halo
           color="rgba(216,185,120,0.16), rgba(150,198,188,0.08) 55%"
           inset="18%"
-          className={cn(phase === 'questions' ? 'opacity-40' : 'opacity-70')}
+          className={cn(phase === 'questions' ? 'opacity-20' : 'opacity-70')}
         />
         {phase !== 'result' ? (
           <OrbitalRings

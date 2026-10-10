@@ -118,4 +118,37 @@ describe('Descúbrete editorial composition', () => {
     expect(layoutSource).toContain("phase === 'questions' || phase === 'tuning'");
     expect(layoutSource).toContain("? mediaSizes('viewport', media.aspect)");
   });
+  it('softens the layer behind the questions: one light treatment, a quieter halo', () => {
+    // Ni el velo direccional doble ni un halo intenso sobre la aurora de la foto.
+    expect(layoutSource).toContain("tint={phase === 'questions' ? 'mobile' : true}");
+    expect(fullBleedSource).toContain(
+      "overlayClassName={tint === 'mobile' ? 'md:hidden' : undefined}",
+    );
+    expect(fullBleedSource).toContain('overlay={tint ? overlayDirection : false}');
+    expect(fullBleedSource).toContain('scrim={overlayDirection}');
+    expect(layoutSource).toContain("phase === 'questions' ? 'opacity-20'");
+  });
+
+  it('paces the questions calmly and keeps the leaving step inert', () => {
+    const swapSource = readFileSync(resolve(SOURCE_ROOT, 'components/ui/swap.tsx'), 'utf8');
+
+    expect(containerSource).toContain('pace="calm"');
+    expect(swapSource).toContain('SWAP_PACE[pace]');
+    expect(swapSource).toContain('inert={!present}');
+    expect(swapSource).toContain('useReducedMotion');
+  });
+
+  it('reveals the result through the portal iris without navigating', () => {
+    const hookSource = readFileSync(resolve(SOURCE_ROOT, 'hooks/use-portal-reveal.ts'), 'utf8');
+
+    expect(containerSource).toContain('usePortalReveal()');
+    expect(containerSource).toContain('cover(finishTune)');
+    expect(containerSource).toContain('if (showingResult) arrive();');
+    expect(containerSource).toContain('onFinish={revealResult}');
+    // Mismo iris, sin ruta, sin audio ambiental y sin el reposo del portal.
+    expect(hookSource).toContain("portal.cross(mode, 'reveal')");
+    expect(hookSource).toContain('portalModeFor(reduced, false)');
+    expect(hookSource).toContain('clearTimeout');
+    expect(hookSource).not.toMatch(/useRouter|useAmbientStore|markPortalCrossed/);
+  });
 });

@@ -1,10 +1,12 @@
 'use client';
 
+import { useCallback, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Swap } from '@/components/ui';
 import { QUESTIONS } from '@/data/questions';
 import { useDiscoverResult } from '@/hooks/use-discover-result';
+import { usePortalReveal } from '@/hooks/use-portal-reveal';
 import { useQuiz } from '@/hooks/use-quiz';
 import { selectDiscoverMedia, type DiscoverMedia } from '@/lib/discover/media';
 import type { DiscoverCatalog } from '@/lib/discover/recommend';
@@ -27,12 +29,28 @@ export function QuizContainer({ catalog, media }: QuizContainerProps) {
   const open = usePlayerStore((s) => s.open);
   const result = useDiscoverResult(quiz.answers, QUESTIONS, catalog, quiz.step === 'result');
 
+  const portal = usePortalReveal();
+  const { finishTune } = quiz;
+  const { cover, arrive } = portal;
+
+  // Al terminar de escuchar, el iris del portal cubre la pantalla; bajo la
+  // noche se pasa al resultado, y la noche se abre cuando ya está montado.
+  const revealResult = useCallback(() => cover(finishTune), [cover, finishTune]);
+  const showingResult = quiz.step === 'result';
+
+  useEffect(() => {
+    if (showingResult) arrive();
+  }, [showingResult, arrive]);
+
   const question = QUESTIONS[quiz.currentQuestion];
 
   return (
     <QuizLayout phase={quiz.step} media={selectDiscoverMedia(quiz.step, media)}>
       {/* Cada paso —y cada pregunta— sale antes de que entre el siguiente. */}
-      <Swap id={quiz.step === 'questions' ? `question-${quiz.currentQuestion}` : quiz.step}>
+      <Swap
+        id={quiz.step === 'questions' ? `question-${quiz.currentQuestion}` : quiz.step}
+        pace="calm"
+      >
         {quiz.step === 'intro' && (
           <IntroStep
             kicker={t('kicker')}
@@ -59,9 +77,7 @@ export function QuizContainer({ catalog, media }: QuizContainerProps) {
           />
         )}
 
-        {quiz.step === 'tuning' && (
-          <TuningStep tuningLabel={t('tuning')} onFinish={quiz.finishTune} />
-        )}
+        {quiz.step === 'tuning' && <TuningStep tuningLabel={t('tuning')} onFinish={revealResult} />}
 
         {quiz.step === 'result' && result && (
           <ResultStep {...result} onListen={() => open(result.audio.id)} onRestart={quiz.reset} />

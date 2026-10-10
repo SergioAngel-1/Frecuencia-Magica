@@ -30,6 +30,8 @@ export interface EditorialImageProps {
    * comparte con su vecina funde aunque `fade` no lo pida.
    */
   bandMedia?: boolean;
+  /** Clases del velo tintado (`overlay`), p. ej. para pintarlo sólo en móvil. */
+  overlayClassName?: string;
   className?: string;
 }
 
@@ -70,6 +72,7 @@ export function EditorialImage({
   fade = 'none',
   sizes,
   bandMedia = false,
+  overlayClassName,
   className,
 }: EditorialImageProps) {
   const visual = editorialVisual(media);
@@ -98,7 +101,9 @@ export function EditorialImage({
         visual={visual}
       />
       {scrimDirection ? <EditorialOverlay direction={scrimDirection} /> : null}
-      {overlayDirection ? <EditorialOverlay direction={overlayDirection} tone="teal" /> : null}
+      {overlayDirection ? (
+        <EditorialOverlay direction={overlayDirection} tone="teal" className={overlayClassName} />
+      ) : null}
     </div>
   );
 }

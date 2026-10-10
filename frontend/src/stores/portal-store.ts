@@ -10,12 +10,20 @@ import { PORTAL_MAX_HOLD, PORTAL_TIMING, type PortalMode } from '@/config/motion
  */
 export type PortalPhase = 'idle' | 'in' | 'hold' | 'out';
 
+/**
+ * Qué se cruza: `route`, el umbral hacia otra vista (portal → inicio);
+ * `reveal`, la revelación en sitio del resultado de Descúbrete. Sólo cambia
+ * lo que se anuncia a los lectores de pantalla.
+ */
+export type PortalReason = 'route' | 'reveal';
+
 type PortalState = {
   phase: PortalPhase;
   /** Coreografía en curso: el iris completo o el fundido breve. */
   mode: PortalMode;
+  reason: PortalReason;
   /** Inicia el cruce. Uno en marcha no se reinicia. */
-  cross(mode?: PortalMode): void;
+  cross(mode?: PortalMode, reason?: PortalReason): void;
   /** El destino ya está montado: la revelación puede empezar. */
   arrive(): void;
   setPhase(phase: PortalPhase): void;
@@ -60,15 +68,16 @@ export const usePortalStore = create<PortalState>((set, get) => {
   return {
     phase: 'idle',
     mode: 'full',
+    reason: 'route',
     setPhase: (phase) => set({ phase }),
-    cross: (mode = 'full') => {
+    cross: (mode = 'full', reason = 'route') => {
       if (get().phase !== 'idle') return;
 
       clearTimers();
       arrived = false;
       revealing = false;
 
-      set({ phase: 'in', mode });
+      set({ phase: 'in', mode, reason });
       coverTimer = setTimeout(() => {
         set({ phase: 'hold' });
         if (arrived) reveal();

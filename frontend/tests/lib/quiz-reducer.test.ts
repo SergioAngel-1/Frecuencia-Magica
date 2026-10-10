@@ -4,8 +4,14 @@ import { INITIAL_STATE, quizReducer, type QuizState } from '@/lib/quiz-reducer';
 
 const TOTAL = 5;
 
-function answer(state: QuizState, questionId: string, optionIndex: number, total = TOTAL) {
-  return quizReducer(state, { type: 'ANSWER', questionId, optionIndex, total });
+function answer(
+  state: QuizState,
+  questionId: string,
+  optionIndex: number,
+  total = TOTAL,
+  questionIndex = state.currentQuestion,
+) {
+  return quizReducer(state, { type: 'ANSWER', questionId, optionIndex, total, questionIndex });
 }
 
 describe('quizReducer', () => {
@@ -33,6 +39,22 @@ describe('quizReducer', () => {
     expect(done.step).toBe('tuning');
     expect(done.currentQuestion).toBe(4);
     expect(done.answers).toEqual({ q1: 0, q2: 1, q3: 2, q4: 3, q5: 0 });
+  });
+
+  it('ignora una respuesta tardía a la pregunta que ya se respondió', () => {
+    const started = quizReducer(INITIAL_STATE, { type: 'START_QUIZ' });
+    const first = answer(started, 'q1', 2);
+    // Un segundo clic sobre la pregunta 1 mientras se funde: llega con su índice.
+    const stale = answer(first, 'q1', 3, TOTAL, 0);
+
+    expect(stale).toBe(first);
+    expect(stale.currentQuestion).toBe(1);
+    expect(stale.answers).toEqual({ q1: 2 });
+  });
+
+  it('ignora respuestas fuera del paso de preguntas', () => {
+    const tuning = { ...INITIAL_STATE, step: 'tuning' as const, currentQuestion: 4 };
+    expect(answer(tuning, 'q5', 1, TOTAL, 4)).toBe(tuning);
   });
 
   it('la última pregunta la marca el total, no un número fijo', () => {

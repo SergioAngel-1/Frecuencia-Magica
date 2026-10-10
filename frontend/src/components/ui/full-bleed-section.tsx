@@ -18,6 +18,13 @@ export interface FullBleedSectionProps {
   children: ReactNode;
   overlay?: EditorialOverlayDirection | boolean;
   /**
+   * Segundo velo, tintado, en la misma dirección del scrim. Por defecto se
+   * pinta; `false` deja un solo velo más ligero, para una imagen de bajo
+   * contraste que ya trae su propia luz, y `'mobile'` lo conserva sólo por
+   * debajo de 768 px, donde el texto cae sobre la parte más luminosa.
+   */
+  tint?: boolean | 'mobile';
+  /**
    * Bordes de la imagen que se funden con la noche. Por defecto los dos: una
    * banda a sangre nunca termina en arista. Lo que roza el header funde sólo
    * el inferior (`'bottom'`). En `anchored` el borde inferior funde siempre.
@@ -73,6 +80,7 @@ export function FullBleedSection({
   mode,
   children,
   overlay,
+  tint = true,
   fade = 'both',
   sizes,
   minHeight,
@@ -126,7 +134,8 @@ export function FullBleedSection({
             fade={anchored ? anchoredFade(fade) : fade}
             focalPoint={media.position ?? layout.objectPosition}
             media={media}
-            overlay={overlayDirection}
+            overlay={tint ? overlayDirection : false}
+            overlayClassName={tint === 'mobile' ? 'md:hidden' : undefined}
             scrim={overlayDirection}
             sizes={sizes ?? mediaSizes(mode, media.aspect)}
           />

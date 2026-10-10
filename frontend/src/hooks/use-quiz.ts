@@ -1,6 +1,6 @@
 'use client';
 
-import { useReducer } from 'react';
+import { useCallback, useReducer } from 'react';
 
 import { INITIAL_STATE, quizReducer, type QuizStep } from '@/lib/quiz-reducer';
 import type { Question } from '@/types/content';
@@ -22,6 +22,13 @@ type UseQuizReturn = {
 export function useQuiz(questions: readonly Question[]): UseQuizReturn {
   const [state, dispatch] = useReducer(quizReducer, INITIAL_STATE);
 
+  // Las acciones que sólo despachan son estables: quien las recibe puede
+  // ponerlas en las dependencias de un efecto sin reiniciarlo en cada render.
+  const goBack = useCallback(() => dispatch({ type: 'GO_BACK' }), []);
+  const start = useCallback(() => dispatch({ type: 'START_QUIZ' }), []);
+  const finishTune = useCallback(() => dispatch({ type: 'FINISH_TUNE' }), []);
+  const reset = useCallback(() => dispatch({ type: 'RESET' }), []);
+
   return {
     step: state.step,
     currentQuestion: state.currentQuestion,
@@ -31,12 +38,19 @@ export function useQuiz(questions: readonly Question[]): UseQuizReturn {
     answer: (optionIndex: number) => {
       const q = questions[state.currentQuestion];
       if (!q) return;
-      dispatch({ type: 'ANSWER', questionId: q.id, optionIndex, total: questions.length });
+      dispatch({
+        type: 'ANSWER',
+        questionId: q.id,
+        optionIndex,
+        total: questions.length,
+        // La pregunta que se veía al pulsar: si ya se respondió, el reducer la ignora.
+        questionIndex: state.currentQuestion,
+      });
     },
 
-    goBack: () => dispatch({ type: 'GO_BACK' }),
-    start: () => dispatch({ type: 'START_QUIZ' }),
-    finishTune: () => dispatch({ type: 'FINISH_TUNE' }),
-    reset: () => dispatch({ type: 'RESET' }),
+    goBack,
+    start,
+    finishTune,
+    reset,
   };
 }

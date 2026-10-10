@@ -20,6 +20,19 @@ export const DURATION = {
   reveal: 0.35,
 } as const;
 
+/**
+ * Ritmos de `Swap`, en segundos: lo que tarda en irse el contenido anterior
+ * (`exit`) y en llegar el nuevo (`enter`). `default` es el intercambio ágil
+ * de formularios y filtros; `calm`, el de un recorrido que se lee paso a paso
+ * (las preguntas de Descúbrete), donde un corte rápido se siente brusco.
+ */
+export const SWAP_PACE = {
+  default: { enter: DURATION.reveal, exit: DURATION.fast * 0.6 },
+  calm: { enter: DURATION.base, exit: DURATION.reveal },
+} as const;
+
+export type SwapPace = keyof typeof SWAP_PACE;
+
 /** Retardos de las entradas escalonadas, en segundos. */
 export const STAGGER = [0.1, 0.25, 0.4, 0.55] as const;
 
