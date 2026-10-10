@@ -14,7 +14,7 @@ interface KickerProps {
    * Elemento semántico. Por defecto `p`; `span` en contextos inline y `h3`
    * cuando el kicker es el único encabezado de una subsección.
    */
-  as?: 'p' | 'span' | 'h3';
+  as?: 'p' | 'span' | 'h2' | 'h3';
   /** Para `aria-labelledby` de la subsección que encabeza. */
   id?: string;
   className?: string;

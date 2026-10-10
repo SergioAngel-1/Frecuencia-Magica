@@ -31,7 +31,8 @@ export function TalkFloat() {
   const reduced = useReducedMotion();
 
   return (
-    <div
+    <aside
+      aria-label={t('region')}
       data-layout-layer="talk"
       className={cn(
         // `will-change` fuera del condicional: la capa propia no depende de
@@ -92,6 +93,6 @@ export function TalkFloat() {
           </Mdiv>
         )}
       </AnimatePresence>
-    </div>
+    </aside>
   );
 }

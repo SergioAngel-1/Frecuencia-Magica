@@ -86,7 +86,7 @@ export function DailyCard({ media, audioId }: DailyCardProps) {
           className="border-ivory/10 mt-auto w-full border-t pt-6"
         >
           <Kicker
-            as="h3"
+            as="h2"
             tone="muted"
             spacing="tight"
             id="sanctuary-suggestions-title"
