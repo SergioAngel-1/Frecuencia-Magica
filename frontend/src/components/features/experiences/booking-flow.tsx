@@ -97,10 +97,16 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
             className="rounded-card-lg relative isolate overflow-hidden"
             data-editorial-flow="booking"
           >
-            <div className="absolute inset-0" data-editorial-media="booking.hero">
+            {/* La foto se ancla arriba a su 16:9 y funde en la noche: el
+                formulario crece con sus pasos sin estirarla. */}
+            <div
+              className="absolute inset-x-0 top-0 aspect-[16/9]"
+              data-editorial-media="booking.hero"
+            >
               <EditorialImage
                 aspect="16:9"
                 className="h-full"
+                fade="bottom"
                 focalPoint={media.hero.position}
                 media={media.hero}
                 overlay="bottom"

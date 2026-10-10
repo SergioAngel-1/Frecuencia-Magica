@@ -53,7 +53,7 @@ export function PortalScene({
       >
         <EditorialImage
           aspect="16:8"
-          className="absolute inset-x-[7%] top-[12%] h-[58%] opacity-35 mix-blend-screen md:inset-x-[16%] md:top-[8%] md:h-[72%]"
+          className="fm-fade-radial absolute top-[12%] right-0 left-0 h-[58%] opacity-35 mix-blend-screen md:top-[4%] md:h-[80%]"
           media={portalFieldMedia}
           overlay={false}
           scrim={false}

@@ -147,6 +147,19 @@ describe('experiences editorial composition contracts', () => {
     expect(loadingSource).toContain('motion-safe:');
     expect(loadingSource).not.toContain('bg-gray');
   });
+  it('anchors the booking hero at its 16:9 on top of the card instead of stretching it', () => {
+    const hero = bookingSource.slice(
+      bookingSource.lastIndexOf(
+        '<div',
+        bookingSource.indexOf('data-editorial-media="booking.hero"'),
+      ),
+      bookingSource.indexOf('</div>', bookingSource.indexOf('data-editorial-media="booking.hero"')),
+    );
+    expect(hero).toContain('aspect-[16/9]');
+    expect(hero).toContain('top-0');
+    expect(hero).not.toContain('inset-0');
+    expect(hero).toContain('fade="bottom"');
+  });
 });
 
 export {};

@@ -162,12 +162,12 @@
 
 **Archivos:** la vista de resultado de Descúbrete (dueña de `discover.result`), la de reserva (`booking.hero`), `components/features/portal/portal-scene.tsx` y el guardia de la vista correspondiente (`discover-editorial`, `experiences-editorial`, `portal-editorial`).
 
-- [ ] Guardias primero: `discover.result` y `booking.hero` se pintan en modo anclado; el panel del portal no usa `inset-x-` y lleva la máscara radial.
-- [ ] `discover.result` y `booking.hero` pasan a `anchored`: la imagen arriba con su ratio, y el contenido sobre la noche. En la reserva, decide si el anclaje va en la tarjeta o en la sección, sin tarjetas anidadas (*Cards*).
-- [ ] `portal.portal-field` sustituye el rectángulo por `fm-fade-radial` y conserva la intención: campo de luz alrededor del aro, `aria-hidden`, baja opacidad.
-- [ ] `discover.question-atmosphere` no se toca (`backdrop`). Comprobar que el guardia lo reconoce como excepción.
-- [ ] Verificar en 1440 y 390, con el quiz completo: intro → preguntas → sintonía → resultado. La sintonía se ve **sin** movimiento reducido (con él, el quiz la salta).
-- [ ] Gate de la tarea y commit: `feat(editorial): anchor tall media at its slot ratio and soften the portal field`.
+- [x] Guardias primero: `discover.result` y `booking.hero` se pintan en modo anclado; el panel del portal no usa `inset-x-` y lleva la máscara radial.
+- [x] `discover.result` y `booking.hero` pasan a `anchored`: la imagen arriba con su ratio, y el contenido sobre la noche. En la reserva, decide si el anclaje va en la tarjeta o en la sección, sin tarjetas anidadas (*Cards*).
+- [x] `portal.portal-field` sustituye el rectángulo por `fm-fade-radial` y conserva la intención: campo de luz alrededor del aro, `aria-hidden`, baja opacidad.
+- [x] `discover.question-atmosphere` no se toca (`backdrop`). Comprobar que el guardia lo reconoce como excepción.
+- [x] Verificar en 1440 y 390, con el quiz completo: intro → preguntas → sintonía → resultado. La sintonía se ve **sin** movimiento reducido (con él, el quiz la salta).
+- [x] Gate de la tarea y commit: `feat(editorial): anchor tall media at its slot ratio and soften the portal field`.
 
 **Aceptación:**
 - `discover.result` en 390: caja ≈ 390×219 con la imagen entera (antes 390×2047);

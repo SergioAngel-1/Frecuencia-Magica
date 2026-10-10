@@ -109,4 +109,13 @@ describe('Descúbrete editorial composition', () => {
     expect(resultSource).toContain('asChild onClick={onListen}');
     expect(resultSource).toContain('href="/resonario"');
   });
+  it('anchors the result at its slot ratio and keeps the question atmosphere as the one backdrop', () => {
+    // El resultado crece con su texto: la foto se pinta a su 16:9, anclada, no estirada.
+    expect(layoutSource).toContain("if (phase === 'result') return 'anchored'");
+    // La atmósfera de pregunta es la excepción `backdrop` del contrato: fondo completo,
+    // con `sizes` por alto, porque cubre la pantalla por encima de su 3:4.
+    expect(EDITORIAL_MEDIA_REGISTRY['discover.question-atmosphere'].backdrop).toBe(true);
+    expect(layoutSource).toContain("phase === 'questions' || phase === 'tuning'");
+    expect(layoutSource).toContain("? mediaSizes('viewport', media.aspect)");
+  });
 });
