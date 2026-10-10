@@ -54,6 +54,9 @@ export async function generateMetadata({ params }: { params: LocaleParams }): Pr
 
 export const viewport = {
   themeColor: '#0F1B2E',
+  // La noche llega hasta los bordes del dispositivo y `env(safe-area-inset-*)`
+  // deja de valer cero: de ahí salen los márgenes del header y de los flotantes.
+  viewportFit: 'cover',
 };
 
 /**

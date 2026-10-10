@@ -289,6 +289,37 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
 }
 
+/* Controles flotantes (dock del reproductor, su disco recogido, «Hablar
+   ahora»): se separan del borde `--float-gap` o lo que pida el dispositivo
+   —barra de inicio, muesca en horizontal—, lo que sea mayor. Los `env()` sólo
+   valen algo porque el viewport declara `viewport-fit=cover` (`layout.tsx`).
+   `translateZ(0)` les da capa propia: en iOS un `fixed` con `backdrop-filter`
+   parpadea y se queda atrás durante el scroll con inercia y el rebote si se
+   repinta con la página. `manipulation` quita la espera del doble toque. */
+:root {
+  --float-gap: 12px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --float-gap: 24px;
+  }
+}
+
+@utility fm-float-dock {
+  padding-left: max(var(--float-gap), env(safe-area-inset-left));
+  padding-right: max(var(--float-gap), env(safe-area-inset-right));
+  padding-bottom: max(var(--float-gap), env(safe-area-inset-bottom));
+  transform: translateZ(0);
+  touch-action: manipulation;
+}
+
+@utility fm-float-start {
+  left: max(var(--float-gap), env(safe-area-inset-left));
+  bottom: max(var(--float-gap), env(safe-area-inset-bottom));
+  touch-action: manipulation;
+}
+
 /* La vista llena el viewport y el scroll deja libre la franja de los controles
    fijos (el dock del reproductor). El hueco al pie de página lo pone el footer,
    que cierra todos los realms: reservarlo también aquí lo duplicaba. */

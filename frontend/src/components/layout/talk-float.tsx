@@ -34,7 +34,9 @@ export function TalkFloat() {
     <div
       data-layout-layer="talk"
       className={cn(
-        'z-player pointer-events-none fixed bottom-[max(12px,env(safe-area-inset-bottom))] left-3 transition-transform duration-500 ease-out sm:bottom-6 sm:left-6',
+        // `will-change` fuera del condicional: la capa propia no depende de
+        // que el reproductor esté abierto (ver `fm-float-start`).
+        'fm-float-start z-player pointer-events-none fixed transition-transform duration-500 ease-out will-change-transform',
         dockOpen && '-translate-y-[76px] sm:-translate-y-[92px]',
       )}
     >
