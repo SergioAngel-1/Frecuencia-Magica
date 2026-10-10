@@ -32,6 +32,7 @@ npm run test         # Vitest run
 npm run test:watch   # Vitest en watch
 npm run build        # next build --turbopack
 npm run format       # Prettier (format:check para sólo verificar)
+npm run editorial:ingest  # PNG de .editorial-originals/ → variantes AVIF (una compresión) + manifiesto
 ```
 
 Showcase (desde `Branding/`, tiene su propio `package.json`): `npm run dev` · `npm run build` · `npm run lint` (oxlint) · `npm run export:photo-brief`. Si tocas `tokens.css` o el UI Kit, comprueba que `npm run build` de `Branding/` sigue pasando.
@@ -76,6 +77,7 @@ npm run format:check && npm run lint && npm run typecheck && npm run test && npm
 ## Pitfalls
 
 - `Branding/` fue reescrito el 2026-09-30: ya **no** es el showcase claro/pastel de junio de 2026 (eliminado), sino un espejo del sistema real que importa `tokens.css`. No declarar colores, tamaños ni radios en `Branding/`; un test de la web (`tests/lib/branding-tokens.test.ts`) lo vigila. Sus componentes (`Branding/src/components/ui/`) son puertos en JSX del UI Kit: si cambias una primitiva de `frontend/src/components/ui/`, actualiza su puerto.
+- Las imágenes editoriales no se convierten a mano: el PNG entregado va a `frontend/.editorial-originals/`, su estado a `Branding/src/data/photography-status.js`, y `npm run editorial:ingest` escribe las variantes AVIF y `src/config/editorial-assets.generated.ts` (que no se edita a mano). `next/image` las sirve con su loader (`src/lib/editorial/image-loader.ts`) sin re-codificar; `tests/lib/editorial-variants.test.ts` vigila que cada variante declarada exista.
 - `docs/brief-fotografico.md` no se edita a mano: cambia `Branding/src/data/photography.js` y regenera; `tests/lib/photography-brief.test.ts` falla si el brief se desvía de `editorial-media.ts`, del catálogo o de `messages/`.
 
 - El prototipo original ya no existe en el repo: no hay nada que comparar bajo `frontend-prototype/` (ver «Fuentes de verdad»).

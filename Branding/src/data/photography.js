@@ -29,7 +29,9 @@
 /**
  * Presets de tamaño. `master` es el archivo de trabajo (2× el ancho de render máximo, DPR capado a 2);
  * `tablet` y `mobile` son derivados para `srcset`. `generate` es lo que conviene pedirle al agente de
- * imágenes (la mayoría no entrega 2880 px nativos): se reescala al master con un upscaler.
+ * imágenes (la mayoría no entrega 2880 px nativos). Lo entregado no se amplía (decisión de 2026-10-10:
+ * con los fundidos de las bandas, las fuentes de ~1672 px se ven bien); la ingesta publica variantes hasta
+ * el ancho real del archivo. Si se quiere la nitidez del master, se regenera a su medida, no se amplía.
  */
 export const PRESETS = {
   wide: {
@@ -75,8 +77,11 @@ export const PRESETS = {
 }
 
 export const DELIVERY = {
-  formats: 'AVIF (principal) y WebP (respaldo). El único PNG permitido es el logo.',
-  dir: 'frontend/public/editorial/',
+  formats:
+    'Se entrega el PNG del agente, sin convertir. La web no publica PNG (salvo el logo): `npm run editorial:ingest` (desde `frontend/`) ' +
+    'lo comprime una sola vez en AVIF q80, en variantes de 640, 828, 1200, 1920 y 2880 px acotadas al ancho del archivo, y reescribe el manifiesto. ' +
+    'No convertir a AVIF ni a WebP a mano: cada recompresión pierde grano.',
+  dir: 'frontend/.editorial-originals/ (los PNG; git los ignora). La ingesta escribe los AVIF en frontend/public/editorial/.',
   naming: '`<slot-id>.<ext>` con el punto cambiado por guion (`portal.hero` → `portal-hero.avif`). Por instancia: `<slot-id>-<slug>.avif`.',
   color: 'sRGB, perfil incrustado, sin canal alfa.',
   dpr: 'Máximo 2× el ancho de render (DPR capado a 2). No exportar por encima del master.',

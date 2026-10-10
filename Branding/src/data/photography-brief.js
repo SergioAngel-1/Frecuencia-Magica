@@ -24,7 +24,7 @@ const viewOf = (row) => (row.title ? `${row.view} · ${row.title}` : row.view)
 function sizeLine(row) {
   if (row.preset) {
     const preset = PRESETS[row.preset]
-    return `master ${formatSize(preset.master)} · tablet ${formatSize(preset.tablet)} · móvil ${formatSize(preset.mobile)} · generar a ${preset.generate} y reescalar · peso ${preset.budget}`
+    return `master ${formatSize(preset.master)} · tablet ${formatSize(preset.tablet)} · móvil ${formatSize(preset.mobile)} · generar a ${preset.generate} (sin ampliar después) · peso ${preset.budget}`
   }
 
   return `${formatSize(row.size)} · ${row.ratio}`

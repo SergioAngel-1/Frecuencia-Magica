@@ -286,10 +286,10 @@
 
 **Archivos:** `Branding/src/data/photography.js`, `photography-status.js`, `docs/brief-fotografico.md`, `docs/prompts-chatgpt.md` (generados) y `frontend/public/editorial/README.md`.
 
-- [ ] Reflejar en el brief el flujo nuevo: ampliación, variantes, calidad elegida y que el brief ya no pide «convertir a AVIF a mano».
-- [ ] Regenerar `export:photo-brief` y `export:chatgpt-prompts`.
-- [ ] Gate de la tarea (incluidos `photography-brief`, `photography-status` y `editorial-inventory`) y `build` de `Branding/`.
-- [ ] Commit: `docs(brief): describe the upscale and variant ingest pipeline`.
+- [x] Reflejar en el brief el flujo nuevo: ampliación, variantes, calidad elegida y que el brief ya no pide «convertir a AVIF a mano».
+- [x] Regenerar `export:photo-brief` y `export:chatgpt-prompts`.
+- [x] Gate de la tarea (incluidos `photography-brief`, `photography-status` y `editorial-inventory`) y `build` de `Branding/`.
+- [x] Commit: `docs(brief): describe the upscale and variant ingest pipeline`.
 
 ### Tarea 15: Verificación final contra la auditoría
 
