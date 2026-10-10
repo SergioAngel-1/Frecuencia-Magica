@@ -142,4 +142,24 @@ describe('sanctuary editorial composition contracts', () => {
 
     expect(loadingSource).not.toContain('bg-gray');
   });
+  it('keeps the journal and daily media at their slot ratio, empty or not', () => {
+    // El vacío del diario no impone alto: así no estira la columna de su retrato.
+    expect(emptySource).toContain('fill');
+    const emptyState = readSource('components/ui/empty-state.tsx');
+    expect(emptyState).toContain('fill?: boolean');
+    // El retrato del diario a su 3:4 en todos los anchos, nunca a 16:8.
+    const aside = journalSource.slice(
+      journalSource.lastIndexOf(
+        '<div',
+        journalSource.indexOf('data-editorial-media="sanctuary.journal"'),
+      ),
+      journalSource.indexOf('data-editorial-media="sanctuary.journal"'),
+    );
+    expect(aside).toContain('aspect-[3/4]');
+    expect(aside).toContain('self-start');
+    expect(journalSource).not.toContain('aspect-[16/8]');
+    // La foto de la práctica diaria se ancla a su 1:1 en vez de estirarse con la tarjeta.
+    expect(dailySource).toContain('absolute inset-x-0 top-0 -z-10 aspect-square');
+    expect(dailySource).not.toContain('absolute inset-0 -z-10');
+  });
 });

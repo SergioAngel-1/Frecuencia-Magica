@@ -137,8 +137,10 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
       </GlassPanel>
 
       {withAside ? (
+        // El retrato del diario a su 3:4 en todos los anchos: no se estira con
+        // el panel (vacío o lleno) ni se recorta a una franja en móvil.
         <div
-          className="rounded-card-lg relative overflow-hidden max-lg:order-first max-lg:aspect-[16/8]"
+          className="rounded-card-lg relative aspect-[3/4] self-start overflow-hidden max-lg:order-first"
           data-editorial-media="sanctuary.journal"
         >
           <div className="absolute inset-0">

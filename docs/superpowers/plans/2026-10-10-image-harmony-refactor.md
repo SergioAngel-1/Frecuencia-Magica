@@ -181,14 +181,14 @@
 **Interfaces:**
 - Produce: `EmptyState` con `fill?: boolean`. Con `media` y `fill`, el marco ocupa el alto de su padre y no impone `min-h`.
 
-- [ ] Guardias primero:
+- [x] Guardias primero:
   - el diario usa `fill`;
   - en móvil, `sanctuary.journal` se pinta a 3:4 (no a `16/8`);
   - en móvil, `sanctuary.daily` no se estira por encima de su 1:1.
-- [ ] `EmptyState fill` y su uso en el diario. Así se corrige la regresión P1-9 de la Parte 1.
-- [ ] En móvil, el diario a su 3:4 y la tarjeta diaria a su 1:1, conservando el orden de lectura de la vista.
-- [ ] Verificar en 1440 (diario vacío y con datos; se siembra `fm.journal` en `localStorage`) y en 390.
-- [ ] Gate de la tarea y commit: `fix(sanctuary): keep the journal and daily media at their slot ratio`.
+- [x] `EmptyState fill` y su uso en el diario. Así se corrige la regresión P1-9 de la Parte 1.
+- [x] En móvil, el diario a su 3:4 y la tarjeta diaria a su 1:1, conservando el orden de lectura de la vista.
+- [x] Verificar en 1440 (diario vacío y con datos; se siembra `fm.journal` en `localStorage`) y en 390.
+- [x] Gate de la tarea y commit: `fix(sanctuary): keep the journal and daily media at their slot ratio`.
 
 **Aceptación:**
 - en 1440, la columna de `sanctuary.journal` vacía mide lo mismo (±10 %) que con datos (≈574 px);

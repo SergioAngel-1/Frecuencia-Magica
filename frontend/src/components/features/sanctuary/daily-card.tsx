@@ -50,10 +50,13 @@ export function DailyCard({ media, audioId }: DailyCardProps) {
       glow
       data-editorial-media="sanctuary.daily"
     >
-      <div className="absolute inset-0 -z-10">
+      {/* La foto se ancla arriba a su 1:1 y funde en la noche de la tarjeta:
+          la tarjeta crece con sus sugerencias sin estirarla. */}
+      <div className="absolute inset-x-0 top-0 -z-10 aspect-square">
         <EditorialImage
           aspect="1:1"
           className="h-full"
+          fade="bottom"
           focalPoint={media.position}
           media={media}
           overlay={false}
