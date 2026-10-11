@@ -1,10 +1,11 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { AnimatePresence, useIsPresent, useReducedMotion } from 'motion/react';
+import { AnimatePresence, useIsPresent } from 'motion/react';
 import { div as Mdiv } from 'motion/react-m';
 
 import { EASE, SWAP_PACE, type SwapPace } from '@/config/motion';
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 
 interface SwapProps {
   /** Identidad del contenido: al cambiar, el anterior sale y el nuevo entra. */
@@ -49,7 +50,7 @@ function SwapPane({
   pace: SwapPace;
   className?: string;
 }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const present = useIsPresent();
   const enter = reduced ? 0 : SWAP_PACE[pace].enter;
   const exit = reduced ? 0 : SWAP_PACE[pace].exit;

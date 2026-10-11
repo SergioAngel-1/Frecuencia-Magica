@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useId, useRef, type ReactNode, type SyntheticEvent } from 'react';
-import { AnimatePresence, useReducedMotion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
 import { div as Mdiv } from 'motion/react-m';
 
 import { DURATION, EASE } from '@/config/motion';
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { cn } from '@/lib/cn';
 
 import { IconButton } from './icon-button';
@@ -56,7 +57,7 @@ export function Modal({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const titleId = useId();
 
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const enter = reduced ? 0 : DURATION.reveal;
   const exit = reduced ? 0 : DURATION.fast * 0.7;
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { AnimatePresence, useReducedMotion } from 'motion/react';
+import { AnimatePresence, MotionConfig } from 'motion/react';
 import { div as Mdiv } from 'motion/react-m';
 
 import { WHATSAPP_NUMBER } from '@/config/contact';
@@ -28,7 +28,6 @@ export function TalkFloat() {
   const t = useTranslations('talk');
   const { realmId } = useRealm();
   const dockOpen = usePlayerStore((s) => s.audioId !== null && !s.minimized);
-  const reduced = useReducedMotion();
 
   return (
     <aside
@@ -41,58 +40,63 @@ export function TalkFloat() {
         dockOpen && '-translate-y-[76px] sm:-translate-y-[92px]',
       )}
     >
-      <AnimatePresence>
-        {realmId === 'portal' ? null : (
-          <Mdiv
-            key="talk"
-            initial={{ opacity: 0, y: reduced ? 0 : 18 }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              transition: { duration: reduced ? 0 : DURATION.entrance, ease: EASE.soft },
-            }}
-            exit={{
-              opacity: 0,
-              y: reduced ? 0 : 14,
-              transition: { duration: reduced ? 0 : DURATION.fast * 0.7, ease: EASE.soft },
-            }}
-          >
-            <a
-              href={whatsappLink(WHATSAPP_NUMBER, t('message'))}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-magnetic
-              aria-label={t('aria')}
-              className="group fm-surface-strong shadow-glow-card rounded-pill hover:border-gold/45 text-ivory pointer-events-auto flex h-14 min-w-14 items-center justify-center gap-3 transition-colors duration-300 sm:px-5"
+      {/* Movimiento reducido: Motion lo consulta al animar, no al renderizar, así
+          que el HTML del servidor y la hidratación coinciden; salta el `y` y
+          deja sólo el fundido. */}
+      <MotionConfig reducedMotion="user">
+        <AnimatePresence>
+          {realmId === 'portal' ? null : (
+            <Mdiv
+              key="talk"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: { duration: DURATION.entrance, ease: EASE.soft },
+              }}
+              exit={{
+                opacity: 0,
+                y: 14,
+                transition: { duration: DURATION.fast * 0.7, ease: EASE.soft },
+              }}
             >
-              <span className="relative flex size-6 items-center justify-center">
-                <span
-                  aria-hidden="true"
-                  className="animate-fm-glow bg-gold/25 absolute -inset-2 rounded-full blur-[8px]"
-                />
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                  className="text-gold relative"
-                >
-                  <path d="M12 4.2a7.8 7.8 0 0 0-6.7 11.8L4.2 19.8l3.9-1A7.8 7.8 0 1 0 12 4.2z" />
-                  <path d="M8.6 12c.85-1.5 1.7-1.5 2.55 0s1.7 1.5 2.55 0 1.3-1.2 1.7-.6" />
-                </svg>
-              </span>
-              <span className="text-label tracking-caps group-hover:text-ivory text-fg-body font-sans uppercase transition-colors duration-300 max-sm:hidden">
-                {t('label')}
-              </span>
-            </a>
-          </Mdiv>
-        )}
-      </AnimatePresence>
+              <a
+                href={whatsappLink(WHATSAPP_NUMBER, t('message'))}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-magnetic
+                aria-label={t('aria')}
+                className="group fm-surface-strong shadow-glow-card rounded-pill hover:border-gold/45 text-ivory pointer-events-auto flex h-14 min-w-14 items-center justify-center gap-3 transition-colors duration-300 sm:px-5"
+              >
+                <span className="relative flex size-6 items-center justify-center">
+                  <span
+                    aria-hidden="true"
+                    className="animate-fm-glow bg-gold/25 absolute -inset-2 rounded-full blur-[8px]"
+                  />
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="text-gold relative"
+                  >
+                    <path d="M12 4.2a7.8 7.8 0 0 0-6.7 11.8L4.2 19.8l3.9-1A7.8 7.8 0 1 0 12 4.2z" />
+                    <path d="M8.6 12c.85-1.5 1.7-1.5 2.55 0s1.7 1.5 2.55 0 1.3-1.2 1.7-.6" />
+                  </svg>
+                </span>
+                <span className="text-label tracking-caps group-hover:text-ivory text-fg-body font-sans uppercase transition-colors duration-300 max-sm:hidden">
+                  {t('label')}
+                </span>
+              </a>
+            </Mdiv>
+          )}
+        </AnimatePresence>
+      </MotionConfig>
     </aside>
   );
 }

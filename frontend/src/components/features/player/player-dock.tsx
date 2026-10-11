@@ -2,12 +2,13 @@
 
 import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { AnimatePresence, useReducedMotion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
 import { div as Mdiv } from 'motion/react-m';
 
 import { IconButton, SeekBar } from '@/components/ui';
 import { DURATION, EASE } from '@/config/motion';
 import { getAudio } from '@/data';
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { formatDuration, parseDuration } from '@/lib/format';
 import { progressPercent } from '@/lib/player/progress';
 import { usePlayerStore } from '@/stores/player-store';
@@ -35,7 +36,7 @@ export function PlayerDock() {
 
   const wasMinimized = useRef(minimized);
   const focusPending = useRef(false);
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
 
   const audio = audioId ? getAudio(audioId) : null;
   const total = audio ? parseDuration(audio.duration) : 0;
