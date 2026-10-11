@@ -46,14 +46,23 @@ export default async function ProductPage({ params }: PageProps) {
   const related = Object.fromEntries(
     PRODUCTS.map((relatedProduct) => {
       const relatedTitle = t(`products.${relatedProduct.id}.title`);
+      // El objeto propio, en cuanto se publique; mientras, la atmósfera compartida de relacionados.
+      const own = resolveEditorialMedia('store-product-visual', {
+        instance: relatedProduct.id,
+        alt: t('media.alt.related', { title: relatedTitle }),
+        sizes: '(min-width: 1280px) 380px, (min-width: 768px) 27vw, calc(100vw - 48px)',
+        band: relatedProduct.band,
+      });
       return [
         relatedProduct.id,
-        resolveEditorialMedia('product.related', {
-          alt: t('media.alt.related', { title: relatedTitle }),
-          aspect: '16:8',
-          sizes: '(min-width: 1280px) 380px, (min-width: 768px) 27vw, calc(100vw - 48px)',
-          band: relatedProduct.band,
-        }),
+        own.src
+          ? own
+          : resolveEditorialMedia('product.related', {
+              alt: t('media.alt.related', { title: relatedTitle }),
+              aspect: '16:8',
+              sizes: '(min-width: 1280px) 380px, (min-width: 768px) 27vw, calc(100vw - 48px)',
+              band: relatedProduct.band,
+            }),
       ];
     }),
   ) as ProductMedia['related'];

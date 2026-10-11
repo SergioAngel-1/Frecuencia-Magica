@@ -10,7 +10,7 @@ import { CourseCard } from './course-card';
 export type AcademyMedia = {
   hero: EditorialMedia;
   featuredCourse: EditorialMedia;
-  courseCover: EditorialMedia;
+  courseCovers: Record<string, EditorialMedia>;
 };
 
 type CourseRowProps = {
@@ -49,7 +49,7 @@ export function CourseList({ media }: { media: AcademyMedia }) {
   const level = (course: (typeof COURSES)[number]) =>
     t(course.levelKey.replace('academy.', '') as 'levels.foundations');
   const courseMedia = (course: (typeof COURSES)[number]): EditorialMedia => ({
-    ...media.courseCover,
+    ...media.courseCovers[course.id]!,
     alt: t('media.alt.courseCover', { title: courseTitle(course) }),
     band: course.band,
   });

@@ -69,11 +69,15 @@ export function ExperienceRow({
         <div className="absolute inset-0">
           <EditorialImage
             aspect="16:8"
+            bandMedia
             className="h-full"
+            fade="both"
             focalPoint={media.position}
             media={media}
             overlay="left"
             scrim="left"
+            // Por debajo de 1024 px la fila crece con su texto y `cover` escala por el alto.
+            sizes="(max-width: 1023px) 840px, 100vw"
           />
         </div>
         <div
@@ -126,7 +130,9 @@ export function ExperienceRow({
   return (
     <article
       className={cn(
-        'rounded-card-lg text-ivory relative isolate min-h-[clamp(320px,34vw,470px)] overflow-hidden',
+        // Desde `md` la fila mide 16:9, el ratio de su imagen: `e2…e4` llegan
+        // sin recorte (antes 2,45:1 en 1440). En móvil manda el texto.
+        'rounded-card-lg text-ivory relative isolate min-h-[clamp(320px,34vw,470px)] overflow-hidden md:aspect-[16/9] md:min-h-0',
         className,
       )}
       data-editorial-media="experiences-visual"
@@ -142,7 +148,7 @@ export function ExperienceRow({
           scrim="left"
         />
       </div>
-      <div className="relative z-10 grid min-h-[clamp(320px,34vw,470px)] items-end gap-8 px-[clamp(24px,6vw,72px)] py-[clamp(28px,5vw,60px)] lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-12">
+      <div className="relative z-10 grid min-h-[clamp(320px,34vw,470px)] items-end gap-8 px-[clamp(24px,6vw,72px)] py-[clamp(28px,5vw,60px)] md:h-full md:min-h-0 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-12">
         <div className="max-w-[600px]">
           <Badge>{modeLabel}</Badge>
           <h3 className="text-ivory mt-4 max-w-[14ch] font-serif text-[clamp(32px,4.5vw,58px)] leading-[0.94]">

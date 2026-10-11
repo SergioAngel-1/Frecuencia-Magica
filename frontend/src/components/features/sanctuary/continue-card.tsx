@@ -19,21 +19,29 @@ export async function ContinueCard({ media, resume }: ContinueCardProps) {
 
   return (
     <GlassPanel
-      className="flex flex-col overflow-hidden"
+      className="relative isolate flex flex-col overflow-hidden"
       glow
       data-editorial-media="sanctuary.continue"
     >
-      <div className="relative aspect-[16/8]">
+      {/* Como la frecuencia del día: la foto se ancla arriba a su 16:8 y funde
+          en la noche de la tarjeta en vez de cortarse; el texto entra sobre
+          su tramo fundido, donde el scrim ya le da contraste. */}
+      <div className="absolute inset-x-0 top-0 -z-10 aspect-[16/8]">
         <EditorialImage
           aspect="16:8"
           className="h-full"
+          fade="bottom"
           focalPoint={media.position}
           media={media}
           overlay={false}
           scrim="bottom"
         />
       </div>
-      <div className="flex flex-1 flex-col gap-4 p-5 sm:p-7">
+      {/* El texto se asienta al pie de la tarjeta y deja arriba todo el aire
+          para la foto y su fundido. `pt` en % (relativo al ancho, como el alto
+          de la foto) es el mínimo: en una tarjeta baja, el texto empieza
+          sobre el tramo ya fundido. */}
+      <div className="flex flex-1 flex-col justify-end gap-4 p-5 pt-[36%] sm:p-7 sm:pt-[36%]">
         <Kicker tone="teal" spacing="widest">
           {t('continue.kicker')}
         </Kicker>

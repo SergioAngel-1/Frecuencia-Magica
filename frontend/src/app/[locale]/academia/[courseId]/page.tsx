@@ -43,6 +43,7 @@ export default async function CoursePage({ params }: PageProps) {
   if (!course) notFound();
 
   const courseMedia = resolveEditorialMedia('academy-course-cover', {
+    instance: course.id,
     alt: t('media.alt.courseCover', {
       title: t(`courses.${course.id}.title` as 'courses.c1.title'),
     }),

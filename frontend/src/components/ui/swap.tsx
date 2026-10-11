@@ -1,15 +1,18 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { AnimatePresence, useReducedMotion } from 'motion/react';
+import { AnimatePresence, useIsPresent } from 'motion/react';
 import { div as Mdiv } from 'motion/react-m';
 
-import { DURATION, EASE } from '@/config/motion';
+import { EASE, SWAP_PACE, type SwapPace } from '@/config/motion';
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 
 interface SwapProps {
   /** Identidad del contenido: al cambiar, el anterior sale y el nuevo entra. */
   id: string;
   children: ReactNode;
+  /** Ritmo del intercambio (`SWAP_PACE`): ágil por defecto, `calm` para recorridos. */
+  pace?: SwapPace;
   className?: string;
 }
 
@@ -22,25 +25,45 @@ interface SwapProps {
  * sustituye un bloque por otro en el mismo fotograma y la entrada suave del
  * nuevo no tapa el corte del viejo.
  *
+ * Lo que sale queda inerte: mientras se funde no recibe clics ni foco, así
+ * que un doble clic no actúa dos veces sobre un paso que ya se va.
+ *
  * Sólo `opacity` y `transform`. Con movimiento reducido el cambio es
  * inmediato.
  */
-export function Swap({ id, children, className }: SwapProps) {
-  const reduced = useReducedMotion();
-  const enter = reduced ? 0 : DURATION.reveal;
-  const exit = reduced ? 0 : DURATION.fast * 0.6;
-
+export function Swap({ id, children, pace = 'default', className }: SwapProps) {
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <Mdiv
-        key={id}
-        initial={{ opacity: 0, y: reduced ? 0 : 10 }}
-        animate={{ opacity: 1, y: 0, transition: { duration: enter, ease: EASE.soft } }}
-        exit={{ opacity: 0, y: reduced ? 0 : -6, transition: { duration: exit, ease: EASE.soft } }}
-        className={className}
-      >
+      <SwapPane key={id} pace={pace} className={className}>
         {children}
-      </Mdiv>
+      </SwapPane>
     </AnimatePresence>
+  );
+}
+
+function SwapPane({
+  children,
+  pace,
+  className,
+}: {
+  children: ReactNode;
+  pace: SwapPace;
+  className?: string;
+}) {
+  const reduced = useReducedMotionSafe();
+  const present = useIsPresent();
+  const enter = reduced ? 0 : SWAP_PACE[pace].enter;
+  const exit = reduced ? 0 : SWAP_PACE[pace].exit;
+
+  return (
+    <Mdiv
+      inert={!present}
+      initial={{ opacity: 0, y: reduced ? 0 : 10 }}
+      animate={{ opacity: 1, y: 0, transition: { duration: enter, ease: EASE.soft } }}
+      exit={{ opacity: 0, y: reduced ? 0 : -6, transition: { duration: exit, ease: EASE.soft } }}
+      className={className}
+    >
+      {children}
+    </Mdiv>
   );
 }

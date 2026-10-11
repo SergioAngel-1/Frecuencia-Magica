@@ -295,6 +295,9 @@
   );
   --page-inset: 24px;
   --container-max: 1240px;
+  /* Alto del fundido de una banda a sangre: un peldaño `section`, para que el
+     borde que se disuelve ocupe el mismo aire que separaría dos bloques. */
+  --fade-band: clamp(56px, 8vw, 112px);
 }
 
 @media (min-width: 640px) {
@@ -346,21 +349,63 @@
     outline-offset: 3px;
   }
 
+  /* Barras de desplazamiento con la identidad del sitio: la pista es la
+     noche y el pulgar, una línea de luz con el espectro de la frecuencia
+     (oro, teal y lavanda), fino y en píldora; al acercarse se enciende como un
+     halo. El borde transparente con `background-clip` deja el trazo más fino
+     que el área de agarre. */
   ::-webkit-scrollbar {
-    width: 9px;
+    width: 11px;
+    height: 11px;
   }
 
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: var(--color-void-2);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: var(--color-void-2);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(216, 185, 120, 0.18);
-    border-radius: 9px;
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background-clip: padding-box;
+    background-image: linear-gradient(
+      180deg,
+      rgba(216, 185, 120, 0.42),
+      rgba(150, 198, 188, 0.32) 55%,
+      rgba(185, 176, 214, 0.38)
+    );
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(216, 185, 120, 0.34);
+    border-width: 2px;
+    background-image: linear-gradient(
+      180deg,
+      rgba(216, 185, 120, 0.75),
+      rgba(150, 198, 188, 0.6) 55%,
+      rgba(185, 176, 214, 0.7)
+    );
+    box-shadow: 0 0 10px rgba(216, 185, 120, 0.35);
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background-image: linear-gradient(
+      180deg,
+      var(--color-gold),
+      var(--color-teal) 55%,
+      var(--color-lav)
+    );
+  }
+
+  /* Firefox no tiene los pseudo-elementos: sólo color y grosor. Va acotado a
+     Firefox porque en Chrome `scrollbar-color` anula los estilos de arriba. */
+  @supports (-moz-appearance: none) {
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(216, 185, 120, 0.45) var(--color-void-2);
+    }
   }
 
   /* Modo simplificado: se congela lo decorativo, se conserva la narrativa. */
@@ -421,6 +466,98 @@
    más aire. Con `[--container-max:Npx]` se estrecha por uso. */
 @utility fm-container {
   padding-inline: max(var(--page-inset), calc((100vw - var(--container-max)) / 2));
+}
+
+/* Fundido de bordes de la materia editorial (foto, zebra o banda): una
+   máscara, no un degradado de color, para que la imagen se disuelva en lo que
+   haya detrás sin desajuste de tono. Se aplica a la capa de medios de
+   `EditorialImage` (materia y scrim, con el mismo alfa); el contenido no se
+   enmascara nunca.
+   `fm-fade-top` y `fm-fade-bottom` se combinan: cada una fija su lado y las
+   dos leen la misma máscara. Las variables no se heredan, así que una imagen
+   dentro de otra con fundido no arrastra el del padre. */
+@property --fm-fade-top {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --fm-fade-bottom {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 0px;
+}
+
+@utility fm-fade-top {
+  --fm-fade-top: var(--fade-band);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+}
+
+@utility fm-fade-bottom {
+  --fm-fade-bottom: var(--fade-band);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+}
+
+/* Bandas encadenadas (`BandChain`): sin hueco entre ellas, cada banda funde
+   el borde que comparte con su vecina, pida o no `fade`, y las dos se
+   encuentran en una línea de noche. La máscara es la misma de `fm-fade-*`;
+   aquí sólo cambia qué lados se abren. */
+[data-band-chain] > :not(:first-child) [data-band-media] {
+  --fm-fade-top: var(--fade-band);
+}
+
+[data-band-chain] > :not(:last-child) [data-band-media],
+[data-band-chain='footer'] > :last-child [data-band-media] {
+  --fm-fade-bottom: var(--fade-band);
+}
+
+[data-band-chain] [data-band-media] {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    #000 var(--fm-fade-top),
+    #000 calc(100% - var(--fm-fade-bottom)),
+    transparent
+  );
+}
+
+/* Campo de luz sin aristas: la materia se disuelve en elipse desde el centro. */
+@utility fm-fade-radial {
+  -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 35%, transparent 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

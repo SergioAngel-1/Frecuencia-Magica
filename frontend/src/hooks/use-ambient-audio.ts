@@ -3,8 +3,10 @@
 import { useEffect, useRef } from 'react';
 
 import { useRealm } from '@/hooks/use-realm';
+import { ambientAudible } from '@/lib/audio/ambient-mix';
 import { createDrone, type DroneHandle } from '@/lib/audio/drone';
 import { useAmbientStore } from '@/stores/ambient-store';
+import { useIsPlayerSounding } from '@/stores/player-store';
 
 type AudioContextCtor = typeof AudioContext;
 
@@ -27,6 +29,9 @@ function getAudioContextCtor(): AudioContextCtor | null {
  */
 export function useAmbientAudio(): void {
   const enabled = useAmbientStore((state) => state.enabled);
+  // Mientras suena una frecuencia, el drone se funde a silencio (su ganancia
+  // baja con rampa) y vuelve al pausar o cerrar: nunca dos sonidos a la vez.
+  const playerSounding = useIsPlayerSounding();
   const { baseNote } = useRealm();
   const droneRef = useRef<DroneHandle | null>(null);
 
@@ -44,8 +49,8 @@ export function useAmbientAudio(): void {
       droneRef.current = drone;
     }
 
-    droneRef.current.setEnabled(true);
-  }, [enabled, baseNote]);
+    droneRef.current.setEnabled(ambientAudible(enabled, playerSounding));
+  }, [enabled, playerSounding, baseNote]);
 
   useEffect(() => {
     droneRef.current?.retune(baseNote);

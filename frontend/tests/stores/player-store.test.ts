@@ -7,6 +7,14 @@ describe('usePlayerStore', () => {
     usePlayerStore.setState({ audioId: null, isPlaying: false, elapsed: 0, minimized: false });
   });
 
+  it('sólo hay una frecuencia activa: abrir otra sustituye a la anterior', () => {
+    usePlayerStore.getState().open('a2');
+    usePlayerStore.getState().open('a5');
+
+    expect(usePlayerStore.getState().audioId).toBe('a5');
+    expect(usePlayerStore.getState().isPlaying).toBe(true);
+  });
+
   it('arranca sin audio y en pausa', () => {
     const state = usePlayerStore.getState();
     expect(state.audioId).toBeNull();

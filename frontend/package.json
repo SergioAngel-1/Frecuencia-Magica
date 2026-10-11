@@ -9,6 +9,7 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "format": "prettier --write .",
+    "editorial:ingest": "node scripts/editorial-ingest.mjs",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -42,6 +43,7 @@
     "happy-dom": "^20.11.1",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.10"

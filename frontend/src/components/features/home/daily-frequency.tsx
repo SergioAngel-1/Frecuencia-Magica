@@ -7,7 +7,7 @@ import {
   FrequencyStrip,
   type FrequencyStripItem,
 } from '@/components/features/player/frequency-strip';
-import { Display, EditorialImage, Kicker, ArrowGlyph, arrowLinkClasses } from '@/components/ui';
+import { Display, FullBleedSection, Kicker, ArrowGlyph, arrowLinkClasses } from '@/components/ui';
 import { usePlayerStore } from '@/stores/player-store';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -53,25 +53,11 @@ export function DailyFrequency({
   const isActive = activeId === audioId;
 
   return (
-    <section
-      aria-labelledby="home-daily-title"
-      // Sin `overflow-hidden`: el aura del disco es más grande que la banda y
-      // debe poder derramarse sobre el aire de arriba. La foto se recorta en
-      // su propia capa.
-      className="fm-editorial-full-bleed relative isolate"
-    >
-      <div className="absolute inset-0 overflow-hidden">
-        <EditorialImage
-          media={media}
-          aspect="16:8"
-          className="h-full"
-          focalPoint="50% 50%"
-          scrim="bottom"
-          overlay="bottom"
-        />
-      </div>
-
-      <div className="fm-container py-block relative z-20 w-full">
+    // La foto se pinta a su 16:8, anclada arriba, y funde en la noche; el
+    // disco, el titular y la muestra del resonario siguen sobre la noche.
+    // `anchored` no recorta la sección: el aura del disco puede derramarse.
+    <FullBleedSection media={media} mode="anchored" labelledBy="home-daily-title" overlay="bottom">
+      <div className="fm-container py-block w-full">
         <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1fr)] md:gap-[clamp(34px,7vw,110px)]">
           <div className="mx-auto w-full max-w-[380px] md:mx-0">
             <AudioDisc
@@ -123,6 +109,6 @@ export function DailyFrequency({
           <FrequencyStrip items={resonario.audios} label={resonario.kicker} size="sm" />
         </section>
       </div>
-    </section>
+    </FullBleedSection>
   );
 }

@@ -18,6 +18,12 @@
     "soundOff": "Activar el sonido ambiental",
     "skipToContent": "Saltar al contenido"
   },
+  "talk": {
+    "region": "Contacto directo",
+    "label": "Hablar ahora",
+    "aria": "Hablar ahora con Marisol por WhatsApp (se abre en otra pestaña)",
+    "message": "Hola, Marisol. Vengo de Frecuencia Mágica y me gustaría hablar contigo."
+  },
   "nav": {
     "label": "Realms",
     "realms": {
@@ -35,7 +41,12 @@
       "experiencias": "Encuentro",
       "tienda": "Abundancia",
       "sanctuario": "Intimidad"
-    }
+    },
+    "story": {
+      "label": "Nuestra esencia",
+      "emotion": "Origen"
+    },
+    "menu": "Menú"
   },
   "footer": {
     "tagline": "Acompañamos procesos reales de transformación. Porque no necesitas ser alguien diferente: solo recordar quién siempre has sido.",
@@ -288,6 +299,7 @@
     "back": "← Anterior",
     "backToIntro": "← Volver",
     "tuning": "Escuchando tu frecuencia…",
+    "revealing": "Revelando tu frecuencia…",
     "result": {
       "kicker": "Tu frecuencia de hoy",
       "cta": "Escuchar ahora",
@@ -377,6 +389,7 @@
       "description": "Escucha despacio. Cada pieza abre un espacio distinto para descansar, enraizarte o volver a respirar."
     },
     "featuredBadge": "Frecuencia destacada",
+    "nowPlaying": "Sonando ahora",
     "filtersLabel": "Filtrar frecuencias",
     "filters": {
       "all": "Todo",

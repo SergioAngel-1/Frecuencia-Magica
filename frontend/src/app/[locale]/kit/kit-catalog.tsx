@@ -5,8 +5,10 @@ import { useState, type ReactNode } from 'react';
 import {
   Badge,
   Band,
+  BandChain,
   Button,
   Display,
+  EditorialBanner,
   EmptyState,
   Equalizer,
   ErrorState,
@@ -30,6 +32,7 @@ import {
 } from '@/components/ui';
 import { WaveSeparator } from '@/components/world';
 import { BANDS } from '@/config/bands';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
 /**
  * Catálogo interno del UI Kit. Nunca se sirve en producción, así que su copy
@@ -317,6 +320,25 @@ export function KitCatalog() {
             </GlassPanel>
           </div>
         </Row>
+      </Section>
+
+      <Section title="Bandas encadenadas">
+        <Prose maxWidth={54} className="mb-8">
+          Dos bandas a sangre dentro de una BandChain: sin hueco, cada una funde el borde que
+          comparte con la otra y se encuentran en una línea de noche.
+        </Prose>
+        <BandChain>
+          <EditorialBanner
+            media={resolveEditorialMedia('home.realms-banner', { alt: 'Banda de prueba' })}
+            eyebrow="Primera banda"
+            title="Elige por dónde entrar"
+          />
+          <EditorialBanner
+            media={resolveEditorialMedia('home-membership', { alt: 'Banda de prueba' })}
+            eyebrow="Segunda banda"
+            title="Tu santuario, siempre contigo"
+          />
+        </BandChain>
       </Section>
     </div>
   );

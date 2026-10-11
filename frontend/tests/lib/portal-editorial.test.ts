@@ -74,6 +74,15 @@ describe('portal editorial threshold contracts', () => {
     expect(localizedNotFoundSource).toContain("getTranslations('states')");
     expect(localizedNotFoundSource).toContain("from '@/lib/editorial/asset-registry'");
   });
+  it('paints the portal field as a borderless light field, not a panel', () => {
+    const field = portalSource.slice(
+      portalSource.lastIndexOf('<EditorialImage', portalSource.indexOf('media={portalFieldMedia}')),
+      portalSource.indexOf('/>', portalSource.indexOf('media={portalFieldMedia}')),
+    );
+    expect(field).toContain('fm-fade-radial');
+    expect(field).not.toMatch(/inset-x-\[/);
+    expect(field).toContain('opacity-35');
+  });
 });
 
 export {};

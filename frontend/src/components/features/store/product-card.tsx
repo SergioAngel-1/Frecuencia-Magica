@@ -23,22 +23,16 @@ const ASPECT_FIELD: Record<EditorialMediaAspect, string> = {
 type ProductCardProps = {
   product: Product;
   media: EditorialMedia;
-  featured?: boolean;
   /**
-   * La tarjeta comparte fila con una más alta: su imagen crece hasta igualar
-   * el alto, en vez de dejar la tarjeta corta flotando junto a la grande.
+   * El destacado: imagen 1:1 y texto en columnas desde `md` (apilados en
+   * móvil), en vez de una franja ancha que recortaría el objeto. Su columna
+   * de imagen llena el alto de la ficha con la misma materia difuminada.
    */
-  stretch?: boolean;
+  featured?: boolean;
   className?: string;
 };
 
-export function ProductCard({
-  product,
-  media: baseMedia,
-  featured,
-  stretch,
-  className,
-}: ProductCardProps) {
+export function ProductCard({ product, media: baseMedia, featured, className }: ProductCardProps) {
   const t = useTranslations('store');
   const add = useCartStore((s) => s.add);
   const title = t(`products.${product.id}.title`);
@@ -53,8 +47,7 @@ export function ProductCard({
   return (
     <article
       className={cn(
-        'group rounded-card-lg border-gold/20 bg-glass hover:border-gold/45 flex flex-col overflow-hidden border transition-colors',
-        featured ? 'min-h-[520px]' : 'min-h-[390px]',
+        'group rounded-card-lg border-gold/20 bg-glass hover:border-gold/45 relative flex flex-col overflow-hidden border transition-colors',
         className,
       )}
       data-product-id={product.id}
@@ -63,27 +56,46 @@ export function ProductCard({
       {/* Sólo la zona editorial navega al detalle; la acción de añadir permanece separada. */}
       <Link
         href={{ pathname: '/tienda/[productId]', params: { productId: product.id } }}
-        className="flex min-h-11 flex-1 flex-col focus-visible:rounded-[inherit]"
+        className={cn(
+          'flex min-h-11 flex-1 flex-col focus-visible:rounded-[inherit]',
+          featured && 'md:flex-row',
+        )}
       >
+        {/* La caja de la imagen tiene el ratio del slot: un producto a 1:1, el
+            ambiente de relacionados a su 16:8. En el destacado, la columna
+            ocupa todo el alto de la ficha: la misma materia, difuminada, la
+            llena por detrás y el objeto nítido queda centrado a su 1:1, sin
+            recortarse nunca. */}
         <div
           className={cn(
-            'relative',
-            featured
-              ? 'min-h-[clamp(210px,26vw,340px)] flex-1'
-              : baseMedia.slot === 'product.related'
-                ? cn('shrink-0', ASPECT_FIELD[media.aspect])
-                : stretch
-                  ? 'min-h-[clamp(190px,22vw,260px)] flex-1'
-                  : 'h-[clamp(190px,22vw,260px)] shrink-0',
+            'relative shrink-0',
+            featured && 'md:flex md:w-1/2 md:items-center md:self-stretch md:overflow-hidden',
           )}
+          data-featured-column={featured ? 'true' : undefined}
         >
-          <EditorialImage
-            aspect={media.aspect}
-            className="h-full"
-            media={media}
-            overlay="bottom"
-            scrim="bottom"
-          />
+          {featured ? (
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 hidden scale-110 opacity-45 blur-2xl md:block"
+              data-featured-backdrop="true"
+            >
+              <EditorialImage
+                aspect={media.aspect}
+                className="h-full"
+                media={media}
+                overlay={false}
+              />
+            </div>
+          ) : null}
+          <div className={cn('relative w-full', ASPECT_FIELD[media.aspect])}>
+            <EditorialImage
+              aspect={media.aspect}
+              className="h-full"
+              media={media}
+              overlay="bottom"
+              scrim="bottom"
+            />
+          </div>
           {featured ? (
             <div className="absolute top-5 left-5 z-10">
               <Badge solid>{t('featuredBadge')}</Badge>
@@ -91,7 +103,12 @@ export function ProductCard({
           ) : null}
         </div>
 
-        <div className={cn('flex flex-col gap-2 p-5', featured && 'p-6')}>
+        <div
+          className={cn(
+            'flex flex-col gap-2 p-5',
+            featured && 'p-6 md:w-1/2 md:justify-center md:pb-[96px]',
+          )}
+        >
           {featured ? null : (
             <span className="text-fg-meta text-label tracking-label font-sans uppercase">
               {t(categoryKey(product.catKey))}
@@ -120,7 +137,8 @@ export function ProductCard({
       <div
         className={cn(
           'mt-auto flex items-center justify-between gap-4 p-5 pt-3',
-          featured && 'px-6 pb-6',
+          // En columnas, la acción cierra la columna del texto.
+          featured && 'px-6 pb-6 md:absolute md:right-0 md:bottom-0 md:w-1/2',
         )}
       >
         <span className="text-gold tracking-soft font-serif text-[21px]">

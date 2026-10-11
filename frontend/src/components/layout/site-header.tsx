@@ -25,10 +25,7 @@ export function SiteHeader() {
   const { realmId } = useRealm();
 
   return (
-    <header
-      role="banner"
-      className="fm-safe-area-top z-header pointer-events-none fixed inset-x-0 top-0 flex items-center justify-between px-5 py-4 md:px-[34px] md:py-[22px]"
-    >
+    <header className="fm-safe-area-top z-header pointer-events-none fixed inset-x-0 top-0 flex items-center justify-between py-4 pr-[max(20px,env(safe-area-inset-right))] pl-[max(20px,env(safe-area-inset-left))] md:py-[22px] md:pr-[max(34px,env(safe-area-inset-right))] md:pl-[max(34px,env(safe-area-inset-left))]">
       {/* Scrim: sin superficie, el logo y los controles flotan sobre el texto
           que pasa por debajo al hacer scroll. Sólo luz de fondo, sin borde. */}
       <div

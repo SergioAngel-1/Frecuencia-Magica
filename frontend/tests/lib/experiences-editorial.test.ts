@@ -82,8 +82,10 @@ describe('experiences editorial composition contracts', () => {
     expect(pageSource).toContain("resolveEditorialMedia('experiences-visual'");
     expect(pageSource).toContain('<RealmHero');
     expect(heroSource).toContain('<FullBleedSection');
-    expect(pageSource).toContain('fm-editorial-full-bleed');
-    expect(pageSource).toContain('<ExperienceList media={experienceMedia}');
+    expect(listSource).toContain('fm-editorial-full-bleed');
+    expect(pageSource).toContain('<ExperienceList');
+    expect(pageSource).toContain('media={experienceMedia}');
+    expect(pageSource).toContain('hero={');
     expect(listSource).toContain('media: ExperienceMedia');
     expect(listSource).toContain('media={{ ...media.featured, band: featured.band }}');
     expect(listSource).toContain('media={experienceMedia(exp)}');
@@ -136,14 +138,31 @@ describe('experiences editorial composition contracts', () => {
     expect(bookingSource).not.toMatch(/unsplash|https?:\/\//i);
   });
 
-  it('mirrors the image-led listing in loading with zebra slots instead of gray placeholders', () => {
-    expect(loadingSource).toContain('aria-busy="true"');
-    expect(loadingSource).toContain('<MediaSkeleton');
-    for (const { slot } of EXPERIENCE_SLOTS.slice(0, 3)) {
-      expect(loadingSource).toContain(`slot="${slot}"`);
-    }
-    expect(loadingSource).toContain('motion-safe:');
-    expect(loadingSource).not.toContain('bg-gray');
+  it('waits with the shared loading scene, like every other view', () => {
+    // Una sola espera en todo el sitio: la esfera de `states.loading` (ver `loading-flow`).
+    expect(loadingSource.trim()).toBe(
+      "export { RealmLoading as default } from '@/components/layout';",
+    );
+  });
+  it('anchors the booking hero at its 16:9 on top of the card instead of stretching it', () => {
+    const hero = bookingSource.slice(
+      bookingSource.lastIndexOf(
+        '<div',
+        bookingSource.indexOf('data-editorial-media="booking.hero"'),
+      ),
+      bookingSource.indexOf('</div>', bookingSource.indexOf('data-editorial-media="booking.hero"')),
+    );
+    expect(hero).toContain('aspect-[16/9]');
+    expect(hero).toContain('top-0');
+    expect(hero).not.toContain('inset-0');
+    expect(hero).toContain('fade="bottom"');
+  });
+  it('paints each experience row at 16:9 from 768px', () => {
+    const row = rowSource.slice(
+      rowSource.indexOf('data-editorial-media="experiences-visual"') - 400,
+    );
+    expect(row).toContain('md:aspect-[16/9]');
+    expect(row).toContain('md:min-h-0');
   });
 });
 

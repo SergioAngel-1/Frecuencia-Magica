@@ -19,6 +19,12 @@ interface EmptyStateProps {
    * Con ella el vacío se pinta en su propio marco, sobre la imagen y su scrim.
    */
   media?: EditorialMedia;
+  /**
+   * Con `media`, el marco ocupa el alto que le dé su padre y no impone el suyo.
+   * Para vacíos dentro de un panel: un `min-height` propio estiraría el panel
+   * y, con él, la columna vecina.
+   */
+  fill?: boolean;
   /** Con `media`, clases del marco; sin ella, del bloque de texto. */
   className?: string;
 }
@@ -33,13 +39,14 @@ interface EmptyStateProps {
  * Con `media` todos los vacíos comparten composición: un marco de tarjeta a
  * sangre de su imagen, con el texto centrado y el scrim de `EditorialOverlay`.
  */
-export function EmptyState({ media, className, ...content }: EmptyStateProps) {
+export function EmptyState({ media, fill = false, className, ...content }: EmptyStateProps) {
   if (!media) return <EmptyContent {...content} className={className} />;
 
   return (
     <div
       className={cn(
-        'rounded-card relative isolate grid min-h-[clamp(380px,48vw,600px)] place-items-center overflow-hidden',
+        'rounded-card relative isolate grid place-items-center overflow-hidden',
+        fill ? 'flex-1' : 'min-h-[clamp(380px,48vw,600px)]',
         className,
       )}
       data-editorial-media={media.slot}

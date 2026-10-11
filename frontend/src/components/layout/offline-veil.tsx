@@ -3,12 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { getImageProps } from 'next/image';
 import { useTranslations } from 'next-intl';
-import { AnimatePresence, useReducedMotion } from 'motion/react';
+import { AnimatePresence } from 'motion/react';
 import { div as Mdiv } from 'motion/react-m';
 
 import { Button, Display, FullBleedSection, Kicker } from '@/components/ui';
 import { DURATION, EASE } from '@/config/motion';
 import { useOnlineStatus } from '@/hooks/use-online-status';
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -28,7 +29,7 @@ import type { EditorialMedia } from '@/types/editorial-media';
 export function OfflineVeil() {
   const t = useTranslations('states');
   const online = useOnlineStatus();
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionSafe();
   const [dismissed, setDismissed] = useState(false);
   const [lastOnline, setLastOnline] = useState(online);
 
@@ -94,6 +95,7 @@ function OfflineScene({ kicker, message, dismissLabel, media, onDismiss }: Offli
       media={media}
       mode="viewport"
       overlay="bottom"
+      fade="bottom"
       className="bg-void min-h-[100dvh]"
       contentClassName="min-h-[100dvh]"
     >

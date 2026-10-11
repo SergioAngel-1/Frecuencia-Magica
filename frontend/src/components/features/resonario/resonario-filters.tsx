@@ -16,7 +16,9 @@ export function ResonarioFilters({ active, onChange }: ResonarioFiltersProps) {
 
   return (
     <div
-      className="mb-[38px] flex flex-wrap gap-[10px]"
+      // Mismo eje que el sistema orbital de debajo: las píldoras se centran
+      // sobre el disco destacado.
+      className="mx-auto mb-[38px] flex max-w-[1040px] flex-wrap justify-center gap-[10px]"
       role="group"
       aria-label={t('filtersLabel')}
     >

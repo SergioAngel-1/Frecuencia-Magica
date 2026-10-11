@@ -111,7 +111,9 @@ describe('home editorial composition contracts', () => {
 
     expect(homeSources).toContain('<FullBleedSection');
     expect(homeSources).toContain('<EditorialBanner');
-    expect(homeSources).toContain('<EditorialImage');
+    // La frecuencia del día pinta su foto a su ratio, anclada, dentro de la cadena.
+    expect(homeSources).toContain('mode="anchored"');
+    expect(homeSources).toContain('<BandChain');
     expect(homeSources).toContain('<PageShell');
     expect(homeSources).toContain('export function SiteFooter');
   });
@@ -143,9 +145,46 @@ describe('home editorial composition contracts', () => {
   it('restores the approved decorative logo and fixed-ui reserve on home', () => {
     const heroSource = readSource('components/features/home/hero-section.tsx');
 
-    expect(heroSource).toContain('src="/logo.png"');
-    expect(heroSource).toContain('alt=""');
+    // El isotipo es el componente compartido, decorativo (sin `label`).
+    expect(heroSource).toContain('<Isotype');
+    expect(heroSource).not.toMatch(/<Isotype[^>]*\blabel=/);
     expect(homePageSource).not.toContain('reserveBottomUi={false}');
+  });
+
+  it('keeps the hero logo off the image and the ambient rings without the triangle', () => {
+    const heroSource = readSource('components/features/home/hero-section.tsx');
+    const energy = heroSource.slice(
+      heroSource.indexOf('data-editorial-zone="energy"'),
+      heroSource.indexOf('</FullBleedSection>'),
+    );
+
+    // El isotipo vive en la esquina, bajo los controles, fuera de la zona de la imagen.
+    expect(heroSource).toContain('data-editorial-zone="brand"');
+    expect(energy).not.toContain('<Isotype');
+    expect(heroSource).not.toMatch(/\bfixed\b|\bsticky\b/);
+    // Los aros de ambiente se quedan; el triángulo de geometría, no.
+    expect(energy).toContain('<OrbitalRings');
+    expect(energy).not.toContain('<polygon');
+  });
+
+  it('lowers the hero media below the calls to action on mobile, at the view level', () => {
+    const heroSource = readSource('components/features/home/hero-section.tsx');
+
+    // La imagen llena el alto en móvil: el foco vertical no la mueve, la caja sí.
+    expect(heroSource).toMatch(/mediaClassName="[^"]*max-md:top-\[/);
+    expect(heroSource).toContain('max-md:fm-fade-top');
+    // Las cifras bajan al pie del héroe: la figura queda entre los CTA y ellas.
+    expect(heroSource).toContain('max-md:self-stretch');
+    expect(heroSource).toContain('max-md:mt-auto');
+    expect(readSource('components/ui/full-bleed-section.tsx')).toContain('mediaClassName');
+  });
+
+  it('keeps the face of Marisol clear: frame and sub-frame, no rings over the portrait', () => {
+    const portrait = readSource('components/features/about/marisol-portrait.tsx');
+
+    expect(portrait).toContain('rounded-[200px_200px_8px_8px] border');
+    expect(portrait).toContain('rounded-[45%] border');
+    expect(portrait).not.toContain('OrbitalRings');
   });
 
   it('makes absent editorial media fill its positioned wrapper', () => {

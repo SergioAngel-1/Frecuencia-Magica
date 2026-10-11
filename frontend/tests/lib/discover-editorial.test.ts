@@ -109,4 +109,59 @@ describe('Descúbrete editorial composition', () => {
     expect(resultSource).toContain('asChild onClick={onListen}');
     expect(resultSource).toContain('href="/resonario"');
   });
+  it('anchors the result at its slot ratio and keeps the question atmosphere as the one backdrop', () => {
+    // El resultado crece con su texto: la foto se pinta a su 16:9, anclada, no estirada.
+    expect(layoutSource).toContain("if (phase === 'result') return 'anchored'");
+    // La atmósfera de pregunta es la excepción `backdrop` del contrato: fondo completo,
+    // con `sizes` por alto, porque cubre la pantalla por encima de su 3:4.
+    expect(EDITORIAL_MEDIA_REGISTRY['discover.question-atmosphere'].backdrop).toBe(true);
+    expect(layoutSource).toContain("phase === 'questions' || phase === 'tuning'");
+    expect(layoutSource).toContain("? mediaSizes('viewport', media.aspect)");
+  });
+  it('softens the layer behind the questions: one light treatment, a quieter halo', () => {
+    // Ni el velo direccional doble ni un halo intenso sobre la aurora de la foto.
+    expect(layoutSource).toContain("tint={phase === 'questions' ? 'mobile' : true}");
+    expect(fullBleedSource).toContain(
+      "overlayClassName={tint === 'mobile' ? 'md:hidden' : undefined}",
+    );
+    expect(fullBleedSource).toContain('overlay={tint ? overlayDirection : false}');
+    expect(fullBleedSource).toContain('scrim={overlayDirection}');
+    expect(layoutSource).toContain("phase === 'questions' ? 'opacity-20'");
+  });
+
+  it('paces the questions calmly and keeps the leaving step inert', () => {
+    const swapSource = readFileSync(resolve(SOURCE_ROOT, 'components/ui/swap.tsx'), 'utf8');
+
+    expect(containerSource).toContain('pace="calm"');
+    expect(swapSource).toContain('SWAP_PACE[pace]');
+    expect(swapSource).toContain('inert={!present}');
+    expect(swapSource).toContain('useReducedMotion');
+  });
+
+  it('reveals the result through the portal iris without navigating', () => {
+    const hookSource = readFileSync(resolve(SOURCE_ROOT, 'hooks/use-portal-reveal.ts'), 'utf8');
+
+    expect(containerSource).toContain('usePortalReveal()');
+    expect(containerSource).toContain('cover(finishTune)');
+    expect(containerSource).toContain('if (showingResult) arrive();');
+    expect(containerSource).toContain('onFinish={revealResult}');
+    // Mismo iris, sin ruta, sin audio ambiental y sin el reposo del portal.
+    expect(hookSource).toContain("portal.cross(mode, 'reveal')");
+    expect(hookSource).toContain('portalModeFor(reduced, false)');
+    expect(hookSource).toContain('clearTimeout');
+    expect(hookSource).not.toMatch(/useRouter|useAmbientStore|markPortalCrossed/);
+  });
+
+  it('fades the whole scene between phases, background included', () => {
+    const scene = readFileSync(
+      resolve(SOURCE_ROOT, 'components/features/descubrete/phase-scene.tsx'),
+      'utf8',
+    );
+    // La escena (fondo, halo y paso) cambia por fase con fundido de ida y vuelta.
+    expect(containerSource).toContain('<PhaseScene phase={quiz.step}>');
+    expect(scene).toContain('<AnimatePresence mode="wait"');
+    expect(scene).toContain('exit={');
+    expect(scene).toContain('PHASE_FADE');
+    expect(scene).toContain('inert={!present}');
+  });
 });

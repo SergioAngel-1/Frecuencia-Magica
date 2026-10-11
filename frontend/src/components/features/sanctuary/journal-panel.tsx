@@ -137,14 +137,19 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
       </GlassPanel>
 
       {withAside ? (
+        // Desde lg la columna mide lo mismo que la tarjeta del diario, con su
+        // radio y su borde; el retrato se queda a su 3:4, anclado arriba, y
+        // funde en la noche de la columna en vez de estirarse o recortarse.
+        // Apilado, la columna es el propio retrato a 3:4.
         <div
-          className="rounded-card-lg relative overflow-hidden max-lg:order-first max-lg:aspect-[16/8]"
+          className="rounded-card-lg border-gold/20 relative overflow-hidden border max-lg:order-first max-lg:aspect-[3/4] lg:self-stretch"
           data-editorial-media="sanctuary.journal"
         >
-          <div className="absolute inset-0">
+          <div className="absolute inset-x-0 top-0 aspect-[3/4]">
             <EditorialImage
               aspect="3:4"
               className="h-full"
+              fade="bottom"
               focalPoint={media.journal.position}
               media={media.journal}
               overlay={false}

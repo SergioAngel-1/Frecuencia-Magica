@@ -12,8 +12,18 @@ export type QuizState = {
 
 export type QuizAction =
   | { type: 'START_QUIZ' }
-  /** `total`: preguntas del quiz; responder la última pasa a afinar. */
-  | { type: 'ANSWER'; questionId: string; optionIndex: number; total: number }
+  /**
+   * `total`: preguntas del quiz; responder la última pasa a afinar.
+   * `questionIndex`: la pregunta que se contesta. Una respuesta a una pregunta
+   * que ya no es la actual (un clic sobre la que se está yendo) se ignora.
+   */
+  | {
+      type: 'ANSWER';
+      questionId: string;
+      optionIndex: number;
+      total: number;
+      questionIndex: number;
+    }
   | { type: 'GO_BACK' }
   | { type: 'FINISH_TUNE' }
   | { type: 'RESET' };
@@ -30,6 +40,9 @@ export function quizReducer(state: QuizState, action: QuizAction): QuizState {
       return { ...state, step: 'questions', currentQuestion: 0, answers: {} };
 
     case 'ANSWER': {
+      if (state.step !== 'questions' || action.questionIndex !== state.currentQuestion) {
+        return state;
+      }
       const nextAnswers = { ...state.answers, [action.questionId]: action.optionIndex };
       const isLast = state.currentQuestion >= action.total - 1;
       if (isLast) {

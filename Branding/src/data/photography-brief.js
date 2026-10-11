@@ -9,6 +9,7 @@ import {
   PRESETS,
   PROMPT_WRITING,
   SAFE,
+  SLOTS,
   expandAll,
   formatSize,
   negativeFor,
@@ -23,7 +24,7 @@ const viewOf = (row) => (row.title ? `${row.view} · ${row.title}` : row.view)
 function sizeLine(row) {
   if (row.preset) {
     const preset = PRESETS[row.preset]
-    return `master ${formatSize(preset.master)} · tablet ${formatSize(preset.tablet)} · móvil ${formatSize(preset.mobile)} · generar a ${preset.generate} y reescalar · peso ${preset.budget}`
+    return `master ${formatSize(preset.master)} · tablet ${formatSize(preset.tablet)} · móvil ${formatSize(preset.mobile)} · generar a ${preset.generate} (sin ampliar después) · peso ${preset.budget}`
   }
 
   return `${formatSize(row.size)} · ${row.ratio}`
@@ -86,11 +87,12 @@ function renderRow(row, status) {
     ...statusLines(status),
     `- **Archivo:** \`${row.file}\``,
     `- **Medidas:** ${sizeLine(row)}`,
-    `- **Ratio / focal:** ${row.preset ? PRESETS[row.preset].ratio : row.ratio} · foco ${row.focal}`,
+    `- **Ratio / focal:** ${row.preset ? PRESETS[row.preset].ratio : row.ratio} · foco ${row.focal}${row.mobileFocal ? ` · foco móvil ${row.mobileFocal}` : ''}`,
     `- **Zona de texto:** ${SAFE[row.safe]}`,
     `- **Contenido:** ${row.role}`,
   ]
 
+  if (row.backdrop) lines.push('- **Uso:** fondo a pantalla completa (`backdrop`), por encima de su ratio.')
   if (row.notes) lines.push(`- **Nota:** ${row.notes}`)
   if (row.realShoot) lines.push('- **Producción:** sesión fotográfica real (el prompt es sólo moodboard).')
   if (row.unregistered) lines.push('- **Estado:** fuera del registro de slots (aún sin cablear).')
@@ -170,6 +172,18 @@ export function renderBrief() {
     ),
     '',
     'Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es 2× el ancho de render máximo (DPR capado a 2).',
+    '',
+    '**Excepciones de encuadre en la web** (las fija el contrato de slots; el resto de imágenes usa un solo foco y se pinta a su ratio):',
+    '',
+    ...SLOTS.filter((slot) => slot.mobileFocal || slot.backdrop).map(
+      (slot) =>
+        `- \`${slot.id}\` (\`${slot.file}\`): ${[
+          slot.mobileFocal ? `foco ${slot.focal} · foco móvil ${slot.mobileFocal}` : null,
+          slot.backdrop ? 'fondo a pantalla completa (`backdrop`), por encima de su ratio' : null,
+        ]
+          .filter(Boolean)
+          .join(' · ')}. ${slot.notes ?? ''}`.trimEnd(),
+    ),
     '',
     '## 4. Resumen',
     '',

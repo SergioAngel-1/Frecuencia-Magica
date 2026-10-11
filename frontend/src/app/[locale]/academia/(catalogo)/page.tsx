@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { CourseList } from '@/components/features/academy/course-list';
 import { PageShell, RealmHero } from '@/components/layout';
+import { COURSES } from '@/data';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -24,9 +25,16 @@ export default async function AcademyPage({ params }: PageProps) {
       alt: t('media.alt.featured', { title: featuredTitle }),
       sizes: '(min-width: 1280px) 1040px, calc(100vw - 48px)',
     }),
-    courseCover: resolveEditorialMedia('academy-course-cover', {
-      sizes: '(min-width: 1280px) 520px, (min-width: 768px) 42vw, calc(100vw - 48px)',
-    }),
+    // Una portada por curso: la que no tenga foto publicada pinta la banda del ítem.
+    courseCovers: Object.fromEntries(
+      COURSES.map((course) => [
+        course.id,
+        resolveEditorialMedia('academy-course-cover', {
+          instance: course.id,
+          sizes: '(min-width: 1280px) 520px, (min-width: 768px) 42vw, calc(100vw - 48px)',
+        }),
+      ]),
+    ),
   };
 
   return (

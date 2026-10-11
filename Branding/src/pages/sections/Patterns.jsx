@@ -46,7 +46,7 @@ export function Patterns() {
           </div>
         </Specimen>
 
-        <Specimen title="Banda editorial" note="En la web es siempre a sangre de viewport y su texto arranca en el eje de página. Aquí ocupa el ancho del marco.">
+        <Specimen title="Banda editorial" note="En la web es siempre a sangre de viewport y su texto arranca en el eje de página. Sus bordes se funden con la noche (máscara fm-fade-*) para que dos bandas seguidas no se corten en arista. Aquí ocupa el ancho del marco.">
           <EditorialBanner slot="home.realms-banner" label="Banda de ejemplo" eyebrow="Los nueve reinos" title="Elige por dónde entrar" body="Cada reino es un lugar, y cada lugar tiene su propia luz." action={<Button variant="glass">Explorar</Button>} />
         </Specimen>
 

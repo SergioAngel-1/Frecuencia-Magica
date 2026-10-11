@@ -8,7 +8,7 @@ const { full, quick } = PORTAL_TIMING;
 describe('usePortalStore', () => {
   beforeEach(() => {
     vi.useFakeTimers();
-    usePortalStore.setState({ phase: 'idle', mode: 'full' });
+    usePortalStore.setState({ phase: 'idle', mode: 'full', reason: 'route' });
   });
 
   afterEach(() => {
@@ -25,6 +25,19 @@ describe('usePortalStore', () => {
 
     expect(usePortalStore.getState().phase).toBe('in');
     expect(usePortalStore.getState().mode).toBe('full');
+  });
+
+  it('un cruce es de ruta salvo que se pida revelar en sitio', () => {
+    usePortalStore.getState().cross();
+    expect(usePortalStore.getState().reason).toBe('route');
+
+    usePortalStore.setState({ phase: 'idle' });
+    usePortalStore.getState().cross('brief', 'reveal');
+    expect(usePortalStore.getState()).toMatchObject({
+      phase: 'in',
+      mode: 'brief',
+      reason: 'reveal',
+    });
   });
 
   it('al cubrir la pantalla espera al destino en vez de revelar por reloj', () => {

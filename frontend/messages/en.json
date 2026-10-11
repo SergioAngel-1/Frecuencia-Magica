@@ -18,6 +18,12 @@
     "soundOff": "Turn on ambient sound",
     "skipToContent": "Skip to content"
   },
+  "talk": {
+    "region": "Direct contact",
+    "label": "Talk now",
+    "aria": "Talk now with Marisol on WhatsApp (opens in a new tab)",
+    "message": "Hello, Marisol. I am coming from Frecuencia Mágica and I would love to talk with you."
+  },
   "nav": {
     "label": "Realms",
     "realms": {
@@ -35,7 +41,12 @@
       "experiencias": "Encounter",
       "tienda": "Abundance",
       "sanctuario": "Intimacy"
-    }
+    },
+    "story": {
+      "label": "Our essence",
+      "emotion": "Origin"
+    },
+    "menu": "Menu"
   },
   "footer": {
     "tagline": "We accompany real processes of transformation. You need not become someone else: only remember who you have always been.",
@@ -288,6 +299,7 @@
     "back": "← Back",
     "backToIntro": "← Back",
     "tuning": "Listening to your frequency…",
+    "revealing": "Revealing your frequency…",
     "result": {
       "kicker": "Your frequency today",
       "cta": "Listen now",
@@ -372,6 +384,7 @@
       "description": "Listen slowly. Each piece opens a different space to rest, find your roots or breathe again."
     },
     "featuredBadge": "Featured frequency",
+    "nowPlaying": "Now playing",
     "filtersLabel": "Filter frequencies",
     "filters": {
       "all": "All",

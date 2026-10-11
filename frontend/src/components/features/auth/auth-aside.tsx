@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
 import { EditorialImage, Kicker } from '@/components/ui';
-import { Halo, OrbitalRings } from '@/components/world';
+import { Halo, Isotype, OrbitalRings } from '@/components/world';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 const ASIDE_GRADIENT =
@@ -18,8 +17,9 @@ export interface AuthAsideProps {
  * Umbral editorial del acceso: la materia de la imagen ocupa el panel y el
  * world engine permanece visible en forma de aros, halos y logo respirando.
  *
- * En móvil se convierte en un banner breve para que el formulario siga siendo
- * la acción principal. En desktop recupera toda la altura de la pantalla.
+ * En móvil se convierte en un banner breve, anclado a su 16:9, que se
+ * encadena con la atmósfera del formulario: el formulario sigue siendo la
+ * acción principal. Con el panel partido recupera toda la altura.
  */
 export async function AuthAside({ media }: AuthAsideProps) {
   const t = await getTranslations('auth');
@@ -28,14 +28,28 @@ export async function AuthAside({ media }: AuthAsideProps) {
   return (
     <aside
       aria-label={brand}
-      className="relative isolate flex h-[clamp(230px,42vw,360px)] flex-col overflow-hidden px-6 py-8 min-[900px]:h-full min-[900px]:min-h-[100svh] min-[900px]:px-[clamp(32px,6vw,96px)] min-[900px]:py-14"
-      style={{ backgroundImage: ASIDE_GRADIENT }}
+      className="relative isolate flex aspect-[16/9] flex-col overflow-hidden px-6 py-8 min-[900px]:aspect-auto min-[900px]:h-full min-[900px]:min-h-[100svh] min-[900px]:py-14 min-[900px]:pr-[clamp(32px,6vw,96px)] min-[900px]:pl-[var(--page-inset)]"
     >
-      <div className="absolute inset-0">
+      {/* El tinte del panel sólo existe con el panel partido: en móvil el
+          héroe es una banda que se funde en la noche, sin caja alrededor. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 hidden min-[900px]:block"
+        style={{ backgroundImage: ASIDE_GRADIENT }}
+      />
+      {/* En móvil la imagen se ancla arriba a su 16:9 (el panel mide al menos
+          eso y crece con su texto); con el panel partido ocupa toda la altura. */}
+      <div className="absolute inset-x-0 top-0 aspect-[16/9] min-[900px]:inset-0 min-[900px]:aspect-auto">
         <EditorialImage
           media={media}
           aspect="16:9"
+          bandMedia
           className="h-full"
+          fade="bottom"
+          // El arco de luz ocupa el 62–78 % del ancho de la imagen: con el foco
+          // al 75 % queda entero en la columna, del panel partido de 1100 px
+          // hacia arriba, y el texto descansa en la noche de la izquierda.
+          focalPoint="75% 40%"
           overlay="bottom"
           scrim="left"
         />
@@ -47,7 +61,7 @@ export async function AuthAside({ media }: AuthAsideProps) {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-10"
+        className="pointer-events-none absolute inset-0 z-10 hidden min-[900px]:block"
         style={{ backgroundImage: ASIDE_FADE }}
       />
 
@@ -72,18 +86,15 @@ export async function AuthAside({ media }: AuthAsideProps) {
 
         <div className="animate-fm-float relative size-[clamp(90px,16vw,170px)]">
           <Halo color="rgba(216,185,120,0.28), transparent 68%" blur={12} inset="-16%" />
-          <Image
-            src="/logo.png"
-            alt={brand}
-            width={170}
-            height={170}
-            sizes="(min-width: 900px) 170px, 110px"
-            className="relative block size-full object-contain drop-shadow-[0_0_24px_rgba(216,185,120,0.42)]"
+          <Isotype
+            label={brand}
+            still
+            className="size-full drop-shadow-[0_0_24px_rgba(216,185,120,0.42)]"
           />
         </div>
 
-        <div className="relative z-10 mt-4 max-w-[38ch] min-[900px]:mt-8">
-          <p className="text-fg-body font-serif text-[clamp(20px,2.2vw,28px)] leading-[1.35] italic">
+        <div className="relative z-10 mt-4 min-[900px]:mt-8">
+          <p className="text-fg-body max-w-[22ch] font-serif text-[clamp(24px,3vw,44px)] leading-[1.25] text-balance italic">
             &ldquo;{t('quote')}&rdquo;
           </p>
           <Kicker tone="gold" className="mt-3">

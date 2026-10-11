@@ -23,6 +23,8 @@ export type EditorialMedia = {
   /** Gradiente del ítem del catálogo para los slots `band` (`product.band`…). */
   band?: string;
   position?: string;
+  /** Foco por debajo de 768 px; sin él, `position` vale en todos los anchos. */
+  mobilePosition?: string;
   priority?: boolean;
   sizes: string;
 };
@@ -35,7 +37,16 @@ export type EditorialMediaInput = Partial<Omit<EditorialMedia, 'slot' | 'fallbac
 /** Lo que `EditorialImage` pinta de verdad para un slot resuelto. */
 export type EditorialVisual = 'photo' | 'zebra' | 'band' | 'none';
 
-export type EditorialMediaMode = 'viewport' | 'banner' | 'portrait' | 'cover' | 'split' | 'quiet';
+/**
+ * Cómo ocupa la imagen su sección. `anchored` pinta la imagen con el ratio del
+ * slot, anclada arriba y a todo el ancho, para secciones cuyo alto lo decide
+ * su contenido: el contenido sigue sobre la noche en vez de estirar la foto.
+ */
+export type EditorialMediaMode =
+  'viewport' | 'banner' | 'portrait' | 'cover' | 'split' | 'quiet' | 'anchored';
+
+/** Bordes de la materia que se funden con la noche (máscara `fm-fade-*`). */
+export type EditorialFade = 'both' | 'top' | 'bottom' | 'none';
 
 export type EditorialOverlayDirection = 'left' | 'right' | 'bottom' | 'top' | 'none';
 export type EditorialTone = 'gold' | 'teal' | 'lav' | 'ivory';

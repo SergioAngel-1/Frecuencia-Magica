@@ -11,6 +11,7 @@
 export { BrandFigures } from './brand-figures';
 export { CosmicCanvas } from './cosmic-canvas';
 export { Halo } from './halo';
+export { Isotype } from './isotype';
 export { LuminousCursor } from './luminous-cursor';
 export { NebulaLayer } from './nebula-layer';
 export { OrbitalRings, type Ring } from './orbital-rings';

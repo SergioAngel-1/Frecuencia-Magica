@@ -10,6 +10,7 @@ import {
   RealmNav,
   RouteTransition,
   SiteHeader,
+  TalkFloat,
 } from '@/components/layout';
 import { RealmProvider } from '@/components/world/realm-provider';
 import { SmoothScroll } from '@/components/world/smooth-scroll';
@@ -46,6 +47,8 @@ export async function generateMetadata({ params }: { params: LocaleParams }): Pr
       template: `%s · ${t('brand')}`,
     },
     description: t('tagline'),
+    // Sin icono declarado, cada vista pedía un `/favicon.ico` que no existe (404).
+    icons: { icon: '/logo.png', apple: '/logo.png' },
     openGraph: { type: 'website', siteName: t('brand'), images },
     twitter: { card: 'summary_large_image', images },
   };
@@ -53,6 +56,9 @@ export async function generateMetadata({ params }: { params: LocaleParams }): Pr
 
 export const viewport = {
   themeColor: '#0F1B2E',
+  // La noche llega hasta los bordes del dispositivo y `env(safe-area-inset-*)`
+  // deja de valer cero: de ahí salen los márgenes del header y de los flotantes.
+  viewportFit: 'cover',
 };
 
 /**
@@ -90,6 +96,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
                   <RouteTransition>{children}</RouteTransition>
                   <RealmFooter />
                 </main>
+                <TalkFloat />
                 <PlayerDock />
                 <OfflineVeil />
               </SmoothScroll>

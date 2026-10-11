@@ -157,7 +157,11 @@ Ninguno: es una auditoría. La Parte 1 de esta rama (estados) se cerró antes de
 
 - **Herramienta:** Playwright 1.49.1, instalado fuera del repo, con el Chrome del sistema (`channel: 'chrome'`). Dev server en `localhost:3000` (`next dev --turbopack`), sin `next build` durante la medición. Las vistas de carga y error se midieron con dos rutas temporales bajo `/kit` que no se commitean.
 - **Estados con datos:** el carrito y el diario se sembraron en `localStorage` (`fm.cart`, `fm.journal`). La compra confirmada se forzó fijando `Math.random` para que el pago simulado no fallara.
-- **No verificado:**
+- **Cambios pedidos por el cliente durante el cierre** (commits `41c64c2` a `fb14a1d`): isotipo del héroe a la esquina superior derecha y sin triángulo; Membresía antes de Sobre Marisol (la cadena `intoFooter` queda como primitiva sin uso); retrato sin aros sobre la cara; velo de las preguntas más ligero, transiciones más lentas y revelación del resultado con el iris del portal; el audio activo al centro del resonario y el drone en silencio mientras suena; destacado de tienda y columna del diario a todo el alto sin recortar la foto (la foto conserva su 1:1 y su 3:4, fundida sobre la misma materia).
+
+**Gate (dev server parado):** `format:check`, `lint`, `typecheck`, `test` (65 archivos, 397 tests) y `build` en verde; `build` y `lint` de `Branding/` en verde. Con `next build` + `next start`: `/no-existe`, `/en/no-existe`, `/academia/c9`, `/tienda/p99` y `/experiencias/e9/reservar` responden **404**; `/kit`, 404 en producción; las variantes se sirven como `image/avif` y ninguna página referencia `/_next/image`.
+
+**No verificado:**
   - la fase de **sintonía** de Descúbrete: con movimiento reducido el quiz salta directamente al resultado, y la captura «sintonía» muestra el resultado;
   - `descubrete-intro` en EN a 1440, por un fallo del navegador en esa captura (la versión ES sí está);
   - el **contraste** del texto sobre las fotos nuevas (sólo a ojo);
@@ -165,3 +169,43 @@ Ninguno: es una auditoría. La Parte 1 de esta rama (estados) se cerró antes de
   - el 404 con estado real, que exige `next build` + `next start`.
 - **Ampliación** calculada sobre la variante que sirve `next/image` (parámetro `w` del `currentSrc`, acotado a la fuente). Las capturas a DPR 2 la hacen visible, pero la nota es numérica.
 - **Ejes:** se midió la arista izquierda de `h1–h3` y kickers. Los títulos dentro de tarjetas aparecen como desviaciones esperadas y no se cuentan como defecto.
+
+---
+
+## 11. Estado tras el refactor (2026-10-10, rama `feat/image-harmony-refactor`)
+
+Re-medición con el mismo método de la sección 10: Playwright 1.49.1 con el Chrome del sistema, DPR 2, `reducedMotion: 'reduce'` (la sintonía de Descúbrete, sin él), dev server, 27 vistas y estados en 1440 / 1280 / 768 / 390, con las rutas temporales de carga y error bajo `/kit` (borradas antes del build). La ampliación se calcula ahora contra la **variante realmente servida** (`<archivo>-<ancho>.avif`) y el ancho de su fuente.
+
+**Decisiones del cliente que cambian el punto de partida.** La Tarea 11 (ampliar las fuentes a 2880 px) se **descartó** tras validar el frontend en pantalla grande: las fuentes siguen en 1672 / 1774 / 1086 / 1254 px. Por eso los umbrales de ampliación pensados para fuentes de 2880 px no se alcanzan en escritorio ni en tableta vertical, aunque ya se sirva la fuente entera (ver P1-2 y P1-3). La copia `<archivo>.avif` sin sufijo se conserva, como fija el spec.
+
+| Hallazgo | Estado | Medida nueva (antes → después) |
+|---|---|---|
+| **P1-1** Costuras duras | ✅ | Hueco **0** en las cuatro cadenas (inicio ×2, resonario, experiencias, acceso <900 px) en los cuatro anchos; membresía → banner del footer **185 → 0** px. Toda banda a sangre funde sus bordes con máscara (`fm-fade-*`, `--fade-band`). La máscara cubre materia y scrim (el scrim al 88 % dibujaba la arista él solo); el contenido no se enmascara. |
+| **P1-2** Ampliación por `sizes` | ✅ en 390 · ⚠️ en 768/1440 | 390: héroes a viewport **3,6× → 1,79–1,80×**; `portal.portal-field` **4,1× → 1,10×**; `home.daily-frequency` **5,7× → 0,94×**; `booking.hero` **5,7× → 0,83×**; `discover.result` **8,8× → 0,94×**; ninguna imagen >1,8×. 768: héroes a viewport **2,2× → 2,18×** y 1440: **1,91×**, con la fuente entera ya servida: el límite es la fuente de 1672 px (decisión del cliente), no `sizes`. |
+| **P1-3** Fuentes y doble compresión | ✅ compresión · ⚠️ fuentes | Ninguna petición a `/_next/image` (antes AVIF q70 → WebP q75). Una sola compresión desde el PNG, AVIF q88 calibrado con el sharp del proyecto. Recorte 1:1 frente al PNG (PSNR): `home-hero` **37,8 → 46,2 dB**, `home-footer-banner` **42,7 → 46,7 dB**, `product-detail` **45,0 → 47,5 dB**; el grano del agua y de los degradados vuelve. Coste: la variante mayor pasa de ~15–23 KB a 45–65 KB (≤ 200 KB en todo el sitio). Fuentes sin ampliar por decisión del cliente. |
+| **P1-4** `home.hero` corta la figura | ✅ en 390 · ⚠️ en 768 | 390: ventana **0,46–0,72 → 0,40–0,87**, figura entera entre los CTA y las cifras (1,0×). El foco móvil no bastaba (la 16:9 llena el alto, así que su eje vertical no mueve nada): en móvil la capa de imagen empieza al 45 % del alto y funde su borde superior, y las cifras bajan al pie (pedido del cliente, commits `41c64c2` y `26bde0f`). 768: sin cambio (0,36–0,78): se pierden los pies. |
+| **P1-5** Slots `none` en cajas para el vacío | ✅ | `discover.result` 390×**2047 → 219**, ventana entera; `home.daily-frequency` 390×**1318 → 195**; `booking.hero` 342×**1330 → 192**; `sanctuary.journal` (móvil) 2:1 → **3:4** (342×456); `sanctuary.daily` 340×**766 → 340**. `discover.question-atmosphere` queda como la excepción `backdrop` del contrato (2,65× en 1440, imagen de bajo contraste). |
+| **P1-6** Panel del portal con aristas | ✅ | Sin aristas: caja a todo el ancho con `fm-fade-radial`; 1,10× en 390 (el `min-h-full` heredado la estiraba a todo el viewport). |
+| **P1-7** Carrito en 768 sin margen | ✅ | Arista **0 → 61 px** (el eje); líneas y resumen apilados hasta `lg`; nombres a dos líneas, completos en 768 y 1440. |
+| **P1-8** Producto destacado 16:8 | ✅ | Toda caja de `store-product-visual` mide **1,00** en los cuatro anchos (antes 0,61–2,23); el destacado, imagen 1:1 + texto en columnas. Sin `p1` publicado aún: se verificó la caja, no la foto. |
+| **P1-9** Diario vacío estira la columna | ✅ | `sanctuary.journal` **340×1102 → 340×453** vacío y con datos (3:4). |
+| P2-1 Tarjetas con foto | ⏳ | Fuera de alcance (spec, sección 11). |
+| P2-2 Línea de 1 px en acceso | ✅ | Sin filete; el héroe se ancla a 16:9 (390×219) y se encadena con la atmósfera. |
+| P2-3 Relacionados diminutos | ✅ | 768: **197×99 → 309×154** (dos columnas). |
+| P2-4 Dos aristas en mi-santuario | ✅ | Saludo y tarjetas en el eje (**238 → 144** px en 1440). |
+| P2-5 Huecos fuera de escala | ✅ | Desaparecen con las cadenas (185 y 154 px → 0). |
+| P2-6 `experiences-visual` 2,45:1 | ✅ | **1,78** desde 768 px. |
+| P3-1 Rama `fill={false}` | ✅ | Eliminada (un guardia lo vigila). |
+| P3-2 Capturas más anchas | — | Sin cambio; desborde real medido: 0 px en todas las vistas. |
+| P3-3 Columna «Estado» | ✅ | Reescrita desde el manifiesto; un test la cruza con él. |
+| P3-4 Foco de `states.offline` | ⏳ | Sin cambio (contrato). |
+
+**Hallazgos nuevos de la re-medición, ya corregidos:** `discover.tuning` (16:8 a pantalla completa) y la atmósfera de pregunta pedían la variante por ancho (ahora `sizes` por alto); los héroes de catálogo, la experiencia destacada y el retrato del diario pedían una variante menor que su caja en móvil o tableta (1,93–1,98× → ≤ 1,2×).
+
+**Sigue fuera del ratio del slot (sin cambio, fuera del alcance del spec):** los héroes de catálogo y las bandas con alto mínimo (`RealmHero`, `EditorialBanner`: 2,1–2,9:1 en escritorio, 0,9–1,4:1 en 390), las tarjetas con foto (P2-1) y los marcos de `EmptyState`. El sujeto queda dentro de la ventana en todos los medidos, pero el criterio 3 del spec («cada slot con el ratio de su contrato») sólo se cumple en las cajas que el spec enumeró.
+
+**Cambios pedidos por el cliente durante el cierre** (commits `41c64c2` a `fb14a1d`): isotipo del héroe a la esquina superior derecha y sin triángulo; Membresía antes de Sobre Marisol (la cadena `intoFooter` queda como primitiva sin uso); retrato sin aros sobre la cara; velo de las preguntas más ligero, transiciones más lentas y revelación del resultado con el iris del portal; el audio activo al centro del resonario y el drone en silencio mientras suena; destacado de tienda y columna del diario a todo el alto sin recortar la foto (la foto conserva su 1:1 y su 3:4, fundida sobre la misma materia).
+
+**Gate (dev server parado):** `format:check`, `lint`, `typecheck`, `test` (65 archivos, 397 tests) y `build` en verde; `build` y `lint` de `Branding/` en verde. Con `next build` + `next start`: `/no-existe`, `/en/no-existe`, `/academia/c9`, `/tienda/p99` y `/experiencias/e9/reservar` responden **404**; `/kit`, 404 en producción; las variantes se sirven como `image/avif` y ninguna página referencia `/_next/image`.
+
+**No verificado:** el contraste del texto sobre las fotos; Safari, Firefox y móviles reales; la confirmación de reserva (el flujo no se automatizó). Las vistas en EN se midieron sólo en el inicio.

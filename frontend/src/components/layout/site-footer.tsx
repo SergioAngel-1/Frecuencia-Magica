@@ -48,10 +48,12 @@ export function SiteFooter() {
       data-layout-layer="footer"
       className="fm-safe-area-bottom fm-container pb-[calc(104px+env(safe-area-inset-bottom))] lg:pb-[46px]"
     >
-      <div className="border-ivory/10 pt-block border-t">
+      {/* `data-footer-lead`: si la vista termina en una `BandChain intoFooter`,
+          `globals.css` anula este hueco y el banner continúa la cadena. */}
+      <div className="border-ivory/10 pt-block border-t" data-footer-lead>
         {realmId === 'home' ? (
           <div className="mb-section">
-            {/* Cierre distinto de la oferta de membresía que lo precede: la
+            {/* Cierre distinto de la oferta de membresía de la home: la
               despedida invita a volver, no repite la llamada a inscribirse. */}
             <EditorialBanner
               media={footerMedia}

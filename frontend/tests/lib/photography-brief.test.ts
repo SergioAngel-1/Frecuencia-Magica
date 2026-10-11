@@ -45,6 +45,24 @@ describe('photography brief', () => {
     }
   });
 
+  it('declares the same mobile focal point and backdrop as the contract', () => {
+    for (const slot of SLOTS as { id: string; mobileFocal?: string; backdrop?: true }[]) {
+      const contract = EDITORIAL_MEDIA_REGISTRY[slot.id as keyof typeof EDITORIAL_MEDIA_REGISTRY];
+
+      expect(slot.mobileFocal, slot.id).toBe(contract.mobilePosition);
+      expect(slot.backdrop, slot.id).toBe(contract.backdrop);
+    }
+  });
+
+  it('shows the mobile focal point and the backdrop in the rendered brief', () => {
+    const brief = renderBrief();
+
+    expect(brief).toContain('foco móvil 75% 40%');
+    expect(brief).toMatch(
+      /discover\.question-atmosphere[\s\S]*?fondo a pantalla completa \(`backdrop`\)/,
+    );
+  });
+
   it('only places the body of light in registered slots', () => {
     for (const id of LANGUAGE.bodyOfLight.slots) {
       expect(EDITORIAL_MEDIA_SLOTS, id).toContain(id);

@@ -77,6 +77,21 @@ describe('academy editorial composition contracts', () => {
     expect(listSource).toContain('data-editorial-archive="true"');
   });
 
+  it('resolves one course cover per course, so each published instance paints itself', () => {
+    // Una portada compartida haría que `academy-course-cover:c2` nunca se viera.
+    expect(pageSource).toContain('COURSES.map((course)');
+    expect(pageSource).toContain('instance: course.id');
+    expect(listSource).toContain('media.courseCovers[course.id]');
+    expect(coursePageSource).toContain('instance: course.id');
+    for (const source of [pageSource, coursePageSource]) {
+      const resolutions = source.split("resolveEditorialMedia('academy-course-cover'").slice(1);
+      expect(resolutions.length).toBeGreaterThan(0);
+      for (const call of resolutions) {
+        expect(call.slice(0, call.indexOf('})'))).toContain('instance: course.id');
+      }
+    }
+  });
+
   it('keeps course covers as EditorialImage fields with the card crop and localized alt', () => {
     expect(cardSource).toContain('<EditorialImage');
     expect(cardSource).toContain('data-editorial-media="academy-course-cover"');
@@ -122,14 +137,11 @@ describe('academy editorial composition contracts', () => {
     expect(playerSource).not.toMatch(/unsplash|https?:\/\//i);
   });
 
-  it('mirrors the editorial spread in loading without gray placeholders', () => {
-    expect(loadingSource).toContain('aria-busy="true"');
-    expect(loadingSource).toContain('<MediaSkeleton');
-    for (const { slot } of ACADEMY_SLOTS.slice(0, 3)) {
-      expect(loadingSource).toContain(`slot="${slot}"`);
-    }
-    expect(loadingSource).toContain('data-editorial-archive="true"');
-    expect(loadingSource).toContain('motion-safe:');
+  it('waits with the shared loading scene, like every other view', () => {
+    // Una sola espera en todo el sitio: la esfera de `states.loading` (ver `loading-flow`).
+    expect(loadingSource.trim()).toBe(
+      "export { RealmLoading as default } from '@/components/layout';",
+    );
   });
 
   it('keeps the editorial sweep on transform rather than background-position', () => {

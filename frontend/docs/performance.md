@@ -35,6 +35,7 @@ Presupuestos, métricas y decisiones de rendimiento del frontend (Task 16.4 del 
    - Gradientes de partículas **pre-horneados** (se crean una vez por partícula y por cambio de realm; el bucle dibuja con `translate` + `arc` en lugar de 54 `createRadialGradient` por frame). Las 3 nebulosas mantienen su gradiente por frame (sólo son 3).
    - **54 partículas en desktop, 28 por debajo de 768px** (`PARTICLE_COUNT_MOBILE`), regeneradas al cruzar el breakpoint.
    - Sin cambio: DPR ≤ 2, pausa con pestaña oculta (`visibilitychange`), frame único quieto con movimiento reducido.
+   - **Fuera del hilo principal (2026-10-10):** la escena (`lib/cosmic/scene.ts`) se pinta en un worker sobre un `OffscreenCanvas` (`lib/cosmic/cosmic.worker.ts`); sin soporte, o si el worker falla, el mismo código pinta en el hilo principal. Sin su `requestAnimationFrame` en la página, el navegador deja de producir un frame de documento por cada frame del fondo. El alfa de las estrellas va en `globalAlpha` (sin 220 cadenas `rgba()` por frame) y el bucle no pinta por encima de 60 fps en pantallas de 120 Hz.
 4. **Logo:** `next/image` con `sizes` correcto en los 4 usos; `priority` sólo en el portal y el header (ya era así).
 5. **Pausas verificadas:** canvas (visibilitychange ✓), Lenis (`destroy()` al desmontar ✓), cursor (`cancelAnimationFrame` ✓), reproductor (interval limpio al pausar ✓ — con el `setElapsed` funcional ya no se recrea cada tick). No hay escenas 3D (Fase 15 no ejecutada): el punto «desmontar al salir del viewport» queda N/A.
 
@@ -53,6 +54,37 @@ Presupuestos, métricas y decisiones de rendimiento del frontend (Task 16.4 del 
 | `7d5fd1`   | 7 kB       | SmoothScroll + RouteTransition                       |
 | resto      | ~23 kB     | chunks menores                                       |
 | **Total**  | **220 kB** |                                                      |
+
+## Imagen editorial (2026-10-10)
+
+Las imágenes se comprimen **una sola vez**, desde el PNG original de `.editorial-originals/`, con `npm run editorial:ingest` (AVIF q88, `effort` 6; la calidad se calibró a 1:1 contra el PNG, ver el comentario de `scripts/editorial-ingest.mjs`). Cada imagen se publica en variantes por ancho (`<archivo>-<ancho>.avif`) y el loader de `next/image` (`src/lib/editorial/image-loader.ts`) elige la menor que cubre el ancho pedido: `next/image` ya no re-codifica a WebP. Las fuentes miden 1672/1774 px (16:9 y 2:1), 1086 px (3:4) y 1254 px (1:1); no se amplían (decisión de 2026-10-10), así que la variante mayor es el ancho de la fuente.
+
+| Variante                                                           | Archivos | Peso total   | Media | Máximo |
+| ------------------------------------------------------------------ | -------- | ------------ | ----- | ------ |
+| 640                                                                | 50       | 1,04 MB      | 21 KB | 63 KB  |
+| 828                                                                | 50       | 1,62 MB      | 33 KB | 97 KB  |
+| 1200                                                               | 46       | 2,74 MB      | 61 KB | 167 KB |
+| Ancho de la fuente (1086–1774)                                     | 50       | 4,41 MB      | 90 KB | 200 KB |
+| `<archivo>.avif` (copia de la mayor, para consumidores sin loader) | 50       | 4,41 MB      | 90 KB | 200 KB |
+| **`public/editorial/` (AVIF)**                                     | **246**  | **14,22 MB** |       |        |
+
+La imagen de la espera (`states.loading`) se precarga cuando el navegador queda libre tras la primera carga (`RouteTransition`, `requestIdleCallback`), en la misma variante que pedirá la escena: la espera entre vistas sólo se ve con la red lenta, justo cuando una imagen pedida en ese momento ya no llegaría. Cuesta una descarga de 50–90 KB por visita.
+
+El logo (`/logo.png`) no está en el manifiesto: sus cuatro usos llevan `unoptimized`, así que se sirve tal cual y no pasa ni por el loader ni por el optimizador. **Deuda:** es un PNG de 500×500 y 81 KB que el header pinta a 46 px; supera de largo lo razonable para el header (~30 KB). Conviene exportarlo a la medida de sus usos (46, 110–190 px a DPR 2) en una pasada propia.
+
+Cada visitante descarga una sola variante por imagen visible: en 390 px las de 828 o 1200 (33–61 KB de media); en 1440 a DPR 2, la mayor (90 KB de media, ≤ 200 KB, dentro del presupuesto del brief de ≤ 260 KB y ≤ 320 KB en P0).
+
+## Isotipo 3D (2026-10-10)
+
+`Isotype` (`components/world`) pinta el isotipo girando con un visor WebGL propio, sin three.js ni decodificadores. Nada entra en el JS de primera carga: el visor (`lib/isotype/viewer.ts`) llega por `import()` y el modelo por `fetch`, los dos al entrar el componente en pantalla. Hasta entonces, sin WebGL o con movimiento reducido, se ve un póster SVG. Con `still` (portal y acceso) el modelo se pinta una sola vez, de frente y sin bucle de animación; como no se mueve, también con movimiento reducido.
+
+| Recurso                              | Bruto   | gzip    |
+| ------------------------------------ | ------- | ------- |
+| `isotipo-sm.glb` (óptica, ≤ ~120 px) | 25,4 kB | 13,4 kB |
+| `isotipo.glb` (detalle, ≥ ~160 px)   | 46,0 kB | 26,1 kB |
+| Póster SVG (cada uno)                | ~11 kB  | ~3 kB   |
+
+Dos llamadas de dibujo por instancia, DPR capado a 2, y el bucle se detiene fuera del viewport y con la pestaña oculta. Cada instancia abre su propio contexto WebGL: una o dos por vista. **Sin medir:** FPS en móvil de gama media y el tamaño del chunk del visor en `next build` (en la prueba fuera de Next, ~1,8 kB gzip minificado).
 
 ## Deuda restante (documentada, no bloqueante)
 

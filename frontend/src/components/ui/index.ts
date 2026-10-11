@@ -9,6 +9,7 @@
 export { arrowLinkClasses, ArrowGlyph, type ArrowLinkTone } from './arrow-link';
 export { Badge, type BadgeProps, type BadgeTone } from './badge';
 export { Band, type BandAspect } from './band';
+export { BandChain, type BandChainProps } from './band-chain';
 export { Button, type ButtonProps, type ButtonTone, type ButtonVariant } from './button';
 export { Display, type DisplayLevel, type DisplaySize } from './display';
 export { EmptyState } from './empty-state';

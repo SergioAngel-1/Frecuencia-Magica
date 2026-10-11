@@ -15,3 +15,7 @@ CLAUDE.md
 coverage/
 .turbo/
 next-env.d.ts
+
+# Taller 3D del isotipo (Blender, análisis, generador): la web sólo sirve lo
+# exportado a `frontend/public/isotipo/`, que sí se versiona.
+3D Prototypes/

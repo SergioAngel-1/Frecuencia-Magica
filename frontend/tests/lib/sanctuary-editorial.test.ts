@@ -130,16 +130,47 @@ describe('sanctuary editorial composition contracts', () => {
     expect(headerSource).toContain('fm-breathe');
   });
 
-  it('mirrors the layout in loading with zebra slots instead of gray placeholders', () => {
-    expect(loadingSource).toContain('aria-busy="true"');
-    expect(loadingSource).toContain('<MediaSkeleton');
-
-    for (const slot of ['sanctuary.hero', 'sanctuary.continue']) {
-      expect(loadingSource).toContain(`slot="${slot}"`);
-    }
-    // `sanctuary.journal` es `none`: sin foto no hay columna lateral que esperar.
-    expect(loadingSource).not.toContain('slot="sanctuary.journal"');
-
-    expect(loadingSource).not.toContain('bg-gray');
+  it('waits with the shared loading scene, like every other view', () => {
+    // Una sola espera en todo el sitio: la esfera de `states.loading` (ver `loading-flow`).
+    expect(loadingSource.trim()).toBe(
+      "export { RealmLoading as default } from '@/components/layout';",
+    );
+  });
+  it('keeps the journal and daily media at their slot ratio, empty or not', () => {
+    // El vacío del diario no impone alto: así no estira la columna de su retrato.
+    expect(emptySource).toContain('fill');
+    const emptyState = readSource('components/ui/empty-state.tsx');
+    expect(emptyState).toContain('fill?: boolean');
+    // La columna del retrato mide lo que la tarjeta del diario desde lg (y es el
+    // propio 3:4 apilada); el retrato sigue a su 3:4, anclado arriba y fundido,
+    // nunca estirado ni a 16:8.
+    const asideStart = journalSource.lastIndexOf(
+      '<div',
+      journalSource.indexOf('data-editorial-media="sanctuary.journal"'),
+    );
+    const aside = journalSource.slice(
+      asideStart,
+      journalSource.indexOf('data-editorial-media="sanctuary.journal"'),
+    );
+    expect(aside).toContain('lg:self-stretch');
+    expect(aside).toContain('max-lg:aspect-[3/4]');
+    expect(aside).toContain('rounded-card-lg');
+    expect(aside).not.toContain('self-start');
+    const portrait = journalSource.slice(asideStart);
+    expect(portrait).toContain('absolute inset-x-0 top-0 aspect-[3/4]');
+    expect(portrait).toContain('fade="bottom"');
+    expect(portrait).not.toContain('absolute inset-0');
+    expect(journalSource).not.toContain('aspect-[16/8]');
+    // La foto de la práctica diaria se ancla a su 1:1 en vez de estirarse con la tarjeta.
+    expect(dailySource).toContain('absolute inset-x-0 top-0 -z-10 aspect-square');
+    expect(dailySource).not.toContain('absolute inset-0 -z-10');
+    // Retomar el curso, con el mismo fondo: la foto a su 16:8 se funde, no se corta.
+    expect(continueSource).toContain('absolute inset-x-0 top-0 -z-10 aspect-[16/8]');
+    expect(continueSource).toContain('fade="bottom"');
+    expect(continueSource).toContain('relative isolate');
+  });
+  it('starts the greeting on the page axis, like the cards below it', () => {
+    const header = readSource('components/features/sanctuary/sanctuary-header.tsx');
+    expect(header).toContain('flex flex-col items-start');
   });
 });

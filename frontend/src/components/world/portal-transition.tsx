@@ -125,11 +125,14 @@ function lightMotion(phase: string, iris: boolean, cover: number, reveal: number
  */
 export function PortalAnnouncer() {
   const t = useTranslations('portal');
+  const tDiscover = useTranslations('discover');
   const phase = usePortalStore((state) => state.phase);
+  const reason = usePortalStore((state) => state.reason);
+  const label = reason === 'reveal' ? tDiscover('revealing') : t('crossing');
 
   return (
     <div role="status" aria-live="polite" className="sr-only">
-      {phase === 'in' || phase === 'hold' ? t('crossing') : ''}
+      {phase === 'in' || phase === 'hold' ? label : ''}
     </div>
   );
 }

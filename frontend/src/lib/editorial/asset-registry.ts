@@ -35,6 +35,11 @@ export function resolveEditorialMedia(
     resolved.src = src;
   }
 
+  const mobilePosition = media?.mobilePosition ?? definition.mobilePosition;
+  if (mobilePosition) {
+    resolved.mobilePosition = mobilePosition;
+  }
+
   if (media?.band) {
     resolved.band = media.band;
   }

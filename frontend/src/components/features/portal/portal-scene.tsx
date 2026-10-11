@@ -1,8 +1,6 @@
-import Image from 'next/image';
-
 import { Display, EditorialImage, FullBleedSection, Kicker, Prose } from '@/components/ui';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
-import { Halo, OrbitalRings } from '@/components/world';
+import { Halo, Isotype, OrbitalRings } from '@/components/world';
 
 import { EnterButton } from './enter-button';
 
@@ -43,6 +41,7 @@ export function PortalScene({
       media={heroMedia}
       mode="viewport"
       overlay="bottom"
+      fade="bottom"
       className="fm-editorial-full-bleed fm-editorial-shell"
       contentClassName="min-h-[100svh]"
     >
@@ -52,7 +51,9 @@ export function PortalScene({
       >
         <EditorialImage
           aspect="16:8"
-          className="absolute inset-x-[7%] top-[12%] h-[58%] opacity-35 mix-blend-screen md:inset-x-[16%] md:top-[8%] md:h-[72%]"
+          className="fm-fade-radial absolute top-[12%] right-0 left-0 h-[58%] min-h-0 opacity-35 mix-blend-screen md:top-[4%] md:h-[80%]"
+          // La caja mide 58 % (móvil) u 80 % del alto y `cover` escala la 2:1 por el alto.
+          sizes="(max-width: 767px) calc(58svh * 2), (max-aspect-ratio: 2/1) calc(80svh * 2), 100vw"
           media={portalFieldMedia}
           overlay={false}
           scrim={false}
@@ -100,16 +101,16 @@ export function PortalScene({
           className="mx-auto flex w-full max-w-[820px] flex-col items-center"
           style={{ animation: 'fm-fade-in 2s ease both' }}
         >
-          <div className="animate-fm-float relative mb-[26px] size-[128px] md:mb-[30px] md:size-[190px]">
+          {/* Crece con el alto que deja libre el resto de la escena (~510/580 px), sin
+              empujar el CTA ni la pista fuera de la primera pantalla; nunca baja del
+              tamaño anterior (128/190 px). */}
+          <div className="animate-fm-float relative mb-[22px] size-[clamp(128px,calc(100svh_-_510px),240px)] md:mb-[26px] md:size-[clamp(190px,calc(100svh_-_580px),340px)]">
             <Halo color="rgba(216,185,120,0.22), rgba(150,198,188,0.10) 55%" inset="-8%" />
-            <Image
-              src="/logo.png"
-              alt={title}
-              width={210}
-              height={210}
-              priority
-              sizes="(min-width: 768px) 190px, 128px"
-              className="relative block size-[128px] object-contain drop-shadow-[0_0_26px_rgba(216,185,120,0.4)] md:size-[190px]"
+            {/* Decorativo: el nombre lo dice el `h1` de debajo. Flota con su caja; no gira. */}
+            <Isotype
+              variant="detail"
+              still
+              className="size-full drop-shadow-[0_0_26px_rgba(216,185,120,0.4)]"
             />
             <div
               aria-hidden="true"

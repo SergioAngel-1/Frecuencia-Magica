@@ -1,4 +1,5 @@
 import { Display, Kicker } from '@/components/ui';
+import { Isotype } from '@/components/world';
 
 type SanctuaryHeaderProps = {
   kicker: string;
@@ -7,25 +8,30 @@ type SanctuaryHeaderProps = {
 };
 
 /**
- * Cabecera de Mi Santuario: el orbe de quien vuelve y su saludo.
+ * Cabecera de Mi Santuario: el isotipo de quien vuelve y su saludo.
  *
- * El orbe es decorativo y respira (`fm-breathe`, sólo transform/opacity): es
- * el «avatar» del plan sin retrato, que hasta que haya cuentas sería un rostro
- * inventado. `aria-hidden`; el saludo lo dice el `h1`.
+ * El isotipo gira despacio sobre un resplandor dorado que respira
+ * (`fm-breathe`, sólo transform/opacity): es el «avatar» del plan sin retrato,
+ * que hasta que haya cuentas sería un rostro inventado. `aria-hidden`; el
+ * saludo lo dice el `h1`.
  */
 export function SanctuaryHeader({ kicker, title }: SanctuaryHeaderProps) {
   return (
-    <div className="flex items-center gap-5 sm:gap-6">
-      <div
-        aria-hidden="true"
-        className="size-[56px] shrink-0 rounded-full sm:size-[70px]"
-        style={{
-          background:
-            'radial-gradient(circle at 40% 35%, rgba(247,244,234,0.85), rgba(216,185,120,0.5) 45%, transparent 72%)',
-          boxShadow: '0 0 40px 8px rgba(216,185,120,0.25)',
-          animation: 'fm-breathe 6s ease-in-out infinite',
-        }}
-      />
+    // El isotipo va encima del saludo: así el saludo arranca en el eje de página,
+    // la misma arista que las tarjetas de la vista.
+    <div className="flex flex-col items-start gap-4">
+      <div aria-hidden="true" className="relative size-[72px] shrink-0 sm:size-[88px]">
+        {/* Resplandor sin borde: más ancho que el isotipo y difuminado hasta desaparecer. */}
+        <div
+          className="pointer-events-none absolute inset-[-35%] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(216,185,120,0.2), transparent 66%)',
+            filter: 'blur(10px)',
+            animation: 'fm-breathe 6s ease-in-out infinite',
+          }}
+        />
+        <Isotype className="size-full" />
+      </div>
       <div>
         <Kicker tone="gold" spacing="widest">
           {kicker}

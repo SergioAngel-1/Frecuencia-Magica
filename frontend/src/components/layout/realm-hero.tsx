@@ -49,6 +49,11 @@ export function RealmHero({
       media={media}
       mode="banner"
       overlay="left"
+      fade="bottom"
+      // Con `REALM_HERO_HEIGHT` la caja mide 420 px de alto (o lo que pida su
+      // texto, ~460) por debajo de 808 px de ancho: ahí `cover` escala la 16:9
+      // por el alto (747–820 px), no por el ancho.
+      sizes="(max-width: 807px) 840px, 100vw"
       className={cn(REALM_HERO_HEIGHT, className)}
       contentClassName="flex items-center"
     >

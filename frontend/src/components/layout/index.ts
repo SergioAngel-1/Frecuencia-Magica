@@ -9,6 +9,7 @@
 export { AudioToggle } from './audio-toggle';
 export { BrandMark } from './brand-mark';
 export { LanguageToggle } from './language-toggle';
+export { LoadingScene, type LoadingSceneProps } from './loading-scene';
 export { NewsletterForm } from './newsletter-form';
 export { OfflineVeil } from './offline-veil';
 export { PageShell, type ShellPadding, type ShellWidth } from './page-shell';
@@ -20,4 +21,5 @@ export { RouteTransition } from './route-transition';
 export { SessionLink } from './session-link';
 export { SiteFooter } from './site-footer';
 export { SiteHeader } from './site-header';
+export { TalkFloat } from './talk-float';
 export { ButtonLink } from './button-link';

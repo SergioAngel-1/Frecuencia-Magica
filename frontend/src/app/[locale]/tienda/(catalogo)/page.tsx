@@ -34,11 +34,12 @@ export default async function StorePage({ params }: PageProps) {
       return [
         product.id,
         resolveEditorialMedia('store-product-visual', {
+          instance: product.id,
           alt: t('media.alt.product', { title }),
-          aspect: featured ? '16:8' : '1:1',
+          // El destacado también a 1:1: en escritorio ocupa media tarjeta junto a su texto.
           sizes: featured
-            ? '(min-width: 1280px) 820px, (min-width: 768px) 56vw, calc(100vw - 48px)'
-            : '(min-width: 1280px) 380px, (min-width: 768px) 28vw, calc(100vw - 48px)',
+            ? '(min-width: 1280px) 400px, (min-width: 768px) 30vw, calc(100vw - 48px)'
+            : '(min-width: 1280px) 380px, (min-width: 640px) 30vw, calc(100vw - 48px)',
           band: product.band,
         }),
       ];

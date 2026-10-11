@@ -416,3 +416,19 @@ Informe completo: [`../audits/2026-09-30-design-coherence-audit.md`](../audits/2
 
 **Pendiente**: sesión fotográfica real de Marisol (`home-marisol-portrait`); cablear la imagen Open Graph en los metadatos; First Load JS ≈ 247 kB gz (presupuesto 200); validar el copy del cierre de la home; recorrido real con lector de pantalla.
 
+---
+
+## Sección 12 — Armonía de imagen (2026-10-10)
+
+Plan: `docs/superpowers/plans/2026-10-10-image-harmony-refactor.md` (spec y auditoría enlazados desde él; estado final en la sección 11 de la auditoría).
+
+**Entregado**
+
+- Bandas a sangre que funden sus bordes con máscara (`fm-fade-*`) y se encadenan sin hueco (`BandChain`) en inicio, resonario, experiencias y acceso; panel del portal sin aristas.
+- Cajas con el ratio del slot (`mode="anchored"`, `EmptyState fill`, producto 1:1, experiencias 16:9, diario 3:4), foco móvil (`mobilePosition`) y `sizes` derivado de la caja (`mediaSizes`).
+- Pipeline de imagen: `npm run editorial:ingest` comprime una vez desde el PNG (AVIF q88) en variantes por ancho; `next/image` las sirve con un loader propio sin re-codificar.
+- Eje de página en carrito y santuario; relacionados en dos columnas desde 768.
+- Cambios pedidos por el cliente al cierre: héroe del inicio (isotipo, triángulo, composición móvil), orden Membresía → Sobre Marisol, Descúbrete (velo, ritmo, revelación con el portal), audio activo al centro del resonario, destacado de tienda y diario a todo el alto.
+
+**Pendiente**: fuentes a 2880 px (ampliación descartada por el cliente; regenerar a medida si se quiere); `home.hero` en tableta vertical (768) sigue perdiendo los pies; contraste del texto sobre foto; Safari, Firefox y móviles reales; logo de 81 KB en el header.
+

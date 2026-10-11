@@ -30,6 +30,12 @@ const INITIAL_TOUCHED: Record<AuthField, boolean> = {
   password: false,
 };
 
+/** Fila plegable (`0fr`→`1fr`): el campo nombre y el enlace de recuperación comparten ritmo. */
+const COLLAPSE =
+  'grid transition-[grid-template-rows,opacity] duration-[350ms] ease-[cubic-bezier(.2,.85,.25,1)]';
+const COLLAPSE_OPEN = 'grid-rows-[1fr] opacity-100';
+const COLLAPSE_CLOSED = 'grid-rows-[0fr] opacity-0';
+
 export interface AuthFormProps {
   media: EditorialMedia;
 }
@@ -100,12 +106,15 @@ export function AuthForm({ media }: AuthFormProps) {
   return (
     <div
       data-auth-layout="form"
-      className="border-gold/15 bg-void-2/84 relative isolate min-h-[clamp(620px,100svh,980px)] overflow-hidden border-t min-[900px]:min-h-[100svh] min-[900px]:border-t-0 min-[900px]:border-l"
+      // En móvil el panel continúa la banda del héroe: sin filete ni fondo
+      // propio, su atmósfera y su velo funden el borde superior en la noche.
+      className="border-gold/15 min-[900px]:bg-void-2/84 relative isolate min-h-[clamp(620px,100svh,980px)] overflow-hidden min-[900px]:min-h-[100svh] min-[900px]:border-l"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-30">
         <EditorialImage
           media={media}
           aspect="3:4"
+          bandMedia
           className="h-full"
           overlay={false}
           scrim={false}
@@ -113,7 +122,7 @@ export function AuthForm({ media }: AuthFormProps) {
       </div>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(15,27,46,0.68),rgba(10,18,32,0.94))]"
+        className="fm-fade-top pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(15,27,46,0.68),rgba(10,18,32,0.94))]"
       />
 
       {/* Una sola columna: conmutador, campos y botones comparten ancho. Antes
@@ -172,12 +181,7 @@ export function AuthForm({ media }: AuthFormProps) {
                   está colapsado; con prefers-reduced-motion el kill global de CSS
                   hace la transición instantánea. */}
                 <div
-                  className={cn(
-                    'grid transition-[grid-template-rows,opacity] duration-[350ms] ease-[cubic-bezier(.2,.85,.25,1)]',
-                    mode === 'register'
-                      ? 'grid-rows-[1fr] opacity-100'
-                      : 'grid-rows-[0fr] opacity-0',
-                  )}
+                  className={cn(COLLAPSE, mode === 'register' ? COLLAPSE_OPEN : COLLAPSE_CLOSED)}
                   aria-hidden={mode !== 'register'}
                   inert={mode !== 'register'}
                 >
@@ -212,17 +216,31 @@ export function AuthForm({ media }: AuthFormProps) {
                   />
                 </Field>
 
-                {mode === 'login' ? (
-                  <div className="-mt-1 flex justify-end">
-                    <button
-                      type="button"
-                      onClick={() => setRecovery('asking')}
-                      className="rounded-pill hover:text-ivory text-meta tracking-soft text-fg-muted min-h-11 px-3 font-sans transition-colors"
-                    >
-                      {t('auth.forgot')}
-                    </button>
+                {/* Se pliega al compás del campo nombre: si apareciera de golpe al
+                  volver a «Entrar», durante un instante convivirían los dos, el
+                  panel crecería y la imagen del umbral daría un salto. El
+                  `-mt-4` anula su hueco de `space-y-4` cuando está plegado. */}
+                <div
+                  className={cn(
+                    COLLAPSE,
+                    '-mt-4',
+                    mode === 'login' ? COLLAPSE_OPEN : COLLAPSE_CLOSED,
+                  )}
+                  aria-hidden={mode !== 'login'}
+                  inert={mode !== 'login'}
+                >
+                  <div className="overflow-hidden">
+                    <div className="flex justify-end pt-3">
+                      <button
+                        type="button"
+                        onClick={() => setRecovery('asking')}
+                        className="rounded-pill hover:text-ivory text-meta tracking-soft text-fg-muted min-h-11 px-3 font-sans transition-colors"
+                      >
+                        {t('auth.forgot')}
+                      </button>
+                    </div>
                   </div>
-                ) : null}
+                </div>
 
                 <Button
                   type="submit"

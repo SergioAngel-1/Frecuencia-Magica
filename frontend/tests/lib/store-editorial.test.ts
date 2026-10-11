@@ -106,13 +106,27 @@ describe('store editorial composition contracts', () => {
     expect(cardSource).toContain('data-editorial-media={media.slot}');
     expect(cardSource).toContain("baseMedia.slot === 'product.related'");
     expect(cardSource).toContain('ASPECT_FIELD[media.aspect]');
-    expect(cardSource).toContain('aspect-[16/8]');
-    expect(cardSource).toContain('h-[clamp(190px,22vw,260px)]');
     expect(cardSource).toContain('onClick={() => add(product.id)}');
     expect(cardSource).toContain("pathname: '/tienda/[productId]'");
     expect(cardSource).not.toContain('<Band');
     expect(cardSource).not.toMatch(/unsplash|https?:\/\//i);
     expect(PRODUCTS).toHaveLength(8);
+  });
+
+  it('resolves every product visual per product, so each published instance paints itself', () => {
+    // Sin `instance`, `store-product-visual:p3` nunca se vería.
+    const sources = [
+      { source: storePageSource, instance: 'instance: product.id' },
+      { source: cartSource, instance: 'instance: product.id' },
+      { source: productPageSource, instance: 'instance: relatedProduct.id' },
+    ];
+    for (const { source, instance } of sources) {
+      const resolutions = source.split("resolveEditorialMedia('store-product-visual'").slice(1);
+      expect(resolutions.length).toBeGreaterThan(0);
+      for (const call of resolutions) {
+        expect(call.slice(0, call.indexOf('})'))).toContain(instance);
+      }
+    }
   });
 
   it('recomposes detail around dominant media and keeps purchase and frequency seams', () => {
@@ -194,20 +208,50 @@ describe('store editorial composition contracts', () => {
     expect(confirmationSource).toContain('href="/tienda"');
   });
 
-  it('mirrors the full image-led bento rhythm in loading with zebra slots', () => {
-    expect(loadingSource).toContain('aria-busy="true"');
-    expect(loadingSource).toContain('<MediaSkeleton');
-    expect(loadingSource).toContain('slot="store.hero"');
-    expect(loadingSource).toContain('slot="store-product-visual"');
-    // `store.ritual-banner` es `none`: la silueta replica un banner sólo de texto.
-    expect(loadingSource).not.toContain('slot="store.ritual-banner"');
-    expect(loadingSource).toContain('h-[clamp(190px,22vw,260px)]');
-    expect(loadingSource).toContain('h-[clamp(210px,26vw,340px)]');
-    expect(loadingSource).toContain('min-h-[390px]');
-    expect(loadingSource).toContain('min-h-[520px]');
-    expect(loadingSource).toContain('mt-auto');
-    expect(loadingSource).toContain('motion-safe:');
-    expect(loadingSource).not.toContain('bg-gray');
+  it('waits with the shared loading scene, like every other view', () => {
+    // Una sola espera en todo el sitio: la esfera de `states.loading` (ver `loading-flow`).
+    expect(loadingSource.trim()).toBe(
+      "export { RealmLoading as default } from '@/components/layout';",
+    );
+  });
+  it('paints every product visual at its 1:1, the featured one included', () => {
+    // Ninguna resolución de `store-product-visual` fuerza otro ratio.
+    for (const source of [storePageSource, productPageSource, cartSource]) {
+      const resolutions = source.split("resolveEditorialMedia('store-product-visual'").slice(1);
+      for (const call of resolutions) {
+        expect(call.slice(0, call.indexOf('})'))).not.toMatch(/aspect:\s*(?!'1:1')/);
+      }
+    }
+    // La tarjeta pinta la caja con el ratio del slot: `store-product-visual` es `aspect-square`.
+    expect(cardSource).toContain("'1:1': 'aspect-square'");
+    expect(cardSource).not.toContain('h-[clamp(190px,22vw,260px)]');
+    expect(cardSource).not.toContain('min-h-[clamp(210px,26vw,340px)]');
+    // El destacado se compone en columnas: imagen cuadrada y texto.
+    expect(cardSource).toContain('md:flex-row');
+    expect(cardSource).toContain('md:w-1/2');
+  });
+  it('fills the featured card height behind the 1:1 object without cropping it', () => {
+    // La columna del destacado se estira a todo el alto de la ficha…
+    expect(cardSource).toContain('md:flex md:w-1/2 md:items-center md:self-stretch');
+    expect(cardSource).not.toContain('md:self-center');
+    // …la misma materia, difuminada y decorativa, la llena por detrás…
+    const backdrop = cardSource.slice(
+      cardSource.lastIndexOf('<div', cardSource.indexOf('data-featured-backdrop="true"')),
+      cardSource.indexOf('</div>', cardSource.indexOf('data-featured-backdrop="true"')),
+    );
+    expect(backdrop).toContain('aria-hidden="true"');
+    expect(backdrop).toContain('media={media}');
+    expect(backdrop).toMatch(/\bblur-/);
+    // …y el objeto nítido conserva la caja del slot, a su 1:1.
+    expect(cardSource).toContain("'relative w-full', ASPECT_FIELD[media.aspect]");
+  });
+  it('keeps the cart on the page axis and the related products readable at 768', () => {
+    expect(cartPageSource).toContain('px-[var(--page-inset)]');
+    expect(cartPageSource).not.toContain('md:px-0');
+    // Dos líneas antes que truncar el nombre a una palabra.
+    expect(cartSource).toContain('line-clamp-2');
+    expect(cartSource).not.toMatch(/text-lead truncate/);
+    expect(detailSource).toContain('md:grid-cols-2 lg:grid-cols-3');
   });
 });
 

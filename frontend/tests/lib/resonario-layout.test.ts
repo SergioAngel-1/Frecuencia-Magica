@@ -41,6 +41,18 @@ describe('resonario editorial composition contracts', () => {
     expect(others.map((audio) => audio.id)).not.toContain(featured?.id);
   });
 
+  it('gives the centre to the active frequency, read from the player store', () => {
+    expect(systemSource).toContain('const activeId = useActiveAudioId();');
+    expect(systemSource).toContain('orbitalLayout(filtered, orbital ? activeId : null)');
+    expect(systemSource).toContain("t('nowPlaying')");
+    expect(esMessages.resonario.nowPlaying).toBeTruthy();
+    expect(enMessages.resonario.nowPlaying).not.toBe(esMessages.resonario.nowPlaying);
+    // Sólo se desliza la posición, en escritorio y sin movimiento reducido.
+    expect(systemSource).toContain('const glide = orbital && !reduced;');
+    expect(systemSource).toContain("layout={glide ? 'position' : false}");
+    expect(systemSource).not.toMatch(/createContext|Provider/);
+  });
+
   it('keeps the featured split total and stable for empty or single-item catalogs', () => {
     expect(splitFeaturedAudio([])).toEqual({ featured: undefined, others: [] });
     expect(splitFeaturedAudio([AUDIOS[0]!])).toEqual({
@@ -96,14 +108,17 @@ describe('resonario editorial composition contracts', () => {
     expect(systemSource).not.toContain('<EditorialImage');
     expect(systemSource).not.toContain('<FrequencyDisc');
     expect(systemSource.match(/<AudioDisc/g)).toHaveLength(2);
-    expect(systemSource).toContain('cover={{ ...media.featured, band: featured.band }}');
+    // El destacado en el centro conserva su foto; otro audio activo, su portada.
+    expect(systemSource).toContain('{ ...media.featured, band: audio.band }');
+    expect(systemSource).toContain('cover={centerCover(center)}');
+    expect(systemSource).toContain("sizes: '(min-width: 1024px) 380px, 84vw'");
     expect(systemSource).toContain('cover={audioCoverMedia(audio)}');
     expect(discSource).toContain('<EditorialImage');
     expect(discSource).toContain("editorialVisual(cover) === 'photo'");
     expect(discSource).toContain('onClick={() => open(audio.id)}');
     expect(systemSource).toContain("alt: t('media.alt.audioCover', { title: audioTitle(audio) })");
     expect(systemSource).toContain('data-editorial-featured="true"');
-    expect(systemSource).toContain('{others.map');
+    expect(systemSource).toContain('{orbit.map');
     expect(systemSource).not.toContain('{filtered.map');
     expect(systemSource).toContain('<EmptyState');
     expect(systemSource).toContain('<ResonarioFilters');
@@ -113,36 +128,38 @@ describe('resonario editorial composition contracts', () => {
     expect(systemSource).toContain('grid-cols-[repeat(auto-fill,minmax(140px,1fr))]');
     expect(systemSource).toContain('lg:block');
     expect(systemSource).toContain('lg:min-h-[720px]');
-    expect(systemSource).toContain('const slot = discSlot(i)');
+    expect(systemSource).toContain('const slot = discSlot(index)');
     expect(systemSource).toContain('data-editorial-stage="orbital"');
     expect(systemSource).toContain('data-editorial-secondary="true"');
     expect(systemSource).not.toContain('lg:hidden');
   });
 
-  it('places the archive banner between filters and the catalog states', () => {
-    const filtersIndex = systemSource.indexOf('<ResonarioFilters');
-    const bannerIndex = systemSource.indexOf('<EditorialBanner');
-    const catalogIndex = systemSource.indexOf('{filtered.length === 0');
+  it('chains the archive banner to the hero and keeps the filters above the catalog states', () => {
+    // El banner sigue al héroe en la misma cadena: dos bandas consecutivas, sin hueco.
+    const chain = pageSource.slice(
+      pageSource.indexOf('<BandChain>'),
+      pageSource.indexOf('</BandChain>'),
+    );
+    expect(chain.indexOf('<RealmHero')).toBeGreaterThan(-1);
+    expect(chain.indexOf('<EditorialBanner')).toBeGreaterThan(chain.indexOf('<RealmHero'));
+    expect(chain).toContain('media={archiveBanner}');
+    expect(systemSource).not.toContain('<EditorialBanner');
 
+    // Los filtros quedan justo encima de lo que filtran.
+    const filtersIndex = systemSource.indexOf('<ResonarioFilters');
+    const catalogIndex = systemSource.indexOf('{filtered.length === 0');
     expect(filtersIndex).toBeGreaterThan(-1);
-    expect(bannerIndex).toBeGreaterThan(filtersIndex);
-    expect(catalogIndex).toBeGreaterThan(bannerIndex);
-    expect(systemSource).toContain('media={media.archiveBanner}');
+    expect(catalogIndex).toBeGreaterThan(filtersIndex);
   });
 
-  it('mirrors the editorial bands, media fields, filters and orbital geometry while loading', () => {
-    expect(loadingSource).toContain('aria-busy="true"');
-    expect(loadingSource).toContain('<MediaSkeleton');
-    expect(loadingSource).toContain('slot="resonario.hero"');
-    // El destacado es un disco, no un campo fotográfico: su silueta también.
-    expect(loadingSource).not.toContain('slot="resonario.featured"');
-    expect(loadingSource).toContain('variant="disc"');
-    // `resonario.archive-banner` es `none`: la silueta replica un banner sólo de texto.
-    expect(loadingSource).not.toContain('slot="resonario.archive-banner"');
-    expect(loadingSource).toContain('role="group"');
-    expect(loadingSource).toContain('data-editorial-stage="orbital"');
-    expect(loadingSource).toContain('lg:hidden');
-    expect(loadingSource).toContain('lg:block');
+  it('waits with the shared loading scene, like every other view', () => {
+    // Una sola espera en todo el sitio: la esfera de `states.loading` (ver `loading-flow`).
+    expect(loadingSource.trim()).toBe(
+      "export { RealmLoading as default } from '@/components/layout';",
+    );
+  });
+
+  it('clears the filter back to the whole archive from the «all» pill', () => {
     expect(filtersSource).toContain("onChange(key === 'all' ? null : key)");
   });
 });

@@ -45,16 +45,18 @@ export default async function ExperiencesPage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      <RealmHero
-        media={experienceMedia.hero}
-        kicker={t('kicker')}
-        title={t('title')}
-        description={t('description')}
+      {/* El héroe se encadena con la experiencia destacada dentro de la lista. */}
+      <ExperienceList
+        media={experienceMedia}
+        hero={
+          <RealmHero
+            media={experienceMedia.hero}
+            kicker={t('kicker')}
+            title={t('title')}
+            description={t('description')}
+          />
+        }
       />
-
-      <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
-        <ExperienceList media={experienceMedia} />
-      </div>
     </PageShell>
   );
 }
