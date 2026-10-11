@@ -88,6 +88,7 @@ export async function AuthAside({ media }: AuthAsideProps) {
           <Halo color="rgba(216,185,120,0.28), transparent 68%" blur={12} inset="-16%" />
           <Isotype
             label={brand}
+            still
             className="size-full drop-shadow-[0_0_24px_rgba(216,185,120,0.42)]"
           />
         </div>

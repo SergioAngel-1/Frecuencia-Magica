@@ -101,12 +101,16 @@ export function PortalScene({
           className="mx-auto flex w-full max-w-[820px] flex-col items-center"
           style={{ animation: 'fm-fade-in 2s ease both' }}
         >
-          <div className="animate-fm-float relative mb-[26px] size-[128px] md:mb-[30px] md:size-[190px]">
+          {/* Crece con el alto que deja libre el resto de la escena (~510/580 px), sin
+              empujar el CTA ni la pista fuera de la primera pantalla; nunca baja del
+              tamaño anterior (128/190 px). */}
+          <div className="animate-fm-float relative mb-[22px] size-[clamp(128px,calc(100svh_-_510px),240px)] md:mb-[26px] md:size-[clamp(190px,calc(100svh_-_580px),340px)]">
             <Halo color="rgba(216,185,120,0.22), rgba(150,198,188,0.10) 55%" inset="-8%" />
-            {/* Decorativo: el nombre lo dice el `h1` de debajo. */}
+            {/* Decorativo: el nombre lo dice el `h1` de debajo. Flota con su caja; no gira. */}
             <Isotype
               variant="detail"
-              className="size-[128px] drop-shadow-[0_0_26px_rgba(216,185,120,0.4)] md:size-[190px]"
+              still
+              className="size-full drop-shadow-[0_0_26px_rgba(216,185,120,0.4)]"
             />
             <div
               aria-hidden="true"

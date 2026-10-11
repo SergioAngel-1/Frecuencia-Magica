@@ -76,7 +76,7 @@ Cada visitante descarga una sola variante por imagen visible: en 390 px las de 8
 
 ## Isotipo 3D (2026-10-10)
 
-`Isotype` (`components/world`) pinta el isotipo girando con un visor WebGL propio, sin three.js ni decodificadores. Nada entra en el JS de primera carga: el visor (`lib/isotype/viewer.ts`) llega por `import()` y el modelo por `fetch`, los dos al entrar el componente en pantalla. Hasta entonces, sin WebGL o con movimiento reducido, se ve un póster SVG.
+`Isotype` (`components/world`) pinta el isotipo girando con un visor WebGL propio, sin three.js ni decodificadores. Nada entra en el JS de primera carga: el visor (`lib/isotype/viewer.ts`) llega por `import()` y el modelo por `fetch`, los dos al entrar el componente en pantalla. Hasta entonces, sin WebGL o con movimiento reducido, se ve un póster SVG. Con `still` (portal y acceso) el modelo se pinta una sola vez, de frente y sin bucle de animación; como no se mueve, también con movimiento reducido.
 
 | Recurso                              | Bruto   | gzip    |
 | ------------------------------------ | ------- | ------- |

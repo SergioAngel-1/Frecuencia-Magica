@@ -25,11 +25,14 @@ type IsotypeProps = {
       /** `false` lo deja quieto, de frente, sin WebGL. */
       spin?: true;
       ringed?: false;
+      /** El modelo 3D de frente, sin girar: queda su luz, no el movimiento. */
+      still?: boolean;
     }
   | {
       spin: false;
       /** Con el círculo del logo original. */
       ringed?: boolean;
+      still?: false;
     }
 );
 
@@ -47,6 +50,10 @@ type IsotypeProps = {
  * relevo no se note. Con `spin={false}`, con movimiento reducido o sin WebGL
  * se queda el póster, que es la misma vista quieta.
  *
+ * Con `still` también se pide el modelo, pero se pinta una sola vez, de frente:
+ * el 3D sin el giro, para quien lo quiere grande y quieto (el portal). Como no
+ * se mueve, lo pinta también con movimiento reducido.
+ *
  * `ringed` le pone el círculo del logo original; sólo quieto, porque el modelo
  * 3D no lo lleva.
  *
@@ -59,6 +66,7 @@ export function Isotype({
   variant = 'sm',
   spin = true,
   ringed = false,
+  still = false,
   label,
   className,
 }: IsotypeProps) {
@@ -70,7 +78,7 @@ export function Isotype({
   useEffect(() => {
     const host = hostRef.current;
 
-    if (!spin || reduced || !host) return;
+    if (!spin || (reduced && !still) || !host) return;
 
     const canvas = document.createElement('canvas');
     canvas.className = 'absolute inset-0 size-full opacity-0 transition-opacity duration-700';
@@ -102,7 +110,7 @@ export function Isotype({
     };
 
     const play = () => {
-      if (frame || !viewer || !visible || document.hidden) return;
+      if (still || frame || !viewer || !visible || document.hidden) return;
 
       last = null;
       frame = requestAnimationFrame(tick);
@@ -163,7 +171,7 @@ export function Isotype({
       canvas.remove();
       setLive(false);
     };
-  }, [spin, reduced, model]);
+  }, [spin, still, reduced, model]);
 
   return (
     <span
