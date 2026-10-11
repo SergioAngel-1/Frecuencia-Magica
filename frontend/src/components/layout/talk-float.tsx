@@ -13,21 +13,34 @@ import { usePlayerStore } from '@/stores/player-store';
 
 /**
  * «Hablar ahora»: la puerta directa a una conversación por WhatsApp, flotando
- * en la esquina inferior izquierda de todas las vistas (la derecha es del
- * reproductor recogido). Habla el idioma del sitio: vidrio denso, trazo fino
+ * en la esquina inferior derecha de todas las vistas. Habla el idioma del sitio: vidrio denso, trazo fino
  * y una luz que respira, sin el verde ni el logotipo de la aplicación.
  *
  * Por debajo de 640 px se queda en el disco con su icono; el nombre completo
- * sigue en el árbol de accesibilidad. Cuando el reproductor está desplegado
- * sube para no quedar debajo de la barra.
+ * sigue en el árbol de accesibilidad. Comparte la esquina con el reproductor:
+ * sube sobre la barra cuando está desplegado y sobre el disco cuando está
+ * recogido, alineado con él por la derecha (ver `PLAYER_CLEARANCE`).
  *
  * No aparece en el portal: es el umbral, una sola pantalla sin más salida
  * que entrar.
  */
+/**
+ * Cuánto sube el botón según el reproductor: lo que mide cada forma más 14 px
+ * de aire. La barra mide 62 px (control de 44 + `py-2`) y 78 desde 640 px
+ * (control de 52 + `py-3`); el disco recogido, 56 en todos los anchos.
+ */
+const PLAYER_CLEARANCE = {
+  closed: '',
+  expanded: '-translate-y-[76px] sm:-translate-y-[92px]',
+  minimized: '-translate-y-[70px]',
+} as const;
+
 export function TalkFloat() {
   const t = useTranslations('talk');
   const { realmId } = useRealm();
-  const dockOpen = usePlayerStore((s) => s.audioId !== null && !s.minimized);
+  const player = usePlayerStore((s) =>
+    s.audioId === null ? 'closed' : s.minimized ? 'minimized' : 'expanded',
+  );
 
   return (
     <aside
@@ -35,9 +48,9 @@ export function TalkFloat() {
       data-layout-layer="talk"
       className={cn(
         // `will-change` fuera del condicional: la capa propia no depende de
-        // que el reproductor esté abierto (ver `fm-float-start`).
-        'fm-float-start z-player pointer-events-none fixed transition-transform duration-500 ease-out will-change-transform',
-        dockOpen && '-translate-y-[76px] sm:-translate-y-[92px]',
+        // que el reproductor esté abierto (ver `fm-float-end`).
+        'fm-float-end z-player pointer-events-none fixed transition-transform duration-500 ease-out will-change-transform',
+        PLAYER_CLEARANCE[player],
       )}
     >
       {/* Movimiento reducido: Motion lo consulta al animar, no al renderizar, así

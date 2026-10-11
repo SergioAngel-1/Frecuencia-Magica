@@ -314,8 +314,8 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   touch-action: manipulation;
 }
 
-@utility fm-float-start {
-  left: max(var(--float-gap), env(safe-area-inset-left));
+@utility fm-float-end {
+  right: max(var(--float-gap), env(safe-area-inset-right));
   bottom: max(var(--float-gap), env(safe-area-inset-bottom));
   touch-action: manipulation;
 }
