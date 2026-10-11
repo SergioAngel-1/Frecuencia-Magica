@@ -1,8 +1,7 @@
-import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 
 import { EditorialImage, Kicker } from '@/components/ui';
-import { Halo, OrbitalRings } from '@/components/world';
+import { Halo, Isotype, OrbitalRings } from '@/components/world';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 const ASIDE_GRADIENT =
@@ -87,14 +86,9 @@ export async function AuthAside({ media }: AuthAsideProps) {
 
         <div className="animate-fm-float relative size-[clamp(90px,16vw,170px)]">
           <Halo color="rgba(216,185,120,0.28), transparent 68%" blur={12} inset="-16%" />
-          <Image
-            src="/logo.png"
-            unoptimized
-            alt={brand}
-            width={170}
-            height={170}
-            sizes="(min-width: 900px) 170px, 110px"
-            className="relative block size-full object-contain drop-shadow-[0_0_24px_rgba(216,185,120,0.42)]"
+          <Isotype
+            label={brand}
+            className="size-full drop-shadow-[0_0_24px_rgba(216,185,120,0.42)]"
           />
         </div>
 

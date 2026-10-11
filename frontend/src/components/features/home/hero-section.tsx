@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { div as Mdiv } from 'motion/react-m';
 
 import {
@@ -12,7 +11,7 @@ import {
   Stat,
   FullBleedSection,
 } from '@/components/ui';
-import { Halo, OrbitalRings } from '@/components/world';
+import { Halo, Isotype, OrbitalRings } from '@/components/world';
 import { Link } from '@/i18n/navigation';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { DURATION, EASE, STAGGER } from '@/config/motion';
@@ -74,16 +73,7 @@ export function HeroSection({
         className="pointer-events-none absolute top-[84px] right-5 z-20 md:top-[100px] md:right-[34px]"
         data-editorial-zone="brand"
       >
-        <Image
-          src="/logo.png"
-          unoptimized
-          alt=""
-          aria-hidden="true"
-          width={64}
-          height={64}
-          sizes="64px"
-          className="h-[48px] w-auto drop-shadow-[0_0_10px_rgba(216,185,120,0.35)] md:h-[64px]"
-        />
+        <Isotype className="size-[48px] drop-shadow-[0_0_10px_rgba(216,185,120,0.35)] md:size-[64px]" />
       </Mdiv>
       <div className="fm-container relative grid min-h-[100svh] w-full grid-cols-1 items-center gap-10 pt-[112px] pb-[112px] md:pb-[140px] lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.9fr)] lg:gap-12 lg:pt-[126px] lg:pb-[78px]">
         <Mdiv

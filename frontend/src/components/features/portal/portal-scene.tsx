@@ -1,8 +1,6 @@
-import Image from 'next/image';
-
 import { Display, EditorialImage, FullBleedSection, Kicker, Prose } from '@/components/ui';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
-import { Halo, OrbitalRings } from '@/components/world';
+import { Halo, Isotype, OrbitalRings } from '@/components/world';
 
 import { EnterButton } from './enter-button';
 
@@ -105,15 +103,10 @@ export function PortalScene({
         >
           <div className="animate-fm-float relative mb-[26px] size-[128px] md:mb-[30px] md:size-[190px]">
             <Halo color="rgba(216,185,120,0.22), rgba(150,198,188,0.10) 55%" inset="-8%" />
-            <Image
-              src="/logo.png"
-              unoptimized
-              alt={title}
-              width={210}
-              height={210}
-              priority
-              sizes="(min-width: 768px) 190px, 128px"
-              className="relative block size-[128px] object-contain drop-shadow-[0_0_26px_rgba(216,185,120,0.4)] md:size-[190px]"
+            {/* Decorativo: el nombre lo dice el `h1` de debajo. */}
+            <Isotype
+              variant="detail"
+              className="size-[128px] drop-shadow-[0_0_26px_rgba(216,185,120,0.4)] md:size-[190px]"
             />
             <div
               aria-hidden="true"

@@ -74,6 +74,18 @@ El logo (`/logo.png`) no está en el manifiesto: sus cuatro usos llevan `unoptim
 
 Cada visitante descarga una sola variante por imagen visible: en 390 px las de 828 o 1200 (33–61 KB de media); en 1440 a DPR 2, la mayor (90 KB de media, ≤ 200 KB, dentro del presupuesto del brief de ≤ 260 KB y ≤ 320 KB en P0).
 
+## Isotipo 3D (2026-10-10)
+
+`Isotype` (`components/world`) pinta el isotipo girando con un visor WebGL propio, sin three.js ni decodificadores. Nada entra en el JS de primera carga: el visor (`lib/isotype/viewer.ts`) llega por `import()` y el modelo por `fetch`, los dos al entrar el componente en pantalla. Hasta entonces, sin WebGL o con movimiento reducido, se ve un póster SVG.
+
+| Recurso                              | Bruto   | gzip    |
+| ------------------------------------ | ------- | ------- |
+| `isotipo-sm.glb` (óptica, ≤ ~120 px) | 25,4 kB | 13,4 kB |
+| `isotipo.glb` (detalle, ≥ ~160 px)   | 46,0 kB | 26,1 kB |
+| Póster SVG (cada uno)                | ~11 kB  | ~3 kB   |
+
+Dos llamadas de dibujo por instancia, DPR capado a 2, y el bucle se detiene fuera del viewport y con la pestaña oculta. Cada instancia abre su propio contexto WebGL: una o dos por vista. **Sin medir:** FPS en móvil de gama media y el tamaño del chunk del visor en `next build` (en la prueba fuera de Next, ~1,8 kB gzip minificado).
+
 ## Deuda restante (documentada, no bloqueante)
 
 - **~13–16 kB sobre el presupuesto de 200 kB**, concentrados en React DOM (59 kB gz) y el runtime de Next/Turbopack (~39 kB gz). No reducible desde la aplicación sin cambiar de framework o de estrategia de renderizado.

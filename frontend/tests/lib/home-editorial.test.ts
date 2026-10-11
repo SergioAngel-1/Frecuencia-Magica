@@ -145,8 +145,9 @@ describe('home editorial composition contracts', () => {
   it('restores the approved decorative logo and fixed-ui reserve on home', () => {
     const heroSource = readSource('components/features/home/hero-section.tsx');
 
-    expect(heroSource).toContain('src="/logo.png"');
-    expect(heroSource).toContain('alt=""');
+    // El isotipo es el componente compartido, decorativo (sin `label`).
+    expect(heroSource).toContain('<Isotype');
+    expect(heroSource).not.toMatch(/<Isotype[^>]*\blabel=/);
     expect(homePageSource).not.toContain('reserveBottomUi={false}');
   });
 
@@ -159,7 +160,7 @@ describe('home editorial composition contracts', () => {
 
     // El isotipo vive en la esquina, bajo los controles, fuera de la zona de la imagen.
     expect(heroSource).toContain('data-editorial-zone="brand"');
-    expect(energy).not.toContain('/logo.png');
+    expect(energy).not.toContain('<Isotype');
     expect(heroSource).not.toMatch(/\bfixed\b|\bsticky\b/);
     // Los aros de ambiente se quedan; el triángulo de geometría, no.
     expect(energy).toContain('<OrbitalRings');

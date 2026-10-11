@@ -1,4 +1,5 @@
 import { Halo } from '@/components/world/halo';
+import { Isotype } from '@/components/world/isotype';
 import { OrbitalRings } from '@/components/world/orbital-rings';
 import { cn } from '@/lib/cn';
 
@@ -11,7 +12,7 @@ const TONE_RGB: Record<OrbTone, string> = {
   teal: '150,198,188',
 };
 
-/** Núcleo: luz que nace descentrada, como una esfera iluminada de lado. */
+/** Núcleo del remate: luz que nace descentrada, como una esfera iluminada de lado. */
 const core = (rgb: string) =>
   `radial-gradient(circle at 42% 38%, rgba(247,244,234,0.92), rgba(${rgb},0.6) 44%, transparent 72%)`;
 
@@ -32,9 +33,9 @@ interface LoadingOrbProps {
  * La espera del sistema: una frecuencia sintonizándose.
  *
  * Mientras carga es un pequeño sistema orbital, el mismo lenguaje del disco
- * de frecuencia y del portal: un núcleo de luz que respira, una onda que sale
- * de él, un aro con un nodo que lo recorre y un segundo aro punteado que gira
- * al revés. El progreso lo dice el nodo en órbita, no un spinner. Sólo se
+ * de frecuencia y del portal: el isotipo girando en el centro, una onda que
+ * sale de él, un aro con un nodo que lo recorre y un segundo aro punteado que
+ * gira al revés. El progreso lo dice el nodo en órbita, no un spinner. Sólo se
  * animan `transform` y `opacity`; con movimiento reducido queda la figura
  * quieta, que sigue leyéndose.
  *
@@ -86,17 +87,19 @@ export function LoadingOrb({
           </>
         ) : null}
 
-        <div
-          aria-hidden="true"
-          className={cn(
-            'absolute rounded-full',
-            loading ? 'inset-[31%] animate-[fm-breathe_3s_ease-in-out_infinite]' : 'inset-0',
-          )}
-          style={{
-            background: core(rgb),
-            boxShadow: `0 0 ${Math.round(size * (loading ? 0.3 : 0.6))}px ${Math.round(size * (loading ? 0.05 : 0.16))}px rgba(${rgb},0.3)`,
-          }}
-        />
+        {loading ? (
+          // El centro del sistema es el isotipo, girando: la marca sintonizándose.
+          <Isotype className="absolute inset-[13%]" />
+        ) : (
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 rounded-full"
+            style={{
+              background: core(rgb),
+              boxShadow: `0 0 ${Math.round(size * 0.6)}px ${Math.round(size * 0.16)}px rgba(${rgb},0.3)`,
+            }}
+          />
+        )}
       </div>
 
       {label ? (
