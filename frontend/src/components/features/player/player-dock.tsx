@@ -9,10 +9,12 @@ import { IconButton, SeekBar } from '@/components/ui';
 import { DURATION, EASE } from '@/config/motion';
 import { getAudio } from '@/data';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { resolveAudioCover } from '@/lib/editorial/audio-cover';
 import { formatDuration, parseDuration } from '@/lib/format';
 import { progressPercent } from '@/lib/player/progress';
 import { usePlayerStore } from '@/stores/player-store';
 
+import { AudioCover } from './audio-cover';
 import { CloseIcon, MinimizeIcon, NextIcon, PlayPauseIcon, PreviousIcon } from './player-icons';
 import { PlayerMini } from './player-mini';
 import { PlayerOrb } from './player-orb';
@@ -80,6 +82,11 @@ export function PlayerDock() {
   const title = audio ? tResonario(`audios.${audio.id}.title` as 'audios.a1.title') : '';
   const tag = audio ? tResonario(`tags.${audio.tagId}` as 'tags.meditation') : '';
   const elapsedLabel = formatDuration(Math.min(elapsed, total));
+  // La misma portada que el disco del audio en cualquier vista. Decorativa:
+  // el título ya está escrito al lado (o en el nombre del disco recogido).
+  const cover = audio ? (
+    <AudioCover media={resolveAudioCover(audio, { alt: '', sizes: '56px' })} scrim={false} />
+  ) : null;
   // Las dos formas del dock entran desde abajo y salen hacia abajo; una espera
   // a que la otra termine (`mode="wait"`), así nunca se pisan ni se cortan.
   const motion = {
@@ -108,6 +115,7 @@ export function PlayerDock() {
             <PlayerMini
               hz={audio.hz}
               band={audio.band}
+              cover={cover}
               progress={pct}
               label={`${t('expand')} — ${title}, ${audio.hz} Hz`}
               onExpand={expand}
@@ -133,7 +141,7 @@ export function PlayerDock() {
               />
             </div>
 
-            <PlayerOrb band={audio.band} className="size-11 sm:size-[52px]" />
+            <PlayerOrb band={audio.band} cover={cover} className="size-11 sm:size-[52px]" />
 
             <div className="min-w-0 flex-1 md:w-[210px] md:flex-none">
               <p className="text-ivory text-lead truncate font-serif leading-tight">{title}</p>

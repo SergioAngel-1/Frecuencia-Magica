@@ -1,9 +1,13 @@
 'use client';
 
-import { EditorialImage, FrequencyDisc, type DiscSize } from '@/components/ui';
-import { editorialVisual } from '@/lib/editorial/visual';
+import { useTranslations } from 'next-intl';
+
+import { FrequencyDisc, type DiscSize } from '@/components/ui';
+import { resolveAudioCover } from '@/lib/editorial/audio-cover';
 import { usePlayerStore } from '@/stores/player-store';
 import type { EditorialMedia } from '@/types/editorial-media';
+
+import { AudioCover } from './audio-cover';
 
 export type AudioDiscItem = {
   id: string;
@@ -18,7 +22,11 @@ type AudioDiscProps = {
   /** Línea de meta ya compuesta. */
   meta?: string;
   size?: DiscSize;
-  /** Portada del audio. Sólo se pinta si hay foto: sin ella, el disco ya es su banda. */
+  /**
+   * Otra materia en lugar de la portada del audio (el destacado del resonario
+   * pinta `resonario.featured`). Sin valor, el disco pinta la portada de su
+   * audio, la misma en todo el sitio.
+   */
   cover?: EditorialMedia;
   /** `false` cuando el título y la meta ya están escritos al lado del disco. */
   caption?: boolean;
@@ -29,12 +37,21 @@ type AudioDiscProps = {
   className?: string;
 };
 
+/** Ancho que ocupa la portada en cada escala del disco. */
+const COVER_SIZES: Record<DiscSize, string> = {
+  xs: '92px',
+  sm: '150px',
+  md: '190px',
+  lg: '(min-width: 1024px) 380px, 84vw',
+};
+
 /**
  * Disco de frecuencia conectado al reproductor: el único disco que suena.
  *
  * Home, Resonario (destacado y secundarios) y Mi Santuario pintan sus
  * frecuencias con esta pieza, de modo que el gesto (pulsar abre el audio), el
- * estado activo y el nombre accesible son los mismos en todas partes.
+ * estado activo, la portada y el nombre accesible son los mismos en todas
+ * partes.
  */
 export function AudioDisc({
   audio,
@@ -49,8 +66,15 @@ export function AudioDisc({
   floatDelay,
   className,
 }: AudioDiscProps) {
+  const t = useTranslations('resonario');
   const open = usePlayerStore((state) => state.open);
   const active = usePlayerStore((state) => state.audioId === audio.id);
+  const coverMedia =
+    cover ??
+    resolveAudioCover(audio, {
+      alt: t('media.alt.audioCover', { title }),
+      sizes: COVER_SIZES[size],
+    });
 
   return (
     <FrequencyDisc
@@ -59,18 +83,7 @@ export function AudioDisc({
       band={audio.band}
       title={caption ? title : undefined}
       meta={caption ? meta : undefined}
-      cover={
-        cover && editorialVisual(cover) === 'photo' ? (
-          <EditorialImage
-            aspect="1:1"
-            className="h-full"
-            focalPoint={cover.position}
-            media={cover}
-            overlay={false}
-            scrim="bottom"
-          />
-        ) : undefined
-      }
+      cover={<AudioCover media={coverMedia} />}
       active={active}
       showPlay={showPlay}
       showEqualizer={showEqualizer}

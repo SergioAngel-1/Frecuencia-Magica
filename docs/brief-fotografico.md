@@ -7,7 +7,7 @@
 
 **66 imágenes** (47 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 47 · P2 15. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 49 completadas · 0 a corregir · 15 faltantes · 0 por cablear · 2 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 50 completadas · 0 a corregir · 15 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -115,7 +115,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `resonario-hero.avif` | Resonario · hero | 16:9 | 2880×1620 | P1 | Completadas |
 | `resonario-featured.avif` | Resonario · destacado | 16:8 | 2880×1440 | P1 | Completadas |
 | `resonario-archive-banner.avif` | Resonario · archivo | 16:9 | 2880×1620 | P2 | Completadas |
-| `resonario-audio-cover-a1.avif` | Resonario · portadas · Regreso a la Calma | 1:1 | 1024×1024 | P1 | No tenidas en cuenta |
+| `resonario-audio-cover-a1.avif` | Resonario · portadas · Regreso a la Calma | 1:1 | 1024×1024 | P1 | Completadas |
 | `resonario-audio-cover-a2.avif` | Resonario · portadas · Luz Interior | 1:1 | 1024×1024 | P1 | Completadas |
 | `resonario-audio-cover-a3.avif` | Resonario · portadas · Raíces Profundas | 1:1 | 1024×1024 | P1 | Completadas |
 | `resonario-audio-cover-a4.avif` | Resonario · portadas · Umbral del Sueño | 1:1 | 1024×1024 | P1 | Completadas |
@@ -396,16 +396,15 @@ Entregadas, pero sin slot en el registro (`frontend/src/config/editorial-media.t
 
 Ninguna.
 
-### 5.4 No tenidas en cuenta (2)
+### 5.4 No tenidas en cuenta (1)
 
 Publicadas, pero ninguna vista las pinta con el diseño actual.
 
 | Archivo | Vista | Por qué |
 |---|---|---|
-| `resonario-audio-cover-a1.avif` | Resonario · portadas · Regreso a la Calma | `a1` es siempre el audio destacado del resonario, que usa `resonario.featured`. Hay que usarla en otra vista o retirarla. |
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (49)
+### 5.5 Completadas (50)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -431,6 +430,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-hero.avif` | Resonario · hero | `resonario.hero` | 16:9 | P1 |
 | `resonario-featured.avif` | Resonario · destacado | `resonario.featured` | 16:8 | P1 |
 | `resonario-archive-banner.avif` | Resonario · archivo | `resonario.archive-banner` | 16:9 | P2 |
+| `resonario-audio-cover-a1.avif` | Resonario · portadas · Regreso a la Calma | `resonario.audio-cover.*` | 1:1 | P1 |
 | `resonario-audio-cover-a2.avif` | Resonario · portadas · Luz Interior | `resonario.audio-cover.*` | 1:1 | P1 |
 | `resonario-audio-cover-a3.avif` | Resonario · portadas · Raíces Profundas | `resonario.audio-cover.*` | 1:1 | P1 |
 | `resonario-audio-cover-a4.avif` | Resonario · portadas · Umbral del Sueño | `resonario.audio-cover.*` | 1:1 | P1 |

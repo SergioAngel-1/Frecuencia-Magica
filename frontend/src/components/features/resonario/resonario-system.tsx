@@ -20,9 +20,6 @@ export type ResonarioMedia = {
   featured: EditorialMedia;
   /** Vacío del filtro sin resultados (`states.empty`). */
   empty: EditorialMedia;
-  audioCover: EditorialMedia;
-  /** Portada resuelta por id de audio; sin entrada, vale `audioCover`. */
-  audioCovers: Record<string, EditorialMedia>;
 };
 
 /** Ritmo del flotado del disco central; su etiqueta lo comparte. */
@@ -46,16 +43,10 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
   const audioTitle = (audio: Audio) => t(`audios.${audio.id}.title` as 'audios.a1.title');
   const audioMeta = (audio: Audio) =>
     `${t(`tags.${audio.tagId}` as 'tags.meditation')} · ${audio.duration}`;
-  const audioCoverMedia = (audio: Audio): EditorialMedia => ({
-    ...(media.audioCovers[audio.id] ?? media.audioCover),
-    alt: t('media.alt.audioCover', { title: audioTitle(audio) }),
-    band: audio.band,
-  });
-  // El destacado conserva su foto; otro audio en el centro, su portada a 380 px.
-  const centerCover = (audio: Audio): EditorialMedia =>
-    centerIsFeatured
-      ? { ...media.featured, band: audio.band }
-      : { ...audioCoverMedia(audio), sizes: '(min-width: 1024px) 380px, 84vw' };
+  // El destacado conserva su foto; otro audio en el centro pinta su portada,
+  // la misma que en el resto del sitio (la resuelve `AudioDisc`).
+  const centerCover = (audio: Audio): EditorialMedia | undefined =>
+    centerIsFeatured ? { ...media.featured, band: audio.band } : undefined;
 
   return (
     <>
@@ -141,7 +132,6 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
                       title={audioTitle(audio)}
                       meta={audioMeta(audio)}
                       size="sm"
-                      cover={audioCoverMedia(audio)}
                       floatDuration={slot.duration}
                       floatDelay={slot.delay}
                     />

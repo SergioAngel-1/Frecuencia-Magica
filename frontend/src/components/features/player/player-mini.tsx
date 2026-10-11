@@ -1,8 +1,12 @@
+import type { ReactNode } from 'react';
+
 import { PlayerOrb } from './player-orb';
 
 type PlayerMiniProps = {
   hz: number;
   band: string;
+  /** Portada del audio (`AudioCover`). */
+  cover?: ReactNode;
   /** Avance 0–100 del audio. */
   progress: number;
   /** Nombre accesible completo: la acción y lo que suena. */
@@ -15,7 +19,7 @@ type PlayerMiniProps = {
  * el avance y pulsarlo devuelve el dock. Vive en la esquina inferior derecha,
  * donde no tapa el contenido ni el footer.
  */
-export function PlayerMini({ hz, band, progress, label, onExpand }: PlayerMiniProps) {
+export function PlayerMini({ hz, band, cover, progress, label, onExpand }: PlayerMiniProps) {
   return (
     <button
       type="button"
@@ -25,7 +29,7 @@ export function PlayerMini({ hz, band, progress, label, onExpand }: PlayerMiniPr
       onClick={onExpand}
       className="fm-surface-strong shadow-glow-card hover:border-gold/45 pointer-events-auto block size-14 rounded-full transition-colors duration-300"
     >
-      <PlayerOrb band={band} progress={progress} className="size-full">
+      <PlayerOrb band={band} cover={cover} progress={progress} className="size-full">
         <span className="text-ivory text-body font-serif leading-none">{hz}</span>
       </PlayerOrb>
     </button>

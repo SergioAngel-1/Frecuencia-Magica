@@ -13,16 +13,18 @@ type PlayerOrbProps = {
   band: string;
   /** Avance 0–100. Con valor, un aro dorado lo dibuja alrededor de la esfera. */
   progress?: number;
+  /** Portada del audio (`AudioCover`), dentro de la esfera y bajo su luz. */
+  cover?: ReactNode;
   children?: ReactNode;
   className?: string;
 };
 
 /**
  * El audio en miniatura: la esfera del disco de frecuencia a escala de
- * control. Es la carátula del dock y, con su aro de avance, el reproductor
+ * control, con la misma portada. Es la carátula del dock y, con su aro de avance, el reproductor
  * recogido. Decorativa: quien la contiene pone el nombre accesible.
  */
-export function PlayerOrb({ band, progress, children, className }: PlayerOrbProps) {
+export function PlayerOrb({ band, progress, cover, children, className }: PlayerOrbProps) {
   const hasRing = progress !== undefined;
 
   return (
@@ -57,6 +59,7 @@ export function PlayerOrb({ band, progress, children, className }: PlayerOrbProp
         )}
         style={{ backgroundImage: band }}
       >
+        {cover ? <span className="absolute inset-0">{cover}</span> : null}
         <span className="absolute inset-0" style={{ backgroundImage: SHEEN }} />
         <span className="relative">{children}</span>
       </span>

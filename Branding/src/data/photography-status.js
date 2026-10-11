@@ -53,7 +53,6 @@ export const UNWIRED = {
  * representan es siempre el elemento destacado, que usa otro slot.
  */
 export const UNUSED = {
-  'resonario-audio-cover-a1.avif': '`a1` es siempre el audio destacado del resonario, que usa `resonario.featured`. Hay que usarla en otra vista o retirarla.',
   'experiences-visual-e1.avif': '`e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla.',
 }
 
@@ -79,6 +78,7 @@ export const COMPLETED = [
   'resonario-hero.avif',
   'resonario-featured.avif',
   'resonario-archive-banner.avif',
+  'resonario-audio-cover-a1.avif',
   'resonario-audio-cover-a3.avif',
   'resonario-audio-cover-a4.avif',
   'resonario-audio-cover-a5.avif',

@@ -90,10 +90,10 @@ describe('resonario editorial composition contracts', () => {
     expect(pageSource).toContain("resolveEditorialMedia('resonario.hero'");
     expect(pageSource).toContain("resolveEditorialMedia('resonario.featured'");
     expect(pageSource).toContain("resolveEditorialMedia('resonario.archive-banner'");
-    expect(pageSource).toContain("resolveEditorialMedia('resonario.audio-cover.*'");
+    // Las portadas por audio no se resuelven en la página: las pinta `AudioDisc`.
+    expect(pageSource).not.toContain("'resonario.audio-cover.*'");
     expect(pageSource).toContain("alt: t('media.alt.hero')");
     expect(pageSource).toContain("sizes: '(min-width: 1024px) 720px, 100vw'");
-    expect(pageSource).toContain("sizes: '(min-width: 1024px) 150px, 150px'");
     expect(pageSource).toContain('<RealmHero');
     expect(heroSource).toContain('<FullBleedSection');
     expect(pageSource).toContain('fm-editorial-full-bleed');
@@ -102,26 +102,45 @@ describe('resonario editorial composition contracts', () => {
 
   it('paints featured and secondary frequencies with the shared AudioDisc, cover inside the sphere', () => {
     const discSource = readSource('components/features/player/audio-disc.tsx');
+    const coverSource = readSource('components/features/player/audio-cover.tsx');
 
     expect(systemSource).toContain('media: ResonarioMedia');
     // Sin doble contenedor: ningún marco de imagen alrededor de los discos.
     expect(systemSource).not.toContain('<EditorialImage');
     expect(systemSource).not.toContain('<FrequencyDisc');
     expect(systemSource.match(/<AudioDisc/g)).toHaveLength(2);
-    // El destacado en el centro conserva su foto; otro audio activo, su portada.
+    // El destacado en el centro conserva su foto; cualquier otro disco, la
+    // portada de su audio, que resuelve el propio disco.
     expect(systemSource).toContain('{ ...media.featured, band: audio.band }');
     expect(systemSource).toContain('cover={centerCover(center)}');
-    expect(systemSource).toContain("sizes: '(min-width: 1024px) 380px, 84vw'");
-    expect(systemSource).toContain('cover={audioCoverMedia(audio)}');
-    expect(discSource).toContain('<EditorialImage');
-    expect(discSource).toContain("editorialVisual(cover) === 'photo'");
+    expect(systemSource.match(/cover=\{/g)).toHaveLength(1);
+    expect(systemSource).not.toContain('audioCover');
+    expect(discSource).toContain('resolveAudioCover(audio');
+    expect(discSource).toContain("alt: t('media.alt.audioCover', { title })");
+    expect(discSource).toContain("lg: '(min-width: 1024px) 380px, 84vw'");
+    expect(discSource).toContain('cover={<AudioCover media={coverMedia} />}');
     expect(discSource).toContain('onClick={() => open(audio.id)}');
-    expect(systemSource).toContain("alt: t('media.alt.audioCover', { title: audioTitle(audio) })");
+    expect(coverSource).toContain('<EditorialImage');
+    expect(coverSource).toContain("editorialVisual(media) !== 'photo'");
     expect(systemSource).toContain('data-editorial-featured="true"');
     expect(systemSource).toContain('{orbit.map');
     expect(systemSource).not.toContain('{filtered.map');
     expect(systemSource).toContain('<EmptyState');
     expect(systemSource).toContain('<ResonarioFilters');
+  });
+
+  it('shows the same audio cover in the player dock and in the collapsed player', () => {
+    const dockSource = readSource('components/features/player/player-dock.tsx');
+    const miniSource = readSource('components/features/player/player-mini.tsx');
+    const orbSource = readSource('components/features/player/player-orb.tsx');
+
+    expect(dockSource).toContain('<AudioCover media={resolveAudioCover(audio');
+    expect(dockSource).toContain('<PlayerOrb band={audio.band} cover={cover}');
+    expect(dockSource).toContain('cover={cover}\n              progress={pct}');
+    expect(miniSource).toContain('<PlayerOrb band={band} cover={cover}');
+    expect(orbSource).toContain(
+      '{cover ? <span className="absolute inset-0">{cover}</span> : null}',
+    );
   });
 
   it('keeps the orbital desktop stage and compact mobile secondary grid', () => {

@@ -3,7 +3,6 @@ import { getTranslations } from 'next-intl/server';
 import { ResonarioSystem } from '@/components/features/resonario/resonario-system';
 import { PageShell, RealmHero } from '@/components/layout';
 import { BandChain, EditorialBanner } from '@/components/ui';
-import { AUDIOS } from '@/data';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -28,19 +27,6 @@ export default async function ResonarioPage({ params }: PageProps) {
     }),
     // El filtro sin resultados: el vacío de marca, no el del archivo.
     empty: resolveEditorialMedia('states.empty', { alt: tStates('media.alt.empty') }),
-    audioCover: resolveEditorialMedia('resonario.audio-cover.*', {
-      sizes: '(min-width: 1024px) 150px, 150px',
-    }),
-    // Una portada por audio: la que no tenga foto publicada pinta la banda del ítem.
-    audioCovers: Object.fromEntries(
-      AUDIOS.map((audio) => [
-        audio.id,
-        resolveEditorialMedia('resonario.audio-cover.*', {
-          instance: audio.id,
-          sizes: '(min-width: 1024px) 150px, 150px',
-        }),
-      ]),
-    ),
   };
 
   const archiveBanner = resolveEditorialMedia('resonario.archive-banner', {
