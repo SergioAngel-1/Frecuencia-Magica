@@ -314,12 +314,6 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   touch-action: manipulation;
 }
 
-@utility fm-float-end {
-  right: max(var(--float-gap), env(safe-area-inset-right));
-  bottom: max(var(--float-gap), env(safe-area-inset-bottom));
-  touch-action: manipulation;
-}
-
 /* La vista llena el viewport y el scroll deja libre la franja de los controles
    fijos (el dock del reproductor). El hueco al pie de página lo pone el footer,
    que cierra todos los realms: reservarlo también aquí lo duplicaba. */

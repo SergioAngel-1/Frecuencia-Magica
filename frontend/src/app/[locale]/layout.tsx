@@ -96,8 +96,16 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
                   <RouteTransition>{children}</RouteTransition>
                   <RealmFooter />
                 </main>
-                <TalkFloat />
-                <PlayerDock />
+                {/* Una sola fila al pie: el reproductor ocupa lo que queda y
+                    «Hablar ahora» cierra la esquina derecha, en línea con la
+                    barra o con el disco recogido. */}
+                <div
+                  data-layout-layer="float-controls"
+                  className="z-player fm-float-dock pointer-events-none fixed inset-x-0 bottom-0 flex items-end"
+                >
+                  <PlayerDock />
+                  <TalkFloat />
+                </div>
                 <OfflineVeil />
               </SmoothScroll>
             </RealmProvider>

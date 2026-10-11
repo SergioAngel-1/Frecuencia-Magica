@@ -107,7 +107,7 @@ export function PlayerDock() {
     <div
       data-layout-layer="player"
       data-player-state={!audio ? 'closed' : minimized ? 'minimized' : 'expanded'}
-      className="z-player fm-float-dock pointer-events-none fixed inset-x-0 bottom-0"
+      className="min-w-0 flex-1"
     >
       <AnimatePresence mode="wait">
         {!audio ? null : minimized ? (
