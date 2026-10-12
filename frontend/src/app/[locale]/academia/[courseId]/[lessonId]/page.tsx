@@ -63,11 +63,22 @@ export default async function LessonPage({ params }: PageProps) {
       ? `${lessonData?.number}. ${t(`lessonTitles.${lessonData!.titleIndex}` as 'lessonTitles.0')}`
       : '';
 
-  const lessonMedia = resolveEditorialMedia('academy-lesson-visual', {
+  const lessonSizes = '(min-width: 1280px) 1240px, calc(100vw - 48px)';
+  // La lección se ve con la imagen de su curso, la misma de su portada; la
+  // escena genérica de lección queda para el curso que aún no tenga foto.
+  const courseCover = resolveEditorialMedia('academy-course-cover', {
+    instance: course.id,
     alt: t('media.alt.lesson', { title: lessonTitle }),
-    sizes: '(min-width: 1024px) 760px, calc(100vw - 48px)',
+    sizes: lessonSizes,
     band: course.band,
   });
+  const lessonMedia = courseCover.src
+    ? courseCover
+    : resolveEditorialMedia('academy-lesson-visual', {
+        alt: t('media.alt.lesson', { title: lessonTitle }),
+        sizes: lessonSizes,
+        band: course.band,
+      });
   const completionMedia = resolveEditorialMedia('academy.completion', {
     alt: t('media.alt.completion'),
     sizes: '(min-width: 1024px) 1000px, 100vw',

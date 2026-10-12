@@ -126,7 +126,15 @@ describe('academy editorial composition contracts', () => {
   it('uses the lesson visual fallback and native audio controls while preserving navigation', () => {
     expect(playerSource).toContain('<EditorialImage');
     expect(playerSource).toContain('media={lessonMedia}');
-    expect(playerSource).toContain('data-editorial-media="academy-lesson-visual"');
+    expect(playerSource).toContain('data-editorial-media={lessonMedia.slot}');
+    // La lección consume la imagen de su curso (por instancia); la escena
+    // genérica de lección sólo cubre al curso sin foto publicada.
+    const coverCall = lessonPageSource.slice(
+      lessonPageSource.indexOf("resolveEditorialMedia('academy-course-cover'"),
+    );
+    expect(coverCall.slice(0, coverCall.indexOf('})'))).toContain('instance: course.id');
+    expect(lessonPageSource).toContain('const lessonMedia = courseCover.src');
+    expect(lessonPageSource).toContain("resolveEditorialMedia('academy-lesson-visual'");
     expect(playerSource).toContain('<audio');
     expect(playerSource).toContain('controls');
     expect(playerSource).toContain('aria-describedby');

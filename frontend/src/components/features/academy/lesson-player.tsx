@@ -87,7 +87,7 @@ export function LessonPlayer({
 
       <figure
         className="rounded-card-lg relative mt-9 overflow-hidden"
-        data-editorial-media="academy-lesson-visual"
+        data-editorial-media={lessonMedia.slot}
       >
         <div className="relative aspect-[16/8]">
           <EditorialImage
