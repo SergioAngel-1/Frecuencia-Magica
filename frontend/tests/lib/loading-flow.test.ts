@@ -38,4 +38,19 @@ describe('one waiting flow for the whole site', () => {
     expect(wait).toContain('exit={');
     expect(wait).toContain('<LoadingScene');
   });
+
+  it('never lets the page scroll while the wait is on screen', () => {
+    const scene = readSource(`${SRC}/components/layout/loading-scene.tsx`);
+    const globals = readSource(`${SRC}/app/globals.css`);
+    const smoothScroll = readSource(`${SRC}/components/world/smooth-scroll.tsx`);
+
+    // La escena se anuncia, el CSS quita el scroll nativo mientras exista
+    // (sin que la barra, al irse, mueva el contenido) y Lenis deja la rueda.
+    expect(scene).toContain('data-loading-scene="true"');
+    expect(globals).toMatch(
+      /html:has\(\[data-loading-scene\]\) \{\s*overflow: hidden;\s*scrollbar-gutter: stable;/,
+    );
+    expect(smoothScroll).toContain("const LOADING_SCENE = '[data-loading-scene]';");
+    expect(smoothScroll).toContain('prevent: () => document.querySelector(LOADING_SCENE) !== null');
+  });
 });
