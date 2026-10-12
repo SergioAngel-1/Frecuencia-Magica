@@ -16,6 +16,9 @@ import { ArrowGlyph, arrowLinkClasses, BandChain } from '@/components/ui';
 
 type PageProps = { params: LocaleParams };
 
+/** Celdas del bento que siguen a la Academia, en el orden que fija su rejilla. */
+const BENTO_ORDER = ['descubrete', 'resonario', 'experiencias', 'tienda', 'sanctuario'] as const;
+
 /** El héroe de la vista interna de cada realm de la navegación. */
 const REALM_HERO_SLOTS = {
   descubrete: 'discover.hero',
@@ -92,7 +95,9 @@ export default async function HomePage({ params }: PageProps) {
   }));
 
   const academiaData = realmData.find((r) => r.id === 'academia')!;
-  const otherRealms = realmData.filter((r) => r.id !== 'academia');
+  // El bento tiene su propia composición (Tienda ocupa dos filas en la
+  // cuarta celda): no sigue el orden del menú.
+  const otherRealms = BENTO_ORDER.flatMap((id) => realmData.filter((r) => r.id === id));
   const homeMedia = {
     hero: resolveEditorialMedia('home.hero', { alt: t('media.alt.hero') }),
     daily: resolveEditorialMedia('home.daily-frequency', {
