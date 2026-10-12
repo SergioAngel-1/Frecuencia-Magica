@@ -126,7 +126,7 @@ export const EDITORIAL_ASSET_WIDTHS: Readonly<Record<string, readonly number[]>>
   '/editorial/sanctuary-daily.avif': [640, 828, 1200, 1254],
   '/editorial/sanctuary-empty.avif': [640, 828, 1200, 1672],
   '/editorial/sanctuary-hero.avif': [640, 828, 1200, 1672],
-  '/editorial/sanctuary-journal.avif': [640, 828, 1086],
+  '/editorial/sanctuary-journal.avif': [640, 828, 1200, 1672],
   '/editorial/states-empty.avif': [640, 828, 1200, 1672],
   '/editorial/states-error.avif': [640, 828, 1200, 1672],
   '/editorial/states-loading.avif': [640, 828, 1200, 1672],
