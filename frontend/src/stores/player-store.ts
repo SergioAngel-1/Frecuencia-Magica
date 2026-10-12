@@ -13,6 +13,12 @@ type PlayerState = {
   /** Abre un audio y lo reproduce. Reabrir el mismo audio no reinicia el tiempo. */
   open(id: string): void;
   toggle(): void;
+  /**
+   * El gesto de un control de play/pausa ligado a un audio concreto (el disco
+   * grande, la frecuencia de un producto): pausa si ese audio suena y, si no,
+   * lo abre o lo reanuda.
+   */
+  toggleAudio(id: string): void;
   close(): void;
   /** Recoge el dock sin detener la escucha. */
   minimize(): void;
@@ -54,6 +60,16 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     set({ audioId: id, isPlaying: true, elapsed: 0, minimized: false });
   },
   toggle: () => set((state) => ({ isPlaying: !state.isPlaying })),
+  toggleAudio: (id) => {
+    const { audioId, isPlaying, open } = get();
+
+    if (audioId === id && isPlaying) {
+      set({ isPlaying: false });
+      return;
+    }
+
+    open(id);
+  },
   close: () => set({ audioId: null, isPlaying: false, elapsed: 0, minimized: false }),
   minimize: () => set((state) => (state.audioId === null ? state : { minimized: true })),
   expand: () => set({ minimized: false }),
@@ -85,6 +101,19 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
  */
 export function useActiveAudioId(): string | null {
   return usePlayerStore((state) => state.audioId);
+}
+
+/**
+ * El estado de un audio concreto frente al reproductor: `active` si es el
+ * abierto y `playing` si además suena. Lo comparten todos los controles que
+ * representan ese audio fuera del dock, para que su play pase a pausa a la
+ * vez que el del dock.
+ */
+export function useAudioPlayback(id: string): { active: boolean; playing: boolean } {
+  const active = usePlayerStore((state) => state.audioId === id);
+  const playing = usePlayerStore((state) => state.audioId === id && state.isPlaying);
+
+  return { active, playing };
 }
 
 /** `true` mientras una frecuencia suena de verdad (abierta y sin pausa). */

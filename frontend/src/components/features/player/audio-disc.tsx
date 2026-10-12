@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 
 import { FrequencyDisc, type DiscSize } from '@/components/ui';
 import { resolveAudioCover } from '@/lib/editorial/audio-cover';
-import { usePlayerStore } from '@/stores/player-store';
+import { useAudioPlayback, usePlayerStore } from '@/stores/player-store';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { AudioCover } from './audio-cover';
@@ -30,6 +30,10 @@ type AudioDiscProps = {
   cover?: EditorialMedia;
   /** `false` cuando el título y la meta ya están escritos al lado del disco. */
   caption?: boolean;
+  /**
+   * Pinta el control de play, que comparte estado con el reproductor: pasa a
+   * pausa mientras este audio suena, y pulsar el disco entonces lo pausa.
+   */
   showPlay?: boolean;
   showEqualizer?: boolean;
   floatDuration?: string;
@@ -67,8 +71,13 @@ export function AudioDisc({
   className,
 }: AudioDiscProps) {
   const t = useTranslations('resonario');
+  const tPlayer = useTranslations('player');
   const open = usePlayerStore((state) => state.open);
-  const active = usePlayerStore((state) => state.audioId === audio.id);
+  const toggleAudio = usePlayerStore((state) => state.toggleAudio);
+  const { active, playing } = useAudioPlayback(audio.id);
+  // Sólo el disco con control de play pausa al pulsarlo; los demás abren su
+  // audio, como siempre: sin el glifo, una pausa no se entendería.
+  const pauses = Boolean(showPlay) && playing;
   const coverMedia =
     cover ??
     resolveAudioCover(audio, {
@@ -87,10 +96,14 @@ export function AudioDisc({
       active={active}
       showPlay={showPlay}
       showEqualizer={showEqualizer}
+      // Fuera del disco activo el ecualizador es ambiente y no se detiene.
+      playing={active ? playing : true}
       floatDuration={floatDuration}
       floatDelay={floatDelay}
-      ariaLabel={[title, `${audio.hz} Hz`, meta].filter(Boolean).join(' — ')}
-      onClick={() => open(audio.id)}
+      ariaLabel={[pauses ? tPlayer('pause') : null, title, `${audio.hz} Hz`, meta]
+        .filter(Boolean)
+        .join(' — ')}
+      onClick={() => (showPlay ? toggleAudio(audio.id) : open(audio.id))}
       className={className}
     />
   );

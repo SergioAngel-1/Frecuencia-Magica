@@ -119,7 +119,13 @@ describe('resonario editorial composition contracts', () => {
     expect(discSource).toContain("alt: t('media.alt.audioCover', { title })");
     expect(discSource).toContain("lg: '(min-width: 1024px) 380px, 84vw'");
     expect(discSource).toContain('cover={<AudioCover media={coverMedia} />}');
-    expect(discSource).toContain('onClick={() => open(audio.id)}');
+    // El disco con control de play comparte estado con el reproductor: su
+    // play pasa a pausa mientras suena y pulsarlo conmuta; los demás abren.
+    expect(discSource).toContain(
+      'onClick={() => (showPlay ? toggleAudio(audio.id) : open(audio.id))}',
+    );
+    expect(discSource).toContain('useAudioPlayback(audio.id)');
+    expect(discSource).toContain('playing={active ? playing : true}');
     expect(coverSource).toContain('<EditorialImage');
     expect(coverSource).toContain("editorialVisual(media) !== 'photo'");
     expect(systemSource).toContain('data-editorial-featured="true"');

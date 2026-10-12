@@ -15,6 +15,29 @@ describe('usePlayerStore', () => {
     expect(usePlayerStore.getState().isPlaying).toBe(true);
   });
 
+  it('el control de un audio lo abre, lo pausa si suena y lo reanuda sin reiniciarlo', () => {
+    usePlayerStore.getState().toggleAudio('a2');
+    expect(usePlayerStore.getState()).toMatchObject({ audioId: 'a2', isPlaying: true });
+
+    usePlayerStore.getState().setElapsed(30);
+    usePlayerStore.getState().toggleAudio('a2');
+    expect(usePlayerStore.getState()).toMatchObject({ audioId: 'a2', isPlaying: false });
+
+    usePlayerStore.getState().toggleAudio('a2');
+    expect(usePlayerStore.getState()).toMatchObject({
+      audioId: 'a2',
+      isPlaying: true,
+      elapsed: 30,
+    });
+  });
+
+  it('el control de otro audio sustituye al que suena en vez de pausarlo', () => {
+    usePlayerStore.getState().open('a2');
+    usePlayerStore.getState().toggleAudio('a5');
+
+    expect(usePlayerStore.getState()).toMatchObject({ audioId: 'a5', isPlaying: true, elapsed: 0 });
+  });
+
   it('arranca sin audio y en pausa', () => {
     const state = usePlayerStore.getState();
     expect(state.audioId).toBeNull();
