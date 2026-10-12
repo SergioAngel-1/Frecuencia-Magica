@@ -60,3 +60,30 @@ export function CloseIcon() {
     </svg>
   );
 }
+
+/** Altavoz; con `muted`, tachado. */
+export function VolumeIcon({ muted }: { muted: boolean }) {
+  return (
+    <svg {...STROKE}>
+      <path d="M4.5 9.5v5h3.2l4.3 3.5v-12L7.7 9.5z" />
+      {muted ? (
+        <path d="m15.5 9.5 5 5M20.5 9.5l-5 5" />
+      ) : (
+        <path d="M15.5 9a4.2 4.2 0 0 1 0 6M17.8 6.7a7.5 7.5 0 0 1 0 10.6" />
+      )}
+    </svg>
+  );
+}
+
+/** Esquinas que se abren para entrar a pantalla completa y se cierran para salir. */
+export function FullscreenIcon({ active }: { active: boolean }) {
+  return (
+    <svg {...STROKE}>
+      {active ? (
+        <path d="M9 5v4H5M15 5v4h4M9 19v-4H5M15 19v-4h4" />
+      ) : (
+        <path d="M5 9V5h4M19 9V5h-4M5 15v4h4M19 15v4h-4" />
+      )}
+    </svg>
+  );
+}

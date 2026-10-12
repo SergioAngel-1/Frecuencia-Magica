@@ -434,7 +434,11 @@
     "expand": "Show the player",
     "seek": "Seek within the track",
     "next": "Next frequency",
-    "previous": "Previous frequency"
+    "previous": "Previous frequency",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "fullscreen": "Full screen",
+    "exitFullscreen": "Exit full screen"
   },
   "academy": {
     "kicker": "Academy",
@@ -454,8 +458,9 @@
         "completion": "Completed course: a cycle closed in light"
       }
     },
-    "audioLabel": "Listen to this lesson",
-    "audioDeferred": "The audio for this practice will be added here. For now, stay with the reading and return to your breath.",
+    "videoLabel": "Lesson video",
+    "videoSeek": "Seek within the video",
+    "videoDeferred": "The video for this practice will be added here. For now, stay with the reading and return to your breath.",
     "featuredBadge": "Featured",
     "featuredDescription": "A guided journey to reunite with yourself through breath, silence and small daily rituals.",
     "featuredCta": "Start course",

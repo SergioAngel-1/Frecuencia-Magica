@@ -123,7 +123,11 @@ describe('academy editorial composition contracts', () => {
     expect(lessonPageSource).toContain('const course = getCourse(courseId);');
   });
 
-  it('uses the lesson visual fallback and native audio controls while preserving navigation', () => {
+  it('plays the lesson in the shared player bar, with custom video controls', () => {
+    const videoSource = readSource('components/features/player/video-player.tsx');
+    const barSource = readSource('components/features/player/player-bar.tsx');
+    const dockSource = readSource('components/features/player/player-dock.tsx');
+
     expect(playerSource).toContain('<EditorialImage');
     expect(playerSource).toContain('media={lessonMedia}');
     expect(playerSource).toContain('data-editorial-media={lessonMedia.slot}');
@@ -135,9 +139,26 @@ describe('academy editorial composition contracts', () => {
     expect(coverCall.slice(0, coverCall.indexOf('})'))).toContain('instance: course.id');
     expect(lessonPageSource).toContain('const lessonMedia = courseCover.src');
     expect(lessonPageSource).toContain("resolveEditorialMedia('academy-lesson-visual'");
-    expect(playerSource).toContain('<audio');
-    expect(playerSource).toContain('controls');
-    expect(playerSource).toContain('aria-describedby');
+    // La lección lleva el reproductor de video del sitio, nunca el nativo.
+    expect(playerSource).toContain('<VideoPlayer');
+    expect(playerSource).toContain('key={lessonIndex}');
+    expect(playerSource).not.toMatch(/<audio|<video/);
+    expect(videoSource).toContain('<video');
+    expect(videoSource).not.toMatch(/<video[^>]*\bcontrols\b/);
+    expect(videoSource).toContain('playsInline');
+    // Es la misma barra que el dock de frecuencias, con la posición siempre a la vista.
+    expect(videoSource).toContain('<PlayerBar');
+    expect(videoSource).toContain('timeline="always"');
+    expect(dockSource).toContain('<PlayerBar');
+    expect(barSource).toContain('<SeekBar');
+    // Sonido y pantalla completa propios; sin soporte, el botón no se pinta.
+    expect(videoSource).toContain('requestFullscreen');
+    expect(videoSource).toContain('document.fullscreenEnabled');
+    // Entrar y salir de pantalla completa funde a la noche: nunca un salto.
+    expect(videoSource).toContain("setVeil('fade')");
+    expect(videoSource).toContain("current === 'clear' ? 'cut' : current");
+    expect(videoSource).toContain('data-video-veil={veil}');
+    expect(videoSource).toContain('TODO(backend)');
     expect(playerSource).toContain('previousLesson');
     expect(playerSource).toContain('nextLesson');
     expect(playerSource).toContain('completionMedia');

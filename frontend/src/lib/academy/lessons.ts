@@ -26,6 +26,11 @@ export function buildLessons(course: Course): Lesson[] {
   }));
 }
 
+/** Duración de una lección en segundos (`"26 min"` → `1560`), para su reproductor. */
+export function lessonSeconds(lesson: Pick<Lesson, 'duration'>): number {
+  return (Number.parseInt(lesson.duration, 10) || 0) * 60;
+}
+
 /** `"3.5h"` → `210` (minutos). */
 function parseHours(label: string): number {
   const match = label.match(/^(\d+)(?:\.(\d+))?h$/);

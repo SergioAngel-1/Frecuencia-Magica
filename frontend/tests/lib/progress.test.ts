@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { AUDIOS } from '@/data';
-import { nextAudioId, previousAudioId, progressPercent } from '@/lib/player/progress';
+import { advanceClock, nextAudioId, previousAudioId, progressPercent } from '@/lib/player/progress';
 
 describe('progressPercent', () => {
   it('calcula el porcentaje transcurrido', () => {
@@ -18,6 +18,21 @@ describe('progressPercent', () => {
 
   it('con duración cero devuelve cero', () => {
     expect(progressPercent(10, 0)).toBe(0);
+  });
+});
+
+describe('advanceClock', () => {
+  it('avanza el reloj sin haber terminado', () => {
+    expect(advanceClock(10, 1, 60)).toEqual({ elapsed: 11, ended: false });
+  });
+
+  it('se detiene en el final y avisa', () => {
+    expect(advanceClock(59, 5, 60)).toEqual({ elapsed: 60, ended: true });
+  });
+
+  it('acota una posición buscada fuera del video', () => {
+    expect(advanceClock(-20, 0, 60).elapsed).toBe(0);
+    expect(advanceClock(500, 0, 60).elapsed).toBe(60);
   });
 });
 

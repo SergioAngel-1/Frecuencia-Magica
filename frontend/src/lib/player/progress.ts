@@ -11,6 +11,20 @@ export function progressPercent(elapsed: number, total: number): number {
 }
 
 /**
+ * Avanza un reloj de reproducción `step` segundos sin pasarse del final.
+ * `ended` avisa de que ha llegado: quien lo usa decide si se detiene o salta.
+ */
+export function advanceClock(
+  elapsed: number,
+  step: number,
+  total: number,
+): { elapsed: number; ended: boolean } {
+  const next = Math.min(Math.max(elapsed + step, 0), Math.max(total, 0));
+
+  return { elapsed: next, ended: next >= total };
+}
+
+/**
  * Id del audio siguiente en el catálogo. Envuelve al principio al llegar al
  * final, para que "siguiente" nunca deje al reproductor sin audio.
  */

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { buildLessons } from '@/lib/academy/lessons';
+import { buildLessons, lessonSeconds } from '@/lib/academy/lessons';
 import { COURSES } from '@/data';
 
 describe('buildLessons', () => {
@@ -25,5 +25,15 @@ describe('buildLessons', () => {
   it('toda lección tiene una duración positiva', () => {
     const lessons = buildLessons(COURSES[0]!);
     expect(lessons.every((l) => parseInt(l.duration) > 0)).toBe(true);
+  });
+});
+
+describe('lessonSeconds', () => {
+  it('convierte la duración de una lección a segundos para su reproductor', () => {
+    expect(lessonSeconds({ duration: '26 min' })).toBe(1560);
+  });
+
+  it('una duración ilegible vale cero en vez de romper el reproductor', () => {
+    expect(lessonSeconds({ duration: '' })).toBe(0);
   });
 });
