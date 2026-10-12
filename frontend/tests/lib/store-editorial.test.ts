@@ -157,7 +157,11 @@ describe('store editorial composition contracts', () => {
     expect(detailSource).not.toMatch(/<OrbitalRings\s+aria-hidden/);
     expect(detailSource).toContain('onClick={() => add(product.id)}');
     expect(detailSource).toContain("router.push('/tienda/carrito')");
-    expect(detailSource).toContain('relatedAudioId');
+    // La frecuencia asociada comparte estado con el reproductor: conmuta la
+    // misma acción que el disco grande y refleja si suena.
+    expect(detailSource).toContain('useAudioPlayback(product.relatedAudioId)');
+    expect(detailSource).toContain('onClick={() => toggleAudio(product.relatedAudioId)}');
+    expect(detailSource).toContain('<PlayPauseIcon playing={frequency.playing}');
     expect(detailSource).not.toContain('<Band');
   });
 

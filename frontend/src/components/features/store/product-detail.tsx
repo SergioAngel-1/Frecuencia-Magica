@@ -4,6 +4,7 @@ import type { Product } from '@/types/content';
 
 import { useTranslations } from 'next-intl';
 
+import { PlayPauseIcon } from '@/components/features/player/player-icons';
 import { Badge, Button, EditorialImage, Kicker, Prose, SectionHeading } from '@/components/ui';
 import { PRODUCTS } from '@/data';
 import { useRouter } from '@/i18n/navigation';
@@ -12,7 +13,7 @@ import { cn } from '@/lib/cn';
 import { categoryKey } from '@/lib/store/category-key';
 import { relatedProducts } from '@/lib/store/related';
 import { useCartStore } from '@/stores/cart-store';
-import { usePlayerStore } from '@/stores/player-store';
+import { useAudioPlayback, usePlayerStore } from '@/stores/player-store';
 import type { EditorialMedia, EditorialMediaAspect } from '@/types/editorial-media';
 
 import { ProductCard } from './product-card';
@@ -42,10 +43,13 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
   const t = useTranslations('store');
   const tResonario = useTranslations('resonario');
   const add = useCartStore((state) => state.add);
-  const openPlayer = usePlayerStore((state) => state.open);
+  const tPlayer = useTranslations('player');
+  const toggleAudio = usePlayerStore((state) => state.toggleAudio);
+  const frequency = useAudioPlayback(product.relatedAudioId);
   const router = useRouter();
   const related = relatedProducts(product, PRODUCTS, 3);
   const title = t(`products.${product.id}.title`);
+  const frequencyTitle = tResonario(`audios.${product.relatedAudioId}.title` as 'audios.a1.title');
 
   return (
     <div>
@@ -107,26 +111,35 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
             </Button>
           </div>
 
+          {/* La frecuencia del producto comparte estado con el reproductor: se
+              enciende mientras es la que está abierta y su play pasa a pausa
+              mientras suena, igual que en el dock. */}
           <button
             type="button"
-            onClick={() => openPlayer(product.relatedAudioId)}
-            className="border-glass-brd bg-glass hover:border-gold/60 mt-1 flex min-h-11 items-center gap-3 self-start rounded-full border px-5 py-3 text-left transition-colors"
+            aria-label={`${frequency.playing ? tPlayer('pause') : tPlayer('play')} — ${frequencyTitle}`}
+            onClick={() => toggleAudio(product.relatedAudioId)}
+            className={cn(
+              'bg-glass hover:border-gold/60 mt-1 flex min-h-11 items-center gap-3 self-start rounded-full border px-5 py-3 text-left transition-[border-color,box-shadow] duration-300',
+              frequency.active ? 'border-gold/60 shadow-glow-card' : 'border-glass-brd',
+            )}
+            data-frequency-state={
+              frequency.playing ? 'playing' : frequency.active ? 'paused' : 'idle'
+            }
           >
             <span
               aria-hidden="true"
-              className="border-gold/50 text-gold flex size-8 shrink-0 items-center justify-center rounded-full border"
+              className={cn(
+                'text-gold flex size-8 shrink-0 items-center justify-center rounded-full border transition-colors duration-300',
+                frequency.active ? 'border-gold/70 bg-gold/15' : 'border-gold/50',
+              )}
             >
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
+              <PlayPauseIcon playing={frequency.playing} size={12} />
             </span>
             <span className="flex flex-col">
               <span className="text-teal text-label tracking-label font-sans uppercase">
                 {t('relatedFrequencyLabel')}
               </span>
-              <span className="text-ivory font-serif text-[16px]">
-                {tResonario(`audios.${product.relatedAudioId}.title` as 'audios.a1.title')}
-              </span>
+              <span className="text-ivory font-serif text-[16px]">{frequencyTitle}</span>
             </span>
           </button>
 
