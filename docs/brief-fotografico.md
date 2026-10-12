@@ -7,7 +7,7 @@
 
 **66 imágenes** (47 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 47 · P2 15. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 57 completadas · 0 a corregir · 8 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 65 completadas · 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -138,14 +138,14 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `booking-hero.avif` | Reserva · hero | 16:9 | 2880×1620 | P1 | Completadas |
 | `booking-confirmation.avif` | Reserva · confirmación | 16:8 | 2880×1440 | P1 | Completadas |
 | `store-hero.avif` | Tienda · hero | 16:9 | 2880×1620 | P1 | Completadas |
-| `store-product-visual-p1.avif` | Tienda · productos · Aceite Esencial · Cedro Sagrado | 1:1 | 1024×1024 | P1 | Faltantes |
-| `store-product-visual-p2.avif` | Tienda · productos · Vela Ritual · Luz de Vela | 1:1 | 1024×1024 | P1 | Faltantes |
-| `store-product-visual-p3.avif` | Tienda · productos · Cuarzo de Serenidad | 1:1 | 1024×1024 | P1 | Faltantes |
-| `store-product-visual-p4.avif` | Tienda · productos · Bruma de Enraizamiento | 1:1 | 1024×1024 | P1 | Faltantes |
-| `store-product-visual-p5.avif` | Tienda · productos · Incienso · Bosque de Copal | 1:1 | 1024×1024 | P1 | Faltantes |
-| `store-product-visual-p6.avif` | Tienda · productos · Sal de Baño · Luna Llena | 1:1 | 1024×1024 | P1 | Faltantes |
-| `store-product-visual-p7.avif` | Tienda · productos · Infusión · Calma de Cedro | 1:1 | 1024×1024 | P1 | Faltantes |
-| `store-product-visual-p8.avif` | Tienda · productos · Diario de Frecuencias | 1:1 | 1024×1024 | P1 | Faltantes |
+| `store-product-visual-p1.avif` | Tienda · productos · Aceite Esencial · Cedro Sagrado | 1:1 | 1024×1024 | P1 | Completadas |
+| `store-product-visual-p2.avif` | Tienda · productos · Vela Ritual · Luz de Vela | 1:1 | 1024×1024 | P1 | Completadas |
+| `store-product-visual-p3.avif` | Tienda · productos · Cuarzo de Serenidad | 1:1 | 1024×1024 | P1 | Completadas |
+| `store-product-visual-p4.avif` | Tienda · productos · Bruma de Enraizamiento | 1:1 | 1024×1024 | P1 | Completadas |
+| `store-product-visual-p5.avif` | Tienda · productos · Incienso · Bosque de Copal | 1:1 | 1024×1024 | P1 | Completadas |
+| `store-product-visual-p6.avif` | Tienda · productos · Sal de Baño · Luna Llena | 1:1 | 1024×1024 | P1 | Completadas |
+| `store-product-visual-p7.avif` | Tienda · productos · Infusión · Calma de Cedro | 1:1 | 1024×1024 | P1 | Completadas |
+| `store-product-visual-p8.avif` | Tienda · productos · Diario de Frecuencias | 1:1 | 1024×1024 | P1 | Completadas |
 | `store-ritual-banner.avif` | Tienda · banner ritual | 16:9 | 2880×1620 | P2 | Completadas |
 | `product-detail.avif` | Tienda · detalle | 16:8 | 2880×1440 | P1 | Completadas |
 | `product-related.avif` | Tienda · relacionados | 16:8 | 2880×1440 | P2 | Completadas |
@@ -174,130 +174,11 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (8)
+### 5.2 Faltantes (0)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
-#### `store-product-visual · Aceite Esencial · Cedro Sagrado` — Tienda · productos · P1
-
-- **Qué falta:** Es el producto destacado: desde 768 px se compone a 1:1 junto a su texto, en dos columnas.
-- **Archivo:** `store-product-visual-p1.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** El producto real, completo y centrado, a partir de su foto de referencia; materia de compra (8 productos).
-- **Referencia:** adjuntar la foto real del producto junto al prompt; la forma y la etiqueta salen de ella.
-
-**Prompt**
-
-```text
-The essential-oil bottle shown in the attached reference image, reproduced faithfully: the same shape, proportions, materials, colours and closure, and its label copied exactly as it appears in the reference, with the lettering sharp and unchanged and nothing rewritten, added or invented, with a cedar sprig beside its base, the whole bottle and sprig held inside the central 50% of the frame height with plain dark surface above and below. One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side. Square framing. Dominant tone: warm muted gold (#D8B978) light on a dark navy ground; teal and lavender only as faint accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only exception is the product's own label, kept exactly as in the reference image.
-```
-
-#### `store-product-visual · Vela Ritual · Luz de Vela` — Tienda · productos · P1
-
-- **Archivo:** `store-product-visual-p2.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** El producto real, completo y centrado, a partir de su foto de referencia; materia de compra (8 productos).
-- **Referencia:** adjuntar la foto real del producto junto al prompt; la forma y la etiqueta salen de ella.
-
-**Prompt**
-
-```text
-The ritual candle shown in the attached reference image, reproduced faithfully: the same shape, proportions, materials, colours and closure, and its label copied exactly as it appears in the reference, with the lettering sharp and unchanged and nothing rewritten, added or invented, lit, with a small steady flame and its glow reflected in its vessel. One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side. Square framing. Dominant tone: warm muted gold (#D8B978) light on a dark navy ground; teal and lavender only as faint accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only exception is the product's own label, kept exactly as in the reference image.
-```
-
-#### `store-product-visual · Cuarzo de Serenidad` — Tienda · productos · P1
-
-- **Archivo:** `store-product-visual-p3.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** El producto real, completo y centrado, a partir de su foto de referencia; materia de compra (8 productos).
-- **Referencia:** adjuntar la foto real del producto junto al prompt; la forma y la etiqueta salen de ella.
-
-**Prompt**
-
-```text
-The quartz crystal shown in the attached reference image, reproduced faithfully: the same shape, proportions, materials, colours and closure, and its label copied exactly as it appears in the reference, with the lettering sharp and unchanged and nothing rewritten, added or invented, standing upright with a faint lavender light inside it and a soft warm rim light. One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side. Square framing. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only exception is the product's own label, kept exactly as in the reference image.
-```
-
-#### `store-product-visual · Bruma de Enraizamiento` — Tienda · productos · P1
-
-- **Archivo:** `store-product-visual-p4.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** El producto real, completo y centrado, a partir de su foto de referencia; materia de compra (8 productos).
-- **Referencia:** adjuntar la foto real del producto junto al prompt; la forma y la etiqueta salen de ella.
-
-**Prompt**
-
-```text
-The mist spray bottle shown in the attached reference image, reproduced faithfully: the same shape, proportions, materials, colours and closure, and its label copied exactly as it appears in the reference, with the lettering sharp and unchanged and nothing rewritten, added or invented, with a fine mist drifting beside it, moss and stone beneath. One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only exception is the product's own label, kept exactly as in the reference image.
-```
-
-#### `store-product-visual · Incienso · Bosque de Copal` — Tienda · productos · P1
-
-- **Archivo:** `store-product-visual-p5.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** El producto real, completo y centrado, a partir de su foto de referencia; materia de compra (8 productos).
-- **Referencia:** adjuntar la foto real del producto junto al prompt; la forma y la etiqueta salen de ella.
-
-**Prompt**
-
-```text
-The incense shown in the attached reference image, reproduced faithfully: the same shape, proportions, materials, colours and closure, and its label copied exactly as it appears in the reference, with the lettering sharp and unchanged and nothing rewritten, added or invented, with a thin ribbon of smoke rising beside it. One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side. Square framing. Balanced faint gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only exception is the product's own label, kept exactly as in the reference image.
-```
-
-#### `store-product-visual · Sal de Baño · Luna Llena` — Tienda · productos · P1
-
-- **Archivo:** `store-product-visual-p6.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** El producto real, completo y centrado, a partir de su foto de referencia; materia de compra (8 productos).
-- **Referencia:** adjuntar la foto real del producto junto al prompt; la forma y la etiqueta salen de ella.
-
-**Prompt**
-
-```text
-The bath-salt container shown in the attached reference image, reproduced faithfully: the same shape, proportions, materials, colours and closure, and its label copied exactly as it appears in the reference, with the lettering sharp and unchanged and nothing rewritten, added or invented, with a wooden scoop beside its base, soft moonlit sheen. One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side. Square framing. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only exception is the product's own label, kept exactly as in the reference image.
-```
-
-#### `store-product-visual · Infusión · Calma de Cedro` — Tienda · productos · P1
-
-- **Archivo:** `store-product-visual-p7.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** El producto real, completo y centrado, a partir de su foto de referencia; materia de compra (8 productos).
-- **Referencia:** adjuntar la foto real del producto junto al prompt; la forma y la etiqueta salen de ella.
-
-**Prompt**
-
-```text
-The herbal infusion shown in the attached reference image, reproduced faithfully: the same shape, proportions, materials, colours and closure, and its label copied exactly as it appears in the reference, with the lettering sharp and unchanged and nothing rewritten, added or invented, with dried herbs scattered near its base, amber light. One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side. Square framing. Dominant tone: warm muted gold (#D8B978) light on a dark navy ground; teal and lavender only as faint accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only exception is the product's own label, kept exactly as in the reference image.
-```
-
-#### `store-product-visual · Diario de Frecuencias` — Tienda · productos · P1
-
-- **Archivo:** `store-product-visual-p8.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** El producto real, completo y centrado, a partir de su foto de referencia; materia de compra (8 productos).
-- **Referencia:** adjuntar la foto real del producto junto al prompt; la forma y la etiqueta salen de ella.
-
-**Prompt**
-
-```text
-The journal shown in the attached reference image, reproduced faithfully: the same shape, proportions, materials, colours and closure, and its label copied exactly as it appears in the reference, with the lettering sharp and unchanged and nothing rewritten, added or invented, closed, with a brass pen lying beside it. One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only exception is the product's own label, kept exactly as in the reference image.
-```
+Ninguna.
 
 ### 5.3 Por cablear (crear vistas) (0)
 
@@ -313,7 +194,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (57)
+### 5.5 Completadas (65)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -361,6 +242,14 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `booking-hero.avif` | Reserva · hero | `booking.hero` | 16:9 | P1 |
 | `booking-confirmation.avif` | Reserva · confirmación | `booking.confirmation` | 16:8 | P1 |
 | `store-hero.avif` | Tienda · hero | `store.hero` | 16:9 | P1 |
+| `store-product-visual-p1.avif` | Tienda · productos · Aceite Esencial · Cedro Sagrado | `store-product-visual` | 1:1 | P1 |
+| `store-product-visual-p2.avif` | Tienda · productos · Vela Ritual · Luz de Vela | `store-product-visual` | 1:1 | P1 |
+| `store-product-visual-p3.avif` | Tienda · productos · Cuarzo de Serenidad | `store-product-visual` | 1:1 | P1 |
+| `store-product-visual-p4.avif` | Tienda · productos · Bruma de Enraizamiento | `store-product-visual` | 1:1 | P1 |
+| `store-product-visual-p5.avif` | Tienda · productos · Incienso · Bosque de Copal | `store-product-visual` | 1:1 | P1 |
+| `store-product-visual-p6.avif` | Tienda · productos · Sal de Baño · Luna Llena | `store-product-visual` | 1:1 | P1 |
+| `store-product-visual-p7.avif` | Tienda · productos · Infusión · Calma de Cedro | `store-product-visual` | 1:1 | P1 |
+| `store-product-visual-p8.avif` | Tienda · productos · Diario de Frecuencias | `store-product-visual` | 1:1 | P1 |
 | `store-ritual-banner.avif` | Tienda · banner ritual | `store.ritual-banner` | 16:9 | P2 |
 | `product-detail.avif` | Tienda · detalle | `product.detail` | 16:8 | P1 |
 | `product-related.avif` | Tienda · relacionados | `product.related` | 16:8 | P2 |

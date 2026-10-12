@@ -58,7 +58,6 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
-  'store-product-visual-p1.avif': 'Es el producto destacado: desde 768 px se compone a 1:1 junto a su texto, en dos columnas.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
@@ -120,6 +119,14 @@ export const COMPLETED = [
   'experiences-visual-e2.avif',
   'experiences-visual-e3.avif',
   'experiences-visual-e4.avif',
+  'store-product-visual-p1.avif',
+  'store-product-visual-p2.avif',
+  'store-product-visual-p3.avif',
+  'store-product-visual-p4.avif',
+  'store-product-visual-p5.avif',
+  'store-product-visual-p6.avif',
+  'store-product-visual-p7.avif',
+  'store-product-visual-p8.avif',
 ]
 
 /**
