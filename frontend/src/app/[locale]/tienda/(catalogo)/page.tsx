@@ -36,9 +36,10 @@ export default async function StorePage({ params }: PageProps) {
         resolveEditorialMedia('store-product-visual', {
           instance: product.id,
           alt: t('media.alt.product', { title }),
-          // El destacado también a 1:1: en escritorio ocupa media tarjeta junto a su texto.
+          // El destacado cubre media tarjeta de arriba abajo: la columna es
+          // más alta que ancha y `cover` escala la imagen 1:1 por el alto.
           sizes: featured
-            ? '(min-width: 1280px) 400px, (min-width: 768px) 30vw, calc(100vw - 48px)'
+            ? '(min-width: 1280px) 460px, (min-width: 768px) 50vw, calc(100vw - 48px)'
             : '(min-width: 1280px) 380px, (min-width: 640px) 30vw, calc(100vw - 48px)',
           band: product.band,
         }),

@@ -230,20 +230,21 @@ describe('store editorial composition contracts', () => {
     expect(cardSource).toContain('md:flex-row');
     expect(cardSource).toContain('md:w-1/2');
   });
-  it('fills the featured card height behind the 1:1 object without cropping it', () => {
+  it('covers the whole height of the featured card with its image, without a veil', () => {
     // La columna del destacado se estira a todo el alto de la ficha…
-    expect(cardSource).toContain('md:flex md:w-1/2 md:items-center md:self-stretch');
+    expect(cardSource).toContain("featured && 'md:w-1/2 md:self-stretch'");
     expect(cardSource).not.toContain('md:self-center');
-    // …la misma materia, difuminada y decorativa, la llena por detrás…
-    const backdrop = cardSource.slice(
-      cardSource.lastIndexOf('<div', cardSource.indexOf('data-featured-backdrop="true"')),
-      cardSource.indexOf('</div>', cardSource.indexOf('data-featured-backdrop="true"')),
-    );
-    expect(backdrop).toContain('aria-hidden="true"');
-    expect(backdrop).toContain('media={media}');
-    expect(backdrop).toMatch(/\bblur-/);
-    // …y el objeto nítido conserva la caja del slot, a su 1:1.
-    expect(cardSource).toContain("'relative w-full', ASPECT_FIELD[media.aspect]");
+    // …y desde `md` la imagen deja su caja 1:1 y la cubre entera: ni objeto
+    // centrado con huecos ni la misma materia difuminada por detrás.
+    expect(cardSource).toContain("featured && 'md:absolute md:inset-0 md:aspect-auto'");
+    expect(cardSource).not.toContain('data-featured-backdrop');
+    expect(cardSource).not.toMatch(/\bblur-/);
+    // Apilada, y en el resto de tarjetas, conserva la caja del slot a su 1:1.
+    expect(cardSource).toContain("'relative w-full',\n              ASPECT_FIELD[media.aspect]");
+    // El texto va debajo de la foto: sin velo, el objeto no queda opaco.
+    expect(cardSource).toContain('overlay={false}');
+    expect(cardSource).toContain('scrim={false}');
+    expect(cardSource).not.toContain('scrim="bottom"');
   });
   it('keeps the cart on the page axis and the related products readable at 768', () => {
     expect(cartPageSource).toContain('px-[var(--page-inset)]');

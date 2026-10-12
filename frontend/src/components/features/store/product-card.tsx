@@ -24,9 +24,9 @@ type ProductCardProps = {
   product: Product;
   media: EditorialMedia;
   /**
-   * El destacado: imagen 1:1 y texto en columnas desde `md` (apilados en
-   * móvil), en vez de una franja ancha que recortaría el objeto. Su columna
-   * de imagen llena el alto de la ficha con la misma materia difuminada.
+   * El destacado: imagen y texto en columnas desde `md` (apilados en móvil,
+   * con la imagen a su 1:1). En columnas, la imagen cubre todo el alto de la
+   * ficha.
    */
   featured?: boolean;
   className?: string;
@@ -62,38 +62,27 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
         )}
       >
         {/* La caja de la imagen tiene el ratio del slot: un producto a 1:1, el
-            ambiente de relacionados a su 16:8. En el destacado, la columna
-            ocupa todo el alto de la ficha: la misma materia, difuminada, la
-            llena por detrás y el objeto nítido queda centrado a su 1:1, sin
-            recortarse nunca. */}
+            ambiente de relacionados a su 16:8. El texto vive debajo, no sobre
+            la foto, así que el objeto se pinta sin velo: con él quedaba opaco.
+            En el destacado, desde `md`, la imagen deja su caja y cubre la
+            columna entera, de arriba abajo de la ficha. */}
         <div
-          className={cn(
-            'relative shrink-0',
-            featured && 'md:flex md:w-1/2 md:items-center md:self-stretch md:overflow-hidden',
-          )}
+          className={cn('relative shrink-0', featured && 'md:w-1/2 md:self-stretch')}
           data-featured-column={featured ? 'true' : undefined}
         >
-          {featured ? (
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 hidden scale-110 opacity-45 blur-2xl md:block"
-              data-featured-backdrop="true"
-            >
-              <EditorialImage
-                aspect={media.aspect}
-                className="h-full"
-                media={media}
-                overlay={false}
-              />
-            </div>
-          ) : null}
-          <div className={cn('relative w-full', ASPECT_FIELD[media.aspect])}>
+          <div
+            className={cn(
+              'relative w-full',
+              ASPECT_FIELD[media.aspect],
+              featured && 'md:absolute md:inset-0 md:aspect-auto',
+            )}
+          >
             <EditorialImage
               aspect={media.aspect}
               className="h-full"
               media={media}
-              overlay="bottom"
-              scrim="bottom"
+              overlay={false}
+              scrim={false}
             />
           </div>
           {featured ? (
