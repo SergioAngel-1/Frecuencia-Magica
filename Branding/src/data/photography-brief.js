@@ -95,6 +95,7 @@ function renderRow(row, status) {
   if (row.backdrop) lines.push('- **Uso:** fondo a pantalla completa (`backdrop`), por encima de su ratio.')
   if (row.notes) lines.push(`- **Nota:** ${row.notes}`)
   if (row.realShoot) lines.push('- **Producción:** sesión fotográfica real (el prompt es sólo moodboard).')
+  if (row.reference) lines.push('- **Referencia:** adjuntar la foto real del producto junto al prompt; la forma y la etiqueta salen de ella.')
   if (row.unregistered) lines.push('- **Estado:** fuera del registro de slots (aún sin cablear).')
 
   lines.push('', '**Prompt**', '', fence(row.prompt))

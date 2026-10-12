@@ -100,6 +100,14 @@ const LIGHT_BODY_TRAITS =
 /** Cuerpo de luz, sin artículo: `an ${BODY_OF_LIGHT}`, `a small ${BODY_OF_LIGHT}`. */
 const BODY_OF_LIGHT = `abstract translucent silhouette of pure light ${LIGHT_BODY_TRAITS}`
 
+/**
+ * Producto de la tienda: se genera adjuntando la foto real del producto. El prompt no describe ni la
+ * forma ni la etiqueta —las fija la referencia—, sólo la escena; un texto descrito sale deformado.
+ */
+const FROM_REFERENCE =
+  'shown in the attached reference image, reproduced faithfully: the same shape, proportions, materials, colours and closure, ' +
+  'and its label copied exactly as it appears in the reference, with the lettering sharp and unchanged and nothing rewritten, added or invented'
+
 /** Firma de filamentos contada en positivo: sin «exactly … in total» los modelos pintan 4–6 líneas. */
 const filaments = (where) =>
   `exactly three thin vertical light filaments in total, one gold, one teal and one lavender, ${where}, and no other vertical lines anywhere`
@@ -108,6 +116,14 @@ const filaments = (where) =>
 const HALO =
   'a soft diffuse halo of light: a broad blurred glow about one fifth of the ring\'s diameter wide, brightest in the middle of its width and fading smoothly on both sides, ' +
   'with no outline and no hard edge, like the corona of an eclipse seen through mist, never a thin glowing line or neon tube'
+
+/** Excepción al cierre del prompt base («No text…») en los productos con foto de referencia. */
+const LABEL_EXCEPTION = "The only exception is the product's own label, kept exactly as in the reference image."
+
+/** Arranque del negativo y su variante para los productos con foto de referencia. */
+const TEXT_CLAUSE = 'text, letters, numbers, captions, watermark, logo, signature, channel name,'
+const TEXT_CLAUSE_BUT_LABEL =
+  'captions, watermark, signature, channel name, any text or logo that is not on the product in the reference image, invented or misspelled label text,'
 
 export const GLOBAL = {
   /** Se añade al final de todos los prompts, después del sujeto y el encuadre. */
@@ -135,7 +151,7 @@ export const GLOBAL = {
     'CGI plastic look, game-engine render, emojis' +
     FACE_CLAUSE,
   rules: [
-    'Sin texto, logos, marcas, nombres de canal ni etiquetas legibles dentro de la imagen: el copy lo pone la web.',
+    'Sin texto, logos, marcas, nombres de canal ni etiquetas legibles dentro de la imagen: el copy lo pone la web. Única excepción: los productos de la tienda, que se generan adjuntando la foto real del producto y conservan su etiqueta tal como está en ella; el prompt nunca describe ni dicta ese texto.',
     'Sin rasgos faciales: el cuerpo de luz es una silueta translúcida sin ojos, boca ni nariz, y el único rostro es el retrato real de Marisol. Fuera de esos casos: manos u objetos. Toda figura de cuerpo entero es el cuerpo de luz, nunca una persona real, ni de espaldas. El prompt describe la silueta en positivo (cabeza lisa, sin nariz, labios ni oreja; de espaldas o girada): «faceless» a secas no basta.',
     'Cielo arriba, materia abajo: el cosmos ocupa como mucho el tercio superior, con estrellas escasas. El world engine ya pinta el campo de estrellas y las partículas; la imagen no los duplica.',
     'Luz dorada sobre fondo oscuro: los bordes de la imagen tienden a --void para que el scrim de CSS funda sin corte.',
@@ -486,9 +502,9 @@ export const SLOTS = [
   ),
   slot(
     'store-product-visual', 'square', '50% 50%', 'P1', 'warm', 'none', 'Tienda · productos',
-    'El objeto completo y centrado; materia de compra (8 productos).',
+    'El producto real, completo y centrado, a partir de su foto de referencia; materia de compra (8 productos).',
     '', 'One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side',
-    { family: 'product' },
+    { family: 'product', reference: true },
   ),
   slot(
     'store.ritual-banner', 'wide', '50% 40%', 'P2', 'warm', 'bottom', 'Tienda · banner ritual',
@@ -628,14 +644,14 @@ export const FAMILIES = {
     slotId: 'store-product-visual',
     filePrefix: 'store-product-visual',
     instances: [
-      { slug: 'p1', es: 'Aceite Esencial · Cedro Sagrado', en: 'Essential Oil · Sacred Cedar', treatment: 'warm', subject: 'An amber glass dropper bottle with a plain unmarked label and a cedar sprig beside it, the whole bottle and sprig held inside the central 50% of the frame height with plain dark surface above and below' },
-      { slug: 'p2', es: 'Vela Ritual · Luz de Vela', en: 'Ritual Candle · Candlelight', treatment: 'warm', subject: 'A honey-coloured wax candle in a dark glass vessel, lit, the flame reflected in the glass' },
-      { slug: 'p3', es: 'Cuarzo de Serenidad', en: 'Serenity Quartz', treatment: 'lav', subject: 'A clear quartz crystal point standing upright with faint lavender internal light and a soft warm rim light' },
-      { slug: 'p4', es: 'Bruma de Enraizamiento', en: 'Grounding Mist', treatment: 'teal', subject: 'A small dark-green glass spray bottle with a fine mist drifting from it, moss and stone beneath' },
-      { slug: 'p5', es: 'Incienso · Bosque de Copal', en: 'Incense · Copal Forest', treatment: 'soft', subject: 'Chunks of pale copal resin in a small clay dish with a thin ribbon of smoke rising' },
-      { slug: 'p6', es: 'Sal de Baño · Luna Llena', en: 'Bath Salt · Full Moon', treatment: 'lav', subject: 'A glass jar of pale bath salts with a hint of lavender, a wooden scoop beside it, soft moonlit sheen' },
-      { slug: 'p7', es: 'Infusión · Calma de Cedro', en: 'Infusion · Cedar Calm', treatment: 'warm', subject: 'A handmade ceramic cup of steaming herbal infusion with dried herbs scattered near it, amber light' },
-      { slug: 'p8', es: 'Diario de Frecuencias', en: 'Frequency Journal', treatment: 'teal', subject: 'A linen-bound notebook closed, its cover plain unmarked linen, a brass pen lying across it' },
+      { slug: 'p1', es: 'Aceite Esencial · Cedro Sagrado', en: 'Essential Oil · Sacred Cedar', treatment: 'warm', subject: `The essential-oil bottle ${FROM_REFERENCE}, with a cedar sprig beside its base, the whole bottle and sprig held inside the central 50% of the frame height with plain dark surface above and below` },
+      { slug: 'p2', es: 'Vela Ritual · Luz de Vela', en: 'Ritual Candle · Candlelight', treatment: 'warm', subject: `The ritual candle ${FROM_REFERENCE}, lit, with a small steady flame and its glow reflected in its vessel` },
+      { slug: 'p3', es: 'Cuarzo de Serenidad', en: 'Serenity Quartz', treatment: 'lav', subject: `The quartz crystal ${FROM_REFERENCE}, standing upright with a faint lavender light inside it and a soft warm rim light` },
+      { slug: 'p4', es: 'Bruma de Enraizamiento', en: 'Grounding Mist', treatment: 'teal', subject: `The mist spray bottle ${FROM_REFERENCE}, with a fine mist drifting beside it, moss and stone beneath` },
+      { slug: 'p5', es: 'Incienso · Bosque de Copal', en: 'Incense · Copal Forest', treatment: 'soft', subject: `The incense ${FROM_REFERENCE}, with a thin ribbon of smoke rising beside it` },
+      { slug: 'p6', es: 'Sal de Baño · Luna Llena', en: 'Bath Salt · Full Moon', treatment: 'lav', subject: `The bath-salt container ${FROM_REFERENCE}, with a wooden scoop beside its base, soft moonlit sheen` },
+      { slug: 'p7', es: 'Infusión · Calma de Cedro', en: 'Infusion · Cedar Calm', treatment: 'warm', subject: `The herbal infusion ${FROM_REFERENCE}, with dried herbs scattered near its base, amber light` },
+      { slug: 'p8', es: 'Diario de Frecuencias', en: 'Frequency Journal', treatment: 'teal', subject: `The journal ${FROM_REFERENCE}, closed, with a brass pen lying beside it` },
     ],
   },
 }
@@ -687,11 +703,19 @@ export function composePrompt(entry, instance) {
     .filter(Boolean)
     .join(' ')
 
-  return `${subject}. ${entry.frame}. ${layout} ${GLOBAL.treatments[treatment]} ${GLOBAL.base}`
+  const prompt = `${subject}. ${entry.frame}. ${layout} ${GLOBAL.treatments[treatment]} ${GLOBAL.base}`
+
+  // Con foto de referencia, la etiqueta del producto es el único texto permitido.
+  return entry.reference ? `${prompt} ${LABEL_EXCEPTION}` : prompt
 }
 
-/** Negativo del agente. El retrato de Marisol es la única imagen donde un rostro es lo que se busca. */
+/**
+ * Negativo del agente. El retrato de Marisol es la única imagen donde un rostro es lo que se busca, y los
+ * productos con foto de referencia, las únicas donde el texto de la etiqueta debe verse.
+ */
 export function negativeFor(entry) {
+  if (entry.reference) return GLOBAL.negative.replace(TEXT_CLAUSE, TEXT_CLAUSE_BUT_LABEL)
+
   return entry.realShoot ? GLOBAL.negative.replace(FACE_CLAUSE, '') : GLOBAL.negative
 }
 
