@@ -117,6 +117,9 @@ export const COMPLETED = [
   'academy-course-cover-c2.avif',
   'academy-course-cover-c3.avif',
   'academy-completion.avif',
+  'experiences-visual-e2.avif',
+  'experiences-visual-e3.avif',
+  'experiences-visual-e4.avif',
 ]
 
 /**

@@ -7,7 +7,7 @@
 
 **66 imágenes** (47 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 47 · P2 15. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 54 completadas · 0 a corregir · 11 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 57 completadas · 0 a corregir · 8 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -132,9 +132,9 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `experiences-hero.avif` | Experiencias · hero | 16:9 | 2880×1620 | P1 | Completadas |
 | `experiences-featured.avif` | Experiencias · destacada | 16:8 | 2880×1440 | P1 | Completadas |
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | 16:9 | 2880×1620 | P1 | No tenidas en cuenta |
-| `experiences-visual-e2.avif` | Experiencias · filas · Círculo de Luna Nueva | 16:9 | 2880×1620 | P1 | Faltantes |
-| `experiences-visual-e3.avif` | Experiencias · filas · Ritual de Aromas | 16:9 | 2880×1620 | P1 | Faltantes |
-| `experiences-visual-e4.avif` | Experiencias · filas · Meditación al Amanecer | 16:9 | 2880×1620 | P1 | Faltantes |
+| `experiences-visual-e2.avif` | Experiencias · filas · Círculo de Luna Nueva | 16:9 | 2880×1620 | P1 | Completadas |
+| `experiences-visual-e3.avif` | Experiencias · filas · Ritual de Aromas | 16:9 | 2880×1620 | P1 | Completadas |
+| `experiences-visual-e4.avif` | Experiencias · filas · Meditación al Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `booking-hero.avif` | Reserva · hero | 16:9 | 2880×1620 | P1 | Completadas |
 | `booking-confirmation.avif` | Reserva · confirmación | 16:8 | 2880×1440 | P1 | Completadas |
 | `store-hero.avif` | Tienda · hero | 16:9 | 2880×1620 | P1 | Completadas |
@@ -174,51 +174,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (11)
+### 5.2 Faltantes (8)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `experiences-visual · Círculo de Luna Nueva` — Experiencias · filas · P1
-
-- **Archivo:** `experiences-visual-e2.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 62% 45%
-- **Zona de texto:** Tercio izquierdo oscuro y despejado (el texto va a la izquierda)
-- **Contenido:** La experiencia como lugar: invitación sensorial a la reserva (4 experiencias).
-
-**Prompt**
-
-```text
-An empty ceremonial place waiting for its guests: a circle of small candles, each with a small steady flame, on a dark stone shore beneath a thin new-moon crescent low in the upper part of the sky over still water, the middle of the circle bare dark stone with nothing and nobody in it, the shore deserted, quiet and ceremonial; the only things on the shore are the candles, nobody present. The subject sits on the right, spanning roughly 50% to 80% of the frame width and centered at 45% vertical, and the left 45% of the frame is dark and empty because that side of the scene is unlit shore, water and sky, continuing across the whole width with no gradient, band or vertical edge; text is laid over that side later. Wide landscape framing. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `experiences-visual · Ritual de Aromas` — Experiencias · filas · P1
-
-- **Archivo:** `experiences-visual-e3.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 62% 45%
-- **Zona de texto:** Tercio izquierdo oscuro y despejado (el texto va a la izquierda)
-- **Contenido:** La experiencia como lugar: invitación sensorial a la reserva (4 experiencias).
-
-**Prompt**
-
-```text
-A brass burner with copal smoke rising in slow spirals, amber oil bottles and dried herbs beside it on a dark wooden table in a quiet room that opens onto still water, golden light. The subject sits on the right, spanning roughly 50% to 80% of the frame width and centered at 45% vertical, and the left 45% of the frame is dark and empty because that side of the scene is unlit shore, water and sky, continuing across the whole width with no gradient, band or vertical edge; text is laid over that side later. Wide landscape framing. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: warm muted gold (#D8B978) light on a dark navy ground; teal and lavender only as faint accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `experiences-visual · Meditación al Amanecer` — Experiencias · filas · P1
-
-- **Archivo:** `experiences-visual-e4.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 62% 45%
-- **Zona de texto:** Tercio izquierdo oscuro y despejado (el texto va a la izquierda)
-- **Contenido:** La experiencia como lugar: invitación sensorial a la reserva (4 experiencias).
-
-**Prompt**
-
-```text
-A small terrace at first light with a cushion and a steaming cup placed in the middle distance at the far end of the terrace, teal mist over distant hills and still water, the first gold on the horizon; nobody present. The subject sits on the right, spanning roughly 50% to 80% of the frame width and centered at 45% vertical, and the left 45% of the frame is dark and empty because that side of the scene is unlit shore, water and sky, continuing across the whole width with no gradient, band or vertical edge; text is laid over that side later. Wide landscape framing. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
 
 #### `store-product-visual · Aceite Esencial · Cedro Sagrado` — Tienda · productos · P1
 
@@ -355,7 +313,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (54)
+### 5.5 Completadas (57)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -397,6 +355,9 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `academy-completion.avif` | Academia · curso completado | `academy.completion` | 16:8 | P1 |
 | `experiences-hero.avif` | Experiencias · hero | `experiences.hero` | 16:9 | P1 |
 | `experiences-featured.avif` | Experiencias · destacada | `experiences.featured` | 16:8 | P1 |
+| `experiences-visual-e2.avif` | Experiencias · filas · Círculo de Luna Nueva | `experiences-visual` | 16:9 | P1 |
+| `experiences-visual-e3.avif` | Experiencias · filas · Ritual de Aromas | `experiences-visual` | 16:9 | P1 |
+| `experiences-visual-e4.avif` | Experiencias · filas · Meditación al Amanecer | `experiences-visual` | 16:9 | P1 |
 | `booking-hero.avif` | Reserva · hero | `booking.hero` | 16:9 | P1 |
 | `booking-confirmation.avif` | Reserva · confirmación | `booking.confirmation` | 16:8 | P1 |
 | `store-hero.avif` | Tienda · hero | `store.hero` | 16:9 | P1 |
