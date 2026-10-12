@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from 'react';
 import { Halo } from '@/components/world/halo';
 import { OrbitalRings, type Ring } from '@/components/world/orbital-rings';
 import { cn } from '@/lib/cn';
+import { floatStyle } from '@/lib/motion/float';
 
 import { Equalizer, type EqualizerScale } from './equalizer';
 
@@ -187,13 +188,13 @@ export function FrequencyDisc({
   // El disco que suena ofrece la pausa; cualquier otro, el play.
   const pausable = active && playing;
 
-  const floatStyle: CSSProperties = floatDuration
-    ? { animation: `fm-float ${floatDuration} ease-in-out infinite`, animationDelay: floatDelay }
+  const float: CSSProperties = floatDuration
+    ? floatStyle({ depth: 'deep', duration: floatDuration, delay: floatDelay ?? '0s' })
     : {};
 
   const disc = (
     <>
-      <div className="relative mx-auto aspect-square w-full" style={floatStyle}>
+      <div className="relative mx-auto aspect-square w-full" style={float}>
         {spec.halo ? (
           <Halo
             color={`rgba(216,185,120,${spec.halo.alpha})`}

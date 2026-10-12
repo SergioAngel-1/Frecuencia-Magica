@@ -25,6 +25,7 @@ export {
   type EditorialOverlayProps,
   type EditorialTone,
 } from './editorial-overlay';
+export { Float } from './float';
 export { FullBleedSection, type FullBleedSectionProps } from './full-bleed-section';
 export { Equalizer, type EqualizerScale } from './equalizer';
 export { ErrorState, type ErrorTone } from './error-state';

@@ -1,6 +1,11 @@
-import type { CSSProperties } from 'react';
-
-import { ArrowGlyph, arrowLinkClasses, EditorialImage, Kicker, Display } from '@/components/ui';
+import {
+  ArrowGlyph,
+  arrowLinkClasses,
+  Display,
+  EditorialImage,
+  Float,
+  Kicker,
+} from '@/components/ui';
 import { OrbitalRings, RealmGlyph } from '@/components/world';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
@@ -41,12 +46,6 @@ export function RealmCard({
   actionLabel,
   className,
 }: RealmCardProps) {
-  // El flotado vive en un envoltorio y el realce del hover en el enlace: los
-  // dos mueven `transform` y en el mismo nodo la animación anularía el hover.
-  const float: CSSProperties = {
-    animationDuration: `${7 + (order % 3) * 0.9}s`,
-    animationDelay: `${(order % 4) * -1.6}s`,
-  };
   // Sobre la foto no va geometría: los aros y el glifo son la materia de la
   // banda, lo que la tarjeta pinta mientras su realm no tiene imagen.
   const geometry = editorialVisual(media) !== 'photo';
@@ -64,7 +63,7 @@ export function RealmCard({
 
   if (featured) {
     return (
-      <div className={cn('animate-fm-float-s', className)} style={float} data-realm-float="true">
+      <Float order={order} className={className}>
         <Link
           href={href as '/resonario'}
           data-editorial-panel="featured"
@@ -111,12 +110,12 @@ export function RealmCard({
             </div>
           ) : null}
         </Link>
-      </div>
+      </Float>
     );
   }
 
   return (
-    <div className={cn('animate-fm-float-s', className)} style={float} data-realm-float="true">
+    <Float order={order} className={className}>
       <Link
         href={href as '/resonario'}
         data-editorial-panel={store ? 'conversion' : 'secondary'}
@@ -177,6 +176,6 @@ export function RealmCard({
           </p>
         </div>
       </Link>
-    </div>
+    </Float>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { Display, EditorialImage, Kicker } from '@/components/ui';
+import { Display, EditorialImage, Float, Kicker } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
 import { buildLessons } from '@/lib/academy/lessons';
 import type { EditorialMedia } from '@/types/editorial-media';
@@ -42,7 +42,8 @@ export function CourseDetail({ course, media, currentLesson }: CourseDetailProps
             {t('courseDescription')}
           </p>
 
-          <figure
+          <Float
+            as="figure"
             className="rounded-card-lg mt-9 overflow-hidden"
             data-editorial-media="academy-course-cover"
           >
@@ -59,7 +60,7 @@ export function CourseDetail({ course, media, currentLesson }: CourseDetailProps
             <figcaption className="border-gold/20 bg-ivory/[0.025] text-fg-meta text-label tracking-caps border-x border-b px-5 py-4 font-sans uppercase">
               {t('media.alt.courseCover', { title })}
             </figcaption>
-          </figure>
+          </Float>
         </article>
 
         <aside className="md:sticky md:top-[112px]">

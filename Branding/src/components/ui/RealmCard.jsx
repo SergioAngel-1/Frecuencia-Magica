@@ -1,4 +1,5 @@
 import { cn } from '../../lib/cn'
+import { floatStyle } from '../../../../frontend/src/lib/motion/float.ts'
 import { ArrowLink } from './ArrowLink'
 import { Display } from './Display'
 import { Kicker } from './Kicker'
@@ -22,12 +23,12 @@ function Glyph({ size, color }) {
  * geometría (aros y glifo) se retira. Las tarjetas flotan levemente, desfasadas por `order`.
  */
 export function RealmCard({ band, emotion, title, description, featured = false, store = false, actionLabel, order = 0, className }) {
-  // El flotado va en un envoltorio: el hover del panel también mueve `transform`.
-  const float = { animationDuration: `${7 + (order % 3) * 0.9}s`, animationDelay: `${(order % 4) * -1.6}s` }
+  // El flotado es el helper de la web, en un envoltorio: el hover del panel también mueve `transform`.
+  const float = floatStyle({ order })
 
   if (featured) {
     return (
-      <div className={cn('animate-fm-float-s', className)} style={float}>
+      <div className={className} style={float}>
       <div
         className={cn(
           'group border-teal/35 rounded-card relative grid h-full min-h-[360px] overflow-hidden border transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(150,198,188,0.14)] lg:grid-cols-[1.15fr_0.85fr]',
@@ -53,7 +54,7 @@ export function RealmCard({ band, emotion, title, description, featured = false,
   }
 
   return (
-    <div className={cn('animate-fm-float-s', className)} style={float}>
+    <div className={className} style={float}>
     <div
       className={cn(
         'group border-glass-brd rounded-card relative flex h-full min-h-[230px] flex-col justify-end overflow-hidden border p-[clamp(24px,3vw,38px)] transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_0_34px_rgba(216,185,120,0.12)]',

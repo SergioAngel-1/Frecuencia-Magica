@@ -5,7 +5,15 @@ import type { Product } from '@/types/content';
 import { useTranslations } from 'next-intl';
 
 import { PlayPauseIcon } from '@/components/features/player/player-icons';
-import { Badge, Button, EditorialImage, Kicker, Prose, SectionHeading } from '@/components/ui';
+import {
+  Badge,
+  Button,
+  EditorialImage,
+  Float,
+  Kicker,
+  Prose,
+  SectionHeading,
+} from '@/components/ui';
 import { PRODUCTS } from '@/data';
 import { useRouter } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
@@ -155,12 +163,10 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
             className="mb-8"
           />
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {related.map((relatedProduct) => (
-              <ProductCard
-                key={relatedProduct.id}
-                media={media.related[relatedProduct.id]!}
-                product={relatedProduct}
-              />
+            {related.map((relatedProduct, index) => (
+              <Float key={relatedProduct.id} order={index} className="grid">
+                <ProductCard media={media.related[relatedProduct.id]!} product={relatedProduct} />
+              </Float>
             ))}
           </div>
         </section>

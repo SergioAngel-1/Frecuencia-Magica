@@ -41,6 +41,9 @@ type AudioDiscProps = {
   className?: string;
 };
 
+/** Todo disco de audio flota; quien lo coloca sólo ajusta el ritmo. */
+const DEFAULT_FLOAT = '8s';
+
 /** Ancho que ocupa la portada en cada escala del disco. */
 const COVER_SIZES: Record<DiscSize, string> = {
   xs: '92px',
@@ -66,7 +69,7 @@ export function AudioDisc({
   caption = true,
   showPlay,
   showEqualizer,
-  floatDuration,
+  floatDuration = DEFAULT_FLOAT,
   floatDelay,
   className,
 }: AudioDiscProps) {

@@ -1,7 +1,7 @@
 'use client';
 
 import { AudioDisc, type AudioDiscItem } from '@/components/features/player/audio-disc';
-import { Button, Display, Kicker } from '@/components/ui';
+import { Button, Display, Float, Kicker } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
 
 import { RecommendationCard, type RecommendationCardProps } from './recommendation-card';
@@ -75,10 +75,10 @@ export function ResultStep({
           </Display>
         </div>
         <ul className="grid gap-5 md:grid-cols-3">
-          {recommendations.map(({ id, ...card }) => (
-            <li key={id}>
+          {recommendations.map(({ id, ...card }, index) => (
+            <Float as="li" key={id} order={index}>
               <RecommendationCard {...card} />
-            </li>
+            </Float>
           ))}
         </ul>
       </section>

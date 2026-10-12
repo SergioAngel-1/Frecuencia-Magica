@@ -1,4 +1,4 @@
-import { EditorialImage } from '@/components/ui';
+import { EditorialImage, Float } from '@/components/ui';
 import { cn } from '@/lib/cn';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -19,7 +19,8 @@ export function MarisolPortrait({ media, className }: MarisolPortraitProps) {
       className={cn('relative w-full max-w-[420px]', className)}
       data-editorial-zone="human-focus"
     >
-      <div className="border-gold/35 relative aspect-[3/4] overflow-hidden rounded-[200px_200px_8px_8px] border">
+      {/* El retrato flota como el resto de la materia viva del sitio. */}
+      <Float className="border-gold/35 relative aspect-[3/4] overflow-hidden rounded-[200px_200px_8px_8px] border">
         <EditorialImage
           media={media}
           aspect="3:4"
@@ -32,7 +33,7 @@ export function MarisolPortrait({ media, className }: MarisolPortraitProps) {
           aria-hidden="true"
           className="border-gold/30 pointer-events-none absolute inset-[8%] rounded-[45%] border opacity-75"
         />
-      </div>
+      </Float>
     </div>
   );
 }

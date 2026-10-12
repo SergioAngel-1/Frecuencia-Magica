@@ -124,12 +124,11 @@ describe('home editorial composition contracts', () => {
     expect(cardSource).toContain('media={media}');
     // Con foto, la geometría de la banda se retira.
     expect(cardSource).toContain("const geometry = editorialVisual(media) !== 'photo';");
-    // El flotado vive en un envoltorio, desfasado por tarjeta, y el realce
-    // del hover en el enlace: en el mismo nodo la animación anularía el hover.
-    expect(cardSource.match(/className=\{cn\('animate-fm-float-s', className\)\}/g)).toHaveLength(
-      2,
-    );
-    expect(cardSource).toContain('animationDelay');
+    // El flotado es el helper compartido, en un envoltorio (`Float`) desfasado
+    // por tarjeta; el realce del hover sigue en el enlace: en el mismo nodo la
+    // animación lo anularía.
+    expect(cardSource.match(/<Float order=\{order\} className=\{className\}>/g)).toHaveLength(2);
+    expect(cardSource).not.toContain('animate-fm-float');
     expect(cardSource).toContain('hover:-translate-y-1');
   });
 
