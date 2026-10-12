@@ -7,6 +7,9 @@ import { useRealm } from '@/hooks/use-realm';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { usePathname } from '@/i18n/navigation';
 
+/** La escena de espera (`LoadingScene`), mientras está montada. */
+const LOADING_SCENE = '[data-loading-scene]';
+
 /** Easing exponencial: arranque firme, frenada larga y cinematográfica. */
 const easeOutExpo = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
 
@@ -32,6 +35,9 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       easing: easeOutExpo,
       smoothWheel: true,
       touchMultiplier: 1.5,
+      // Con la espera en pantalla la página no se desplaza (`ScrollLock`
+      // quita el scroll nativo): Lenis tampoco debe moverla con la rueda.
+      prevent: () => document.querySelector(LOADING_SCENE) !== null,
     });
     lenisRef.current = lenis;
 

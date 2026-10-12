@@ -118,7 +118,8 @@ describe('store editorial composition contracts', () => {
     const sources = [
       { source: storePageSource, instance: 'instance: product.id' },
       { source: cartSource, instance: 'instance: product.id' },
-      { source: productPageSource, instance: 'instance: relatedProduct.id' },
+      // Un solo resolvedor para el objeto de la ficha y el de cada relacionado.
+      { source: productPageSource, instance: 'instance: item.id' },
     ];
     for (const { source, instance } of sources) {
       const resolutions = source.split("resolveEditorialMedia('store-product-visual'").slice(1);
@@ -144,11 +145,23 @@ describe('store editorial composition contracts', () => {
     );
     expect(detailSource).toContain('<EditorialImage');
     expect(detailSource).toContain('media={media.detail}');
+    // La ficha abre con la imagen de la tarjeta elegida, a su ratio y sin
+    // velo; la atmósfera de `product.detail` sólo cubre al producto sin foto.
+    expect(productPageSource).toContain(
+      "const detail = ownVisual(product, t('media.alt.detail', { title }), detailSizes);",
+    );
+    expect(productPageSource).toContain('detail: detail.src');
+    expect(detailSource).toContain('DETAIL_ASPECT[media.detail.aspect]');
+    expect(detailSource).toContain('data-editorial-media={media.detail.slot}');
     expect(detailSource).toContain('media={media.related[relatedProduct.id]!}');
     expect(detailSource).not.toMatch(/<OrbitalRings\s+aria-hidden/);
     expect(detailSource).toContain('onClick={() => add(product.id)}');
     expect(detailSource).toContain("router.push('/tienda/carrito')");
-    expect(detailSource).toContain('relatedAudioId');
+    // La frecuencia asociada comparte estado con el reproductor: conmuta la
+    // misma acción que el disco grande y refleja si suena.
+    expect(detailSource).toContain('useAudioPlayback(product.relatedAudioId)');
+    expect(detailSource).toContain('onClick={() => toggleAudio(product.relatedAudioId)}');
+    expect(detailSource).toContain('<PlayPauseIcon playing={frequency.playing}');
     expect(detailSource).not.toContain('<Band');
   });
 
@@ -230,20 +243,21 @@ describe('store editorial composition contracts', () => {
     expect(cardSource).toContain('md:flex-row');
     expect(cardSource).toContain('md:w-1/2');
   });
-  it('fills the featured card height behind the 1:1 object without cropping it', () => {
+  it('covers the whole height of the featured card with its image, without a veil', () => {
     // La columna del destacado se estira a todo el alto de la ficha…
-    expect(cardSource).toContain('md:flex md:w-1/2 md:items-center md:self-stretch');
+    expect(cardSource).toContain("featured && 'md:w-1/2 md:self-stretch'");
     expect(cardSource).not.toContain('md:self-center');
-    // …la misma materia, difuminada y decorativa, la llena por detrás…
-    const backdrop = cardSource.slice(
-      cardSource.lastIndexOf('<div', cardSource.indexOf('data-featured-backdrop="true"')),
-      cardSource.indexOf('</div>', cardSource.indexOf('data-featured-backdrop="true"')),
-    );
-    expect(backdrop).toContain('aria-hidden="true"');
-    expect(backdrop).toContain('media={media}');
-    expect(backdrop).toMatch(/\bblur-/);
-    // …y el objeto nítido conserva la caja del slot, a su 1:1.
-    expect(cardSource).toContain("'relative w-full', ASPECT_FIELD[media.aspect]");
+    // …y desde `md` la imagen deja su caja 1:1 y la cubre entera: ni objeto
+    // centrado con huecos ni la misma materia difuminada por detrás.
+    expect(cardSource).toContain("featured && 'md:absolute md:inset-0 md:aspect-auto'");
+    expect(cardSource).not.toContain('data-featured-backdrop');
+    expect(cardSource).not.toMatch(/\bblur-/);
+    // Apilada, y en el resto de tarjetas, conserva la caja del slot a su 1:1.
+    expect(cardSource).toContain("'relative w-full',\n              ASPECT_FIELD[media.aspect]");
+    // El texto va debajo de la foto: sin velo, el objeto no queda opaco.
+    expect(cardSource).toContain('overlay={false}');
+    expect(cardSource).toContain('scrim={false}');
+    expect(cardSource).not.toContain('scrim="bottom"');
   });
   it('keeps the cart on the page axis and the related products readable at 768', () => {
     expect(cartPageSource).toContain('px-[var(--page-inset)]');

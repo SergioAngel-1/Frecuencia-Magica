@@ -5,8 +5,12 @@ import { useMemo } from 'react';
 
 import type { ResultStepProps } from '@/components/features/descubrete/result-step';
 import { recommend, type DiscoverCatalog } from '@/lib/discover/recommend';
+import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { categoryKey } from '@/lib/store/category-key';
 import type { Audio, Question } from '@/types/content';
+
+/** Tres tarjetas por fila desde 768 px, dentro de un ancho máximo de 1040 px. */
+const CARD_SIZES = '(min-width: 1088px) 334px, (min-width: 768px) 31vw, calc(100vw - 48px)';
 
 export type DiscoverResultView = Omit<ResultStepProps, 'onListen' | 'onRestart'> & {
   audio: Audio;
@@ -37,6 +41,9 @@ export function useDiscoverResult(
   if (!recommendation) return null;
 
   const { reading, audio, course, experience, product } = recommendation;
+  const courseTitle = tAcademy(`courses.${course.id}.title` as 'courses.c1.title');
+  const experienceTitle = tExperiences(`items.${experience.id}.title` as 'items.e1.title');
+  const productTitle = tStore(`products.${product.id}.title` as 'products.p1.title');
 
   return {
     audio,
@@ -52,18 +59,30 @@ export function useDiscoverResult(
       {
         id: course.id,
         kind: t('result.kinds.course'),
-        title: tAcademy(`courses.${course.id}.title` as 'courses.c1.title'),
+        title: courseTitle,
         meta: `${tAcademy('lessonsCount', { count: course.lessons })} · ${course.hours}`,
-        band: course.band,
+        // Cada tarjeta pinta la imagen de su ítem: el mismo slot e instancia
+        // que su realm, con la banda del ítem como fallback.
+        media: resolveEditorialMedia('academy-course-cover', {
+          instance: course.id,
+          alt: tAcademy('media.alt.courseCover', { title: courseTitle }),
+          sizes: CARD_SIZES,
+          band: course.band,
+        }),
         href: { pathname: '/academia/[courseId]', params: { courseId: course.id } },
         openLabel: t('result.open.course'),
       },
       {
         id: experience.id,
         kind: t('result.kinds.experience'),
-        title: tExperiences(`items.${experience.id}.title` as 'items.e1.title'),
+        title: experienceTitle,
         meta: `${tExperiences(`modes.${experience.mode}`)} · ${experience.dur}`,
-        band: experience.band,
+        media: resolveEditorialMedia('experiences-visual', {
+          instance: experience.id,
+          alt: tExperiences('media.alt.row', { title: experienceTitle }),
+          sizes: CARD_SIZES,
+          band: experience.band,
+        }),
         href: {
           pathname: '/experiencias/[experienceId]/reservar',
           params: { experienceId: experience.id },
@@ -73,9 +92,14 @@ export function useDiscoverResult(
       {
         id: product.id,
         kind: t('result.kinds.product'),
-        title: tStore(`products.${product.id}.title` as 'products.p1.title'),
+        title: productTitle,
         meta: tStore(categoryKey(product.catKey)),
-        band: product.band,
+        media: resolveEditorialMedia('store-product-visual', {
+          instance: product.id,
+          alt: tStore('media.alt.product', { title: productTitle }),
+          sizes: CARD_SIZES,
+          band: product.band,
+        }),
         href: { pathname: '/tienda/[productId]', params: { productId: product.id } },
         openLabel: t('result.open.product'),
       },

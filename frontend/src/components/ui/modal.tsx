@@ -65,7 +65,14 @@ export function Modal({
   useEffect(() => {
     const dialog = dialogRef.current;
 
-    if (open && dialog && !dialog.open) dialog.showModal();
+    if (!open || !dialog || dialog.open) return;
+
+    dialog.showModal();
+    // `showModal()` entrega el foco al primer control, el botón de cerrar, y
+    // iOS lo pinta con el aro de foco aunque se haya abierto con el dedo. El
+    // foco se queda en el propio diálogo: el lector anuncia su título y el
+    // primer Tab llega al botón de cerrar.
+    dialog.focus({ preventScroll: true });
   }, [open]);
 
   // La página no debe desplazarse por debajo mientras la tarjeta está abierta.
@@ -92,10 +99,11 @@ export function Modal({
     <dialog
       ref={dialogRef}
       aria-labelledby={titleId}
+      tabIndex={-1}
       data-lenis-prevent
       onCancel={handleCancel}
       onClose={onClose}
-      className="text-ivory fixed inset-0 size-full max-h-none max-w-none overflow-visible bg-transparent p-0 backdrop:bg-transparent"
+      className="text-ivory fixed inset-0 size-full max-h-none max-w-none overflow-visible bg-transparent p-0 outline-none backdrop:bg-transparent"
     >
       <AnimatePresence onExitComplete={() => dialogRef.current?.close()}>
         {open ? (

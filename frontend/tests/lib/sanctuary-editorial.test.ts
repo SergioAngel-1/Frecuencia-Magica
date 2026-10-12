@@ -29,7 +29,7 @@ const SANCTUARY_SLOTS = [
   { slot: 'sanctuary.hero' as const, aspect: '16:9' as const, alt: 'hero' },
   { slot: 'sanctuary.continue' as const, aspect: '16:8' as const, alt: 'continue' },
   { slot: 'sanctuary.daily' as const, aspect: '1:1' as const, alt: 'daily' },
-  { slot: 'sanctuary.journal' as const, aspect: '3:4' as const, alt: 'journal' },
+  { slot: 'sanctuary.journal' as const, aspect: '16:8' as const, alt: 'journal' },
   { slot: 'sanctuary.empty' as const, aspect: '16:9' as const, alt: 'empty' },
 ];
 
@@ -113,7 +113,7 @@ describe('sanctuary editorial composition contracts', () => {
     expect(continueSource).toContain('data-editorial-media="sanctuary.continue"');
   });
 
-  it('gives the journal its portrait and an editorial empty state', () => {
+  it('gives the journal its notebook and an editorial empty state', () => {
     expect(journalSource).toContain('data-editorial-media="sanctuary.journal"');
     expect(journalSource).toContain('<JournalEmpty');
     expect(pageSource).toContain("resolveEditorialMedia('sanctuary.empty'");
@@ -137,29 +137,28 @@ describe('sanctuary editorial composition contracts', () => {
     );
   });
   it('keeps the journal and daily media at their slot ratio, empty or not', () => {
-    // El vacío del diario no impone alto: así no estira la columna de su retrato.
+    // El vacío del diario no impone alto: mide lo que su texto.
     expect(emptySource).toContain('fill');
     const emptyState = readSource('components/ui/empty-state.tsx');
     expect(emptyState).toContain('fill?: boolean');
-    // La columna del retrato mide lo que la tarjeta del diario desde lg (y es el
-    // propio 3:4 apilada); el retrato sigue a su 3:4, anclado arriba y fundido,
-    // nunca estirado ni a 16:8.
-    const asideStart = journalSource.lastIndexOf(
-      '<div',
-      journalSource.indexOf('data-editorial-media="sanctuary.journal"'),
+    // El diario ocupa todo el ancho: ya no convive con una columna de retrato.
+    expect(journalSource).not.toContain('lg:grid-cols-');
+    expect(journalSource).not.toContain('lg:self-stretch');
+    expect(journalSource).not.toContain('max-lg:aspect-[3/4]');
+    // El cuaderno es el fondo del campo de texto: decorativo, cubriéndolo
+    // entero bajo un velo de noche, con el campo transparente encima.
+    const field = journalSource.slice(
+      journalSource.lastIndexOf(
+        '<div',
+        journalSource.indexOf('data-editorial-media="sanctuary.journal"'),
+      ),
+      journalSource.indexOf('<div className="flex gap-3">'),
     );
-    const aside = journalSource.slice(
-      asideStart,
-      journalSource.indexOf('data-editorial-media="sanctuary.journal"'),
-    );
-    expect(aside).toContain('lg:self-stretch');
-    expect(aside).toContain('max-lg:aspect-[3/4]');
-    expect(aside).toContain('rounded-card-lg');
-    expect(aside).not.toContain('self-start');
-    const portrait = journalSource.slice(asideStart);
-    expect(portrait).toContain('absolute inset-x-0 top-0 aspect-[3/4]');
-    expect(portrait).toContain('fade="bottom"');
-    expect(portrait).not.toContain('absolute inset-0');
+    expect(field).toContain('<div aria-hidden="true" className="absolute inset-0 -z-10">');
+    expect(field).toContain('media={media.journal}');
+    expect(field).toContain('bg-void-2/60');
+    expect(field).toContain('<Textarea');
+    expect(field).toContain("withPage && 'bg-transparent'");
     expect(journalSource).not.toContain('aspect-[16/8]');
     // La foto de la práctica diaria se ancla a su 1:1 en vez de estirarse con la tarjeta.
     expect(dailySource).toContain('absolute inset-x-0 top-0 -z-10 aspect-square');

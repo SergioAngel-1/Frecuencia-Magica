@@ -4,21 +4,40 @@ import type { Product } from '@/types/content';
 
 import { useTranslations } from 'next-intl';
 
-import { Badge, Button, EditorialImage, Kicker, Prose, SectionHeading } from '@/components/ui';
-import { OrbitalRings } from '@/components/world';
+import { PlayPauseIcon } from '@/components/features/player/player-icons';
+import {
+  Badge,
+  Button,
+  EditorialImage,
+  Float,
+  Kicker,
+  Prose,
+  SectionHeading,
+} from '@/components/ui';
 import { PRODUCTS } from '@/data';
 import { useRouter } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
+import { cn } from '@/lib/cn';
 import { categoryKey } from '@/lib/store/category-key';
 import { relatedProducts } from '@/lib/store/related';
 import { useCartStore } from '@/stores/cart-store';
-import { usePlayerStore } from '@/stores/player-store';
-import type { EditorialMedia } from '@/types/editorial-media';
+import { useAudioPlayback, usePlayerStore } from '@/stores/player-store';
+import type { EditorialMedia, EditorialMediaAspect } from '@/types/editorial-media';
 
 import { ProductCard } from './product-card';
 import { ProductSections } from './product-sections';
 
+/** La caja de la imagen sigue el ratio de lo que pinta: el objeto a 1:1, la atmósfera a 16:8. */
+const DETAIL_ASPECT: Record<EditorialMediaAspect, string> = {
+  viewport: 'aspect-[16/9]',
+  '16:9': 'aspect-[16/9]',
+  '16:8': 'aspect-[16/8]',
+  '3:4': 'aspect-[3/4]',
+  '1:1': 'aspect-square',
+};
+
 export type ProductMedia = {
+  /** La imagen del propio producto (`store-product-visual`); sin ella, la atmósfera de `product.detail`. */
   detail: EditorialMedia;
   related: Record<(typeof PRODUCTS)[number]['id'], EditorialMedia>;
 };
@@ -32,52 +51,50 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
   const t = useTranslations('store');
   const tResonario = useTranslations('resonario');
   const add = useCartStore((state) => state.add);
-  const openPlayer = usePlayerStore((state) => state.open);
+  const tPlayer = useTranslations('player');
+  const toggleAudio = usePlayerStore((state) => state.toggleAudio);
+  const frequency = useAudioPlayback(product.relatedAudioId);
   const router = useRouter();
   const related = relatedProducts(product, PRODUCTS, 3);
   const title = t(`products.${product.id}.title`);
+  const frequencyTitle = tResonario(`audios.${product.relatedAudioId}.title` as 'audios.a1.title');
 
   return (
     <div>
-      <section
-        className="rounded-card-lg relative isolate min-h-[clamp(320px,52vw,640px)] overflow-hidden"
-        data-editorial-media="product.detail"
-      >
-        <EditorialImage
-          aspect="16:8"
-          className="absolute inset-0 h-full"
-          media={media.detail}
-          overlay="bottom"
-          scrim="bottom"
-        />
-        <div
-          aria-hidden="true"
-          className="border-gold/35 pointer-events-none absolute top-[14%] right-[10%] z-10 size-[clamp(100px,18vw,220px)] rounded-full border opacity-60"
-          data-editorial-geometry="true"
-        />
-        <OrbitalRings
-          className="pointer-events-none absolute right-[8%] bottom-[10%] z-10 opacity-45"
-          size={160}
-          spin={100}
-          rings={[{ r: 80, stroke: 'rgba(247,244,234,0.5)', width: 0.6 }]}
-        />
-      </section>
+      {/* La imagen es la de la tarjeta que se eligió en la tienda, a su mismo
+          ratio y sin velo: desde `lg` acompaña a la ficha mientras se lee. */}
+      <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+        <section
+          className={cn(
+            'rounded-card-lg border-gold/20 relative isolate overflow-hidden border lg:sticky lg:top-[112px]',
+            DETAIL_ASPECT[media.detail.aspect],
+          )}
+          data-editorial-media={media.detail.slot}
+        >
+          <EditorialImage
+            aspect={media.detail.aspect}
+            className="h-full"
+            media={media.detail}
+            overlay={false}
+            priority
+            scrim={false}
+          />
+        </section>
 
-      <div className="mt-block grid gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1fr)] lg:gap-16">
-        <div>
-          <Badge solid>{t(categoryKey(product.catKey))}</Badge>
-          <Kicker tone="gold" spacing="widest" className="mt-6">
-            {t('kicker')}
-          </Kicker>
-          <h1 className="text-ivory mt-4 font-serif text-[clamp(36px,5vw,72px)] leading-[0.94]">
-            {title}
-          </h1>
-          <p className="text-gold tracking-soft mt-6 font-serif text-[30px]">
-            {formatPrice(product.price)}
-          </p>
-        </div>
+        <div className="flex flex-col gap-6">
+          <div>
+            <Badge solid>{t(categoryKey(product.catKey))}</Badge>
+            <Kicker tone="gold" spacing="widest" className="mt-6">
+              {t('kicker')}
+            </Kicker>
+            <h1 className="text-ivory mt-4 font-serif text-[clamp(36px,5vw,72px)] leading-[0.94]">
+              {title}
+            </h1>
+            <p className="text-gold tracking-soft mt-6 font-serif text-[30px]">
+              {formatPrice(product.price)}
+            </p>
+          </div>
 
-        <div className="flex flex-col gap-6 lg:pt-9">
           <Prose maxWidth={48}>{t('productDescription')}</Prose>
           <ul className="space-y-2">
             {(t.raw('notes') as string[]).map((note) => (
@@ -102,26 +119,35 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
             </Button>
           </div>
 
+          {/* La frecuencia del producto comparte estado con el reproductor: se
+              enciende mientras es la que está abierta y su play pasa a pausa
+              mientras suena, igual que en el dock. */}
           <button
             type="button"
-            onClick={() => openPlayer(product.relatedAudioId)}
-            className="border-glass-brd bg-glass hover:border-gold/60 mt-1 flex min-h-11 items-center gap-3 self-start rounded-full border px-5 py-3 text-left transition-colors"
+            aria-label={`${frequency.playing ? tPlayer('pause') : tPlayer('play')} — ${frequencyTitle}`}
+            onClick={() => toggleAudio(product.relatedAudioId)}
+            className={cn(
+              'bg-glass hover:border-gold/60 mt-1 flex min-h-11 items-center gap-3 self-start rounded-full border px-5 py-3 text-left transition-[border-color,box-shadow] duration-300',
+              frequency.active ? 'border-gold/60 shadow-glow-card' : 'border-glass-brd',
+            )}
+            data-frequency-state={
+              frequency.playing ? 'playing' : frequency.active ? 'paused' : 'idle'
+            }
           >
             <span
               aria-hidden="true"
-              className="border-gold/50 text-gold flex size-8 shrink-0 items-center justify-center rounded-full border"
+              className={cn(
+                'text-gold flex size-8 shrink-0 items-center justify-center rounded-full border transition-colors duration-300',
+                frequency.active ? 'border-gold/70 bg-gold/15' : 'border-gold/50',
+              )}
             >
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
+              <PlayPauseIcon playing={frequency.playing} size={12} />
             </span>
             <span className="flex flex-col">
               <span className="text-teal text-label tracking-label font-sans uppercase">
                 {t('relatedFrequencyLabel')}
               </span>
-              <span className="text-ivory font-serif text-[16px]">
-                {tResonario(`audios.${product.relatedAudioId}.title` as 'audios.a1.title')}
-              </span>
+              <span className="text-ivory font-serif text-[16px]">{frequencyTitle}</span>
             </span>
           </button>
 
@@ -137,12 +163,10 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
             className="mb-8"
           />
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {related.map((relatedProduct) => (
-              <ProductCard
-                key={relatedProduct.id}
-                media={media.related[relatedProduct.id]!}
-                product={relatedProduct}
-              />
+            {related.map((relatedProduct, index) => (
+              <Float key={relatedProduct.id} order={index} className="grid">
+                <ProductCard media={media.related[relatedProduct.id]!} product={relatedProduct} />
+              </Float>
             ))}
           </div>
         </section>

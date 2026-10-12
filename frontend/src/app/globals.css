@@ -199,6 +199,19 @@
     [data-magnetic] {
       cursor: none;
     }
+
+    /* A pantalla completa el navegador sólo pinta ese elemento: el cursor
+       luminoso queda fuera, así que dentro vuelve el nativo. */
+    :fullscreen,
+    :fullscreen a,
+    :fullscreen [data-magnetic] {
+      cursor: auto;
+    }
+
+    :fullscreen button,
+    :fullscreen input[type='range'] {
+      cursor: pointer;
+    }
   }
 
   @media (hover: none) {

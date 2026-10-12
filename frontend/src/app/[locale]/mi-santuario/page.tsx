@@ -8,7 +8,7 @@ import {
   StatsRow,
 } from '@/components/features/sanctuary';
 import { PageShell } from '@/components/layout';
-import { FullBleedSection } from '@/components/ui';
+import { Float, FullBleedSection } from '@/components/ui';
 import { COURSES } from '@/data';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -36,10 +36,10 @@ export default async function SanctuaryPage({ params }: PageProps) {
       band: resume?.course.band,
     }),
     daily: resolveEditorialMedia('sanctuary.daily', { alt: t('media.alt.daily') }),
-    // Columna de 340 px junto al diario desde 1024; por debajo, a todo el ancho.
+    // Fondo del campo del diario, que ocupa el ancho del contenido.
     journal: resolveEditorialMedia('sanctuary.journal', {
       alt: t('media.alt.journal'),
-      sizes: '(min-width: 1024px) 340px, 100vw',
+      sizes: '(min-width: 1280px) 1180px, calc(100vw - 88px)',
     }),
     empty: resolveEditorialMedia('sanctuary.empty', { alt: t('media.alt.empty') }),
   };
@@ -67,8 +67,15 @@ export default async function SanctuaryPage({ params }: PageProps) {
         />
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_1fr] lg:gap-8">
-          {resume ? <ContinueCard media={media.continue} resume={resume} /> : null}
-          <DailyCard media={media.daily} audioId={profile.dailyAudioId} />
+          {/* `grid`: la tarjeta se estira al alto de su celda dentro del envoltorio. */}
+          {resume ? (
+            <Float className="grid">
+              <ContinueCard media={media.continue} resume={resume} />
+            </Float>
+          ) : null}
+          <Float order={1} className="grid">
+            <DailyCard media={media.daily} audioId={profile.dailyAudioId} />
+          </Float>
         </div>
 
         <div className="mt-8 lg:mt-10">

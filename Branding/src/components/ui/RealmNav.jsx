@@ -19,7 +19,7 @@ export function RealmNav({ realms, current, layout = 'column', className }) {
                 <span className="sr-only">{realm.name}</span>
                 <span
                   aria-hidden="true"
-                  className={cn('h-[9px] w-[9px] flex-none rounded-full transition-[transform,opacity] duration-300 group-hover:scale-[1.35] group-hover:opacity-100', !active && 'opacity-60')}
+                  className={cn('size-3 flex-none rounded-full transition-[transform,opacity] duration-300 group-hover:scale-[1.35] group-hover:opacity-100', !active && 'opacity-60')}
                   style={{ background: realm.accent, boxShadow: active ? `0 0 12px 2px ${realm.accent}` : undefined }}
                 />
                 {bar ? (
@@ -29,7 +29,7 @@ export function RealmNav({ realms, current, layout = 'column', className }) {
                 ) : (
                   <span
                     aria-hidden="true"
-                    className="fm-surface-strong rounded-pill pointer-events-none absolute top-1/2 left-[30px] flex -translate-y-1/2 items-center gap-[9px] py-2 pr-[18px] pl-[15px] whitespace-nowrap opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    className="fm-surface-strong rounded-pill pointer-events-none absolute top-1/2 left-[34px] flex -translate-y-1/2 items-center gap-[9px] py-2 pr-[18px] pl-[15px] whitespace-nowrap opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                   >
                     <span className="h-[6px] w-[6px] flex-none rounded-full" style={{ background: realm.accent, boxShadow: `0 0 8px 1px ${realm.accent}` }} />
                     <span className="text-ivory tracking-soft font-serif text-[16px]">{realm.name}</span>

@@ -8,7 +8,7 @@
  * (`frontend/tests/lib/photography-brief.test.ts`) falla si este archivo se desvía de él.
  *
  * Dirección (enmienda 2026-10-10): «la imagen es el paisaje; el world engine es su energía». Paisaje
- * luminoso de noche —agua, bruma, cielo cósmico— con una silueta de luz en seis slots narrativos. La
+ * luminoso de noche —agua, bruma, cielo cósmico— con una silueta de luz en seis slots narrativos y una portada de curso. La
  * imagen es oscura y cálida, con bordes que se funden con `--void`; los scrims y las máscaras los
  * aplica el CSS, nunca el archivo.
  *
@@ -100,6 +100,14 @@ const LIGHT_BODY_TRAITS =
 /** Cuerpo de luz, sin artículo: `an ${BODY_OF_LIGHT}`, `a small ${BODY_OF_LIGHT}`. */
 const BODY_OF_LIGHT = `abstract translucent silhouette of pure light ${LIGHT_BODY_TRAITS}`
 
+/**
+ * Producto de la tienda: se genera adjuntando la foto real del producto. El prompt no describe ni la
+ * forma ni la etiqueta —las fija la referencia—, sólo la escena; un texto descrito sale deformado.
+ */
+const FROM_REFERENCE =
+  'shown in the attached reference image, reproduced faithfully: the same shape, proportions, materials, colours and closure, ' +
+  'and its label copied exactly as it appears in the reference, with the lettering sharp and unchanged and nothing rewritten, added or invented'
+
 /** Firma de filamentos contada en positivo: sin «exactly … in total» los modelos pintan 4–6 líneas. */
 const filaments = (where) =>
   `exactly three thin vertical light filaments in total, one gold, one teal and one lavender, ${where}, and no other vertical lines anywhere`
@@ -108,6 +116,14 @@ const filaments = (where) =>
 const HALO =
   'a soft diffuse halo of light: a broad blurred glow about one fifth of the ring\'s diameter wide, brightest in the middle of its width and fading smoothly on both sides, ' +
   'with no outline and no hard edge, like the corona of an eclipse seen through mist, never a thin glowing line or neon tube'
+
+/** Excepción al cierre del prompt base («No text…») en los productos con foto de referencia. */
+const LABEL_EXCEPTION = "The only exception is the product's own label, kept exactly as in the reference image."
+
+/** Arranque del negativo y su variante para los productos con foto de referencia. */
+const TEXT_CLAUSE = 'text, letters, numbers, captions, watermark, logo, signature, channel name,'
+const TEXT_CLAUSE_BUT_LABEL =
+  'captions, watermark, signature, channel name, any text or logo that is not on the product in the reference image, invented or misspelled label text,'
 
 export const GLOBAL = {
   /** Se añade al final de todos los prompts, después del sujeto y el encuadre. */
@@ -135,8 +151,8 @@ export const GLOBAL = {
     'CGI plastic look, game-engine render, emojis' +
     FACE_CLAUSE,
   rules: [
-    'Sin texto, logos, marcas, nombres de canal ni etiquetas legibles dentro de la imagen: el copy lo pone la web.',
-    'Sin rasgos faciales: el cuerpo de luz es una silueta translúcida sin ojos, boca ni nariz, y el único rostro es el retrato real de Marisol. Fuera de esos casos: manos, espaldas, siluetas lejanas u objetos. El prompt describe la silueta en positivo (cabeza lisa, sin nariz, labios ni oreja; de espaldas o girada): «faceless» a secas no basta.',
+    'Sin texto, logos, marcas, nombres de canal ni etiquetas legibles dentro de la imagen: el copy lo pone la web. Única excepción: los productos de la tienda, que se generan adjuntando la foto real del producto y conservan su etiqueta tal como está en ella; el prompt nunca describe ni dicta ese texto.',
+    'Sin rasgos faciales: el cuerpo de luz es una silueta translúcida sin ojos, boca ni nariz, y el único rostro es el retrato real de Marisol. Fuera de esos casos: manos u objetos. Toda figura de cuerpo entero es el cuerpo de luz, nunca una persona real, ni de espaldas. El prompt describe la silueta en positivo (cabeza lisa, sin nariz, labios ni oreja; de espaldas o girada): «faceless» a secas no basta.',
     'Cielo arriba, materia abajo: el cosmos ocupa como mucho el tercio superior, con estrellas escasas. El world engine ya pinta el campo de estrellas y las partículas; la imagen no los duplica.',
     'Luz dorada sobre fondo oscuro: los bordes de la imagen tienden a --void para que el scrim de CSS funda sin corte.',
     'Nada de fondos blancos, grises ni pasteles, ni neón ni arcoíris: es un universo nocturno. Oro, teal y lavanda, a baja saturación.',
@@ -173,7 +189,7 @@ export const LANGUAGE = {
     {
       name: 'Cuerpo de luz',
       feel: 'Silueta translúcida sin rasgos, bordeada de oro con teal y lavanda por dentro.',
-      realms: 'Seis slots narrativos (ver abajo)',
+      realms: 'Seis slots narrativos y una portada de curso (ver abajo)',
     },
   ],
   signature: {
@@ -189,6 +205,8 @@ export const LANGUAGE = {
       'academy.completion',
       'sanctuary.hero',
     ],
+    /** Instancias sueltas de un slot por instancia, por su nombre de archivo sin extensión. */
+    instances: ['academy-course-cover-c1'],
   },
 }
 
@@ -484,9 +502,9 @@ export const SLOTS = [
   ),
   slot(
     'store-product-visual', 'square', '50% 50%', 'P1', 'warm', 'none', 'Tienda · productos',
-    'El objeto completo y centrado; materia de compra (8 productos).',
+    'El producto real, completo y centrado, a partir de su foto de referencia; materia de compra (8 productos).',
     '', 'One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side',
-    { family: 'product' },
+    { family: 'product', reference: true },
   ),
   slot(
     'store.ritual-banner', 'wide', '50% 40%', 'P2', 'warm', 'bottom', 'Tienda · banner ritual',
@@ -542,11 +560,14 @@ export const SLOTS = [
     'Today\'s practice: a small brass bowl of still water on dark stone, a single beam of early morning light falling into it and making it glow gold, tiny ripples',
     'Bowl centered, beam entering from the upper left, dark surroundings',
   ),
+  // Fondo del campo de texto del diario: una caja apaisada (≈4:1 en escritorio, ≈6:5 en móvil) que
+  // recorta el 2:1 por arriba y abajo o por los lados. Por eso todo vive en la franja central y sale
+  // desenfocado: encima se escribe.
   slot(
-    'sanctuary.journal', 'portrait', '50% 50%', 'P2', 'soft', 'low', 'Mi Santuario · diario',
-    'El diario como materia íntima.',
-    'The journal as intimate matter: an open linen-bound notebook with blank pages and a brass pen on dark wood, candlelight raking across the paper, a dried sprig of lavender, no legible writing, the table holding only these things and nothing else, with dark wood and shadow behind them',
-    'Vertical, notebook in the lower two thirds, upper third dark and calm',
+    'sanctuary.journal', 'cinema', '50% 50%', 'P2', 'soft', 'low', 'Mi Santuario · diario',
+    'La página sobre la que se escribe: el cuaderno, desenfocado y en penumbra, es el fondo del campo del diario y el texto va encima.',
+    'The journal as a soft page to write on, entirely out of focus: an open linen-bound notebook with blank pages lying flat on dark wood, seen from directly above, a brass pen resting on the right page and one dried sprig of lavender beside the pen, faint warm candlelight from outside the frame grazing the paper, the whole image softly blurred as if photographed far out of focus, the edges of the notebook, the pen and the lavender dissolving into a gentle blur with no crisp line anywhere, the paper a dim muted ivory much darker than white, no writing on the pages, the table holding only these three things and nothing else',
+    'The open notebook lies horizontally at the exact center of the frame, its spread between 25% and 75% of the frame width and between 30% and 70% of the frame height, the pen and the lavender inside that same area on the right page, the left page completely empty; the top quarter and the bottom quarter of the frame are only dark wood in shadow, and so are the left and right fifths, so the image can be cropped to its middle horizontal band or to its central square without losing anything',
   ),
   slot(
     'sanctuary.empty', 'wide', '50% 40%', 'P2', 'soft', 'center', 'Mi Santuario · vacío',
@@ -607,7 +628,7 @@ export const FAMILIES = {
     slotId: 'academy-course-cover',
     filePrefix: 'academy-course-cover',
     instances: [
-      { slug: 'c1', es: 'El Arte de Volver a Ti', en: 'The Art of Returning to You', treatment: 'lav', subject: 'A person seen from behind sitting cross-legged on a rock at the edge of still water at dawn, silhouetted against lavender and gold light over distant mountains, deep calm, the head turned away so that only the back of the head and the shoulders are visible' },
+      { slug: 'c1', es: 'El Arte de Volver a Ti', en: 'The Art of Returning to You', treatment: 'lav', subject: `A small ${BODY_OF_LIGHT}, seated cross-legged on a dark rock at the edge of still water at dawn, seen from behind with the head turned away from the camera, the whole figure made of soft glowing light from head to knees, a smooth luminous form edged in warm gold with faint teal and lavender light flowing through it like fine veins of current, its glow mirrored softly on the water, lavender and gold first light over distant misty mountains, deep calm; it is the only figure in the scene, about 12% of the frame width and centered at 55% horizontal` },
       { slug: 'c2', es: 'Rituales Conscientes', en: 'Conscious Rituals', treatment: 'teal', subject: 'Hands arranging ritual objects on dark stone — a ceramic bowl, a candle, a sprig of cedar — moss-green and gold light, unhurried gesture' },
       { slug: 'c3', es: 'Aromas que Sanan', en: 'Aromas that Heal', treatment: 'warm', subject: 'Amber glass vials of essential oils, dried cedar and herbs on a dark wooden tray, warm golden light and a thread of fragrant smoke' },
     ],
@@ -617,7 +638,7 @@ export const FAMILIES = {
     filePrefix: 'experiences-visual',
     instances: [
       { slug: 'e1', es: 'Baño de Sonido en Vivo', en: 'Live Sound Bath', treatment: 'lav', subject: 'Crystal and brass singing bowls glowing from within on a dark wooden platform over still water, candles between them, rings of light spreading across the surface, a soft haze; nobody present' },
-      { slug: 'e2', es: 'Círculo de Luna Nueva', en: 'New Moon Circle', treatment: 'lav', subject: 'A circle of small candles, each with a small steady flame, on a dark stone shore beneath a thin new-moon crescent low in the upper part of the sky over still water, quiet and ceremonial' },
+      { slug: 'e2', es: 'Círculo de Luna Nueva', en: 'New Moon Circle', treatment: 'lav', subject: 'An empty ceremonial place waiting for its guests: a circle of small candles, each with a small steady flame, on a dark stone shore beneath a thin new-moon crescent low in the upper part of the sky over still water, the middle of the circle bare dark stone with nothing and nobody in it, the shore deserted, quiet and ceremonial; the only things on the shore are the candles, nobody present' },
       { slug: 'e3', es: 'Ritual de Aromas', en: 'Aroma Ritual', treatment: 'warm', subject: 'A brass burner with copal smoke rising in slow spirals, amber oil bottles and dried herbs beside it on a dark wooden table in a quiet room that opens onto still water, golden light' },
       { slug: 'e4', es: 'Meditación al Amanecer', en: 'Sunrise Meditation', treatment: 'teal', subject: 'A small terrace at first light with a cushion and a steaming cup placed in the middle distance at the far end of the terrace, teal mist over distant hills and still water, the first gold on the horizon; nobody present' },
     ],
@@ -626,14 +647,14 @@ export const FAMILIES = {
     slotId: 'store-product-visual',
     filePrefix: 'store-product-visual',
     instances: [
-      { slug: 'p1', es: 'Aceite Esencial · Cedro Sagrado', en: 'Essential Oil · Sacred Cedar', treatment: 'warm', subject: 'An amber glass dropper bottle with a plain unmarked label and a cedar sprig beside it, the whole bottle and sprig held inside the central 50% of the frame height with plain dark surface above and below' },
-      { slug: 'p2', es: 'Vela Ritual · Luz de Vela', en: 'Ritual Candle · Candlelight', treatment: 'warm', subject: 'A honey-coloured wax candle in a dark glass vessel, lit, the flame reflected in the glass' },
-      { slug: 'p3', es: 'Cuarzo de Serenidad', en: 'Serenity Quartz', treatment: 'lav', subject: 'A clear quartz crystal point standing upright with faint lavender internal light and a soft warm rim light' },
-      { slug: 'p4', es: 'Bruma de Enraizamiento', en: 'Grounding Mist', treatment: 'teal', subject: 'A small dark-green glass spray bottle with a fine mist drifting from it, moss and stone beneath' },
-      { slug: 'p5', es: 'Incienso · Bosque de Copal', en: 'Incense · Copal Forest', treatment: 'soft', subject: 'Chunks of pale copal resin in a small clay dish with a thin ribbon of smoke rising' },
-      { slug: 'p6', es: 'Sal de Baño · Luna Llena', en: 'Bath Salt · Full Moon', treatment: 'lav', subject: 'A glass jar of pale bath salts with a hint of lavender, a wooden scoop beside it, soft moonlit sheen' },
-      { slug: 'p7', es: 'Infusión · Calma de Cedro', en: 'Infusion · Cedar Calm', treatment: 'warm', subject: 'A handmade ceramic cup of steaming herbal infusion with dried herbs scattered near it, amber light' },
-      { slug: 'p8', es: 'Diario de Frecuencias', en: 'Frequency Journal', treatment: 'teal', subject: 'A linen-bound notebook closed, its cover plain unmarked linen, a brass pen lying across it' },
+      { slug: 'p1', es: 'Aceite Esencial · Cedro Sagrado', en: 'Essential Oil · Sacred Cedar', treatment: 'warm', subject: `The essential-oil bottle ${FROM_REFERENCE}, with a cedar sprig beside its base, the whole bottle and sprig held inside the central 50% of the frame height with plain dark surface above and below` },
+      { slug: 'p2', es: 'Vela Ritual · Luz de Vela', en: 'Ritual Candle · Candlelight', treatment: 'warm', subject: `The ritual candle ${FROM_REFERENCE}, lit, with a small steady flame and its glow reflected in its vessel` },
+      { slug: 'p3', es: 'Cuarzo de Serenidad', en: 'Serenity Quartz', treatment: 'lav', subject: `The quartz crystal ${FROM_REFERENCE}, standing upright with a faint lavender light inside it and a soft warm rim light` },
+      { slug: 'p4', es: 'Bruma de Enraizamiento', en: 'Grounding Mist', treatment: 'teal', subject: `The mist spray bottle ${FROM_REFERENCE}, with a fine mist drifting beside it, moss and stone beneath` },
+      { slug: 'p5', es: 'Incienso · Bosque de Copal', en: 'Incense · Copal Forest', treatment: 'soft', subject: `The incense ${FROM_REFERENCE}, with a thin ribbon of smoke rising beside it` },
+      { slug: 'p6', es: 'Sal de Baño · Luna Llena', en: 'Bath Salt · Full Moon', treatment: 'lav', subject: `The bath-salt container ${FROM_REFERENCE}, with a wooden scoop beside its base, soft moonlit sheen` },
+      { slug: 'p7', es: 'Infusión · Calma de Cedro', en: 'Infusion · Cedar Calm', treatment: 'warm', subject: `The herbal infusion ${FROM_REFERENCE}, with dried herbs scattered near its base, amber light` },
+      { slug: 'p8', es: 'Diario de Frecuencias', en: 'Frequency Journal', treatment: 'teal', subject: `The journal ${FROM_REFERENCE}, closed, with a brass pen lying beside it` },
     ],
   },
 }
@@ -685,11 +706,19 @@ export function composePrompt(entry, instance) {
     .filter(Boolean)
     .join(' ')
 
-  return `${subject}. ${entry.frame}. ${layout} ${GLOBAL.treatments[treatment]} ${GLOBAL.base}`
+  const prompt = `${subject}. ${entry.frame}. ${layout} ${GLOBAL.treatments[treatment]} ${GLOBAL.base}`
+
+  // Con foto de referencia, la etiqueta del producto es el único texto permitido.
+  return entry.reference ? `${prompt} ${LABEL_EXCEPTION}` : prompt
 }
 
-/** Negativo del agente. El retrato de Marisol es la única imagen donde un rostro es lo que se busca. */
+/**
+ * Negativo del agente. El retrato de Marisol es la única imagen donde un rostro es lo que se busca, y los
+ * productos con foto de referencia, las únicas donde el texto de la etiqueta debe verse.
+ */
 export function negativeFor(entry) {
+  if (entry.reference) return GLOBAL.negative.replace(TEXT_CLAUSE, TEXT_CLAUSE_BUT_LABEL)
+
   return entry.realShoot ? GLOBAL.negative.replace(FACE_CLAUSE, '') : GLOBAL.negative
 }
 

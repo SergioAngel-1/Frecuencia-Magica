@@ -91,6 +91,8 @@ function ringsFor(size, active) {
 export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = false, showPlay = false, showEqualizer = false, playing = true, width, className }) {
   const spec = SIZES[size]
   const box = width ?? spec.width
+  // El disco que suena ofrece la pausa; cualquier otro, el play.
+  const pausable = active && playing
 
   return (
     <div className={cn('mx-auto w-full', className)} style={{ maxWidth: box }}>
@@ -161,8 +163,15 @@ export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = fal
                 background: active ? 'rgba(216,185,120,0.14)' : 'rgba(15,27,46,0.35)',
               }}
             >
-              <svg width={spec.play * 0.32} height={spec.play * 0.32} viewBox="0 0 24 24" fill="currentColor" className="text-ivory translate-x-[6%]">
-                <path d="M8 5v14l11-7z" />
+              <svg width={spec.play * 0.32} height={spec.play * 0.32} viewBox="0 0 24 24" fill="currentColor" className={cn('text-ivory', !pausable && 'translate-x-[6%]')}>
+                {pausable ? (
+                  <>
+                    <rect x="6.5" y="5" width="3.5" height="14" rx="1" />
+                    <rect x="14" y="5" width="3.5" height="14" rx="1" />
+                  </>
+                ) : (
+                  <path d="M8 5v14l11-7z" />
+                )}
               </svg>
             </span>
           ) : null}

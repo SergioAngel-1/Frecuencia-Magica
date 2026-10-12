@@ -46,17 +46,12 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
   // Hasta que el cliente ha pintado no se lee `localStorage`: el servidor no
   // tiene entradas y mostrarlas en el primer render desajusta la hidratación.
   const visibleEntries = mounted ? entries : [];
-  // La columna lateral sólo existe si el slot pinta algo: sin foto, el diario
-  // ocupa el ancho entero en vez de convivir con un hueco.
-  const withAside = hasEditorialVisual(media.journal);
+  // El cuaderno es el fondo de la página en la que se escribe; sin foto
+  // publicada, el campo conserva su cristal.
+  const withPage = hasEditorialVisual(media.journal);
 
   return (
-    <div
-      className={cn(
-        'grid gap-6',
-        withAside && 'lg:grid-cols-[minmax(0,1fr)_minmax(260px,340px)] lg:gap-8',
-      )}
-    >
+    <div>
       <GlassPanel
         className={cn(
           'p-5 transition-[box-shadow,border-color] duration-700 sm:p-7',
@@ -94,15 +89,35 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
           ))}
         </div>
 
-        <Textarea
-          aria-label={tJournal('placeholder')}
-          variant="journal"
-          placeholder={tJournal('placeholder')}
-          rows={5}
-          value={draft.text}
-          onChange={(e) => setText(e.target.value)}
-          className="mb-4"
-        />
+        {/* El diario se escribe sobre su cuaderno: la foto es el fondo del
+            campo, decorativa, y un velo de noche sostiene el contraste del
+            texto. El campo queda transparente para no taparla dos veces. */}
+        <div
+          className="rounded-field relative isolate mb-4 overflow-hidden"
+          data-editorial-media="sanctuary.journal"
+        >
+          {withPage ? (
+            <div aria-hidden="true" className="absolute inset-0 -z-10">
+              <EditorialImage
+                className="h-full"
+                focalPoint={media.journal.position}
+                media={media.journal}
+                overlay={false}
+                scrim={false}
+              />
+              <div className="bg-void-2/60 absolute inset-0" />
+            </div>
+          ) : null}
+          <Textarea
+            aria-label={tJournal('placeholder')}
+            variant="journal"
+            placeholder={tJournal('placeholder')}
+            rows={8}
+            value={draft.text}
+            onChange={(e) => setText(e.target.value)}
+            className={cn('block', withPage && 'bg-transparent')}
+          />
+        </div>
 
         <div className="flex gap-3">
           <Button
@@ -135,29 +150,6 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
           {saved ? tJournal('saved') : ''}
         </p>
       </GlassPanel>
-
-      {withAside ? (
-        // Desde lg la columna mide lo mismo que la tarjeta del diario, con su
-        // radio y su borde; el retrato se queda a su 3:4, anclado arriba, y
-        // funde en la noche de la columna en vez de estirarse o recortarse.
-        // Apilado, la columna es el propio retrato a 3:4.
-        <div
-          className="rounded-card-lg border-gold/20 relative overflow-hidden border max-lg:order-first max-lg:aspect-[3/4] lg:self-stretch"
-          data-editorial-media="sanctuary.journal"
-        >
-          <div className="absolute inset-x-0 top-0 aspect-[3/4]">
-            <EditorialImage
-              aspect="3:4"
-              className="h-full"
-              fade="bottom"
-              focalPoint={media.journal.position}
-              media={media.journal}
-              overlay={false}
-              scrim="bottom"
-            />
-          </div>
-        </div>
-      ) : null}
     </div>
   );
 }

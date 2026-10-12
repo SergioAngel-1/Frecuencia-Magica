@@ -6,7 +6,7 @@ import { upcomingDates } from '@/lib/booking/dates';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ExperienceRow } from './experience-row';
-import { BandChain, Kicker, Display } from '@/components/ui';
+import { BandChain, Display, Float, Kicker } from '@/components/ui';
 
 export type ExperienceMedia = {
   hero: EditorialMedia;
@@ -70,18 +70,19 @@ export function ExperienceList({ media, hero }: ExperienceListProps) {
 
         <div className="flex flex-col gap-5">
           {others.map((exp, index) => (
-            <ExperienceRow
-              key={exp.id}
-              bookLabel={t('book')}
-              date={dates[index + 1]!}
-              dateLabel={t('dateLabel')}
-              durationLabel={t('durationLabel')}
-              experience={exp}
-              media={experienceMedia(exp)}
-              mode={t(`modes.${exp.mode}` as 'modes.online')}
-              modeLabel={t(`modes.${exp.mode}` as 'modes.online')}
-              title={titleFor(exp)}
-            />
+            <Float key={exp.id} order={index}>
+              <ExperienceRow
+                bookLabel={t('book')}
+                date={dates[index + 1]!}
+                dateLabel={t('dateLabel')}
+                durationLabel={t('durationLabel')}
+                experience={exp}
+                media={experienceMedia(exp)}
+                mode={t(`modes.${exp.mode}` as 'modes.online')}
+                modeLabel={t(`modes.${exp.mode}` as 'modes.online')}
+                title={titleFor(exp)}
+              />
+            </Float>
           ))}
         </div>
       </section>

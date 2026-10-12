@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from 'react';
 import { Halo } from '@/components/world/halo';
 import { OrbitalRings, type Ring } from '@/components/world/orbital-rings';
 import { cn } from '@/lib/cn';
+import { floatStyle } from '@/lib/motion/float';
 
 import { Equalizer, type EqualizerScale } from './equalizer';
 
@@ -139,6 +140,11 @@ interface FrequencyDiscProps {
   active?: boolean;
   showPlay?: boolean;
   showEqualizer?: boolean;
+  /**
+   * El audio suena de verdad: mueve el ecualizador y, en el disco activo,
+   * cambia el play por la pausa. Un disco activo con `playing={false}` está
+   * en pausa.
+   */
   playing?: boolean;
   /** Ancho en px. Por defecto, el de la escala. */
   width?: number;
@@ -179,14 +185,16 @@ export function FrequencyDisc({
 }: FrequencyDiscProps) {
   const spec = SIZES[size];
   const box = width ?? spec.width;
+  // El disco que suena ofrece la pausa; cualquier otro, el play.
+  const pausable = active && playing;
 
-  const floatStyle: CSSProperties = floatDuration
-    ? { animation: `fm-float ${floatDuration} ease-in-out infinite`, animationDelay: floatDelay }
+  const float: CSSProperties = floatDuration
+    ? floatStyle({ depth: 'deep', duration: floatDuration, delay: floatDelay ?? '0s' })
     : {};
 
   const disc = (
     <>
-      <div className="relative mx-auto aspect-square w-full" style={floatStyle}>
+      <div className="relative mx-auto aspect-square w-full" style={float}>
         {spec.halo ? (
           <Halo
             color={`rgba(216,185,120,${spec.halo.alpha})`}
@@ -279,9 +287,17 @@ export function FrequencyDisc({
                 height={spec.play * 0.32}
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="text-ivory translate-x-[6%]"
+                // El triángulo se centra ópticamente; las barras de pausa ya lo están.
+                className={cn('text-ivory', !pausable && 'translate-x-[6%]')}
               >
-                <path d="M8 5v14l11-7z" />
+                {pausable ? (
+                  <>
+                    <rect x="6.5" y="5" width="3.5" height="14" rx="1" />
+                    <rect x="14" y="5" width="3.5" height="14" rx="1" />
+                  </>
+                ) : (
+                  <path d="M8 5v14l11-7z" />
+                )}
               </svg>
             </span>
           ) : null}

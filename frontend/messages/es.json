@@ -439,7 +439,11 @@
     "expand": "Mostrar el reproductor",
     "seek": "Buscar en la pista",
     "next": "Siguiente frecuencia",
-    "previous": "Frecuencia anterior"
+    "previous": "Frecuencia anterior",
+    "mute": "Silenciar",
+    "unmute": "Activar el sonido",
+    "fullscreen": "Pantalla completa",
+    "exitFullscreen": "Salir de pantalla completa"
   },
   "academy": {
     "kicker": "Academia",
@@ -459,8 +463,9 @@
         "completion": "El curso completado: un ciclo cerrado con luz"
       }
     },
-    "audioLabel": "Escuchar esta lección",
-    "audioDeferred": "El audio de esta práctica se incorporará aquí. Mientras tanto, permanece con la lectura y vuelve a tu respiración.",
+    "videoLabel": "Video de la lección",
+    "videoSeek": "Buscar en el video",
+    "videoDeferred": "El video de esta práctica se incorporará aquí. Mientras tanto, permanece con la lectura y vuelve a tu respiración.",
     "featuredBadge": "Destacado",
     "featuredDescription": "Un recorrido guiado para reencontrarte contigo a través de la respiración, el silencio y pequeños rituales diarios.",
     "featuredCta": "Comenzar curso",

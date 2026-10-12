@@ -4,7 +4,7 @@ import { PRODUCTS } from '@/data';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ProductCard } from './product-card';
-import { Display } from '@/components/ui';
+import { Display, Float } from '@/components/ui';
 
 export type StoreProductMedia = Record<(typeof PRODUCTS)[number]['id'], EditorialMedia>;
 
@@ -36,26 +36,29 @@ export function ProductGrid({ media }: ProductGridProps) {
 
       <div className="grid gap-5 md:gap-7">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 md:gap-7">
-          {firstRow.map((product) => (
-            <ProductCard key={product.id} media={media.products[product.id]!} product={product} />
+          {firstRow.map((product, index) => (
+            <Float key={product.id} order={index} className="grid">
+              <ProductCard media={media.products[product.id]!} product={product} />
+            </Float>
           ))}
         </div>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-7">
           {/* La destacada ocupa dos columnas, imagen y texto lado a lado; las
               dos imágenes de la fila conservan su 1:1. */}
-          <ProductCard
-            featured
-            className="md:col-span-2"
-            media={media.products[featured.id]!}
-            product={featured}
-          />
-          <ProductCard media={media.products[side.id]!} product={side} />
+          <Float order={3} className="grid md:col-span-2">
+            <ProductCard featured media={media.products[featured.id]!} product={featured} />
+          </Float>
+          <Float order={4} className="grid">
+            <ProductCard media={media.products[side.id]!} product={side} />
+          </Float>
         </div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 md:gap-7">
-          {lastRow.map((product) => (
-            <ProductCard key={product.id} media={media.products[product.id]!} product={product} />
+          {lastRow.map((product, index) => (
+            <Float key={product.id} order={index + 5} className="grid">
+              <ProductCard media={media.products[product.id]!} product={product} />
+            </Float>
           ))}
         </div>
       </div>

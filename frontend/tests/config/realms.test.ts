@@ -8,14 +8,21 @@ describe('configuración de realms', () => {
   });
 
   it('la navegación de constelación muestra seis realms', () => {
+    // Por relevancia para quien llega: la Tienda abre y Mi Santuario cierra.
     expect(NAV_REALMS.map((r) => r.id)).toEqual([
+      'tienda',
       'descubrete',
       'resonario',
       'academia',
       'experiencias',
-      'tienda',
       'sanctuario',
     ]);
+  });
+
+  it('el menú lleva todos los realms navegables, sin olvidar ninguno', () => {
+    const navigable = REALMS.filter((realm) => realm.inNav).map((realm) => realm.id);
+
+    expect([...NAV_REALMS.map((r) => r.id)].sort()).toEqual([...navigable].sort());
   });
 
   it('portal y auth quedan fuera de la navegación', () => {

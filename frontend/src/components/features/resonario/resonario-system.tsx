@@ -9,6 +9,7 @@ import { Badge, Button, EmptyState, Swap } from '@/components/ui';
 import { AUDIOS } from '@/data';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { floatStyle } from '@/lib/motion/float';
 import { discSlot, filterAudios, orbitalLayout } from '@/lib/resonario/layout-slots';
 import { useActiveAudioId } from '@/stores/player-store';
 import type { Audio } from '@/types/content';
@@ -87,7 +88,7 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
                     montadas a la vez, así suben y bajan juntas. */}
                 <div
                   className="mb-9 flex justify-center"
-                  style={{ animation: `fm-float ${FEATURED_FLOAT} ease-in-out infinite` }}
+                  style={floatStyle({ depth: 'deep', duration: FEATURED_FLOAT })}
                 >
                   <Badge solid>{centerIsFeatured ? t('featuredBadge') : t('nowPlaying')}</Badge>
                 </div>

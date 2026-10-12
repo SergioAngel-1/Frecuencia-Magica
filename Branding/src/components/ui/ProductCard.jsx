@@ -4,7 +4,7 @@ import { Button } from './Button'
 import { GradientText } from './Display'
 import { MediaSkeleton } from './MediaSkeleton'
 
-/** Tarjeta de producto: materia a 1:1 arriba (en columnas si es la destacada), título y precio en oro serif, acción separada. */
+/** Tarjeta de producto: materia a 1:1 arriba (en columnas y a todo el alto si es la destacada), título y precio en oro serif, acción separada. */
 export function ProductCard({ slot, title, category, price, addLabel = 'Añadir', featuredLabel = 'Destacado', featured = false, className }) {
   return (
     <article
@@ -14,17 +14,11 @@ export function ProductCard({ slot, title, category, price, addLabel = 'Añadir'
         className,
       )}
     >
-      {/* Materia a 1:1. En el destacado, la columna llena el alto de la ficha con
-          la misma materia difuminada y el objeto queda centrado, sin recorte. */}
-      <div className={cn('relative shrink-0', featured && 'md:flex md:w-1/2 md:items-center md:self-stretch md:overflow-hidden')}>
-        {featured ? (
-          <div aria-hidden="true" className="absolute inset-0 hidden scale-110 opacity-45 blur-2xl md:block">
-            <MediaSkeleton slot={slot} label={title} aspect="1:1" className="h-full w-full" />
-          </div>
-        ) : null}
-        <div className="relative aspect-square w-full">
+      {/* Materia a 1:1, sin velo: el texto va debajo. En el destacado, desde
+          `md`, la imagen cubre la columna entera, de arriba abajo de la ficha. */}
+      <div className={cn('relative shrink-0', featured && 'md:w-1/2 md:self-stretch')}>
+        <div className={cn('relative aspect-square w-full', featured && 'md:absolute md:inset-0 md:aspect-auto')}>
           <MediaSkeleton slot={slot} label={title} aspect="1:1" className="h-full w-full" />
-          <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,rgba(15,27,46,0.85)_100%)]" />
         </div>
         {featured ? (
           <div className="absolute top-5 left-5 z-10">

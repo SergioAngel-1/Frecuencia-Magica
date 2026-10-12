@@ -113,10 +113,29 @@ export const REALMS: readonly EditorialRealm[] = [
   },
 ] as const;
 
-/** Los seis destinos de la navegación de constelación, en su orden visual. */
-export const NAV_REALMS: readonly EditorialRealm[] = REALMS.filter((realm) => realm.inNav);
-
 const BY_ID = new Map(REALMS.map((realm) => [realm.id, realm]));
+
+/**
+ * Orden del menú, por relevancia para quien llega: la Tienda abre y Mi
+ * Santuario, que sólo sirve a quien ya tiene sesión, cierra. Es un orden de
+ * navegación, no el de `REALMS`: quien necesite otro (el bento de la home)
+ * declara el suyo.
+ */
+const NAV_ORDER: readonly RealmId[] = [
+  'tienda',
+  'descubrete',
+  'resonario',
+  'academia',
+  'experiencias',
+  'sanctuario',
+];
+
+/** Los seis destinos de la navegación de constelación, en su orden visual. */
+export const NAV_REALMS: readonly EditorialRealm[] = NAV_ORDER.flatMap((id) => {
+  const realm = BY_ID.get(id);
+
+  return realm?.inNav ? [realm] : [];
+});
 
 export function getRealm(id: RealmId): EditorialRealm {
   const realm = BY_ID.get(id);

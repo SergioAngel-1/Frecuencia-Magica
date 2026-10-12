@@ -9,6 +9,6 @@ import type { EditorialMedia } from '@/types/editorial-media';
 export function JournalEmpty({ media }: { media: EditorialMedia }) {
   const t = useTranslations('states');
 
-  // `fill`: el vacío mide lo que su texto y no estira la columna del retrato.
+  // `fill`: el vacío mide lo que su texto, sin imponer alto a la tarjeta.
   return <EmptyState media={media} fill title={t('emptyJournal')} className="mt-6" />;
 }
