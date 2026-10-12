@@ -16,6 +16,36 @@ import { ArrowGlyph, arrowLinkClasses, BandChain } from '@/components/ui';
 
 type PageProps = { params: LocaleParams };
 
+/** El héroe de la vista interna de cada realm de la navegación. */
+const REALM_HERO_SLOTS = {
+  descubrete: 'discover.hero',
+  resonario: 'resonario.hero',
+  academia: 'academy.hero',
+  experiencias: 'experiences.hero',
+  tienda: 'store.hero',
+  sanctuario: 'sanctuary.hero',
+} as const;
+
+/**
+ * Foco propio de la tarjeta cuando su recorte deja fuera lo que el héroe
+ * cuenta: Tienda es una columna alta y sus objetos viven a la derecha.
+ */
+const REALM_CARD_FOCUS: Partial<Record<keyof typeof REALM_HERO_SLOTS, string>> = {
+  tienda: '97% 50%',
+};
+
+/**
+ * Ancho que pinta cada héroe 16:9 en su tarjeta del bento. `cover` escala por
+ * el alto en las tarjetas más altas que anchas: Tienda ocupa dos filas y su
+ * imagen mide mucho más que la columna.
+ */
+const REALM_CARD_SIZES = {
+  academia: '(min-width: 1024px) 760px, 100vw',
+  sanctuario: '(min-width: 1024px) 860px, 100vw',
+  tienda: '(min-width: 1024px) 1100px, (min-width: 640px) 60vw, 100vw',
+  default: '(min-width: 1024px) 540px, (min-width: 640px) 60vw, 100vw',
+} as const;
+
 export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'home' });
@@ -47,6 +77,15 @@ export default async function HomePage({ params }: PageProps) {
     id: r.id,
     href: r.href,
     band: BANDS[bandKey(r.accent)],
+    // Cada puerta se ve como lo que hay detrás: el héroe de su vista interna,
+    // recortado a la tarjeta. Decorativo: la tarjeta ya dice su nombre.
+    media: resolveEditorialMedia(REALM_HERO_SLOTS[r.id as keyof typeof REALM_HERO_SLOTS], {
+      alt: '',
+      priority: false,
+      position: REALM_CARD_FOCUS[r.id as keyof typeof REALM_CARD_FOCUS],
+      sizes: REALM_CARD_SIZES[r.id as keyof typeof REALM_CARD_SIZES] ?? REALM_CARD_SIZES.default,
+      band: BANDS[bandKey(r.accent)],
+    }),
     emotion: nav(`emotions.${r.id}` as 'emotions.descubrete'),
     title: nav(`realms.${r.id}` as 'realms.descubrete'),
     description: t(`realms.descriptions.${r.id}` as 'realms.descriptions.descubrete'),

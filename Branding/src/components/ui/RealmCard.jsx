@@ -18,15 +18,19 @@ function Glyph({ size, color }) {
 /**
  * Tarjeta de realm. Tres jerarquías: `featured` (Academia, panel principal en teal),
  * `store` (Tienda, conversión destacada) y la secundaria. El `band` es un gradiente de
- * `bands.ts`, nunca una foto.
+ * `bands.ts`: en la web lo cubre el héroe de la vista interna del realm y, con foto, la
+ * geometría (aros y glifo) se retira. Las tarjetas flotan levemente, desfasadas por `order`.
  */
-export function RealmCard({ band, emotion, title, description, featured = false, store = false, actionLabel, className }) {
+export function RealmCard({ band, emotion, title, description, featured = false, store = false, actionLabel, order = 0, className }) {
+  // El flotado va en un envoltorio: el hover del panel también mueve `transform`.
+  const float = { animationDuration: `${7 + (order % 3) * 0.9}s`, animationDelay: `${(order % 4) * -1.6}s` }
+
   if (featured) {
     return (
+      <div className={cn('animate-fm-float-s', className)} style={float}>
       <div
         className={cn(
-          'group border-teal/35 rounded-card relative grid min-h-[360px] overflow-hidden border transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(150,198,188,0.14)] lg:grid-cols-[1.15fr_0.85fr]',
-          className,
+          'group border-teal/35 rounded-card relative grid h-full min-h-[360px] overflow-hidden border transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(150,198,188,0.14)] lg:grid-cols-[1.15fr_0.85fr]',
         )}
         style={{ backgroundImage: band }}
       >
@@ -44,15 +48,16 @@ export function RealmCard({ band, emotion, title, description, featured = false,
           <div className="absolute top-1/2 right-[15%] -translate-y-1/2"><Glyph size={82} color="var(--color-teal)" /></div>
         </div>
       </div>
+      </div>
     )
   }
 
   return (
+    <div className={cn('animate-fm-float-s', className)} style={float}>
     <div
       className={cn(
-        'group border-glass-brd rounded-card relative flex min-h-[230px] flex-col justify-end overflow-hidden border p-[clamp(24px,3vw,38px)] transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_0_34px_rgba(216,185,120,0.12)]',
+        'group border-glass-brd rounded-card relative flex h-full min-h-[230px] flex-col justify-end overflow-hidden border p-[clamp(24px,3vw,38px)] transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_0_34px_rgba(216,185,120,0.12)]',
         store && 'border-gold/35 lg:min-h-[300px]',
-        className,
       )}
       style={{ backgroundImage: band }}
     >
@@ -78,6 +83,7 @@ export function RealmCard({ band, emotion, title, description, featured = false,
         </h3>
         <p className={cn('text-fg-soft text-body mt-3 leading-[1.7]', !store && 'max-w-[34ch]')}>{description}</p>
       </div>
+    </div>
     </div>
   )
 }

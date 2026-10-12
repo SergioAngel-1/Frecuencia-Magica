@@ -104,6 +104,35 @@ describe('home editorial composition contracts', () => {
     expect(homeSources).not.toMatch(/alt:\s*['"][^'"]*[áéíóúñ]/i);
   });
 
+  it('opens each realm door with the hero of its inner view, floating out of step', () => {
+    const cardSource = readSource('components/features/home/realm-card.tsx');
+
+    // Cada tarjeta del bento pinta el héroe de su vista interna, recortado a
+    // la tarjeta y decorativo: su nombre ya lo dice el título.
+    for (const slot of [
+      'discover.hero',
+      'resonario.hero',
+      'academy.hero',
+      'experiences.hero',
+      'store.hero',
+      'sanctuary.hero',
+    ]) {
+      expect(homePageSource).toContain(`'${slot}'`);
+    }
+    expect(homePageSource).toContain('resolveEditorialMedia(REALM_HERO_SLOTS[');
+    expect(cardSource).toContain('<EditorialImage');
+    expect(cardSource).toContain('media={media}');
+    // Con foto, la geometría de la banda se retira.
+    expect(cardSource).toContain("const geometry = editorialVisual(media) !== 'photo';");
+    // El flotado vive en un envoltorio, desfasado por tarjeta, y el realce
+    // del hover en el enlace: en el mismo nodo la animación anularía el hover.
+    expect(cardSource.match(/className=\{cn\('animate-fm-float-s', className\)\}/g)).toHaveLength(
+      2,
+    );
+    expect(cardSource).toContain('animationDelay');
+    expect(cardSource).toContain('hover:-translate-y-1');
+  });
+
   it('wires the six canonical home slots through the shared editorial resolver', () => {
     for (const registeredSlot of Object.values(HOME_MEDIA_SLOTS)) {
       expect(homeSources).toContain(`resolveEditorialMedia('${registeredSlot}'`);

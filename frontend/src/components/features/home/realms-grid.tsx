@@ -8,6 +8,7 @@ type RealmDescription = {
   id: string;
   href: string;
   band: string;
+  media: EditorialMedia;
   emotion: string;
   title: string;
   description: string;
@@ -69,6 +70,7 @@ export function RealmsGrid({
         <RealmCard
           href={academia.href}
           band={academia.band}
+          media={academia.media}
           emotion={academia.emotion}
           title={academia.title}
           description={academia.description}
@@ -82,6 +84,8 @@ export function RealmsGrid({
             key={realm.id}
             href={realm.href}
             band={realm.band}
+            media={realm.media}
+            order={index + 1}
             emotion={realm.emotion}
             title={realm.title}
             description={realm.description}
