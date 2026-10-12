@@ -251,7 +251,7 @@ Las bandas y héroes a sangre no llevan radio. El retrato de Marisol conserva su
 - **Agua:** espejo en calma, ondas concéntricas, cimática. Resonario, Portal, Santuario.
 - **Bruma y montaña:** horizontes, valles, amanecer. Descúbrete, Experiencias, Acceso, Academia.
 - **Cielo cósmico:** galaxia en espiral o vía láctea baja. Portal, Home, Sobre Marisol.
-- **Cuerpo de luz:** silueta translúcida **sin rasgos faciales**, oro en el borde y teal y lavanda por dentro. Sólo en seis slots narrativos (`home.hero`, `discover.tuning`, `discover.result`, `experiences.featured`, `academy.completion`, `sanctuary.hero`); `about.angels` permanece sin figura.
+- **Cuerpo de luz:** silueta translúcida **sin rasgos faciales**, oro en el borde y teal y lavanda por dentro. Sólo en seis slots narrativos (`home.hero`, `discover.tuning`, `discover.result`, `experiences.featured`, `academy.completion`, `sanctuary.hero`) y en la portada de curso `academy-course-cover-c1`; toda figura de cuerpo entero es el cuerpo de luz y las personas reales sólo aparecen como manos; `about.angels` permanece sin figura.
 - **Filamentos de frecuencia** (firma opcional): como máximo tres líneas verticales ondulantes —oro, teal y lavanda— a baja opacidad.
 
 **Lo que no entra.** ADN, cerebros ni anatomía (la energía se sugiere con luz, agua y geometría sagrada); rasgos faciales fuera del retrato real de Marisol; marcas o nombres de canal; campos de estrellas a pantalla completa. El retrato de Marisol sigue siendo sesión real; los productos siguen siendo objetos, bañados en la misma luz.

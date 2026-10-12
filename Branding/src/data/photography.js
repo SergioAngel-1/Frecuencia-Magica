@@ -8,7 +8,7 @@
  * (`frontend/tests/lib/photography-brief.test.ts`) falla si este archivo se desvía de él.
  *
  * Dirección (enmienda 2026-10-10): «la imagen es el paisaje; el world engine es su energía». Paisaje
- * luminoso de noche —agua, bruma, cielo cósmico— con una silueta de luz en seis slots narrativos. La
+ * luminoso de noche —agua, bruma, cielo cósmico— con una silueta de luz en seis slots narrativos y una portada de curso. La
  * imagen es oscura y cálida, con bordes que se funden con `--void`; los scrims y las máscaras los
  * aplica el CSS, nunca el archivo.
  *
@@ -136,7 +136,7 @@ export const GLOBAL = {
     FACE_CLAUSE,
   rules: [
     'Sin texto, logos, marcas, nombres de canal ni etiquetas legibles dentro de la imagen: el copy lo pone la web.',
-    'Sin rasgos faciales: el cuerpo de luz es una silueta translúcida sin ojos, boca ni nariz, y el único rostro es el retrato real de Marisol. Fuera de esos casos: manos, espaldas, siluetas lejanas u objetos. El prompt describe la silueta en positivo (cabeza lisa, sin nariz, labios ni oreja; de espaldas o girada): «faceless» a secas no basta.',
+    'Sin rasgos faciales: el cuerpo de luz es una silueta translúcida sin ojos, boca ni nariz, y el único rostro es el retrato real de Marisol. Fuera de esos casos: manos u objetos. Toda figura de cuerpo entero es el cuerpo de luz, nunca una persona real, ni de espaldas. El prompt describe la silueta en positivo (cabeza lisa, sin nariz, labios ni oreja; de espaldas o girada): «faceless» a secas no basta.',
     'Cielo arriba, materia abajo: el cosmos ocupa como mucho el tercio superior, con estrellas escasas. El world engine ya pinta el campo de estrellas y las partículas; la imagen no los duplica.',
     'Luz dorada sobre fondo oscuro: los bordes de la imagen tienden a --void para que el scrim de CSS funda sin corte.',
     'Nada de fondos blancos, grises ni pasteles, ni neón ni arcoíris: es un universo nocturno. Oro, teal y lavanda, a baja saturación.',
@@ -173,7 +173,7 @@ export const LANGUAGE = {
     {
       name: 'Cuerpo de luz',
       feel: 'Silueta translúcida sin rasgos, bordeada de oro con teal y lavanda por dentro.',
-      realms: 'Seis slots narrativos (ver abajo)',
+      realms: 'Seis slots narrativos y una portada de curso (ver abajo)',
     },
   ],
   signature: {
@@ -189,6 +189,8 @@ export const LANGUAGE = {
       'academy.completion',
       'sanctuary.hero',
     ],
+    /** Instancias sueltas de un slot por instancia, por su nombre de archivo sin extensión. */
+    instances: ['academy-course-cover-c1'],
   },
 }
 
@@ -607,7 +609,7 @@ export const FAMILIES = {
     slotId: 'academy-course-cover',
     filePrefix: 'academy-course-cover',
     instances: [
-      { slug: 'c1', es: 'El Arte de Volver a Ti', en: 'The Art of Returning to You', treatment: 'lav', subject: 'A person seen from behind sitting cross-legged on a rock at the edge of still water at dawn, silhouetted against lavender and gold light over distant mountains, deep calm, the head turned away so that only the back of the head and the shoulders are visible' },
+      { slug: 'c1', es: 'El Arte de Volver a Ti', en: 'The Art of Returning to You', treatment: 'lav', subject: `A small ${BODY_OF_LIGHT}, seated cross-legged on a dark rock at the edge of still water at dawn, seen from behind with the head turned away from the camera, the whole figure made of soft glowing light from head to knees, a smooth luminous form edged in warm gold with faint teal and lavender light flowing through it like fine veins of current, its glow mirrored softly on the water, lavender and gold first light over distant misty mountains, deep calm; it is the only figure in the scene, about 12% of the frame width and centered at 55% horizontal` },
       { slug: 'c2', es: 'Rituales Conscientes', en: 'Conscious Rituals', treatment: 'teal', subject: 'Hands arranging ritual objects on dark stone — a ceramic bowl, a candle, a sprig of cedar — moss-green and gold light, unhurried gesture' },
       { slug: 'c3', es: 'Aromas que Sanan', en: 'Aromas that Heal', treatment: 'warm', subject: 'Amber glass vials of essential oils, dried cedar and herbs on a dark wooden tray, warm golden light and a thread of fragrant smoke' },
     ],
@@ -617,7 +619,7 @@ export const FAMILIES = {
     filePrefix: 'experiences-visual',
     instances: [
       { slug: 'e1', es: 'Baño de Sonido en Vivo', en: 'Live Sound Bath', treatment: 'lav', subject: 'Crystal and brass singing bowls glowing from within on a dark wooden platform over still water, candles between them, rings of light spreading across the surface, a soft haze; nobody present' },
-      { slug: 'e2', es: 'Círculo de Luna Nueva', en: 'New Moon Circle', treatment: 'lav', subject: 'A circle of small candles, each with a small steady flame, on a dark stone shore beneath a thin new-moon crescent low in the upper part of the sky over still water, quiet and ceremonial' },
+      { slug: 'e2', es: 'Círculo de Luna Nueva', en: 'New Moon Circle', treatment: 'lav', subject: 'An empty ceremonial place waiting for its guests: a circle of small candles, each with a small steady flame, on a dark stone shore beneath a thin new-moon crescent low in the upper part of the sky over still water, the middle of the circle bare dark stone with nothing and nobody in it, the shore deserted, quiet and ceremonial; the only things on the shore are the candles, nobody present' },
       { slug: 'e3', es: 'Ritual de Aromas', en: 'Aroma Ritual', treatment: 'warm', subject: 'A brass burner with copal smoke rising in slow spirals, amber oil bottles and dried herbs beside it on a dark wooden table in a quiet room that opens onto still water, golden light' },
       { slug: 'e4', es: 'Meditación al Amanecer', en: 'Sunrise Meditation', treatment: 'teal', subject: 'A small terrace at first light with a cushion and a steaming cup placed in the middle distance at the far end of the terrace, teal mist over distant hills and still water, the first gold on the horizon; nobody present' },
     ],

@@ -153,7 +153,7 @@ export function renderBrief() {
     '',
     ...LANGUAGE.elements.map((el) => `- **${el.name}:** ${el.feel} Realms: ${el.realms}.`),
     `- **${LANGUAGE.signature.name}:** ${LANGUAGE.signature.feel}`,
-    `- **Slots con cuerpo de luz:** ${LANGUAGE.bodyOfLight.slots.map((id) => `\`${id}\``).join(', ')}.`,
+    `- **Slots con cuerpo de luz:** ${[...LANGUAGE.bodyOfLight.slots, ...LANGUAGE.bodyOfLight.instances].map((id) => `\`${id}\``).join(', ')}.`,
     '',
     '**Reglas**',
     '',
