@@ -5,20 +5,30 @@ import type { Product } from '@/types/content';
 import { useTranslations } from 'next-intl';
 
 import { Badge, Button, EditorialImage, Kicker, Prose, SectionHeading } from '@/components/ui';
-import { OrbitalRings } from '@/components/world';
 import { PRODUCTS } from '@/data';
 import { useRouter } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
+import { cn } from '@/lib/cn';
 import { categoryKey } from '@/lib/store/category-key';
 import { relatedProducts } from '@/lib/store/related';
 import { useCartStore } from '@/stores/cart-store';
 import { usePlayerStore } from '@/stores/player-store';
-import type { EditorialMedia } from '@/types/editorial-media';
+import type { EditorialMedia, EditorialMediaAspect } from '@/types/editorial-media';
 
 import { ProductCard } from './product-card';
 import { ProductSections } from './product-sections';
 
+/** La caja de la imagen sigue el ratio de lo que pinta: el objeto a 1:1, la atmósfera a 16:8. */
+const DETAIL_ASPECT: Record<EditorialMediaAspect, string> = {
+  viewport: 'aspect-[16/9]',
+  '16:9': 'aspect-[16/9]',
+  '16:8': 'aspect-[16/8]',
+  '3:4': 'aspect-[3/4]',
+  '1:1': 'aspect-square',
+};
+
 export type ProductMedia = {
+  /** La imagen del propio producto (`store-product-visual`); sin ella, la atmósfera de `product.detail`. */
   detail: EditorialMedia;
   related: Record<(typeof PRODUCTS)[number]['id'], EditorialMedia>;
 };
@@ -39,45 +49,40 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
 
   return (
     <div>
-      <section
-        className="rounded-card-lg relative isolate min-h-[clamp(320px,52vw,640px)] overflow-hidden"
-        data-editorial-media="product.detail"
-      >
-        <EditorialImage
-          aspect="16:8"
-          className="absolute inset-0 h-full"
-          media={media.detail}
-          overlay="bottom"
-          scrim="bottom"
-        />
-        <div
-          aria-hidden="true"
-          className="border-gold/35 pointer-events-none absolute top-[14%] right-[10%] z-10 size-[clamp(100px,18vw,220px)] rounded-full border opacity-60"
-          data-editorial-geometry="true"
-        />
-        <OrbitalRings
-          className="pointer-events-none absolute right-[8%] bottom-[10%] z-10 opacity-45"
-          size={160}
-          spin={100}
-          rings={[{ r: 80, stroke: 'rgba(247,244,234,0.5)', width: 0.6 }]}
-        />
-      </section>
+      {/* La imagen es la de la tarjeta que se eligió en la tienda, a su mismo
+          ratio y sin velo: desde `lg` acompaña a la ficha mientras se lee. */}
+      <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
+        <section
+          className={cn(
+            'rounded-card-lg border-gold/20 relative isolate overflow-hidden border lg:sticky lg:top-[112px]',
+            DETAIL_ASPECT[media.detail.aspect],
+          )}
+          data-editorial-media={media.detail.slot}
+        >
+          <EditorialImage
+            aspect={media.detail.aspect}
+            className="h-full"
+            media={media.detail}
+            overlay={false}
+            priority
+            scrim={false}
+          />
+        </section>
 
-      <div className="mt-block grid gap-10 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1fr)] lg:gap-16">
-        <div>
-          <Badge solid>{t(categoryKey(product.catKey))}</Badge>
-          <Kicker tone="gold" spacing="widest" className="mt-6">
-            {t('kicker')}
-          </Kicker>
-          <h1 className="text-ivory mt-4 font-serif text-[clamp(36px,5vw,72px)] leading-[0.94]">
-            {title}
-          </h1>
-          <p className="text-gold tracking-soft mt-6 font-serif text-[30px]">
-            {formatPrice(product.price)}
-          </p>
-        </div>
+        <div className="flex flex-col gap-6">
+          <div>
+            <Badge solid>{t(categoryKey(product.catKey))}</Badge>
+            <Kicker tone="gold" spacing="widest" className="mt-6">
+              {t('kicker')}
+            </Kicker>
+            <h1 className="text-ivory mt-4 font-serif text-[clamp(36px,5vw,72px)] leading-[0.94]">
+              {title}
+            </h1>
+            <p className="text-gold tracking-soft mt-6 font-serif text-[30px]">
+              {formatPrice(product.price)}
+            </p>
+          </div>
 
-        <div className="flex flex-col gap-6 lg:pt-9">
           <Prose maxWidth={48}>{t('productDescription')}</Prose>
           <ul className="space-y-2">
             {(t.raw('notes') as string[]).map((note) => (

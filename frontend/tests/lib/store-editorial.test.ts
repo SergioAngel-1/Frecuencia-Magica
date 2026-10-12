@@ -118,7 +118,8 @@ describe('store editorial composition contracts', () => {
     const sources = [
       { source: storePageSource, instance: 'instance: product.id' },
       { source: cartSource, instance: 'instance: product.id' },
-      { source: productPageSource, instance: 'instance: relatedProduct.id' },
+      // Un solo resolvedor para el objeto de la ficha y el de cada relacionado.
+      { source: productPageSource, instance: 'instance: item.id' },
     ];
     for (const { source, instance } of sources) {
       const resolutions = source.split("resolveEditorialMedia('store-product-visual'").slice(1);
@@ -144,6 +145,14 @@ describe('store editorial composition contracts', () => {
     );
     expect(detailSource).toContain('<EditorialImage');
     expect(detailSource).toContain('media={media.detail}');
+    // La ficha abre con la imagen de la tarjeta elegida, a su ratio y sin
+    // velo; la atmósfera de `product.detail` sólo cubre al producto sin foto.
+    expect(productPageSource).toContain(
+      "const detail = ownVisual(product, t('media.alt.detail', { title }), detailSizes);",
+    );
+    expect(productPageSource).toContain('detail: detail.src');
+    expect(detailSource).toContain('DETAIL_ASPECT[media.detail.aspect]');
+    expect(detailSource).toContain('data-editorial-media={media.detail.slot}');
     expect(detailSource).toContain('media={media.related[relatedProduct.id]!}');
     expect(detailSource).not.toMatch(/<OrbitalRings\s+aria-hidden/);
     expect(detailSource).toContain('onClick={() => add(product.id)}');

@@ -43,16 +43,25 @@ export default async function ProductPage({ params }: PageProps) {
 
   const t = await getTranslations({ locale, namespace: 'store' });
   const title = t(`products.${product.id}.title`);
+  const relatedSizes = '(min-width: 1280px) 380px, (min-width: 768px) 27vw, calc(100vw - 48px)';
+  const detailSizes = '(min-width: 1280px) 600px, (min-width: 1024px) 44vw, calc(100vw - 48px)';
+  // El objeto propio de cada producto: el mismo slot e instancia que su tarjeta de la tienda.
+  const ownVisual = (item: (typeof PRODUCTS)[number], alt: string, sizes: string) =>
+    resolveEditorialMedia('store-product-visual', {
+      instance: item.id,
+      alt,
+      sizes,
+      band: item.band,
+    });
   const related = Object.fromEntries(
     PRODUCTS.map((relatedProduct) => {
       const relatedTitle = t(`products.${relatedProduct.id}.title`);
-      // El objeto propio, en cuanto se publique; mientras, la atmósfera compartida de relacionados.
-      const own = resolveEditorialMedia('store-product-visual', {
-        instance: relatedProduct.id,
-        alt: t('media.alt.related', { title: relatedTitle }),
-        sizes: '(min-width: 1280px) 380px, (min-width: 768px) 27vw, calc(100vw - 48px)',
-        band: relatedProduct.band,
-      });
+      const own = ownVisual(
+        relatedProduct,
+        t('media.alt.related', { title: relatedTitle }),
+        relatedSizes,
+      );
+      // Sin objeto publicado, la atmósfera compartida de relacionados.
       return [
         relatedProduct.id,
         own.src
@@ -60,18 +69,23 @@ export default async function ProductPage({ params }: PageProps) {
           : resolveEditorialMedia('product.related', {
               alt: t('media.alt.related', { title: relatedTitle }),
               aspect: '16:8',
-              sizes: '(min-width: 1280px) 380px, (min-width: 768px) 27vw, calc(100vw - 48px)',
+              sizes: relatedSizes,
               band: relatedProduct.band,
             }),
       ];
     }),
   ) as ProductMedia['related'];
+  // La ficha abre con la imagen de la tarjeta que se eligió; la atmósfera de
+  // `product.detail` queda para el producto que aún no tenga la suya.
+  const detail = ownVisual(product, t('media.alt.detail', { title }), detailSizes);
   const productMedia: ProductMedia = {
-    detail: resolveEditorialMedia('product.detail', {
-      alt: t('media.alt.detail', { title }),
-      sizes: '(min-width: 1280px) 1240px, (min-width: 768px) 84vw, calc(100vw - 48px)',
-      band: product.band,
-    }),
+    detail: detail.src
+      ? detail
+      : resolveEditorialMedia('product.detail', {
+          alt: t('media.alt.detail', { title }),
+          sizes: detailSizes,
+          band: product.band,
+        }),
     related,
   };
 
