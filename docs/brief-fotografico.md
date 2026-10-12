@@ -7,7 +7,7 @@
 
 **66 imágenes** (47 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 47 · P2 15. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 50 completadas · 0 a corregir · 15 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 54 completadas · 0 a corregir · 11 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -124,11 +124,11 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `resonario-audio-cover-a7.avif` | Resonario · portadas · Corazón Abierto | 1:1 | 1024×1024 | P1 | Completadas |
 | `academy-hero.avif` | Academia · hero | 16:9 | 2880×1620 | P1 | Completadas |
 | `academy-featured-course.avif` | Academia · curso destacado | 16:8 | 2880×1440 | P1 | Completadas |
-| `academy-course-cover-c1.avif` | Academia · portadas de curso · El Arte de Volver a Ti | 16:8 | 2880×1440 | P1 | Faltantes |
-| `academy-course-cover-c2.avif` | Academia · portadas de curso · Rituales Conscientes | 16:8 | 2880×1440 | P1 | Faltantes |
-| `academy-course-cover-c3.avif` | Academia · portadas de curso · Aromas que Sanan | 16:8 | 2880×1440 | P1 | Faltantes |
+| `academy-course-cover-c1.avif` | Academia · portadas de curso · El Arte de Volver a Ti | 16:8 | 2880×1440 | P1 | Completadas |
+| `academy-course-cover-c2.avif` | Academia · portadas de curso · Rituales Conscientes | 16:8 | 2880×1440 | P1 | Completadas |
+| `academy-course-cover-c3.avif` | Academia · portadas de curso · Aromas que Sanan | 16:8 | 2880×1440 | P1 | Completadas |
 | `academy-lesson-visual.avif` | Academia · lección | 16:8 | 2880×1440 | P1 | Completadas |
-| `academy-completion.avif` | Academia · curso completado | 16:8 | 2880×1440 | P1 | Faltantes |
+| `academy-completion.avif` | Academia · curso completado | 16:8 | 2880×1440 | P1 | Completadas |
 | `experiences-hero.avif` | Experiencias · hero | 16:9 | 2880×1620 | P1 | Completadas |
 | `experiences-featured.avif` | Experiencias · destacada | 16:8 | 2880×1440 | P1 | Completadas |
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | 16:9 | 2880×1620 | P1 | No tenidas en cuenta |
@@ -174,66 +174,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (15)
+### 5.2 Faltantes (11)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `academy-course-cover · El Arte de Volver a Ti` — Academia · portadas de curso · P1
-
-- **Qué falta:** En la lista, `c1` es el curso destacado y usa `academy.featured-course`: su portada sólo se ve en el detalle de curso.
-- **Archivo:** `academy-course-cover-c1.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 40%
-- **Zona de texto:** Tercio izquierdo oscuro y despejado (el texto va a la izquierda)
-- **Contenido:** Materia visual de cada curso (3 cursos). Se ve 16:8 en el detalle y recortada 1:1 en la tarjeta.
-
-**Prompt**
-
-```text
-A small abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated cross-legged on a dark rock at the edge of still water at dawn, seen from behind with the head turned away from the camera, the whole figure made of soft glowing light from head to knees, a smooth luminous form edged in warm gold with faint teal and lavender light flowing through it like fine veins of current, its glow mirrored softly on the water, lavender and gold first light over distant misty mountains, deep calm; it is the only figure in the scene, about 12% of the frame width and centered at 55% horizontal. Keep the subject inside the band between 40% and 70% of the width: that is inside the central 50% that a square crop of this panoramic frame keeps, and to the right of the left third, which stays dark because that side of the scene is unlit and quiet. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `academy-course-cover · Rituales Conscientes` — Academia · portadas de curso · P1
-
-- **Archivo:** `academy-course-cover-c2.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 40%
-- **Zona de texto:** Tercio izquierdo oscuro y despejado (el texto va a la izquierda)
-- **Contenido:** Materia visual de cada curso (3 cursos). Se ve 16:8 en el detalle y recortada 1:1 en la tarjeta.
-
-**Prompt**
-
-```text
-Hands arranging ritual objects on dark stone — a ceramic bowl, a candle, a sprig of cedar — moss-green and gold light, unhurried gesture. Keep the subject inside the band between 40% and 70% of the width: that is inside the central 50% that a square crop of this panoramic frame keeps, and to the right of the left third, which stays dark because that side of the scene is unlit and quiet. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `academy-course-cover · Aromas que Sanan` — Academia · portadas de curso · P1
-
-- **Archivo:** `academy-course-cover-c3.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 40%
-- **Zona de texto:** Tercio izquierdo oscuro y despejado (el texto va a la izquierda)
-- **Contenido:** Materia visual de cada curso (3 cursos). Se ve 16:8 en el detalle y recortada 1:1 en la tarjeta.
-
-**Prompt**
-
-```text
-Amber glass vials of essential oils, dried cedar and herbs on a dark wooden tray, warm golden light and a thread of fragrant smoke. Keep the subject inside the band between 40% and 70% of the width: that is inside the central 50% that a square crop of this panoramic frame keeps, and to the right of the left third, which stays dark because that side of the scene is unlit and quiet. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: warm muted gold (#D8B978) light on a dark navy ground; teal and lavender only as faint accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `academy.completion` — Academia · curso completado · P1
-
-- **Archivo:** `academy-completion.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Celebración del curso terminado: el logro con luz. Cuerpo de luz.
-
-**Prompt**
-
-```text
-A completed cycle closed in light: a ring of exactly twelve small golden lights, evenly spaced and with no other lights, floating on dark still water seen from a slightly oblique overhead angle, a small abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated cross-legged at the far side of the ring, every light steady and one slightly brighter, concentric ripples radiating outward. Ring centered at 50% horizontal, its middle empty, dark and perfectly still water because content is laid over it later, the ripples spreading outward from the ring only, the small figure no taller than 12% of the frame height at the far edge of the ring at 50% horizontal and 30% vertical. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: warm muted gold (#D8B978) light on a dark navy ground; teal and lavender only as faint accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
 
 #### `experiences-visual · Círculo de Luna Nueva` — Experiencias · filas · P1
 
@@ -412,7 +355,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (50)
+### 5.5 Completadas (54)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -447,7 +390,11 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-audio-cover-a7.avif` | Resonario · portadas · Corazón Abierto | `resonario.audio-cover.*` | 1:1 | P1 |
 | `academy-hero.avif` | Academia · hero | `academy.hero` | 16:9 | P1 |
 | `academy-featured-course.avif` | Academia · curso destacado | `academy.featured-course` | 16:8 | P1 |
+| `academy-course-cover-c1.avif` | Academia · portadas de curso · El Arte de Volver a Ti | `academy-course-cover` | 16:8 | P1 |
+| `academy-course-cover-c2.avif` | Academia · portadas de curso · Rituales Conscientes | `academy-course-cover` | 16:8 | P1 |
+| `academy-course-cover-c3.avif` | Academia · portadas de curso · Aromas que Sanan | `academy-course-cover` | 16:8 | P1 |
 | `academy-lesson-visual.avif` | Academia · lección | `academy-lesson-visual` | 16:8 | P1 |
+| `academy-completion.avif` | Academia · curso completado | `academy.completion` | 16:8 | P1 |
 | `experiences-hero.avif` | Experiencias · hero | `experiences.hero` | 16:9 | P1 |
 | `experiences-featured.avif` | Experiencias · destacada | `experiences.featured` | 16:8 | P1 |
 | `booking-hero.avif` | Reserva · hero | `booking.hero` | 16:9 | P1 |

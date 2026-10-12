@@ -6,7 +6,11 @@
 export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
   'about.angels': '/editorial/about-angels.avif',
   'about.hero': '/editorial/about-hero.avif',
+  'academy-course-cover:c1': '/editorial/academy-course-cover-c1.avif',
+  'academy-course-cover:c2': '/editorial/academy-course-cover-c2.avif',
+  'academy-course-cover:c3': '/editorial/academy-course-cover-c3.avif',
   'academy-lesson-visual': '/editorial/academy-lesson-visual.avif',
+  'academy.completion': '/editorial/academy-completion.avif',
   'academy.featured-course': '/editorial/academy-featured-course.avif',
   'academy.hero': '/editorial/academy-hero.avif',
   'auth.form-atmosphere': '/editorial/auth-form-atmosphere.avif',
@@ -63,6 +67,10 @@ export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
 export const EDITORIAL_ASSET_WIDTHS: Readonly<Record<string, readonly number[]>> = {
   '/editorial/about-angels.avif': [640, 828, 1200, 1672],
   '/editorial/about-hero.avif': [640, 828, 1200, 1672],
+  '/editorial/academy-completion.avif': [640, 828, 1200, 1672],
+  '/editorial/academy-course-cover-c1.avif': [640, 828, 1200, 1672],
+  '/editorial/academy-course-cover-c2.avif': [640, 828, 1200, 1672],
+  '/editorial/academy-course-cover-c3.avif': [640, 828, 1200, 1672],
   '/editorial/academy-featured-course.avif': [640, 828, 1200, 1672],
   '/editorial/academy-hero.avif': [640, 828, 1200, 1672],
   '/editorial/academy-lesson-visual.avif': [640, 828, 1200, 1672],
