@@ -80,7 +80,7 @@ export function RealmNav() {
               <span
                 aria-hidden="true"
                 className={cn(
-                  'h-[9px] w-[9px] flex-none rounded-full transition-[transform,opacity] duration-300',
+                  'size-3 flex-none rounded-full transition-[transform,opacity] duration-300',
                   'group-hover:scale-[1.35] group-hover:opacity-100 group-focus-visible:scale-[1.35] group-focus-visible:opacity-100',
                   !active && 'opacity-60',
                 )}
@@ -98,7 +98,7 @@ export function RealmNav() {
                   'opacity-0 transition-[opacity,transform] duration-300 ease-[cubic-bezier(.2,.85,.25,1)]',
                   'group-hover:opacity-100 group-focus-visible:opacity-100',
                   // Se despliega hacia la derecha del punto.
-                  'top-1/2 left-[30px] origin-[left_center] translate-x-[-10px] -translate-y-1/2 scale-x-[.8]',
+                  'top-1/2 left-[34px] origin-[left_center] translate-x-[-10px] -translate-y-1/2 scale-x-[.8]',
                   'group-hover:translate-x-0 group-hover:scale-x-100 group-focus-visible:translate-x-0 group-focus-visible:scale-x-100',
                 )}
               >
@@ -126,9 +126,9 @@ export function RealmNav() {
         >
           <span
             aria-hidden="true"
-            className="border-ivory/55 group-hover:border-gold group-focus-visible:border-gold flex size-[15px] flex-none items-center justify-center rounded-full border transition-[transform,border-color] duration-300 group-hover:scale-[1.15] group-focus-visible:scale-[1.15]"
+            className="border-ivory/55 group-hover:border-gold group-focus-visible:border-gold flex size-[18px] flex-none items-center justify-center rounded-full border transition-[transform,border-color] duration-300 group-hover:scale-[1.15] group-focus-visible:scale-[1.15]"
           >
-            <span className="bg-gold size-[4px] rounded-full" />
+            <span className="bg-gold size-[5px] rounded-full" />
           </span>
           <span
             aria-hidden="true"
@@ -137,7 +137,7 @@ export function RealmNav() {
               'rounded-pill shadow-glow-card py-2 pr-[18px] pl-[15px]',
               'opacity-0 transition-[opacity,transform] duration-300 ease-[cubic-bezier(.2,.85,.25,1)]',
               'group-hover:opacity-100 group-focus-visible:opacity-100',
-              'top-1/2 left-[30px] origin-[left_center] translate-x-[-10px] -translate-y-1/2 scale-x-[.8]',
+              'top-1/2 left-[34px] origin-[left_center] translate-x-[-10px] -translate-y-1/2 scale-x-[.8]',
               'group-hover:translate-x-0 group-hover:scale-x-100 group-focus-visible:translate-x-0 group-focus-visible:scale-x-100',
             )}
           >
