@@ -1,28 +1,33 @@
 import type { ComponentProps } from 'react';
 
-import { ArrowGlyph, Band, Kicker } from '@/components/ui';
+import { ArrowGlyph, EditorialImage, Kicker } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
+import type { EditorialMedia } from '@/types/editorial-media';
 
 export type RecommendationCardProps = {
   /** Qué es («Un curso», «Una experiencia»…). */
   kind: string;
   title: string;
   meta: string;
-  /** Gradiente del ítem del catálogo: su identidad mientras no hay foto. */
-  band: string;
+  /**
+   * La imagen del propio ítem, resuelta con el mismo slot e instancia que en
+   * su realm: el curso, la experiencia y el objeto se ven aquí como allí. Sin
+   * foto publicada pinta la banda del ítem.
+   */
+  media: EditorialMedia;
   href: ComponentProps<typeof Link>['href'];
   openLabel: string;
 };
 
 /**
- * Una recomendación de Descúbrete: la banda del ítem, qué es, su nombre y la
+ * Una recomendación de Descúbrete: la imagen del ítem, qué es, su nombre y la
  * puerta para entrar. Sin estado: recibe el texto ya traducido.
  */
 export function RecommendationCard({
   kind,
   title,
   meta,
-  band,
+  media,
   href,
   openLabel,
 }: RecommendationCardProps) {
@@ -31,7 +36,17 @@ export function RecommendationCard({
       href={href}
       className="group fm-surface rounded-card hover:border-gold/45 focus-visible:ring-gold/60 flex h-full flex-col overflow-hidden transition-colors outline-none focus-visible:ring-2"
     >
-      <Band aspect="16/8" gradient={band} overlay="bottom" />
+      {/* Una sola caja para los tres ratios (16:8, 16:9 y 1:1): el texto va
+          debajo, así que la imagen no lleva velo. */}
+      <div className="relative aspect-[4/3] shrink-0" data-editorial-media={media.slot}>
+        <EditorialImage
+          className="h-full"
+          focalPoint={media.position}
+          media={media}
+          overlay={false}
+          scrim={false}
+        />
+      </div>
       <div className="flex flex-1 flex-col gap-2 p-5 text-left">
         <Kicker tone="teal" spacing="wide">
           {kind}
