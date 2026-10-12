@@ -176,14 +176,6 @@
     overflow-x: clip;
   }
 
-  /* La espera no se desplaza: ni el footer que el layout pinta bajo ella en
-     una carga directa ni la vista anterior, que sigue debajo del velo entre
-     vistas. El hueco de la barra se conserva para que nada salte de sitio. */
-  html:has([data-loading-scene]) {
-    overflow: hidden;
-    scrollbar-gutter: stable;
-  }
-
   /* El body debe cubrir SIEMPRE el viewport completo, aunque el contenido sea
      más corto. Sin esto, con páginas breves (portal, descúbrete) el box del
      body termina a media pantalla: la zona inferior queda fuera de la capa de

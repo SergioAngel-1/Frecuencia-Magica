@@ -1,6 +1,8 @@
 import { FullBleedSection, LoadingOrb } from '@/components/ui';
 import type { EditorialMedia } from '@/types/editorial-media';
 
+import { ScrollLock } from './scroll-lock';
+
 export interface LoadingSceneProps {
   /** `states.loading`, ya resuelto por quien la pinta. */
   media: EditorialMedia;
@@ -15,8 +17,8 @@ export interface LoadingSceneProps {
  * leer todavía. Es la misma en una carga directa (`RealmLoading`, desde cada
  * `loading.tsx`) y entre vistas (`RouteTransition`): una sola forma de esperar.
  *
- * Presentacional y sin hooks, para que la usen un Server Component y uno de
- * cliente.
+ * Presentacional y sin hooks propios (el bloqueo del scroll es un hijo de
+ * cliente), para que la usen un Server Component y uno de cliente.
  */
 export function LoadingScene({ media, label }: LoadingSceneProps) {
   return (
@@ -28,8 +30,10 @@ export function LoadingScene({ media, label }: LoadingSceneProps) {
       className="fm-editorial-shell"
       contentClassName="min-h-[100svh]"
     >
-      {/* `data-loading-scene`: mientras la espera está en pantalla, la página
-          no se desplaza (regla `html:has(...)` de `globals.css` y `SmoothScroll`). */}
+      {/* Mientras la espera está en pantalla, la página no se desplaza:
+          `ScrollLock` quita el scroll nativo y `data-loading-scene` avisa a
+          `SmoothScroll` para que tampoco la mueva con la rueda. */}
+      <ScrollLock />
       <div
         aria-busy="true"
         data-loading-scene="true"

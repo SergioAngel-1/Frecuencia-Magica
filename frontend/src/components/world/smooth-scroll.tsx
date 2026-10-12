@@ -35,7 +35,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       easing: easeOutExpo,
       smoothWheel: true,
       touchMultiplier: 1.5,
-      // Con la espera en pantalla la página no se desplaza (`globals.css`
+      // Con la espera en pantalla la página no se desplaza (`ScrollLock`
       // quita el scroll nativo): Lenis tampoco debe moverla con la rueda.
       prevent: () => document.querySelector(LOADING_SCENE) !== null,
     });
