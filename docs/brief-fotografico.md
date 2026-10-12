@@ -154,7 +154,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `sanctuary-hero.avif` | Mi Santuario · hero | 16:9 | 2880×1620 | P1 | Completadas |
 | `sanctuary-continue.avif` | Mi Santuario · continuar | 16:8 | 2880×1440 | P1 | Completadas |
 | `sanctuary-daily.avif` | Mi Santuario · práctica diaria | 1:1 | 1024×1024 | P1 | Completadas |
-| `sanctuary-journal.avif` | Mi Santuario · diario | 3:4 | 1440×1920 | P2 | Completadas |
+| `sanctuary-journal.avif` | Mi Santuario · diario | 16:8 | 2880×1440 | P2 | Completadas |
 | `sanctuary-empty.avif` | Mi Santuario · vacío | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-loading.avif` | Estados · carga | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-empty.avif` | Estados · vacío | 16:9 | 2880×1620 | P2 | Completadas |
@@ -258,7 +258,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `sanctuary-hero.avif` | Mi Santuario · hero | `sanctuary.hero` | 16:9 | P1 |
 | `sanctuary-continue.avif` | Mi Santuario · continuar | `sanctuary.continue` | 16:8 | P1 |
 | `sanctuary-daily.avif` | Mi Santuario · práctica diaria | `sanctuary.daily` | 1:1 | P1 |
-| `sanctuary-journal.avif` | Mi Santuario · diario | `sanctuary.journal` | 3:4 | P2 |
+| `sanctuary-journal.avif` | Mi Santuario · diario | `sanctuary.journal` | 16:8 | P2 |
 | `sanctuary-empty.avif` | Mi Santuario · vacío | `sanctuary.empty` | 16:9 | P2 |
 | `states-loading.avif` | Estados · carga | `states.loading` | 16:9 | P2 |
 | `states-empty.avif` | Estados · vacío | `states.empty` | 16:9 | P2 |

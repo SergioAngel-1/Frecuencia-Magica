@@ -430,9 +430,10 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     fallback: 'none',
     alt: 'La práctica de hoy en tu santuario',
   },
+  // Fondo del campo de texto del diario, apaisado: el campo lo recorta a su franja central.
   'sanctuary.journal': {
-    ...PORTRAIT,
-    aspect: '3:4',
+    ...CENTER,
+    aspect: '16:8',
     priority: false,
     priorityTier: 'P2',
     fallback: 'none',

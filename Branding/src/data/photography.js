@@ -560,11 +560,14 @@ export const SLOTS = [
     'Today\'s practice: a small brass bowl of still water on dark stone, a single beam of early morning light falling into it and making it glow gold, tiny ripples',
     'Bowl centered, beam entering from the upper left, dark surroundings',
   ),
+  // Fondo del campo de texto del diario: una caja apaisada (≈4:1 en escritorio, ≈6:5 en móvil) que
+  // recorta el 2:1 por arriba y abajo o por los lados. Por eso todo vive en la franja central y sale
+  // desenfocado: encima se escribe.
   slot(
-    'sanctuary.journal', 'portrait', '50% 50%', 'P2', 'soft', 'low', 'Mi Santuario · diario',
-    'El diario como materia íntima.',
-    'The journal as intimate matter: an open linen-bound notebook with blank pages and a brass pen on dark wood, candlelight raking across the paper, a dried sprig of lavender, no legible writing, the table holding only these things and nothing else, with dark wood and shadow behind them',
-    'Vertical, notebook in the lower two thirds, upper third dark and calm',
+    'sanctuary.journal', 'cinema', '50% 50%', 'P2', 'soft', 'low', 'Mi Santuario · diario',
+    'La página sobre la que se escribe: el cuaderno, desenfocado y en penumbra, es el fondo del campo del diario y el texto va encima.',
+    'The journal as a soft page to write on, entirely out of focus: an open linen-bound notebook with blank pages lying flat on dark wood, seen from directly above, a brass pen resting on the right page and one dried sprig of lavender beside the pen, faint warm candlelight from outside the frame grazing the paper, the whole image softly blurred as if photographed far out of focus, the edges of the notebook, the pen and the lavender dissolving into a gentle blur with no crisp line anywhere, the paper a dim muted ivory much darker than white, no writing on the pages, the table holding only these three things and nothing else',
+    'The open notebook lies horizontally at the exact center of the frame, its spread between 25% and 75% of the frame width and between 30% and 70% of the frame height, the pen and the lavender inside that same area on the right page, the left page completely empty; the top quarter and the bottom quarter of the frame are only dark wood in shadow, and so are the left and right fifths, so the image can be cropped to its middle horizontal band or to its central square without losing anything',
   ),
   slot(
     'sanctuary.empty', 'wide', '50% 40%', 'P2', 'soft', 'center', 'Mi Santuario · vacío',

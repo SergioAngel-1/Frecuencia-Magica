@@ -29,7 +29,7 @@ const SANCTUARY_SLOTS = [
   { slot: 'sanctuary.hero' as const, aspect: '16:9' as const, alt: 'hero' },
   { slot: 'sanctuary.continue' as const, aspect: '16:8' as const, alt: 'continue' },
   { slot: 'sanctuary.daily' as const, aspect: '1:1' as const, alt: 'daily' },
-  { slot: 'sanctuary.journal' as const, aspect: '3:4' as const, alt: 'journal' },
+  { slot: 'sanctuary.journal' as const, aspect: '16:8' as const, alt: 'journal' },
   { slot: 'sanctuary.empty' as const, aspect: '16:9' as const, alt: 'empty' },
 ];
 
@@ -113,7 +113,7 @@ describe('sanctuary editorial composition contracts', () => {
     expect(continueSource).toContain('data-editorial-media="sanctuary.continue"');
   });
 
-  it('gives the journal its portrait and an editorial empty state', () => {
+  it('gives the journal its notebook and an editorial empty state', () => {
     expect(journalSource).toContain('data-editorial-media="sanctuary.journal"');
     expect(journalSource).toContain('<JournalEmpty');
     expect(pageSource).toContain("resolveEditorialMedia('sanctuary.empty'");
