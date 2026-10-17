@@ -5,7 +5,7 @@
 > El orden y las secciones son los de la sección 5 de `docs/brief-fotografico.md`; el estado de cada imagen vive en `Branding/src/data/photography-status.js`.
 > Las imágenes de atmósfera (`atmosphere-*`, `resonario-celtic`, `resonario-kind-banner-*`; enmienda 2026-10-17, `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`) llevan otro estilo y otro «Avoid»: color natural, sin personas. **Genera primero las tres muestras: `atmosphere-dusk`, `atmosphere-dawn` y `atmosphere-store`.** Los productos de la tienda no se generan: son fotografía real que hará Marisol.
 
-**81 imágenes:** 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta · 80 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
+**90 imágenes:** 0 a corregir · 9 faltantes · 0 por cablear · 1 no tenidas en cuenta · 80 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
 
 ## 1. A corregir por desviación de la IA (0)
 
@@ -13,11 +13,90 @@ Entregadas con una desviación. Cada entrada dice qué parte del prompt falló s
 
 Ninguna.
 
-## 2. Faltantes (0)
+## 2. Faltantes (9)
 
 Aún sin entregar. Guárdalas con el nombre indicado para que se procesen solas.
 
-Ninguna.
+### 2.1 · P1 · Resonario · portadas · Pulso sereno
+
+- **Guardar como:** `resonario-audio-cover-b1.png` (luego se convierte a `resonario-audio-cover-b1.avif`)
+- **Formato:** 1:1
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Square image, 1:1 aspect ratio. Concentric slow ripples of pale light spreading across a dark night lake, teal and silver, no figures, the upper 40% plain dark sky, calm and wide. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.2 · P1 · Resonario · portadas · Pulso de raíz
+
+- **Guardar como:** `resonario-audio-cover-b2.png` (luego se convierte a `resonario-audio-cover-b2.avif`)
+- **Formato:** 1:1
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Square image, 1:1 aspect ratio. A dark moss-green riverbank at night, tree roots reaching down into still water, one thin line of teal light along the surface, quiet and grounded. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.3 · P1 · Resonario · portadas · Orilla de mar
+
+- **Guardar como:** `resonario-audio-cover-n1.png` (luego se convierte a `resonario-audio-cover-n1.avif`)
+- **Formato:** 1:1
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Square image, 1:1 aspect ratio. A dark night shoreline, long low waves catching faint silver light, sea mist drifting over the water, horizontal and spacious. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.4 · P1 · Resonario · portadas · Lluvia en la ventana
+
+- **Guardar como:** `resonario-audio-cover-n2.png` (luego se convierte a `resonario-audio-cover-n2.avif`)
+- **Formato:** 1:1
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Square image, 1:1 aspect ratio. Rain falling over a dark valley at night, soft blurred lights far away, long pale streaks of rain catching the light, lavender mist, calm. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.5 · P1 · Resonario · portadas · Canto de aves
+
+- **Guardar como:** `resonario-audio-cover-n3.png` (luego se convierte a `resonario-audio-cover-n3.avif`)
+- **Formato:** 1:1
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Square image, 1:1 aspect ratio. A dawn sky over a forest edge, pale gold light breaking through the treetops, a few birds as tiny dark shapes in the light, open air. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: warm muted gold (#D8B978) light on a dark navy ground; teal and lavender only as faint accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.6 · P1 · Resonario · portadas · Música celta para bajar el ritmo
+
+- **Guardar como:** `resonario-audio-cover-m1.png` (luego se convierte a `resonario-audio-cover-m1.avif`)
+- **Formato:** 1:1
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Square image, 1:1 aspect ratio. Low mist over dark water in a valley at blue hour, a single line of warm light on the far hills, quiet and unhurried. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.7 · P1 · Resonario · portadas · Piano para la pausa
+
+- **Guardar como:** `resonario-audio-cover-m2.png` (luego se convierte a `resonario-audio-cover-m2.avif`)
+- **Formato:** 1:1
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Square image, 1:1 aspect ratio. Soft ivory light falling on still dark water at night, a pale reflection and a long quiet space, minimal. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Balanced faint gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.8 · P1 · Resonario · portadas · Respiración guiada
+
+- **Guardar como:** `resonario-audio-cover-g1.png` (luego se convierte a `resonario-audio-cover-g1.avif`)
+- **Formato:** 1:1
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Square image, 1:1 aspect ratio. A soft column of luminous fog rising slowly from dark still water under a night sky, silver-teal light, open and calm. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.9 · P1 · Resonario · portadas · Un momento para ti
+
+- **Guardar como:** `resonario-audio-cover-g2.png` (luego se convierte a `resonario-audio-cover-g2.avif`)
+- **Formato:** 1:1
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Square image, 1:1 aspect ratio. A single warm glow seen through mist at the edge of a dark forest at night, an intimate landscape with no figures. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: warm muted gold (#D8B978) light on a dark navy ground; teal and lavender only as faint accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
+```
 
 ## 3. Por cablear (crear vistas) (0)
 
