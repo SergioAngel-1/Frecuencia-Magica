@@ -726,8 +726,8 @@ export const SLOTS = [
   slot(
     'resonario.celtic', 'wide', '66% 50%', 'P1', 'forest', 'calm-left', 'Resonario · música de inspiración celta',
     'La pieza celta, con su texto editorial («una invitación a bajar el ritmo»): un arpa junto a una ventana sobre colinas verdes en la bruma.',
-    'A Celtic lever harp of dark polished wood with fine carved knotwork on its pillar and gut strings, resting against a mossy stone window sill in early morning, beyond the window soft green hills and a quiet misty coast under pale light, a small bunch of green fern in a stone jar beside the harp, no hands and no people',
-    'The harp between 58% and 82% of the frame width and its top at 25% from the top, the window view behind it, the left 40% of the frame is the plain mossy stone wall and soft misty window light, calm and low in detail',
+    'A Celtic lever harp of dark polished wood with fine carved knotwork on its pillar and gut strings, resting against a smooth pale stone window sill with only a little moss at its edge, in soft early morning light, beyond the window soft green hills and a quiet misty coast under pale light, a small bunch of green fern in a stone jar beside the harp, no hands and no people',
+    'The harp between 58% and 82% of the frame width and its top at 25% from the top (not higher), the window view behind it, the left 40% of the frame is a plain stone wall in even deep shade, a dark olive-grey in low light, with only a very faint low-contrast mottling and no visible moss texture, no shafts of light, no haze streaks and no bright patch, calm, low in detail and dark enough for ivory text to stay readable on it',
     { style: 'atmosphere', provisional: 'Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.' },
   ),
   slot(

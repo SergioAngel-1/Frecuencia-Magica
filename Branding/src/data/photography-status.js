@@ -58,6 +58,7 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
+  'resonario-celtic.avif': 'Llegó una imagen de 7/10, descartada (copia en `.editorial-trials/`): contenido muy fiel, pero la zona de texto tenía el detalle más alto de las atmósferas (4× una zona calma, por la textura de musgo) y haces de luz que bajaban el marfil a 3,9:1 en el percentil 90; además la parte alta del arpa quedaba en el 18 % en vez del 25 %. El prompt ahora pide una pared lisa en sombra pareja y sin haces de luz.',
   'atmosphere-gathering.avif': 'Llegó una imagen de 7,5/10, descartada (copia en `.editorial-trials/`): el círculo ocupaba del 25 % al 100 % del ancho, un cojín entraba en el 40 % izquierdo, sólo se veía una taza y la pared de la zona de texto quedaba en tono medio (marfil 3,0:1, tinta 3,9:1 en sombra). El prompt ahora pide una pared oscura y el círculo dentro de 42–92 %.',
 }
 
