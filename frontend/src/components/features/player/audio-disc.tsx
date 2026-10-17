@@ -37,6 +37,11 @@ type AudioDiscProps = {
    */
   showPlay?: boolean;
   showEqualizer?: boolean;
+  /**
+   * `false` en una pista sin material (`soon`): la esfera es sólo su
+   * portada, sin gesto ni control.
+   */
+  interactive?: boolean;
   floatDuration?: string;
   floatDelay?: string;
   className?: string;
@@ -70,6 +75,7 @@ export function AudioDisc({
   caption = true,
   showPlay,
   showEqualizer,
+  interactive = true,
   floatDuration = DEFAULT_FLOAT,
   floatDelay,
   className,
@@ -112,7 +118,7 @@ export function AudioDisc({
       ]
         .filter(Boolean)
         .join(' — ')}
-      onClick={() => (showPlay ? toggleAudio(audio.id) : open(audio.id))}
+      onClick={interactive ? () => (showPlay ? toggleAudio(audio.id) : open(audio.id)) : undefined}
       className={className}
     />
   );

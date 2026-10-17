@@ -11,6 +11,7 @@ import type { AudioKind } from '@/types/content';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { CelticFeature } from './celtic-feature';
+import { FeaturedSun } from './featured-sun';
 import { KindSection } from './kind-section';
 import { ResonarioFilters } from './resonario-filters';
 import { TrackCard } from './track-card';
@@ -68,11 +69,7 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
           />
         ) : (
           <div className="gap-section flex flex-col">
-            {showAll && featured ? (
-              <div className="mx-auto w-full max-w-[560px]">
-                <TrackCard audio={featured} cover={media.featured} badge={t('featuredBadge')} />
-              </div>
-            ) : null}
+            {showAll && featured ? <FeaturedSun audio={featured} cover={media.featured} /> : null}
 
             {sections.map(({ entry, tracks }) => (
               <KindSection key={entry.kind} entry={entry} banner={media.kindBanners[entry.kind]}>

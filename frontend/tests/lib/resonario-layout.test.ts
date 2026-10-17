@@ -20,6 +20,7 @@ const pageSource = readSource('app/[locale]/resonario/page.tsx');
 const systemSource = readSource('components/features/resonario/resonario-system.tsx');
 const filtersSource = readSource('components/features/resonario/resonario-filters.tsx');
 const trackCardSource = readSource('components/features/resonario/track-card.tsx');
+const sunSource = readSource('components/features/resonario/featured-sun.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
 const atmosphereHeroSource = readSource('components/features/atmosphere/atmosphere-hero.tsx');
 const loadingSource = readSource('app/[locale]/resonario/loading.tsx');
@@ -60,7 +61,7 @@ describe('resonario por tipo de escucha', () => {
   it('muestra la destacada sólo en «Todo», y nunca dos veces', () => {
     expect(systemSource).toContain("const showAll = !filter || filter === 'all';");
     expect(systemSource).toContain('showAll ? featured?.id : undefined');
-    expect(systemSource).toContain('{showAll && featured ? (');
+    expect(systemSource).toContain('{showAll && featured ? <FeaturedSun');
   });
 
   it('filtra por el campo kind del catálogo, nunca por texto traducido', () => {
@@ -219,14 +220,34 @@ describe('resonario editorial composition contracts', () => {
     expect(pageSource).toContain('<ResonarioSystem media={resonarioMedia}');
   });
 
-  it('shows the same audio cover in every track card, with the shared cover resolver', () => {
+  it('paints every track as its sphere, the same AudioDisc as the rest of the site', () => {
+    const discSource = readSource('components/features/player/audio-disc.tsx');
     const coverSource = readSource('components/features/player/audio-cover.tsx');
 
-    expect(trackCardSource).toContain('resolveAudioCover(audio');
-    expect(trackCardSource).toContain('<AudioCover media={coverMedia} scrim={false} />');
-    expect(trackCardSource).toContain('style={{ backgroundImage: audio.band }}');
+    // La esfera (AudioDisc) es la portada de la tarjeta; sin foto, pinta su banda.
+    expect(trackCardSource).toContain('<AudioDisc');
+    expect(trackCardSource).toContain('caption={false}');
+    expect(trackCardSource).toContain('interactive={ready}');
+    expect(discSource).toContain('resolveAudioCover(audio');
+    expect(discSource).toContain('interactive = true');
     expect(coverSource).toContain('<EditorialImage');
     expect(coverSource).toContain("editorialVisual(media) !== 'photo'");
+  });
+
+  it('the active track in a card says «Sonando ahora», and the featured sun does too while it plays', () => {
+    expect(trackCardSource).toContain('const { playing } = useAudioPlayback(audio.id);');
+    expect(trackCardSource).toContain("t('nowPlaying')");
+    expect(sunSource).toContain("t('nowPlaying')");
+    expect(esMessages.resonario.nowPlaying).toBeTruthy();
+    expect(enMessages.resonario.nowPlaying).not.toBe(esMessages.resonario.nowPlaying);
+  });
+
+  it('the featured track is the sun: a large AudioDisc with its photo, not a card', () => {
+    expect(sunSource).toContain('size="lg"');
+    expect(sunSource).toContain('cover={cover}');
+    expect(sunSource).toContain('showPlay');
+    expect(systemSource).toContain('<FeaturedSun');
+    expect(systemSource).toContain('cover={media.featured}');
   });
 
   it('shows the same audio cover in the player dock and in the collapsed player', () => {
