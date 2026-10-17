@@ -40,3 +40,25 @@ Los elementos que `medicion.json` marca como «fuera de viewport» son decorativ
 - **Ingesta de `atmosphere-dusk|dawn|store`** (`editorial:ingest`) y su estado en `photography-status.js`: dependencia de Sergio. Hasta entonces, se ve el degradado.
 - **Velos `void-2` crudos** de la deuda (`auth-form`, `journal-panel`, `modal`, `video-player`, badge del carrito): no los toca el brief de T1.4 y no se revisaron.
 - **Paso «PARAR»**: lo ejecuta el controlador con Sergio; no se hace aquí.
+
+
+## Ronda de arreglo (2026-10-17)
+
+Capturas re-hechas con `prefers-reduced-motion` (por eso la deriva del paisaje no se ve) y sin foto de atmósfera ingerida (los paisajes `atmosphere.*` se ven como degradado). Las capas `fixed` se fijan como `absolute` sólo durante la captura de página completa: sin eso, aparecía una franja gris en y=900 que no existe en el viewport real (verificado con capturas de viewport).
+
+Arreglos aplicados (un commit por punto):
+
+1. Velo claro en las atmósferas claras: `--scrim-deep` por atmósfera (commit d6356f2). La franja casi negra arriba y abajo del banner desaparece en `dawn`.
+2. Franja gris bajo «Todos los productos» en Tienda: no era de la página. Medido: no hay borde en el viewport (commit de esta ronda: ninguno, sólo corrección del script de captura).
+3. Números de las esferas: `--color-on-media` (marfil en todas las atmósferas) en la cara del disco (commit bb8cc5b).
+4. `natural`: el héroe de Tienda ya no lleva el velo teal (`tintForPhotoTreatment`, commit b2a277a).
+5. Guarda de cableado del inventario exige `atmospherePainting` en el hook (commit a9ef89b).
+
+Estado tras los arreglos (revisado en las capturas nuevas de `shots2`):
+
+- `dawn`, Resonario 1440: la franja oscura superior se reduce a la propia foto (columnas oscuras de la escena). Abierto: el kicker «Dentro del archivo» sigue casi ilegible sobre la foto clara; las unidades «HZ» de las esferas claras (`528`, `396`, `174`) se pierden en los tramos pálidos de la portada. Ambos son contraste insuficiente, no bug de tokens: requieren velo local más denso o foto propia.
+- `store`, Tienda 1440: sin franja gris. Banda de ritual con la foto oscura arriba y degradado claro abajo; el kicker «Acompañado con una frecuencia» es legible pero débil.
+- Descúbrete con resultado a 390 px: no capturado (el flujo del quiz no se recorrió en la ronda).
+- Móvil 768 y 390: capturas hechas, no revisadas a fondo en esta ronda.
+
+Capturas: `docs/superpowers/audits/assets/ambientes-muestras/` (las de `dusk`/`night`/`inicio` incluidas); `medicion.json` con desborde 0 px en todas.
