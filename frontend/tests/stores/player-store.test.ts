@@ -297,3 +297,18 @@ describe('aperturas explícitas', () => {
     env.engine.dispose();
   });
 });
+
+describe('reabrir la pista abierta', () => {
+  it('reabrir la misma pista no cuenta como apertura y no vuelve a recoger el dock', () => {
+    const env = setup();
+    env.store.getState().open('a1');
+    const afterOpen = env.store.getState().opened;
+
+    env.store.getState().minimize();
+    env.store.getState().open('a1');
+
+    expect(env.store.getState().opened).toBe(afterOpen);
+    expect(env.store.getState().minimized).toBe(false);
+    env.engine.dispose();
+  });
+});

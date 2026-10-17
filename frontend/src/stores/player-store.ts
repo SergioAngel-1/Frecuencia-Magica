@@ -140,14 +140,15 @@ export function createPlayerStore(
         if (!isAvailable(id)) return;
 
         const { audioId, mode: currentMode, engineState, opened } = get();
-        set({ minimized: false, opened: opened + 1 });
-
-        // Mismo audio y modo: no reinicia. Sólo reanuda si estaba en pausa o bloqueado.
+        // Mismo audio y modo: no reinicia ni cuenta como apertura nueva. Sólo reanuda
+        // si estaba en pausa o bloqueado, y desde la misma posición.
         if (audioId === id && currentMode === mode) {
+          set({ minimized: false });
           if (engineState !== 'playing') start(id, mode);
           return;
         }
 
+        set({ minimized: false, opened: opened + 1 });
         start(id, mode);
       },
       toggle() {
