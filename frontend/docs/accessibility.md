@@ -79,3 +79,10 @@ Todo control sin texto visible lleva `aria-label` (o `aria-label` descriptivo en
 - Hit targets ≥ 44px medidos por script en los 4 breakpoints (1440/1280/768/390): los controles de estado de ánimo del diario se subieron de 40 a 44px y hacen wrap en móvil.
 - Sin desbordamiento horizontal en ningún breakpoint (`overflow-x: clip` en `html, body` recorta la geometría giratoria sin crear scroll container).
 - Recorrido por teclado y lector de pantalla: pendiente de auditoría manual en dispositivo real.
+
+## Atmósferas de muestra (Fase 1, 2026-10-17)
+
+- Contraste: la guarda `atmosphere-contrast` cubre los tokens de cada atmósfera. No cubre el velo de las fotos: en `dawn` (esquema claro) los kickers sobre una foto oscura del banner y sobre la foto del banner de ritual de la Tienda se leen mal. Pendiente: velo `light` en los banners cuando la atmósfera es clara (ver `docs/superpowers/audits/2026-10-17-ambientes-muestras.md`, hallazgos 1, 2 y 5).
+- Movimiento: la deriva del paisaje (`LandscapeDrift`) sólo anima `transform` y no se monta con movimiento reducido.
+- Anuncio del cambio de atmósfera: sigue en la región `aria-live` del `AtmosphereProvider`; no se añadió otra.
+- Pendiente de verificación: foco visible y hit targets de los puntos de navegación sobre fondo claro (hallazgo 3).
