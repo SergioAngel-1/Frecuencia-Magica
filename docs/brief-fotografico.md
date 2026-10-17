@@ -8,7 +8,7 @@
 
 **81 imágenes** (58 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 56 · P2 21. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 69 completadas · 0 a corregir · 11 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 70 completadas · 0 a corregir · 10 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -198,7 +198,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-store.avif` | Atmósfera · Taller (tienda) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-moon.avif` | Atmósfera · Luna (escucha nocturna) | 16:9 | 2880×1620 | P1 | Completadas |
-| `atmosphere-forest.avif` | Atmósfera · Bosque (raíz y agua) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `atmosphere-forest.avif` | Atmósfera · Bosque (raíz y agua) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-forest-autumn.avif` | Atmósfera · Bosque otoñal (nostalgia) | 16:9 | 2880×1620 | P2 | Faltantes |
 | `atmosphere-study.avif` | Atmósfera · Estudio (academia) | 16:9 | 2880×1620 | P1 | Faltantes |
 | `atmosphere-gathering.avif` | Atmósfera · Encuentro (experiencias) | 16:9 | 2880×1620 | P1 | Faltantes |
@@ -223,25 +223,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (11)
+### 5.2 Faltantes (10)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `atmosphere.forest` — Atmósfera · Bosque (raíz y agua) · P1
-
-- **Archivo:** `atmosphere-forest.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 62% 50%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Bosque verde y luminoso para Raíz, Renovación y la escucha para estudiar: cascada y helechos, luz filtrada. Referencia de Marisol: la cascada entre helechos.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A lush temperate forest with a slender waterfall: tall tree ferns and broad green fern fronds in the foreground and along both sides, a waterfall of two soft white streams falling down a dark mossy rock face into a still green pool, warm filtered golden sunlight entering from the upper left between the canopy, a fine mist rising off the pool, deep natural greens with glints of gold. The waterfall and its pool inside the band between 58% and 82% of the frame width, the pool in the lower center-right, the left 40% of the frame is soft slightly out-of-focus ferns and shaded trunks in even tones, low in detail, with no bright patch of sunlight there. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `atmosphere.forest-autumn` — Atmósfera · Bosque otoñal (nostalgia) · P2
 
@@ -417,7 +401,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (69)
+### 5.5 Completadas (70)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -491,6 +475,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | `atmosphere.dawn` | 16:9 | P1 |
 | `atmosphere-store.avif` | Atmósfera · Taller (tienda) | `atmosphere.store` | 16:9 | P1 |
 | `atmosphere-moon.avif` | Atmósfera · Luna (escucha nocturna) | `atmosphere.moon` | 16:9 | P1 |
+| `atmosphere-forest.avif` | Atmósfera · Bosque (raíz y agua) | `atmosphere.forest` | 16:9 | P1 |
 | `og-image.jpg` | Metadatos · Open Graph | `og-image` | 1.91:1 | P0 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (23)
