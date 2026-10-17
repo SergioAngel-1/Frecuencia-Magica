@@ -22,8 +22,9 @@ export function CelticFeature({ media }: CelticFeatureProps) {
       className="grid items-center gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]"
       data-featured-piece="celtic"
     >
-      <div className="rounded-card overflow-hidden">
-        <EditorialImage media={media} aspect="16:9" overlay={false} />
+      {/* La proporción la da el contenedor: la imagen llena su altura. */}
+      <div className="rounded-card relative aspect-video overflow-hidden">
+        <EditorialImage media={media} aspect="16:9" overlay={false} className="h-full" />
       </div>
       <div className="flex flex-col gap-4">
         <Kicker>{t('kicker')}</Kicker>
