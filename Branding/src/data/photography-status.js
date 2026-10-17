@@ -132,6 +132,7 @@ export const COMPLETED = [
   'store-product-visual-p6.avif',
   'store-product-visual-p7.avif',
   'store-product-visual-p8.avif',
+  'atmosphere-forest-autumn.avif',
 ]
 
 /**
