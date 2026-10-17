@@ -58,6 +58,7 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
+  'atmosphere-store.avif': 'Llegó con este nombre un atardecer marino (la escena de `atmosphere-dusk`): 1/10 contra este prompt, descartada (copia en `.editorial-trials/`). Se endureció el prompt: escena interior, sin mar ni paisaje.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
