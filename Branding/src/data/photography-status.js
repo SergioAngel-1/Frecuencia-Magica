@@ -114,6 +114,7 @@ export const COMPLETED = [
   'atmosphere-dawn.avif',
   'atmosphere-dusk.avif',
   'atmosphere-store.avif',
+  'atmosphere-moon.avif',
   'home-membership.avif',
   'academy-course-cover-c1.avif',
   'academy-course-cover-c2.avif',

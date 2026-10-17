@@ -8,7 +8,7 @@
 
 **81 imágenes** (58 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 56 · P2 21. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 68 completadas · 0 a corregir · 12 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 69 completadas · 0 a corregir · 11 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -197,7 +197,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `atmosphere-dusk.avif` | Atmósfera · Atardecer (descanso) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-store.avif` | Atmósfera · Taller (tienda) | 16:9 | 2880×1620 | P1 | Completadas |
-| `atmosphere-moon.avif` | Atmósfera · Luna (escucha nocturna) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `atmosphere-moon.avif` | Atmósfera · Luna (escucha nocturna) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-forest.avif` | Atmósfera · Bosque (raíz y agua) | 16:9 | 2880×1620 | P1 | Faltantes |
 | `atmosphere-forest-autumn.avif` | Atmósfera · Bosque otoñal (nostalgia) | 16:9 | 2880×1620 | P2 | Faltantes |
 | `atmosphere-study.avif` | Atmósfera · Estudio (academia) | 16:9 | 2880×1620 | P1 | Faltantes |
@@ -223,25 +223,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (12)
+### 5.2 Faltantes (11)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `atmosphere.moon` — Atmósfera · Luna (escucha nocturna) · P1
-
-- **Archivo:** `atmosphere-moon.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 62% 40%
-- **Zona de texto:** Tercio izquierdo oscuro y despejado (el texto va a la izquierda)
-- **Contenido:** Escucha nocturna: profundo y silencioso, con azul noche y plata. Un mar bajo la luna, con reflejos suaves y pocas estrellas. Es la más cercana a la noche de la v1.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A calm sea at night under a high moon: a full moon as a soft round glow with faint dark marks, never blinding, a long soft path of silver reflection on the gently moving deep blue water, a few dozen fine pinpoint stars in the upper third and a thin veil of cirrus mist across part of the sky, the water calm with very low waves. Horizon at 58% from the top, the moon at 66% horizontal and 22% vertical and its reflection inside the band between 55% and 80% of the frame width, the left 40% of the frame is dark and empty because that side of the scene is unlit sea and sky. Wide landscape framing. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `atmosphere.forest` — Atmósfera · Bosque (raíz y agua) · P1
 
@@ -433,7 +417,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (68)
+### 5.5 Completadas (69)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -506,6 +490,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `atmosphere-dusk.avif` | Atmósfera · Atardecer (descanso) | `atmosphere.dusk` | 16:9 | P1 |
 | `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | `atmosphere.dawn` | 16:9 | P1 |
 | `atmosphere-store.avif` | Atmósfera · Taller (tienda) | `atmosphere.store` | 16:9 | P1 |
+| `atmosphere-moon.avif` | Atmósfera · Luna (escucha nocturna) | `atmosphere.moon` | 16:9 | P1 |
 | `og-image.jpg` | Metadatos · Open Graph | `og-image` | 1.91:1 | P0 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (23)
