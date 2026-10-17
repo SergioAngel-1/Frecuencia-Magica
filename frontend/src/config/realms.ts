@@ -5,7 +5,11 @@ const TEAL = '#96C6BC';
 const LAV = '#B9B0D6';
 
 export type VisualMode = 'cosmic' | 'editorial' | 'quiet';
-export type PhotoTreatment = 'none' | 'warm' | 'teal' | 'lav' | 'soft';
+/**
+ * Tratamiento de la fotografía del realm. `natural` no tiñe con el acento: la
+ * luz y los colores son los de la imagen (paisajes de atmósfera, producto).
+ */
+export type PhotoTreatment = 'none' | 'warm' | 'teal' | 'lav' | 'soft' | 'natural';
 export type EditorialRealm = Realm & {
   visualMode: VisualMode;
   photoTreatment: PhotoTreatment;

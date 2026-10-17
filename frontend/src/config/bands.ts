@@ -18,15 +18,20 @@ export type BandKey = keyof typeof BANDS;
 /**
  * Closed-palette treatment map used by editorial media and its zebra fallback.
  * The fallback is always a deliberate band, never a gray box or remote image.
+ * `natural` no tiene banda: la fotografía conserva sus colores, sin tinte de acento.
  */
-export const PHOTO_TREATMENT_BANDS: Record<PhotoTreatment, BandKey> = {
+export const PHOTO_TREATMENT_BANDS: Record<PhotoTreatment, BandKey | null> = {
   none: 'mix',
   warm: 'gold',
   teal: 'teal',
   lav: 'lav',
   soft: 'mix',
+  natural: null,
 };
 
-export function bandForPhotoTreatment(treatment: PhotoTreatment): string {
-  return BANDS[PHOTO_TREATMENT_BANDS[treatment]];
+/** Banda del tratamiento, o `null` si el tratamiento no tiñe (`natural`). */
+export function bandForPhotoTreatment(treatment: PhotoTreatment): string | null {
+  const key = PHOTO_TREATMENT_BANDS[treatment];
+
+  return key ? BANDS[key] : null;
 }

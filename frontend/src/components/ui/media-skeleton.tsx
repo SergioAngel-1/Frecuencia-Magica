@@ -8,7 +8,8 @@ import type {
   EditorialTone,
 } from '@/types/editorial-media';
 
-const ASPECT_CLASSES: Record<EditorialMediaAspect, string> = {
+/** Alto de una caja de materia según su ratio. Lo comparten la zebra y el respaldo de atmósfera. */
+export const ASPECT_CLASSES: Record<EditorialMediaAspect, string> = {
   viewport: 'min-h-[100svh]',
   '16:9': 'aspect-[16/9]',
   '16:8': 'aspect-[16/8]',

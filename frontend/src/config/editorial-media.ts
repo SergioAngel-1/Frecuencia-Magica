@@ -74,8 +74,10 @@ export type EditorialMediaPriority = 'P0' | 'P1' | 'P2';
  *   audio). Usa la banda de color del propio ítem para no perder su identidad.
  * - `none`: atmósfera sin trabajo narrativo propio. No pinta nada hasta que
  *   llegue la foto; la vista descansa en el world engine.
+ * - `atmosphere`: paisaje de una atmósfera (`atmosphere.*`). Sin foto pinta el
+ *   degradado `--atmo-backdrop` de la atmósfera activa: nunca zebra ni caja gris.
  */
-export type EditorialMediaFallback = 'zebra' | 'band' | 'none';
+export type EditorialMediaFallback = 'zebra' | 'band' | 'none' | 'atmosphere';
 
 export interface EditorialMediaDefinition {
   aspect: EditorialMediaAspect;
@@ -490,15 +492,15 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     priorityTier: 'P2',
     fallback: 'none',
   },
-  // Atmósferas (spec 2026-10-17). El fallback es `none` hasta que exista el degradado propio de cada
-  // atmósfera: la zebra es de noche y desentona sobre una escena clara.
+  // Atmósferas (spec 2026-10-17). Sin foto pintan el degradado de su atmósfera (`atmosphere`): la
+  // zebra es de noche y desentona sobre una escena clara.
   'atmosphere.dusk': {
     sizes: '100vw',
     position: '62% 50%',
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
-    fallback: 'none',
+    fallback: 'atmosphere',
     alt: 'Un mar tranquilo al atardecer, con reflejos cálidos sobre el agua',
   },
   'atmosphere.dawn': {
@@ -507,7 +509,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
-    fallback: 'none',
+    fallback: 'atmosphere',
     alt: 'Un lago luminoso al amanecer, con el horizonte despejado',
   },
   'atmosphere.store': {
@@ -516,7 +518,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
-    fallback: 'none',
+    fallback: 'atmosphere',
     alt: 'Piedra y madera con luz lateral, preparadas para los objetos del ritual',
   },
   'atmosphere.moon': {
@@ -525,7 +527,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
-    fallback: 'none',
+    fallback: 'atmosphere',
     alt: 'Un mar bajo la luna, con reflejos plateados',
   },
   'atmosphere.forest': {
@@ -534,7 +536,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
-    fallback: 'none',
+    fallback: 'atmosphere',
     alt: 'Una cascada entre helechos en un bosque verde y luminoso',
   },
   'atmosphere.forest-autumn': {
@@ -543,7 +545,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P2',
-    fallback: 'none',
+    fallback: 'atmosphere',
     alt: 'Un sendero de bosque otoñal en tonos ámbar y dorado',
   },
   'atmosphere.study': {
@@ -552,7 +554,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
-    fallback: 'none',
+    fallback: 'atmosphere',
     alt: 'Un rincón de lectura junto a una ventana, con luz de mañana',
   },
   'atmosphere.gathering': {
@@ -561,7 +563,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
-    fallback: 'none',
+    fallback: 'atmosphere',
     alt: 'Un espacio cálido preparado para compartir un encuentro',
   },
   'atmosphere.marisol': {
@@ -570,7 +572,7 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',
-    fallback: 'none',
+    fallback: 'atmosphere',
     alt: 'Un rincón luminoso y personal con luz de mañana',
   },
   'resonario.celtic': {

@@ -8,6 +8,7 @@ import type { EditorialMedia, EditorialVisual } from '@/types/editorial-media';
 export function editorialVisual(media: EditorialMedia): EditorialVisual {
   if (media.src) return 'photo';
   if (media.fallback === 'band') return media.band ? 'band' : 'zebra';
+  if (media.fallback === 'atmosphere') return 'atmosphere';
   return media.fallback;
 }
 

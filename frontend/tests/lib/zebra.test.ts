@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { EDITORIAL_MEDIA_SLOTS } from '@/config/editorial-media';
+import { EDITORIAL_MEDIA_REGISTRY, EDITORIAL_MEDIA_SLOTS } from '@/config/editorial-media';
 import { zebraVariant } from '@/lib/editorial/zebra';
 
 describe('zebraVariant', () => {
@@ -23,5 +23,13 @@ describe('zebraVariant', () => {
     const angles = new Set(EDITORIAL_MEDIA_SLOTS.map((slot) => zebraVariant(slot).angle));
 
     expect(angles.size).toBeGreaterThanOrEqual(3);
+  });
+});
+
+describe('zebra fallback scope', () => {
+  it('never assigns the zebra to an atmosphere slot: those paint their own backdrop', () => {
+    for (const slot of EDITORIAL_MEDIA_SLOTS.filter((id) => id.startsWith('atmosphere.'))) {
+      expect(EDITORIAL_MEDIA_REGISTRY[slot].fallback, slot).toBe('atmosphere');
+    }
   });
 });
