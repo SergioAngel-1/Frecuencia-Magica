@@ -371,5 +371,5 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
    pálidas. En la noche no se pinta (la noche queda como estaba). */
 [data-scheme='light'] .fm-disc-num,
 [data-scheme='light'] .fm-disc-unit {
-  text-shadow: 0 0 10px color-mix(in srgb, var(--color-void) 85%, transparent);
+  text-shadow: 0 0 10px color-mix(in srgb, var(--color-ink) 85%, transparent);
 }
