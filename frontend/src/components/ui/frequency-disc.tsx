@@ -165,7 +165,8 @@ interface FrequencyDiscProps {
  * Cubre todas las escalas con una sola implementación: mínimo (sugerencias
  * dentro de una tarjeta), pequeño flotante (Resonario, Home), medio en rejilla
  * y destacado (Resonario).
- * En Resonario **no** se usa una rejilla de tarjetas: son discos.
+ * En Resonario, el destacado es el sol (un disco `lg`) y cada pista de su tarjeta
+ * es un disco `md`: no hay posiciones orbitales fijas.
  */
 export function FrequencyDisc({
   size = 'md',
