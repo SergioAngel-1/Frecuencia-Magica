@@ -161,6 +161,12 @@
         "membership": "Golden light over a serene community space",
         "footerBanner": "The cosmos continues beyond the page"
       }
+    },
+    "storeShowcase": {
+      "kicker": "Shop",
+      "title": "Objects for your ritual",
+      "description": "Candles, aromas and stones to accompany your practices, chosen with care.",
+      "cta": "See the shop"
     }
   },
   "about": {

@@ -161,6 +161,12 @@
         "membership": "Luz dorada sobre un espacio sereno de la comunidad",
         "footerBanner": "El cosmos continúa tras la página"
       }
+    },
+    "storeShowcase": {
+      "kicker": "Tienda",
+      "title": "Objetos para tu ritual",
+      "description": "Velas, aromas y piedras para acompañar tus prácticas, elegidos con calma.",
+      "cta": "Ver la tienda"
     }
   },
   "about": {

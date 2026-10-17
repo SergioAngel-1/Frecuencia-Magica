@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { AboutSection } from '@/components/features/home/about-section';
+import { StoreShowcase } from '@/components/features/home/store-showcase';
 import { DailyFrequency } from '@/components/features/home/daily-frequency';
 import { HeroSection } from '@/components/features/home/hero-section';
 import { MembershipSection } from '@/components/features/home/membership-section';
@@ -8,8 +9,13 @@ import { RealmsGrid } from '@/components/features/home/realms-grid';
 import { ButtonLink, PageShell } from '@/components/layout';
 import { Link } from '@/i18n/navigation';
 import { AUDIOS } from '@/data';
+import { ATMOSPHERES } from '@/config/atmospheres';
 import { BANDS } from '@/config/bands';
 import { NAV_REALMS } from '@/config/realms';
+import { STORE_SHOWCASE_IDS } from '@/config/store-showcase';
+import { PRODUCTS } from '@/data';
+import { formatPrice } from '@/lib/format';
+import { featuredProducts } from '@/lib/store/showcase';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { ArrowGlyph, arrowLinkClasses, BandChain } from '@/components/ui';
@@ -94,6 +100,22 @@ export default async function HomePage({ params }: PageProps) {
     description: t(`realms.descriptions.${r.id}` as 'realms.descriptions.descubrete'),
   }));
 
+  const storeTranslations = await getTranslations('store');
+  const storeItems = featuredProducts(STORE_SHOWCASE_IDS, PRODUCTS).map((product) => {
+    const title = storeTranslations(`products.${product.id}.title`);
+
+    return {
+      id: product.id,
+      title,
+      price: formatPrice(product.price),
+      media: resolveEditorialMedia('store-product-visual', {
+        instance: product.id,
+        alt: storeTranslations('media.alt.product', { title }),
+        sizes: '(min-width: 1024px) 280px, 50vw',
+      }),
+    };
+  });
+
   const academiaData = realmData.find((r) => r.id === 'academia')!;
   // El bento tiene su propia composición (Tienda ocupa dos filas en la
   // cuarta celda): no sigue el orden del menú.
@@ -168,6 +190,16 @@ export default async function HomePage({ params }: PageProps) {
           featuredBadge={t('realms.featuredBadge')}
         />
       </BandChain>
+
+      {/* Tienda: una banda clara entre el bento y la membresía, que siguen oscuras. */}
+      <StoreShowcase
+        kicker={t('storeShowcase.kicker')}
+        title={t('storeShowcase.title')}
+        description={t('storeShowcase.description')}
+        cta={t('storeShowcase.cta')}
+        items={storeItems}
+        scheme={ATMOSPHERES.store.scheme}
+      />
 
       {/* Ninguna sección trae su propio margen exterior: lo pone este contenedor.
           La membresía sigue al bento de realms y Marisol cierra la página antes
