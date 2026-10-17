@@ -1,6 +1,7 @@
 'use client';
 
 import { ArrivalPanel } from '@/components/features/arrival/arrival-panel';
+import { ArrivalReveal } from '@/components/features/arrival/arrival-reveal';
 import { Button } from '@/components/ui';
 import type { ArrivalKey } from '@/config/arrivals';
 import { useArrival } from '@/hooks/use-arrival';
@@ -23,13 +24,13 @@ export function DiscoverArrival({ arrivalKey, featuredId, ctaLabel }: DiscoverAr
 
   return (
     <div className="flex w-full flex-col items-center">
-      {!flow.response ? (
+      <ArrivalReveal open={!flow.response}>
         <div className="flex justify-center">
           <Button variant="outline" onClick={() => choose(arrivalKey, featuredId)}>
             {ctaLabel}
           </Button>
         </div>
-      ) : null}
+      </ArrivalReveal>
       <ArrivalPanel
         flow={flow}
         atmosphere={atmosphere}

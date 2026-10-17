@@ -1,12 +1,15 @@
 'use client';
 
+import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 
 import { Button, GlassPanel, Kicker, Swap } from '@/components/ui';
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { arrivalAnnouncement } from '@/lib/arrival/announce';
 import { currentAlternative, type ArrivalFlow } from '@/lib/arrival/flow';
 import type { AtmosphereId } from '@/types/atmosphere';
 
+import { ArrivalReveal } from './arrival-reveal';
 import { BreathingGuide } from './breathing-guide';
 
 type ArrivalPanelProps = {
@@ -31,6 +34,7 @@ export function ArrivalPanel({ flow, atmosphere, onStep, onOther, onStop }: Arri
   const t = useTranslations('arrival');
   const tResonario = useTranslations('resonario');
   const tAtmospheres = useTranslations('atmospheres');
+  const reduced = useReducedMotionSafe();
 
   const response = flow.response;
   const audio = currentAlternative(flow);
@@ -55,69 +59,78 @@ export function ArrivalPanel({ flow, atmosphere, onStep, onOther, onStop }: Arri
         {announcement}
       </p>
 
-      {response ? (
-        <GlassPanel className="w-full max-w-[640px] p-5 text-center sm:p-7">
-          <Swap id={`explanation-${flow.key}`}>
-            <p className="text-fg-body text-lead leading-[1.7]">{t(response.explanationKey)}</p>
-          </Swap>
+      <ArrivalReveal open={Boolean(response)}>
+        {response ? (
+          <motion.div
+            className="flex w-full justify-center pt-6"
+            initial={{ opacity: 0, y: reduced ? 0 : 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduced ? 0.2 : 0.6, ease: 'easeOut' }}
+          >
+            <GlassPanel className="w-full max-w-[640px] p-5 text-center sm:p-7">
+              <Swap id={`explanation-${flow.key}`}>
+                <p className="text-fg-body text-lead leading-[1.7]">{t(response.explanationKey)}</p>
+              </Swap>
 
-          {audio ? (
-            <div className="mt-6 flex flex-col items-center gap-3">
-              <Kicker tone="teal" spacing="wide">
-                {t('listenKind')}
-              </Kicker>
-              <Swap id={`alternative-${flow.key}-${flow.index}`}>
-                <div className="flex flex-col items-center gap-1">
-                  <p className="text-fg-meta text-label tracking-label font-sans uppercase">
-                    {tResonario(`kinds.${audio.kind}.title` as 'kinds.melody.title')}
-                  </p>
-                  <p className="text-fg font-serif text-[clamp(20px,2.4vw,24px)] leading-tight">
-                    {tResonario(`audios.${audio.id}.title` as 'audios.a1.title')}
-                  </p>
-                  {audio.headphones ? (
-                    <p className="text-fg-meta text-meta tracking-ui font-sans">
-                      {t('headphones')}
-                    </p>
+              {audio ? (
+                <div className="mt-6 flex flex-col items-center gap-3">
+                  <Kicker tone="teal" spacing="wide">
+                    {t('listenKind')}
+                  </Kicker>
+                  <Swap id={`alternative-${flow.key}-${flow.index}`}>
+                    <div className="flex flex-col items-center gap-1">
+                      <p className="text-fg-meta text-label tracking-label font-sans uppercase">
+                        {tResonario(`kinds.${audio.kind}.title` as 'kinds.melody.title')}
+                      </p>
+                      <p className="text-fg font-serif text-[clamp(20px,2.4vw,24px)] leading-tight">
+                        {tResonario(`audios.${audio.id}.title` as 'audios.a1.title')}
+                      </p>
+                      {audio.headphones ? (
+                        <p className="text-fg-meta text-meta tracking-ui font-sans">
+                          {t('headphones')}
+                        </p>
+                      ) : null}
+                    </div>
+                  </Swap>
+                  {count > 1 ? (
+                    <div className="flex items-center gap-2">
+                      <Button variant="ghost" onClick={() => onStep(-1)}>
+                        {t('previous')}
+                      </Button>
+                      <p className="text-fg-meta text-meta tracking-ui font-sans">
+                        {t('position', { current: flow.index + 1, total: count })}
+                      </p>
+                      <Button variant="ghost" onClick={() => onStep(1)}>
+                        {t('next')}
+                      </Button>
+                    </div>
                   ) : null}
                 </div>
-              </Swap>
-              {count > 1 ? (
-                <div className="flex items-center gap-2">
-                  <Button variant="ghost" onClick={() => onStep(-1)}>
-                    {t('previous')}
-                  </Button>
-                  <p className="text-fg-meta text-meta tracking-ui font-sans">
-                    {t('position', { current: flow.index + 1, total: count })}
-                  </p>
-                  <Button variant="ghost" onClick={() => onStep(1)}>
-                    {t('next')}
-                  </Button>
+              ) : null}
+
+              {response.practice === 'breathing' ? (
+                <div className="mt-8">
+                  <BreathingGuide />
                 </div>
               ) : null}
-            </div>
-          ) : null}
 
-          {response.practice === 'breathing' ? (
-            <div className="mt-8">
-              <BreathingGuide />
-            </div>
-          ) : null}
-
-          <div className="mt-7 flex flex-col items-center gap-3">
-            <p className="text-fg-meta text-meta tracking-ui font-sans">
-              {tAtmospheres(`${atmosphere}.name`)}
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <Button variant="outline" onClick={onOther}>
-                {t('otherOption')}
-              </Button>
-              <Button variant="ghost" onClick={onStop}>
-                {t('stop')}
-              </Button>
-            </div>
-          </div>
-        </GlassPanel>
-      ) : null}
+              <div className="mt-7 flex flex-col items-center gap-3">
+                <p className="text-fg-meta text-meta tracking-ui font-sans">
+                  {tAtmospheres(`${atmosphere}.name`)}
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <Button variant="outline" onClick={onOther}>
+                    {t('otherOption')}
+                  </Button>
+                  <Button variant="ghost" onClick={onStop}>
+                    {t('stop')}
+                  </Button>
+                </div>
+              </div>
+            </GlassPanel>
+          </motion.div>
+        ) : null}
+      </ArrivalReveal>
     </div>
   );
 }

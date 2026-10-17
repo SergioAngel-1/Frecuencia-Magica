@@ -54,23 +54,26 @@ export function ArrivalSection() {
       <AtmosphereScope
         atmosphere={atmosphere}
         scheme={scheme}
-        className="fm-container relative flex flex-col items-center gap-6 text-center"
+        className="fm-container relative flex flex-col items-center text-center"
       >
-        <Kicker tone="teal" spacing="wide">
-          {t('kicker')}
-        </Kicker>
-        <Display level="h2" size="md" id="arrival-title" className="text-fg">
-          {t('title')}
-        </Display>
-        <p className="text-fg-soft text-body max-w-[52ch] leading-[1.8]">{t('intro')}</p>
+        {/* Sin `gap` en el contenedor: el panel se pliega a 0 y no debe dejar hueco. */}
+        <div className="flex flex-col items-center gap-6">
+          <Kicker tone="teal" spacing="wide">
+            {t('kicker')}
+          </Kicker>
+          <Display level="h2" size="md" id="arrival-title" className="text-fg">
+            {t('title')}
+          </Display>
+          <p className="text-fg-soft text-body max-w-[52ch] leading-[1.8]">{t('intro')}</p>
 
-        <ArrivalCheckIn
-          legend={t('legend')}
-          options={options}
-          selected={selectedMood(flow.key)}
-          onSelect={(id) => choose(`mood:${id}`)}
-        />
-        <p className="text-fg-meta text-meta tracking-ui font-sans">{t('silent')}</p>
+          <ArrivalCheckIn
+            legend={t('legend')}
+            options={options}
+            selected={selectedMood(flow.key)}
+            onSelect={(id) => choose(`mood:${id}`)}
+          />
+          <p className="text-fg-meta text-meta tracking-ui font-sans">{t('silent')}</p>
+        </div>
 
         <ArrivalPanel
           flow={flow}
