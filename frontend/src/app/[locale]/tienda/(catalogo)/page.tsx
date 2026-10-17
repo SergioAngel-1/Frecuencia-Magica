@@ -7,6 +7,8 @@ import {
   type StoreProductMedia,
 } from '@/components/features/store/product-grid';
 import { PageShell, RealmHero } from '@/components/layout';
+import { ATMOSPHERES } from '@/config/atmospheres';
+import { scrimToneFor } from '@/lib/atmosphere/painting';
 import { ArrowGlyph, arrowLinkClasses, EditorialBanner } from '@/components/ui';
 import { PRODUCTS } from '@/data';
 import { Link } from '@/i18n/navigation';
@@ -47,7 +49,8 @@ export default async function StorePage({ params }: PageProps) {
     }),
   ) as StoreProductMedia;
   const storeMedia: StoreMedia = {
-    hero: resolveEditorialMedia('store.hero', { alt: t('media.alt.hero'), sizes: '100vw' }),
+    // La Tienda vive en la atmósfera `store`: su paisaje, no la zebra de la noche.
+    hero: resolveEditorialMedia('atmosphere.store', { alt: t('media.alt.hero'), sizes: '100vw' }),
     products,
     ritualBanner: resolveEditorialMedia('store.ritual-banner', {
       alt: t('media.alt.ritualBanner'),
@@ -63,6 +66,7 @@ export default async function StorePage({ params }: PageProps) {
         title={t('title')}
         description={t('description')}
         action={<CartButton className="mt-1 shrink-0" />}
+        scrimTone={scrimToneFor(ATMOSPHERES.store.scheme)}
       />
 
       <div className="fm-editorial-full-bleed fm-container pt-block pb-section">

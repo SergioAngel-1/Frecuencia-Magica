@@ -103,7 +103,7 @@ export const REALMS: readonly EditorialRealm[] = [
     baseNote: 116.5,
     inNav: true,
     visualMode: 'editorial',
-    photoTreatment: 'warm',
+    photoTreatment: 'natural',
   },
   {
     id: 'sanctuario',
