@@ -888,7 +888,7 @@
   },
   "arrival": {
     "breathing": {
-      "title": "Respira conmigo",
+      "title": "Respira a tu ritmo",
       "intro": "Sigue el orbe. No hay nada que hacer bien: sólo acompañar el aire.",
       "inhale": "Inhala",
       "hold": "Sostén",
@@ -915,22 +915,22 @@
         "explanation": "Un momento de calma, con agua y aire cerca, para quedarte sin prisa."
       },
       "tiredness": {
-        "explanation": "Para el cuerpo que pide descanso: un sonido que baja el ritmo, sin esfuerzo."
+        "explanation": "Para el cuerpo que pide descanso: un sonido de fondo, sin nada que hacer."
       },
       "nostalgia": {
-        "explanation": "Para lo que vuelve y trae un poco de dulzura. Melodías que acompañan la memoria."
+        "explanation": "Para lo que vuelve y trae un poco de dulzura. Un tono suave acompaña el recuerdo."
       },
       "sadness": {
         "explanation": "Si hoy pesa, no hace falta explicarlo. Puedes quedarte un rato, despacio, con compañía suave."
       },
       "joy": {
-        "explanation": "Para la luz que ya está en ti. Melodías que acompañan lo que celebras."
+        "explanation": "Para la luz que ya está en ti. Un sonido de agua de fondo mientras lo celebras."
       },
       "gratitude": {
-        "explanation": "Para dar las gracias por lo que tienes cerca. Sonidos suaves que lo acompañan."
+        "explanation": "Para dar las gracias por lo que tienes cerca. Sonidos de agua y un tono suave lo acompañan."
       },
       "clarity": {
-        "explanation": "Para ordenar la mente sin forzarla: naturaleza y un pulso claro para pensar."
+        "explanation": "Para pensar con más espacio: un pulso constante de fondo, sin prisa."
       },
       "breathe": {
         "explanation": "Para cuando sólo necesitas respirar. Una guía lenta que sigues con el aire."
@@ -938,22 +938,22 @@
     },
     "intents": {
       "calm": {
-        "explanation": "Una calma de día: agua, aire y un tono que no pide nada."
+        "explanation": "Una calma de día: agua y aire cerca, y un tono suave para quedarte un rato."
       },
       "grounding": {
-        "explanation": "Volver a la tierra: bosque, raíz y agua que corre."
+        "explanation": "Para volver a la tierra: lluvia de fondo y un tono suave."
       },
       "clarity": {
-        "explanation": "Claridad para pensar con ligereza: melodía, naturaleza y un pulso binaural."
+        "explanation": "Claridad sin prisa: un pulso constante de fondo y un tono claro."
       },
       "rest": {
-        "explanation": "Descanso al caer la tarde: sonidos reales de mar y tonos que bajan el ritmo."
+        "explanation": "Para acompañar el descanso al caer la tarde: sonido de mar de fondo y un tono suave."
       },
       "bond": {
-        "explanation": "Cercanía: melodías cálidas y sonidos de agua para pasar un rato acompañado."
+        "explanation": "Para pasar un rato acompañado: sonidos de agua y un tono cálido de fondo."
       },
       "renewal": {
-        "explanation": "Renovarte: bosque, cascada y un tono que despierta con suavidad."
+        "explanation": "Para renovarte con calma: lluvia de fondo y un tono que acompaña el aire."
       }
     }
   },

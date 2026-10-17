@@ -883,7 +883,7 @@
   },
   "arrival": {
     "breathing": {
-      "title": "Breathe with me",
+      "title": "Breathe at your own pace",
       "intro": "Follow the orb. There is nothing to do well: just keep the air company.",
       "inhale": "Breathe in",
       "hold": "Hold",
@@ -910,22 +910,22 @@
         "explanation": "A moment of calm, with water and air close by, to stay without hurry."
       },
       "tiredness": {
-        "explanation": "For a body asking for rest: a sound that lowers the pace, without effort."
+        "explanation": "For a body asking for rest: a background sound, with nothing to do."
       },
       "nostalgia": {
-        "explanation": "For what comes back and brings a little sweetness. Melodies that keep memory company."
+        "explanation": "For what comes back and brings a little sweetness. A soft tone keeps the memory company."
       },
       "sadness": {
         "explanation": "If today feels heavy, there is no need to explain it. You can stay a while, slowly, with gentle company."
       },
       "joy": {
-        "explanation": "For the light already in you. Melodies that go along with what you celebrate."
+        "explanation": "For the light already in you. Water sounds in the background while you celebrate."
       },
       "gratitude": {
-        "explanation": "To give thanks for what is close to you. Soft sounds that keep it company."
+        "explanation": "To give thanks for what is close to you. Water sounds and a soft tone keep it company."
       },
       "clarity": {
-        "explanation": "To order the mind without forcing it: nature and a clear pulse for thinking."
+        "explanation": "To think with more space: a steady pulse in the background, without hurry."
       },
       "breathe": {
         "explanation": "For when you only need to breathe. A slow guide you follow with your air."
@@ -933,22 +933,22 @@
     },
     "intents": {
       "calm": {
-        "explanation": "A daylight calm: water, air and a tone that asks nothing of you."
+        "explanation": "A daylight calm: water and air close by, and a soft tone to stay a while."
       },
       "grounding": {
-        "explanation": "Back to the earth: forest, roots and running water."
+        "explanation": "Back to the earth: background rain and a soft tone."
       },
       "clarity": {
-        "explanation": "Clarity to think lightly: melody, nature and a binaural pulse."
+        "explanation": "Clarity without hurry: a steady background pulse and a clear tone."
       },
       "rest": {
-        "explanation": "Rest as the evening falls: real sea sounds and tones that slow the pace."
+        "explanation": "To keep rest company as the evening falls: background sea sounds and a soft tone."
       },
       "bond": {
-        "explanation": "Closeness: warm melodies and water sounds to spend a while in good company."
+        "explanation": "To spend a while in company: water sounds and a warm tone in the background."
       },
       "renewal": {
-        "explanation": "Renewal: forest, waterfall and a tone that wakes you gently."
+        "explanation": "To renew yourself calmly: background rain and a tone that goes with the breath."
       }
     }
   },
