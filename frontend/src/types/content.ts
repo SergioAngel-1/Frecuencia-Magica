@@ -1,3 +1,5 @@
+import type { EditorialMediaSlot } from '@/config/editorial-media';
+
 /**
  * Modelo de contenido.
  *
@@ -110,6 +112,15 @@ export type Experience = IntentAffine & {
   band: string;
 };
 
+/** Vistas opcionales de la galería de un producto, además de su visual. */
+export type ProductViewKind = 'label' | 'texture' | 'inUse';
+
+/** Una vista de la galería: un slot editorial que ya existe (y su instancia). Sin slots nuevos (R12). */
+export type ProductView = { slot: EditorialMediaSlot; instance?: string };
+
+/** Galería de un producto: sólo las vistas que Marisol entregue; las demás caen al visual. */
+export type ProductGallery = Partial<Record<ProductViewKind, ProductView>>;
+
 export type Product = IntentAffine & {
   id: string;
   titleKey: string;
@@ -118,6 +129,17 @@ export type Product = IntentAffine & {
   band: string;
   /** Frecuencia que acompaña al producto en su ritual. */
   relatedAudioId: string;
+  /**
+   * Producto de demostración: nombre, precio y foto se sustituyen por los
+   * reales de Marisol antes de publicar. Lo lee el registro de pendientes.
+   */
+  provisional: boolean;
+  /** Clave del tamaño (p. ej. «30 ml»). Sin ella no se pinta: el dato lo confirma Marisol. */
+  sizeKey?: string;
+  /** Clave del contenido o ingredientes. Sin ella no se pinta. */
+  contentsKey?: string;
+  /** Vistas propias (etiqueta, textura, en uso). Sin ellas, sólo el visual del producto. */
+  gallery?: ProductGallery;
 };
 
 export type QuestionOption = {

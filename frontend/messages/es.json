@@ -720,7 +720,10 @@
         "product": "{title} de Frecuencia Mágica",
         "ritualBanner": "Los objetos del ritual",
         "detail": "{title}: detalle",
-        "related": "{title}, objeto que acompaña al ritual"
+        "related": "{title}, objeto que acompaña al ritual",
+        "viewLabel": "{title}: etiqueta del envase",
+        "viewTexture": "{title}: detalle de la textura",
+        "viewInUse": "{title}: en uso"
       }
     },
     "ritualBanner": {
@@ -797,6 +800,20 @@
       "p8": {
         "title": "Diario de Frecuencias"
       }
+    },
+    "gallery": {
+      "label": "Vistas del producto",
+      "views": {
+        "cover": "El producto",
+        "label": "Etiqueta",
+        "texture": "Textura",
+        "inUse": "En uso"
+      }
+    },
+    "specs": {
+      "label": "Detalles del producto",
+      "size": "Tamaño",
+      "contents": "Contenido"
     }
   },
   "cart": {

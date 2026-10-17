@@ -715,7 +715,10 @@
         "product": "{title} by Frecuencia Mágica",
         "ritualBanner": "The objects of the ritual",
         "detail": "{title}: detail",
-        "related": "{title}, an object that accompanies the ritual"
+        "related": "{title}, an object that accompanies the ritual",
+        "viewLabel": "{title}: package label",
+        "viewTexture": "{title}: texture detail",
+        "viewInUse": "{title}: in use"
       }
     },
     "ritualBanner": {
@@ -792,6 +795,20 @@
       "p8": {
         "title": "Frequency Journal"
       }
+    },
+    "gallery": {
+      "label": "Product views",
+      "views": {
+        "cover": "The product",
+        "label": "Label",
+        "texture": "Texture",
+        "inUse": "In use"
+      }
+    },
+    "specs": {
+      "label": "Product details",
+      "size": "Size",
+      "contents": "Contents"
     }
   },
   "cart": {

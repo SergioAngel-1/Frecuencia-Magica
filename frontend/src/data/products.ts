@@ -15,6 +15,7 @@ export const PRODUCTS: readonly Product[] = [
     catKey: 'store.categories.aromas',
     price: 28,
     band: COVERS.amber,
+    provisional: true,
     relatedAudioId: 'a5',
   },
   {
@@ -24,6 +25,7 @@ export const PRODUCTS: readonly Product[] = [
     catKey: 'store.categories.candles',
     price: 34,
     band: COVERS.honey,
+    provisional: true,
     relatedAudioId: 'a2',
   },
   {
@@ -33,6 +35,7 @@ export const PRODUCTS: readonly Product[] = [
     catKey: 'store.categories.crystals',
     price: 22,
     band: COVERS.violet,
+    provisional: true,
     relatedAudioId: 'a1',
   },
   {
@@ -42,6 +45,7 @@ export const PRODUCTS: readonly Product[] = [
     catKey: 'store.categories.mists',
     price: 26,
     band: COVERS.moss,
+    provisional: true,
     relatedAudioId: 'a3',
   },
   {
@@ -51,6 +55,7 @@ export const PRODUCTS: readonly Product[] = [
     catKey: 'store.categories.rituals',
     price: 18,
     band: COVERS.sage,
+    provisional: true,
     relatedAudioId: 'a5',
   },
   {
@@ -60,6 +65,7 @@ export const PRODUCTS: readonly Product[] = [
     catKey: 'store.categories.care',
     price: 24,
     band: COVERS.iris,
+    provisional: true,
     relatedAudioId: 'a4',
   },
   {
@@ -69,6 +75,7 @@ export const PRODUCTS: readonly Product[] = [
     catKey: 'store.categories.drinks',
     price: 20,
     band: COVERS.amber,
+    provisional: true,
     relatedAudioId: 'a1',
   },
   {
@@ -78,6 +85,7 @@ export const PRODUCTS: readonly Product[] = [
     catKey: 'store.categories.stationery',
     price: 30,
     band: COVERS.lagoon,
+    provisional: true,
     relatedAudioId: 'a6',
   },
 ] as const;

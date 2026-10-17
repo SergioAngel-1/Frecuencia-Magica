@@ -78,7 +78,26 @@ export default async function ProductPage({ params }: PageProps) {
   // La ficha abre con la imagen de la tarjeta que se eligió; la atmósfera de
   // `product.detail` queda para el producto que aún no tenga la suya.
   const detail = ownVisual(product, t('media.alt.detail', { title }), detailSizes);
+  // Vistas propias del producto (etiqueta, textura, en uso): sólo las que declara.
+  const galleryAlt = {
+    label: t('media.alt.viewLabel', { title }),
+    texture: t('media.alt.viewTexture', { title }),
+    inUse: t('media.alt.viewInUse', { title }),
+  } as const;
+  const gallery: NonNullable<ProductMedia['gallery']> = {};
+  for (const kind of ['label', 'texture', 'inUse'] as const) {
+    const view = product.gallery?.[kind];
+    if (view) {
+      gallery[kind] = resolveEditorialMedia(view.slot, {
+        instance: view.instance,
+        alt: galleryAlt[kind],
+        sizes: detailSizes,
+        band: product.band,
+      });
+    }
+  }
   const productMedia: ProductMedia = {
+    gallery,
     detail: detail.src
       ? detail
       : resolveEditorialMedia('product.detail', {
