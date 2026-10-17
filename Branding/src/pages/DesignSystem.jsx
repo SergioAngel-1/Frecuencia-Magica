@@ -1,3 +1,4 @@
+import { Atmospheres } from './sections/Atmospheres'
 import { Colors } from './sections/Colors'
 import { Controls } from './sections/Controls'
 import { Feedback } from './sections/Feedback'
@@ -11,6 +12,7 @@ import { Kicker } from '../components/ui/Kicker'
 
 const INDEX = [
   ['color', 'Color'],
+  ['atmosferas', 'Atmósferas'],
   ['tipografia', 'Tipografía'],
   ['superficies', 'Superficies'],
   ['movimiento', 'Movimiento'],
@@ -36,6 +38,7 @@ export function DesignSystem() {
         </nav>
       </header>
       <Colors />
+      <Atmospheres />
       <Typography />
       <Surfaces />
       <Motion />

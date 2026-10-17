@@ -56,7 +56,7 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
         {booking.step === 2 ? (
           <section
             aria-live="polite"
-            className="rounded-card-lg text-ivory relative isolate min-h-[clamp(460px,52vw,680px)] overflow-hidden"
+            className="rounded-card-lg text-fg relative isolate min-h-[clamp(460px,52vw,680px)] overflow-hidden"
             data-editorial-media="booking.confirmation"
             role="status"
           >
@@ -71,7 +71,7 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
               />
             </div>
             <div className="relative z-10 flex min-h-[clamp(460px,52vw,680px)] max-w-[620px] flex-col justify-end px-[clamp(24px,7vw,84px)] py-[clamp(30px,7vw,84px)]">
-              <span className="border-gold/60 bg-void/35 text-gold mb-5 inline-flex size-14 items-center justify-center rounded-full border font-serif text-[24px] backdrop-blur-sm">
+              <span className="border-accent/60 bg-scrim/35 text-accent mb-5 inline-flex size-14 items-center justify-center rounded-full border font-serif text-[24px] backdrop-blur-sm">
                 <span aria-hidden="true">✓</span>
                 <span className="sr-only">{t('done.title')}</span>
               </span>
@@ -113,10 +113,10 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
                 scrim="bottom"
               />
             </div>
-            <div className="bg-void/72 relative z-10 px-[clamp(20px,6vw,84px)] py-[clamp(24px,5vw,64px)] backdrop-blur-[2px]">
+            <div className="bg-scrim/72 relative z-10 px-[clamp(20px,6vw,84px)] py-[clamp(24px,5vw,64px)] backdrop-blur-[2px]">
               <Link
                 href="/experiencias"
-                className="text-fg-soft hover:text-ivory text-meta tracking-ui inline-flex min-h-11 items-center py-3 font-sans uppercase transition-colors"
+                className="text-fg-soft hover:text-fg text-meta tracking-ui inline-flex min-h-11 items-center py-3 font-sans uppercase transition-colors"
               >
                 ← {common('back')}
               </Link>
@@ -153,8 +153,8 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
                             className={cn(
                               'flex min-h-11 flex-col items-center rounded-[14px] px-2 py-[14px] text-center backdrop-blur-[6px] transition-colors focus-visible:outline',
                               booking.state.date === d.iso
-                                ? 'border-lav/55 bg-lav/16 text-ivory border'
-                                : 'border-ivory/14 bg-ivory/4 text-fg-body hover:border-lav/30 border',
+                                ? 'border-accent-3/55 bg-accent-3/16 text-fg border'
+                                : 'border-fg/14 bg-fg/4 text-fg-body hover:border-accent-3/30 border',
                             )}
                           >
                             <span className="text-fg-muted text-label tracking-ui font-sans uppercase">
@@ -181,8 +181,8 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
                             className={cn(
                               'text-body min-h-11 rounded-[12px] px-6 py-3 font-sans backdrop-blur-[6px] transition-colors focus-visible:outline',
                               booking.state.time === time
-                                ? 'border-lav/55 bg-lav/16 text-ivory border'
-                                : 'border-ivory/14 bg-ivory/4 text-fg-soft hover:border-lav/30 border',
+                                ? 'border-accent-3/55 bg-accent-3/16 text-fg border'
+                                : 'border-fg/14 bg-fg/4 text-fg-soft hover:border-accent-3/30 border',
                             )}
                           >
                             {time}

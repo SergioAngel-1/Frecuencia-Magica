@@ -6,7 +6,7 @@ export type SkeletonVariant = 'text' | 'disc' | 'card' | 'band';
 
 /** Barrido de luz. Sustituye al spinner: nunca un spinner como carga principal. */
 const SHIMMER =
-  'linear-gradient(90deg, rgba(247,244,234,0.04), rgba(247,244,234,0.10), rgba(247,244,234,0.04))';
+  'linear-gradient(90deg, color-mix(in srgb, var(--color-fg) 4%, transparent), color-mix(in srgb, var(--color-fg) 10%, transparent), color-mix(in srgb, var(--color-fg) 4%, transparent))';
 
 const VARIANT_CLASSES: Record<SkeletonVariant, string> = {
   text: 'h-[1em] rounded-[4px]',

@@ -45,7 +45,7 @@ export function RecoverForm({ initialEmail, onSent, onBack }: RecoverFormProps) 
       {sentTo ? (
         <div role="status">
           <p className="text-fg-body text-body mb-8 leading-[1.7]">
-            <span aria-hidden="true" className="text-gold mr-2">
+            <span aria-hidden="true" className="text-accent mr-2">
               ✓
             </span>
             {t('auth.recover.sentBody', { email: sentTo })}

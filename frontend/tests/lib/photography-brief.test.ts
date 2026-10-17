@@ -18,7 +18,9 @@ import {
   PRESETS,
   SAFE,
   SLOTS,
+  baseFor,
   expandAll,
+  isAtmosphere,
 } from '../../../Branding/src/data/photography.js';
 import { renderBrief } from '../../../Branding/src/data/photography-brief.js';
 
@@ -118,10 +120,36 @@ describe('photography brief', () => {
 
     for (const row of rows as { id: string; file: string; safe: string; prompt: string }[]) {
       expect(SAFE, row.id).toHaveProperty(row.safe);
-      expect(row.prompt, row.id).toContain(GLOBAL.base);
+      expect(row.prompt, row.id).toContain(baseFor(row));
       expect(row.prompt, row.id).not.toMatch(/unsplash|stock photo/i);
       expect(row.file, row.id).toMatch(/^[a-z0-9-]+\.(avif|jpg)$/);
     }
+  });
+
+  it('gives the atmosphere images their own grade, with colors by name and nobody in the frame', () => {
+    const rows = (expandAll() as { id: string; prompt: string; treatment: string }[]).filter(
+      (row) => isAtmosphere(row),
+    );
+
+    expect(rows.length).toBeGreaterThan(0);
+
+    for (const row of rows) {
+      expect(row.prompt, row.id).toContain('No people.');
+      expect(row.prompt, row.id).toContain(GLOBAL.atmosphere.treatments[row.treatment as never]);
+      // La paleta nocturna no se cuela en una atmósfera: sus colores van por nombre, no por hex.
+      expect(row.prompt, row.id).not.toMatch(/#[0-9a-f]{6}/i);
+      expect(row.prompt, row.id).not.toContain(GLOBAL.base);
+    }
+  });
+
+  it('flags the store products as provisional, to be photographed for real by Marisol', () => {
+    const products = (expandAll() as { slotId: string; provisional?: string }[]).filter(
+      (row) => row.slotId === 'store-product-visual',
+    );
+
+    expect(products).toHaveLength(PRODUCTS.length);
+
+    for (const row of products) expect(row.provisional, row.slotId).toMatch(/Marisol/);
   });
 
   it('keeps interface wording out of the prompts, where the model draws it as an object', () => {

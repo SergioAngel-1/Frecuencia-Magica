@@ -10,7 +10,8 @@ import { Equalizer, type EqualizerScale } from './equalizer';
 export type DiscSize = 'xs' | 'sm' | 'md' | 'lg';
 
 /** Luz especular del disco, idéntica en todas las escalas. */
-const SHEEN = 'radial-gradient(70% 80% at 32% 22%, rgba(247,244,234,0.24), transparent 62%)';
+const SHEEN =
+  'radial-gradient(70% 80% at 32% 22%, color-mix(in srgb, var(--color-fg) 24%, transparent), transparent 62%)';
 
 type SizeSpec = {
   width: number;
@@ -245,7 +246,7 @@ export function FrequencyDisc({
           style={{
             inset: spec.inset,
             backgroundImage: band,
-            borderColor: active ? 'rgba(216,185,120,0.6)' : 'var(--color-glass-brd)',
+            borderColor: active ? 'rgb(var(--halo) / 0.6)' : 'var(--color-line)',
             boxShadow: active ? spec.activeGlow : spec.restGlow,
             transition: 'box-shadow .4s, border-color .4s',
           }}
@@ -267,8 +268,20 @@ export function FrequencyDisc({
               spec.play ? 'top-[36%] -translate-y-1/2' : 'top-1/2 -translate-y-1/2',
             )}
           >
-            <span className={cn('text-ivory block font-serif leading-none', spec.hz)}>{hz}</span>
-            <span className={cn('text-fg-body block font-sans uppercase', spec.unit)}>Hz</span>
+            {/* Marfil fijo sobre la cara. En claro, la cifra va sobre una píldora de tinta
+                (`.fm-disc-face` en globals.css); en la noche no hay píldora. */}
+            <span className="fm-disc-face inline-flex flex-col items-center">
+              <span
+                className={cn('fm-disc-num text-on-media block font-serif leading-none', spec.hz)}
+              >
+                {hz}
+              </span>
+              <span
+                className={cn('fm-disc-unit text-on-media/80 block font-sans uppercase', spec.unit)}
+              >
+                Hz
+              </span>
+            </span>
           </div>
 
           {showPlay && spec.play ? (
@@ -278,8 +291,10 @@ export function FrequencyDisc({
               style={{
                 width: spec.play,
                 height: spec.play,
-                borderColor: active ? 'rgba(216,185,120,0.7)' : 'rgba(247,244,234,0.7)',
-                background: active ? 'rgba(216,185,120,0.14)' : 'rgba(15,27,46,0.35)',
+                borderColor: active
+                  ? 'rgb(var(--halo) / 0.7)'
+                  : 'color-mix(in srgb, var(--color-fg) 70%, transparent)',
+                background: active ? 'rgb(var(--halo) / 0.14)' : 'rgb(var(--scrim) / 0.35)',
               }}
             >
               <svg
@@ -288,7 +303,7 @@ export function FrequencyDisc({
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 // El triángulo se centra ópticamente; las barras de pausa ya lo están.
-                className={cn('text-ivory', !pausable && 'translate-x-[6%]')}
+                className={cn('text-fg', !pausable && 'translate-x-[6%]')}
               >
                 {pausable ? (
                   <>
@@ -335,7 +350,7 @@ export function FrequencyDisc({
       data-magnetic
       aria-label={ariaLabel}
       onClick={onClick}
-      className={cn(frame, 'text-ivory cursor-pointer')}
+      className={cn(frame, 'text-fg cursor-pointer')}
       style={style}
     >
       {disc}

@@ -55,14 +55,14 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
       <GlassPanel
         className={cn(
           'p-5 transition-[box-shadow,border-color] duration-700 sm:p-7',
-          saved && 'shadow-glow-card border-gold/50',
+          saved && 'shadow-glow-card border-accent/50',
         )}
       >
         <Kicker tone="lav" spacing="widest" className="mb-4">
           {tJournal('kicker')}
         </Kicker>
 
-        <p className="text-ivory mb-5 font-serif text-[clamp(22px,2.6vw,26px)] leading-tight">
+        <p className="text-fg mb-5 font-serif text-[clamp(22px,2.6vw,26px)] leading-tight">
           {tJournal('title')}
         </p>
 
@@ -80,8 +80,8 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
               className={cn(
                 'rounded-pill text-label tracking-ui min-h-11 flex-1 basis-[86px] border px-3 py-2 font-sans uppercase transition-[color,background-color,border-color] duration-300',
                 draft.mood === index
-                  ? 'bg-gold/15 text-gold border-gold/40'
-                  : 'bg-glass text-fg-muted border-glass-brd hover:border-ivory/20',
+                  ? 'bg-accent/15 text-accent border-accent/40'
+                  : 'bg-surface text-fg-muted border-line hover:border-fg/20',
               )}
             >
               {tJournal(`moods.${mood}`)}

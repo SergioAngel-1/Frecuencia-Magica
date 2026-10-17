@@ -83,7 +83,7 @@ export function DailyCard({ media, audioId }: DailyCardProps) {
       {suggestions.length > 0 ? (
         <section
           aria-labelledby="sanctuary-suggestions-title"
-          className="border-ivory/10 mt-auto w-full border-t pt-6"
+          className="border-fg/10 mt-auto w-full border-t pt-6"
         >
           <Kicker
             as="h2"

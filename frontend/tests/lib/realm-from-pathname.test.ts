@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { realmFromPathname } from '@/lib/realm-from-pathname';
+import { placeFromPathname, realmFromPathname } from '@/lib/realm-from-pathname';
 
 describe('realmFromPathname', () => {
   it('la raíz es el portal', () => {
@@ -46,6 +46,15 @@ describe('realmFromPathname', () => {
 
   it('una ruta desconocida cae en el portal', () => {
     expect(realmFromPathname('/inexistente')).toBe('portal');
+  });
+
+  it('los nombres de propiedades del prototipo no son lugares: caen en portal', () => {
+    expect(placeFromPathname('/constructor')).toBe('portal');
+    expect(placeFromPathname('/en/__proto__')).toBe('portal');
+    expect(placeFromPathname('/toString')).toBe('portal');
+    expect(placeFromPathname('/en/hasOwnProperty')).toBe('portal');
+    expect(realmFromPathname('/constructor')).toBe('portal');
+    expect(realmFromPathname('/en/__proto__')).toBe('portal');
   });
 
   it('las rutas anidadas en inglés con prefijo de locale también heredan', () => {

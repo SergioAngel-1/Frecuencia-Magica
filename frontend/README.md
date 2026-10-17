@@ -85,11 +85,12 @@ Un realm no es sólo una ruta: su id vive en varios sitios que hay que mantener 
 1. **Tipo:** añadir el id a `RealmId` en `src/types/realm.ts`.
 2. **Config:** su entrada en `REALMS` (`src/config/realms.ts`): acento, `baseNote` del drone, `inNav`, `visualMode` y `photoTreatment`. `src/config/bands.ts` no lleva una entrada por realm: `BANDS` son gradientes por acento (`gold | teal | lav | mix`) y sólo se toca si el realm estrena un acento, cosa que la paleta cerrada no permite.
 3. **Rutas:** añadir el segmento localizado en `src/i18n/routing.ts` (`pathnames`), con los segmentos estáticos antes que los dinámicos — el `Link` de `@/i18n/navigation` traducirá `/nuevo` ↔ `/en/new` automáticamente.
-4. **Realm por URL:** registrar el primer segmento, en ES **y** EN, en `SEGMENT_TO_REALM` (`src/lib/realm-from-pathname.ts`). Si falta, la ruta cae en silencio a `portal` y se ve con el acento y el drone equivocados, sin error de tipos.
+4. **Realm por URL:** registrar el primer segmento, en ES **y** EN, en `SEGMENT_TO_PLACE` (`src/lib/realm-from-pathname.ts`). Si falta, la ruta cae en silencio a `portal` y se ve con el acento y el drone equivocados, sin error de tipos.
 5. **Copy:** crear `realms.<id>` (lo lee `RealmNav`) y el namespace de la vista en `messages/es.json` y `messages/en.json` con las mismas claves (el test de integridad lo exige).
 6. **Datos:** el catálogo tipado en `src/data/` con claves de traducción, nunca textos.
 7. **Vista:** `src/app/[locale]/<realm>/page.tsx` (Server Component, empieza con `const locale = await resolveLocale(params);`) que compone componentes de `src/components/features/<realm>/`. Un realm de catálogo abre con `RealmHero` (`components/layout`).
 8. **Navegación y footer:** con `inNav: true` el realm aparece en `RealmNav` y en `RealmsGrid`; el footer cierra todos los realms salvo el portal (`src/components/layout/realm-footer.tsx`); un realm nuevo lo lleva sin tocar nada.
+9. **Atmósfera por defecto:** elegir una de las nueve de `DESIGN.md` (§ Atmósferas) y registrarla como su atmósfera por defecto en `src/config/atmospheres.ts` (en curso con la fase de ambientes v2; ver `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`, § 4.4). Sus valores se declaran sólo en `src/app/tokens.css`, y el test de contraste por atmósfera debe pasar con ella.
 
 ## Añadir un componente al UI Kit
 

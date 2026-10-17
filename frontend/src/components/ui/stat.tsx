@@ -16,10 +16,10 @@ interface StatProps {
 }
 
 const TONE_CLASSES: Record<StatTone, string> = {
-  gold: 'text-gold',
-  teal: 'text-teal',
-  lav: 'text-lav',
-  ivory: 'text-ivory',
+  gold: 'text-accent',
+  teal: 'text-accent-2',
+  lav: 'text-accent-3',
+  ivory: 'text-fg',
 };
 
 const SIZE_CLASSES: Record<StatSize, { value: string; label: string }> = {

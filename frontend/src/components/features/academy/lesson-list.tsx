@@ -35,9 +35,7 @@ export function LessonList({ courseId, lessons, currentIndex }: LessonListProps)
                   aria-current={isCurrent ? 'page' : undefined}
                   className={cn(
                     'flex min-h-11 w-full items-center gap-3 px-3 py-2.5 transition-colors',
-                    isCurrent
-                      ? 'bg-gold/10 text-ivory'
-                      : 'text-fg-soft hover:bg-ivory/4 hover:text-ivory',
+                    isCurrent ? 'bg-accent/10 text-fg' : 'text-fg-soft hover:bg-fg/4 hover:text-fg',
                   )}
                 >
                   <span
@@ -45,10 +43,10 @@ export function LessonList({ courseId, lessons, currentIndex }: LessonListProps)
                     className={cn(
                       'text-body flex size-8 shrink-0 items-center justify-center rounded-full font-serif',
                       isCompleted
-                        ? 'bg-gold/20 text-gold'
+                        ? 'bg-accent/20 text-accent'
                         : isCurrent
-                          ? 'border-gold text-gold border'
-                          : 'border-ivory/20 text-fg-meta border',
+                          ? 'border-accent text-accent border'
+                          : 'border-fg/20 text-fg-meta border',
                     )}
                   >
                     {isCompleted ? '✓' : lesson.number}

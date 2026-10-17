@@ -7,7 +7,7 @@ import { writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { expandAll } from '../src/data/photography.js'
+import { expandAll, isAtmosphere } from '../src/data/photography.js'
 import { STATES, STATE_LABELS, correctionLines, groupByState } from '../src/data/photography-status.js'
 
 const AVOID =
@@ -19,6 +19,11 @@ const AVOID_REFERENCE = AVOID.replace(
   'text, letters, watermark, logo,',
   'watermark, any text or logo that is not on the product in the reference image, invented or misspelled label text,',
 )
+/** Atmósferas (enmienda 2026-10-17): color natural, sin personas; no se pide «sin saturación» a secas. */
+const AVOID_ATMOSPHERE =
+  'Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, ' +
+  'blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, ' +
+  'people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.'
 const AVOID_PORTRAIT = AVOID.replace('faces, facial features, eyes, nose, lips, ear, ', '')
 
 const FORMAT = {
@@ -58,6 +63,7 @@ const out = [
   '> Generado por `npm run export:chatgpt-prompts` (desde `Branding/`) con los mismos datos que `docs/brief-fotografico.md`. No editar a mano.',
   '> Uso: un chat nuevo de ChatGPT por imagen (así no arrastra el estilo de la anterior), pega el bloque entero sin adjuntar nada (salvo en los productos de la tienda, que llevan adjunta la foto real del producto, como indica su entrada), descarga y guarda con el nombre indicado en `frontend/public/editorial/`. Si cambia algo, pide la corrección concreta en el mismo chat en vez de regenerar desde cero.',
   '> El orden y las secciones son los de la sección 5 de `docs/brief-fotografico.md`; el estado de cada imagen vive en `Branding/src/data/photography-status.js`.',
+  '> Las imágenes de atmósfera (`atmosphere-*`, `resonario-celtic`, `resonario-kind-banner-*`; enmienda 2026-10-17, `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`) llevan otro estilo y otro «Avoid»: color natural, sin personas. **Genera primero las tres muestras: `atmosphere-dusk`, `atmosphere-dawn` y `atmosphere-store`.** Los productos de la tienda no se generan: son fotografía real que hará Marisol.',
   '',
   `**${rows.length} imágenes:** ${counts}. Lo que hay que generar o regenerar está en las dos primeras secciones.`,
   '',
@@ -71,7 +77,13 @@ for (const [index, state] of STATES.entries()) {
 
   for (const [position, { row, status }] of items.entries()) {
     const label = row.title ? `${row.view} · ${row.title}` : row.view
-    const avoid = row.reference ? AVOID_REFERENCE : row.realShoot ? AVOID_PORTRAIT : AVOID
+    const avoid = isAtmosphere(row)
+      ? AVOID_ATMOSPHERE
+      : row.reference
+        ? AVOID_REFERENCE
+        : row.realShoot
+          ? AVOID_PORTRAIT
+          : AVOID
     const opening = row.reference
       ? 'Create an image using the attached reference photo of the product. Follow this description exactly and do not add elements, text or effects that are not described or not in the reference.'
       : 'Create an image. Follow this description exactly and do not add elements, text or effects that are not described.'
@@ -82,6 +94,8 @@ for (const [index, state] of STATES.entries()) {
     out.push(`- **Formato:** ${row.ratio}`)
     if (state === 'corregir') out.push(...correctionLines(status))
     else if (status.note) out.push(`- **Nota:** ${status.note}`)
+    if (isAtmosphere(row)) out.push('- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.')
+    if (row.provisional) out.push(`- **Provisional:** ${row.provisional}`)
     if (row.reference) out.push('- **Adjuntar:** la foto real del producto. La forma y la etiqueta salen de ella; no escribas el texto de la etiqueta en el chat.')
     if (row.realShoot) out.push('- **Ojo:** sólo moodboard; la imagen publicada sale de una sesión real con Marisol.')
     out.push('', '```text', `${opening} ${FORMAT[row.ratio]} ${row.prompt} ${avoid}`, '```', '')

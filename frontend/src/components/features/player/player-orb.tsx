@@ -2,7 +2,10 @@ import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/cn';
 
-/** La misma luz especular del disco de frecuencia. */
+/**
+ * La misma luz especular del disco de frecuencia. Brillo decorativo: queda
+ * crudo a propósito (T0.7 decide su visibilidad).
+ */
 const SHEEN = 'radial-gradient(70% 80% at 32% 22%, rgba(247,244,234,0.24), transparent 62%)';
 
 const RING_RADIUS = 47;
@@ -37,7 +40,7 @@ export function PlayerOrb({ band, progress, cover, children, className }: Player
             r={RING_RADIUS}
             fill="none"
             strokeWidth="2.5"
-            className="stroke-ivory/14"
+            className="stroke-fg/14"
           />
           <circle
             cx="50"
@@ -46,7 +49,7 @@ export function PlayerOrb({ band, progress, cover, children, className }: Player
             fill="none"
             strokeWidth="2.5"
             strokeLinecap="round"
-            className="stroke-gold"
+            className="stroke-accent"
             strokeDasharray={RING_LENGTH}
             strokeDashoffset={RING_LENGTH * (1 - Math.min(100, Math.max(0, progress)) / 100)}
           />
@@ -54,7 +57,7 @@ export function PlayerOrb({ band, progress, cover, children, className }: Player
       ) : null}
       <span
         className={cn(
-          'border-glass-brd absolute flex items-center justify-center overflow-hidden rounded-full border',
+          'border-line absolute flex items-center justify-center overflow-hidden rounded-full border',
           hasRing ? 'inset-[5px]' : 'inset-0',
         )}
         style={{ backgroundImage: band }}

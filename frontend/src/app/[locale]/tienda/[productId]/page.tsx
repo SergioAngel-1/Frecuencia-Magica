@@ -94,7 +94,7 @@ export default async function ProductPage({ params }: PageProps) {
       <div className="fm-editorial-full-bleed fm-container pb-section pt-[100px] md:pt-[130px]">
         <Link
           href="/tienda"
-          className="text-fg-meta hover:text-gold text-meta tracking-label mb-8 inline-flex min-h-11 items-center font-sans uppercase transition-colors"
+          className="text-fg-meta hover:text-accent text-meta tracking-label mb-8 inline-flex min-h-11 items-center font-sans uppercase transition-colors"
         >
           ← {t('backToStore')}
         </Link>

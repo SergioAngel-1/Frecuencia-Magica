@@ -18,9 +18,14 @@ const ASPECT_CLASSES: Record<BandAspect, string> = {
 };
 
 /** Capa de luz que SIEMPRE se renderiza, valor exacto del brief 4.3. */
-const LIGHT_SWEEP = 'radial-gradient(70% 100% at 30% 10%, rgba(247,244,234,0.18), transparent 60%)';
+const LIGHT_SWEEP =
+  'radial-gradient(70% 100% at 30% 10%, color-mix(in srgb, var(--color-fg) 18%, transparent), transparent 60%)';
 
-/** Degradado inferior de las cards con texto sobre imagen, valor exacto del brief 4.3. */
+/**
+ * Degradado inferior de las cards con texto sobre imagen, valor exacto del brief 4.3.
+ * Su tinta es void-2 (#0a1220), sin token equivalente (`scrim` vale #0f1b2e):
+ * queda cruda y figura en ALLOWED de `semantic-color-usage`.
+ */
 const BOTTOM_OVERLAY = 'linear-gradient(180deg, transparent 30%, rgba(10,18,32,0.72))';
 
 interface BandProps {

@@ -87,6 +87,10 @@ export function EditorialBanner({
             overlay="bottom"
             scrim="bottom"
           />
+          <div
+            aria-hidden="true"
+            className="fm-banner-veil pointer-events-none absolute inset-0 z-10"
+          />
         </div>
       ) : null}
       {framed ? (
@@ -103,7 +107,11 @@ export function EditorialBanner({
           ALIGN_CLASSES[align],
         )}
       >
-        <Kicker tone={KICKER_TONES[tone]} spacing="wide">
+        <Kicker
+          tone={KICKER_TONES[tone]}
+          spacing="wide"
+          className={framed ? 'fm-kicker-veiled' : undefined}
+        >
           {eyebrow}
         </Kicker>
         <Display level="h2" size={framed ? 'lg' : 'md'} className="max-w-4xl">

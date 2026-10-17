@@ -23,6 +23,8 @@ Este contrato codifica la dirección **editorial-mágica** sobre el sistema ya i
 
 ## 2. Lo que permanece
 
+> **Enmienda 2026-10-17 (ambientes v2).** Esta sección queda enmendada por `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`: la paleta de marca sigue cerrada, pero las atmósferas (§ 4 del spec v2) son una capa declarada sólo en `tokens.css`, y la «luz dorada sobre fondo oscuro» deja de ser el único tratamiento de luz. El resto de este apartado permanece.
+
 Nada de esto cambia con la dirección editorial-mágica:
 
 - **Paleta exacta, sin colores ni fuentes nuevos:** `--void #0F1B2E`, `--void-2 #0a1220`, `--gold #D8B978`, `--teal #96C6BC`, `--lav #B9B0D6`, `--ivory #F7F4EA`, `--color-warn #C98B7A` (sólo errores de formulario); glass `rgba(247,244,234,0.045)` + borde `rgba(216,185,120,0.20)`. Fondo de app: `radial-gradient(140% 100% at 50% -10%, #16273f 0%, var(--void) 45%, var(--void-2) 100%)`. Acentos como halos/bordes/glows, nunca rellenos sólidos grandes.
@@ -48,6 +50,8 @@ Nada de esto cambia con la dirección editorial-mágica:
 - **Skeleton zebra como fallback de slot.** Todo slot sin imagen usa el skeleton editorial «zebra»: bandas de la paleta (`--gold`/`--teal`/`--lav`/`--void` a baja opacidad) + barrido de luz (reutiliza el keyframe `fm-shimmer` de `globals.css`) + atributo `data-media-slot` en el contenedor. Nunca cajas grises, Unsplash ni placeholders genéricos. Los gradientes actuales del código cumplen la regla de placeholders y son el fallback intermedio hasta que cada slot se cablee con su zebra.
 
 ## 4. Anti-goals (lo que no se hará)
+
+> **Enmienda 2026-10-17 (ambientes v2).** Quedan enmendados por `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md` (§ 4.7) los anti-objetivos «No se usa stock ni Unsplash» y «luz dorada sobre fondo oscuro»: se permite fotografía propia o con licencia comercial documentada, no stock genérico, y cada atmósfera (clara u oscura) tiene su propia luz. Stock, Unsplash y cajas grises siguen prohibidos.
 
 - **No se producen imágenes en esta fase:** ni fotografías reales ni generadas. Esta fase sólo formaliza el contrato; los assets entran más adelante, únicamente por los slots del inventario.
 - **No se usa stock ni Unsplash**, ni placeholders genéricos de ningún proveedor.

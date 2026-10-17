@@ -13,7 +13,25 @@ const twMerge = extendTailwindMerge({
     theme: { spacing: ['section', 'block'] },
     classGroups: {
       'font-size': [{ text: ['label', 'meta', 'body', 'lead'] }],
-      'text-color': [{ text: ['fg', 'fg-body', 'fg-soft', 'fg-muted', 'fg-meta'] }],
+      // Semánticos de atmósfera (`tokens.css`, bloques `[data-atmosphere]`).
+      'text-color': [
+        {
+          text: [
+            'fg',
+            'fg-body',
+            'fg-soft',
+            'fg-muted',
+            'fg-meta',
+            'accent',
+            'accent-2',
+            'accent-3',
+            'on-accent',
+            'on-media',
+          ],
+        },
+      ],
+      'border-color': [{ border: ['line', 'line-strong'] }],
+      'bg-color': [{ bg: ['surface', 'surface-strong', 'scrim', 'halo'] }],
       tracking: [{ tracking: ['soft', 'ui', 'label', 'caps', 'kicker', 'eyebrow'] }],
       shadow: [{ shadow: ['glow-gold', 'glow-teal', 'glow-lav', 'glow-card'] }],
       // Capas con nombre de `globals.css`.

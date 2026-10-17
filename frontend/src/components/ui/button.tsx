@@ -79,13 +79,12 @@ const SIZE = 'min-h-11 px-[clamp(18px,3vw,26px)] py-[clamp(8px,1.2vw,11px)] text
 /** Variantes que no dependen de `tone` (todas salvo `accent`). */
 const VARIANT_CLASSES: Record<Exclude<ButtonVariant, 'accent'>, string> = {
   primary:
-    'bg-ivory/95 text-ink font-medium shadow-[0_10px_40px_rgba(216,185,120,0.22)] ' +
-    'hover:bg-ivory hover:shadow-[0_14px_48px_rgba(216,185,120,0.34)]',
-  outline:
-    'bg-transparent border border-ivory/22 text-ivory ' + 'hover:bg-ivory/6 hover:border-ivory/34',
+    'bg-fg/95 text-on-accent font-medium shadow-[0_10px_40px_rgb(var(--halo)_/_0.22)] ' +
+    'hover:bg-fg hover:shadow-[0_14px_48px_rgb(var(--halo)_/_0.34)]',
+  outline: 'bg-transparent border border-fg/22 text-fg ' + 'hover:bg-fg/6 hover:border-fg/34',
   glass:
-    'bg-glass border border-ivory/22 text-ivory backdrop-blur-[8px] ' +
-    'hover:bg-ivory/9 hover:border-ivory/34',
+    'bg-surface border border-fg/22 text-fg backdrop-blur-[8px] ' +
+    'hover:bg-fg/9 hover:border-fg/34',
   ghost: 'bg-transparent text-fg-muted font-sans text-meta tracking-ui ' + 'hover:text-fg-body',
 };
 
@@ -94,13 +93,13 @@ const VARIANT_CLASSES: Record<Exclude<ButtonVariant, 'accent'>, string> = {
  * una píldora gris sólida (la «caja gris» que el sistema prohíbe). Apagado
  * = la misma píldora como vidrio con borde, sin halo y con texto atenuado.
  */
-const PRIMARY_DISABLED = 'bg-ivory/14 border border-ivory/20 text-fg-muted shadow-none';
+const PRIMARY_DISABLED = 'bg-fg/14 border border-fg/20 text-fg-muted shadow-none';
 
 /** `accent` vira de color según `tone`; el oro es el valor por defecto. */
 const ACCENT_TONE_CLASSES: Record<ButtonTone, string> = {
-  gold: 'bg-gold/12 border-gold/55 hover:bg-gold/20 hover:shadow-glow-gold',
-  teal: 'bg-teal/14 border-teal/50 hover:bg-teal/22 hover:shadow-glow-teal',
-  lav: 'bg-lav/14 border-lav/50 hover:bg-lav/22 hover:shadow-glow-lav',
+  gold: 'bg-accent/12 border-accent/55 hover:bg-accent/20 hover:shadow-glow-gold',
+  teal: 'bg-accent-2/14 border-accent-2/50 hover:bg-accent-2/22 hover:shadow-glow-teal',
+  lav: 'bg-accent-3/14 border-accent-3/50 hover:bg-accent-3/22 hover:shadow-glow-lav',
 };
 
 /**
@@ -137,7 +136,7 @@ export function Button({
 }: ButtonProps) {
   const variantClasses =
     variant === 'accent'
-      ? cn('border', ACCENT_TONE_CLASSES[tone], 'text-ivory')
+      ? cn('border', ACCENT_TONE_CLASSES[tone], 'text-fg')
       : VARIANT_CLASSES[variant];
   // Estado explícito, no pseudo-clase: `disabled` trae opacidad + anula
   // puntero; `loading` sólo anula puntero (el click además se bloquea en

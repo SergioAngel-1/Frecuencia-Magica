@@ -10,7 +10,7 @@ export function GradientText({ children, className }: { children: ReactNode; cla
   return (
     <em
       className={cn(
-        'bg-[linear-gradient(100deg,var(--color-gold),var(--color-teal)_55%,var(--color-lav))] bg-clip-text text-transparent',
+        'bg-[linear-gradient(100deg,var(--color-accent),var(--color-accent-2)_55%,var(--color-accent-3))] bg-clip-text text-transparent',
         className,
       )}
     >

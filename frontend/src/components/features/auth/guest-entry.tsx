@@ -19,9 +19,9 @@ export function GuestEntry() {
       {/* Dos líneas a los lados del texto: un parche de fondo tras la «o» no
           casaba con el degradado del panel. */}
       <div className="my-7 flex items-center gap-4">
-        <span aria-hidden="true" className="bg-ivory/10 h-px flex-1" />
+        <span aria-hidden="true" className="bg-fg/10 h-px flex-1" />
         <span className="text-fg-meta text-label tracking-caps font-sans uppercase">{t('or')}</span>
-        <span aria-hidden="true" className="bg-ivory/10 h-px flex-1" />
+        <span aria-hidden="true" className="bg-fg/10 h-px flex-1" />
       </div>
 
       <Button
@@ -29,8 +29,8 @@ export function GuestEntry() {
         className="w-full"
         iconLeft={
           <span
-            className="bg-gold block size-2 rounded-full"
-            style={{ boxShadow: '0 0 8px 1px var(--color-gold)' }}
+            className="bg-accent block size-2 rounded-full"
+            style={{ boxShadow: '0 0 8px 1px var(--color-accent)' }}
           />
         }
         asChild

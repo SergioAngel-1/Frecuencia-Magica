@@ -1,11 +1,14 @@
 import { describe, expect, it, vi } from 'vitest';
 
+import { bandForPhotoTreatment, tintForPhotoTreatment } from '@/config/bands';
+import { getRealm } from '@/config/realms';
 import {
   EDITORIAL_MEDIA_REGISTRY,
   EDITORIAL_MEDIA_SLOTS,
   type EditorialMediaSlot,
 } from '@/config/editorial-media';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { driftPlan } from '@/lib/editorial/drift';
 import { editorialVisual, hasEditorialVisual } from '@/lib/editorial/visual';
 
 import { readSource, SRC, sourceFiles } from '../helpers/source-files';
@@ -46,12 +49,31 @@ const BAND: readonly EditorialMediaSlot[] = [
   'sanctuary.continue',
 ];
 
+/** Paisajes de atmósfera: sin foto pintan el degradado de la atmósfera activa. */
+const ATMOSPHERE: readonly EditorialMediaSlot[] = [
+  'atmosphere.dusk',
+  'atmosphere.dawn',
+  'atmosphere.store',
+  'atmosphere.moon',
+  'atmosphere.forest',
+  'atmosphere.forest-autumn',
+  'atmosphere.study',
+  'atmosphere.gathering',
+  'atmosphere.marisol',
+];
+
 const BAND_GRADIENT = 'linear-gradient(150deg, #3a5a6e, #1a2c44)';
 
 describe('editorial fallback policy', () => {
   it('assigns every slot the fallback that matches its job in the view', () => {
     for (const slot of EDITORIAL_MEDIA_SLOTS) {
-      const expected = ZEBRA.includes(slot) ? 'zebra' : BAND.includes(slot) ? 'band' : 'none';
+      const expected = ZEBRA.includes(slot)
+        ? 'zebra'
+        : BAND.includes(slot)
+          ? 'band'
+          : ATMOSPHERE.includes(slot)
+            ? 'atmosphere'
+            : 'none';
       expect({ slot, fallback: EDITORIAL_MEDIA_REGISTRY[slot].fallback }).toEqual({
         slot,
         fallback: expected,
@@ -81,12 +103,67 @@ describe('editorial fallback policy', () => {
     expect(hasEditorialVisual(media)).toBe(false);
   });
 
+  it('paints the atmosphere backdrop, never a zebra, for an atmosphere slot without photo', () => {
+    for (const slot of ATMOSPHERE) {
+      expect(editorialVisual(resolveEditorialMedia(slot)), slot).toBe('atmosphere');
+      expect(hasEditorialVisual(resolveEditorialMedia(slot)), slot).toBe(true);
+    }
+  });
+
+  it('keeps the photo over the atmosphere backdrop once the photo is published', () => {
+    expect(
+      editorialVisual(resolveEditorialMedia('atmosphere.dusk', { src: '/editorial/dusk.avif' })),
+    ).toBe('photo');
+  });
+
   it('keeps the contract fallback even if a view tries to override it', () => {
     const media = resolveEditorialMedia('cart.empty', {
       ...({ fallback: 'zebra' } as object),
     });
 
     expect(media.fallback).toBe('none');
+  });
+});
+
+describe('natural photo treatment', () => {
+  it('applies no accent band: the landscape keeps its own colours', () => {
+    expect(bandForPhotoTreatment('natural')).toBeNull();
+  });
+
+  it('still tints the accent treatments', () => {
+    expect(bandForPhotoTreatment('warm')).toEqual(expect.stringContaining('--halo'));
+  });
+
+  it('drops the accent veil of the store hero, and only of natural realms', () => {
+    expect(tintForPhotoTreatment('natural')).toBe(false);
+    expect(tintForPhotoTreatment('warm')).toBe(true);
+    expect(tintForPhotoTreatment(getRealm('tienda').photoTreatment)).toBe(false);
+    expect(tintForPhotoTreatment(getRealm('resonario').photoTreatment)).toBe(true);
+  });
+});
+
+describe('landscape drift', () => {
+  it('is not mounted with reduced motion', () => {
+    expect(driftPlan(true)).toBeNull();
+  });
+
+  it('keeps a slow, bounded cycle when motion is allowed', () => {
+    const plan = driftPlan(false);
+
+    expect(plan).not.toBeNull();
+    expect(plan!.seconds).toBeGreaterThanOrEqual(20);
+    expect(plan!.shiftPercent).toBeGreaterThan(0);
+    expect(plan!.shiftPercent).toBeLessThanOrEqual(3);
+    expect(plan!.scale).toBeGreaterThan(1);
+    expect(plan!.scale).toBeLessThanOrEqual(1.08);
+  });
+
+  it('animates only transform in the component, and checks reduced motion before mounting', () => {
+    const source = readSource(`${SRC}/components/world/landscape-drift.tsx`);
+
+    expect(source).toContain('useReducedMotionSafe');
+    expect(source).toContain('driftPlan(reduced)');
+    expect(source).not.toMatch(/\b(width|height|top|left|right|bottom|margin|padding)\s*:/);
   });
 });
 

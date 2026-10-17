@@ -96,7 +96,7 @@ function OfflineScene({ kicker, message, dismissLabel, media, onDismiss }: Offli
       mode="viewport"
       overlay="bottom"
       fade="bottom"
-      className="bg-void min-h-[100dvh]"
+      className="bg-scrim min-h-[100dvh]"
       contentClassName="min-h-[100dvh]"
     >
       <section

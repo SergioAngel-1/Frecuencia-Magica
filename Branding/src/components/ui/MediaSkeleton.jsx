@@ -19,7 +19,7 @@ export function MediaSkeleton({ slot, label, aspect = '16:9', tone = 'gold', ani
   const variant = zebraVariant(slot)
 
   return (
-    <div className={cn('bg-void relative isolate overflow-hidden', ASPECTS[aspect], className)} data-media-slot={slot}>
+    <div className={cn('bg-scrim relative isolate overflow-hidden', ASPECTS[aspect], className)} data-media-slot={slot}>
       <span className="sr-only">{label}</span>
       <div
         aria-hidden="true"

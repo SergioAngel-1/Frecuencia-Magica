@@ -103,7 +103,7 @@ export function Modal({
       data-lenis-prevent
       onCancel={handleCancel}
       onClose={onClose}
-      className="text-ivory fixed inset-0 size-full max-h-none max-w-none overflow-visible bg-transparent p-0 outline-none backdrop:bg-transparent"
+      className="text-fg fixed inset-0 size-full max-h-none max-w-none overflow-visible bg-transparent p-0 outline-none backdrop:bg-transparent"
     >
       <AnimatePresence onExitComplete={() => dialogRef.current?.close()}>
         {open ? (
@@ -138,7 +138,7 @@ export function Modal({
                 transition: { duration: exit, ease: EASE.soft },
               }}
             >
-              <header className="border-ivory/10 flex items-center justify-between gap-4 border-b py-2 pr-2 pl-6">
+              <header className="border-fg/10 flex items-center justify-between gap-4 border-b py-2 pr-2 pl-6">
                 <h2
                   id={titleId}
                   className="text-fg-meta text-label tracking-kicker font-sans uppercase"

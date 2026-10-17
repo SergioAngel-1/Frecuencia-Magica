@@ -35,7 +35,7 @@ export type EditorialMediaInput = Partial<Omit<EditorialMedia, 'slot' | 'fallbac
 };
 
 /** Lo que `EditorialImage` pinta de verdad para un slot resuelto. */
-export type EditorialVisual = 'photo' | 'zebra' | 'band' | 'none';
+export type EditorialVisual = 'photo' | 'zebra' | 'band' | 'atmosphere' | 'none';
 
 /**
  * Cómo ocupa la imagen su sección. `anchored` pinta la imagen con el ratio del
@@ -51,9 +51,13 @@ export type EditorialFade = 'both' | 'top' | 'bottom' | 'none';
 export type EditorialOverlayDirection = 'left' | 'right' | 'bottom' | 'top' | 'none';
 export type EditorialTone = 'gold' | 'teal' | 'lav' | 'ivory';
 
+/** Esquema del velo: `dark` es la noche; `light`, los scopes de esquema claro (ver `EditorialOverlay`). */
+export type EditorialScrimTone = 'dark' | 'light';
+
 export interface EditorialOverlayProps {
   direction?: EditorialOverlayDirection;
   tone?: EditorialTone;
+  scrimTone?: EditorialScrimTone;
   className?: string;
 }
 

@@ -1,6 +1,6 @@
 import { cn } from '../../lib/cn'
 
-const TONES = { gold: 'text-gold', teal: 'text-teal', lav: 'text-lav', ivory: 'text-ivory' }
+const TONES = { gold: 'text-accent', teal: 'text-accent-2', lav: 'text-accent-3', ivory: 'text-fg' }
 const SIZES = {
   hero: { value: 'mb-[4px] text-[34px]', label: 'text-label tracking-label' },
   sanctuary: { value: 'mb-[6px] text-[40px]', label: 'text-meta tracking-ui' },

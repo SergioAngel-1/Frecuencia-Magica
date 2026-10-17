@@ -1,6 +1,6 @@
 import { cn } from '../../lib/cn'
 
-const TONES = { gold: 'text-gold', teal: 'text-teal', lav: 'text-lav', muted: 'text-fg-meta' }
+const TONES = { gold: 'text-accent', teal: 'text-accent-2', lav: 'text-accent-3', muted: 'text-fg-meta' }
 const SPACING = { tight: 'tracking-label', wide: 'tracking-kicker', widest: 'tracking-eyebrow' }
 
 /** Eyebrow de 11px en mayúsculas. Tracking: `tight` .14em, `wide` .3em, `widest` .4em. */

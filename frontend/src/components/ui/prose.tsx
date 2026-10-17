@@ -44,8 +44,8 @@ const MAX_WIDTH_CLASSES: Record<ProseMaxWidth, string> = {
 
 /**
  * Párrafo de cuerpo. Hereda el peso 300 del body; `text-pretty` evita
- * huérfanas y el color por defecto reproduce `rgba(247,244,234,0.74)` del
- * prototipo (`muted` lo atenúa a 0.6, la opacidad secundaria más repetida).
+ * huérfanas. El color por defecto es el peldaño `fg-soft` (0,70 de marfil) y
+ * `muted` baja a `fg-muted` (0,60), la opacidad secundaria más repetida.
  */
 export function Prose({ children, size = 'base', muted = false, maxWidth, className }: ProseProps) {
   return (

@@ -3,19 +3,17 @@
 import { useEffect, useRef } from 'react';
 
 import type { VisualMode } from '@/config/realms';
+import { useEngineProfile } from '@/hooks/use-engine-profile';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { useRealm } from '@/hooks/use-realm';
+import { pauseDelayMs, shouldRunCanvas } from '@/lib/atmosphere/canvas-pause';
+import { fadeDuration } from '@/lib/atmosphere/engine-profile';
 import { hexToRgb, type Rgb } from '@/lib/cosmic/colors';
 import type { CosmicMessage, CosmicReply } from '@/lib/cosmic/protocol';
 import { createCosmicDriver, createCosmicScene, type CosmicViewport } from '@/lib/cosmic/scene';
 
 const MOBILE_QUERY = '(max-width: 767px)';
 const RESIZE_DEBOUNCE_MS = 150;
-const VISUAL_MODE_OPACITY: Record<VisualMode, number> = {
-  cosmic: 1,
-  editorial: 0.52,
-  quiet: 0.34,
-};
 
 /** Lo que el componente le pide al fondo, pinte quien pinte. */
 type Painter = {
@@ -130,10 +128,15 @@ export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMod
   const painterRef = useRef<Painter | null>(null);
   const { accent } = useRealm();
   const reduced = useReducedMotionSafe();
+  const { canvas: level } = useEngineProfile(visualMode);
+  const fade = fadeDuration(reduced);
 
   // Lo último que se le dijo al fondo: el pintor que se monte lo recibe.
   const accentRef = useRef(accent);
   const reducedRef = useRef(reduced);
+  // Si el fondo se ve: con el multiplicador a 0 el rAF se para al acabar el fundido.
+  const liveRef = useRef(true);
+  const pauseTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -142,6 +145,7 @@ export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMod
     const adopt = (painter: Painter | null) => {
       painterRef.current = painter;
       painter?.setReduced(reducedRef.current);
+      painter?.setVisible(liveRef.current && !document.hidden);
     };
     const fallBack = () => {
       painterRef.current?.destroy();
@@ -166,7 +170,7 @@ export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMod
       );
     };
     // Pausar fuera de pantalla para no gastar batería.
-    const onVisibility = () => painterRef.current?.setVisible(!document.hidden);
+    const onVisibility = () => painterRef.current?.setVisible(!document.hidden && liveRef.current);
 
     window.addEventListener('resize', onResize);
     document.addEventListener('visibilitychange', onVisibility);
@@ -191,12 +195,34 @@ export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMod
     painterRef.current?.setReduced(reduced);
   }, [reduced]);
 
+  // Opacidad final bajo el umbral (atmósferas claras): el bucle se para al acabar el
+  // fundido, no antes, para no congelar las estrellas mientras se desvanecen.
+  const previousLevel = useRef<number | null>(null);
+  useEffect(() => {
+    const delay = pauseDelayMs(previousLevel.current, level, fade);
+    previousLevel.current = level;
+    clearTimeout(pauseTimer.current);
+
+    if (shouldRunCanvas(level)) {
+      liveRef.current = true;
+      painterRef.current?.setVisible(!document.hidden);
+      return;
+    }
+
+    pauseTimer.current = setTimeout(() => {
+      liveRef.current = false;
+      painterRef.current?.setVisible(false);
+    }, delay);
+
+    return () => clearTimeout(pauseTimer.current);
+  }, [level, fade]);
+
   return (
     <div
       ref={hostRef}
       aria-hidden="true"
       className="z-world pointer-events-none fixed inset-0"
-      style={{ opacity: VISUAL_MODE_OPACITY[visualMode] }}
+      style={{ opacity: level, transition: `opacity ${fade}s ease-in-out` }}
     />
   );
 }

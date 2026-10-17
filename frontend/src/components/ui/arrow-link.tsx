@@ -4,9 +4,9 @@ import type { ClassValue } from 'clsx';
 export type ArrowLinkTone = 'gold' | 'teal' | 'lav';
 
 const TONE_CLASSES: Record<ArrowLinkTone, string> = {
-  gold: 'border-gold/70 text-gold focus-visible:ring-gold',
-  teal: 'border-teal/70 text-teal focus-visible:ring-teal',
-  lav: 'border-lav/70 text-lav focus-visible:ring-lav',
+  gold: 'border-accent/70 text-accent focus-visible:ring-accent',
+  teal: 'border-accent-2/70 text-accent-2 focus-visible:ring-accent-2',
+  lav: 'border-accent-3/70 text-accent-3 focus-visible:ring-accent-3',
 };
 
 /**

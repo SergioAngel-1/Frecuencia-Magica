@@ -11,10 +11,10 @@ export function ProgressBar({ value, height = 4, ariaLabel, className }) {
       aria-valuemin={0}
       aria-valuemax={100}
       aria-label={ariaLabel}
-      className={cn('bg-ivory/14 w-full overflow-hidden rounded-[3px]', height === 5 ? 'h-[5px]' : 'h-[4px]', className)}
+      className={cn('bg-fg/14 w-full overflow-hidden rounded-[3px]', height === 5 ? 'h-[5px]' : 'h-[4px]', className)}
     >
       <div
-        className="h-full origin-left rounded-[3px] bg-[linear-gradient(90deg,var(--color-teal),var(--color-gold))] transition-transform duration-500 ease-out"
+        className="h-full origin-left rounded-[3px] bg-[linear-gradient(90deg,var(--color-accent-2),var(--color-accent))] transition-transform duration-500 ease-out"
         style={{ transform: `scaleX(${clamped / 100})` }}
       />
     </div>

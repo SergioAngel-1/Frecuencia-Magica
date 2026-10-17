@@ -36,7 +36,7 @@ export function AngelExperiences({
     <div className="relative">
       <div
         aria-hidden="true"
-        className="bg-lav/10 pointer-events-none absolute top-1/2 right-[-12%] h-[420px] w-[420px] rounded-full blur-3xl"
+        className="bg-accent-3/10 pointer-events-none absolute top-1/2 right-[-12%] h-[420px] w-[420px] rounded-full blur-3xl"
       />
       <EditorialBanner
         media={media}
@@ -49,8 +49,8 @@ export function AngelExperiences({
       <div className="fm-editorial-full-bleed fm-container mt-block">
         <ul className="grid grid-cols-1 gap-x-[clamp(28px,5vw,72px)] gap-y-10 md:grid-cols-3">
           {items.map((item) => (
-            <li key={item.id} className="border-lav/35 border-t pt-6">
-              <h3 className="text-ivory font-serif text-[clamp(26px,3vw,34px)] leading-[1.05] italic">
+            <li key={item.id} className="border-accent-3/35 border-t pt-6">
+              <h3 className="text-fg font-serif text-[clamp(26px,3vw,34px)] leading-[1.05] italic">
                 {item.title}
               </h3>
               <p className="text-fg-body text-body mt-4 max-w-[44ch] leading-[1.75]">{item.body}</p>

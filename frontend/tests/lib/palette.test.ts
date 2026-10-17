@@ -2,6 +2,7 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
+import { readTokensCss } from '../helpers/css-tokens';
 import { fromSrc, readSource, SRC, sourceFiles } from '../helpers/source-files';
 
 /** La paleta cerrada de AGENTS.md (más el punto claro del gradiente de fondo). */
@@ -18,6 +19,17 @@ const PALETTE = new Set([
 
 /** Excepciones con dueño: archivo -> hex permitidos y por qué. */
 const FILE_EXCEPTIONS: Record<string, string[]> = {
+  // Color de la barra (`theme-color`) de cada atmósfera; provisional hasta la Fase 1.
+  'config/atmospheres.ts': [
+    '#2b1c22',
+    '#dce7ec',
+    '#0b1426',
+    '#1e3328',
+    '#eee9dc',
+    '#ede3d1',
+    '#3f2b21',
+    '#f3e8d4',
+  ],
   // Los nueve tintes de portada viven aquí, con nombre (ver DESIGN.md).
   'config/covers.ts': [
     '#3a5a6e',
@@ -41,7 +53,24 @@ const FILE_EXCEPTIONS: Record<string, string[]> = {
   ],
 };
 
+/**
+ * Hex de `tokens.css` fuera de los bloques `[data-atmosphere]`. La tinta
+ * (`--color-ink`) es la neutral de DESIGN.md y se declara en `@theme`.
+ */
+const TOKENS_EXCEPTIONS = ['#12213a'];
+
+/** Los valores de cada atmósfera viven en sus bloques `[data-atmosphere]`, y sólo ahí. */
+const ATMOSPHERE_BLOCK = /\[data-atmosphere='[a-z-]+'\]\s*\{[^}]*\}/g;
+
 describe('closed palette', () => {
+  it('allows hex in tokens.css only inside the atmosphere blocks', () => {
+    const outside = readTokensCss().replace(ATMOSPHERE_BLOCK, '');
+    const allowed = new Set([...PALETTE, ...TOKENS_EXCEPTIONS]);
+    const hexes = outside.match(/#[0-9a-fA-F]{6}\b/g) ?? [];
+
+    expect(hexes.filter((hex) => !allowed.has(hex.toLowerCase()))).toEqual([]);
+  });
+
   it('keeps every hex literal in source inside the palette or a documented exception', () => {
     const offenders: string[] = [];
 

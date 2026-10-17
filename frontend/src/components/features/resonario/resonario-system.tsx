@@ -4,6 +4,7 @@ import { useMemo, useState, type CSSProperties } from 'react';
 import { useTranslations } from 'next-intl';
 import { div as Mdiv } from 'motion/react-m';
 
+import { AtmospherePicker } from '@/components/features/atmosphere/atmosphere-picker';
 import { AudioDisc } from '@/components/features/player/audio-disc';
 import { Badge, Button, EmptyState, Swap } from '@/components/ui';
 import { AUDIOS } from '@/data';
@@ -52,6 +53,9 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
   return (
     <>
       {/* El banner del archivo vive en la página, encadenado con el héroe. */}
+      <div className="mb-8">
+        <AtmospherePicker />
+      </div>
       <ResonarioFilters active={filter} onChange={setFilter} />
 
       {/* Al filtrar, el sistema anterior se funde antes de que entre el nuevo. */}

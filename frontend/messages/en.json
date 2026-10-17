@@ -16,7 +16,9 @@
     "languageLabel": "ES",
     "soundOn": "Mute ambient sound",
     "soundOff": "Turn on ambient sound",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "store": "Store",
+    "menu": "Menu"
   },
   "talk": {
     "region": "Direct contact",
@@ -46,7 +48,10 @@
       "label": "Our essence",
       "emotion": "Origin"
     },
-    "menu": "Menu"
+    "menu": "Menu",
+    "current": {
+      "home": "Home"
+    }
   },
   "footer": {
     "tagline": "We accompany real processes of transformation. You need not become someone else: only remember who you have always been.",
@@ -156,6 +161,12 @@
         "membership": "Golden light over a serene community space",
         "footerBanner": "The cosmos continues beyond the page"
       }
+    },
+    "storeShowcase": {
+      "kicker": "Shop",
+      "title": "Objects for your ritual",
+      "description": "Candles, aromas and stones to accompany your practices, chosen with care.",
+      "cta": "See the shop"
     }
   },
   "about": {
@@ -779,6 +790,65 @@
         "error": "A candle still lit beside the water: something was interrupted, not your light",
         "offline": "A lit cabin beside a misty lake: your brief retreat until the connection returns"
       }
+    }
+  },
+  "atmospheres": {
+    "night": {
+      "name": "Cosmic night",
+      "description": "Stars and soft light over the void.",
+      "pickerLabel": "Night"
+    },
+    "dusk": {
+      "name": "Dusk",
+      "description": "A calm sea at nightfall, with warm light that invites you to rest.",
+      "pickerLabel": "Rest",
+      "photoAlt": "A calm sea at dusk, with warm reflections on the water"
+    },
+    "dawn": {
+      "name": "Dawn",
+      "description": "Clear light and cool air, like the first moment of the day.",
+      "pickerLabel": "Daytime calm",
+      "photoAlt": "A bright lake at dawn, with a clear horizon"
+    },
+    "moon": {
+      "name": "Moon",
+      "description": "Deep blue and silver, to listen in silence under the moon.",
+      "pickerLabel": "Night listening",
+      "photoAlt": "A sea under the moon, with silver reflections"
+    },
+    "forest": {
+      "name": "Forest",
+      "description": "Natural green and filtered light among the trees.",
+      "pickerLabel": "Roots and water",
+      "photoAlt": "A waterfall among ferns in a green, bright forest"
+    },
+    "study": {
+      "name": "Study",
+      "description": "Light for reading by a window, unhurried.",
+      "pickerLabel": "Study",
+      "photoAlt": "A reading corner by a window, in morning light"
+    },
+    "store": {
+      "name": "Workshop",
+      "description": "Sand, cream and wood, with the products under side light.",
+      "pickerLabel": "Workshop",
+      "photoAlt": "Stone and wood in side light, ready for the ritual objects"
+    },
+    "gathering": {
+      "name": "Gathering",
+      "description": "A warm space to be close to other people.",
+      "pickerLabel": "Gathering",
+      "photoAlt": "A warm space ready to share a gathering"
+    },
+    "marisol": {
+      "name": "Marisol's light",
+      "description": "Warm and personal, with its own light.",
+      "pickerLabel": "Marisol's light",
+      "photoAlt": "A bright, personal corner in morning light"
+    },
+    "picker": {
+      "label": "Atmosphere",
+      "site": "Site atmosphere"
     }
   }
 }

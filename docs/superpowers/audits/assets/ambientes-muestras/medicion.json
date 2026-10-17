@@ -1,0 +1,290 @@
+[
+ {
+  "atmosphere": "dusk",
+  "scheme": "dark",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 2680,
+  "scene": "resonario-dusk",
+  "width": 1440,
+  "errors": []
+ },
+ {
+  "atmosphere": "dusk",
+  "scheme": "dark",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 2675,
+  "scene": "resonario-dusk",
+  "width": 768,
+  "errors": []
+ },
+ {
+  "atmosphere": "dusk",
+  "scheme": "dark",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 3105,
+  "scene": "resonario-dusk",
+  "width": 390,
+  "errors": []
+ },
+ {
+  "atmosphere": "dawn",
+  "scheme": "light",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 2680,
+  "scene": "resonario-dawn",
+  "width": 1440,
+  "errors": []
+ },
+ {
+  "atmosphere": "dawn",
+  "scheme": "light",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 2675,
+  "scene": "resonario-dawn",
+  "width": 768,
+  "errors": []
+ },
+ {
+  "atmosphere": "dawn",
+  "scheme": "light",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 3105,
+  "scene": "resonario-dawn",
+  "width": 390,
+  "errors": []
+ },
+ {
+  "atmosphere": "night",
+  "scheme": "dark",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 2680,
+  "scene": "resonario-night",
+  "width": 1440,
+  "errors": []
+ },
+ {
+  "atmosphere": "night",
+  "scheme": "dark",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 2675,
+  "scene": "resonario-night",
+  "width": 768,
+  "errors": []
+ },
+ {
+  "atmosphere": "night",
+  "scheme": "dark",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 3086,
+  "scene": "resonario-night",
+  "width": 390,
+  "errors": []
+ },
+ {
+  "atmosphere": "night",
+  "scheme": "dark",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 6973,
+  "scene": "inicio-store",
+  "width": 1440,
+  "errors": []
+ },
+ {
+  "atmosphere": "night",
+  "scheme": "dark",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 6482,
+  "scene": "inicio-store",
+  "width": 768,
+  "errors": []
+ },
+ {
+  "atmosphere": "night",
+  "scheme": "dark",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 7898,
+  "scene": "inicio-store",
+  "width": 390,
+  "errors": []
+ },
+ {
+  "atmosphere": "store",
+  "scheme": "light",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 3636,
+  "scene": "tienda",
+  "width": 1440,
+  "errors": []
+ },
+ {
+  "atmosphere": "store",
+  "scheme": "light",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 2834,
+  "scene": "tienda",
+  "width": 768,
+  "errors": []
+ },
+ {
+  "atmosphere": "store",
+  "scheme": "light",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 6078,
+  "scene": "tienda",
+  "width": 390,
+  "errors": []
+ },
+ {
+  "atmosphere": "store",
+  "scheme": "light",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 2307,
+  "scene": "tienda-producto",
+  "width": 1440,
+  "errors": []
+ },
+ {
+  "atmosphere": "store",
+  "scheme": "light",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 3472,
+  "scene": "tienda-producto",
+  "width": 768,
+  "errors": []
+ },
+ {
+  "atmosphere": "store",
+  "scheme": "light",
+  "overflowPx": 0,
+  "wide": [
+   "DIV.absolute rounded-full",
+   "svg.",
+   "circle.",
+   "circle.",
+   "circle."
+  ],
+  "height": 3937,
+  "scene": "tienda-producto",
+  "width": 390,
+  "errors": []
+ }
+]

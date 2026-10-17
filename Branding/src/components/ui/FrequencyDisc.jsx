@@ -3,7 +3,7 @@ import { Equalizer } from './Equalizer'
 import { OrbitalRings } from './OrbitalRings'
 
 /** Luz especular del disco, idéntica en todas las escalas. */
-const SHEEN = 'radial-gradient(70% 80% at 32% 22%, rgba(247,244,234,0.24), transparent 62%)'
+const SHEEN = 'radial-gradient(70% 80% at 32% 22%, color-mix(in srgb, var(--color-fg) 24%, transparent), transparent 62%)'
 
 const SIZES = {
   xs: {
@@ -139,7 +139,7 @@ export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = fal
           style={{
             inset: spec.inset,
             backgroundImage: band,
-            borderColor: active ? 'rgba(216,185,120,0.6)' : 'var(--color-glass-brd)',
+            borderColor: active ? 'rgb(var(--halo) / 0.6)' : 'var(--color-line)',
             boxShadow: active ? spec.activeGlow : spec.restGlow,
             transition: 'box-shadow .4s, border-color .4s',
           }}
@@ -149,8 +149,8 @@ export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = fal
             <Equalizer scale={spec.eq} playing={playing} className="absolute inset-x-0 bottom-[17%]" />
           ) : null}
           <div className={cn('absolute inset-x-0 text-center', spec.play ? 'top-[36%] -translate-y-1/2' : 'top-1/2 -translate-y-1/2')}>
-            <span className={cn('text-ivory block font-serif leading-none', spec.hz)}>{hz}</span>
-            <span className={cn('text-fg-body block font-sans uppercase', spec.unit)}>Hz</span>
+            <span className={cn('text-on-media block font-serif leading-none', spec.hz)}>{hz}</span>
+            <span className={cn('text-on-media/80 block font-sans uppercase', spec.unit)}>Hz</span>
           </div>
           {showPlay && spec.play ? (
             <span
@@ -159,11 +159,11 @@ export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = fal
               style={{
                 width: spec.play,
                 height: spec.play,
-                borderColor: active ? 'rgba(216,185,120,0.7)' : 'rgba(247,244,234,0.7)',
-                background: active ? 'rgba(216,185,120,0.14)' : 'rgba(15,27,46,0.35)',
+                borderColor: active ? 'rgb(var(--halo) / 0.7)' : 'color-mix(in srgb, var(--color-fg) 70%, transparent)',
+                background: active ? 'rgb(var(--halo) / 0.14)' : 'rgb(var(--scrim) / 0.35)',
               }}
             >
-              <svg width={spec.play * 0.32} height={spec.play * 0.32} viewBox="0 0 24 24" fill="currentColor" className={cn('text-ivory', !pausable && 'translate-x-[6%]')}>
+              <svg width={spec.play * 0.32} height={spec.play * 0.32} viewBox="0 0 24 24" fill="currentColor" className={cn('text-fg', !pausable && 'translate-x-[6%]')}>
                 {pausable ? (
                   <>
                     <rect x="6.5" y="5" width="3.5" height="14" rx="1" />

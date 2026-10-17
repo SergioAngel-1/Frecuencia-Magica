@@ -36,17 +36,17 @@ export function EnterButton({ children }: EnterButtonProps) {
         disabled={isBusy}
         aria-busy={isBusy}
         className={cn(
-          'group text-ivory tracking-label relative inline-flex min-h-14 min-w-[min(100%,280px)] items-center justify-center px-[34px] py-[15px] font-serif text-[20px] uppercase transition-opacity duration-500 ease-out md:px-[46px] md:text-[22px]',
+          'group text-fg tracking-label relative inline-flex min-h-14 min-w-[min(100%,280px)] items-center justify-center px-[34px] py-[15px] font-serif text-[20px] uppercase transition-opacity duration-500 ease-out md:px-[46px] md:text-[22px]',
           isBusy && 'pointer-events-none opacity-0',
         )}
       >
         <span
           aria-hidden="true"
-          className="rounded-pill border-gold/50 bg-gold/6 absolute inset-0 scale-100 border backdrop-blur-[6px] transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+          className="rounded-pill border-accent/50 bg-accent/6 absolute inset-0 scale-100 border backdrop-blur-[6px] transition-transform duration-300 ease-out group-hover:scale-[1.03]"
         />
         <span
           aria-hidden="true"
-          className="animate-fm-glow rounded-pill absolute inset-0 shadow-[0_0_40px_rgba(216,185,120,0.3)] transition-shadow duration-300 ease-out group-hover:shadow-[0_0_56px_rgba(216,185,120,0.45)]"
+          className="animate-fm-glow rounded-pill absolute inset-0 shadow-[0_0_40px_rgb(var(--halo)_/_0.3)] transition-shadow duration-300 ease-out group-hover:shadow-[0_0_56px_rgb(var(--halo)_/_0.45)]"
         />
         <span className="relative">{children}</span>
       </button>

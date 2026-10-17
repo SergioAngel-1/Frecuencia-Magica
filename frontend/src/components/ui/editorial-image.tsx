@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import Image from 'next/image';
 
+import { LandscapeDrift } from '@/components/world/landscape-drift';
 import { cn } from '@/lib/cn';
 import { editorialVisual } from '@/lib/editorial/visual';
 import type {
@@ -8,11 +9,12 @@ import type {
   EditorialMedia,
   EditorialMediaAspect,
   EditorialOverlayDirection,
+  EditorialScrimTone,
   EditorialVisual,
 } from '@/types/editorial-media';
 import { Band } from './band';
 import { EditorialOverlay } from './editorial-overlay';
-import { MediaSkeleton } from './media-skeleton';
+import { ASPECT_CLASSES, MediaSkeleton } from './media-skeleton';
 
 export interface EditorialImageProps {
   media: EditorialMedia;
@@ -32,6 +34,8 @@ export interface EditorialImageProps {
   bandMedia?: boolean;
   /** Clases del velo tintado (`overlay`), p. ej. para pintarlo sólo en móvil. */
   overlayClassName?: string;
+  /** Esquema de los dos velos: `light` en los scopes de esquema claro. */
+  scrimTone?: EditorialScrimTone;
   className?: string;
 }
 
@@ -73,6 +77,7 @@ export function EditorialImage({
   sizes,
   bandMedia = false,
   overlayClassName,
+  scrimTone,
   className,
 }: EditorialImageProps) {
   const visual = editorialVisual(media);
@@ -100,9 +105,16 @@ export function EditorialImage({
         sizes={sizes}
         visual={visual}
       />
-      {scrimDirection ? <EditorialOverlay direction={scrimDirection} /> : null}
+      {scrimDirection ? (
+        <EditorialOverlay direction={scrimDirection} scrimTone={scrimTone} />
+      ) : null}
       {overlayDirection ? (
-        <EditorialOverlay direction={overlayDirection} tone="teal" className={overlayClassName} />
+        <EditorialOverlay
+          direction={overlayDirection}
+          tone="teal"
+          scrimTone={scrimTone}
+          className={overlayClassName}
+        />
       ) : null}
     </div>
   );
@@ -115,7 +127,7 @@ type EditorialMatterProps = Pick<
   visual: Exclude<EditorialVisual, 'none'>;
 };
 
-/** La capa de materia: foto, banda del ítem o zebra. */
+/** La capa de materia: foto, banda del ítem, zebra o el degradado de la atmósfera. */
 function EditorialMatter({
   media,
   aspect,
@@ -129,6 +141,20 @@ function EditorialMatter({
       <Band className="h-full w-full" gradient={media.band}>
         <span className="sr-only">{media.alt}</span>
       </Band>
+    );
+  }
+
+  // El degradado de la atmósfera activa: `--atmo-backdrop` hereda del scope más
+  // cercano (o de `<html>`). Mismo ratio que la foto, para que la caja no salte.
+  if (visual === 'atmosphere') {
+    return (
+      <div
+        className={cn('relative h-full w-full', ASPECT_CLASSES[aspect ?? media.aspect])}
+        data-media-visual-atmosphere="true"
+        style={{ background: 'var(--atmo-backdrop)' }}
+      >
+        <span className="sr-only">{media.alt}</span>
+      </div>
     );
   }
 
@@ -149,7 +175,7 @@ function EditorialMatter({
     ...(media.mobilePosition ? { '--fm-pos-mobile': media.mobilePosition } : {}),
   } as CSSProperties;
 
-  return (
+  const photo = (
     <Image
       alt={media.alt}
       className="object-cover object-[var(--fm-pos-mobile,var(--fm-pos))] md:object-[var(--fm-pos)]"
@@ -159,5 +185,14 @@ function EditorialMatter({
       src={media.src}
       style={focus}
     />
+  );
+
+  // El paisaje de una atmósfera deriva despacio; el resto de fotos queda quieto.
+  if (media.fallback !== 'atmosphere') return photo;
+
+  return (
+    <LandscapeDrift className="absolute inset-0">
+      <div className="relative h-full w-full">{photo}</div>
+    </LandscapeDrift>
   );
 }

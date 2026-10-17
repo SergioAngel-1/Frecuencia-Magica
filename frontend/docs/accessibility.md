@@ -79,3 +79,16 @@ Todo control sin texto visible lleva `aria-label` (o `aria-label` descriptivo en
 - Hit targets ≥ 44px medidos por script en los 4 breakpoints (1440/1280/768/390): los controles de estado de ánimo del diario se subieron de 40 a 44px y hacen wrap en móvil.
 - Sin desbordamiento horizontal en ningún breakpoint (`overflow-x: clip` en `html, body` recorta la geometría giratoria sin crear scroll container).
 - Recorrido por teclado y lector de pantalla: pendiente de auditoría manual en dispositivo real.
+
+## Atmósferas de muestra (Fase 1, 2026-10-17)
+
+- Contraste: la guarda `atmosphere-contrast` cubre los tokens de cada atmósfera. No cubre el velo de las fotos: en `dawn` (esquema claro) los kickers sobre una foto oscura del banner y sobre la foto del banner de ritual de la Tienda se leen mal. Pendiente: velo `light` en los banners cuando la atmósfera es clara (ver `docs/superpowers/audits/2026-10-17-ambientes-muestras.md`, hallazgos 1, 2 y 5).
+- Movimiento: la deriva del paisaje (`LandscapeDrift`) sólo anima `transform` y no se monta con movimiento reducido.
+- Anuncio del cambio de atmósfera: sigue en la región `aria-live` del `AtmosphereProvider`; no se añadió otra.
+- Pendiente de verificación: foco visible y hit targets de los puntos de navegación sobre fondo claro (hallazgo 3).
+
+Ronda de arreglo (2026-10-17): el velo denso de las atmósferas claras sale de `--scrim-deep` (ya no es navy fijo). Los números de las esferas usan `--color-on-media` (marfil en todas las atmósferas). Pendiente: el kicker de los banners sobre foto clara en `dawn` y el de la banda de ritual de Tienda siguen con contraste bajo; no lo cubre ninguna guarda (sólo tokens). Las capturas se hicieron con movimiento reducido: la deriva del paisaje no se ha visto.
+
+Ronda 2: los banners con foto en esquema claro llevan un velo claro que funde a los bordes; el kicker del banner de Resonario en `dawn` se lee, el de la banda de ritual de Tienda sigue débil (abierto). Las cifras de las esferas en claro llevan un halo de tinta; las unidades «HZ» sobre las portadas pálidas siguen débiles (abierto). La noche no cambia.
+
+Ronda 3 (2026-10-17), contraste medido en claro (WCAG, mediana / cuartil adverso): kicker de banner con foto 7,78 y 10,85; título y cuerpo de banner 10,3–15,4; cifras de esfera ≥ 5,97; unidades «HZ» ≥ 5,55 (peor disco). Mecanismo: tinta (`--color-fg`) sobre velo claro y cifra de marfil sobre píldora de tinta al 72 %. La guarda `tests/lib/light-contrast.test.ts` calcula el peor caso con los valores declarados. Abierto: la medición por píxel de nuevas fotos de atmósfera (sin ingesta todavía).

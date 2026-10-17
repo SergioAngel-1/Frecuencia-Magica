@@ -14,6 +14,7 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 | 8 | Fase 15 | 3D perezoso | ❌ No ejecutada | — |
 | 9 | Fase 16 | Estados, a11y, responsive, rendimiento | ✅ Completada (salvo 16.2.4/16.2.5 manuales) | 2026-08-11 |
 | 10 | Armonización visual | Auditoría de coherencia (impeccable), tokens, eje de página y corrección de defectos visibles | ✅ Completada (decisiones abiertas en la auditoría) | 2026-09-30 |
+| 11 | Ambientes v2 · Fase 0 | Enmienda de contratos (T0.1), atmósferas en código, tokens semánticos, boot sin flash, backdrop y header | Fase 0 completa (T0.1–T0.8); sigue T1.1 (selector manual de ambiente) | 2026-10-17 |
 
 > **Auditoría 2026-07-28 (ver sección final «Auditoría completa»).** Las fases 9–14 se construyeron y los cuatro comandos de verificación están en verde, pero varias tareas quedaron incompletas respecto al plan (Task 12.3, 12.4, 13.1 y los `// TODO(backend)`). **La Fase 15 (3D) no se ejecutó en absoluto** y **la Fase 16 (estados/404/error/loading, a11y, responsive, rendimiento) tampoco**. Detalle abajo.
 
@@ -432,3 +433,67 @@ Plan: `docs/superpowers/plans/2026-10-10-image-harmony-refactor.md` (spec y audi
 
 **Pendiente**: fuentes a 2880 px (ampliación descartada por el cliente; regenerar a medida si se quiere); `home.hero` en tableta vertical (768) sigue perdiendo los pies; contraste del texto sobre foto; Safari, Firefox y móviles reales; logo de 81 KB en el header.
 
+---
+
+## Sección 13 — Ambientes v2 · Fase 0 (fundamentos)
+
+Plan: `docs/superpowers/plans/2026-10-17-ambientes-v2.md`; contrato: `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md` (§ 4, atmósferas).
+
+**Task 0.1 — Enmienda de contratos (`3b2d179..1bb3175`)**
+
+**Entregado**
+
+- `AGENTS.md`: enmienda de la paleta (cerrada; las atmósferas son una capa declarada sólo en `tokens.css`), fondo de app = el de la atmósfera activa, «sin stock» → «sin stock genérico; fotografía propia o con licencia comercial documentada».
+- `DESIGN.md`: sección «Atmósferas» (catálogo de nueve, lo común de marca, qué redefine cada una, contraste e imagen natural) y corrección de los pasajes que tomaban la noche como única verdad.
+- Spec editorial de 2026-08-11: notas de enmienda en §2 y §4 que remiten al spec v2.
+- `frontend/README.md`: paso 9 de «Añadir un realm nuevo» (atmósfera por defecto).
+
+**Task 0.2 — Tipos y configuración de atmósferas (`437e7c0`)**
+
+- `AtmosphereId` (nueve), `ATMOSPHERES` con `scheme`, `themeColor`, `engine`, `droneNote` y `backdropSlot`; `placeFromPathname` como fuente del lugar.
+- Decisión: `backdropSlot` es opcional (`null` en `night`, que no tiene slot de fondo); `themeColor` vive en config con excepción exacta en `palette.test.ts`.
+- `forest` es oscura y `gathering` cálida; el atributo `data-scheme` debe coincidir con el `scheme` de config.
+
+**Task 0.3 — Tokens semánticos por atmósfera y guarda de contraste (`59bcd6a`)**
+
+- Ocho bloques de atmósfera en `tokens.css` con `text-fg*`, `line`, `line-strong`, `scrim`, `accent`, etc.; la noche no cambia.
+- Decisión: las claras usan la escalera `fg-body/soft/muted/meta` = 0,9/0,8/0,74/0,7, porque 82/70/60/55 no llega a AA sobre claro.
+- Decisión: `line` ≥ 1,5:1 (decorativo); `line-strong` ≥ 3:1 (controles y foco, WCAG 1.4.11). `gathering` lleva un `themeColor` provisional, a recalibrar en T2.1.
+
+**Task 0.4 — Guarda de color semántico (`6b67518`, `1b17d11`)**
+
+- `tests/lib/semantic-color-usage.test.ts` falla ante paleta cruda y lista en `ALLOWED` cada excepción con su motivo (decorativos permanentes y velos `void-2` sin token). La lista sólo puede reducirse.
+
+**Task 0.5 — Migración a tokens semánticos (`6df743d`, `3c93593`, `842f411`, `70c7393`)**
+
+- Migración por nombre de color conservando el modificador de opacidad (`text-gold/70` → `text-accent/70`), así la noche sale idéntica por construcción. `--color-scrim` y `--color-halo` en `@theme`.
+- Decisión: los velos `void-2` sin token y el marco oscuro del video se quedan con motivo, sin cambiar la noche.
+- Corrección tras revisión: `scrim` y `halo` re-tematizan dentro de `AtmosphereScope` (`70c7393`).
+
+**Task 0.6 — Provider, store y boot sin flash (`faa7306`, `ed72743`, `2537074`)**
+
+- `AtmosphereProvider` con store persistido y un boot script que aplica la atmósfera antes de la primera pintura, también `<meta name="theme-color">`; replica `placeFromPathname` y la regla de versión del store.
+- `atmospheres.<id>.name` en ES y EN para el anuncio `aria-live`.
+- `placeFromPathname` usa propiedad propia (`hasOwnProperty`), así `/constructor` cae en el portal.
+
+**Task 0.7 — Backdrop con crossfade y perfil de engine (`83616b5`, `c87c4ad`)**
+
+- Fondo de atmósfera con crossfade y perfil de engine por atmósfera (`useEngineProfile`).
+- Decisión: las capas van ancladas al documento y no al viewport, para que la noche no cambie en páginas largas; la capa base de `tokens.css` se migra y queda cubierta por una guarda CSS.
+- Diferencia aceptada: `::selection` pasa de `#fff` a marfil (`--color-fg`).
+
+**Task 0.8 — Header con «Tienda», sección actual y «Menú» (`5391193`, `fed0826`)**
+
+- `currentSection(place)` (`null` en portal y acceso); enlace «Tienda» con conteo del carrito; botón «Menú» visible en todos los anchos; el panel del menú lleva la fila «Carrito» por debajo de 460 px.
+- Decisiones: la etiqueta de sección sólo aparece desde 1024 px y no en tienda; «Tienda» baja a 460 px (por debajo, en el menú); el wordmark no se parte a 768 px.
+
+**Verificación de cierre de fase**: `format:check`, `lint`, `typecheck`, `test` (657 tests) y `build` en verde. Playwright sobre `next start`: noche idéntica (diferencia media ≤ 0,09/255 en `/`, `/resonario`, `/mi-santuario`, `/acceso`; sólo cambia el header nuevo); sin desborde horizontal de 390 a 1440.
+
+**Pendiente**
+
+- Fase 0 completa. Sigue **T1.1** (selector manual de ambiente): descripción y etiqueta del selector en `atmospheres.<id>`.
+- Rojo del mar: resuelto como `dusk` (Atardecer, spec § 11 D2: reflejos rojizos y ámbar sin saturar). Calibrable en T1.5.
+- Correcciones de docs (`atmosphere-contrast`, `SEGMENT_TO_PLACE`, escalera clara 0,9/0,8/0,74/0,7): ya aplicadas en `DESIGN.md`, el spec y `frontend/README.md`.
+- Deuda menor diferida: scrollbars `void-2` en claras (token pendiente), crossfade interrumpido en menos de 1,6 s, y coste de las capas `absolute` en gama media (Tienda).
+
+---

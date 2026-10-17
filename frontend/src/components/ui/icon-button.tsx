@@ -100,10 +100,10 @@ export function IconButton({
         loading && 'animate-fm-glow',
         disabled && 'opacity-45',
         variant === 'ghost'
-          ? 'text-fg-soft group-hover:text-ivory group-hover:bg-ivory/8'
+          ? 'text-fg-soft group-hover:text-fg group-hover:bg-fg/8'
           : active
-            ? 'text-gold border-gold/60 bg-gold/18'
-            : 'border-glass-brd bg-glass text-ivory group-hover:border-gold/40 group-hover:bg-ivory/9',
+            ? 'text-accent border-accent/60 bg-accent/18'
+            : 'border-line bg-surface text-fg group-hover:border-accent/40 group-hover:bg-fg/9',
       )}
     >
       {children}

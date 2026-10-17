@@ -1,7 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 
+import { AtmosphereHero } from '@/components/features/atmosphere/atmosphere-hero';
 import { ResonarioSystem } from '@/components/features/resonario/resonario-system';
-import { PageShell, RealmHero } from '@/components/layout';
+import { PageShell } from '@/components/layout';
 import { BandChain, EditorialBanner } from '@/components/ui';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -38,8 +39,8 @@ export default async function ResonarioPage({ params }: PageProps) {
       {/* El héroe y el banner del archivo son bandas consecutivas: se tocan sin
           hueco. Los filtros bajan junto al sistema que filtran. */}
       <BandChain>
-        <RealmHero
-          media={resonarioMedia.hero}
+        <AtmosphereHero
+          base={resonarioMedia.hero}
           kicker={t('kicker')}
           title={t('title')}
           description={t('description')}

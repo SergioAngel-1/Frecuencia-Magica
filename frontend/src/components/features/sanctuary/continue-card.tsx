@@ -46,7 +46,7 @@ export async function ContinueCard({ media, resume }: ContinueCardProps) {
           {t('continue.kicker')}
         </Kicker>
         <div>
-          <p className="text-ivory font-serif text-[clamp(26px,3vw,34px)] leading-[1.05]">
+          <p className="text-fg font-serif text-[clamp(26px,3vw,34px)] leading-[1.05]">
             {courseTitle}
           </p>
           <p className="text-fg-muted text-meta tracking-ui mt-2 font-sans">

@@ -78,9 +78,10 @@ export function TalkFloat() {
                 rel="noopener noreferrer"
                 data-magnetic
                 aria-label={t('aria')}
-                className="group fm-surface-strong shadow-glow-card rounded-pill hover:border-gold/45 text-ivory pointer-events-auto flex h-14 min-w-14 items-center justify-center gap-3 transition-colors duration-300 sm:px-5"
+                className="group fm-surface-strong shadow-glow-card rounded-pill hover:border-accent/45 text-fg pointer-events-auto flex h-14 min-w-14 items-center justify-center gap-3 transition-colors duration-300 sm:px-5"
               >
                 <span className="relative flex size-6 items-center justify-center">
+                  {/* Aura decorativa: queda cruda a propósito (T0.7). */}
                   <span
                     aria-hidden="true"
                     className="animate-fm-glow bg-gold/25 absolute -inset-2 rounded-full blur-[8px]"
@@ -95,13 +96,13 @@ export function TalkFloat() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     aria-hidden="true"
-                    className="text-gold relative"
+                    className="text-accent relative"
                   >
                     <path d="M12 4.2a7.8 7.8 0 0 0-6.7 11.8L4.2 19.8l3.9-1A7.8 7.8 0 1 0 12 4.2z" />
                     <path d="M8.6 12c.85-1.5 1.7-1.5 2.55 0s1.7 1.5 2.55 0 1.3-1.2 1.7-.6" />
                   </svg>
                 </span>
-                <span className="text-label tracking-caps group-hover:text-ivory text-fg-body font-sans uppercase transition-colors duration-300 max-sm:hidden">
+                <span className="text-label tracking-caps group-hover:text-fg text-fg-body font-sans uppercase transition-colors duration-300 max-sm:hidden">
                   {t('label')}
                 </span>
               </a>

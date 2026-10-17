@@ -40,7 +40,7 @@ export function QuizStep({
         className="mt-4 mb-10 w-full max-w-[360px]"
       />
 
-      <h2 className="text-ivory tracking-soft font-serif text-[clamp(22px,3.2vw,32px)] leading-[1.2]">
+      <h2 className="text-fg tracking-soft font-serif text-[clamp(22px,3.2vw,32px)] leading-[1.2]">
         {prompt}
       </h2>
 
@@ -76,12 +76,14 @@ function OptionButton({
       onClick={handleClick}
       className={cn(
         'group text-body min-h-11 w-full border-b px-2 py-[14px] text-left leading-[1.5] transition-[color,border-color] duration-300',
-        'border-ivory/25 text-fg-body bg-transparent',
-        'hover:border-gold/60 hover:text-ivory',
-        'focus-visible:ring-gold/50 focus-visible:ring-offset-void focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+        'border-fg/25 text-fg-body bg-transparent',
+        'hover:border-accent/60 hover:text-fg',
+        'focus-visible:ring-accent/50 focus-visible:ring-offset-scrim focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
       )}
     >
-      <span className="text-gold/60 group-hover:text-gold/90 mr-4 font-serif">0{index + 1}</span>
+      <span className="text-accent/60 group-hover:text-accent/90 mr-4 font-serif">
+        0{index + 1}
+      </span>
       {label}
     </button>
   );

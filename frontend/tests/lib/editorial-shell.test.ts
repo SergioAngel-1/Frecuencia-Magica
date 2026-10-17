@@ -61,7 +61,7 @@ describe('editorial shell contracts', () => {
   });
 
   it('keeps inactive realm names in the mobile menu above the contrast floor without stacked opacity', () => {
-    const inactive = REALM_MENU_SOURCE.match(/active \? 'text-ivory' : '([^']*)'/)?.[1];
+    const inactive = REALM_MENU_SOURCE.match(/active \? 'text-fg' : '([^']*)'/)?.[1];
 
     expect(inactive, 'inactive menu row').toBeDefined();
     expect(inactive).toContain('text-fg-body');
@@ -69,14 +69,16 @@ describe('editorial shell contracts', () => {
     expect(REALM_MENU_SOURCE).toContain("aria-current={active ? 'page' : undefined}");
   });
 
-  it('never truncates realm names: a header menu below 1024px, dots only from there', () => {
+  it('never truncates realm names: a header menu at every width, dots only from 1024px', () => {
     expect(REALM_NAV_SOURCE).not.toContain('truncate');
     expect(REALM_MENU_SOURCE).not.toContain('truncate');
-    // Below 1024px the constellation lives in a modal opened from the header:
-    // the scrolling bottom bar is gone, and so is its fight with the player.
+    // The header menu opens the modal at every width; the constellation's dots
+    // appear from 1024px. The scrolling bottom bar is gone, and so is its fight
+    // with the player.
     expect(REALM_NAV_SOURCE).toContain('hidden -translate-y-1/2 lg:block');
     expect(REALM_NAV_SOURCE).not.toContain('max-lg:');
-    expect(REALM_MENU_SOURCE).toContain('lg:hidden');
+    expect(REALM_MENU_SOURCE).not.toContain('lg:hidden');
+    expect(REALM_MENU_SOURCE).toContain("tHeader('menu')");
     expect(REALM_MENU_SOURCE).toContain('<Modal');
     expect(REALM_MENU_SOURCE).toContain('NAV_REALMS.map');
     expect(REALM_MENU_SOURCE).toContain('aria-haspopup="dialog"');

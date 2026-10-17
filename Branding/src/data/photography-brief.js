@@ -12,6 +12,7 @@ import {
   SLOTS,
   expandAll,
   formatSize,
+  isAtmosphere,
   negativeFor,
   summarize,
 } from './photography.js'
@@ -94,6 +95,8 @@ function renderRow(row, status) {
 
   if (row.backdrop) lines.push('- **Uso:** fondo a pantalla completa (`backdrop`), por encima de su ratio.')
   if (row.notes) lines.push(`- **Nota:** ${row.notes}`)
+  if (isAtmosphere(row)) lines.push('- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».')
+  if (row.provisional) lines.push(`- **Provisional:** ${row.provisional}`)
   if (row.realShoot) lines.push('- **Producción:** sesión fotográfica real (el prompt es sólo moodboard).')
   if (row.reference) lines.push('- **Referencia:** adjuntar la foto real del producto junto al prompt; la forma y la etiqueta salen de ella.')
   if (row.unregistered) lines.push('- **Estado:** fuera del registro de slots (aún sin cablear).')
@@ -118,6 +121,7 @@ export function renderBrief() {
     '> El estado de cada imagen (a corregir, faltante, por cablear…) vive en `Branding/src/data/photography-status.js`; un test lo cruza con lo publicado.',
     '> El contrato que manda es `frontend/src/config/editorial-media.ts` (ratio, prioridad, focal); un test de la web falla si el brief se desvía.',
     '> Dirección vigente: enmienda 2026-10-10 de `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md` — la imagen es el paisaje luminoso; el world engine es su energía.',
+    '> Enmienda 2026-10-17 (`docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`): además de la noche hay atmósferas con paisajes de color natural y escenas claras. Tienen estilo propio (sección 2) y son provisionales (sección 5.6).',
     '',
     `**${summary.total} imágenes** (${summary.registeredSlots} slots registrados, varios por instancia; ${summary.unregistered} fuera del registro): ` +
       `P0 ${summary.byPriority.P0} · P1 ${summary.byPriority.P1} · P2 ${summary.byPriority.P2}. ` +
@@ -149,6 +153,22 @@ export function renderBrief() {
     '**Tratamientos por acento**',
     '',
     ...Object.entries(GLOBAL.treatments).map(([key, text]) => `- \`${key}\`: ${text}`),
+    '',
+    '**Estilo de las atmósferas** (enmienda 2026-10-17: las imágenes `atmosphere-*`, `resonario-celtic` y `resonario-kind-banner-*` llevan este bloque en lugar del prompt base nocturno)',
+    '',
+    fence(GLOBAL.atmosphere.base),
+    '',
+    '**Prompt negativo de las atmósferas** (el negativo común más esta cola)',
+    '',
+    fence(GLOBAL.atmosphere.negativeExtra.replace(/^, /, '')),
+    '',
+    '**Tratamientos por atmósfera**',
+    '',
+    ...Object.entries(GLOBAL.atmosphere.treatments).map(([key, text]) => `- \`${key}\`: ${text}`),
+    '',
+    '**Reglas de las atmósferas**',
+    '',
+    ...GLOBAL.atmosphere.rules.map((rule) => `- ${rule}`),
     '',
     '**Vocabulario visual** (la imagen es el paisaje; el world engine es su energía)',
     '',
@@ -211,5 +231,36 @@ export function renderBrief() {
     else out.push(FULL.has(state) ? items.map(({ row, status }) => renderRow(row, status)).join('\n\n') : renderTable(state, items))
   }
 
+  out.push('', ...renderProvisional(rows))
+
   return `${out.join('\n')}\n`
+}
+
+/**
+ * Imágenes provisionales, agrupadas por slot: lo que hay que reemplazar por fotografía real antes de publicar.
+ * Cruza los estados: una imagen puede estar completada y seguir siendo provisional.
+ */
+function renderProvisional(rows) {
+  const groups = new Map()
+
+  for (const row of rows.filter((item) => item.provisional)) {
+    const group = groups.get(row.slotId) ?? { note: row.provisional, view: row.view, files: [] }
+    group.files.push(row.file)
+    groups.set(row.slotId, group)
+  }
+
+  const total = [...groups.values()].reduce((sum, group) => sum + group.files.length, 0)
+
+  return [
+    `### 5.${STATES.length + 1} Provisionales: reemplazar antes de publicar (${total})`,
+    '',
+    'Imágenes generadas que hacen de marco mientras llegan las fotografías reales (propias de Marisol o con licencia comercial documentada). Pueden estar completadas y seguir siendo provisionales: esta lista no es un estado, cruza los de arriba.',
+    '',
+    '| Slot | Vista | Archivos | Qué hacer |',
+    '|---|---|---|---|',
+    ...[...groups.entries()].map(
+      ([slotId, group]) =>
+        `| ${cell(`\`${slotId}\``)} | ${cell(group.view)} | ${cell(group.files.map((file) => `\`${file}\``).join(', '))} | ${cell(group.note)} |`,
+    ),
+  ]
 }

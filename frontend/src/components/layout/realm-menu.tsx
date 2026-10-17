@@ -3,8 +3,9 @@
 import { useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { IconButton, Modal } from '@/components/ui';
+import { Modal } from '@/components/ui';
 import { NAV_REALMS, NAV_STORY } from '@/config/navigation';
+import { useCartCount } from '@/hooks/use-cart-count';
 import { useRealm } from '@/hooks/use-realm';
 import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
@@ -12,10 +13,11 @@ import { useNavMenuStore } from '@/stores/nav-menu-store';
 import type { RealmId } from '@/types/realm';
 
 /**
- * Menú de navegación: la constelación en una tarjeta modal. Por debajo de
- * 1024 px lo abre un botón del header; desde ahí, el aro que cierra la
- * columna de puntos (`RealmNav`). Es el mismo modal, con su estado en
- * `useNavMenuStore`.
+ * Menú de navegación: la constelación en una tarjeta modal. Lo abre el botón
+ * «Menú» del header, en todos los anchos, y desde 1024 px también el aro que
+ * cierra la columna de puntos (`RealmNav`). Es el mismo modal, con su estado
+ * en `useNavMenuStore`. Por debajo de 460 px, la tarjeta lleva además el acceso
+ * a la tienda y al carrito, que en el header no caben.
  *
  * Sustituye a la barra inferior, que había que desplazar para ver los seis
  * nombres, competía con el reproductor por el pie de la pantalla y tapaba
@@ -27,6 +29,8 @@ import type { RealmId } from '@/types/realm';
 export function RealmMenu() {
   const t = useTranslations('nav');
   const tHeader = useTranslations('header');
+  const tStore = useTranslations('store');
+  const cartCount = useCartCount();
   const { realmId } = useRealm();
   const pathname = usePathname();
   const open = useNavMenuStore((state) => state.open);
@@ -64,14 +68,14 @@ export function RealmMenu() {
 
   return (
     <div className="pointer-events-auto">
-      {/* El botón sólo existe por debajo de 1024 px; desde ahí abre el mismo
-          menú el aro de la constelación (`RealmNav`). El modal, en todos. */}
-      <IconButton
-        label={tHeader('openMenu')}
+      <button
+        type="button"
+        onClick={openMenu}
         aria-haspopup="dialog"
         aria-expanded={open}
-        onClick={openMenu}
-        className="lg:hidden"
+        aria-label={tHeader('openMenu')}
+        data-magnetic
+        className="text-fg-soft hover:text-fg rounded-pill border-line-strong bg-surface text-meta tracking-ui inline-flex min-h-11 items-center gap-2 border px-4 font-sans transition-[color,background-color] duration-300 ease-out"
       >
         <svg
           width="18"
@@ -85,7 +89,8 @@ export function RealmMenu() {
         >
           <path d="M5 8.5h14M5 15.5h9" />
         </svg>
-      </IconButton>
+        <span>{tHeader('menu')}</span>
+      </button>
 
       <Modal
         open={open}
@@ -97,14 +102,14 @@ export function RealmMenu() {
         <nav aria-label={t('label')}>
           <ul className="px-3 py-2">
             {entries.map(({ id, href, accent, active, name, emotion }) => (
-              <li key={id} className="border-ivory/8 border-b last:border-b-0">
+              <li key={id} className="border-fg/8 border-b last:border-b-0">
                 <Link
                   href={href as '/resonario'}
                   aria-current={active ? 'page' : undefined}
                   onClick={closeMenu}
                   className={cn(
                     'group rounded-field flex min-h-[60px] items-center gap-4 px-3 transition-colors duration-300',
-                    active ? 'text-ivory' : 'text-fg-body hover:text-ivory',
+                    active ? 'text-fg' : 'text-fg-body hover:text-fg',
                   )}
                 >
                   <span
@@ -125,6 +130,21 @@ export function RealmMenu() {
               </li>
             ))}
           </ul>
+          {/* Por debajo de 460px el header no tiene tienda ni carrito: quedan aquí. */}
+          <div className="border-line border-t px-3 py-2 min-[460px]:hidden">
+            <Link
+              href="/tienda/carrito"
+              onClick={closeMenu}
+              className="rounded-field text-fg-body hover:text-fg flex min-h-[60px] items-center justify-between gap-4 px-3 transition-colors duration-300"
+            >
+              <span className="tracking-soft font-serif text-[22px] leading-none">
+                {tStore('cart')}
+              </span>
+              {cartCount > 0 && (
+                <span className="text-accent text-meta font-sans">{cartCount}</span>
+              )}
+            </Link>
+          </div>
         </nav>
       </Modal>
     </div>
