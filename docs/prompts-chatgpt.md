@@ -5,7 +5,7 @@
 > El orden y las secciones son los de la sección 5 de `docs/brief-fotografico.md`; el estado de cada imagen vive en `Branding/src/data/photography-status.js`.
 > Las imágenes de atmósfera (`atmosphere-*`, `resonario-celtic`, `resonario-kind-banner-*`; enmienda 2026-10-17, `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`) llevan otro estilo y otro «Avoid»: color natural, sin personas. **Genera primero las tres muestras: `atmosphere-dusk`, `atmosphere-dawn` y `atmosphere-store`.** Los productos de la tienda no se generan: son fotografía real que hará Marisol.
 
-**81 imágenes:** 0 a corregir · 3 faltantes · 0 por cablear · 1 no tenidas en cuenta · 77 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
+**81 imágenes:** 0 a corregir · 2 faltantes · 0 por cablear · 1 no tenidas en cuenta · 78 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
 
 ## 1. A corregir por desviación de la IA (0)
 
@@ -13,22 +13,11 @@ Entregadas con una desviación. Cada entrada dice qué parte del prompt falló s
 
 Ninguna.
 
-## 2. Faltantes (3)
+## 2. Faltantes (2)
 
 Aún sin entregar. Guárdalas con el nombre indicado para que se procesen solas.
 
-### 2.1 · P2 · Resonario · tipo de escucha · Frecuencias y tonos
-
-- **Guardar como:** `resonario-kind-banner-frequency.png` (luego se convierte a `resonario-kind-banner-frequency.avif`)
-- **Formato:** 16:8
-- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
-- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
-
-```text
-Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). Sound made visible: fine pale sand forming a symmetrical Chladni geometric pattern on a round brass plate, top-down macro, warm soft side light from the left, delicate concentric lines and petals of sand, the plate resting on pale stone. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: sand, cream and soft sage green, with warm side light and natural soft shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
-```
-
-### 2.2 · P2 · Resonario · tipo de escucha · Binaurales
+### 2.1 · P2 · Resonario · tipo de escucha · Binaurales
 
 - **Guardar como:** `resonario-kind-banner-binaural.png` (luego se convierte a `resonario-kind-banner-binaural.avif`)
 - **Formato:** 16:8
@@ -39,7 +28,7 @@ Create an image. Follow this description exactly and do not add elements, text o
 Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). Two broad soft beams of light with no outline, like the glow of a distant lamp through mist, one a cool silver-blue entering from the left edge and one a warm amber entering from the right edge, drifting low over a calm sea at dusk and meeting in a quiet soft glow at the center, a gentle mirrored reflection on the water. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
 ```
 
-### 2.3 · P2 · Resonario · tipo de escucha · Prácticas guiadas
+### 2.2 · P2 · Resonario · tipo de escucha · Prácticas guiadas
 
 - **Guardar como:** `resonario-kind-banner-guided.png` (luego se convierte a `resonario-kind-banner-guided.avif`)
 - **Formato:** 16:8
@@ -70,7 +59,7 @@ Publicadas, pero ninguna vista las pinta hoy. El prompt sólo sirve si se rehace
 Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Crystal and brass singing bowls glowing from within on a dark wooden platform over still water, candles between them, rings of light spreading across the surface, a soft haze; nobody present. The subject sits on the right, spanning roughly 50% to 80% of the frame width and centered at 45% vertical, and the left 45% of the frame is dark and empty because that side of the scene is unlit shore, water and sky, continuing across the whole width with no gradient, band or vertical edge; text is laid over that side later. Wide landscape framing. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
 ```
 
-## 5. Completadas (77)
+## 5. Completadas (78)
 
 Entregadas y sin desviación conocida. Se conserva el prompt por si hay que repetirlas.
 
@@ -799,7 +788,18 @@ Create an image. Follow this description exactly and do not add elements, text o
 Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). A calm forest stream running over smooth mossy stones under a fine soft rain, ferns along both banks, a single small songbird perched on a mossy branch at 25% from the left and 30% from the top, fresh natural greens. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
 ```
 
-### 5.77 · P0 · Metadatos · Open Graph
+### 5.77 · P2 · Resonario · tipo de escucha · Frecuencias y tonos
+
+- **Guardar como:** `resonario-kind-banner-frequency.png` (luego se convierte a `resonario-kind-banner-frequency.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). Sound made visible: fine pale sand forming a symmetrical Chladni geometric pattern on a round brass plate, top-down macro, warm soft side light from the left, delicate concentric lines and petals of sand, the plate resting on pale stone. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: sand, cream and soft sage green, with warm side light and natural soft shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 5.78 · P0 · Metadatos · Open Graph
 
 - **Guardar como:** `og-image.png` (luego se convierte a `og-image.jpg`)
 - **Formato:** 1.91:1
