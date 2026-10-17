@@ -1,70 +1,62 @@
 'use client';
 
-import { useMemo, useState, type CSSProperties } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { div as Mdiv } from 'motion/react-m';
 
 import { AtmospherePicker } from '@/components/features/atmosphere/atmosphere-picker';
-import { AudioDisc } from '@/components/features/player/audio-disc';
-import { Badge, Button, EmptyState, Swap } from '@/components/ui';
+import { EmptyState, Button, Swap } from '@/components/ui';
 import { AUDIOS } from '@/data';
-import { useMediaQuery } from '@/hooks/use-media-query';
-import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
-import { floatStyle } from '@/lib/motion/float';
-import { discSlot, filterAudios, orbitalLayout } from '@/lib/resonario/layout-slots';
-import { useActiveAudioId } from '@/stores/player-store';
-import type { Audio } from '@/types/content';
+import { featuredAudio, kindSections } from '@/lib/resonario/layout-slots';
+import type { AudioKind } from '@/types/content';
 import type { EditorialMedia } from '@/types/editorial-media';
 
+import { CelticFeature } from './celtic-feature';
+import { KindSection } from './kind-section';
 import { ResonarioFilters } from './resonario-filters';
+import { TrackCard } from './track-card';
 
 export type ResonarioMedia = {
+  /** Foto de la frecuencia destacada (slot `resonario.featured`). */
   featured: EditorialMedia;
   /** Vacío del filtro sin resultados (`states.empty`). */
   empty: EditorialMedia;
+  /** Banner de cada tipo de escucha (slot `resonario.kind-banner.*`). */
+  kindBanners: Record<AudioKind, EditorialMedia>;
+  /** La pieza celta, dentro de melodías (slot `resonario.celtic`). */
+  celtic: EditorialMedia;
 };
 
-/** Ritmo del flotado del disco central; su etiqueta lo comparte. */
-const FEATURED_FLOAT = '7s';
+/** Las pistas de un tipo, en tarjetas: 1 columna en móvil, hasta 4 en escritorio. */
+const TRACK_GRID = 'grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4';
 
-// Hasta la sección por tipo, el sistema orbital sólo recibe las frecuencias: sus seis
-// ranuras no admiten más discos. Las pistas nuevas entran con su sección.
-const ORBITAL_TRACKS = AUDIOS.filter((audio) => audio.kind === 'frequency');
-
+/**
+ * El Resonario por tipo de escucha. «Todo» muestra la frecuencia destacada y
+ * luego una sección por tipo, con su banner y su explicación; cada filtro deja
+ * sólo la sección de ese tipo. Las pistas sin material (`soon`) se listan sin play.
+ */
 export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
   const t = useTranslations('resonario');
   const statesT = useTranslations('states');
   const [filter, setFilter] = useState<string | null>(null);
 
-  const filtered = useMemo(() => filterAudios(ORBITAL_TRACKS, filter), [filter]);
-  // El centro lo toma la frecuencia que suena, sólo en el sistema orbital de
-  // escritorio; por debajo de 1024 el orden se mantiene y el disco activo
-  // sólo se marca (lo hace `AudioDisc`).
-  const activeId = useActiveAudioId();
-  const orbital = useMediaQuery('(min-width: 1024px)');
-  const reduced = useReducedMotionSafe();
-  const { center, centerIsFeatured, orbit } = orbitalLayout(filtered, orbital ? activeId : null);
-  // El disco que cambia de sitio se desliza hasta el otro (sólo posición).
-  const glide = orbital && !reduced;
-  const audioTitle = (audio: Audio) => t(`audios.${audio.id}.title` as 'audios.a1.title');
-  const audioMeta = (audio: Audio) =>
-    `${t(`tags.${audio.tagId}` as 'tags.meditation')} · ${audio.duration ?? t('soon')}`;
-  // El destacado conserva su foto; otro audio en el centro pinta su portada,
-  // la misma que en el resto del sitio (la resuelve `AudioDisc`).
-  const centerCover = (audio: Audio): EditorialMedia | undefined =>
-    centerIsFeatured ? { ...media.featured, band: audio.band } : undefined;
+  const showAll = !filter || filter === 'all';
+  const featured = featuredAudio(AUDIOS);
+  // La destacada sólo aparece en «Todo», y no se repite en su sección.
+  const sections = useMemo(
+    () => kindSections(AUDIOS, filter, showAll ? featured?.id : undefined),
+    [filter, showAll, featured],
+  );
 
   return (
     <>
-      {/* El banner del archivo vive en la página, encadenado con el héroe. */}
       <div className="mb-8">
         <AtmospherePicker />
       </div>
       <ResonarioFilters active={filter} onChange={setFilter} />
 
-      {/* Al filtrar, el sistema anterior se funde antes de que entre el nuevo. */}
+      {/* Al filtrar, la vista anterior se funde antes de que entre la nueva. */}
       <Swap id={filter ?? 'all'}>
-        {filtered.length === 0 ? (
+        {sections.length === 0 ? (
           <EmptyState
             media={media.empty}
             title={statesT('emptySearch')}
@@ -75,80 +67,24 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
             }
           />
         ) : (
-          <section
-            aria-label={t('featuredBadge')}
-            className="relative isolate mx-auto w-full max-w-[1040px]"
-            data-editorial-stage="orbital"
-          >
-            {/* El destacado es el sol del sistema y los demás orbitan a su
-              alrededor; en móvil y tablet va apilado sobre el archivo. Todos
-              son el mismo `AudioDisc` de la Home: la portada vive dentro de la
-              esfera y la luz es el aura del propio disco, sin marco alrededor. */}
-            {center ? (
-              <Mdiv
-                key={center.id}
-                layoutId={glide ? `resonario-disc-${center.id}` : undefined}
-                layout={glide ? 'position' : false}
-                className="relative mx-auto w-[min(380px,84vw)] py-6 lg:absolute lg:top-1/2 lg:left-1/2 lg:z-[2] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:py-0"
-                data-editorial-featured="true"
-              >
-                {/* La etiqueta flota con el disco: misma animación y duración,
-                    montadas a la vez, así suben y bajan juntas. */}
-                <div
-                  className="mb-9 flex justify-center"
-                  style={floatStyle({ depth: 'deep', duration: FEATURED_FLOAT })}
-                >
-                  <Badge solid>{centerIsFeatured ? t('featuredBadge') : t('nowPlaying')}</Badge>
-                </div>
-                <AudioDisc
-                  audio={center}
-                  title={audioTitle(center)}
-                  meta={audioMeta(center)}
-                  size="lg"
-                  cover={centerCover(center)}
-                  showEqualizer
-                  showPlay
-                  floatDuration={FEATURED_FLOAT}
-                />
-              </Mdiv>
+          <div className="gap-section flex flex-col">
+            {showAll && featured ? (
+              <div className="mx-auto w-full max-w-[420px]">
+                <TrackCard audio={featured} cover={media.featured} badge={t('featuredBadge')} />
+              </div>
             ) : null}
 
-            {/* Un único mapa mantiene un solo nodo por frecuencia en ambos breakpoints.
-                Cada disco conserva su posición: el que pasa al centro deja la
-                suya al que sale de él. */}
-            <div
-              className="relative mx-auto grid max-w-[1040px] grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-5 pt-8 lg:block lg:min-h-[720px]"
-              data-editorial-secondary="true"
-            >
-              {orbit.map(({ audio, slot: index }) => {
-                const slot = discSlot(index);
-                return (
-                  <Mdiv
-                    key={audio.id}
-                    layoutId={glide ? `resonario-disc-${audio.id}` : undefined}
-                    layout={glide ? 'position' : false}
-                    className="relative mx-auto w-[150px] lg:absolute lg:top-[var(--slot-top)] lg:left-[var(--slot-left)] lg:z-[3] lg:w-[var(--slot-size)]"
-                    style={
-                      {
-                        '--slot-top': slot.top,
-                        '--slot-left': slot.left,
-                        '--slot-size': slot.size,
-                      } as CSSProperties
-                    }
-                  >
-                    <AudioDisc
-                      audio={audio}
-                      title={audioTitle(audio)}
-                      meta={audioMeta(audio)}
-                      size="sm"
-                      floatDuration={slot.duration}
-                      floatDelay={slot.delay}
-                    />
-                  </Mdiv>
-                );
-              })}
-            </div>
-          </section>
+            {sections.map(({ entry, tracks }) => (
+              <KindSection key={entry.kind} entry={entry} banner={media.kindBanners[entry.kind]}>
+                {entry.kind === 'melody' ? <CelticFeature media={media.celtic} /> : null}
+                <div className={TRACK_GRID}>
+                  {tracks.map((audio) => (
+                    <TrackCard key={audio.id} audio={audio} />
+                  ))}
+                </div>
+              </KindSection>
+            ))}
+          </div>
         )}
       </Swap>
     </>

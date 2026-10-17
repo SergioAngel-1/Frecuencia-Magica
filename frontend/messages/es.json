@@ -391,7 +391,15 @@
         "hero": "Paisaje sonoro del Resonario de Frecuencia Mágica",
         "featured": "Campo editorial para la frecuencia destacada",
         "archiveBanner": "Textura sonora que acompaña el archivo completo",
-        "audioCover": "Portada sonora de {title}"
+        "audioCover": "Portada sonora de {title}",
+        "kindBanner": {
+          "melody": "Imagen del tipo de escucha: melodías",
+          "nature": "Imagen del tipo de escucha: naturaleza",
+          "frequency": "Imagen del tipo de escucha: frecuencias",
+          "binaural": "Imagen del tipo de escucha: binaurales",
+          "guided": "Imagen del tipo de escucha: guiadas"
+        },
+        "celtic": "Un arpa celta junto a una ventana sobre colinas verdes en la bruma"
       }
     },
     "archive": {
@@ -403,11 +411,7 @@
     "nowPlaying": "Sonando ahora",
     "filtersLabel": "Filtrar frecuencias",
     "filters": {
-      "all": "Todo",
-      "meditation": "Meditación",
-      "frequency": "Frecuencia",
-      "rest": "Descanso",
-      "ritual": "Ritual"
+      "all": "Todo"
     },
     "tags": {
       "meditation": "Meditación",
@@ -520,10 +524,34 @@
       "guided": {
         "title": "Guiadas",
         "explanation": "Una voz te acompaña paso a paso, con pausas para respirar. Están en preparación: aparecerán aquí cuando estén grabadas."
-      }
+      },
+      "eyebrow": "Tipo de escucha"
     },
     "guide": {
-      "headphones": "Usa auriculares estéreo: el efecto sólo se percibe con un sonido en cada oído."
+      "headphones": "Usa auriculares estéreo: el efecto sólo se percibe con un sonido en cada oído.",
+      "title": "Guía de escucha",
+      "toggle": "Ver la guía",
+      "composition": "Qué suena"
+    },
+    "sample": {
+      "listen": "Escuchar muestra",
+      "label": "Muestra",
+      "full": "Escuchar completa"
+    },
+    "card": {
+      "voice": "Con voz",
+      "noVoice": "Sin voz",
+      "headphones": "Auriculares"
+    },
+    "celtic": {
+      "kicker": "Pieza destacada de melodías",
+      "heading": "Música de inspiración celta: una invitación a bajar el ritmo",
+      "p1": "Hay melodías que nos invitan a detenernos y escuchar. La música de inspiración celta puede abrir ese espacio: una pausa para sentir, imaginar y disfrutar del sonido.",
+      "p2": "Parte de su riqueza nace de tradiciones como la del arpa irlandesa, que ha acompañado la vida cultural de Irlanda durante más de mil años. Sus notas conservan una historia de expresión, memoria y encuentro.",
+      "p3": "En sus versiones más suaves, el sonido delicado del arpa, las frases de flauta y las melodías pausadas pueden crear una atmósfera acogedora. Si estos sonidos te resultan agradables, pueden acompañarte mientras descansas, contemplas un paisaje o dedicas unos minutos a ti.",
+      "p4": "La investigación sobre música sugiere que escucharla puede favorecer el estado de ánimo, aunque cada persona responde de manera diferente. Su valor también está en lo que despierta en ti: serenidad, emoción, recuerdos o una sensación de compañía.",
+      "p5": "En Frecuencia Mágica elegimos estas melodías para ofrecerte un momento de escucha sin exigencias. No necesitas alcanzar un estado especial. Solo encontrar un volumen cómodo y descubrir cómo te sientes.",
+      "closing": "Deja que la melodía te acompañe. Este momento es tuyo."
     }
   },
   "player": {

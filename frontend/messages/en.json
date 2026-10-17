@@ -386,7 +386,15 @@
         "hero": "Soundscape of the Frecuencia Mágica Resonarium",
         "featured": "Editorial field for the featured frequency",
         "archiveBanner": "Sound texture accompanying the complete archive",
-        "audioCover": "Sound cover for {title}"
+        "audioCover": "Sound cover for {title}",
+        "kindBanner": {
+          "melody": "Image of the listening type: melodies",
+          "nature": "Image of the listening type: nature",
+          "frequency": "Image of the listening type: frequencies",
+          "binaural": "Image of the listening type: binaural",
+          "guided": "Image of the listening type: guided"
+        },
+        "celtic": "A Celtic harp by a window over green hills in the mist"
       }
     },
     "archive": {
@@ -398,11 +406,7 @@
     "nowPlaying": "Now playing",
     "filtersLabel": "Filter frequencies",
     "filters": {
-      "all": "All",
-      "meditation": "Meditation",
-      "frequency": "Frequency",
-      "rest": "Rest",
-      "ritual": "Ritual"
+      "all": "All"
     },
     "tags": {
       "meditation": "Meditation",
@@ -515,10 +519,34 @@
       "guided": {
         "title": "Guided",
         "explanation": "A voice accompanies you step by step, with pauses to breathe. They are in preparation: they will appear here once they are recorded."
-      }
+      },
+      "eyebrow": "Listening type"
     },
     "guide": {
-      "headphones": "Use stereo headphones: the effect is only perceived with one sound in each ear."
+      "headphones": "Use stereo headphones: the effect is only perceived with one sound in each ear.",
+      "title": "Listening guide",
+      "toggle": "See the guide",
+      "composition": "What you hear"
+    },
+    "sample": {
+      "listen": "Listen to a sample",
+      "label": "Sample",
+      "full": "Listen to the full track"
+    },
+    "card": {
+      "voice": "With voice",
+      "noVoice": "No voice",
+      "headphones": "Headphones"
+    },
+    "celtic": {
+      "kicker": "Featured melody piece",
+      "heading": "Celtic-inspired music: an invitation to slow down",
+      "p1": "There are melodies that invite us to stop and listen. Celtic-inspired music can open that space: a pause to feel, to imagine and to enjoy the sound.",
+      "p2": "Part of its richness comes from traditions such as the Irish harp, which has accompanied the cultural life of Ireland for more than a thousand years. Its notes keep a history of expression, memory and encounter.",
+      "p3": "In its gentlest versions, the delicate sound of the harp, the flute phrases and slow melodies can create a welcoming atmosphere. If these sounds feel pleasant to you, they can keep you company while you rest, look at a landscape or spend a few minutes with yourself.",
+      "p4": "Research on music suggests that listening to it may help the mood, although each person responds differently. Its value also lies in what it awakens in you: serenity, emotion, memories or a sense of company.",
+      "p5": "At Frecuencia Mágica we chose these melodies to offer you a moment of listening without demands. You do not need to reach a special state. Just find a comfortable volume and notice how you feel.",
+      "closing": "Let the melody accompany you. This moment is yours."
     }
   },
   "player": {
