@@ -780,5 +780,16 @@
         "offline": "A lit cabin beside a misty lake: your brief retreat until the connection returns"
       }
     }
+  },
+  "atmospheres": {
+    "night": { "name": "Cosmic night" },
+    "dusk": { "name": "Dusk" },
+    "dawn": { "name": "Dawn" },
+    "moon": { "name": "Moon" },
+    "forest": { "name": "Forest" },
+    "study": { "name": "Study" },
+    "store": { "name": "Workshop" },
+    "gathering": { "name": "Gathering" },
+    "marisol": { "name": "Marisol's light" }
   }
 }

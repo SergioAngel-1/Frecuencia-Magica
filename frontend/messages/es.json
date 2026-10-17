@@ -785,5 +785,16 @@
         "offline": "Una cabaña encendida junto a un lago en bruma: tu retiro breve hasta que vuelva la conexión"
       }
     }
+  },
+  "atmospheres": {
+    "night": { "name": "Noche cósmica" },
+    "dusk": { "name": "Atardecer" },
+    "dawn": { "name": "Amanecer" },
+    "moon": { "name": "Luna" },
+    "forest": { "name": "Bosque" },
+    "study": { "name": "Estudio" },
+    "store": { "name": "Taller" },
+    "gathering": { "name": "Encuentro" },
+    "marisol": { "name": "Luz de Marisol" }
   }
 }

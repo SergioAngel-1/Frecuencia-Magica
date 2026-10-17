@@ -12,12 +12,15 @@ import {
   SiteHeader,
   TalkFloat,
 } from '@/components/layout';
+import { AtmosphereProvider } from '@/components/world/atmosphere-provider';
 import { RealmProvider } from '@/components/world/realm-provider';
 import { SmoothScroll } from '@/components/world/smooth-scroll';
 import { WorldEngine } from '@/components/world/world-engine';
+import { ATMOSPHERES } from '@/config/atmospheres';
 import { cormorant, jost } from '@/config/fonts';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { routing } from '@/i18n/routing';
+import { atmosphereBootScript, SERVER_ATMOSPHERE } from '@/lib/atmosphere/boot-script';
 
 import '../globals.css';
 
@@ -76,8 +79,16 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html
       lang={locale}
       className={`${cormorant.variable} ${jost.variable}`}
+      data-atmosphere={SERVER_ATMOSPHERE}
+      data-scheme={ATMOSPHERES[SERVER_ATMOSPHERE].scheme}
       suppressHydrationWarning
     >
+      {/* Síncrono y en línea, antes del primer pintado: fija la atmósfera del
+          sitio (o la elegida) en <html> para que una recarga directa no
+          destelle con la noche. Ver lib/atmosphere/boot-script.ts. */}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: atmosphereBootScript() }} />
+      </head>
       {/* suppressHydrationWarning en los nodos raíz: extensiones de navegador
           (modo oscuro / auto-dark) inlinean los estilos computados del body en
           el atributo `style` antes de que React hidrate, y algunas tocan el
@@ -88,26 +99,28 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <LazyMotion features={domAnimation}>
           <NextIntlClientProvider>
             <RealmProvider>
-              <SmoothScroll>
-                <WorldEngine />
-                <SiteHeader />
-                <RealmNav />
-                <main id="contenido" className="z-content relative">
-                  <RouteTransition>{children}</RouteTransition>
-                  <RealmFooter />
-                </main>
-                {/* Una sola fila al pie: el reproductor ocupa lo que queda y
+              <AtmosphereProvider>
+                <SmoothScroll>
+                  <WorldEngine />
+                  <SiteHeader />
+                  <RealmNav />
+                  <main id="contenido" className="z-content relative">
+                    <RouteTransition>{children}</RouteTransition>
+                    <RealmFooter />
+                  </main>
+                  {/* Una sola fila al pie: el reproductor ocupa lo que queda y
                     «Hablar ahora» cierra la esquina derecha, en línea con la
                     barra o con el disco recogido. */}
-                <div
-                  data-layout-layer="float-controls"
-                  className="z-player fm-float-dock pointer-events-none fixed inset-x-0 bottom-0 flex items-end"
-                >
-                  <PlayerDock />
-                  <TalkFloat />
-                </div>
-                <OfflineVeil />
-              </SmoothScroll>
+                  <div
+                    data-layout-layer="float-controls"
+                    className="z-player fm-float-dock pointer-events-none fixed inset-x-0 bottom-0 flex items-end"
+                  >
+                    <PlayerDock />
+                    <TalkFloat />
+                  </div>
+                  <OfflineVeil />
+                </SmoothScroll>
+              </AtmosphereProvider>
             </RealmProvider>
           </NextIntlClientProvider>
         </LazyMotion>

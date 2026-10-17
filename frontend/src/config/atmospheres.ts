@@ -92,3 +92,9 @@ export const PLACE_ATMOSPHERE: Record<Place, AtmosphereId> = {
  * (academia, tienda, experiencias, Sobre Marisol) la identidad del sitio manda.
  */
 export const LISTENING_PLACES: readonly Place[] = ['descubrete', 'resonario', 'sanctuario'];
+
+/** Los nueve ids, en el orden de `ATMOSPHERES`. */
+export const ATMOSPHERE_IDS = Object.keys(ATMOSPHERES) as AtmosphereId[];
+
+/** Clave de `sessionStorage` de la elección manual (dura la sesión, no el dispositivo). */
+export const ATMOSPHERE_STORAGE_KEY = 'fm.atmosphere';

@@ -7,6 +7,7 @@
  */
 
 export { arrowLinkClasses, ArrowGlyph, type ArrowLinkTone } from './arrow-link';
+export { AtmosphereScope } from './atmosphere-scope';
 export { Badge, type BadgeProps, type BadgeTone } from './badge';
 export { Band, type BandAspect } from './band';
 export { BandChain, type BandChainProps } from './band-chain';

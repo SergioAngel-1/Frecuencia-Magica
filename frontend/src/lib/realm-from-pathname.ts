@@ -10,7 +10,7 @@ import type { RealmId } from '@/types/realm';
  * El portal (`/`) no tiene segmento y es el valor por defecto. `story` es Sobre
  * Marisol: su realm es `home` (ver `realmFromPathname`).
  */
-const SEGMENT_TO_PLACE: Record<string, Place> = {
+export const SEGMENT_TO_PLACE: Readonly<Record<string, Place>> = {
   // Español (locale por defecto, sin prefijo)
   inicio: 'home',
   'sobre-marisol': 'story',
@@ -52,7 +52,11 @@ export function placeFromPathname(pathname: string): Place {
 
   if (segment === undefined) return 'portal';
 
-  return SEGMENT_TO_PLACE[segment] ?? 'portal';
+  // Propiedad propia, no `[]`: `/constructor` o `/__proto__` no son lugares y
+  // no deben devolver nada heredado del prototipo.
+  return Object.prototype.hasOwnProperty.call(SEGMENT_TO_PLACE, segment)
+    ? SEGMENT_TO_PLACE[segment]!
+    : 'portal';
 }
 
 /**
