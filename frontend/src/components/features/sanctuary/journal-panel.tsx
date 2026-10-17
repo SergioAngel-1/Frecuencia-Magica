@@ -9,9 +9,10 @@ import { cn } from '@/lib/cn';
 import { hasEditorialVisual } from '@/lib/editorial/visual';
 import { useJournalStore } from '@/stores/journal-store';
 import type { EditorialMedia } from '@/types/editorial-media';
+import { MOOD_IDS } from '@/types/mood';
 
 import { JournalEmpty } from './journal-empty';
-import { JournalEntryCard, MOODS } from './journal-entry';
+import { JournalEntryCard } from './journal-entry';
 
 export type JournalMedia = {
   journal: EditorialMedia;
@@ -71,15 +72,15 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
         </p>
 
         <div className="mb-5 flex flex-wrap gap-2" role="group" aria-label={tJournal('moodLabel')}>
-          {MOODS.map((mood, index) => (
+          {MOOD_IDS.map((mood) => (
             <button
               key={mood}
               type="button"
-              onClick={() => setMood(index)}
-              aria-pressed={draft.mood === index}
+              onClick={() => setMood(mood)}
+              aria-pressed={draft.mood === mood}
               className={cn(
                 'rounded-pill text-label tracking-ui min-h-11 flex-1 basis-[86px] border px-3 py-2 font-sans uppercase transition-[color,background-color,border-color] duration-300',
-                draft.mood === index
+                draft.mood === mood
                   ? 'bg-accent/15 text-accent border-accent/40'
                   : 'bg-surface text-fg-muted border-line hover:border-fg/20',
               )}

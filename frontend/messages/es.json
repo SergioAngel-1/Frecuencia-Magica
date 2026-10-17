@@ -873,10 +873,14 @@
     "moodLabel": "Tu estado",
     "moods": {
       "calm": "Calma",
-      "joy": "Alegría",
-      "nostalgia": "Nostalgia",
       "tiredness": "Cansancio",
-      "gratitude": "Gratitud"
+      "nostalgia": "Nostalgia",
+      "sadness": "Tristeza",
+      "joy": "Alegría",
+      "gratitude": "Gratitud",
+      "clarity": "Claridad",
+      "breathe": "Necesito respirar",
+      "unknown": "Sin etiqueta"
     },
     "placeholder": "Escribe lo que hoy quiere ser escuchado…",
     "save": "Guardar en mi diario",

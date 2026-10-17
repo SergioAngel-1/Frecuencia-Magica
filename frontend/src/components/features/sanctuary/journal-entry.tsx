@@ -4,27 +4,28 @@ import { useLocale, useTranslations } from 'next-intl';
 
 import { cn } from '@/lib/cn';
 import type { JournalEntry } from '@/stores/journal-store';
-
-/** Índice del estado de ánimo → clave de traducción. */
-export const MOODS = ['calm', 'joy', 'nostalgia', 'tiredness', 'gratitude'] as const;
+import type { MoodId } from '@/types/mood';
 
 /**
- * Punto de color de cada estado, dentro de la paleta cerrada: los tres
- * acentos para los tres estados con carga emocional y dos pasos de marfil
- * para el cansancio (apagado) y la gratitud (pleno).
+ * Punto de color de cada estado, dentro de la paleta cerrada. Un estado no
+ * reconocido (`null`) lleva el punto neutro.
  */
-const MOOD_DOT: Record<(typeof MOODS)[number], string> = {
+const MOOD_DOT: Record<MoodId | 'unknown', string> = {
   calm: 'bg-accent-2',
-  joy: 'bg-accent',
-  nostalgia: 'bg-accent-3',
   tiredness: 'bg-fg/45',
+  nostalgia: 'bg-accent-3',
+  sadness: 'bg-fg/30',
+  joy: 'bg-accent',
   gratitude: 'bg-fg',
+  clarity: 'bg-accent',
+  breathe: 'bg-accent-2',
+  unknown: 'bg-fg/20',
 };
 
 export function JournalEntryCard({ entry }: { entry: JournalEntry }) {
   const t = useTranslations('journal');
   const locale = useLocale();
-  const mood = MOODS[entry.mood] ?? MOODS[0];
+  const mood = entry.mood ?? 'unknown';
   const date = new Date(entry.createdAt).toLocaleDateString(locale, {
     day: 'numeric',
     month: 'short',

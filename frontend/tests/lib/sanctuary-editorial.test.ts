@@ -121,7 +121,7 @@ describe('sanctuary editorial composition contracts', () => {
     expect(emptyStateSource).toContain('data-editorial-media={media.slot}');
     expect(emptySource).toContain("t('emptyJournal')");
     expect(journalSource).toContain('aria-live="polite"');
-    expect(journalSource).toContain('aria-pressed={draft.mood === index}');
+    expect(journalSource).toContain('aria-pressed={draft.mood === mood}');
   });
 
   it('keeps the orb decorative and the greeting as the only h1', () => {

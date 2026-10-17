@@ -868,10 +868,14 @@
     "moodLabel": "Your state",
     "moods": {
       "calm": "Calm",
-      "joy": "Joy",
-      "nostalgia": "Nostalgia",
       "tiredness": "Tiredness",
-      "gratitude": "Gratitude"
+      "nostalgia": "Nostalgia",
+      "sadness": "Sadness",
+      "joy": "Joy",
+      "gratitude": "Gratitude",
+      "clarity": "Clarity",
+      "breathe": "I need to breathe",
+      "unknown": "No label"
     },
     "placeholder": "Write what wants to be heard today…",
     "save": "Save to my journal",
