@@ -6,6 +6,7 @@ import { AudioDisc } from '@/components/features/player/audio-disc';
 import { cn } from '@/lib/cn';
 import { Badge, Button } from '@/components/ui';
 import { isPlayable } from '@/data';
+import { floatPhase } from '@/lib/player/float-phase';
 import { useAudioPlayback, usePlayerStore } from '@/stores/player-store';
 import type { Audio } from '@/types/content';
 
@@ -57,6 +58,7 @@ export function TrackCard({ audio }: TrackCardProps) {
         size="md"
         caption={false}
         interactive={ready}
+        floatDelay={floatPhase(audio.id)}
       />
 
       <div className="flex w-full flex-col gap-2 text-left">
