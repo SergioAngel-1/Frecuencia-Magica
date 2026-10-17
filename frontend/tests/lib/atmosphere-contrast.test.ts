@@ -47,10 +47,12 @@ const LINE_MIN = 1.5;
 const FOCUS_MIN = 3;
 
 /**
- * Excepción de `line` en la noche. Es la v1 sin cambios (`glass-brd`, oro al 20 %)
- * y mide 1,49:1 sobre el punto más oscuro del vacío: queda justo bajo 1,5. El
- * brief manda no tocar la noche, así que su suelo es su propio valor medido,
- * y cualquier regresión por debajo se detecta. Pendiente de decisión del controlador.
+ * Excepción de `line` en la noche: 1,45:1. La noche es la v1 sin cambios
+ * (`glass-brd`, oro al 20 %) y mide 1,49:1 sobre el punto más oscuro del vacío;
+ * no se toca, así que el suelo es ese valor medido con margen y cualquier
+ * regresión por debajo falla. Decisión tomada: `line` es un borde decorativo
+ * (1,5:1 en las ocho atmósferas nuevas) y `line-strong` (controles y foco)
+ * llega a 3:1.
  */
 const LINE_FLOOR: Partial<Record<AtmosphereId, number>> = { night: 1.45 };
 

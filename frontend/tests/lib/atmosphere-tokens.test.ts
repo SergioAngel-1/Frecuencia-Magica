@@ -13,6 +13,7 @@ import {
   parseTriplet,
   readTokensCss,
   resolvedTokens,
+  resolveVar,
   ruleDeclarations,
 } from '../helpers/css-tokens';
 
@@ -82,6 +83,25 @@ describe('night is the v1 surface, unchanged', () => {
   });
 });
 
+/**
+ * Los valores por defecto (`@theme` para los `--color-*`, `:root` para escrim,
+ * halo y fondos) son los de la noche: un elemento fuera de cualquier bloque de
+ * atmósfera pinta la noche. Si uno se edita en un sitio solo, este test falla.
+ */
+describe('default tokens are the night values', () => {
+  // Sólo los tokens de la atmósfera: `@theme` tiene más (p. ej. `--font-cormorant`, que inyecta next/font).
+  const theme = ruleDeclarations(CSS, '@theme');
+  const root = ruleDeclarations(CSS, ':root');
+  const lookup = (name: string) => theme[name] ?? root[name];
+  const night = resolvedTokens(CSS, blockOf('night'));
+
+  it.each(ATMOSPHERE_TOKENS)('%s defaults to the night value', (name) => {
+    const raw = theme[name] ?? root[name];
+    expect(raw, `${name} sin valor por defecto`).toBeDefined();
+    expect(flat(resolveVar(raw!, lookup))).toBe(flat(night[name]!));
+  });
+});
+
 describe('atmosphere scheme matches the text it uses', () => {
   it.each(IDS)('%s: light schemes carry dark text, dark and warm carry light text', (id) => {
     const values = resolvedTokens(CSS, blockOf(id));
@@ -96,6 +116,13 @@ describe('atmosphere scheme matches the text it uses', () => {
   });
 });
 
+/**
+ * `themeColor` (color de la barra del navegador) debe ser una parada de `--atmo-bg`.
+ * Qué parada usa cada atmósfera, medido sobre `tokens.css` (no se cambió ningún valor):
+ * - Parada del 45 % (la de la mitad): night, dusk, dawn, moon, study, store, marisol.
+ * - Parada del 0 % (la superior): forest, gathering.
+ * No es consistente entre atmósferas; el test sólo exige que sea una de las paradas.
+ */
 describe('atmosphere values', () => {
   it.each(IDS)('%s: theme-color is a stop of its background gradient', (id) => {
     const values = resolvedTokens(CSS, blockOf(id));
