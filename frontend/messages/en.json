@@ -881,6 +881,19 @@
     "save": "Save to my journal",
     "saved": "Saved. Your word now has a place."
   },
+  "arrival": {
+    "breathing": {
+      "title": "Breathe with me",
+      "intro": "Follow the orb. There is nothing to do well: just keep the air company.",
+      "inhale": "Breathe in",
+      "hold": "Hold",
+      "exhale": "Breathe out",
+      "round": "Round {current} of {total}",
+      "done": "Done. Return to your own pace whenever you like.",
+      "again": "Another round",
+      "stop": "Stop"
+    }
+  },
   "states": {
     "loading": "Gathering the light…",
     "emptyFavorites": "You have not saved anything yet. Whatever moves you, keep it.",

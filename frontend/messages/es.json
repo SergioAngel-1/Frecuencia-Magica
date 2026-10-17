@@ -886,6 +886,19 @@
     "save": "Guardar en mi diario",
     "saved": "Guardado. Tu palabra ya tiene lugar."
   },
+  "arrival": {
+    "breathing": {
+      "title": "Respira conmigo",
+      "intro": "Sigue el orbe. No hay nada que hacer bien: sólo acompañar el aire.",
+      "inhale": "Inhala",
+      "hold": "Sostén",
+      "exhale": "Exhala",
+      "round": "Ronda {current} de {total}",
+      "done": "Terminado. Vuelve a tu ritmo cuando quieras.",
+      "again": "Otra ronda",
+      "stop": "Parar"
+    }
+  },
   "states": {
     "loading": "Reuniendo la luz…",
     "emptyFavorites": "Todavía no has guardado nada. Lo que te toque, quédatelo.",
