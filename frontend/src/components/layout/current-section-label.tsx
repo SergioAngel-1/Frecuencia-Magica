@@ -9,15 +9,17 @@ import { placeFromPathname } from '@/lib/realm-from-pathname';
 /**
  * Nombre de la sección en la que está la persona, junto al botón de menú.
  *
- * Desde 640px: por debajo no cabe con el resto de controles, y la sección
- * actual sigue marcada dentro del menú y en la constelación. El portal y el
+ * Desde 1024px: por debajo no cabe con el resto de controles, y la sección
+ * actual sigue marcada dentro del menú. En tienda no se muestra: el enlace
+ * «Tienda» ya la indica con `aria-current`. El portal y el
  * acceso no tienen sección y no muestran nada.
  */
 export function CurrentSectionLabel() {
   const t = useTranslations('nav');
   const section = currentSection(placeFromPathname(usePathname()));
 
-  if (section === null) return null;
+  // En tienda la etiqueta repetiría el enlace, que ya lleva `aria-current`.
+  if (section === null || section.key === 'tienda') return null;
 
   const { key } = section;
   const label =
@@ -28,7 +30,7 @@ export function CurrentSectionLabel() {
         : t(`realms.${key}` as 'realms.resonario');
 
   return (
-    <span className="text-fg-soft text-meta tracking-ui hidden font-sans whitespace-nowrap sm:inline-block">
+    <span className="text-fg-soft text-meta tracking-ui hidden font-sans whitespace-nowrap lg:inline-block">
       {label}
     </span>
   );

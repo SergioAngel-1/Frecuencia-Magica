@@ -60,17 +60,20 @@ describe('site navigation', () => {
     expect(SECTION).toContain('currentSection(');
     expect(SECTION).toContain("t('current.home')");
     expect(SECTION).toContain("t('story.label')");
+    expect(SECTION).toContain('lg:inline-block');
+    expect(SECTION).toContain("key === 'tienda'");
   });
 
-  it('gives the store a text link in the header, and moves it into the menu below 640px', () => {
+  it('gives the store a text link in the header, and moves it into the menu below 460px', () => {
     expect(HEADER).toContain('<StoreLink');
     expect(STORE).toContain('href="/tienda"');
     expect(STORE).toContain("t('store')");
     expect(STORE).toContain('useCartCount');
-    // Por debajo de 640px el enlace se oculta en el header y el carrito pasa al panel del menú.
+    // Por debajo de 460px el enlace se oculta en el header y el carrito pasa al panel del menú.
     expect(STORE).toMatch(/\bhidden\b/);
-    expect(STORE).toContain('sm:inline-flex');
+    expect(STORE).toContain('min-[460px]:inline-flex');
+    expect(STORE).toContain("tCart('items'");
     expect(MENU).toContain('href="/tienda/carrito"');
-    expect(MENU).toContain('sm:hidden');
+    expect(MENU).toContain('min-[460px]:hidden');
   });
 });

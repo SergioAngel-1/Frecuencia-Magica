@@ -16,7 +16,7 @@ import type { RealmId } from '@/types/realm';
  * Menú de navegación: la constelación en una tarjeta modal. Lo abre el botón
  * «Menú» del header, en todos los anchos, y desde 1024 px también el aro que
  * cierra la columna de puntos (`RealmNav`). Es el mismo modal, con su estado
- * en `useNavMenuStore`. Por debajo de 640 px, la tarjeta lleva además el acceso
+ * en `useNavMenuStore`. Por debajo de 460 px, la tarjeta lleva además el acceso
  * a la tienda y al carrito, que en el header no caben.
  *
  * Sustituye a la barra inferior, que había que desplazar para ver los seis
@@ -130,8 +130,8 @@ export function RealmMenu() {
               </li>
             ))}
           </ul>
-          {/* Por debajo de 640px el header no tiene tienda ni carrito: quedan aquí. */}
-          <div className="border-line border-t px-3 py-2 sm:hidden">
+          {/* Por debajo de 460px el header no tiene tienda ni carrito: quedan aquí. */}
+          <div className="border-line border-t px-3 py-2 min-[460px]:hidden">
             <Link
               href="/tienda/carrito"
               onClick={closeMenu}
