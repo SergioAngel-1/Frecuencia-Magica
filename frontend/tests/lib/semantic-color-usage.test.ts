@@ -15,28 +15,47 @@ import { fromSrc, readSource, SRC, sourceFiles } from '../helpers/source-files';
  *
  * `ALLOWED` lista los archivos que hoy incumplen, cada uno con su motivo. La
  * lista sólo puede reducirse: un archivo que deja de incumplir debe salir de
- * ella, y uno nuevo que incumpla falla. Los motivos «pendiente de migrar en
- * T0.5» se vacían al migrar; los decorativos (geometría, halos del world
- * engine, isotipo, cursor, portal) se quedan.
+ * ella, y uno nuevo que incumpla falla. Quedan dos clases de motivo: los
+ * decorativos permanentes (geometría, halos del world engine, isotipo, cursor,
+ * portal, aros) y los velos `void-2`, que no tienen token equivalente.
  */
 
+/**
+ * Prefijos de utilidad que pintan color. `accent-<paleta>` sólo cuenta con un
+ * color crudo detrás (`accent-gold`); `accent-2` y `accent-3` son tokens válidos.
+ */
 const PREFIXES = [
   'text',
   'bg',
   'border',
+  'border-t',
+  'border-b',
+  'border-x',
+  'border-y',
+  'border-l',
+  'border-r',
+  'border-s',
+  'border-e',
   'ring',
+  'ring-offset',
+  'inset-ring',
   'from',
   'via',
   'to',
   'divide',
+  'divide-x',
+  'divide-y',
   'shadow',
   'outline',
   'fill',
   'stroke',
+  'decoration',
+  'caret',
+  'accent',
 ];
 
 /** Colores de la paleta que no pueden aparecer como utilidad (`glass-brd` antes que `glass`). */
-const COLORS = ['glass-brd', 'glass', 'void-2', 'void', 'ivory', 'gold', 'teal', 'lav'];
+const COLORS = ['glass-brd', 'glass', 'void-2', 'void', 'ivory', 'gold', 'teal', 'lav', 'ink'];
 
 /** Utilidad cruda, con variante delante (`hover:`, `md:`) y sufijo de opacidad (`/20`, `/[.4]`). */
 const UTILITY = new RegExp(
@@ -52,12 +71,13 @@ const PALETTE_TRIPLES = new Set([
   '150 198 188', // teal
   '185 176 214', // lav
   '247 244 234', // ivory (y glass)
+  '18 33 58', // ink
 ]);
 
 const RGB_CALL = /rgba?\(\s*(\d{1,3})[\s,]+(\d{1,3})[\s,]+(\d{1,3})(?=[\s,)/])/g;
 
 /** Variable de la paleta: `var(--color-gold)` en un valor arbitrario o un estilo inline. */
-const PALETTE_VAR = /var\(--color-(?:glass-brd|glass|void-2|void|ivory|gold|teal|lav)\)/g;
+const PALETTE_VAR = /var\(--color-(?:glass-brd|glass|void-2|void|ivory|gold|teal|lav|ink)\)/g;
 
 /** Hallazgos de una fuente: `L<línea>: <texto>`. Vacío si cumple. */
 export function findRawColorUse(source: string): string[] {
@@ -117,7 +137,7 @@ const ALLOWED: Record<string, string> = {
     'aros orbitales de la card (decorativo) y peldaño void-2 del fundido (sin token)',
 
   // El velo void-2 (#0a1220) no tiene token: `scrim` es #0f1b2e, y en la noche la
-  // diferencia no es cero, así que no se migra. Decisión abierta (ver el informe de T0.5).
+  // diferencia no es cero, así que no se migra. Decisión abierta: migrarlo exige un token nuevo.
   'components/ui/modal.tsx': 'velo void-2/72 sin token equivalente (decisión abierta)',
   'components/features/player/video-player.tsx':
     'fondo y velo void-2 del vídeo: sin token equivalente (decisión abierta, como modal)',
@@ -142,10 +162,18 @@ describe('semantic color usage', () => {
     ).toHaveLength(2);
   });
 
+  it('detects the side, ring, caret and accent prefixes and the ink color', () => {
+    expect(findRawColorUse('border-t-gold border-x-void/20')).toHaveLength(2);
+    expect(findRawColorUse('ring-offset-void focus:ring-offset-ink')).toHaveLength(2);
+    expect(findRawColorUse('caret-ivory accent-gold decoration-teal')).toHaveLength(3);
+    expect(findRawColorUse('bg-ink text-ink')).toHaveLength(2);
+  });
+
   it('ignores semantic tokens and non-palette colors', () => {
     const clean = [
       'text-accent bg-surface-strong border-line-strong text-fg shadow-glow-gold',
-      'text-warn bg-gold-soft text-ink bg-ivory-ish',
+      'accent-2 accent-3 border-t-line ring-offset-scrim text-on-accent',
+      'text-warn bg-gold-soft text-on-accent bg-ivory-ish',
       'rgb(var(--halo) / 0.4) rgba(200, 100, 50, 0.1)',
       'var(--color-accent) var(--color-surface) var(--color-scrim) var(--color-glass-x)',
     ].join('\n');

@@ -25,6 +25,8 @@ export const ATMOSPHERE_TOKENS = [
   '--color-on-accent',
   '--scrim',
   '--halo',
+  '--color-scrim',
+  '--color-halo',
   '--atmo-bg',
   '--atmo-backdrop',
 ] as const;

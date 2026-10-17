@@ -60,6 +60,15 @@ describe('atmosphere token blocks', () => {
     }
   });
 
+  // `var()` se resuelve donde se declara: sin esta redeclaración el velo y la luz
+  // (`bg-scrim/NN`, `bg-halo/NN`) heredarían el valor de `:root` dentro de una sección.
+  it.each(IDS)('%s re-declares scrim and halo so they follow the scope', (id) => {
+    const declared = ruleDeclarations(CSS, blockOf(id));
+
+    expect(declared['--color-scrim'], `${id} --color-scrim`).toBe('rgb(var(--scrim))');
+    expect(declared['--color-halo'], `${id} --color-halo`).toBe('rgb(var(--halo))');
+  });
+
   it('keeps the theme as runtime variables, not inlined at build time', () => {
     expect(CSS).not.toMatch(/@theme\s+inline/);
   });
