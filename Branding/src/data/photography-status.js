@@ -58,7 +58,6 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
-  'atmosphere-dusk.avif': 'Llegó una imagen subida como `atmosphere-store` que era esta escena: 7/10, descartada (copia en `.editorial-trials/`): horizonte al 43 % en vez de 54 % y cielo naranja rojizo saturado. El prompt ahora fija el horizonte y apaga el cielo.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
@@ -113,6 +112,7 @@ export const COMPLETED = [
   'home-footer-banner.avif',
   'sanctuary-journal.avif',
   'atmosphere-dawn.avif',
+  'atmosphere-dusk.avif',
   'home-membership.avif',
   'academy-course-cover-c1.avif',
   'academy-course-cover-c2.avif',
