@@ -66,8 +66,8 @@ export function CourseDetail({ course, media, introMedia, currentLesson }: Cours
               className="h-full"
               focalPoint={media.position}
               media={media}
-              overlay="bottom"
-              scrim="bottom"
+              overlay={false}
+              scrim={false}
             />
           </div>
           <figcaption className="border-line bg-fg/[0.025] text-fg-meta text-label tracking-caps border-x border-b px-5 py-4 font-sans uppercase">
