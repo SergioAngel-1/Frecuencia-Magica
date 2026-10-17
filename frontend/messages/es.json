@@ -460,47 +460,47 @@
       "b1": {
         "title": "Pulso sereno",
         "composition": "Sonido del mar con un binaural de 10 Hz.",
-        "guide": "Siéntate con la espalda apoyada y los pies en el suelo, sin nada que hacer. Te sirve para bajar el ritmo antes de descansar o al terminar el día."
+        "guide": "Siéntate con la espalda apoyada y los pies en el suelo, sin nada que hacer. Puede acompañarte a bajar el ritmo antes de descansar o al terminar el día."
       },
       "b2": {
         "title": "Pulso de raíz",
         "composition": "Binaural de 6 Hz sobre una portadora de 110 Hz.",
-        "guide": "Puedes escucharla de pie o sentada, con los pies bien apoyados. Sirve para volver al presente cuando la mente va muy deprisa."
+        "guide": "Puedes escucharla de pie o sentada, con los pies bien apoyados. Puede acompañarte a volver al presente cuando la mente va muy deprisa."
       },
       "n1": {
         "title": "Orilla de mar",
         "composition": "Textura de mar: ruido filtrado que sube y baja.",
-        "guide": "Escúchalo como fondo, a volumen bajo, mientras lees, descansas o cierras los ojos. Sirve para cuando el día pesa."
+        "guide": "Escúchalo como fondo, a volumen bajo, mientras lees, descansas o cierras los ojos. Puede acompañarte cuando el día pesa."
       },
       "n2": {
         "title": "Lluvia en la ventana",
         "composition": "Textura de lluvia: ruido filtrado y constante.",
-        "guide": "Ideal de fondo en una habitación en calma, con la luz baja. Acompaña la pausa y deja que el ruido ocupe el lugar de los pensamientos."
+        "guide": "Pensada como fondo para una habitación en calma, con la luz baja. Acompaña la pausa y deja que el ruido ocupe el lugar de los pensamientos."
       },
       "n3": {
         "title": "Canto de aves",
-        "composition": "Aves en un bosque al amanecer, grabadas en campo.",
-        "guide": "Escúchalo junto a una ventana abierta, con los ojos cerrados, cuando quieras sentir el día despertar."
+        "composition": "Pensada como canto de aves en un bosque al amanecer.",
+        "guide": "Cuando esté lista, escúchala junto a una ventana abierta, con los ojos cerrados, si quieres sentir el día despertar."
       },
       "m1": {
         "title": "Música celta para bajar el ritmo",
-        "composition": "Arpa irlandesa, flauta y melodías pausadas.",
-        "guide": "Escúchala sin hacer nada más, a volumen bajo y con los ojos cerrados si te apetece."
+        "composition": "Pensada como melodía pausada, sin letra.",
+        "guide": "Cuando esté lista, escúchala sin hacer nada más, a volumen bajo y con los ojos cerrados si te apetece."
       },
       "m2": {
         "title": "Piano para la pausa",
-        "composition": "Piano solo, con silencios largos.",
-        "guide": "Para una pausa corta entre dos cosas: sin letra, sin prisa."
+        "composition": "Pensada como pieza breve, con silencios largos.",
+        "guide": "Pensada para una pausa corta entre dos cosas: sin letra, sin prisa."
       },
       "g1": {
         "title": "Respiración guiada",
-        "composition": "Voz guiada con pausas para respirar.",
-        "guide": "Siéntate, sin prisa, y deja que la voz marque el ritmo de tu respiración. No hay nada que hacer bien."
+        "composition": "Pensada como voz guiada, con pausas para respirar.",
+        "guide": "Cuando esté lista, siéntate sin prisa y deja que la voz marque el ritmo de tu respiración. No hay nada que hacer bien."
       },
       "g2": {
         "title": "Un momento para ti",
-        "composition": "Voz guiada con pausas largas.",
-        "guide": "Para cerrar el día o empezarlo con calma, cuando tengas unos minutos para ti."
+        "composition": "Pensada como voz guiada, con pausas largas.",
+        "guide": "Pensada para cerrar el día o empezarlo con calma, cuando tengas unos minutos para ti."
       }
     },
     "soon": "Próximamente",
@@ -511,7 +511,7 @@
       },
       "nature": {
         "title": "Naturaleza",
-        "explanation": "Mar, lluvia, agua y bosque: sonidos que ya conoces. Sirven para volver al cuerpo y dejar de pensar en lo que viene. Escúchalos a volumen bajo, como fondo."
+        "explanation": "Mar, lluvia, agua y bosque: sonidos que ya conoces. Pueden acompañarte para volver al cuerpo y dejar de pensar en lo que viene. Escúchalos a volumen bajo, como fondo."
       },
       "frequency": {
         "title": "Frecuencias",
@@ -561,8 +561,8 @@
     "minimize": "Ocultar el reproductor",
     "expand": "Mostrar el reproductor",
     "seek": "Buscar en la pista",
-    "next": "Siguiente frecuencia",
-    "previous": "Frecuencia anterior",
+    "next": "Siguiente pista",
+    "previous": "Pista anterior",
     "mute": "Silenciar",
     "unmute": "Activar el sonido",
     "fullscreen": "Pantalla completa",

@@ -455,47 +455,47 @@
       "b1": {
         "title": "Calm pulse",
         "composition": "Sea sound with a 10 Hz binaural beat.",
-        "guide": "Sit with your back supported and your feet on the floor, with nothing to do. It helps you slow down before resting or at the end of the day."
+        "guide": "Sit with your back supported and your feet on the floor, with nothing to do. It may help you slow down before resting or at the end of the day."
       },
       "b2": {
         "title": "Grounding pulse",
         "composition": "6 Hz binaural beat over a 110 Hz carrier.",
-        "guide": "You can listen standing or seated, with your feet well planted. It helps you come back to the present when your mind is racing."
+        "guide": "You can listen standing or seated, with your feet well planted. It may help you come back to the present when your mind is racing."
       },
       "n1": {
         "title": "Seashore",
         "composition": "Sea texture: filtered noise that rises and falls.",
-        "guide": "Listen to it as background, at a low volume, while you read, rest or close your eyes. It helps when the day feels heavy."
+        "guide": "Listen to it as background, at a low volume, while you read, rest or close your eyes. It may accompany you when the day feels heavy."
       },
       "n2": {
         "title": "Rain at the window",
         "composition": "Rain texture: constant filtered noise.",
-        "guide": "Ideal as background in a quiet room, with low light. It accompanies the pause and lets the sound take the place of your thoughts."
+        "guide": "Designed as background for a quiet room, with low light. It accompanies the pause and lets the sound take the place of your thoughts."
       },
       "n3": {
         "title": "Birdsong",
-        "composition": "Birds in a forest at dawn, recorded in the field.",
-        "guide": "Listen to it by an open window, eyes closed, when you want to feel the day wake up."
+        "composition": "Designed as birdsong in a forest at dawn.",
+        "guide": "When it is ready, listen to it by an open window, eyes closed, if you want to feel the day wake up."
       },
       "m1": {
         "title": "Celtic music to slow down",
-        "composition": "Irish harp, flute and slow melodies.",
-        "guide": "Listen to it without doing anything else, at a low volume and with your eyes closed if you like."
+        "composition": "Designed as a slow melody, without lyrics.",
+        "guide": "When it is ready, listen to it without doing anything else, at a low volume and with your eyes closed if you like."
       },
       "m2": {
         "title": "Piano for the pause",
-        "composition": "Solo piano, with long silences.",
-        "guide": "For a short pause between two things: no lyrics, no hurry."
+        "composition": "Designed as a short piece, with long silences.",
+        "guide": "Designed for a short pause between two things: no lyrics, no hurry."
       },
       "g1": {
         "title": "Guided breathing",
-        "composition": "Guided voice with pauses to breathe.",
-        "guide": "Sit, without hurry, and let the voice set the rhythm of your breath. There is nothing you have to do right."
+        "composition": "Designed as a guided voice, with pauses to breathe.",
+        "guide": "When it is ready, sit without hurry and let the voice set the rhythm of your breath. There is nothing you have to do right."
       },
       "g2": {
         "title": "A moment for you",
-        "composition": "Guided voice with long pauses.",
-        "guide": "To close the day or begin it calmly, when you have a few minutes for yourself."
+        "composition": "Designed as a guided voice, with long pauses.",
+        "guide": "Designed to close the day or begin it calmly, when you have a few minutes for yourself."
       }
     },
     "soon": "Coming soon",
@@ -506,7 +506,7 @@
       },
       "nature": {
         "title": "Nature",
-        "explanation": "Sea, rain, water and forest: sounds you already know. They help you return to your body and stop thinking about what comes next. Listen at a low volume, as background."
+        "explanation": "Sea, rain, water and forest: sounds you already know. They may accompany you as you return to your body and stop thinking about what comes next. Listen at a low volume, as background."
       },
       "frequency": {
         "title": "Frequencies",
@@ -556,8 +556,8 @@
     "minimize": "Hide the player",
     "expand": "Show the player",
     "seek": "Seek within the track",
-    "next": "Next frequency",
-    "previous": "Previous frequency",
+    "next": "Next track",
+    "previous": "Previous track",
     "mute": "Mute",
     "unmute": "Unmute",
     "fullscreen": "Full screen",
