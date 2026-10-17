@@ -4,10 +4,11 @@
 > El estado de cada imagen (a corregir, faltante, por cablear…) vive en `Branding/src/data/photography-status.js`; un test lo cruza con lo publicado.
 > El contrato que manda es `frontend/src/config/editorial-media.ts` (ratio, prioridad, focal); un test de la web falla si el brief se desvía.
 > Dirección vigente: enmienda 2026-10-10 de `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md` — la imagen es el paisaje luminoso; el world engine es su energía.
+> Enmienda 2026-10-17 (`docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`): además de la noche hay atmósferas con paisajes de color natural y escenas claras. Tienen estilo propio (sección 2) y son provisionales (sección 5.6).
 
-**66 imágenes** (47 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 47 · P2 15. 1 requiere sesión real (retrato de Marisol).
+**81 imágenes** (58 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 56 · P2 21. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 65 completadas · 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 65 completadas · 0 a corregir · 15 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -41,6 +42,39 @@ text, letters, numbers, captions, watermark, logo, signature, channel name, UI e
 - `soft`: Balanced faint gold, teal and lavender, ultra calm, very low contrast.
 - `none`: Balanced gold, teal and lavender in equal, faint measure; cosmic and immersive but restrained.
 
+**Estilo de las atmósferas** (enmienda 2026-10-17: las imágenes `atmosphere-*`, `resonario-celtic` y `resonario-kind-banner-*` llevan este bloque en lugar del prompt base nocturno)
+
+```text
+Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+**Prompt negativo de las atmósferas** (el negativo común más esta cola)
+
+```text
+a navy or gold color cast over the whole image, crushed black shadows, teal-and-orange blockbuster grade, oversaturated sunset, blown-out sun disc, people, human figures, silhouettes of people, boats
+```
+
+**Tratamientos por atmósfera**
+
+- `dusk`: Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light.
+- `dawn`: Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows.
+- `moon`: Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black.
+- `forest`: Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated.
+- `forest-autumn`: Dominant tone: natural amber, russet and gold foliage with a few soft greens; warm and cozy, not saturated.
+- `study`: Dominant tone: cream, ivory, natural wood and linen in soft morning light; bright and welcoming.
+- `store`: Dominant tone: sand, cream and soft sage green, with warm side light and natural soft shadows.
+- `gathering`: Dominant tone: warm honey and clay in soft golden indoor light; human warmth with nobody in the frame.
+- `marisol`: Dominant tone: warm ivory, honey and soft gold in luminous daylight; personal and bright.
+
+**Reglas de las atmósferas**
+
+- Una atmósfera comparte con la noche el lenguaje, no el etalonaje: fine-art cinematográfico, bruma suave, mate, sin neón, sin texto ni personas. El color es el natural de la escena, contenido; no se tiñe de marino ni de dorado.
+- Los colores van por nombre (terracota, coral, ámbar, azul cielo, marfil, arena, crema, verde salvia), nunca con los hex de la paleta nocturna: la paleta definitiva de cada atmósfera se calibra contra la fotografía.
+- Rojo del atardecer: reflejos rojizos y ámbar sobre el agua, nunca un rojo intenso ni una luz deslumbrante (decisión abierta D2 del spec: Marisol pide «evitar rojo intenso» y también «el mar real, rojo»).
+- Los bordes de la imagen quedan en calma y en el tono base de la escena: el fundido a la atmósfera lo aplica el CSS, no el archivo. Nada nítido ni brillante toca el borde.
+- Sin personas: donde Marisol pide gente (encuentros, Sobre Marisol) la imagen generada sólo sugiere presencia (cojines, tazas, una manta) y se sustituye por fotografía real propia.
+- Todas son provisionales: se sustituyen por fotografía propia de Marisol o con licencia comercial documentada antes de publicar. Los productos de la tienda no se generan; son fotografía real que hará ella.
+
 **Vocabulario visual** (la imagen es el paisaje; el world engine es su energía)
 
 - **Agua:** Espejo en calma, ondas concéntricas, cimática: la frecuencia hecha visible. Realms: Resonario, Portal, Santuario.
@@ -56,11 +90,11 @@ text, letters, numbers, captions, watermark, logo, signature, channel name, UI e
 - Sin rasgos faciales: el cuerpo de luz es una silueta translúcida sin ojos, boca ni nariz, y el único rostro es el retrato real de Marisol. Fuera de esos casos: manos u objetos. Toda figura de cuerpo entero es el cuerpo de luz, nunca una persona real, ni de espaldas. El prompt describe la silueta en positivo (cabeza lisa, sin nariz, labios ni oreja; de espaldas o girada): «faceless» a secas no basta.
 - Cielo arriba, materia abajo: el cosmos ocupa como mucho el tercio superior, con estrellas escasas. El world engine ya pinta el campo de estrellas y las partículas; la imagen no los duplica.
 - Luz dorada sobre fondo oscuro: los bordes de la imagen tienden a --void para que el scrim de CSS funda sin corte.
-- Nada de fondos blancos, grises ni pasteles, ni neón ni arcoíris: es un universo nocturno. Oro, teal y lavanda, a baja saturación.
+- En las imágenes nocturnas, nada de fondos blancos, grises ni pasteles, ni neón ni arcoíris: es un universo nocturno. Oro, teal y lavanda, a baja saturación. Las atmósferas tienen su propio estilo (ver «Estilo de las atmósferas»).
 - Filamentos de frecuencia: como máximo tres líneas ondulantes (oro, teal y lavanda), a baja opacidad, nunca un espectro completo. El prompt las cuenta en positivo («exactly three … in total»): los modelos tienden a duplicarlas.
 - Anillos y círculos de luz: halo suave y difuso, nunca un tubo de neón fino.
 - Sin ADN, cerebros ni anatomía: la energía se sugiere con luz, agua y geometría sagrada, no con ilustración médica.
-- Sin stock ni Unsplash. Lo generado es materia de ambiente y dirección de arte: cuando exista el producto físico o la persona real, se sustituye por fotografía real.
+- Sin stock genérico ni Unsplash. Lo generado es materia de ambiente y dirección de arte, y es provisional: cuando exista el producto físico o la persona real, se sustituye por fotografía propia de Marisol o con licencia comercial documentada (enmienda 2026-10-17).
 - Sin máscaras, viñetas ni degradados horneados: los aplica el CSS.
 
 **Cómo redactar el prompt** (aprendido de las desviaciones: casi todas nacieron de una contradicción o una frase ambigua del propio prompt)
@@ -160,6 +194,21 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `states-empty.avif` | Estados · vacío | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-error.avif` | Estados · error | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-offline.avif` | Estados · sin conexión | 16:9 | 2880×1620 | P2 | Completadas |
+| `atmosphere-dusk.avif` | Atmósfera · Atardecer (descanso) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `atmosphere-store.avif` | Atmósfera · Taller (tienda) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `atmosphere-moon.avif` | Atmósfera · Luna (escucha nocturna) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `atmosphere-forest.avif` | Atmósfera · Bosque (raíz y agua) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `atmosphere-forest-autumn.avif` | Atmósfera · Bosque otoñal (nostalgia) | 16:9 | 2880×1620 | P2 | Faltantes |
+| `atmosphere-study.avif` | Atmósfera · Estudio (academia) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `atmosphere-gathering.avif` | Atmósfera · Encuentro (experiencias) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `atmosphere-marisol.avif` | Atmósfera · Luz de Marisol (sobre Marisol) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `resonario-celtic.avif` | Resonario · música de inspiración celta | 16:9 | 2880×1620 | P1 | Faltantes |
+| `resonario-kind-banner-melody.avif` | Resonario · tipo de escucha · Melodías instrumentales | 16:8 | 2880×1440 | P2 | Faltantes |
+| `resonario-kind-banner-nature.avif` | Resonario · tipo de escucha · Naturaleza | 16:8 | 2880×1440 | P2 | Faltantes |
+| `resonario-kind-banner-frequency.avif` | Resonario · tipo de escucha · Frecuencias y tonos | 16:8 | 2880×1440 | P2 | Faltantes |
+| `resonario-kind-banner-binaural.avif` | Resonario · tipo de escucha · Binaurales | 16:8 | 2880×1440 | P2 | Faltantes |
+| `resonario-kind-banner-guided.avif` | Resonario · tipo de escucha · Prácticas guiadas | 16:8 | 2880×1440 | P2 | Faltantes |
 | `og-image.jpg` | Metadatos · Open Graph | 1.91:1 | 1200×630 | P0 | Completadas |
 
 ## 5. Estado de las imágenes
@@ -174,11 +223,249 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (0)
+### 5.2 Faltantes (15)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
-Ninguna.
+#### `atmosphere.dusk` — Atmósfera · Atardecer (descanso) · P1
+
+- **Archivo:** `atmosphere-dusk.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 62% 50%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Muestra 1 · Descanso y prepararse para dormir: cálido e íntimo, con terracota, coral oscuro y ámbar suave. Un mar tranquilo al atardecer, con el sol casi oculto y reflejos rojizos sobre el agua.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Atardecer natural, sin rojo intenso (D2 del spec). Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A calm sea at dusk seen from a low shoreline: the sun almost completely hidden, only a thin sliver of its upper rim visible above the horizon, the sky a soft gradient of dusky rose, terracotta and warm amber with a few thin horizontal bands of cloud lit warm from below, a broad soft band of reddish amber reflection spreading over the gently moving water toward the viewer, fine small ripples and slow low waves, never an intense red and never a dazzling glare, a dark smooth strip of wet sand with two small rocks along the bottom edge at the right. Horizon at 54% from the top, the sun and its reflection entirely inside the band between 60% and 85% of the frame width and its center at 72% horizontal, the left 40% of the frame is open calm sea and soft sky in quiet low-contrast tones, with no rocks, clouds or reflections there. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `atmosphere.dawn` — Atmósfera · Amanecer (calma de día) · P1
+
+- **Archivo:** `atmosphere-dawn.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 58% 50%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Muestra 2 · Calma durante el día: luminoso y abierto, con azul cielo, marfil y dorado tenue. Un amanecer sobre un lago, con el horizonte despejado y luz suave. Es una escena clara.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A calm lake at sunrise seen from a low shore: a perfectly clear horizon, the sun just risen as a soft pale-gold glow low behind the horizon with no hard sun disc, a luminous open sky of soft sky blue fading to ivory with a faint pale gold near the horizon, a few thin high clouds, the lake like a mirror with long gentle ripples reflecting the pale sky, a distant low line of hills in faint blue haze on the far shore, spacious and airy. Horizon at 50% from the top, the glow and its reflection inside the band between 50% and 80% of the frame width, the left 40% of the frame is open calm sky and still water in quiet low-contrast tones. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `atmosphere.store` — Atmósfera · Taller (tienda) · P1
+
+- **Archivo:** `atmosphere-store.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 60% 55%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Muestra 3 · Tienda: cálida, tangible y natural, con arena, crema y verde suave. Piedra y madera con luz lateral y sombras naturales, vacías: el escenario de los productos. Los productos no se generan: son fotografía real que hará Marisol.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo.
+
+**Prompt**
+
+```text
+A warm tabletop stage with no product on it: a wide slab of pale sand-colored stone beside a board of natural light oak wood, lit by low side light from the left that casts long soft natural shadows across both surfaces, two small sprigs of soft sage-green leaves lying on the stone, a folded cream linen cloth at the far edge, and behind them a plain cream plaster wall that carries the soft shadow of a third sprig. The tabletop fills the lower 55% of the frame and the wall the upper 45%, the middle of the surfaces between 35% and 80% of the frame width is bare stone and wood, kept empty, the sprigs and the cloth stay at the outer edges of the surfaces, and the left third is plain cream plaster in soft shade. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: sand, cream and soft sage green, with warm side light and natural soft shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `atmosphere.moon` — Atmósfera · Luna (escucha nocturna) · P1
+
+- **Archivo:** `atmosphere-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 62% 40%
+- **Zona de texto:** Tercio izquierdo oscuro y despejado (el texto va a la izquierda)
+- **Contenido:** Escucha nocturna: profundo y silencioso, con azul noche y plata. Un mar bajo la luna, con reflejos suaves y pocas estrellas. Es la más cercana a la noche de la v1.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A calm sea at night under a high moon: a full moon as a soft round glow with faint dark marks, never blinding, a long soft path of silver reflection on the gently moving deep blue water, a few dozen fine pinpoint stars in the upper third and a thin veil of cirrus mist across part of the sky, the water calm with very low waves. Horizon at 58% from the top, the moon at 66% horizontal and 22% vertical and its reflection inside the band between 55% and 80% of the frame width, the left 40% of the frame is dark and empty because that side of the scene is unlit sea and sky. Wide landscape framing. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `atmosphere.forest` — Atmósfera · Bosque (raíz y agua) · P1
+
+- **Archivo:** `atmosphere-forest.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 62% 50%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Bosque verde y luminoso para Raíz, Renovación y la escucha para estudiar: cascada y helechos, luz filtrada. Referencia de Marisol: la cascada entre helechos.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A lush temperate forest with a slender waterfall: tall tree ferns and broad green fern fronds in the foreground and along both sides, a waterfall of two soft white streams falling down a dark mossy rock face into a still green pool, warm filtered golden sunlight entering from the upper left between the canopy, a fine mist rising off the pool, deep natural greens with glints of gold. The waterfall and its pool inside the band between 58% and 82% of the frame width, the pool in the lower center-right, the left 40% of the frame is soft slightly out-of-focus ferns and shaded trunks in even tones, low in detail, with no bright patch of sunlight there. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `atmosphere.forest-autumn` — Atmósfera · Bosque otoñal (nostalgia) · P2
+
+- **Archivo:** `atmosphere-forest-autumn.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 60% 50%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante otoñal del bosque para Nostalgia y Vínculo: cálida y acogedora. Referencia de Marisol: el sendero de bosque en otoño.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Sólo si hay material: la variante otoñal es opcional (spec §4.2). Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+An autumn forest path: a narrow dirt path winding away between tall trees whose leaves are amber, russet and gold with a few soft greens, warm light filtering down through the canopy, a few fallen leaves on the path, soft mist in the far distance, cozy and warm. The path vanishes at 62% horizontal and 52% vertical, the brightest foliage inside the band between 50% and 85% of the frame width, the left 40% of the frame is soft out-of-focus foliage and trunks in warm even tones, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural amber, russet and gold foliage with a few soft greens; warm and cozy, not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `atmosphere.study` — Atmósfera · Estudio (academia) · P1
+
+- **Archivo:** `atmosphere-study.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 70% 50%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Academia: clara, acogedora y con buena luz para leer. Un rincón junto a una ventana, con cuaderno, materiales naturales y luz de mañana. Es una escena clara.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A reading corner beside a large window in morning light: a simple wooden desk with an open linen-bound notebook with blank pages, a ceramic cup and a small clay vase with one sprig of green leaves, a folded wool throw over a wooden chair, soft morning light entering from the window and falling across the desk with soft natural shadows, cream walls, natural materials of wood, linen and ceramic, and through the window a soft blurred green garden, no writing on the pages and no screens. The window between 62% and 95% of the frame width, the desk in the lower center-right between 45% and 90% of the width, the left 40% of the frame is a plain cream wall in soft shade, calm and low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: cream, ivory, natural wood and linen in soft morning light; bright and welcoming. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `atmosphere.gathering` — Atmósfera · Encuentro (experiencias) · P1
+
+- **Archivo:** `atmosphere-gathering.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 62% 55%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Experiencias: humano y cercano; personas compartiendo una experiencia en un espacio cálido. Marisol usará fotos propias; la imagen generada sólo sugiere la presencia, sin nadie.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Sin personas por regla del brief. Sustituir por fotografías propias de Marisol de un encuentro real.
+
+**Prompt**
+
+```text
+A warm room prepared for a shared gathering, with nobody present: a wide circle of seven low floor cushions in natural linen and terracotta wool on a wooden floor, a low round wooden table at the center of the circle with a ceramic teapot, three small cups and three candles each with a small steady flame, soft warm golden light entering from a window and from the candles, a plant in a clay pot in the corner, a shawl resting on one cushion and one half-empty cup, as traces of presence. The circle of cushions centered at 64% horizontal and 60% vertical, inside the band between 40% and 90% of the frame width, the left 40% of the frame is a plain warm wall and soft window light, calm and low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm honey and clay in soft golden indoor light; human warmth with nobody in the frame. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `atmosphere.marisol` — Atmósfera · Luz de Marisol (sobre Marisol) · P1
+
+- **Archivo:** `atmosphere-marisol.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 66% 50%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Sobre Marisol: personal, cálido y luminoso. Un rincón con luz de mañana que hace de marco mientras llegan las fotografías y los videos reales de ella.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Marco provisional. Sustituir por fotografías y videos reales de Marisol (spec §8).
+
+**Prompt**
+
+```text
+A luminous personal corner in the morning: a wooden table beside a tall window with sheer ivory linen curtains stirring slightly, a ceramic cup of tea with a thin wisp of steam, a small open notebook with blank pages, a bunch of dried lavender in a glass jar and a small green plant, warm light flooding the room, and through the window a gentle blur of a sunlit garden. The table and the window inside the band between 50% and 92% of the frame width, the left 40% of the frame is a plain ivory wall and soft curtain light, calm and low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm ivory, honey and soft gold in luminous daylight; personal and bright. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `resonario.celtic` — Resonario · música de inspiración celta · P1
+
+- **Archivo:** `resonario-celtic.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 66% 50%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** La pieza celta, con su texto editorial («una invitación a bajar el ritmo»): un arpa junto a una ventana sobre colinas verdes en la bruma.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A Celtic lever harp of dark polished wood with fine carved knotwork on its pillar and gut strings, resting against a mossy stone window sill in early morning, beyond the window soft green hills and a quiet misty coast under pale light, a small bunch of green fern in a stone jar beside the harp, no hands and no people. The harp between 58% and 82% of the frame width and its top at 25% from the top, the window view behind it, the left 40% of the frame is the plain mossy stone wall and soft misty window light, calm and low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `resonario.kind-banner.* · Melodías instrumentales` — Resonario · tipo de escucha · P2
+
+- **Archivo:** `resonario-kind-banner-melody.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 50%
+- **Zona de texto:** Sin texto encima: composición libre
+- **Contenido:** Un banner por tipo de escucha, con su explicación debajo: melodías, naturaleza, frecuencias y tonos, binaurales y prácticas guiadas (5 tipos).
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+The open lid of a dark wooden upright piano standing against a cream wall, a cello resting on its side beside the piano on a wooden floor, soft morning light from a window at the left falling across the wood, warm honey and cream tones, nobody present. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: warm ivory, honey and soft gold in luminous daylight; personal and bright. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `resonario.kind-banner.* · Naturaleza` — Resonario · tipo de escucha · P2
+
+- **Archivo:** `resonario-kind-banner-nature.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 50%
+- **Zona de texto:** Sin texto encima: composición libre
+- **Contenido:** Un banner por tipo de escucha, con su explicación debajo: melodías, naturaleza, frecuencias y tonos, binaurales y prácticas guiadas (5 tipos).
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A calm forest stream running over smooth mossy stones under a fine soft rain, ferns along both banks, a single small songbird perched on a mossy branch at 25% from the left and 30% from the top, fresh natural greens. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `resonario.kind-banner.* · Frecuencias y tonos` — Resonario · tipo de escucha · P2
+
+- **Archivo:** `resonario-kind-banner-frequency.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 50%
+- **Zona de texto:** Sin texto encima: composición libre
+- **Contenido:** Un banner por tipo de escucha, con su explicación debajo: melodías, naturaleza, frecuencias y tonos, binaurales y prácticas guiadas (5 tipos).
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+Sound made visible: fine pale sand forming a symmetrical Chladni geometric pattern on a round brass plate, top-down macro, warm soft side light from the left, delicate concentric lines and petals of sand, the plate resting on pale stone. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: sand, cream and soft sage green, with warm side light and natural soft shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `resonario.kind-banner.* · Binaurales` — Resonario · tipo de escucha · P2
+
+- **Archivo:** `resonario-kind-banner-binaural.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 50%
+- **Zona de texto:** Sin texto encima: composición libre
+- **Contenido:** Un banner por tipo de escucha, con su explicación debajo: melodías, naturaleza, frecuencias y tonos, binaurales y prácticas guiadas (5 tipos).
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+Two broad soft beams of light with no outline, like the glow of a distant lamp through mist, one a cool silver-blue entering from the left edge and one a warm amber entering from the right edge, drifting low over a calm sea at dusk and meeting in a quiet soft glow at the center, a gentle mirrored reflection on the water. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `resonario.kind-banner.* · Prácticas guiadas` — Resonario · tipo de escucha · P2
+
+- **Archivo:** `resonario-kind-banner-guided.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 50%
+- **Zona de texto:** Sin texto encima: composición libre
+- **Contenido:** Un banner por tipo de escucha, con su explicación debajo: melodías, naturaleza, frecuencias y tonos, binaurales y prácticas guiadas (5 tipos).
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+An empty round linen cushion and a folded cream blanket on a pale wooden floor beside a window at early morning, a steaming ceramic cup beside the cushion, a soft shaft of daylight falling across the floor, an invitation to sit, nobody present. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
 
 ### 5.3 Por cablear (crear vistas) (0)
 
@@ -265,3 +552,22 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `states-error.avif` | Estados · error | `states.error` | 16:9 | P2 |
 | `states-offline.avif` | Estados · sin conexión | `states.offline` | 16:9 | P2 |
 | `og-image.jpg` | Metadatos · Open Graph | `og-image` | 1.91:1 | P0 |
+
+### 5.6 Provisionales: reemplazar antes de publicar (23)
+
+Imágenes generadas que hacen de marco mientras llegan las fotografías reales (propias de Marisol o con licencia comercial documentada). Pueden estar completadas y seguir siendo provisionales: esta lista no es un estado, cruza los de arriba.
+
+| Slot | Vista | Archivos | Qué hacer |
+|---|---|---|---|
+| `store-product-visual` | Tienda · productos | `store-product-visual-p1.avif`, `store-product-visual-p2.avif`, `store-product-visual-p3.avif`, `store-product-visual-p4.avif`, `store-product-visual-p5.avif`, `store-product-visual-p6.avif`, `store-product-visual-p7.avif`, `store-product-visual-p8.avif` | Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto. |
+| `atmosphere.dusk` | Atmósfera · Atardecer (descanso) | `atmosphere-dusk.avif` | Atardecer natural, sin rojo intenso (D2 del spec). Sustituir por fotografía propia o con licencia comercial documentada. |
+| `atmosphere.dawn` | Atmósfera · Amanecer (calma de día) | `atmosphere-dawn.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
+| `atmosphere.store` | Atmósfera · Taller (tienda) | `atmosphere-store.avif` | Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo. |
+| `atmosphere.moon` | Atmósfera · Luna (escucha nocturna) | `atmosphere-moon.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
+| `atmosphere.forest` | Atmósfera · Bosque (raíz y agua) | `atmosphere-forest.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
+| `atmosphere.forest-autumn` | Atmósfera · Bosque otoñal (nostalgia) | `atmosphere-forest-autumn.avif` | Sólo si hay material: la variante otoñal es opcional (spec §4.2). Sustituir por fotografía propia o con licencia comercial documentada. |
+| `atmosphere.study` | Atmósfera · Estudio (academia) | `atmosphere-study.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
+| `atmosphere.gathering` | Atmósfera · Encuentro (experiencias) | `atmosphere-gathering.avif` | Sin personas por regla del brief. Sustituir por fotografías propias de Marisol de un encuentro real. |
+| `atmosphere.marisol` | Atmósfera · Luz de Marisol (sobre Marisol) | `atmosphere-marisol.avif` | Marco provisional. Sustituir por fotografías y videos reales de Marisol (spec §8). |
+| `resonario.celtic` | Resonario · música de inspiración celta | `resonario-celtic.avif` | Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `resonario.kind-banner.*` | Resonario · tipo de escucha | `resonario-kind-banner-melody.avif`, `resonario-kind-banner-nature.avif`, `resonario-kind-banner-frequency.avif`, `resonario-kind-banner-binaural.avif`, `resonario-kind-banner-guided.avif` | Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada. |

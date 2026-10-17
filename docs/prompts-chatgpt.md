@@ -3,8 +3,9 @@
 > Generado por `npm run export:chatgpt-prompts` (desde `Branding/`) con los mismos datos que `docs/brief-fotografico.md`. No editar a mano.
 > Uso: un chat nuevo de ChatGPT por imagen (así no arrastra el estilo de la anterior), pega el bloque entero sin adjuntar nada (salvo en los productos de la tienda, que llevan adjunta la foto real del producto, como indica su entrada), descarga y guarda con el nombre indicado en `frontend/public/editorial/`. Si cambia algo, pide la corrección concreta en el mismo chat en vez de regenerar desde cero.
 > El orden y las secciones son los de la sección 5 de `docs/brief-fotografico.md`; el estado de cada imagen vive en `Branding/src/data/photography-status.js`.
+> Las imágenes de atmósfera (`atmosphere-*`, `resonario-celtic`, `resonario-kind-banner-*`; enmienda 2026-10-17, `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`) llevan otro estilo y otro «Avoid»: color natural, sin personas. **Genera primero las tres muestras: `atmosphere-dusk`, `atmosphere-dawn` y `atmosphere-store`.** Los productos de la tienda no se generan: son fotografía real que hará Marisol.
 
-**66 imágenes:** 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta · 65 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
+**81 imágenes:** 0 a corregir · 15 faltantes · 0 por cablear · 1 no tenidas en cuenta · 65 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
 
 ## 1. A corregir por desviación de la IA (0)
 
@@ -12,11 +13,174 @@ Entregadas con una desviación. Cada entrada dice qué parte del prompt falló s
 
 Ninguna.
 
-## 2. Faltantes (0)
+## 2. Faltantes (15)
 
 Aún sin entregar. Guárdalas con el nombre indicado para que se procesen solas.
 
-Ninguna.
+### 2.1 · P1 · Atmósfera · Atardecer (descanso)
+
+- **Guardar como:** `atmosphere-dusk.png` (luego se convierte a `atmosphere-dusk.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Atardecer natural, sin rojo intenso (D2 del spec). Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A calm sea at dusk seen from a low shoreline: the sun almost completely hidden, only a thin sliver of its upper rim visible above the horizon, the sky a soft gradient of dusky rose, terracotta and warm amber with a few thin horizontal bands of cloud lit warm from below, a broad soft band of reddish amber reflection spreading over the gently moving water toward the viewer, fine small ripples and slow low waves, never an intense red and never a dazzling glare, a dark smooth strip of wet sand with two small rocks along the bottom edge at the right. Horizon at 54% from the top, the sun and its reflection entirely inside the band between 60% and 85% of the frame width and its center at 72% horizontal, the left 40% of the frame is open calm sea and soft sky in quiet low-contrast tones, with no rocks, clouds or reflections there. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.2 · P1 · Atmósfera · Amanecer (calma de día)
+
+- **Guardar como:** `atmosphere-dawn.png` (luego se convierte a `atmosphere-dawn.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A calm lake at sunrise seen from a low shore: a perfectly clear horizon, the sun just risen as a soft pale-gold glow low behind the horizon with no hard sun disc, a luminous open sky of soft sky blue fading to ivory with a faint pale gold near the horizon, a few thin high clouds, the lake like a mirror with long gentle ripples reflecting the pale sky, a distant low line of hills in faint blue haze on the far shore, spacious and airy. Horizon at 50% from the top, the glow and its reflection inside the band between 50% and 80% of the frame width, the left 40% of the frame is open calm sky and still water in quiet low-contrast tones. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.3 · P1 · Atmósfera · Taller (tienda)
+
+- **Guardar como:** `atmosphere-store.png` (luego se convierte a `atmosphere-store.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A warm tabletop stage with no product on it: a wide slab of pale sand-colored stone beside a board of natural light oak wood, lit by low side light from the left that casts long soft natural shadows across both surfaces, two small sprigs of soft sage-green leaves lying on the stone, a folded cream linen cloth at the far edge, and behind them a plain cream plaster wall that carries the soft shadow of a third sprig. The tabletop fills the lower 55% of the frame and the wall the upper 45%, the middle of the surfaces between 35% and 80% of the frame width is bare stone and wood, kept empty, the sprigs and the cloth stay at the outer edges of the surfaces, and the left third is plain cream plaster in soft shade. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: sand, cream and soft sage green, with warm side light and natural soft shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.4 · P1 · Atmósfera · Luna (escucha nocturna)
+
+- **Guardar como:** `atmosphere-moon.png` (luego se convierte a `atmosphere-moon.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A calm sea at night under a high moon: a full moon as a soft round glow with faint dark marks, never blinding, a long soft path of silver reflection on the gently moving deep blue water, a few dozen fine pinpoint stars in the upper third and a thin veil of cirrus mist across part of the sky, the water calm with very low waves. Horizon at 58% from the top, the moon at 66% horizontal and 22% vertical and its reflection inside the band between 55% and 80% of the frame width, the left 40% of the frame is dark and empty because that side of the scene is unlit sea and sky. Wide landscape framing. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.5 · P1 · Atmósfera · Bosque (raíz y agua)
+
+- **Guardar como:** `atmosphere-forest.png` (luego se convierte a `atmosphere-forest.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A lush temperate forest with a slender waterfall: tall tree ferns and broad green fern fronds in the foreground and along both sides, a waterfall of two soft white streams falling down a dark mossy rock face into a still green pool, warm filtered golden sunlight entering from the upper left between the canopy, a fine mist rising off the pool, deep natural greens with glints of gold. The waterfall and its pool inside the band between 58% and 82% of the frame width, the pool in the lower center-right, the left 40% of the frame is soft slightly out-of-focus ferns and shaded trunks in even tones, low in detail, with no bright patch of sunlight there. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.6 · P2 · Atmósfera · Bosque otoñal (nostalgia)
+
+- **Guardar como:** `atmosphere-forest-autumn.png` (luego se convierte a `atmosphere-forest-autumn.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Sólo si hay material: la variante otoñal es opcional (spec §4.2). Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. An autumn forest path: a narrow dirt path winding away between tall trees whose leaves are amber, russet and gold with a few soft greens, warm light filtering down through the canopy, a few fallen leaves on the path, soft mist in the far distance, cozy and warm. The path vanishes at 62% horizontal and 52% vertical, the brightest foliage inside the band between 50% and 85% of the frame width, the left 40% of the frame is soft out-of-focus foliage and trunks in warm even tones, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural amber, russet and gold foliage with a few soft greens; warm and cozy, not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.7 · P1 · Atmósfera · Estudio (academia)
+
+- **Guardar como:** `atmosphere-study.png` (luego se convierte a `atmosphere-study.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A reading corner beside a large window in morning light: a simple wooden desk with an open linen-bound notebook with blank pages, a ceramic cup and a small clay vase with one sprig of green leaves, a folded wool throw over a wooden chair, soft morning light entering from the window and falling across the desk with soft natural shadows, cream walls, natural materials of wood, linen and ceramic, and through the window a soft blurred green garden, no writing on the pages and no screens. The window between 62% and 95% of the frame width, the desk in the lower center-right between 45% and 90% of the width, the left 40% of the frame is a plain cream wall in soft shade, calm and low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: cream, ivory, natural wood and linen in soft morning light; bright and welcoming. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.8 · P1 · Atmósfera · Encuentro (experiencias)
+
+- **Guardar como:** `atmosphere-gathering.png` (luego se convierte a `atmosphere-gathering.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Sin personas por regla del brief. Sustituir por fotografías propias de Marisol de un encuentro real.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A warm room prepared for a shared gathering, with nobody present: a wide circle of seven low floor cushions in natural linen and terracotta wool on a wooden floor, a low round wooden table at the center of the circle with a ceramic teapot, three small cups and three candles each with a small steady flame, soft warm golden light entering from a window and from the candles, a plant in a clay pot in the corner, a shawl resting on one cushion and one half-empty cup, as traces of presence. The circle of cushions centered at 64% horizontal and 60% vertical, inside the band between 40% and 90% of the frame width, the left 40% of the frame is a plain warm wall and soft window light, calm and low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm honey and clay in soft golden indoor light; human warmth with nobody in the frame. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.9 · P1 · Atmósfera · Luz de Marisol (sobre Marisol)
+
+- **Guardar como:** `atmosphere-marisol.png` (luego se convierte a `atmosphere-marisol.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Marco provisional. Sustituir por fotografías y videos reales de Marisol (spec §8).
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A luminous personal corner in the morning: a wooden table beside a tall window with sheer ivory linen curtains stirring slightly, a ceramic cup of tea with a thin wisp of steam, a small open notebook with blank pages, a bunch of dried lavender in a glass jar and a small green plant, warm light flooding the room, and through the window a gentle blur of a sunlit garden. The table and the window inside the band between 50% and 92% of the frame width, the left 40% of the frame is a plain ivory wall and soft curtain light, calm and low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm ivory, honey and soft gold in luminous daylight; personal and bright. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.10 · P1 · Resonario · música de inspiración celta
+
+- **Guardar como:** `resonario-celtic.png` (luego se convierte a `resonario-celtic.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A Celtic lever harp of dark polished wood with fine carved knotwork on its pillar and gut strings, resting against a mossy stone window sill in early morning, beyond the window soft green hills and a quiet misty coast under pale light, a small bunch of green fern in a stone jar beside the harp, no hands and no people. The harp between 58% and 82% of the frame width and its top at 25% from the top, the window view behind it, the left 40% of the frame is the plain mossy stone wall and soft misty window light, calm and low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.11 · P2 · Resonario · tipo de escucha · Melodías instrumentales
+
+- **Guardar como:** `resonario-kind-banner-melody.png` (luego se convierte a `resonario-kind-banner-melody.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). The open lid of a dark wooden upright piano standing against a cream wall, a cello resting on its side beside the piano on a wooden floor, soft morning light from a window at the left falling across the wood, warm honey and cream tones, nobody present. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: warm ivory, honey and soft gold in luminous daylight; personal and bright. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.12 · P2 · Resonario · tipo de escucha · Naturaleza
+
+- **Guardar como:** `resonario-kind-banner-nature.png` (luego se convierte a `resonario-kind-banner-nature.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). A calm forest stream running over smooth mossy stones under a fine soft rain, ferns along both banks, a single small songbird perched on a mossy branch at 25% from the left and 30% from the top, fresh natural greens. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.13 · P2 · Resonario · tipo de escucha · Frecuencias y tonos
+
+- **Guardar como:** `resonario-kind-banner-frequency.png` (luego se convierte a `resonario-kind-banner-frequency.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). Sound made visible: fine pale sand forming a symmetrical Chladni geometric pattern on a round brass plate, top-down macro, warm soft side light from the left, delicate concentric lines and petals of sand, the plate resting on pale stone. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: sand, cream and soft sage green, with warm side light and natural soft shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.14 · P2 · Resonario · tipo de escucha · Binaurales
+
+- **Guardar como:** `resonario-kind-banner-binaural.png` (luego se convierte a `resonario-kind-banner-binaural.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). Two broad soft beams of light with no outline, like the glow of a distant lamp through mist, one a cool silver-blue entering from the left edge and one a warm amber entering from the right edge, drifting low over a calm sea at dusk and meeting in a quiet soft glow at the center, a gentle mirrored reflection on the water. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.15 · P2 · Resonario · tipo de escucha · Prácticas guiadas
+
+- **Guardar como:** `resonario-kind-banner-guided.png` (luego se convierte a `resonario-kind-banner-guided.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). An empty round linen cushion and a folded cream blanket on a pale wooden floor beside a window at early morning, a steaming ceramic cup beside the cushion, a soft shaft of daylight falling across the floor, an invitation to sit, nobody present. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
 
 ## 3. Por cablear (crear vistas) (0)
 
@@ -425,6 +589,7 @@ Create an image. Follow this description exactly and do not add elements, text o
 
 - **Guardar como:** `store-product-visual-p1.png` (luego se convierte a `store-product-visual-p1.avif`)
 - **Formato:** 1:1
+- **Provisional:** Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto.
 - **Adjuntar:** la foto real del producto. La forma y la etiqueta salen de ella; no escribas el texto de la etiqueta en el chat.
 
 ```text
@@ -435,6 +600,7 @@ Create an image using the attached reference photo of the product. Follow this d
 
 - **Guardar como:** `store-product-visual-p2.png` (luego se convierte a `store-product-visual-p2.avif`)
 - **Formato:** 1:1
+- **Provisional:** Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto.
 - **Adjuntar:** la foto real del producto. La forma y la etiqueta salen de ella; no escribas el texto de la etiqueta en el chat.
 
 ```text
@@ -445,6 +611,7 @@ Create an image using the attached reference photo of the product. Follow this d
 
 - **Guardar como:** `store-product-visual-p3.png` (luego se convierte a `store-product-visual-p3.avif`)
 - **Formato:** 1:1
+- **Provisional:** Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto.
 - **Adjuntar:** la foto real del producto. La forma y la etiqueta salen de ella; no escribas el texto de la etiqueta en el chat.
 
 ```text
@@ -455,6 +622,7 @@ Create an image using the attached reference photo of the product. Follow this d
 
 - **Guardar como:** `store-product-visual-p4.png` (luego se convierte a `store-product-visual-p4.avif`)
 - **Formato:** 1:1
+- **Provisional:** Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto.
 - **Adjuntar:** la foto real del producto. La forma y la etiqueta salen de ella; no escribas el texto de la etiqueta en el chat.
 
 ```text
@@ -465,6 +633,7 @@ Create an image using the attached reference photo of the product. Follow this d
 
 - **Guardar como:** `store-product-visual-p5.png` (luego se convierte a `store-product-visual-p5.avif`)
 - **Formato:** 1:1
+- **Provisional:** Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto.
 - **Adjuntar:** la foto real del producto. La forma y la etiqueta salen de ella; no escribas el texto de la etiqueta en el chat.
 
 ```text
@@ -475,6 +644,7 @@ Create an image using the attached reference photo of the product. Follow this d
 
 - **Guardar como:** `store-product-visual-p6.png` (luego se convierte a `store-product-visual-p6.avif`)
 - **Formato:** 1:1
+- **Provisional:** Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto.
 - **Adjuntar:** la foto real del producto. La forma y la etiqueta salen de ella; no escribas el texto de la etiqueta en el chat.
 
 ```text
@@ -485,6 +655,7 @@ Create an image using the attached reference photo of the product. Follow this d
 
 - **Guardar como:** `store-product-visual-p7.png` (luego se convierte a `store-product-visual-p7.avif`)
 - **Formato:** 1:1
+- **Provisional:** Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto.
 - **Adjuntar:** la foto real del producto. La forma y la etiqueta salen de ella; no escribas el texto de la etiqueta en el chat.
 
 ```text
@@ -495,6 +666,7 @@ Create an image using the attached reference photo of the product. Follow this d
 
 - **Guardar como:** `store-product-visual-p8.png` (luego se convierte a `store-product-visual-p8.avif`)
 - **Formato:** 1:1
+- **Provisional:** Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto.
 - **Adjuntar:** la foto real del producto. La forma y la etiqueta salen de ella; no escribas el texto de la etiqueta en el chat.
 
 ```text

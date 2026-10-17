@@ -22,6 +22,15 @@
  * estilo común fija el etalonaje con palabras (mate, bajo contraste, desaturado) y cada prompt dice la
  * zona libre para texto y el encuadre (`SAFE_PROMPT`, `FRAMING`). En composiciones centradas, los tres
  * filamentos llevan posición fija: si no, salen en pares.
+ *
+ * Enmienda 2026-10-17 (`docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`): además de la noche, el
+ * sitio tiene atmósferas (atardecer, amanecer, luna, bosque, estudio, taller, encuentro, Marisol) con paisajes
+ * de color natural y escenas claras. Esas imágenes (`style: 'atmosphere'`) comparten el lenguaje fotográfico
+ * del sitio —fine-art cinematográfico, bruma suave, mate, sin neón, sin texto ni personas— pero no el etalonaje
+ * nocturno (sombras marino y una sola luz dorada): lo sustituyen un estilo propio (`GLOBAL.atmosphere.base`) y
+ * un tratamiento por atmósfera. Son provisionales (`provisional`): se reemplazan por fotografía propia de
+ * Marisol o con licencia comercial documentada antes de publicar. Los productos de la tienda no se generan:
+ * son fotografía real que hará ella.
  */
 
 /* ------------------------------------------------------------------ medidas */
@@ -142,6 +151,42 @@ export const GLOBAL = {
     soft: 'Balanced faint gold, teal and lavender, ultra calm, very low contrast.',
     none: 'Balanced gold, teal and lavender in equal, faint measure; cosmic and immersive but restrained.',
   },
+  /**
+   * Atmósferas (enmienda 2026-10-17). Mismo lenguaje fotográfico que la noche, otro etalonaje: color natural
+   * y contenido en lugar de sombras marino con una sola luz dorada. Los colores van por nombre, no por hex:
+   * la paleta de cada atmósfera se calibra contra la fotografía en las muestras (spec §14).
+   */
+  atmosphere: {
+    base:
+      'Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. ' +
+      'Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, ' +
+      'no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. ' +
+      'Light with a clear natural direction and soft natural shadows. ' +
+      "The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. " +
+      'Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.',
+    treatments: {
+      dusk: 'Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light.',
+      dawn: 'Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows.',
+      moon: 'Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black.',
+      forest: 'Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated.',
+      'forest-autumn': 'Dominant tone: natural amber, russet and gold foliage with a few soft greens; warm and cozy, not saturated.',
+      study: 'Dominant tone: cream, ivory, natural wood and linen in soft morning light; bright and welcoming.',
+      store: 'Dominant tone: sand, cream and soft sage green, with warm side light and natural soft shadows.',
+      gathering: 'Dominant tone: warm honey and clay in soft golden indoor light; human warmth with nobody in the frame.',
+      marisol: 'Dominant tone: warm ivory, honey and soft gold in luminous daylight; personal and bright.',
+    },
+    /** Se añade al negativo de las imágenes de atmósfera. */
+    negativeExtra:
+      ', a navy or gold color cast over the whole image, crushed black shadows, teal-and-orange blockbuster grade, oversaturated sunset, blown-out sun disc, people, human figures, silhouettes of people, boats',
+    rules: [
+      'Una atmósfera comparte con la noche el lenguaje, no el etalonaje: fine-art cinematográfico, bruma suave, mate, sin neón, sin texto ni personas. El color es el natural de la escena, contenido; no se tiñe de marino ni de dorado.',
+      'Los colores van por nombre (terracota, coral, ámbar, azul cielo, marfil, arena, crema, verde salvia), nunca con los hex de la paleta nocturna: la paleta definitiva de cada atmósfera se calibra contra la fotografía.',
+      'Rojo del atardecer: reflejos rojizos y ámbar sobre el agua, nunca un rojo intenso ni una luz deslumbrante (decisión abierta D2 del spec: Marisol pide «evitar rojo intenso» y también «el mar real, rojo»).',
+      'Los bordes de la imagen quedan en calma y en el tono base de la escena: el fundido a la atmósfera lo aplica el CSS, no el archivo. Nada nítido ni brillante toca el borde.',
+      'Sin personas: donde Marisol pide gente (encuentros, Sobre Marisol) la imagen generada sólo sugiere presencia (cojines, tazas, una manta) y se sustituye por fotografía real propia.',
+      'Todas son provisionales: se sustituyen por fotografía propia de Marisol o con licencia comercial documentada antes de publicar. Los productos de la tienda no se generan; son fotografía real que hará ella.',
+    ],
+  },
   negative:
     'text, letters, numbers, captions, watermark, logo, signature, channel name, UI elements, frame, border, baked vignette, ' +
     'baked gradient overlay, stock photo look, wellness clichés (lotus on a sunset beach, yoga pose on a mountain, stacked zen stones, ' +
@@ -155,11 +200,11 @@ export const GLOBAL = {
     'Sin rasgos faciales: el cuerpo de luz es una silueta translúcida sin ojos, boca ni nariz, y el único rostro es el retrato real de Marisol. Fuera de esos casos: manos u objetos. Toda figura de cuerpo entero es el cuerpo de luz, nunca una persona real, ni de espaldas. El prompt describe la silueta en positivo (cabeza lisa, sin nariz, labios ni oreja; de espaldas o girada): «faceless» a secas no basta.',
     'Cielo arriba, materia abajo: el cosmos ocupa como mucho el tercio superior, con estrellas escasas. El world engine ya pinta el campo de estrellas y las partículas; la imagen no los duplica.',
     'Luz dorada sobre fondo oscuro: los bordes de la imagen tienden a --void para que el scrim de CSS funda sin corte.',
-    'Nada de fondos blancos, grises ni pasteles, ni neón ni arcoíris: es un universo nocturno. Oro, teal y lavanda, a baja saturación.',
+    'En las imágenes nocturnas, nada de fondos blancos, grises ni pasteles, ni neón ni arcoíris: es un universo nocturno. Oro, teal y lavanda, a baja saturación. Las atmósferas tienen su propio estilo (ver «Estilo de las atmósferas»).',
     'Filamentos de frecuencia: como máximo tres líneas ondulantes (oro, teal y lavanda), a baja opacidad, nunca un espectro completo. El prompt las cuenta en positivo («exactly three … in total»): los modelos tienden a duplicarlas.',
     'Anillos y círculos de luz: halo suave y difuso, nunca un tubo de neón fino.',
     'Sin ADN, cerebros ni anatomía: la energía se sugiere con luz, agua y geometría sagrada, no con ilustración médica.',
-    'Sin stock ni Unsplash. Lo generado es materia de ambiente y dirección de arte: cuando exista el producto físico o la persona real, se sustituye por fotografía real.',
+    'Sin stock genérico ni Unsplash. Lo generado es materia de ambiente y dirección de arte, y es provisional: cuando exista el producto físico o la persona real, se sustituye por fotografía propia de Marisol o con licencia comercial documentada (enmienda 2026-10-17).',
     'Sin máscaras, viñetas ni degradados horneados: los aplica el CSS.',
   ],
 }
@@ -231,6 +276,7 @@ export const SAFE = {
   left: 'Tercio izquierdo oscuro y despejado (el texto va a la izquierda)',
   bottom: 'Franja inferior despejada (el texto va abajo, sobre scrim)',
   'left-bottom': 'Tercio izquierdo e inferior despejados (titular y CTA)',
+  'calm-left': 'Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena',
   center: 'Centro despejado: lleva un disco, una cifra o un logo encima',
   none: 'Sin texto encima: composición libre',
   low: 'Baja luminosidad general: va detrás de un formulario de cristal',
@@ -245,6 +291,7 @@ const SAFE_PROMPT = {
   left: 'Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay.',
   bottom: 'Text is overlaid on the lower third of the image: keep that area dark, quiet and low in detail.',
   'left-bottom': 'A headline and a button are overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay.',
+  'calm-left': 'A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay.',
   center: '',
   none: '',
   low: 'Interface content is laid over this image later: keep the whole image very dark and very low in contrast, with nothing sharp, and make it only of what is described above, with no additional object, shape or outline.',
@@ -504,7 +551,12 @@ export const SLOTS = [
     'store-product-visual', 'square', '50% 50%', 'P1', 'warm', 'none', 'Tienda · productos',
     'El producto real, completo y centrado, a partir de su foto de referencia; materia de compra (8 productos).',
     '', 'One main object centered on a dark surface with a pool of warm light beneath it, occupying about 55% of the frame height, with any small companion directly beside its base, everything fully visible with at least 15% of dark space on every side',
-    { family: 'product', reference: true },
+    {
+      family: 'product',
+      reference: true,
+      provisional:
+        'Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto.',
+    },
   ),
   slot(
     'store.ritual-banner', 'wide', '50% 40%', 'P2', 'warm', 'bottom', 'Tienda · banner ritual',
@@ -601,6 +653,90 @@ export const SLOTS = [
     'A brief retreat: a quiet cabin window at night with a warm lamp inside and lavender mist over a still lake outside, a sense of pausing, nobody in the frame',
     'Window slightly right of center, dark surroundings',
   ),
+
+  /*
+   * Atmósferas (spec 2026-10-17): un fondo por ambiente, a sangre, con el tercio izquierdo en calma para el
+   * titular. Las tres primeras son las muestras de la Fase 1 (atardecer, amanecer y tienda): se generan
+   * primero. `provisional`: se sustituyen por fotografía propia o con licencia antes de publicar. Después, la
+   * pieza celta y un banner por tipo de escucha del Resonario (spec §6).
+   */
+  slot(
+    'atmosphere.dusk', 'wide', '62% 50%', 'P1', 'dusk', 'calm-left', 'Atmósfera · Atardecer (descanso)',
+    'Muestra 1 · Descanso y prepararse para dormir: cálido e íntimo, con terracota, coral oscuro y ámbar suave. Un mar tranquilo al atardecer, con el sol casi oculto y reflejos rojizos sobre el agua.',
+    'A calm sea at dusk seen from a low shoreline: the sun almost completely hidden, only a thin sliver of its upper rim visible above the horizon, the sky a soft gradient of dusky rose, terracotta and warm amber with a few thin horizontal bands of cloud lit warm from below, a broad soft band of reddish amber reflection spreading over the gently moving water toward the viewer, fine small ripples and slow low waves, never an intense red and never a dazzling glare, a dark smooth strip of wet sand with two small rocks along the bottom edge at the right',
+    'Horizon at 54% from the top, the sun and its reflection entirely inside the band between 60% and 85% of the frame width and its center at 72% horizontal, the left 40% of the frame is open calm sea and soft sky in quiet low-contrast tones, with no rocks, clouds or reflections there',
+    { style: 'atmosphere', provisional: 'Atardecer natural, sin rojo intenso (D2 del spec). Sustituir por fotografía propia o con licencia comercial documentada.' },
+  ),
+  slot(
+    'atmosphere.dawn', 'wide', '58% 50%', 'P1', 'dawn', 'calm-left', 'Atmósfera · Amanecer (calma de día)',
+    'Muestra 2 · Calma durante el día: luminoso y abierto, con azul cielo, marfil y dorado tenue. Un amanecer sobre un lago, con el horizonte despejado y luz suave. Es una escena clara.',
+    'A calm lake at sunrise seen from a low shore: a perfectly clear horizon, the sun just risen as a soft pale-gold glow low behind the horizon with no hard sun disc, a luminous open sky of soft sky blue fading to ivory with a faint pale gold near the horizon, a few thin high clouds, the lake like a mirror with long gentle ripples reflecting the pale sky, a distant low line of hills in faint blue haze on the far shore, spacious and airy',
+    'Horizon at 50% from the top, the glow and its reflection inside the band between 50% and 80% of the frame width, the left 40% of the frame is open calm sky and still water in quiet low-contrast tones',
+    { style: 'atmosphere', provisional: 'Sustituir por fotografía propia o con licencia comercial documentada.' },
+  ),
+  slot(
+    'atmosphere.store', 'wide', '60% 55%', 'P1', 'store', 'calm-left', 'Atmósfera · Taller (tienda)',
+    'Muestra 3 · Tienda: cálida, tangible y natural, con arena, crema y verde suave. Piedra y madera con luz lateral y sombras naturales, vacías: el escenario de los productos. Los productos no se generan: son fotografía real que hará Marisol.',
+    'A warm tabletop stage with no product on it: a wide slab of pale sand-colored stone beside a board of natural light oak wood, lit by low side light from the left that casts long soft natural shadows across both surfaces, two small sprigs of soft sage-green leaves lying on the stone, a folded cream linen cloth at the far edge, and behind them a plain cream plaster wall that carries the soft shadow of a third sprig',
+    'The tabletop fills the lower 55% of the frame and the wall the upper 45%, the middle of the surfaces between 35% and 80% of the frame width is bare stone and wood, kept empty, the sprigs and the cloth stay at the outer edges of the surfaces, and the left third is plain cream plaster in soft shade',
+    { style: 'atmosphere', provisional: 'Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo.' },
+  ),
+  slot(
+    'atmosphere.moon', 'wide', '62% 40%', 'P1', 'moon', 'left', 'Atmósfera · Luna (escucha nocturna)',
+    'Escucha nocturna: profundo y silencioso, con azul noche y plata. Un mar bajo la luna, con reflejos suaves y pocas estrellas. Es la más cercana a la noche de la v1.',
+    'A calm sea at night under a high moon: a full moon as a soft round glow with faint dark marks, never blinding, a long soft path of silver reflection on the gently moving deep blue water, a few dozen fine pinpoint stars in the upper third and a thin veil of cirrus mist across part of the sky, the water calm with very low waves',
+    'Horizon at 58% from the top, the moon at 66% horizontal and 22% vertical and its reflection inside the band between 55% and 80% of the frame width, the left 40% of the frame is dark and empty because that side of the scene is unlit sea and sky',
+    { style: 'atmosphere', provisional: 'Sustituir por fotografía propia o con licencia comercial documentada.' },
+  ),
+  slot(
+    'atmosphere.forest', 'wide', '62% 50%', 'P1', 'forest', 'calm-left', 'Atmósfera · Bosque (raíz y agua)',
+    'Bosque verde y luminoso para Raíz, Renovación y la escucha para estudiar: cascada y helechos, luz filtrada. Referencia de Marisol: la cascada entre helechos.',
+    'A lush temperate forest with a slender waterfall: tall tree ferns and broad green fern fronds in the foreground and along both sides, a waterfall of two soft white streams falling down a dark mossy rock face into a still green pool, warm filtered golden sunlight entering from the upper left between the canopy, a fine mist rising off the pool, deep natural greens with glints of gold',
+    'The waterfall and its pool inside the band between 58% and 82% of the frame width, the pool in the lower center-right, the left 40% of the frame is soft slightly out-of-focus ferns and shaded trunks in even tones, low in detail, with no bright patch of sunlight there',
+    { style: 'atmosphere', provisional: 'Sustituir por fotografía propia o con licencia comercial documentada.' },
+  ),
+  slot(
+    'atmosphere.forest-autumn', 'wide', '60% 50%', 'P2', 'forest-autumn', 'calm-left', 'Atmósfera · Bosque otoñal (nostalgia)',
+    'Variante otoñal del bosque para Nostalgia y Vínculo: cálida y acogedora. Referencia de Marisol: el sendero de bosque en otoño.',
+    'An autumn forest path: a narrow dirt path winding away between tall trees whose leaves are amber, russet and gold with a few soft greens, warm light filtering down through the canopy, a few fallen leaves on the path, soft mist in the far distance, cozy and warm',
+    'The path vanishes at 62% horizontal and 52% vertical, the brightest foliage inside the band between 50% and 85% of the frame width, the left 40% of the frame is soft out-of-focus foliage and trunks in warm even tones, low in detail',
+    { style: 'atmosphere', provisional: 'Sólo si hay material: la variante otoñal es opcional (spec §4.2). Sustituir por fotografía propia o con licencia comercial documentada.' },
+  ),
+  slot(
+    'atmosphere.study', 'wide', '70% 50%', 'P1', 'study', 'calm-left', 'Atmósfera · Estudio (academia)',
+    'Academia: clara, acogedora y con buena luz para leer. Un rincón junto a una ventana, con cuaderno, materiales naturales y luz de mañana. Es una escena clara.',
+    'A reading corner beside a large window in morning light: a simple wooden desk with an open linen-bound notebook with blank pages, a ceramic cup and a small clay vase with one sprig of green leaves, a folded wool throw over a wooden chair, soft morning light entering from the window and falling across the desk with soft natural shadows, cream walls, natural materials of wood, linen and ceramic, and through the window a soft blurred green garden, no writing on the pages and no screens',
+    'The window between 62% and 95% of the frame width, the desk in the lower center-right between 45% and 90% of the width, the left 40% of the frame is a plain cream wall in soft shade, calm and low in detail',
+    { style: 'atmosphere', provisional: 'Sustituir por fotografía propia o con licencia comercial documentada.' },
+  ),
+  slot(
+    'atmosphere.gathering', 'wide', '62% 55%', 'P1', 'gathering', 'calm-left', 'Atmósfera · Encuentro (experiencias)',
+    'Experiencias: humano y cercano; personas compartiendo una experiencia en un espacio cálido. Marisol usará fotos propias; la imagen generada sólo sugiere la presencia, sin nadie.',
+    'A warm room prepared for a shared gathering, with nobody present: a wide circle of seven low floor cushions in natural linen and terracotta wool on a wooden floor, a low round wooden table at the center of the circle with a ceramic teapot, three small cups and three candles each with a small steady flame, soft warm golden light entering from a window and from the candles, a plant in a clay pot in the corner, a shawl resting on one cushion and one half-empty cup, as traces of presence',
+    'The circle of cushions centered at 64% horizontal and 60% vertical, inside the band between 40% and 90% of the frame width, the left 40% of the frame is a plain warm wall and soft window light, calm and low in detail',
+    { style: 'atmosphere', provisional: 'Sin personas por regla del brief. Sustituir por fotografías propias de Marisol de un encuentro real.' },
+  ),
+  slot(
+    'atmosphere.marisol', 'wide', '66% 50%', 'P1', 'marisol', 'calm-left', 'Atmósfera · Luz de Marisol (sobre Marisol)',
+    'Sobre Marisol: personal, cálido y luminoso. Un rincón con luz de mañana que hace de marco mientras llegan las fotografías y los videos reales de ella.',
+    'A luminous personal corner in the morning: a wooden table beside a tall window with sheer ivory linen curtains stirring slightly, a ceramic cup of tea with a thin wisp of steam, a small open notebook with blank pages, a bunch of dried lavender in a glass jar and a small green plant, warm light flooding the room, and through the window a gentle blur of a sunlit garden',
+    'The table and the window inside the band between 50% and 92% of the frame width, the left 40% of the frame is a plain ivory wall and soft curtain light, calm and low in detail',
+    { style: 'atmosphere', provisional: 'Marco provisional. Sustituir por fotografías y videos reales de Marisol (spec §8).' },
+  ),
+  slot(
+    'resonario.celtic', 'wide', '66% 50%', 'P1', 'forest', 'calm-left', 'Resonario · música de inspiración celta',
+    'La pieza celta, con su texto editorial («una invitación a bajar el ritmo»): un arpa junto a una ventana sobre colinas verdes en la bruma.',
+    'A Celtic lever harp of dark polished wood with fine carved knotwork on its pillar and gut strings, resting against a mossy stone window sill in early morning, beyond the window soft green hills and a quiet misty coast under pale light, a small bunch of green fern in a stone jar beside the harp, no hands and no people',
+    'The harp between 58% and 82% of the frame width and its top at 25% from the top, the window view behind it, the left 40% of the frame is the plain mossy stone wall and soft misty window light, calm and low in detail',
+    { style: 'atmosphere', provisional: 'Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.' },
+  ),
+  slot(
+    'resonario.kind-banner.*', 'cinema', '50% 50%', 'P2', 'forest', 'none', 'Resonario · tipo de escucha',
+    'Un banner por tipo de escucha, con su explicación debajo: melodías, naturaleza, frecuencias y tonos, binaurales y prácticas guiadas (5 tipos).',
+    '',
+    'Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1',
+    { style: 'atmosphere', provisional: 'Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.', family: 'kind' },
+  ),
 ]
 
 /* --------------------------------------------------------------- instancias */
@@ -659,6 +795,22 @@ export const FAMILIES = {
   },
 }
 
+/**
+ * Un banner por tipo de escucha del Resonario (spec 2026-10-17 §6.1). Los nombres son los de la interfaz;
+ * aún no están en `messages/` porque ninguna vista los pinta.
+ */
+FAMILIES.kind = {
+  slotId: 'resonario.kind-banner.*',
+  filePrefix: 'resonario-kind-banner',
+  instances: [
+    { slug: 'melody', es: 'Melodías instrumentales', en: 'Instrumental melodies', treatment: 'marisol', subject: 'The open lid of a dark wooden upright piano standing against a cream wall, a cello resting on its side beside the piano on a wooden floor, soft morning light from a window at the left falling across the wood, warm honey and cream tones, nobody present' },
+    { slug: 'nature', es: 'Naturaleza', en: 'Nature', treatment: 'forest', subject: 'A calm forest stream running over smooth mossy stones under a fine soft rain, ferns along both banks, a single small songbird perched on a mossy branch at 25% from the left and 30% from the top, fresh natural greens' },
+    { slug: 'frequency', es: 'Frecuencias y tonos', en: 'Frequencies and tones', treatment: 'store', subject: 'Sound made visible: fine pale sand forming a symmetrical Chladni geometric pattern on a round brass plate, top-down macro, warm soft side light from the left, delicate concentric lines and petals of sand, the plate resting on pale stone' },
+    { slug: 'binaural', es: 'Binaurales', en: 'Binaural', treatment: 'dusk', subject: 'Two broad soft beams of light with no outline, like the glow of a distant lamp through mist, one a cool silver-blue entering from the left edge and one a warm amber entering from the right edge, drifting low over a calm sea at dusk and meeting in a quiet soft glow at the center, a gentle mirrored reflection on the water' },
+    { slug: 'guided', es: 'Prácticas guiadas', en: 'Guided practices', treatment: 'dawn', subject: 'An empty round linen cushion and a folded cream blanket on a pale wooden floor beside a window at early morning, a steaming ceramic cup beside the cushion, a soft shaft of daylight falling across the floor, an invitation to sit, nobody present' },
+  ],
+}
+
 /** Imágenes que aún no son un slot registrado: el inventario las lista como «sin cablear» o no existen. */
 export const EXTRAS = [
   {
@@ -697,6 +849,19 @@ export function formatSize(size) {
   return `${size[0]}×${size[1]}`
 }
 
+/** `true` en las imágenes de atmósfera (enmienda 2026-10-17): otro etalonaje que el de la noche. */
+export const isAtmosphere = (entry) => entry.style === 'atmosphere'
+
+/** Estilo común que cierra el prompt de una imagen: el nocturno o el de las atmósferas. */
+export function baseFor(entry) {
+  return isAtmosphere(entry) ? GLOBAL.atmosphere.base : GLOBAL.base
+}
+
+/** Tratamiento de color de una imagen, según el estilo al que pertenece. */
+function treatmentFor(entry, key) {
+  return isAtmosphere(entry) ? GLOBAL.atmosphere.treatments[key] : GLOBAL.treatments[key]
+}
+
 /** Prompt completo, listo para pegar: sujeto, encuadre, estilo y tratamiento. */
 export function composePrompt(entry, instance) {
   const treatment = instance?.treatment ?? entry.treatment
@@ -706,7 +871,7 @@ export function composePrompt(entry, instance) {
     .filter(Boolean)
     .join(' ')
 
-  const prompt = `${subject}. ${entry.frame}. ${layout} ${GLOBAL.treatments[treatment]} ${GLOBAL.base}`
+  const prompt = `${subject}. ${entry.frame}. ${layout} ${treatmentFor(entry, treatment)} ${baseFor(entry)}`
 
   // Con foto de referencia, la etiqueta del producto es el único texto permitido.
   return entry.reference ? `${prompt} ${LABEL_EXCEPTION}` : prompt
@@ -717,6 +882,8 @@ export function composePrompt(entry, instance) {
  * productos con foto de referencia, las únicas donde el texto de la etiqueta debe verse.
  */
 export function negativeFor(entry) {
+  if (isAtmosphere(entry)) return `${GLOBAL.negative}${GLOBAL.atmosphere.negativeExtra}`
+
   if (entry.reference) return GLOBAL.negative.replace(TEXT_CLAUSE, TEXT_CLAUSE_BUT_LABEL)
 
   return entry.realShoot ? GLOBAL.negative.replace(FACE_CLAUSE, '') : GLOBAL.negative
