@@ -118,7 +118,7 @@ Cambiar de atmósfera (ruta, elección o scroll entre secciones) **funde dos cap
 - **Los productos no se generan.** Son fotografía real que hará Marisol; el brief ya los marca como provisionales (sección 5.6).
 
 ### 4.8 Contraste como guarda
-Un test `ambient-contrast` lee los tokens de cada atmósfera y falla si un par texto/superficie baja de AA (4,5:1 texto, 3:1 UI grande y foco). Es el equivalente de `palette.test.ts` para este sistema.
+Un test `atmosphere-contrast` lee los tokens de cada atmósfera y falla si un par texto/superficie baja de AA (4,5:1 texto, 3:1 UI grande y foco). Es el equivalente de `palette.test.ts` para este sistema.
 
 ## 5. «¿Cómo llegas hoy?» cambia la experiencia [Marisol, punto 2]
 

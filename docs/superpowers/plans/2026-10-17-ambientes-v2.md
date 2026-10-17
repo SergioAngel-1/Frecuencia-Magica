@@ -63,7 +63,7 @@
 
 - [ ] Escribir tests: (a) cada place tiene atmósfera por defecto y cada id de `ATMOSPHERES` existe; (b) `manual` se ignora fuera de `LISTENING_PLACES` y gana dentro; (c) `placeFromPathname` cubre ES y EN, con y sin prefijo `/en`, y la ruta huérfana cae a `portal`; (d) `suggestNightAlternative` en 20, 21, 23, 4, 5; (e) todo `backdropSlot` existe en `EDITORIAL_MEDIA_SLOTS`.
 - [ ] Verificar que fallan; implementar; verificar que pasan.
-- [ ] Reutilizar el mapa `SEGMENT_TO_REALM` sin duplicarlo. Commit.
+- [ ] Reutilizar el mapa `SEGMENT_TO_PLACE` sin duplicarlo. Commit.
 
 ### Task 0.3: Tokens por atmósfera y guarda de contraste
 

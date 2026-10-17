@@ -188,7 +188,7 @@ Mi Santuario, Descúbrete, Resonario y Home no tienen atmósfera fija: toman la 
 - **Sonido:** nota y voz del drone.
 - **Barra del navegador:** `theme-color`.
 
-**Contraste como guarda.** Cada atmósfera cumple AA sobre su propia superficie: 4,5:1 para texto y 3:1 para UI grande y foco, también en el caso sin imagen (su degradado de respaldo). Lo comprueba un test por atmósfera (`ambient-contrast`). Los controles fijos (header, constelación, reproductor, WhatsApp) usan vidrio denso tintado por la atmósfera activa, no transparente, y su contraste se mide sobre esa superficie.
+**Contraste como guarda.** Cada atmósfera cumple AA sobre su propia superficie: 4,5:1 para texto y 3:1 para UI grande y foco, también en el caso sin imagen (su degradado de respaldo). Lo comprueba un test por atmósfera (`atmosphere-contrast`). En las claras (`dawn`, `study`, `store`, `marisol`) la escalera de texto `fg-body|soft|muted|meta` sube a 0.9/0.8/0.74/0.7 para cumplir AA; la de la noche y las oscuras conserva 82/70/60/55. `line` es un borde decorativo (≥1,5:1) y `line-strong`, el de controles y foco, llega a ≥3:1. Los controles fijos (header, constelación, reproductor, WhatsApp) usan vidrio denso tintado por la atmósfera activa, no transparente, y su contraste se mide sobre esa superficie.
 
 **Imagen natural.** Los paisajes de atmósfera conservan sus colores naturales (tratamiento `natural`, sin tintar); el etalonaje de la noche no se les aplica. Sin stock genérico: fotografía propia o con licencia comercial documentada. Sin foto, el fallback es el degradado de la propia atmósfera, nunca la zebra (la zebra es de la noche) ni una caja gris. El texto sobre foto usa un scrim que gana tono claro u oscuro según la atmósfera, y su contraste AA se mide sobre ese scrim.
 
