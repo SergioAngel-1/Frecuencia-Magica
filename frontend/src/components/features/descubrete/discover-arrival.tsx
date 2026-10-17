@@ -18,7 +18,7 @@ type DiscoverArrivalProps = {
  * la pide el gesto: hasta pulsarla no suena ni cambia nada.
  */
 export function DiscoverArrival({ arrivalKey, featuredId, ctaLabel }: DiscoverArrivalProps) {
-  const { flow, choose, step, other, stop } = useArrival();
+  const { flow, atmosphere, choose, step, other, stop } = useArrival();
 
   if (!flow.response) {
     return (
@@ -30,5 +30,7 @@ export function DiscoverArrival({ arrivalKey, featuredId, ctaLabel }: DiscoverAr
     );
   }
 
-  return <ArrivalPanel flow={flow} onStep={step} onOther={other} onStop={stop} />;
+  return (
+    <ArrivalPanel flow={flow} atmosphere={atmosphere} onStep={step} onOther={other} onStop={stop} />
+  );
 }

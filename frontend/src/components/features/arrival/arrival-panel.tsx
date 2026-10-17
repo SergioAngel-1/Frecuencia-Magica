@@ -4,11 +4,14 @@ import { useTranslations } from 'next-intl';
 
 import { Button, GlassPanel, Kicker, Swap } from '@/components/ui';
 import { currentAlternative, type ArrivalFlow } from '@/lib/arrival/flow';
+import type { AtmosphereId } from '@/types/atmosphere';
 
 import { BreathingGuide } from './breathing-guide';
 
 type ArrivalPanelProps = {
   flow: ArrivalFlow;
+  /** La atmósfera activa, la que nombra el panel. */
+  atmosphere: AtmosphereId;
   onStep(delta: 1 | -1): void;
   onOther(): void;
   onStop(): void;
@@ -19,7 +22,7 @@ type ArrivalPanelProps = {
  * curso y su recorrido, «elegir otra opción» y parar. Sin entrada no pinta nada.
  * La práctica de respiración aparece debajo cuando la entrada la trae.
  */
-export function ArrivalPanel({ flow, onStep, onOther, onStop }: ArrivalPanelProps) {
+export function ArrivalPanel({ flow, atmosphere, onStep, onOther, onStop }: ArrivalPanelProps) {
   const t = useTranslations('arrival');
   const tResonario = useTranslations('resonario');
   const tAtmospheres = useTranslations('atmospheres');
@@ -77,11 +80,9 @@ export function ArrivalPanel({ flow, onStep, onOther, onStop }: ArrivalPanelProp
       ) : null}
 
       <div className="mt-7 flex flex-col items-center gap-3">
-        {flow.atmosphere ? (
-          <p className="text-fg-meta text-meta tracking-ui font-sans">
-            {tAtmospheres(`${flow.atmosphere}.name`)}
-          </p>
-        ) : null}
+        <p className="text-fg-meta text-meta tracking-ui font-sans">
+          {tAtmospheres(`${atmosphere}.name`)}
+        </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Button variant="outline" onClick={onOther}>
             {t('otherOption')}

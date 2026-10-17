@@ -24,24 +24,22 @@ export function arrivalFadeIn(player: {
 }
 
 /**
- * Estado del panel de llegada: la entrada elegida, su respuesta, la alternativa
- * en curso y la atmósfera que se muestra (la de la entrada o una «otra opción»).
- * Función pura: el efecto (fijar la atmósfera, sonar) lo hace quien llama.
+ * Estado del panel de llegada: la entrada elegida, su respuesta y la alternativa
+ * en curso. La atmósfera no vive aquí: la decide el store (`manual`) y la lee el
+ * hook, así el bloque, el panel y Descúbrete ven la misma. Función pura: el
+ * efecto (fijar la atmósfera, sonar) lo hace quien llama.
  */
 export type ArrivalFlow = {
   key: ArrivalKey | null;
   response: ArrivalResponse | null;
   index: number;
-  atmosphere: AtmosphereId | null;
 };
 
-export const IDLE_ARRIVAL: ArrivalFlow = { key: null, response: null, index: 0, atmosphere: null };
+export const IDLE_ARRIVAL: ArrivalFlow = { key: null, response: null, index: 0 };
 
-/** Elegir una entrada: la respuesta, con su atmósfera y la primera alternativa. */
+/** Elegir una entrada: la respuesta y su primera alternativa. */
 export function chooseArrival(key: ArrivalKey, context: ArrivalContext): ArrivalFlow {
-  const response = respondToArrival(key, context);
-
-  return { key, response, index: 0, atmosphere: response.atmosphere };
+  return { key, response: respondToArrival(key, context), index: 0 };
 }
 
 /** La alternativa en curso, o `null` sin entrada o sin alternativas. */
@@ -60,18 +58,12 @@ export function stepAlternative(flow: ArrivalFlow, delta: 1 | -1): ArrivalFlow {
 }
 
 /**
- * «Elegir otra opción»: pasa a la siguiente atmósfera de la respuesta, en
- * círculo. No toca la entrada ni la alternativa: el flujo no se reinicia.
+ * «Elegir otra opción»: la siguiente atmósfera de la respuesta, en círculo,
+ * desde la que está activa ahora. Si la activa no está en la lista (la noche
+ * de antes de elegir), empieza por la de la entrada. No reinicia el flujo.
  */
-export function cycleAtmosphere(flow: ArrivalFlow): ArrivalFlow {
-  if (!flow.response) return flow;
+export function nextAtmosphere(response: ArrivalResponse, current: AtmosphereId): AtmosphereId {
+  const offered: readonly AtmosphereId[] = [response.atmosphere, ...response.otherAtmospheres];
 
-  const offered: readonly AtmosphereId[] = [
-    flow.response.atmosphere,
-    ...flow.response.otherAtmospheres,
-  ];
-  const current = flow.atmosphere ?? flow.response.atmosphere;
-  const next = offered[(offered.indexOf(current) + 1) % offered.length] ?? current;
-
-  return { ...flow, atmosphere: next };
+  return offered[(offered.indexOf(current) + 1) % offered.length] ?? response.atmosphere;
 }

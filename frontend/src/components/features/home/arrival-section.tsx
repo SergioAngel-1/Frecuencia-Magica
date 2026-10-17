@@ -9,7 +9,6 @@ import { AtmosphereScope, Display, Kicker } from '@/components/ui';
 import { ATMOSPHERES } from '@/config/atmospheres';
 import { useArrival } from '@/hooks/use-arrival';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
-import type { AtmosphereId } from '@/types/atmosphere';
 import { MOOD_IDS, type MoodId } from '@/types/mood';
 
 /** `mood:<id>` → `<id>`; cualquier otra entrada (una intención) no es un estado. */
@@ -30,9 +29,8 @@ export function ArrivalSection() {
   const t = useTranslations('arrival');
   const tJournal = useTranslations('journal');
   const reduced = useReducedMotionSafe();
-  const { flow, choose, step, other, stop } = useArrival();
+  const { flow, atmosphere, choose, step, other, stop } = useArrival();
 
-  const atmosphere: AtmosphereId = flow.atmosphere ?? 'night';
   const scheme = ATMOSPHERES[atmosphere].scheme;
   const options = MOOD_IDS.map((id) => ({ id, label: tJournal(`moods.${id}`) }));
 
@@ -74,7 +72,13 @@ export function ArrivalSection() {
         />
         <p className="text-fg-meta text-meta tracking-ui font-sans">{t('silent')}</p>
 
-        <ArrivalPanel flow={flow} onStep={step} onOther={other} onStop={stop} />
+        <ArrivalPanel
+          flow={flow}
+          atmosphere={atmosphere}
+          onStep={step}
+          onOther={other}
+          onStop={stop}
+        />
       </AtmosphereScope>
     </section>
   );

@@ -2,13 +2,14 @@ import { describe, expect, it } from 'vitest';
 
 import type { ArrivalKey } from '@/config/arrivals';
 import { AUDIOS, isPlayable } from '@/data/audios';
+import type { AtmosphereId } from '@/types/atmosphere';
 import {
   ARRIVAL_FADE_IN_SECONDS,
   arrivalFadeIn,
   chooseArrival,
   currentAlternative,
-  cycleAtmosphere,
   IDLE_ARRIVAL,
+  nextAtmosphere,
   stepAlternative,
 } from '@/lib/arrival/flow';
 import { respondToArrival } from '@/lib/arrival/respond';
@@ -17,19 +18,18 @@ const DAY = { catalog: AUDIOS, hour: 12 };
 const NIGHT = { catalog: AUDIOS, hour: 23 };
 
 describe('flujo de llegada (función pura)', () => {
-  it('elegir una entrada fija la atmósfera y devuelve la respuesta', () => {
+  it('elegir una entrada devuelve su respuesta y la primera alternativa', () => {
     const flow = chooseArrival('mood:tiredness', DAY);
 
     expect(flow.key).toBe('mood:tiredness');
-    expect(flow.atmosphere).toBe('dusk');
     expect(flow.response).toEqual(respondToArrival('mood:tiredness', DAY));
+    expect(flow.response!.atmosphere).toBe('dusk');
     expect(flow.index).toBe(0);
   });
 
   it('sin entrada no hay alternativa ni se mueve nada', () => {
     expect(currentAlternative(IDLE_ARRIVAL)).toBeNull();
     expect(stepAlternative(IDLE_ARRIVAL, 1)).toBe(IDLE_ARRIVAL);
-    expect(cycleAtmosphere(IDLE_ARRIVAL)).toBe(IDLE_ARRIVAL);
   });
 
   it('la primera alternativa es la primera de la respuesta, y es reproducible', () => {
@@ -65,36 +65,40 @@ describe('flujo de llegada (función pura)', () => {
     }
   });
 
-  it('«elegir otra opción» cambia la atmósfera sin reiniciar el flujo', () => {
+  it('«elegir otra opción» pasa a otra atmósfera sin tocar la entrada ni la alternativa', () => {
     const chosen = chooseArrival('mood:calm', DAY);
     const indexed = stepAlternative(chosen, 1);
 
-    const changed = cycleAtmosphere(indexed);
-
-    expect(changed.atmosphere).not.toBe(indexed.atmosphere);
-    expect(changed.key).toBe(indexed.key);
-    expect(changed.response).toBe(indexed.response);
-    expect(changed.index).toBe(indexed.index);
+    expect(nextAtmosphere(indexed.response!, indexed.response!.atmosphere)).not.toBe(
+      indexed.response!.atmosphere,
+    );
+    expect(indexed.key).toBe('mood:calm');
+    expect(indexed.index).toBe(1);
   });
 
   it('«otra opción» recorre todas las atmósferas y vuelve a la de la entrada', () => {
-    const chosen = chooseArrival('mood:calm', NIGHT);
-    const offered = [chosen.response!.atmosphere, ...chosen.response!.otherAtmospheres];
+    const response = chooseArrival('mood:calm', NIGHT).response!;
+    const offered = [response.atmosphere, ...response.otherAtmospheres];
 
     const seen: string[] = [];
-    let flow = chosen;
+    let current: AtmosphereId = response.atmosphere;
     for (let i = 0; i < offered.length; i += 1) {
-      seen.push(flow.atmosphere!);
-      flow = cycleAtmosphere(flow);
+      seen.push(current);
+      current = nextAtmosphere(response, current);
     }
 
     expect(seen).toEqual(offered);
-    expect(flow.atmosphere).toBe(chosen.atmosphere);
+    expect(current).toBe(response.atmosphere);
+  });
+
+  it('desde una atmósfera que no está en la lista, «otra opción» empieza por la de la entrada', () => {
+    const response = chooseArrival('mood:calm', DAY).response!;
+    expect(nextAtmosphere(response, 'night')).toBe(response.atmosphere);
   });
 
   it('de noche «otra opción» ofrece la luna primero; de día no aparece', () => {
-    const night = chooseArrival('mood:calm', NIGHT);
-    expect(cycleAtmosphere(night).atmosphere).toBe('moon');
+    const night = chooseArrival('mood:calm', NIGHT).response!;
+    expect(nextAtmosphere(night, night.atmosphere)).toBe('moon');
 
     const day = chooseArrival('mood:calm', DAY);
     expect(day.response!.otherAtmospheres).not.toContain('moon');
