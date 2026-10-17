@@ -1,7 +1,13 @@
 import { describe, expect, it } from 'vitest';
 
 import { PLAYABLE_AUDIOS } from '@/data';
-import { advanceClock, nextAudioId, previousAudioId, progressPercent } from '@/lib/player/progress';
+import {
+  advanceClock,
+  nextAudioId,
+  previousAudioId,
+  progressPercent,
+  startsMinimized,
+} from '@/lib/player/progress';
 
 describe('progressPercent', () => {
   it('calcula el porcentaje transcurrido', () => {
@@ -53,5 +59,32 @@ describe('previousAudioId', () => {
 
   it('el anterior envuelve al final desde el primero', () => {
     expect(previousAudioId('a1', PLAYABLE_AUDIOS)).toBe('n2');
+  });
+});
+
+describe('startsMinimized', () => {
+  it('arranca recogido en tienda, carrito y reserva, en cualquier idioma', () => {
+    for (const pathname of [
+      '/tienda',
+      '/tienda/carrito',
+      '/tienda/aceite-cedro',
+      '/store',
+      '/store/cart',
+      '/experiencias/ritual-del-agua/reservar',
+      '/experiences/ritual-del-agua/book',
+    ]) {
+      expect(startsMinimized(pathname, false), pathname).toBe(true);
+    }
+  });
+
+  it('arranca recogido por debajo de 768 px, en cualquier ruta', () => {
+    expect(startsMinimized('/resonario', true)).toBe(true);
+    expect(startsMinimized('/descubrete', true)).toBe(true);
+  });
+
+  it('en el resto de rutas y en escritorio arranca desplegado', () => {
+    expect(startsMinimized('/resonario', false)).toBe(false);
+    expect(startsMinimized('/', false)).toBe(false);
+    expect(startsMinimized('/experiencias', false)).toBe(false);
   });
 });

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence } from 'motion/react';
 import { div as Mdiv } from 'motion/react-m';
@@ -8,10 +8,12 @@ import { div as Mdiv } from 'motion/react-m';
 import { IconButton } from '@/components/ui';
 import { DURATION, EASE } from '@/config/motion';
 import { getAudio } from '@/data';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { usePathname } from '@/i18n/navigation';
 import { resolveAudioCover } from '@/lib/editorial/audio-cover';
 import { formatDuration, parseDuration } from '@/lib/format';
-import { progressPercent } from '@/lib/player/progress';
+import { progressPercent, startsMinimized } from '@/lib/player/progress';
 import { usePlayerStore } from '@/stores/player-store';
 
 import { AudioCover } from './audio-cover';
@@ -19,6 +21,7 @@ import { PlayerBar } from './player-bar';
 import { CloseIcon, MinimizeIcon } from './player-icons';
 import { PlayerMini } from './player-mini';
 import { PlayerOrb } from './player-orb';
+import { VolumeControl } from './volume-control';
 
 /**
  * Reproductor persistente, al pie de todas las vistas.
@@ -35,10 +38,15 @@ export function PlayerDock() {
   const isPlaying = usePlayerStore((s) => s.isPlaying);
   const elapsed = usePlayerStore((s) => s.elapsed);
   const minimized = usePlayerStore((s) => s.minimized);
-  const { setElapsed, toggle, close, next, previous, minimize, expand } = usePlayerStore.getState();
+  const volume = usePlayerStore((s) => s.volume);
+  const { setElapsed, setVolume, toggleMute, toggle, close, next, previous, minimize, expand } =
+    usePlayerStore.getState();
 
   const wasMinimized = useRef(minimized);
   const focusPending = useRef(false);
+  const lastAudioId = useRef<string | null>(null);
+  const pathname = usePathname();
+  const narrow = useMediaQuery('(max-width: 767px)');
   const reduced = useReducedMotionSafe();
 
   const audio = audioId ? getAudio(audioId) : null;
@@ -46,23 +54,15 @@ export function PlayerDock() {
   const total = audio?.duration ? parseDuration(audio.duration) : 0;
   const pct = progressPercent(elapsed, total);
 
-  useEffect(() => {
-    if (!isPlaying || !audio) return;
+  // Una frecuencia nueva abre el dock recogido en las rutas de compra y en
+  // móvil. Se decide antes de pintar, para que no aparezca desplegado un instante.
+  useLayoutEffect(() => {
+    const prevId = lastAudioId.current;
+    lastAudioId.current = audioId;
+    if (audioId === null || audioId === prevId) return;
 
-    // TODO(backend): reproducción simulada con un temporizador. Sustituir por
-    // un HTMLAudioElement (timeupdate/ended) cuando existan los ficheros de audio.
-    const interval = setInterval(() => {
-      setElapsed((elapsed) => elapsed + 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [isPlaying, audio, setElapsed]);
-
-  useEffect(() => {
-    if (audio && elapsed >= total) {
-      next();
-    }
-  }, [elapsed, total, audio, next]);
+    if (startsMinimized(pathname, narrow)) minimize();
+  }, [audioId, pathname, narrow, minimize]);
 
   // Al recoger o desplegar, el control pulsado desaparece: el foco pasa al
   // que lo deshace, para que el teclado no se quede sin sitio. Se entrega al
@@ -151,6 +151,19 @@ export function PlayerDock() {
               onToggle={toggle}
               onPrevious={previous}
               onNext={next}
+              volume={
+                <VolumeControl
+                  value={volume}
+                  onChange={setVolume}
+                  onToggleMute={toggleMute}
+                  labels={{
+                    volume: t('volume'),
+                    mute: t('mute'),
+                    unmute: t('unmute'),
+                    valueText: t('volumeValue', { percent: Math.round(volume * 100) }),
+                  }}
+                />
+              }
               elapsed={elapsed}
               total={total}
               onSeek={setElapsed}

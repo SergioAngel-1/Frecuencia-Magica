@@ -539,7 +539,9 @@
     "mute": "Silenciar",
     "unmute": "Activar el sonido",
     "fullscreen": "Pantalla completa",
-    "exitFullscreen": "Salir de pantalla completa"
+    "exitFullscreen": "Salir de pantalla completa",
+    "volume": "Volumen",
+    "volumeValue": "Volumen al {percent} %"
   },
   "academy": {
     "kicker": "Academia",

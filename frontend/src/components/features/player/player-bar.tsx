@@ -112,6 +112,8 @@ type PlayerBarProps = {
   /** Anterior y siguiente: sólo se pintan si hay a dónde saltar. */
   onPrevious?: () => void;
   onNext?: () => void;
+  /** Ranura de volumen, siempre visible junto a la pausa (el dock la rellena). */
+  volume?: ReactNode;
   /** Acciones del final de la barra (ocultar y cerrar, sonido y pantalla completa). */
   actions?: ReactNode;
   /**
@@ -141,6 +143,7 @@ export function PlayerBar({
   meta,
   onPrevious,
   onNext,
+  volume,
   actions,
   timeline = 'from-md',
   className,
@@ -198,6 +201,7 @@ export function PlayerBar({
             <NextIcon />
           </IconButton>
         ) : null}
+        {volume}
       </div>
 
       <Timeline

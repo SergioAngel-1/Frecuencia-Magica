@@ -534,7 +534,9 @@
     "mute": "Mute",
     "unmute": "Unmute",
     "fullscreen": "Full screen",
-    "exitFullscreen": "Exit full screen"
+    "exitFullscreen": "Exit full screen",
+    "volume": "Volume",
+    "volumeValue": "Volume at {percent}%"
   },
   "academy": {
     "kicker": "Academy",
