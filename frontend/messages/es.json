@@ -419,26 +419,111 @@
     },
     "audios": {
       "a1": {
-        "title": "Regreso a la Calma"
+        "title": "Regreso a la Calma",
+        "composition": "Tono puro a 432 Hz.",
+        "guide": "Siéntate con la espalda apoyada y deja que el tono llene el silencio. Para volver a la calma después de un día intenso."
       },
       "a2": {
-        "title": "Luz Interior"
+        "title": "Luz Interior",
+        "composition": "Tono puro a 528 Hz.",
+        "guide": "Escúchalo con la mente despejada, al empezar algo que quieres hacer con claridad."
       },
       "a3": {
-        "title": "Raíces Profundas"
+        "title": "Raíces Profundas",
+        "composition": "Tono puro a 396 Hz.",
+        "guide": "Para enraizarte: pies en el suelo, respiración lenta, sin prisa."
       },
       "a4": {
-        "title": "Umbral del Sueño"
+        "title": "Umbral del Sueño",
+        "composition": "Tono puro a 174 Hz, el más grave del catálogo.",
+        "guide": "Para la noche, con la luz apagada, cuando quieras soltar el día."
       },
       "a5": {
-        "title": "Aroma de Cedro"
+        "title": "Aroma de Cedro",
+        "composition": "Tono puro a 639 Hz.",
+        "guide": "Para un ritual compartido o un gesto de cuidado hacia alguien."
       },
       "a6": {
-        "title": "Respirar el Cielo"
+        "title": "Respirar el Cielo",
+        "composition": "Tono puro a 417 Hz.",
+        "guide": "Para respirar despacio y volver a empezar."
       },
       "a7": {
-        "title": "Corazón Abierto"
+        "title": "Corazón Abierto",
+        "composition": "Tono puro a 528 Hz.",
+        "guide": "Para abrir el pecho y dejar que algo se renueve dentro."
+      },
+      "b1": {
+        "title": "Pulso sereno",
+        "composition": "Sonido del mar con un binaural de 10 Hz.",
+        "guide": "Siéntate con la espalda apoyada y los pies en el suelo, sin nada que hacer. Te sirve para bajar el ritmo antes de descansar o al terminar el día."
+      },
+      "b2": {
+        "title": "Pulso de raíz",
+        "composition": "Binaural de 6 Hz sobre una portadora de 110 Hz.",
+        "guide": "Puedes escucharla de pie o sentada, con los pies bien apoyados. Sirve para volver al presente cuando la mente va muy deprisa."
+      },
+      "n1": {
+        "title": "Orilla de mar",
+        "composition": "Textura de mar: ruido filtrado que sube y baja.",
+        "guide": "Escúchalo como fondo, a volumen bajo, mientras lees, descansas o cierras los ojos. Sirve para cuando el día pesa."
+      },
+      "n2": {
+        "title": "Lluvia en la ventana",
+        "composition": "Textura de lluvia: ruido filtrado y constante.",
+        "guide": "Ideal de fondo en una habitación en calma, con la luz baja. Acompaña la pausa y deja que el ruido ocupe el lugar de los pensamientos."
+      },
+      "n3": {
+        "title": "Canto de aves",
+        "composition": "Aves en un bosque al amanecer, grabadas en campo.",
+        "guide": "Escúchalo junto a una ventana abierta, con los ojos cerrados, cuando quieras sentir el día despertar."
+      },
+      "m1": {
+        "title": "Música celta para bajar el ritmo",
+        "composition": "Arpa irlandesa, flauta y melodías pausadas.",
+        "guide": "Escúchala sin hacer nada más, a volumen bajo y con los ojos cerrados si te apetece."
+      },
+      "m2": {
+        "title": "Piano para la pausa",
+        "composition": "Piano solo, con silencios largos.",
+        "guide": "Para una pausa corta entre dos cosas: sin letra, sin prisa."
+      },
+      "g1": {
+        "title": "Respiración guiada",
+        "composition": "Voz guiada con pausas para respirar.",
+        "guide": "Siéntate, sin prisa, y deja que la voz marque el ritmo de tu respiración. No hay nada que hacer bien."
+      },
+      "g2": {
+        "title": "Un momento para ti",
+        "composition": "Voz guiada con pausas largas.",
+        "guide": "Para cerrar el día o empezarlo con calma, cuando tengas unos minutos para ti."
       }
+    },
+    "soon": "Próximamente",
+    "kinds": {
+      "melody": {
+        "title": "Melodías",
+        "explanation": "Piano, cuerdas y piezas acústicas para escuchar sin hacer nada más. Elígelas cuando quieras que la música te acompañe y no te pida nada."
+      },
+      "nature": {
+        "title": "Naturaleza",
+        "explanation": "Mar, lluvia, agua y bosque: sonidos que ya conoces. Sirven para volver al cuerpo y dejar de pensar en lo que viene. Escúchalos a volumen bajo, como fondo."
+      },
+      "frequency": {
+        "title": "Frecuencias",
+        "explanation": "Un tono puro sobre una sola frecuencia, sin nada más. Escúchalo cuando quieras silencio con un punto de luz: de fondo mientras lees, meditas o descansas, siempre a volumen bajo."
+      },
+      "binaural": {
+        "title": "Binaurales",
+        "explanation": "Dos tonos ligeramente distintos, uno en cada oído: el cerebro percibe un pulso lento en el centro. Necesitan auriculares estéreo. Es una experiencia de escucha, no una promesa de efecto."
+      },
+      "guided": {
+        "title": "Guiadas",
+        "explanation": "Una voz te acompaña paso a paso, con pausas para respirar. Están en preparación: aparecerán aquí cuando estén grabadas."
+      }
+    },
+    "guide": {
+      "headphones": "Usa auriculares estéreo: el efecto sólo se percibe con un sonido en cada oído."
     }
   },
   "player": {

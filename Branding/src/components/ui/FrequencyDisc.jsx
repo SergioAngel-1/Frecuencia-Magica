@@ -148,10 +148,12 @@ export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = fal
           {showEqualizer && spec.eq ? (
             <Equalizer scale={spec.eq} playing={playing} className="absolute inset-x-0 bottom-[17%]" />
           ) : null}
-          <div className={cn('absolute inset-x-0 text-center', spec.play ? 'top-[36%] -translate-y-1/2' : 'top-1/2 -translate-y-1/2')}>
-            <span className={cn('text-on-media block font-serif leading-none', spec.hz)}>{hz}</span>
-            <span className={cn('text-on-media/80 block font-sans uppercase', spec.unit)}>Hz</span>
-          </div>
+          {hz !== null ? (
+            <div className={cn('absolute inset-x-0 text-center', spec.play ? 'top-[36%] -translate-y-1/2' : 'top-1/2 -translate-y-1/2')}>
+              <span className={cn('text-on-media block font-serif leading-none', spec.hz)}>{hz}</span>
+              <span className={cn('text-on-media/80 block font-sans uppercase', spec.unit)}>Hz</span>
+            </div>
+          ) : null}
           {showPlay && spec.play ? (
             <span
               aria-hidden="true"

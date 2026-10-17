@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { AUDIOS } from '@/data';
+import { PLAYABLE_AUDIOS } from '@/data';
 import { nextAudioId, previousAudioId } from '@/lib/player/progress';
 
 type PlayerState = {
@@ -29,11 +29,11 @@ type PlayerState = {
   previous(): void;
 };
 
-/** Índice del audio actual en el catálogo real, o -1 si no hay audio abierto. */
+/** Índice del audio actual en el catálogo reproducible, o -1 si no hay audio abierto o no es reproducible. */
 function indexInCatalog(audioId: string | null): number {
   if (audioId === null) return -1;
 
-  return AUDIOS.findIndex((audio) => audio.id === audioId);
+  return PLAYABLE_AUDIOS.findIndex((audio) => audio.id === audioId);
 }
 
 /**
@@ -81,13 +81,13 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     const { audioId } = get();
     if (audioId === null) return;
 
-    set({ audioId: nextAudioId(audioId, AUDIOS), isPlaying: true, elapsed: 0 });
+    set({ audioId: nextAudioId(audioId, PLAYABLE_AUDIOS), isPlaying: true, elapsed: 0 });
   },
   previous: () => {
     const { audioId } = get();
     if (audioId === null || indexInCatalog(audioId) === -1) return;
 
-    set({ audioId: previousAudioId(audioId, AUDIOS), isPlaying: true, elapsed: 0 });
+    set({ audioId: previousAudioId(audioId, PLAYABLE_AUDIOS), isPlaying: true, elapsed: 0 });
   },
 }));
 

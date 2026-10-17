@@ -414,26 +414,111 @@
     },
     "audios": {
       "a1": {
-        "title": "Return to Calm"
+        "title": "Return to Calm",
+        "composition": "Pure tone at 432 Hz.",
+        "guide": "Sit with your back supported and let the tone fill the silence. To return to calm after an intense day."
       },
       "a2": {
-        "title": "Inner Light"
+        "title": "Inner Light",
+        "composition": "Pure tone at 528 Hz.",
+        "guide": "Listen with a clear mind, as you start something you want to do with clarity."
       },
       "a3": {
-        "title": "Deep Roots"
+        "title": "Deep Roots",
+        "composition": "Pure tone at 396 Hz.",
+        "guide": "To ground yourself: feet on the floor, slow breath, no hurry."
       },
       "a4": {
-        "title": "Threshold of Sleep"
+        "title": "Threshold of Sleep",
+        "composition": "Pure tone at 174 Hz, the lowest in the catalogue.",
+        "guide": "For the night, with the lights off, when you want to let the day go."
       },
       "a5": {
-        "title": "Cedar Aroma"
+        "title": "Cedar Aroma",
+        "composition": "Pure tone at 639 Hz.",
+        "guide": "For a shared ritual or a gesture of care toward someone."
       },
       "a6": {
-        "title": "Breathe the Sky"
+        "title": "Breathe the Sky",
+        "composition": "Pure tone at 417 Hz.",
+        "guide": "To breathe slowly and begin again."
       },
       "a7": {
-        "title": "Open Heart"
+        "title": "Open Heart",
+        "composition": "Pure tone at 528 Hz.",
+        "guide": "To open your chest and let something renew within you."
+      },
+      "b1": {
+        "title": "Calm pulse",
+        "composition": "Sea sound with a 10 Hz binaural beat.",
+        "guide": "Sit with your back supported and your feet on the floor, with nothing to do. It helps you slow down before resting or at the end of the day."
+      },
+      "b2": {
+        "title": "Grounding pulse",
+        "composition": "6 Hz binaural beat over a 110 Hz carrier.",
+        "guide": "You can listen standing or seated, with your feet well planted. It helps you come back to the present when your mind is racing."
+      },
+      "n1": {
+        "title": "Seashore",
+        "composition": "Sea texture: filtered noise that rises and falls.",
+        "guide": "Listen to it as background, at a low volume, while you read, rest or close your eyes. It helps when the day feels heavy."
+      },
+      "n2": {
+        "title": "Rain at the window",
+        "composition": "Rain texture: constant filtered noise.",
+        "guide": "Ideal as background in a quiet room, with low light. It accompanies the pause and lets the sound take the place of your thoughts."
+      },
+      "n3": {
+        "title": "Birdsong",
+        "composition": "Birds in a forest at dawn, recorded in the field.",
+        "guide": "Listen to it by an open window, eyes closed, when you want to feel the day wake up."
+      },
+      "m1": {
+        "title": "Celtic music to slow down",
+        "composition": "Irish harp, flute and slow melodies.",
+        "guide": "Listen to it without doing anything else, at a low volume and with your eyes closed if you like."
+      },
+      "m2": {
+        "title": "Piano for the pause",
+        "composition": "Solo piano, with long silences.",
+        "guide": "For a short pause between two things: no lyrics, no hurry."
+      },
+      "g1": {
+        "title": "Guided breathing",
+        "composition": "Guided voice with pauses to breathe.",
+        "guide": "Sit, without hurry, and let the voice set the rhythm of your breath. There is nothing you have to do right."
+      },
+      "g2": {
+        "title": "A moment for you",
+        "composition": "Guided voice with long pauses.",
+        "guide": "To close the day or begin it calmly, when you have a few minutes for yourself."
       }
+    },
+    "soon": "Coming soon",
+    "kinds": {
+      "melody": {
+        "title": "Melodies",
+        "explanation": "Piano, strings and acoustic pieces to listen to without doing anything else. Choose them when you want music to keep you company and ask nothing of you."
+      },
+      "nature": {
+        "title": "Nature",
+        "explanation": "Sea, rain, water and forest: sounds you already know. They help you return to your body and stop thinking about what comes next. Listen at a low volume, as background."
+      },
+      "frequency": {
+        "title": "Frequencies",
+        "explanation": "A pure tone on a single frequency, with nothing else. Play it when you want silence with a touch of light: in the background while you read, meditate or rest, always at a low volume."
+      },
+      "binaural": {
+        "title": "Binaural",
+        "explanation": "Two slightly different tones, one in each ear: the brain perceives a slow pulse in the middle. They need stereo headphones. It is a listening experience, not a promise of an effect."
+      },
+      "guided": {
+        "title": "Guided",
+        "explanation": "A voice accompanies you step by step, with pauses to breathe. They are in preparation: they will appear here once they are recorded."
+      }
+    },
+    "guide": {
+      "headphones": "Use stereo headphones: the effect is only perceived with one sound in each ear."
     }
   },
   "player": {

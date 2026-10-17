@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { QuizContainer } from '@/components/features/descubrete/quiz-container';
-import { AUDIOS } from '@/data/audios';
+import { PLAYABLE_AUDIOS } from '@/data/audios';
 import { COURSES } from '@/data/courses';
 import { EXPERIENCES } from '@/data/experiences';
 import { PRODUCTS } from '@/data/products';
@@ -31,7 +31,7 @@ export default async function DiscoverPage({ params }: PageProps) {
   };
 
   const catalog = {
-    audios: AUDIOS,
+    audios: PLAYABLE_AUDIOS,
     courses: COURSES,
     experiences: EXPERIENCES,
     products: PRODUCTS,

@@ -5,12 +5,20 @@ import type { Audio, Intent } from '@/types/content';
 
 const audio = (id: string, intents: Intent[]): Audio => ({
   id,
+  kind: 'frequency',
   titleKey: `resonario.audios.${id}.title`,
   tagKey: 'resonario.tags.meditation',
   tagId: 'meditation',
   duration: '10:00',
   hz: 432,
   band: 'none',
+  voice: false,
+  availability: 'ready',
+  source: { type: 'synth', recipe: { tone: { hz: 432 } } },
+  license: 'synthetic',
+  headphones: false,
+  compositionKey: `resonario.audios.${id}.composition`,
+  guideKey: `resonario.audios.${id}.guide`,
   intents,
 });
 

@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
 import { discSlot, filterAudios, orbitalLayout } from '@/lib/resonario/layout-slots';
-import { AUDIOS } from '@/data';
+import { AUDIOS as ALL_AUDIOS } from '@/data';
+
+// El sistema orbital recibe hoy sólo las frecuencias (ver resonario-system.tsx).
+const AUDIOS = ALL_AUDIOS.filter((audio) => audio.kind === 'frequency');
 
 describe('discSlot', () => {
   it('tiene seis posiciones orbitales', () => {

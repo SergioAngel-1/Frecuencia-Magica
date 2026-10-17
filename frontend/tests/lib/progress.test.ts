@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { AUDIOS } from '@/data';
+import { PLAYABLE_AUDIOS } from '@/data';
 import { advanceClock, nextAudioId, previousAudioId, progressPercent } from '@/lib/player/progress';
 
 describe('progressPercent', () => {
@@ -38,20 +38,20 @@ describe('advanceClock', () => {
 
 describe('nextAudioId', () => {
   it('el siguiente audio envuelve al principio', () => {
-    expect(nextAudioId('a7', AUDIOS)).toBe('a1');
+    expect(nextAudioId('n2', PLAYABLE_AUDIOS)).toBe('a1');
   });
 
   it('el siguiente audio avanza uno', () => {
-    expect(nextAudioId('a3', AUDIOS)).toBe('a4');
+    expect(nextAudioId('a3', PLAYABLE_AUDIOS)).toBe('a4');
   });
 });
 
 describe('previousAudioId', () => {
   it('el anterior retrocede uno', () => {
-    expect(previousAudioId('a4', AUDIOS)).toBe('a3');
+    expect(previousAudioId('a4', PLAYABLE_AUDIOS)).toBe('a3');
   });
 
   it('el anterior envuelve al final desde el primero', () => {
-    expect(previousAudioId('a1', AUDIOS)).toBe('a7');
+    expect(previousAudioId('a1', PLAYABLE_AUDIOS)).toBe('n2');
   });
 });

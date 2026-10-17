@@ -5,7 +5,7 @@ import { AudioDisc } from './audio-disc';
 
 export type FrequencyStripItem = {
   id: string;
-  hz: number;
+  hz: number | null;
   band: string;
   /** Título ya traducido. */
   title: string;

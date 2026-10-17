@@ -11,7 +11,8 @@ import { AudioCover } from './audio-cover';
 
 export type AudioDiscItem = {
   id: string;
-  hz: number;
+  /** `null` en las pistas que no son un tono: el disco no lleva cifra. */
+  hz: number | null;
   band: string;
 };
 
@@ -103,7 +104,12 @@ export function AudioDisc({
       playing={active ? playing : true}
       floatDuration={floatDuration}
       floatDelay={floatDelay}
-      ariaLabel={[pauses ? tPlayer('pause') : null, title, `${audio.hz} Hz`, meta]
+      ariaLabel={[
+        pauses ? tPlayer('pause') : null,
+        title,
+        audio.hz !== null ? `${audio.hz} Hz` : null,
+        meta,
+      ]
         .filter(Boolean)
         .join(' — ')}
       onClick={() => (showPlay ? toggleAudio(audio.id) : open(audio.id))}

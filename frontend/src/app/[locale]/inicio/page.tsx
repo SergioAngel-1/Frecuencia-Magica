@@ -8,7 +8,7 @@ import { MembershipSection } from '@/components/features/home/membership-section
 import { RealmsGrid } from '@/components/features/home/realms-grid';
 import { ButtonLink, PageShell } from '@/components/layout';
 import { Link } from '@/i18n/navigation';
-import { AUDIOS, PRODUCTS } from '@/data';
+import { PLAYABLE_AUDIOS, PRODUCTS } from '@/data';
 import { ATMOSPHERES } from '@/config/atmospheres';
 import { BANDS } from '@/config/bands';
 import { NAV_REALMS } from '@/config/realms';
@@ -68,14 +68,14 @@ export default async function HomePage({ params }: PageProps) {
   const tResonario = await getTranslations('resonario');
   const nav = await getTranslations('nav');
 
-  const firstAudio = AUDIOS[0]!;
+  const firstAudio = PLAYABLE_AUDIOS[0]!;
   // La del día ya ocupa el disco grande: la muestra sigue con las cuatro siguientes.
-  const resonarioAudios = AUDIOS.slice(1, 5).map((a) => ({
+  const resonarioAudios = PLAYABLE_AUDIOS.slice(1, 5).map((a) => ({
     id: a.id,
     hz: a.hz,
     band: a.band,
     title: tResonario(`audios.${a.id}.title` as 'audios.a1.title'),
-    meta: `${tResonario(`tags.${a.tagId}` as 'tags.meditation')} · ${a.duration}`,
+    meta: `${tResonario(`tags.${a.tagId}` as 'tags.meditation')} · ${a.duration ?? ''}`,
   }));
 
   const bandKey = (accent: string): 'gold' | 'teal' | 'lav' =>
@@ -159,7 +159,7 @@ export default async function HomePage({ params }: PageProps) {
           kicker={t('daily.kicker')}
           title={t('daily.title')}
           description={t('daily.description')}
-          meta={`${t('daily.meta')} · ${firstAudio.duration}`}
+          meta={`${t('daily.meta')} · ${firstAudio.duration ?? ''}`}
           cta={t('daily.cta')}
           resonario={{
             kicker: t('audio.kicker'),

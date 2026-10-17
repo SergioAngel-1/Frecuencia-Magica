@@ -42,7 +42,8 @@ export function PlayerDock() {
   const reduced = useReducedMotionSafe();
 
   const audio = audioId ? getAudio(audioId) : null;
-  const total = audio ? parseDuration(audio.duration) : 0;
+  // Una pista `soon` no tiene duración; el dock sólo se abre con pistas reproducibles.
+  const total = audio?.duration ? parseDuration(audio.duration) : 0;
   const pct = progressPercent(elapsed, total);
 
   useEffect(() => {
@@ -118,7 +119,7 @@ export function PlayerDock() {
               band={audio.band}
               cover={cover}
               progress={pct}
-              label={`${t('expand')} — ${title}, ${audio.hz} Hz`}
+              label={`${t('expand')} — ${title}${audio.hz !== null ? `, ${audio.hz} Hz` : ''}`}
               onExpand={expand}
             />
           </Mdiv>
@@ -141,8 +142,8 @@ export function PlayerDock() {
               title={title}
               meta={
                 <>
-                  {audio.hz} Hz
-                  <span className="max-md:hidden"> · {tag}</span>
+                  {audio.hz !== null ? `${audio.hz} Hz` : tag}
+                  <span className="max-md:hidden">{audio.hz !== null ? ` · ${tag}` : null}</span>
                   <span className="md:hidden"> · {elapsedLabel}</span>
                 </>
               }

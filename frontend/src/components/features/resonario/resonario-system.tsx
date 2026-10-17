@@ -27,12 +27,16 @@ export type ResonarioMedia = {
 /** Ritmo del flotado del disco central; su etiqueta lo comparte. */
 const FEATURED_FLOAT = '7s';
 
+// Hasta la sección por tipo, el sistema orbital sólo recibe las frecuencias: sus seis
+// ranuras no admiten más discos. Las pistas nuevas entran con su sección.
+const ORBITAL_TRACKS = AUDIOS.filter((audio) => audio.kind === 'frequency');
+
 export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
   const t = useTranslations('resonario');
   const statesT = useTranslations('states');
   const [filter, setFilter] = useState<string | null>(null);
 
-  const filtered = useMemo(() => filterAudios(AUDIOS, filter), [filter]);
+  const filtered = useMemo(() => filterAudios(ORBITAL_TRACKS, filter), [filter]);
   // El centro lo toma la frecuencia que suena, sólo en el sistema orbital de
   // escritorio; por debajo de 1024 el orden se mantiene y el disco activo
   // sólo se marca (lo hace `AudioDisc`).
@@ -44,7 +48,7 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
   const glide = orbital && !reduced;
   const audioTitle = (audio: Audio) => t(`audios.${audio.id}.title` as 'audios.a1.title');
   const audioMeta = (audio: Audio) =>
-    `${t(`tags.${audio.tagId}` as 'tags.meditation')} · ${audio.duration}`;
+    `${t(`tags.${audio.tagId}` as 'tags.meditation')} · ${audio.duration ?? t('soon')}`;
   // El destacado conserva su foto; otro audio en el centro pinta su portada,
   // la misma que en el resto del sitio (la resuelve `AudioDisc`).
   const centerCover = (audio: Audio): EditorialMedia | undefined =>
