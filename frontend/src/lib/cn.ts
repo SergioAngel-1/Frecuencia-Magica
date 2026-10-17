@@ -26,6 +26,7 @@ const twMerge = extendTailwindMerge({
             'accent-2',
             'accent-3',
             'on-accent',
+            'on-media',
           ],
         },
       ],

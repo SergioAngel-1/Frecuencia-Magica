@@ -52,6 +52,7 @@
   --color-surface: var(--color-glass);
   --color-surface-strong: rgb(15 27 46 / 0.72);
   --color-on-accent: var(--color-ink); /* tinta sobre relleno de acento */
+  --color-on-media: var(--color-ivory); /* marfil sobre fotografía o velo, en cualquier atmósfera */
   /* Velo y luz como utilidades (`bg-scrim/60`, `bg-halo/12`). Cada bloque
      `[data-atmosphere]` los redeclara: `var()` se resuelve donde se declara, así
      que sin esa redeclaración el valor de `:root` se heredaría dentro de un
@@ -361,6 +362,7 @@
   --color-surface: var(--color-glass);
   --color-surface-strong: rgb(15 27 46 / 0.72);
   --color-on-accent: var(--color-ink);
+  --color-on-media: var(--color-ivory);
   --scrim: 15 27 46;
   --scrim-deep: 10 18 32;
   --halo: 216 185 120;
@@ -385,6 +387,7 @@
   --color-surface: rgb(247 230 220 / 0.05);
   --color-surface-strong: rgb(20 13 18 / 0.72);
   --color-on-accent: #2b1c22;
+  --color-on-media: var(--color-ivory);
   --scrim: 20 13 18;
   --scrim-deep: 10 18 32;
   --halo: 214 149 122;
@@ -409,6 +412,7 @@
   --color-surface: rgb(255 255 255 / 0.4);
   --color-surface-strong: rgb(255 255 255 / 0.72);
   --color-on-accent: #f7f4ea;
+  --color-on-media: var(--color-ivory);
   --scrim: 246 249 251;
   --scrim-deep: 246 249 251;
   --halo: 200 170 110;
@@ -433,6 +437,7 @@
   --color-surface: rgb(207 216 230 / 0.05);
   --color-surface-strong: rgb(6 11 21 / 0.72);
   --color-on-accent: #0b1426;
+  --color-on-media: var(--color-ivory);
   --scrim: 6 11 21;
   --scrim-deep: 10 18 32;
   --halo: 207 216 230;
@@ -457,6 +462,7 @@
   --color-surface: rgb(247 244 234 / 0.035);
   --color-surface-strong: rgb(16 27 21 / 0.72);
   --color-on-accent: #12213a;
+  --color-on-media: var(--color-ivory);
   --scrim: 16 27 21;
   --scrim-deep: 10 18 32;
   --halo: 216 196 138;
@@ -481,6 +487,7 @@
   --color-surface: rgb(255 255 255 / 0.45);
   --color-surface-strong: rgb(255 255 255 / 0.75);
   --color-on-accent: #f7f4ea;
+  --color-on-media: var(--color-ivory);
   --scrim: 252 250 244;
   --scrim-deep: 252 250 244;
   --halo: 200 170 110;
@@ -505,6 +512,7 @@
   --color-surface: rgb(255 255 255 / 0.45);
   --color-surface-strong: rgb(255 255 255 / 0.75);
   --color-on-accent: #f7f4ea;
+  --color-on-media: var(--color-ivory);
   --scrim: 252 248 240;
   --scrim-deep: 252 248 240;
   --halo: 200 170 110;
@@ -529,6 +537,7 @@
   --color-surface: rgb(247 244 234 / 0.03);
   --color-surface-strong: rgb(58 40 32 / 0.72);
   --color-on-accent: #3a2820;
+  --color-on-media: var(--color-ivory);
   --scrim: 58 40 32;
   --scrim-deep: 10 18 32;
   --halo: 242 217 166;
@@ -553,6 +562,7 @@
   --color-surface: rgb(255 255 255 / 0.45);
   --color-surface-strong: rgb(255 255 255 / 0.75);
   --color-on-accent: #f7f4ea;
+  --color-on-media: var(--color-ivory);
   --scrim: 252 247 238;
   --scrim-deep: 252 247 238;
   --halo: 200 170 110;

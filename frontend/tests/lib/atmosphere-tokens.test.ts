@@ -42,6 +42,7 @@ const V1_NIGHT: Record<string, string> = {
   '--color-line': 'rgba(216, 185, 120, 0.2)',
   '--color-surface': 'rgba(247, 244, 234, 0.045)',
   '--color-on-accent': '#12213a',
+  '--color-on-media': '#f7f4ea',
   '--atmo-bg': 'radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0f1b2e 45%, #0a1220 100%)',
 };
 
