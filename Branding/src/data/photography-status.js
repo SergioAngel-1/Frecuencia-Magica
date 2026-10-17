@@ -113,6 +113,7 @@ export const COMPLETED = [
   'sanctuary-journal.avif',
   'atmosphere-dawn.avif',
   'atmosphere-dusk.avif',
+  'atmosphere-store.avif',
   'home-membership.avif',
   'academy-course-cover-c1.avif',
   'academy-course-cover-c2.avif',

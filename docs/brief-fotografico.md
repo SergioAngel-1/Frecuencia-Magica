@@ -8,7 +8,7 @@
 
 **81 imágenes** (58 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 56 · P2 21. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 67 completadas · 0 a corregir · 13 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 68 completadas · 0 a corregir · 12 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -196,7 +196,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `states-offline.avif` | Estados · sin conexión | 16:9 | 2880×1620 | P2 | Completadas |
 | `atmosphere-dusk.avif` | Atmósfera · Atardecer (descanso) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | 16:9 | 2880×1620 | P1 | Completadas |
-| `atmosphere-store.avif` | Atmósfera · Taller (tienda) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `atmosphere-store.avif` | Atmósfera · Taller (tienda) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-moon.avif` | Atmósfera · Luna (escucha nocturna) | 16:9 | 2880×1620 | P1 | Faltantes |
 | `atmosphere-forest.avif` | Atmósfera · Bosque (raíz y agua) | 16:9 | 2880×1620 | P1 | Faltantes |
 | `atmosphere-forest-autumn.avif` | Atmósfera · Bosque otoñal (nostalgia) | 16:9 | 2880×1620 | P2 | Faltantes |
@@ -223,25 +223,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (13)
+### 5.2 Faltantes (12)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `atmosphere.store` — Atmósfera · Taller (tienda) · P1
-
-- **Archivo:** `atmosphere-store.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 60% 55%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Muestra 3 · Tienda: cálida, tangible y natural, con arena, crema y verde suave. Piedra y madera con luz lateral y sombras naturales, vacías: el escenario de los productos. Los productos no se generan: son fotografía real que hará Marisol.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo.
-
-**Prompt**
-
-```text
-A warm tabletop stage with no product on it: a wide slab of pale sand-colored stone beside a board of natural light oak wood, lit by low side light from the left that casts long soft natural shadows across both surfaces, two small sprigs of soft sage-green leaves lying on the stone, a folded cream linen cloth at the far edge, and behind them a plain cream plaster wall that carries the soft shadow of a third sprig. The tabletop fills the lower 55% of the frame and the wall the upper 45%, the middle of the surfaces between 35% and 80% of the frame width is bare stone and wood, kept empty, the sprigs and the cloth stay at the outer edges of the surfaces, and the left third is plain cream plaster in soft shade; an indoor still life only, a horizontal composition of surfaces and a wall, with no sea, beach, sky, sunset or landscape anywhere in the frame. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: sand, cream and soft sage green, with warm side light and natural soft shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `atmosphere.moon` — Atmósfera · Luna (escucha nocturna) · P1
 
@@ -449,7 +433,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (67)
+### 5.5 Completadas (68)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -521,6 +505,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `states-offline.avif` | Estados · sin conexión | `states.offline` | 16:9 | P2 |
 | `atmosphere-dusk.avif` | Atmósfera · Atardecer (descanso) | `atmosphere.dusk` | 16:9 | P1 |
 | `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | `atmosphere.dawn` | 16:9 | P1 |
+| `atmosphere-store.avif` | Atmósfera · Taller (tienda) | `atmosphere.store` | 16:9 | P1 |
 | `og-image.jpg` | Metadatos · Open Graph | `og-image` | 1.91:1 | P0 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (23)
