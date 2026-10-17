@@ -141,6 +141,7 @@ export const COMPLETED = [
   'resonario-kind-banner-nature.avif',
   'resonario-kind-banner-frequency.avif',
   'resonario-kind-banner-binaural.avif',
+  'resonario-kind-banner-guided.avif',
 ]
 
 /**
