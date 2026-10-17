@@ -363,3 +363,20 @@ describe('fuente de archivo', () => {
     engine.dispose();
   });
 });
+
+describe('solape al reanudar tras una suspensión', () => {
+  it('con el reloj congelado al reanudarse, la pista anterior calla de golpe: nunca dos salidas audibles', () => {
+    const { ctx, engine } = setup({ resumable: false });
+    engine.play(TONE);
+    ctx.currentTime = 5;
+    ctx.setState('suspended');
+
+    // El navegador vuelve a `running` sin que avance el reloj del contexto.
+    ctx.setState('running');
+
+    const counts: number[] = [];
+    for (let t = 5; t <= 6; t += 0.05) counts.push(audibleTrackOutputs(ctx, t));
+    expect(Math.max(...counts)).toBeLessThanOrEqual(1);
+    engine.dispose();
+  });
+});

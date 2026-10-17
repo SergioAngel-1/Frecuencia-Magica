@@ -175,6 +175,14 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
     track.graph.stop(now + FADE_OUT_SECONDS);
   }
 
+  /** Calla una pista en el acto, sin fundido: para cuando el reloj no avanza. */
+  function silenceNow(track: Current, now: number): void {
+    const gain = track.graph.output.gain;
+    gain.cancelScheduledValues(now);
+    gain.setValueAtTime(0, now);
+    track.graph.stop(now);
+  }
+
   /** Lo que suena ahora termina en silencio, sin dejar nada abierto. */
   function finish(): void {
     if (current && ctx) fadeOutAndStop(current, ctx.currentTime);
@@ -251,7 +259,9 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
     options: PlayOptions,
     resumeAt: number,
   ): void {
-    if (current) fadeOutAndStop(current, context.currentTime);
+    // Con el contexto parado no hay reloj que haga un fundido: la pista anterior
+    // calla de golpe, para que al reanudar no suenen dos salidas a la vez.
+    if (current) silenceNow(current, context.currentTime);
     current = null;
     offset = 0;
     clockRunning = false;
