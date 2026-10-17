@@ -32,6 +32,8 @@ type PlayerState = {
   minimized: boolean;
   /** Volumen maestro, 0–1. */
   volume: number;
+  /** Cuántas veces la persona ha abierto una pista. Avanzar sola no lo cambia. */
+  opened: number;
   /** Abre un audio y lo reproduce (o la muestra). Reabrir el mismo no reinicia el tiempo. */
   open(id: string, mode?: PlayerMode): void;
   /** Pausa o reanuda el audio abierto. Sin audio abierto no hace nada. */
@@ -133,11 +135,12 @@ export function createPlayerStore(
       elapsed: 0,
       minimized: false,
       volume: initialVolume,
+      opened: 0,
       open(id, mode = 'full') {
         if (!isAvailable(id)) return;
 
-        const { audioId, mode: currentMode, engineState } = get();
-        set({ minimized: false });
+        const { audioId, mode: currentMode, engineState, opened } = get();
+        set({ minimized: false, opened: opened + 1 });
 
         // Mismo audio y modo: no reinicia. Sólo reanuda si estaba en pausa o bloqueado.
         if (audioId === id && currentMode === mode) {

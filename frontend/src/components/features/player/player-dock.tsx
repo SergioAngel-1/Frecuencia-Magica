@@ -39,12 +39,13 @@ export function PlayerDock() {
   const elapsed = usePlayerStore((s) => s.elapsed);
   const minimized = usePlayerStore((s) => s.minimized);
   const volume = usePlayerStore((s) => s.volume);
+  const opened = usePlayerStore((s) => s.opened);
   const { setElapsed, setVolume, toggleMute, toggle, close, next, previous, minimize, expand } =
     usePlayerStore.getState();
 
   const wasMinimized = useRef(minimized);
   const focusPending = useRef(false);
-  const lastAudioId = useRef<string | null>(null);
+  const lastOpened = useRef(opened);
   const pathname = usePathname();
   const narrow = useMediaQuery('(max-width: 767px)');
   const reduced = useReducedMotionSafe();
@@ -54,15 +55,17 @@ export function PlayerDock() {
   const total = audio?.duration ? parseDuration(audio.duration) : 0;
   const pct = progressPercent(elapsed, total);
 
-  // Una frecuencia nueva abre el dock recogido en las rutas de compra y en
-  // móvil. Se decide antes de pintar, para que no aparezca desplegado un instante.
+  // Abrir una frecuencia a propósito la recoge en las rutas de compra y en móvil.
+  // Sólo cuenta la apertura de la persona (`opened`): que la pista avance sola o
+  // que ella la despliegue después no la vuelven a recoger. Antes de pintar, para
+  // que no aparezca desplegada un instante.
   useLayoutEffect(() => {
-    const prevId = lastAudioId.current;
-    lastAudioId.current = audioId;
-    if (audioId === null || audioId === prevId) return;
+    if (opened === lastOpened.current) return;
+    lastOpened.current = opened;
+    if (audioId === null) return;
 
     if (startsMinimized(pathname, narrow)) minimize();
-  }, [audioId, pathname, narrow, minimize]);
+  }, [opened, audioId, pathname, narrow, minimize]);
 
   // Al recoger o desplegar, el control pulsado desaparece: el foco pasa al
   // que lo deshace, para que el teclado no se quede sin sitio. Se entrega al

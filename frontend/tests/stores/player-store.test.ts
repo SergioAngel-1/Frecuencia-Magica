@@ -281,3 +281,19 @@ describe('sin Web Audio', () => {
     engine.dispose();
   });
 });
+
+describe('aperturas explícitas', () => {
+  it('abrir cuenta como apertura y avanzar la pista sola no', () => {
+    const env = setup();
+    env.store.getState().open('a1');
+    const afterOpen = env.store.getState().opened;
+
+    env.store.getState().next();
+    env.store.getState().previous();
+    expect(env.store.getState().opened).toBe(afterOpen);
+
+    env.store.getState().open('a2');
+    expect(env.store.getState().opened).toBe(afterOpen + 1);
+    env.engine.dispose();
+  });
+});
