@@ -604,13 +604,28 @@
     },
     "courses": {
       "c1": {
-        "title": "The Art of Returning to You"
+        "title": "The Art of Returning to You",
+        "learn": [
+          "To stop for a few minutes and notice how you breathe.",
+          "Small rituals of pause for your day.",
+          "To listen to yourself without hurry or judgment."
+        ]
       },
       "c2": {
-        "title": "Conscious Rituals"
+        "title": "Conscious Rituals",
+        "learn": [
+          "To prepare a calm corner at home.",
+          "Simple gestures to open and close your day.",
+          "To keep a ritual at your own pace."
+        ]
       },
       "c3": {
-        "title": "Aromas that Heal"
+        "title": "Aromas that Heal",
+        "learn": [
+          "To get to know aromas and how they accompany your pause.",
+          "To create a small ritual with aromas.",
+          "To choose calmly what feels good to you."
+        ]
       }
     },
     "completion": {
@@ -632,7 +647,29 @@
       "The light within you",
       "Making peace with time",
       "Beginning again"
-    ]
+    ],
+    "includes": {
+      "guided": "Lessons guided by Marisol",
+      "practices": "Practices to repeat whenever you wish",
+      "pace": "Access at your own pace, with no deadlines"
+    },
+    "facts": {
+      "free": "Free",
+      "paid": "Paid",
+      "modality": {
+        "selfPaced": "At your own pace",
+        "live": "Live",
+        "blended": "Blended"
+      },
+      "label": "Course details",
+      "learnTitle": "What you'll learn",
+      "includesTitle": "What's included",
+      "modulesTitle": "Modules",
+      "module": "Module {number}",
+      "moduleLessons": "{count} lessons",
+      "introTitle": "Course introduction",
+      "hours": "{hours} of practice"
+    }
   },
   "experiences": {
     "kicker": "Experiences",

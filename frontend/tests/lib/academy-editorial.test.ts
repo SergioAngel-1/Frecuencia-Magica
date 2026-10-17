@@ -21,6 +21,8 @@ const listSource = readSource('components/features/academy/course-list.tsx');
 const cardSource = readSource('components/features/academy/course-card.tsx');
 const detailSource = readSource('components/features/academy/course-detail.tsx');
 const lessonListSource = readSource('components/features/academy/lesson-list.tsx');
+const moduleListSource = readSource('components/features/academy/module-list.tsx');
+const factsSource = readSource('components/features/academy/course-facts.tsx');
 const playerSource = readSource('components/features/academy/lesson-player.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/academia/(catalogo)/loading.tsx');
@@ -102,10 +104,22 @@ describe('academy editorial composition contracts', () => {
     expect(coursePageSource).toContain("alt: t('media.alt.courseCover'");
   });
 
+  it('always shows free or paid and the modality, on the card and on the detail', () => {
+    expect(factsSource).toContain('course.access.type');
+    expect(factsSource).toContain('course.modality');
+    expect(factsSource).not.toMatch(/\? <|&& </);
+    expect(cardSource).toContain('<CourseFacts');
+    expect(detailSource).toContain('<CourseFacts');
+  });
+
   it('keeps the detail reading rail and localized lesson routes intact', () => {
-    expect(detailSource).toContain('<LessonList');
+    // T2.12: las lecciones se agrupan en módulos plegables (0fr -> 1fr), con la misma nav y el mismo marcador.
+    expect(detailSource).toContain('<ModuleList');
     expect(detailSource).toContain('sticky');
-    expect(lessonListSource).toContain('<nav');
+    expect(moduleListSource).toContain('<nav');
+    expect(moduleListSource).toContain('<LessonList');
+    expect(moduleListSource).toContain('grid-rows-[0fr]');
+    expect(moduleListSource).toContain('grid-rows-[1fr]');
     expect(lessonListSource).toContain("aria-current={isCurrent ? 'page' : undefined}");
     expect(lessonListSource).toContain('min-h-11');
     expect(lessonPageSource).toContain('<LessonPlayer');

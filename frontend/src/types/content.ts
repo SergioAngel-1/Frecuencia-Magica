@@ -89,6 +89,12 @@ export type Audio = IntentAffine & {
   guideKey: string;
 };
 
+/** Gratuito, o de pago con su precio. */
+export type CourseAccess = { type: 'free' } | { type: 'paid'; price: number };
+
+/** `selfPaced` a tu ritmo; `live` en vivo; `blended` mixta. */
+export type CourseModality = 'selfPaced' | 'live' | 'blended';
+
 export type Course = IntentAffine & {
   id: string;
   titleKey: string;
@@ -97,6 +103,17 @@ export type Course = IntentAffine & {
   /** Etiqueta legible, p. ej. `"3.5h"`. */
   hours: string;
   band: string;
+  access: CourseAccess;
+  modality: CourseModality;
+  /** «Qué aprenderás»: claves de mensaje, una por punto. */
+  learnKeys: readonly string[];
+  /** «Qué incluye»: claves de mensaje, una por punto. */
+  includesKeys: readonly string[];
+  /**
+   * Curso de demostración: lo real (rituales, esencias, gratuitos y de pago) lo
+   * entrega Marisol. Lo lee el registro de pendientes.
+   */
+  provisional: boolean;
 };
 
 export type ExperienceMode = 'online' | 'inPerson';

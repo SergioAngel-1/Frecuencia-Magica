@@ -1,4 +1,6 @@
 import { Badge, EditorialImage, GlassPanel, Display } from '@/components/ui';
+
+import { CourseFacts } from './course-facts';
 import { cn } from '@/lib/cn';
 import type { EditorialMedia } from '@/types/editorial-media';
 import type { Course } from '@/types/content';
@@ -55,6 +57,7 @@ export function CourseCard({
               {description}
             </p>
           ) : null}
+          <CourseFacts course={course} className="mt-5" />
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
             <span className="border-line-strong text-accent text-label tracking-caps min-h-11 border-b py-3 font-sans uppercase">
               {cta}
@@ -92,6 +95,7 @@ export function CourseCard({
       <div className="px-6 pt-5 pb-7">
         <h3 className="text-fg font-serif text-[clamp(26px,3vw,34px)] leading-[1.05]">{title}</h3>
         <p className="text-fg-muted text-meta tracking-soft mt-3 font-sans">{lessonsLabel}</p>
+        <CourseFacts course={course} className="mt-4" />
       </div>
     </GlassPanel>
   );

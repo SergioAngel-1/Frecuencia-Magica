@@ -609,13 +609,28 @@
     },
     "courses": {
       "c1": {
-        "title": "El Arte de Volver a Ti"
+        "title": "El Arte de Volver a Ti",
+        "learn": [
+          "A detenerte unos minutos y notar cómo respiras.",
+          "Pequeños rituales de pausa para tu día.",
+          "A escucharte sin prisa y sin juicio."
+        ]
       },
       "c2": {
-        "title": "Rituales Conscientes"
+        "title": "Rituales Conscientes",
+        "learn": [
+          "A preparar un rincón de calma en casa.",
+          "Gestos sencillos para abrir y cerrar tu día.",
+          "A sostener un ritual a tu propio ritmo."
+        ]
       },
       "c3": {
-        "title": "Aromas que Sanan"
+        "title": "Aromas que Sanan",
+        "learn": [
+          "A conocer los aromas y cómo acompañan tu pausa.",
+          "A crear un pequeño ritual con aromas.",
+          "A elegir con calma lo que te hace bien."
+        ]
       }
     },
     "completion": {
@@ -637,7 +652,29 @@
       "La luz que habita en ti",
       "Reconciliarse con el tiempo",
       "Volver a comenzar"
-    ]
+    ],
+    "includes": {
+      "guided": "Lecciones guiadas por Marisol",
+      "practices": "Prácticas para repetir cuando quieras",
+      "pace": "Acceso a tu propio ritmo, sin fechas"
+    },
+    "facts": {
+      "free": "Gratuito",
+      "paid": "De pago",
+      "modality": {
+        "selfPaced": "A tu ritmo",
+        "live": "En vivo",
+        "blended": "Mixta"
+      },
+      "label": "Datos del curso",
+      "learnTitle": "Qué aprenderás",
+      "includesTitle": "Qué incluye",
+      "modulesTitle": "Módulos",
+      "module": "Módulo {number}",
+      "moduleLessons": "{count} lecciones",
+      "introTitle": "Presentación del curso",
+      "hours": "{hours} de práctica"
+    }
   },
   "experiences": {
     "kicker": "Experiencias",
