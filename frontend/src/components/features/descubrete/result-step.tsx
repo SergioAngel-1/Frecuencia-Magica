@@ -1,5 +1,6 @@
 'use client';
 
+import { AtmospherePicker } from '@/components/features/atmosphere/atmosphere-picker';
 import { AudioDisc, type AudioDiscItem } from '@/components/features/player/audio-disc';
 import { Button, Display, Float, Kicker } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
@@ -55,6 +56,8 @@ export function ResultStep({
       </Display>
 
       <p className="text-fg-soft text-body max-w-[48ch] text-center leading-[1.8]">{description}</p>
+
+      <AtmospherePicker />
 
       <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
         <Button variant="primary" asChild onClick={onListen}>

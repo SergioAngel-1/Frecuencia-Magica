@@ -792,14 +792,54 @@
     }
   },
   "atmospheres": {
-    "night": { "name": "Noche cósmica" },
-    "dusk": { "name": "Atardecer" },
-    "dawn": { "name": "Amanecer" },
-    "moon": { "name": "Luna" },
-    "forest": { "name": "Bosque" },
-    "study": { "name": "Estudio" },
-    "store": { "name": "Taller" },
-    "gathering": { "name": "Encuentro" },
-    "marisol": { "name": "Luz de Marisol" }
+    "night": {
+      "name": "Noche cósmica",
+      "description": "Estrellas y luz suave sobre el vacío.",
+      "pickerLabel": "Noche"
+    },
+    "dusk": {
+      "name": "Atardecer",
+      "description": "Mar tranquilo al caer la tarde, con una luz cálida que invita a descansar.",
+      "pickerLabel": "Descanso"
+    },
+    "dawn": {
+      "name": "Amanecer",
+      "description": "Luz clara y aire fresco, como el primer momento del día.",
+      "pickerLabel": "Calma de día"
+    },
+    "moon": {
+      "name": "Luna",
+      "description": "Azul profundo y plata, para escuchar en silencio bajo la luna.",
+      "pickerLabel": "Escucha nocturna"
+    },
+    "forest": {
+      "name": "Bosque",
+      "description": "Verde natural y luz filtrada entre los árboles.",
+      "pickerLabel": "Raíz y agua"
+    },
+    "study": {
+      "name": "Estudio",
+      "description": "Luz para leer junto a una ventana, sin prisa.",
+      "pickerLabel": "Estudio"
+    },
+    "store": {
+      "name": "Taller",
+      "description": "Arena, crema y madera, con los productos bajo luz lateral.",
+      "pickerLabel": "Taller"
+    },
+    "gathering": {
+      "name": "Encuentro",
+      "description": "Un espacio cálido donde estar cerca de otras personas.",
+      "pickerLabel": "Encuentro"
+    },
+    "marisol": {
+      "name": "Luz de Marisol",
+      "description": "Cálida y personal, con su propia luz.",
+      "pickerLabel": "Luz de Marisol"
+    },
+    "picker": {
+      "label": "Ambiente",
+      "site": "Ambiente del sitio"
+    }
   }
 }

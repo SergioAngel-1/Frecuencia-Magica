@@ -787,14 +787,54 @@
     }
   },
   "atmospheres": {
-    "night": { "name": "Cosmic night" },
-    "dusk": { "name": "Dusk" },
-    "dawn": { "name": "Dawn" },
-    "moon": { "name": "Moon" },
-    "forest": { "name": "Forest" },
-    "study": { "name": "Study" },
-    "store": { "name": "Workshop" },
-    "gathering": { "name": "Gathering" },
-    "marisol": { "name": "Marisol's light" }
+    "night": {
+      "name": "Cosmic night",
+      "description": "Stars and soft light over the void.",
+      "pickerLabel": "Night"
+    },
+    "dusk": {
+      "name": "Dusk",
+      "description": "A calm sea at nightfall, with warm light that invites you to rest.",
+      "pickerLabel": "Rest"
+    },
+    "dawn": {
+      "name": "Dawn",
+      "description": "Clear light and cool air, like the first moment of the day.",
+      "pickerLabel": "Daytime calm"
+    },
+    "moon": {
+      "name": "Moon",
+      "description": "Deep blue and silver, to listen in silence under the moon.",
+      "pickerLabel": "Night listening"
+    },
+    "forest": {
+      "name": "Forest",
+      "description": "Natural green and filtered light among the trees.",
+      "pickerLabel": "Roots and water"
+    },
+    "study": {
+      "name": "Study",
+      "description": "Light for reading by a window, unhurried.",
+      "pickerLabel": "Study"
+    },
+    "store": {
+      "name": "Workshop",
+      "description": "Sand, cream and wood, with the products under side light.",
+      "pickerLabel": "Workshop"
+    },
+    "gathering": {
+      "name": "Gathering",
+      "description": "A warm space to be close to other people.",
+      "pickerLabel": "Gathering"
+    },
+    "marisol": {
+      "name": "Marisol's light",
+      "description": "Warm and personal, with its own light.",
+      "pickerLabel": "Marisol's light"
+    },
+    "picker": {
+      "label": "Atmosphere",
+      "site": "Site atmosphere"
+    }
   }
 }
