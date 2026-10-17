@@ -1,7 +1,12 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { createJSONStorage, persist, type StateStorage } from 'zustand/middleware';
 
-import { JOURNAL_STORE_VERSION, migrateJournal, type StoredJournal } from '@/lib/journal/migrate';
+import {
+  JOURNAL_STORE_VERSION,
+  migrateJournal,
+  stampLegacyVersion,
+  type StoredJournal,
+} from '@/lib/journal/migrate';
 import type { MoodId } from '@/types/mood';
 
 /** Una entrada del diario. `mood` es `null` sólo si el dato guardado no se reconoce. */
@@ -15,6 +20,21 @@ type JournalState = {
   save(now: Date): void;
   discard(): void;
 };
+
+/**
+ * `localStorage` con una red de seguridad al leer: un blob sin versión pasa
+ * por `migrate`. Si `localStorage` no existe (servidor), el acceso lanza aquí y
+ * `createJSONStorage` deja el store sin persistencia, como antes.
+ */
+function journalStorage(): StateStorage {
+  const storage = localStorage;
+
+  return {
+    getItem: (name) => stampLegacyVersion(storage.getItem(name)),
+    setItem: (name, value) => storage.setItem(name, value),
+    removeItem: (name) => storage.removeItem(name),
+  };
+}
 
 export const useJournalStore = create<JournalState>()(
   persist(
@@ -44,6 +64,7 @@ export const useJournalStore = create<JournalState>()(
     {
       name: 'fm.journal',
       version: JOURNAL_STORE_VERSION,
+      storage: createJSONStorage(journalStorage),
       // Lo guardado en la v0 (ánimo por índice) se convierte a ids; lo que no se
       // reconoce queda en `null` y no se pierde la entrada.
       migrate: (persisted, fromVersion) => migrateJournal(persisted, fromVersion),

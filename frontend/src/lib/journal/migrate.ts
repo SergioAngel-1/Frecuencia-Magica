@@ -39,11 +39,34 @@ function isMoodId(value: unknown): value is MoodId {
  */
 export function moodFromStored(value: unknown, fromVersion: number): MoodId | null {
   if (fromVersion < 1) {
+    // Un id ya guardado (blob sin versión editado a mano) no es ambiguo: se conserva.
+    if (isMoodId(value)) return value;
     if (typeof value !== 'number' || !Number.isInteger(value)) return null;
     return LEGACY_MOOD_IDS[value] ?? null;
   }
 
   return isMoodId(value) ? value : null;
+}
+
+/**
+ * Un blob sin `version` numérica no pasa por `migrate` en zustand (sólo se
+ * migra lo que declara una versión distinta). Zustand siempre la escribe, así
+ * que sólo ocurre con edición manual: se marca como v0 para que la migración
+ * lo convierta igual que a lo demás. Recibe y devuelve el texto guardado; lo
+ * que no es un objeto JSON se deja tal cual para que zustand lo trate.
+ */
+export function stampLegacyVersion(raw: string | null): string | null {
+  if (raw === null) return null;
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return raw;
+  }
+  if (!isRecord(parsed) || typeof parsed.version === 'number') return raw;
+
+  return JSON.stringify({ ...parsed, version: 0 });
 }
 
 function toEntry(value: unknown, fromVersion: number): StoredEntry | null {

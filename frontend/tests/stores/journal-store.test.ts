@@ -115,4 +115,26 @@ describe('useJournalStore', () => {
     expect(state.draft.mood).toBeNull();
     expect(state.draft.text).toBe('');
   });
+
+  it('un blob sin version numérica también pasa por la migración: el índice a mano no llega a la UI como número', async () => {
+    localStorage.setItem(
+      'fm.journal',
+      JSON.stringify({
+        state: {
+          entries: [
+            { id: 'a', mood: 3, text: 'índice a mano', createdAt: '2026-07-28T10:00:00.000Z' },
+            { id: 'b', mood: 'joy', text: 'id ya guardado', createdAt: '2026-07-28T11:00:00.000Z' },
+          ],
+          draft: { mood: 1, text: '' },
+        },
+      }),
+    );
+
+    await useJournalStore.persist.rehydrate();
+
+    const state = useJournalStore.getState();
+    expect(state.entries.map((entry) => entry.mood)).toEqual(['tiredness', 'joy']);
+    expect(state.draft.mood).toBe('joy');
+    localStorage.removeItem('fm.journal');
+  });
 });

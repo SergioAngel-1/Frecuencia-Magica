@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { JOURNAL_STORE_VERSION, migrateJournal } from '@/lib/journal/migrate';
+import { JOURNAL_STORE_VERSION, migrateJournal, stampLegacyVersion } from '@/lib/journal/migrate';
 
 /** Entradas tal como las guardaba la v1: el ánimo era un índice de cinco. */
 const V0_ENTRY = (index: unknown, text: string, id: string) => ({
@@ -111,5 +111,34 @@ describe('migrateJournal', () => {
 
     expect(migrated.entries).toHaveLength(1);
     expect(migrated.draft).toEqual({ mood: null, text: '' });
+  });
+
+  it('en una v0 sin versión, un id ya guardado se conserva; un índice fuera de rango queda en null', () => {
+    const migrated = migrateJournal(
+      { entries: [V0_ENTRY('gratitude', 'con id', 'a'), V0_ENTRY(9, 'fuera', 'b')] },
+      0,
+    );
+
+    expect(migrated.entries.map((entry) => entry.mood)).toEqual(['gratitude', null]);
+  });
+});
+
+describe('stampLegacyVersion', () => {
+  it('un blob sin version numérica se marca como v0 para que zustand lo mande a migrate', () => {
+    const stamped = JSON.parse(
+      stampLegacyVersion(JSON.stringify({ state: { entries: [] } })) ?? 'null',
+    );
+    expect(stamped.version).toBe(0);
+  });
+
+  it('una version ya numérica se deja tal cual', () => {
+    const raw = JSON.stringify({ state: { entries: [] }, version: 1 });
+    expect(stampLegacyVersion(raw)).toBe(raw);
+  });
+
+  it('sin nada guardado devuelve null; lo que no es un objeto JSON se deja para zustand', () => {
+    expect(stampLegacyVersion(null)).toBeNull();
+    expect(stampLegacyVersion('roto')).toBe('roto');
+    expect(stampLegacyVersion('42')).toBe('42');
   });
 });
