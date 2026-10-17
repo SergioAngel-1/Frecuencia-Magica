@@ -64,7 +64,7 @@ Estado tras los arreglos (revisado en las capturas nuevas de `shots2`):
 Capturas: `docs/superpowers/audits/assets/ambientes-muestras/` (las de `dusk`/`night`/`inicio` incluidas); `medicion.json` con desborde 0 px en todas.
 
 
-## Ronda 2 (2026-10-17)
+## Ronda 2 (2026-10-17) — histórico
 
 - Banners con foto en esquema claro: velo claro que funde a los bordes (`.fm-banner-veil`, sólo bajo `data-scheme='light'`). Resonario `dawn`: el kicker «Dentro del archivo» se lee y la franja oscura de los bordes desaparece. Banda de ritual de Tienda: sin franja, el enlace se lee; el kicker «Materia para tu práctica» sigue débil (dorado sobre velo claro): **abierto**.
 - Cifras de las esferas en claro: halo de tinta bajo marfil (`.fm-disc-num`, `.fm-disc-unit`). Las cifras se leen; las unidades «HZ» sobre las portadas más pálidas siguen débiles: **abierto**.
@@ -72,3 +72,25 @@ Capturas: `docs/superpowers/audits/assets/ambientes-muestras/` (las de `dusk`/`n
 - Capturas re-hechas: `resonario` `dawn` y `night` a 1440 y 390; Tienda a 1440 y 390. Las demás escenas son de la ronda anterior.
 - Peso: capturas convertidas a WebP (q80, ancho original). Total 3,3 MB; los PNG se han retirado del árbol. Las capturas nuevas no deben ser PNG.
 - Descúbrete con resultado a 390 px: sigue sin capturar.
+
+
+## Ronda 3 (2026-10-17): contraste medido y hallazgos
+
+Método: Chromium con movimiento reducido sobre el build actual (`next start`). Para cada elemento: color computado del texto, compuesto sobre el mismo texto; el fondo son los píxeles de la captura bajo el texto (en las esferas, sólo el anillo de píldora alrededor del texto). Cifra = ratio WCAG frente a la mediana del fondo; «cuartil adverso» = el peor de los dos cuartiles. Medidor fuera del repo (scratchpad de la sesión); la guarda automática `tests/lib/light-contrast.test.ts` cubre los valores declarados, no los píxeles.
+
+| Elemento (esquema claro) | Antes | Ahora (mediana / cuartil adverso) | Estado |
+|---|---|---|---|
+| Kicker «Materia para tu práctica», banda de ritual de Tienda 1440 | 2,16:1 | 7,78 / 7,51 | resuelto |
+| Kicker «Dentro del archivo», Resonario `dawn` 1440 | 3,02:1 | 10,85 / 10,50 | resuelto |
+| Título y cuerpo del banner de Resonario `dawn` | — | 15,44 / 13,89 (título); 13,23 / 12,70 (cuerpo) | resuelto |
+| Título y cuerpo del banner de ritual de Tienda | — | 12,31 / 10,33 (título); 13,27 / 12,83 (cuerpo) | resuelto |
+| Cifras de las esferas, 14 discos de Resonario `dawn` | 2,46:1 (peor) | ≥ 5,97 (cuartil adverso, peor disco) | resuelto |
+| Unidades «HZ» de las esferas | 1,42:1 (peor) | 6,11 / 5,55 (peor disco) | resuelto |
+| Franja oscura en los bordes del banner (claro) | corte negro arriba/abajo | sin franja (velo que funde a bordes) | resuelto (visual) |
+| Banda de paisaje de Descúbrete `dawn` sin foto | — | degradado, sin imagen | abierto: sin foto de atmósfera ingerida (dependencia de Sergio) |
+
+Verificado a mano con capturas (WebP): Resonario `dawn` 1280, 768 y 1440; Resonario `dusk` y `dawn` 390; resultado de Descúbrete `dusk` y `dawn` a 1440 y 390; Tienda 1440 y 390. Sin desbordes ni elementos tapados. Noche: `/resonario` sin elección manual, diferencia media 0,05/255 frente a 0,047 de ruido del mismo build: sin cambio.
+
+Abierto, por motivo:
+- Ninguno de contraste medido. El paisaje de la banda de Descúbrete en `dawn` (y el de los héroes de atmósfera) es un degradado porque no hay foto de atmósfera ingerida: cuando llegue la foto, hay que repetir esta medición.
+- Verificación de móvil de Tienda (390 alto) sólo a vista, no medida elemento a elemento.
