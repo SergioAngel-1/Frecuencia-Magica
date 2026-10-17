@@ -15,22 +15,28 @@ type DiscoverArrivalProps = {
 
 /**
  * La misma respuesta de «¿Cómo llegas hoy?», con la intención dominante. Sólo
- * la pide el gesto: hasta pulsarla no suena ni cambia nada.
+ * la pide el gesto: hasta pulsarla no suena ni cambia nada. El panel va siempre
+ * montado, así su región de anuncio ya existe cuando llega la respuesta.
  */
 export function DiscoverArrival({ arrivalKey, featuredId, ctaLabel }: DiscoverArrivalProps) {
   const { flow, atmosphere, choose, step, other, stop } = useArrival();
 
-  if (!flow.response) {
-    return (
-      <div className="flex justify-center">
-        <Button variant="outline" onClick={() => choose(arrivalKey, featuredId)}>
-          {ctaLabel}
-        </Button>
-      </div>
-    );
-  }
-
   return (
-    <ArrivalPanel flow={flow} atmosphere={atmosphere} onStep={step} onOther={other} onStop={stop} />
+    <div className="flex w-full flex-col items-center">
+      {!flow.response ? (
+        <div className="flex justify-center">
+          <Button variant="outline" onClick={() => choose(arrivalKey, featuredId)}>
+            {ctaLabel}
+          </Button>
+        </div>
+      ) : null}
+      <ArrivalPanel
+        flow={flow}
+        atmosphere={atmosphere}
+        onStep={step}
+        onOther={other}
+        onStop={stop}
+      />
+    </div>
   );
 }
