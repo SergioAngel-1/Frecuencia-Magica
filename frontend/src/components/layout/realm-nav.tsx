@@ -80,7 +80,7 @@ export function RealmNav() {
               <span
                 aria-hidden="true"
                 className={cn(
-                  'size-3 flex-none rounded-full transition-[transform,opacity] duration-300',
+                  'fm-nav-dot size-3 flex-none rounded-full transition-[transform,opacity] duration-300',
                   'group-hover:scale-[1.35] group-hover:opacity-100 group-focus-visible:scale-[1.35] group-focus-visible:opacity-100',
                   !active && 'opacity-60',
                 )}

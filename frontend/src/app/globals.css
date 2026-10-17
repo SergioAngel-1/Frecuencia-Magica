@@ -385,6 +385,19 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   padding: 0.3em 0.9em 0.35em;
 }
 
+/* Punto de la constelación en esquema claro: el color del realm (oro, verdoso, lavanda) a
+   media opacidad apenas se distingue de la crema (~1,7:1). Un aro de tinta lo recorta del fondo
+   (>= 3:1, ver tests/lib/light-contrast) y la ruta activa lo engrosa. La noche no cambia. */
+[data-scheme='light'] .fm-nav-dot {
+  opacity: 1;
+  outline: 1.5px solid var(--color-fg);
+  outline-offset: 1px;
+}
+
+[data-scheme='light'] [aria-current='page'] .fm-nav-dot {
+  outline-width: 2.5px;
+}
+
 /* Kicker de un banner con foto en esquema claro: tinta sobre el velo claro (no dorado). */
 [data-scheme='light'] .fm-kicker-veiled {
   color: var(--color-fg);
