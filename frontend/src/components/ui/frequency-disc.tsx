@@ -269,8 +269,16 @@ export function FrequencyDisc({
             )}
           >
             {/* Marfil fijo sobre la cara: la portada es oscura en cualquier atmósfera. */}
-            <span className={cn('text-on-media block font-serif leading-none', spec.hz)}>{hz}</span>
-            <span className={cn('text-on-media/80 block font-sans uppercase', spec.unit)}>Hz</span>
+            <span
+              className={cn('fm-disc-num text-on-media block font-serif leading-none', spec.hz)}
+            >
+              {hz}
+            </span>
+            <span
+              className={cn('fm-disc-unit text-on-media/80 block font-sans uppercase', spec.unit)}
+            >
+              Hz
+            </span>
           </div>
 
           {showPlay && spec.play ? (

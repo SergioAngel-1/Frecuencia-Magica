@@ -348,3 +348,28 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   min-height: 100svh;
   scroll-padding-bottom: calc(140px + env(safe-area-inset-bottom));
 }
+
+/* Velo de legibilidad de los banners con foto en esquema claro: un tramo central
+   de velo claro que se desvanece en los bordes, para que el texto oscuro se lea
+   sobre la foto sin dejar un corte. En la noche no se muestra. */
+.fm-banner-veil {
+  display: none;
+}
+
+[data-scheme='light'] .fm-banner-veil {
+  display: block;
+  background-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgb(var(--scrim) / 0.6) 22%,
+    rgb(var(--scrim) / 0.6) 70%,
+    transparent 100%
+  );
+}
+
+/* Halo bajo las cifras de la esfera en esquema claro: el marfil se lee sobre las portadas
+   pálidas. En la noche no se pinta (la noche queda como estaba). */
+[data-scheme='light'] .fm-disc-num,
+[data-scheme='light'] .fm-disc-unit {
+  text-shadow: 0 0 10px color-mix(in srgb, var(--color-void) 85%, transparent);
+}

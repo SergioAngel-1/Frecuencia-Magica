@@ -87,6 +87,10 @@ export function EditorialBanner({
             overlay="bottom"
             scrim="bottom"
           />
+          <div
+            aria-hidden="true"
+            className="fm-banner-veil pointer-events-none absolute inset-0 z-10"
+          />
         </div>
       ) : null}
       {framed ? (
