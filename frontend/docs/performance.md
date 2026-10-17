@@ -86,6 +86,26 @@ Cada visitante descarga una sola variante por imagen visible: en 390 px las de 8
 
 Dos llamadas de dibujo por instancia, DPR capado a 2, y el bucle se detiene fuera del viewport y con la pestaña oculta. Cada instancia abre su propio contexto WebGL: una o dos por vista. **Sin medir:** FPS en móvil de gama media y el tamaño del chunk del visor en `next build` (en la prueba fuera de Next, ~1,8 kB gzip minificado).
 
+## Ambientes v2 (2026-10-17): imágenes de atmósfera y motor de audio
+
+**Imágenes de atmósfera.** Nueve paisajes (`atmosphere.*`, ya ingeridos por `editorial:ingest`: 16:9, fuente de 1672 px). Cada visitante descarga una sola variante por paisaje visible, y sólo los que su ruta pinta (un realm = una atmósfera; el selector manual añade la elegida). `priority` sigue siendo exclusivo del primer viewport (ninguna atmósfera lo pide: son P1/P2).
+
+| Variante                    | Archivos | Peso total |
+| --------------------------- | -------- | ---------- |
+| 640                         | 9        | 0,41 MB    |
+| 828                         | 9        | 0,63 MB    |
+| 1200                        | 9        | 1,10 MB    |
+| Ancho de la fuente (1672)   | 9        | 1,72 MB    |
+| Copia sin sufijo (la mayor) | 9        | 1,72 MB    |
+
+La más pesada es `atmosphere-forest` (372 KB a 1672 px; 133 KB a 828) y la más ligera `atmosphere-moon` (98 KB). Cuenta contra el presupuesto de ≤ 260 KB del brief: sólo `forest` y `forest-autumn` (381 KB, sin cablear) lo superan a la variante mayor; a 390 px se sirve la de 828 (133–142 KB).
+
+**Motor de audio.** `lib/audio/engine/` (~21 kB de fuente: contexto Web Audio único, síntesis de tonos, binaurales y texturas de mar y lluvia con ruido filtrado, fundidos y volumen por `GainNode`) vive en el layout con el dock, así que entra en el JS de primera carga. `next build` (First Load JS, gzip): `/inicio` 309 kB, `/descubrete` 296 kB, `/resonario` 284 kB, `/mi-santuario` 284 kB, `/tienda` 282 kB, `/academia` 280 kB. Contra los 248–254 kB de la medición del 2026-09-30 suben ~30–55 kB (motor de audio, atmósferas, «¿Cómo llegas hoy?» y la guía de respiración, galería y módulos); el presupuesto de 200 kB sigue superado y la deuda crece. Palanca pendiente: cargar el motor con `import()` en el primer gesto de reproducción (hoy se crea al abrir una pista, pero su código va en el chunk compartido).
+
+El motor no crea el `AudioContext` hasta un gesto de la persona (`getSharedAudioContext` se llama al pulsar play o activar el ambiente) y no suena nada al cargar. Las texturas son ruido filtrado en un buffer corto en bucle: sin descarga de audio. Con archivos reales el coste pasará a ser de red: el `<audio>` se crea al abrir la pista y hoy pide `preload = 'auto'` (`file-source.ts`); conviene bajarlo a `metadata` cuando lleguen las grabaciones largas.
+
+**Pasada móvil (390 px, CPU ×4).** `/academia` 60 fps, `/resonario` 58–59 fps (peor fotograma 50–67 ms), `/inicio` 60 fps: las 16 esferas del Resonario no cuestan frente a un control (halo estático; sólo `transform` y `opacity` se animan). Sin medir en un móvil físico. Ver `docs/superpowers/audits/2026-10-17-ambientes-movil.md`.
+
 ## Deuda restante (documentada, no bloqueante)
 
 - **~13–16 kB sobre el presupuesto de 200 kB**, concentrados en React DOM (59 kB gz) y el runtime de Next/Turbopack (~39 kB gz). No reducible desde la aplicación sin cambiar de framework o de estrategia de renderizado.
