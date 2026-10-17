@@ -31,16 +31,19 @@ export function FeaturedSun({ audio, cover }: FeaturedSunProps) {
   return (
     <div className="flex flex-col items-center gap-6 text-center" data-featured="sun">
       <Badge solid>{playing ? t('nowPlaying') : t('featuredBadge')}</Badge>
-      <AudioDisc
-        audio={{ id: audio.id, hz: audio.hz, band: audio.band }}
-        title={title}
-        meta={`${kind} · ${audio.duration ?? t('soon')}`}
-        size="lg"
-        cover={cover}
-        caption
-        showPlay
-        showEqualizer
-      />
+      {/* El halo de la esfera grande se contiene en el ancho de la pantalla. */}
+      <div className="w-full overflow-hidden py-4">
+        <AudioDisc
+          audio={{ id: audio.id, hz: audio.hz, band: audio.band }}
+          title={title}
+          meta={`${kind} · ${audio.duration ?? t('soon')}`}
+          size="lg"
+          cover={cover}
+          caption
+          showPlay
+          showEqualizer
+        />
+      </div>
       <div className="flex flex-wrap justify-center gap-3">
         <SampleButton audioId={audio.id} />
         <Button variant="primary" onClick={() => open(audio.id)}>
