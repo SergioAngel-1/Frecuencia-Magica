@@ -71,8 +71,11 @@ export function NebulaLayer({ visualMode = 'cosmic' }: { visualMode?: VisualMode
           // del body (void-2 plano) quedaba a la vista como una banda más
           // clara. Con `at 50% 145%` el borde de la elipse coincide con el
           // borde inferior de la pantalla y la viñeta cubre todo el viewport.
+          // El velo es el de la atmósfera: en la noche, el navy de siempre
+          // (`--scrim` y `--scrim-deep`); en una clara, el velo claro, que no
+          // ensucia el fondo a gris.
           background:
-            'radial-gradient(120% 90% at 50% 145%, rgba(15,27,46,0) 40%, rgba(10,18,32,0.85) 100%)',
+            'radial-gradient(120% 90% at 50% 145%, rgb(var(--scrim) / 0) 40%, rgb(var(--scrim-deep) / 0.85) 100%)',
         }}
       />
     </div>
