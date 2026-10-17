@@ -8,7 +8,7 @@
 
 **81 imágenes** (58 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 56 · P2 21. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 75 completadas · 0 a corregir · 5 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 76 completadas · 0 a corregir · 4 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -203,7 +203,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `atmosphere-study.avif` | Atmósfera · Estudio (academia) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-gathering.avif` | Atmósfera · Encuentro (experiencias) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-marisol.avif` | Atmósfera · Luz de Marisol (sobre Marisol) | 16:9 | 2880×1620 | P1 | Completadas |
-| `resonario-celtic.avif` | Resonario · música de inspiración celta | 16:9 | 2880×1620 | P1 | Faltantes |
+| `resonario-celtic.avif` | Resonario · música de inspiración celta | 16:9 | 2880×1620 | P1 | Completadas |
 | `resonario-kind-banner-melody.avif` | Resonario · tipo de escucha · Melodías instrumentales | 16:8 | 2880×1440 | P2 | Completadas |
 | `resonario-kind-banner-nature.avif` | Resonario · tipo de escucha · Naturaleza | 16:8 | 2880×1440 | P2 | Faltantes |
 | `resonario-kind-banner-frequency.avif` | Resonario · tipo de escucha · Frecuencias y tonos | 16:8 | 2880×1440 | P2 | Faltantes |
@@ -223,26 +223,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (5)
+### 5.2 Faltantes (4)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `resonario.celtic` — Resonario · música de inspiración celta · P1
-
-- **Qué falta:** Llegó una imagen de 7/10, descartada (copia en `.editorial-trials/`): contenido muy fiel, pero la zona de texto tenía el detalle más alto de las atmósferas (4× una zona calma, por la textura de musgo) y haces de luz que bajaban el marfil a 3,9:1 en el percentil 90; además la parte alta del arpa quedaba en el 18 % en vez del 25 %. El prompt ahora pide una pared lisa en sombra pareja y sin haces de luz.
-- **Archivo:** `resonario-celtic.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 66% 50%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** La pieza celta, con su texto editorial («una invitación a bajar el ritmo»): un arpa junto a una ventana sobre colinas verdes en la bruma.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A Celtic lever harp of dark polished wood with fine carved knotwork on its pillar and gut strings, resting against a smooth pale stone window sill with only a little moss at its edge, in soft early morning light, beyond the window soft green hills and a quiet misty coast under pale light, a small bunch of green fern in a stone jar beside the harp, no hands and no people. The harp between 58% and 82% of the frame width and its top at 25% from the top (not higher), the window view behind it, the left 40% of the frame is a plain stone wall in even deep shade, a dark olive-grey in low light, with only a very faint low-contrast mottling and no visible moss texture, no shafts of light, no haze streaks and no bright patch, calm, low in detail and dark enough for ivory text to stay readable on it. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `resonario.kind-banner.* · Naturaleza` — Resonario · tipo de escucha · P2
 
@@ -322,7 +305,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (75)
+### 5.5 Completadas (76)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -401,6 +384,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `atmosphere-study.avif` | Atmósfera · Estudio (academia) | `atmosphere.study` | 16:9 | P1 |
 | `atmosphere-gathering.avif` | Atmósfera · Encuentro (experiencias) | `atmosphere.gathering` | 16:9 | P1 |
 | `atmosphere-marisol.avif` | Atmósfera · Luz de Marisol (sobre Marisol) | `atmosphere.marisol` | 16:9 | P1 |
+| `resonario-celtic.avif` | Resonario · música de inspiración celta | `resonario.celtic` | 16:9 | P1 |
 | `resonario-kind-banner-melody.avif` | Resonario · tipo de escucha · Melodías instrumentales | `resonario.kind-banner.*` | 16:8 | P2 |
 | `og-image.jpg` | Metadatos · Open Graph | `og-image` | 1.91:1 | P0 |
 
