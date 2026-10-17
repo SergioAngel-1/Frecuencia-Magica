@@ -58,6 +58,7 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
+  'atmosphere-gathering.avif': 'Llegó una imagen de 7,5/10, descartada (copia en `.editorial-trials/`): el círculo ocupaba del 25 % al 100 % del ancho, un cojín entraba en el 40 % izquierdo, sólo se veía una taza y la pared de la zona de texto quedaba en tono medio (marfil 3,0:1, tinta 3,9:1 en sombra). El prompt ahora pide una pared oscura y el círculo dentro de 42–92 %.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
