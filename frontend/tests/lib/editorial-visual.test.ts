@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { bandForPhotoTreatment } from '@/config/bands';
+import { bandForPhotoTreatment, tintForPhotoTreatment } from '@/config/bands';
+import { getRealm } from '@/config/realms';
 import {
   EDITORIAL_MEDIA_REGISTRY,
   EDITORIAL_MEDIA_SLOTS,
@@ -131,6 +132,13 @@ describe('natural photo treatment', () => {
 
   it('still tints the accent treatments', () => {
     expect(bandForPhotoTreatment('warm')).toEqual(expect.stringContaining('--halo'));
+  });
+
+  it('drops the accent veil of the store hero, and only of natural realms', () => {
+    expect(tintForPhotoTreatment('natural')).toBe(false);
+    expect(tintForPhotoTreatment('warm')).toBe(true);
+    expect(tintForPhotoTreatment(getRealm('tienda').photoTreatment)).toBe(false);
+    expect(tintForPhotoTreatment(getRealm('resonario').photoTreatment)).toBe(true);
   });
 });
 

@@ -19,6 +19,8 @@ export interface RealmHeroProps {
   action?: ReactNode;
   /** Esquema del velo: `light` cuando el héroe vive en una atmósfera clara. */
   scrimTone?: EditorialScrimTone;
+  /** Velo tintado de acento. `false` para un tratamiento `natural` (ver `tintForPhotoTreatment`). */
+  tint?: boolean;
   className?: string;
 }
 
@@ -34,6 +36,7 @@ export function RealmHero({
   description,
   action,
   scrimTone,
+  tint,
   className,
 }: RealmHeroProps) {
   const heading = (
@@ -60,6 +63,7 @@ export function RealmHero({
       className={cn(REALM_HERO_HEIGHT, className)}
       contentClassName="flex items-center"
       scrimTone={scrimTone}
+      tint={tint}
     >
       <div className="fm-container flex w-full flex-col py-20">
         {action ? (

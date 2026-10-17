@@ -8,6 +8,8 @@ import {
 } from '@/components/features/store/product-grid';
 import { PageShell, RealmHero } from '@/components/layout';
 import { ATMOSPHERES } from '@/config/atmospheres';
+import { tintForPhotoTreatment } from '@/config/bands';
+import { getRealm } from '@/config/realms';
 import { scrimToneFor } from '@/lib/atmosphere/painting';
 import { ArrowGlyph, arrowLinkClasses, EditorialBanner } from '@/components/ui';
 import { PRODUCTS } from '@/data';
@@ -67,6 +69,7 @@ export default async function StorePage({ params }: PageProps) {
         description={t('description')}
         action={<CartButton className="mt-1 shrink-0" />}
         scrimTone={scrimToneFor(ATMOSPHERES.store.scheme)}
+        tint={tintForPhotoTreatment(getRealm('tienda').photoTreatment)}
       />
 
       <div className="fm-editorial-full-bleed fm-container pt-block pb-section">

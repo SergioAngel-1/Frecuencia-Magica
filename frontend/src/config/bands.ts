@@ -35,3 +35,11 @@ export function bandForPhotoTreatment(treatment: PhotoTreatment): string | null 
 
   return key ? BANDS[key] : null;
 }
+
+/**
+ * Si la fotografía del realm lleva el velo tintado de acento (`tint` de
+ * `FullBleedSection`). El tratamiento `natural` no tiñe: la foto conserva su luz.
+ */
+export function tintForPhotoTreatment(treatment: PhotoTreatment): boolean {
+  return bandForPhotoTreatment(treatment) !== null;
+}
