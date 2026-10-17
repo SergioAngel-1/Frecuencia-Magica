@@ -58,7 +58,7 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
-  'atmosphere-store.avif': 'Llegó con este nombre un atardecer marino (la escena de `atmosphere-dusk`): 1/10 contra este prompt, descartada (copia en `.editorial-trials/`). Se endureció el prompt: escena interior, sin mar ni paisaje.',
+  'atmosphere-dusk.avif': 'Llegó una imagen subida como `atmosphere-store` que era esta escena: 7/10, descartada (copia en `.editorial-trials/`): horizonte al 43 % en vez de 54 % y cielo naranja rojizo saturado. El prompt ahora fija el horizonte y apaga el cielo.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
@@ -112,6 +112,7 @@ export const COMPLETED = [
   'booking-hero.avif',
   'home-footer-banner.avif',
   'sanctuary-journal.avif',
+  'atmosphere-dawn.avif',
   'home-membership.avif',
   'academy-course-cover-c1.avif',
   'academy-course-cover-c2.avif',

@@ -8,7 +8,7 @@
 
 **81 imágenes** (58 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 56 · P2 21. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 65 completadas · 0 a corregir · 15 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 66 completadas · 0 a corregir · 14 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -195,7 +195,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `states-error.avif` | Estados · error | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-offline.avif` | Estados · sin conexión | 16:9 | 2880×1620 | P2 | Completadas |
 | `atmosphere-dusk.avif` | Atmósfera · Atardecer (descanso) | 16:9 | 2880×1620 | P1 | Faltantes |
-| `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | 16:9 | 2880×1620 | P1 | Faltantes |
+| `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-store.avif` | Atmósfera · Taller (tienda) | 16:9 | 2880×1620 | P1 | Faltantes |
 | `atmosphere-moon.avif` | Atmósfera · Luna (escucha nocturna) | 16:9 | 2880×1620 | P1 | Faltantes |
 | `atmosphere-forest.avif` | Atmósfera · Bosque (raíz y agua) | 16:9 | 2880×1620 | P1 | Faltantes |
@@ -223,12 +223,13 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (15)
+### 5.2 Faltantes (14)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
 #### `atmosphere.dusk` — Atmósfera · Atardecer (descanso) · P1
 
+- **Qué falta:** Llegó una imagen subida como `atmosphere-store` que era esta escena: 7/10, descartada (copia en `.editorial-trials/`): horizonte al 43 % en vez de 54 % y cielo naranja rojizo saturado. El prompt ahora fija el horizonte y apaga el cielo.
 - **Archivo:** `atmosphere-dusk.avif`
 - **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
 - **Ratio / focal:** 16:9 · foco 62% 50%
@@ -243,25 +244,8 @@ Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota
 A calm sea at dusk seen from a low shoreline: the sun almost completely hidden, only a thin sliver of its upper rim visible above the horizon, the sky a muted, slightly desaturated gradient of dusky rose, terracotta and soft amber, more rose and brown than orange, with a few thin horizontal bands of cloud lit warm from below, a broad soft band of pale amber and dusty rose reflection spreading over the gently moving water toward the viewer, fine small ripples and slow low waves, never an intense red and never a dazzling glare, a dark smooth strip of wet sand with two small rocks along the bottom edge at the right. Horizon at 54% from the top (the sky takes the upper 54% of the frame and the sea and shore the lower 46%, never a higher horizon), the sun and its reflection entirely inside the band between 60% and 85% of the frame width and its center at 72% horizontal, the left 40% of the frame is open calm sea and soft sky in quiet low-contrast tones, with no rocks, clouds or reflections there. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
 ```
 
-#### `atmosphere.dawn` — Atmósfera · Amanecer (calma de día) · P1
-
-- **Archivo:** `atmosphere-dawn.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 58% 50%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Muestra 2 · Calma durante el día: luminoso y abierto, con azul cielo, marfil y dorado tenue. Un amanecer sobre un lago, con el horizonte despejado y luz suave. Es una escena clara.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A calm lake at sunrise seen from a low shore: a perfectly clear horizon, the sun just risen as a soft pale-gold glow low behind the horizon with no hard sun disc, a luminous open sky of soft sky blue fading to ivory with a faint pale gold near the horizon, a few thin high clouds, the lake like a mirror with long gentle ripples reflecting the pale sky, a distant low line of hills in faint blue haze on the far shore, spacious and airy. Horizon at 50% from the top, the glow and its reflection inside the band between 50% and 80% of the frame width, the left 40% of the frame is open calm sky and still water in quiet low-contrast tones. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
 #### `atmosphere.store` — Atmósfera · Taller (tienda) · P1
 
-- **Qué falta:** Llegó con este nombre un atardecer marino (la escena de `atmosphere-dusk`): 1/10 contra este prompt, descartada (copia en `.editorial-trials/`). Se endureció el prompt: escena interior, sin mar ni paisaje.
 - **Archivo:** `atmosphere-store.avif`
 - **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
 - **Ratio / focal:** 16:9 · foco 60% 55%
@@ -482,7 +466,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (65)
+### 5.5 Completadas (66)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -552,6 +536,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `states-empty.avif` | Estados · vacío | `states.empty` | 16:9 | P2 |
 | `states-error.avif` | Estados · error | `states.error` | 16:9 | P2 |
 | `states-offline.avif` | Estados · sin conexión | `states.offline` | 16:9 | P2 |
+| `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | `atmosphere.dawn` | 16:9 | P1 |
 | `og-image.jpg` | Metadatos · Open Graph | `og-image` | 1.91:1 | P0 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (23)
