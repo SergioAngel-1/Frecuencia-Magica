@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { PLACE_ATMOSPHERE } from '@/config/atmospheres';
+import type { AtmosphereId } from '@/types/atmosphere';
 import { resolveAtmosphere, suggestNightAlternative } from '@/lib/atmosphere/resolve';
 import { placeFromPathname, realmFromPathname } from '@/lib/realm-from-pathname';
 
@@ -70,5 +71,41 @@ describe('suggestNightAlternative', () => {
     expect(suggestNightAlternative(23)).toBe(true);
     expect(suggestNightAlternative(4)).toBe(true);
     expect(suggestNightAlternative(5)).toBe(false);
+  });
+});
+
+/**
+ * Cada vista de un lugar con identidad propia (ambientes v2, R11) hereda su
+ * atmósfera desde la ruta, en español y en inglés, con y sin el segmento de
+ * detalle. La elección manual no llega aquí: estos lugares no son de escucha.
+ */
+describe('la ruta fija la atmósfera de cada lugar con identidad propia', () => {
+  it.each([
+    ['/academia', 'study'],
+    ['/academia/c1', 'study'],
+    ['/academia/c1/3', 'study'],
+    ['/en/academy', 'study'],
+    ['/en/academy/c1/3', 'study'],
+    ['/experiencias', 'gathering'],
+    ['/experiencias/e1/reservar', 'gathering'],
+    ['/en/experiences', 'gathering'],
+    ['/en/experiences/e1/book', 'gathering'],
+    ['/sobre-marisol', 'marisol'],
+    ['/en/about-marisol', 'marisol'],
+  ])('%s resuelve a %s', (pathname, atmosphere) => {
+    expect(resolveAtmosphere(placeFromPathname(pathname))).toBe(atmosphere);
+  });
+});
+
+describe('la elección manual llega a los lugares de escucha, en ES y EN', () => {
+  it.each<[string, AtmosphereId]>([
+    ['/resonario', 'forest'],
+    ['/en/resonarium', 'forest'],
+    ['/descubrete', 'forest'],
+    ['/en/discover', 'forest'],
+    ['/mi-santuario', 'forest'],
+    ['/en/my-sanctuary', 'forest'],
+  ])('%s toma la elección manual %s', (pathname, manual) => {
+    expect(resolveAtmosphere(placeFromPathname(pathname), manual)).toBe(manual);
   });
 });

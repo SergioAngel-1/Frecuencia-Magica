@@ -233,7 +233,7 @@
     },
     "media": {
       "alt": {
-        "hero": "The space where Marisol listens and accompanies",
+        "hero": "A bright, personal corner in morning light",
         "portrait": "Portrait of Marisol beside the light of a window",
         "angels": "A soft light descending through the dusk"
       }
@@ -576,7 +576,7 @@
     },
     "media": {
       "alt": {
-        "hero": "Frecuencia Mágica's academy of practices",
+        "hero": "A reading corner by a window, in morning light",
         "featured": "{title}: Frecuencia Mágica featured course",
         "courseCover": "{title}: a scene from the practice",
         "lesson": "Practice for lesson {title}",
@@ -648,7 +648,7 @@
     "durationLabel": "Duration",
     "media": {
       "alt": {
-        "hero": "The experiences awaiting you",
+        "hero": "A warm space ready to share a gathering",
         "featured": "{title}: featured experience",
         "row": "{title}: atmosphere of the experience"
       }

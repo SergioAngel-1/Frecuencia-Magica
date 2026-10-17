@@ -24,7 +24,7 @@ const ALL_PLACES: Place[] = [
 describe('eligibleAtmospheres', () => {
   it('sale de config, en su orden', () => {
     expect(eligibleAtmospheres()).toEqual(PICKER_ATMOSPHERES);
-    expect(eligibleAtmospheres()).toEqual(['dusk', 'dawn', 'moon']);
+    expect(eligibleAtmospheres()).toEqual(['dusk', 'dawn', 'moon', 'forest']);
   });
 
   it('sólo ofrece ids de atmósfera válidos, sin repetir', () => {

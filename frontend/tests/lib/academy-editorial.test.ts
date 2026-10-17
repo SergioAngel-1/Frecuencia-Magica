@@ -26,7 +26,7 @@ const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/academia/(catalogo)/loading.tsx');
 
 const ACADEMY_SLOTS = [
-  { slot: 'academy.hero' as const, aspect: '16:9' as const, alt: 'hero' },
+  { slot: 'atmosphere.study' as const, aspect: '16:9' as const, alt: 'hero' },
   { slot: 'academy.featured-course' as const, aspect: '16:8' as const, alt: 'featured' },
   { slot: 'academy-course-cover' as const, aspect: '16:8' as const, alt: 'courseCover' },
   { slot: 'academy-lesson-visual' as const, aspect: '16:8' as const, alt: 'lesson' },
@@ -64,7 +64,7 @@ describe('academy editorial composition contracts', () => {
   it('composes a localized full-width hero and passes editorial media into the course archive', () => {
     expect(pageSource).toContain('const locale = await resolveLocale(params);');
     expect(pageSource).toContain("getTranslations({ locale, namespace: 'academy' })");
-    expect(pageSource).toContain("resolveEditorialMedia('academy.hero'");
+    expect(pageSource).toContain("resolveEditorialMedia('atmosphere.study'");
     expect(pageSource).toContain("resolveEditorialMedia('academy.featured-course'");
     expect(pageSource).toContain("resolveEditorialMedia('academy-course-cover'");
     expect(pageSource).toContain('<RealmHero');

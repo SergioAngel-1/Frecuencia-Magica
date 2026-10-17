@@ -233,7 +233,7 @@
     },
     "media": {
       "alt": {
-        "hero": "El espacio donde Marisol escucha y acompaña",
+        "hero": "Un rincón luminoso y personal con luz de mañana",
         "portrait": "Retrato de Marisol junto a la luz de una ventana",
         "angels": "Una luz suave que desciende en la penumbra"
       }
@@ -581,7 +581,7 @@
     },
     "media": {
       "alt": {
-        "hero": "La academia de prácticas de Frecuencia Mágica",
+        "hero": "Un rincón de lectura junto a una ventana, con luz de mañana",
         "featured": "{title}: curso destacado de Frecuencia Mágica",
         "courseCover": "{title}: escena de la práctica",
         "lesson": "Práctica de la lección {title}",
@@ -653,7 +653,7 @@
     "durationLabel": "Duración",
     "media": {
       "alt": {
-        "hero": "Las experiencias que te esperan",
+        "hero": "Un espacio cálido preparado para compartir un encuentro",
         "featured": "{title}: experiencia destacada",
         "row": "{title}: atmósfera de la vivencia"
       }
