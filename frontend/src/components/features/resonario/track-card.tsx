@@ -64,11 +64,16 @@ export function TrackCard({ audio, cover, badge }: TrackCardProps) {
         </p>
       </div>
 
-      <TrackGuide
-        composition={t(`audios.${audio.id}.composition` as 'audios.a1.composition')}
-        guide={t(`audios.${audio.id}.guide` as 'audios.a1.guide')}
-        headphones={audio.headphones}
-      />
+      {/* Qué suena y el aviso de auriculares se ven antes de reproducir; la guía, plegada. */}
+      <div className="text-fg-body text-body flex flex-col gap-1 font-light">
+        <span className="text-fg-meta text-label tracking-caps font-sans uppercase">
+          {t('guide.composition')}
+        </span>
+        <span>{t(`audios.${audio.id}.composition` as 'audios.a1.composition')}</span>
+        {audio.headphones ? <span>{t('guide.headphones')}</span> : null}
+      </div>
+
+      <TrackGuide guide={t(`audios.${audio.id}.guide` as 'audios.a1.guide')} />
 
       {ready ? (
         <div className="flex flex-wrap gap-3">

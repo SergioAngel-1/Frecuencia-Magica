@@ -121,6 +121,21 @@ describe('resonario por tipo de escucha', () => {
     expect(pageSource).toContain('<ResonarioSystem media={resonarioMedia}');
   });
 
+  it('qué suena y el aviso de auriculares se ven siempre en la tarjeta, antes de la guía plegada', () => {
+    const guideSource = readSource('components/features/resonario/track-guide.tsx');
+
+    expect(trackCardSource.indexOf("t('guide.composition')")).toBeGreaterThan(-1);
+    expect(trackCardSource.indexOf("t('guide.composition')")).toBeLessThan(
+      trackCardSource.indexOf('<TrackGuide'),
+    );
+    expect(trackCardSource).toContain(
+      "{audio.headphones ? <span>{t('guide.headphones')}</span> : null}",
+    );
+    // La guía plegada sólo lleva postura y momento.
+    expect(guideSource).not.toContain('guide.composition');
+    expect(guideSource).not.toContain('guide.headphones');
+  });
+
   it('una pista sin material se lista como «Próximamente», sin controles de play', () => {
     expect(trackCardSource).toContain('const ready = isPlayable(audio);');
     expect(trackCardSource).toContain("<Badge>{t('soon')}</Badge>");

@@ -6,19 +6,16 @@ import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/cn';
 
 type TrackGuideProps = {
-  /** Qué suena, ya traducido. */
-  composition: string;
   /** Postura y para qué momento sirve, ya traducido. */
   guide: string;
-  /** Pide auriculares estéreo. */
-  headphones: boolean;
 };
 
 /**
- * La guía de escucha de una pista: composición, auriculares y postura. Se
- * abre antes de reproducir. El panel se pliega con la fila de rejilla 0fr→1fr.
+ * La guía de escucha de una pista: postura y para qué momento sirve. Se abre
+ * antes de reproducir. La composición y el aviso de auriculares van siempre en
+ * la tarjeta. El panel se pliega con la fila de rejilla 0fr→1fr.
  */
-export function TrackGuide({ composition, guide, headphones }: TrackGuideProps) {
+export function TrackGuide({ guide }: TrackGuideProps) {
   const t = useTranslations('resonario');
   const [open, setOpen] = useState(false);
   const panelId = useId();
@@ -44,13 +41,6 @@ export function TrackGuide({ composition, guide, headphones }: TrackGuideProps) 
       >
         <div className="overflow-hidden">
           <div className="text-fg-body text-body flex flex-col gap-3 pt-3 font-light">
-            <p>
-              <span className="text-fg-meta text-label tracking-caps block font-sans uppercase">
-                {t('guide.composition')}
-              </span>
-              {composition}
-            </p>
-            {headphones ? <p>{t('guide.headphones')}</p> : null}
             <p>{guide}</p>
           </div>
         </div>
