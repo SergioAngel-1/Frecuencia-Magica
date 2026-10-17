@@ -218,7 +218,13 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
       entry = now + FADE_OUT_SECONDS;
     }
 
-    const graph = createTrackGraph(context, track, masterNode, random);
+    const graph = createTrackGraph(
+      context,
+      track,
+      masterNode,
+      random,
+      options.preview !== undefined,
+    );
     const gain = graph.output.gain;
     gain.setValueAtTime(0, now);
     gain.setValueAtTime(0, entry);

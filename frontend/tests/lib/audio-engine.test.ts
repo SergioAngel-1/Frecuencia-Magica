@@ -297,3 +297,69 @@ describe('vigilancia del contexto y cobertura del motor', () => {
     expect(ctx.stateListenerCount).toBe(0);
   });
 });
+
+/** Un `<audio>` simulado: registra su origen y cuántas veces se pausa o reproduce. */
+class FakeMediaElement {
+  static instances: FakeMediaElement[] = [];
+  preload = '';
+  currentTime = 0;
+  played = 0;
+  paused = 0;
+
+  constructor(readonly src: string) {
+    FakeMediaElement.instances.push(this);
+  }
+
+  play(): Promise<void> {
+    this.played += 1;
+    return Promise.resolve();
+  }
+
+  pause(): void {
+    this.paused += 1;
+  }
+}
+
+describe('fuente de archivo', () => {
+  const FILE: EngineTrack = {
+    id: 'f1',
+    source: { type: 'file', src: '/audio/full.mp3', sampleSrc: '/audio/sample.mp3' },
+    durationSeconds: 600,
+  };
+
+  beforeEach(() => {
+    vi.useFakeTimers();
+    FakeMediaElement.instances = [];
+    vi.stubGlobal('Audio', FakeMediaElement);
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.useRealTimers();
+  });
+
+  it('la muestra usa sampleSrc y la pista completa usa su archivo', () => {
+    const { engine } = setup();
+
+    engine.play(FILE, { preview: 25 });
+    expect(FakeMediaElement.instances.at(-1)?.src).toBe('/audio/sample.mp3');
+
+    engine.stop();
+    engine.play(FILE);
+    expect(FakeMediaElement.instances.at(-1)?.src).toBe('/audio/full.mp3');
+    engine.dispose();
+  });
+
+  it('parar un archivo respeta el fundido: el elemento se pausa al terminar la rampa, no antes', () => {
+    const { engine } = setup();
+    engine.play(FILE);
+    const element = FakeMediaElement.instances.at(-1)!;
+
+    engine.stop();
+    expect(element.paused).toBe(0);
+
+    vi.advanceTimersByTime(500);
+    expect(element.paused).toBeGreaterThan(0);
+    engine.dispose();
+  });
+});

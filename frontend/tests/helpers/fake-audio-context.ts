@@ -222,6 +222,11 @@ export class FakeAudioContext {
     return node;
   }
 
+  /** Un elemento `<audio>` enrutado: sólo se conecta a la salida de la pista. */
+  createMediaElementSource(_element: unknown): FakeAudioNode {
+    return new FakeAudioNode();
+  }
+
   createBuffer(_channels: number, length: number, _sampleRate: number): FakeAudioBuffer {
     return new FakeAudioBuffer(length);
   }

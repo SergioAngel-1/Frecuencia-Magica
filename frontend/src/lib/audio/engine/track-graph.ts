@@ -22,12 +22,14 @@ const NOTHING = () => undefined;
 /**
  * Construye el grafo de una pista y lo conecta al maestro. Muda hasta que el
  * motor le suba la ganancia: una pista nunca suena antes de su fundido.
+ * `preview` elige la muestra del archivo (`sampleSrc`) cuando la pista la tiene.
  */
 export function createTrackGraph(
   ctx: AudioContext,
   track: EngineTrack,
   master: AudioNode,
   random: RandomSource,
+  preview = false,
 ): TrackGraph {
   const output = ctx.createGain();
   output.gain.value = 0;
@@ -46,7 +48,8 @@ export function createTrackGraph(
     };
   }
 
-  const file = createFileSource(ctx, track.source.src, output);
+  const { src, sampleSrc } = track.source;
+  const file = createFileSource(ctx, preview && sampleSrc ? sampleSrc : src, output);
   return {
     output,
     start: file.start,
@@ -54,6 +57,6 @@ export function createTrackGraph(
     resume: file.resume,
     seek: file.seek,
     position: () => file.position(),
-    stop: () => file.stop(),
+    stop: (when) => file.stop(when),
   };
 }
