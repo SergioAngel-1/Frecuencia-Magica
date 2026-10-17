@@ -59,11 +59,6 @@ const ALLOWED: Record<string, string> = {
   'globals.css :: .fm-portal-ripple': 'portal: onda que se adelanta al iris (decorativo)',
   'globals.css :: .fm-portal-light': 'portal: punto de luz del cruce (decorativo)',
 
-  // Halo de las cifras de la esfera en esquema claro: tinta decorativa para que el marfil
-  // se lea sobre portadas pálidas. Sin token semántico de sombra; la noche no lo pinta.
-  "globals.css :: [data-scheme='light'] .fm-disc-num, [data-scheme='light'] .fm-disc-unit":
-    'halo de tinta bajo las cifras de la esfera en claro (decorativo, sin token de sombra)',
-
   // Barras de desplazamiento: la identidad de la barra (pista noche, pulgar espectro).
   'tokens.css :: ::-webkit-scrollbar-track':
     'pista de la barra: noche fija, sin token equivalente (decisión abierta, claras pendientes)',

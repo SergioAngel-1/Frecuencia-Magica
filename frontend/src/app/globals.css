@@ -367,9 +367,15 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   );
 }
 
-/* Halo bajo las cifras de la esfera en esquema claro: el marfil se lee sobre las portadas
-   pálidas. En la noche no se pinta (la noche queda como estaba). */
-[data-scheme='light'] .fm-disc-num,
-[data-scheme='light'] .fm-disc-unit {
-  text-shadow: 0 0 10px color-mix(in srgb, var(--color-ink) 85%, transparent);
+/* Cifra de la esfera en esquema claro: sobre una píldora de tinta a 72 %, para que el
+   marfil llegue a 4,5:1 aunque la portada detrás sea blanca (ver tests/lib/light-contrast). */
+[data-scheme='light'] .fm-disc-face {
+  background-color: color-mix(in srgb, var(--color-fg) 72%, transparent);
+  border-radius: 999px;
+  padding: 0.3em 0.9em 0.35em;
+}
+
+/* Kicker de un banner con foto en esquema claro: tinta sobre el velo claro (no dorado). */
+[data-scheme='light'] .fm-kicker-veiled {
+  color: var(--color-fg);
 }

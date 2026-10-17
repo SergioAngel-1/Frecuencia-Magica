@@ -268,16 +268,19 @@ export function FrequencyDisc({
               spec.play ? 'top-[36%] -translate-y-1/2' : 'top-1/2 -translate-y-1/2',
             )}
           >
-            {/* Marfil fijo sobre la cara: la portada es oscura en cualquier atmósfera. */}
-            <span
-              className={cn('fm-disc-num text-on-media block font-serif leading-none', spec.hz)}
-            >
-              {hz}
-            </span>
-            <span
-              className={cn('fm-disc-unit text-on-media/80 block font-sans uppercase', spec.unit)}
-            >
-              Hz
+            {/* Marfil fijo sobre la cara. En claro, la cifra va sobre una píldora de tinta
+                (`.fm-disc-face` en globals.css); en la noche no hay píldora. */}
+            <span className="fm-disc-face inline-flex flex-col items-center">
+              <span
+                className={cn('fm-disc-num text-on-media block font-serif leading-none', spec.hz)}
+              >
+                {hz}
+              </span>
+              <span
+                className={cn('fm-disc-unit text-on-media/80 block font-sans uppercase', spec.unit)}
+              >
+                Hz
+              </span>
             </span>
           </div>
 

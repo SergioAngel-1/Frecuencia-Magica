@@ -107,7 +107,11 @@ export function EditorialBanner({
           ALIGN_CLASSES[align],
         )}
       >
-        <Kicker tone={KICKER_TONES[tone]} spacing="wide">
+        <Kicker
+          tone={KICKER_TONES[tone]}
+          spacing="wide"
+          className={framed ? 'fm-kicker-veiled' : undefined}
+        >
           {eyebrow}
         </Kicker>
         <Display level="h2" size={framed ? 'lg' : 'md'} className="max-w-4xl">
