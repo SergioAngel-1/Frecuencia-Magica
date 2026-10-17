@@ -114,7 +114,7 @@ export function Modal({
             <Mdiv
               aria-hidden="true"
               onClick={onClose}
-              className="bg-void-2/72 absolute inset-0 backdrop-blur-[10px]"
+              className="bg-scrim-deep/72 absolute inset-0 backdrop-blur-[10px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { duration: enter, ease: EASE.soft } }}
               exit={{ opacity: 0, transition: { duration: exit, ease: EASE.soft } }}

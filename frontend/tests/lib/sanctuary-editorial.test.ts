@@ -158,7 +158,7 @@ describe('sanctuary editorial composition contracts', () => {
     );
     expect(field).toContain('<div aria-hidden="true" className="absolute inset-0 -z-10">');
     expect(field).toContain('media={media.journal}');
-    expect(field).toContain('bg-void-2/60');
+    expect(field).toContain('bg-scrim-deep/60');
     expect(field).toContain('<Textarea');
     expect(field).toContain("withPage && 'bg-transparent'");
     expect(journalSource).not.toContain('aspect-[16/8]');

@@ -97,7 +97,7 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
                 overlay={false}
                 scrim={false}
               />
-              <div className="bg-void-2/60 absolute inset-0" />
+              <div className="bg-scrim-deep/60 absolute inset-0" />
             </div>
           ) : null}
           <Textarea

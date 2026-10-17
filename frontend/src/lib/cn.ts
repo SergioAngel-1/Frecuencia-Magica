@@ -31,7 +31,7 @@ const twMerge = extendTailwindMerge({
         },
       ],
       'border-color': [{ border: ['line', 'line-strong'] }],
-      'bg-color': [{ bg: ['surface', 'surface-strong', 'scrim', 'halo'] }],
+      'bg-color': [{ bg: ['surface', 'surface-strong', 'scrim', 'scrim-deep', 'halo'] }],
       tracking: [{ tracking: ['soft', 'ui', 'label', 'caps', 'kicker', 'eyebrow'] }],
       shadow: [{ shadow: ['glow-gold', 'glow-teal', 'glow-lav', 'glow-card'] }],
       // Capas con nombre de `globals.css`.

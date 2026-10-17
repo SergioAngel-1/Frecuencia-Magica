@@ -136,17 +136,16 @@ const ALLOWED: Record<string, string> = {
   'components/features/home/realm-card.tsx':
     'aros orbitales de la card (decorativo) y peldaño void-2 del fundido (sin token)',
 
-  // El velo void-2 (#0a1220) no tiene token: `scrim` es #0f1b2e, y en la noche la
-  // diferencia no es cero, así que no se migra. Decisión abierta: migrarlo exige un token nuevo.
-  'components/ui/modal.tsx': 'velo void-2/72 sin token equivalente (decisión abierta)',
+  // Velos void-2 (#0a1220) que quedan. El modal y el diario ya leen `bg-scrim-deep` (en la noche
+  // vale void-2, en una atmósfera clara es el velo claro). Los de abajo no cambian con la
+  // atmósfera a propósito: el vídeo es un medio (su tinta es marfil sobre oscuro en todas), el
+  // acceso es siempre noche y el degradado de la card cae sobre foto con texto `on-media`.
   'components/features/player/video-player.tsx':
-    'fondo y velo void-2 del vídeo: sin token equivalente (decisión abierta, como modal)',
+    'fondo y velo void-2 del vídeo: superficie de medio, oscura en toda atmósfera (controles en marfil)',
   'components/ui/band.tsx':
     'base void-2 del degradado inferior de la card: sin token equivalente (decisión abierta)',
   'components/features/auth/auth-form.tsx':
     'velo void-2 del panel y peldaño void-2 del degradado: sin token equivalente (decisión abierta)',
-  'components/features/sanctuary/journal-panel.tsx':
-    'velo void-2/60 sobre la imagen: sin token equivalente (decisión abierta)',
 };
 
 describe('semantic color usage', () => {
