@@ -30,11 +30,11 @@ export function SiteHeader() {
           que pasa por debajo al hacer scroll. Sólo luz de fondo, sin borde. */}
       <div
         aria-hidden="true"
-        className="from-void/85 via-void/45 pointer-events-none absolute inset-x-0 top-0 -z-10 h-[150%] bg-gradient-to-b to-transparent"
+        className="from-scrim/85 via-scrim/45 pointer-events-none absolute inset-x-0 top-0 -z-10 h-[150%] bg-gradient-to-b to-transparent"
       />
       <a
         href="#contenido"
-        className="text-ivory rounded-pill border-glass-brd bg-void/92 text-meta tracking-ui pointer-events-auto sr-only px-5 py-3 font-sans focus-visible:not-sr-only focus-visible:absolute focus-visible:top-4 focus-visible:left-5 focus-visible:border"
+        className="text-fg rounded-pill border-line bg-scrim/92 text-meta tracking-ui pointer-events-auto sr-only px-5 py-3 font-sans focus-visible:not-sr-only focus-visible:absolute focus-visible:top-4 focus-visible:left-5 focus-visible:border"
       >
         {t('skipToContent')}
       </a>

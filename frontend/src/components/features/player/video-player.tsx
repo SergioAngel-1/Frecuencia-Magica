@@ -179,7 +179,7 @@ export function VideoPlayer({ src, duration, poster, labels, className }: VideoP
       >
         <span
           className={cn(
-            'border-gold/60 bg-void/45 text-ivory flex size-14 items-center justify-center rounded-full border backdrop-blur-[6px] transition-[opacity,transform] duration-500 sm:size-[72px]',
+            'border-accent/60 bg-scrim/45 text-fg flex size-14 items-center justify-center rounded-full border backdrop-blur-[6px] transition-[opacity,transform] duration-500 sm:size-[72px]',
             playing ? 'scale-90 opacity-0' : 'scale-100 opacity-100',
           )}
         >

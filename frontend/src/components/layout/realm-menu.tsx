@@ -97,14 +97,14 @@ export function RealmMenu() {
         <nav aria-label={t('label')}>
           <ul className="px-3 py-2">
             {entries.map(({ id, href, accent, active, name, emotion }) => (
-              <li key={id} className="border-ivory/8 border-b last:border-b-0">
+              <li key={id} className="border-fg/8 border-b last:border-b-0">
                 <Link
                   href={href as '/resonario'}
                   aria-current={active ? 'page' : undefined}
                   onClick={closeMenu}
                   className={cn(
                     'group rounded-field flex min-h-[60px] items-center gap-4 px-3 transition-colors duration-300',
-                    active ? 'text-ivory' : 'text-fg-body hover:text-ivory',
+                    active ? 'text-fg' : 'text-fg-body hover:text-fg',
                   )}
                 >
                   <span

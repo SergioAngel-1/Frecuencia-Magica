@@ -31,7 +31,7 @@ const COLUMNS = [
 
 /** Enlace de columna: serif, 44px de alto y el mismo hover en las tres columnas. */
 const LINK_CLASSES =
-  'text-fg-soft hover:text-ivory text-lead inline-flex min-h-11 items-center font-serif transition-colors duration-300';
+  'text-fg-soft hover:text-fg text-lead inline-flex min-h-11 items-center font-serif transition-colors duration-300';
 
 export function SiteFooter() {
   const { realmId } = useRealm();
@@ -50,7 +50,7 @@ export function SiteFooter() {
     >
       {/* `data-footer-lead`: si la vista termina en una `BandChain intoFooter`,
           `globals.css` anula este hueco y el banner continúa la cadena. */}
-      <div className="border-ivory/10 pt-block border-t" data-footer-lead>
+      <div className="border-fg/10 pt-block border-t" data-footer-lead>
         {realmId === 'home' ? (
           <div className="mb-section">
             {/* Cierre distinto de la oferta de membresía de la home: la

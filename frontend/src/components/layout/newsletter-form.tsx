@@ -31,7 +31,7 @@ export function NewsletterForm() {
   return (
     <div>
       {sent ? (
-        <p className="text-teal text-lead max-w-[34ch] font-serif leading-[1.5] italic">
+        <p className="text-accent-2 text-lead max-w-[34ch] font-serif leading-[1.5] italic">
           {t('newsletterSuccess')}
         </p>
       ) : (
@@ -51,7 +51,7 @@ export function NewsletterForm() {
             type="submit"
             data-magnetic
             aria-label={t('newsletterSubmit')}
-            className="rounded-pill bg-gold text-meta tracking-soft text-ink min-h-11 px-[22px] font-sans font-medium transition-[background-color,box-shadow] duration-300 hover:shadow-[0_0_20px_rgba(216,185,120,0.35)]"
+            className="rounded-pill bg-accent text-meta tracking-soft text-on-accent min-h-11 px-[22px] font-sans font-medium transition-[background-color,box-shadow] duration-300 hover:shadow-[0_0_20px_rgb(var(--halo)_/_0.35)]"
           >
             →
           </button>

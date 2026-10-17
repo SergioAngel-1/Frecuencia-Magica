@@ -106,7 +106,7 @@ export function RealmNav() {
                   className="h-[6px] w-[6px] flex-none rounded-full"
                   style={{ background: accent, boxShadow: `0 0 8px 1px ${accent}` }}
                 />
-                <span className="text-ivory tracking-soft font-serif text-[16px]">{name}</span>
+                <span className="text-fg tracking-soft font-serif text-[16px]">{name}</span>
               </span>
             </Link>
           );
@@ -126,9 +126,9 @@ export function RealmNav() {
         >
           <span
             aria-hidden="true"
-            className="border-ivory/55 group-hover:border-gold group-focus-visible:border-gold flex size-[18px] flex-none items-center justify-center rounded-full border transition-[transform,border-color] duration-300 group-hover:scale-[1.15] group-focus-visible:scale-[1.15]"
+            className="border-fg/55 group-hover:border-accent group-focus-visible:border-accent flex size-[18px] flex-none items-center justify-center rounded-full border transition-[transform,border-color] duration-300 group-hover:scale-[1.15] group-focus-visible:scale-[1.15]"
           >
-            <span className="bg-gold size-[5px] rounded-full" />
+            <span className="bg-accent size-[5px] rounded-full" />
           </span>
           <span
             aria-hidden="true"

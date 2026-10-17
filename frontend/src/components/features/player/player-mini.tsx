@@ -27,10 +27,10 @@ export function PlayerMini({ hz, band, cover, progress, label, onExpand }: Playe
       data-magnetic
       aria-label={label}
       onClick={onExpand}
-      className="fm-surface-strong shadow-glow-card hover:border-gold/45 pointer-events-auto block size-14 rounded-full transition-colors duration-300"
+      className="fm-surface-strong shadow-glow-card hover:border-accent/45 pointer-events-auto block size-14 rounded-full transition-colors duration-300"
     >
       <PlayerOrb band={band} cover={cover} progress={progress} className="size-full">
-        <span className="text-ivory text-body font-serif leading-none">{hz}</span>
+        <span className="text-fg text-body font-serif leading-none">{hz}</span>
       </PlayerOrb>
     </button>
   );

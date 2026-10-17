@@ -61,7 +61,7 @@ describe('editorial shell contracts', () => {
   });
 
   it('keeps inactive realm names in the mobile menu above the contrast floor without stacked opacity', () => {
-    const inactive = REALM_MENU_SOURCE.match(/active \? 'text-ivory' : '([^']*)'/)?.[1];
+    const inactive = REALM_MENU_SOURCE.match(/active \? 'text-fg' : '([^']*)'/)?.[1];
 
     expect(inactive, 'inactive menu row').toBeDefined();
     expect(inactive).toContain('text-fg-body');

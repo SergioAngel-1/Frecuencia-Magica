@@ -32,7 +32,7 @@ export function PlayButton({
       aria-label={playing ? pauseLabel : playLabel}
       onClick={onToggle}
       className={cn(
-        'border-gold/55 bg-gold/12 text-ivory hover:bg-gold/20 hover:shadow-glow-gold flex size-11 shrink-0 items-center justify-center rounded-full border transition-[background-color,box-shadow] duration-300 sm:size-[52px]',
+        'border-line-strong bg-accent/12 text-fg hover:bg-accent/20 hover:shadow-glow-gold flex size-11 shrink-0 items-center justify-center rounded-full border transition-[background-color,box-shadow] duration-300 sm:size-[52px]',
         className,
       )}
     >
@@ -80,12 +80,9 @@ export function Timeline({ elapsed, total, onSeek, label, className }: TimelineP
 /** El avance como filo superior de la barra, donde no cabe la de posición. */
 export function EdgeProgress({ percent, className }: { percent: number; className?: string }) {
   return (
-    <div
-      aria-hidden="true"
-      className={cn('bg-ivory/10 absolute inset-x-0 top-0 h-[2px]', className)}
-    >
+    <div aria-hidden="true" className={cn('bg-fg/10 absolute inset-x-0 top-0 h-[2px]', className)}>
       <div
-        className="bg-gold h-full origin-left"
+        className="bg-accent h-full origin-left"
         style={{ transform: `scaleX(${percent / 100})` }}
       />
     </div>
@@ -165,7 +162,7 @@ export function PlayerBar({
 
       {title ? (
         <div className="min-w-0 flex-1 md:w-[210px] md:flex-none">
-          <p className="text-ivory text-lead truncate font-serif leading-tight">{title}</p>
+          <p className="text-fg text-lead truncate font-serif leading-tight">{title}</p>
           {meta ? (
             <p className="text-fg-meta text-meta tracking-ui truncate font-sans tabular-nums">
               {meta}

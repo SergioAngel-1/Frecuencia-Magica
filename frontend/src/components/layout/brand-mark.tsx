@@ -13,9 +13,10 @@ export function BrandMark({ label }: { label: string }) {
       href="/inicio"
       data-magnetic
       aria-label={label}
-      className="text-ivory pointer-events-auto flex min-h-11 items-center gap-[13px] hover:text-[color:var(--color-ivory)]"
+      className="text-fg hover:text-fg pointer-events-auto flex min-h-11 items-center gap-[13px]"
     >
-      {/* Quieto y con su círculo: en el header el isotipo es la firma completa. */}
+      {/* Quieto y con su círculo: en el header el isotipo es la firma completa.
+          El halo es decorativo y queda crudo a propósito (T0.7 decide su visibilidad). */}
       <Isotype
         spin={false}
         ringed
