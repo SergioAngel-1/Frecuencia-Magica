@@ -61,7 +61,7 @@ export function ArrivalSection() {
           <Kicker tone="teal" spacing="wide">
             {t('kicker')}
           </Kicker>
-          <Display level="h2" size="md" id="arrival-title" className="text-fg">
+          <Display level="h2" size="md" id="arrival-title">
             {t('title')}
           </Display>
           <p className="text-fg-soft text-body max-w-[52ch] leading-[1.8]">{t('intro')}</p>

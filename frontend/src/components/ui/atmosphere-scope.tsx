@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 
+import { cn } from '@/lib/cn';
 import type { AtmosphereId, AtmosphereScheme } from '@/types/atmosphere';
 
 interface AtmosphereScopeProps {
@@ -19,11 +20,14 @@ interface AtmosphereScopeProps {
  * `[data-atmosphere]` de `tokens.css` redefine la escalera de texto, los acentos
  * y el vidrio para todo lo que cuelga de este contenedor.
  *
+ * Fija `text-fg` (`color: var(--color-fg)`) en su contenedor: la tinta es la de la
+ * atmósfera de la sección y los hijos sin color propio, como un `Display`, la heredan.
+ *
  * Presentacional y sin estado. Sólo añade los atributos: no decide la atmósfera.
  */
 export function AtmosphereScope({ atmosphere, scheme, children, className }: AtmosphereScopeProps) {
   return (
-    <div data-atmosphere={atmosphere} data-scheme={scheme} className={className}>
+    <div data-atmosphere={atmosphere} data-scheme={scheme} className={cn('text-fg', className)}>
       {children}
     </div>
   );
