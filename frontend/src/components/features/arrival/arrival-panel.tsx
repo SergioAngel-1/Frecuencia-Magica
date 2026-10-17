@@ -1,10 +1,8 @@
 'use client';
 
-import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 
 import { Button, GlassPanel, Kicker, Swap } from '@/components/ui';
-import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { arrivalAnnouncement } from '@/lib/arrival/announce';
 import { currentAlternative, type ArrivalFlow } from '@/lib/arrival/flow';
 import type { AtmosphereId } from '@/types/atmosphere';
@@ -34,7 +32,6 @@ export function ArrivalPanel({ flow, atmosphere, onStep, onOther, onStop }: Arri
   const t = useTranslations('arrival');
   const tResonario = useTranslations('resonario');
   const tAtmospheres = useTranslations('atmospheres');
-  const reduced = useReducedMotionSafe();
 
   const response = flow.response;
   const audio = currentAlternative(flow);
@@ -61,12 +58,7 @@ export function ArrivalPanel({ flow, atmosphere, onStep, onOther, onStop }: Arri
 
       <ArrivalReveal open={Boolean(response)}>
         {response ? (
-          <motion.div
-            className="flex w-full justify-center pt-6"
-            initial={{ opacity: 0, y: reduced ? 0 : 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduced ? 0.2 : 0.6, ease: 'easeOut' }}
-          >
+          <div className="flex w-full justify-center pt-6">
             <GlassPanel className="w-full max-w-[640px] p-5 text-center sm:p-7">
               <Swap id={`explanation-${flow.key}`}>
                 <p className="text-fg-body text-lead leading-[1.7]">{t(response.explanationKey)}</p>
@@ -128,7 +120,7 @@ export function ArrivalPanel({ flow, atmosphere, onStep, onOther, onStop }: Arri
                 </div>
               </div>
             </GlassPanel>
-          </motion.div>
+          </div>
         ) : null}
       </ArrivalReveal>
     </div>
