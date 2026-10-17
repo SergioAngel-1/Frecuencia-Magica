@@ -8,7 +8,7 @@
 
 **81 imágenes** (58 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 56 · P2 21. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 73 completadas · 0 a corregir · 7 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 74 completadas · 0 a corregir · 6 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -204,7 +204,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `atmosphere-gathering.avif` | Atmósfera · Encuentro (experiencias) | 16:9 | 2880×1620 | P1 | Faltantes |
 | `atmosphere-marisol.avif` | Atmósfera · Luz de Marisol (sobre Marisol) | 16:9 | 2880×1620 | P1 | Completadas |
 | `resonario-celtic.avif` | Resonario · música de inspiración celta | 16:9 | 2880×1620 | P1 | Faltantes |
-| `resonario-kind-banner-melody.avif` | Resonario · tipo de escucha · Melodías instrumentales | 16:8 | 2880×1440 | P2 | Faltantes |
+| `resonario-kind-banner-melody.avif` | Resonario · tipo de escucha · Melodías instrumentales | 16:8 | 2880×1440 | P2 | Completadas |
 | `resonario-kind-banner-nature.avif` | Resonario · tipo de escucha · Naturaleza | 16:8 | 2880×1440 | P2 | Faltantes |
 | `resonario-kind-banner-frequency.avif` | Resonario · tipo de escucha · Frecuencias y tonos | 16:8 | 2880×1440 | P2 | Faltantes |
 | `resonario-kind-banner-binaural.avif` | Resonario · tipo de escucha · Binaurales | 16:8 | 2880×1440 | P2 | Faltantes |
@@ -223,7 +223,7 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (7)
+### 5.2 Faltantes (6)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
@@ -259,22 +259,6 @@ A warm room prepared for a shared gathering, with nobody present: a wide circle 
 
 ```text
 A Celtic lever harp of dark polished wood with fine carved knotwork on its pillar and gut strings, resting against a smooth pale stone window sill with only a little moss at its edge, in soft early morning light, beyond the window soft green hills and a quiet misty coast under pale light, a small bunch of green fern in a stone jar beside the harp, no hands and no people. The harp between 58% and 82% of the frame width and its top at 25% from the top (not higher), the window view behind it, the left 40% of the frame is a plain stone wall in even deep shade, a dark olive-grey in low light, with only a very faint low-contrast mottling and no visible moss texture, no shafts of light, no haze streaks and no bright patch, calm, low in detail and dark enough for ivory text to stay readable on it. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `resonario.kind-banner.* · Melodías instrumentales` — Resonario · tipo de escucha · P2
-
-- **Archivo:** `resonario-kind-banner-melody.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** Un banner por tipo de escucha, con su explicación debajo: melodías, naturaleza, frecuencias y tonos, binaurales y prácticas guiadas (5 tipos).
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The open lid of a dark wooden upright piano standing against a cream wall, a cello resting on its side beside the piano on a wooden floor, soft morning light from a window at the left falling across the wood, warm honey and cream tones, nobody present. Wide and horizontal, the main subject at the exact center of the frame, calm space at both sides, everything important kept away from the top and bottom edges because the image is cropped to 2:1. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: warm ivory, honey and soft gold in luminous daylight; personal and bright. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
 ```
 
 #### `resonario.kind-banner.* · Naturaleza` — Resonario · tipo de escucha · P2
@@ -355,7 +339,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (73)
+### 5.5 Completadas (74)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -433,6 +417,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `atmosphere-forest-autumn.avif` | Atmósfera · Bosque otoñal (nostalgia) | `atmosphere.forest-autumn` | 16:9 | P2 |
 | `atmosphere-study.avif` | Atmósfera · Estudio (academia) | `atmosphere.study` | 16:9 | P1 |
 | `atmosphere-marisol.avif` | Atmósfera · Luz de Marisol (sobre Marisol) | `atmosphere.marisol` | 16:9 | P1 |
+| `resonario-kind-banner-melody.avif` | Resonario · tipo de escucha · Melodías instrumentales | `resonario.kind-banner.*` | 16:8 | P2 |
 | `og-image.jpg` | Metadatos · Open Graph | `og-image` | 1.91:1 | P0 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (23)

@@ -137,6 +137,7 @@ export const COMPLETED = [
   'atmosphere-forest-autumn.avif',
   'atmosphere-study.avif',
   'atmosphere-marisol.avif',
+  'resonario-kind-banner-melody.avif',
 ]
 
 /**
