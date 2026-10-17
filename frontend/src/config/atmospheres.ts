@@ -59,7 +59,7 @@ export const ATMOSPHERES: Record<AtmosphereId, AtmosphereDefinition> = {
   },
   gathering: {
     scheme: 'warm',
-    themeColor: '#6E5140',
+    themeColor: '#3F2B21',
     engine: { canvas: 0.3, nebula: 0.4, figures: 0.3 },
     droneNote: 164.8,
     backdropSlot: 'atmosphere.gathering',

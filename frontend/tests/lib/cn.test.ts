@@ -8,6 +8,14 @@ describe('cn with the design tokens', () => {
     expect(cn('text-body', 'text-gold')).toBe('text-body text-gold');
   });
 
+  it('keeps the atmosphere tokens apart from sizes and resolves their conflicts', () => {
+    expect(cn('text-label', 'text-accent')).toBe('text-label text-accent');
+    expect(cn('text-fg-body', 'text-fg-meta')).toBe('text-fg-meta');
+    expect(cn('text-fg', 'text-accent-2')).toBe('text-accent-2');
+    expect(cn('border-line', 'border-line-strong')).toBe('border-line-strong');
+    expect(cn('bg-surface', 'bg-surface-strong')).toBe('bg-surface-strong');
+  });
+
   it('still resolves real conflicts inside the same group', () => {
     expect(cn('text-fg-muted', 'text-fg-body')).toBe('text-fg-body');
     expect(cn('text-label', 'text-meta')).toBe('text-meta');
