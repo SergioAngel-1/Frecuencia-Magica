@@ -4,7 +4,7 @@ import { ARRIVALS, type ArrivalKey } from '@/config/arrivals';
 import { AUDIOS, isPlayable } from '@/data/audios';
 import { respondToArrival } from '@/lib/arrival/respond';
 import { MOOD_IDS } from '@/types/mood';
-import type { Audio, Intent } from '@/types/content';
+import type { Audio, AudioKind, Intent } from '@/types/content';
 
 const INTENTS: readonly Intent[] = ['calm', 'grounding', 'clarity', 'rest', 'bond', 'renewal'];
 const ALL_KEYS: readonly ArrivalKey[] = [
@@ -106,5 +106,99 @@ describe('respondToArrival', () => {
   it('otras atmósferas nunca incluyen la de la propia respuesta', () => {
     const response = respondToArrival('mood:calm', { catalog: AUDIOS, hour: NIGHT });
     expect(response.otherAtmospheres).not.toContain(response.atmosphere);
+  });
+});
+
+describe('respondToArrival: pistas por intención (I3b)', () => {
+  const byKind = (audios: readonly Audio[], kind: AudioKind) =>
+    audios.find((audio) => audio.kind === kind)?.id;
+
+  it('Descansar (intención rest) ofrece a4 como frecuencia, no a1', () => {
+    const response = respondToArrival('intent:rest', { catalog: AUDIOS, hour: DAY });
+    expect(byKind(response.alternatives, 'frequency')).toBe('a4');
+  });
+
+  it('Raíz (intención grounding) ofrece a3 como frecuencia', () => {
+    const response = respondToArrival('intent:grounding', { catalog: AUDIOS, hour: DAY });
+    expect(byKind(response.alternatives, 'frequency')).toBe('a3');
+  });
+
+  it('Renovación ofrece la lluvia (n2), que lleva renewal, no el mar (n1)', () => {
+    const response = respondToArrival('intent:renewal', { catalog: AUDIOS, hour: DAY });
+    expect(byKind(response.alternatives, 'nature')).toBe('n2');
+  });
+
+  it('Raíz en bosque prefiere la lluvia (n2) al mar mientras no hay bosque', () => {
+    const response = respondToArrival('intent:grounding', { catalog: AUDIOS, hour: DAY });
+    expect(byKind(response.alternatives, 'nature')).toBe('n2');
+  });
+
+  it('un estado del diario busca su intención: Cansancio (rest) ofrece a4', () => {
+    const response = respondToArrival('mood:tiredness', { catalog: AUDIOS, hour: DAY });
+    expect(byKind(response.alternatives, 'frequency')).toBe('a4');
+  });
+
+  it('el relleno binaural elige por intención: con Raíz, b2 antes que b1', () => {
+    const catalog = AUDIOS.filter((audio) => audio.kind !== 'nature');
+    const response = respondToArrival('intent:grounding', { catalog, hour: DAY });
+    expect(response.alternatives.map((audio) => audio.id)).toEqual(['b2', 'a3']);
+  });
+
+  it('la intención sólo ordena: si ninguna pista casa, toma la primera reproducible del tipo', () => {
+    const response = respondToArrival('mood:joy', { catalog: AUDIOS, hour: DAY });
+    expect(response.alternatives[0]!.kind).toBe('nature');
+    expect(response.alternatives[0]!.id).toBe('n1');
+  });
+
+  it('la pista del disco de Descúbrete va primera cuando casa con la intención', () => {
+    const response = respondToArrival('intent:rest', {
+      catalog: AUDIOS,
+      hour: DAY,
+      featuredId: 'a4',
+    });
+    expect(response.alternatives[0]!.id).toBe('a4');
+    expect(response.alternatives.map((audio) => audio.id)).toContain('n1');
+  });
+
+  it('la pista destacada se ignora si su intención no casa o no es reproducible', () => {
+    const wrongIntent = respondToArrival('intent:rest', {
+      catalog: AUDIOS,
+      hour: DAY,
+      featuredId: 'a1',
+    });
+    expect(wrongIntent.alternatives.map((audio) => audio.id)).not.toContain('a1');
+
+    const notPlayable = respondToArrival('intent:rest', {
+      catalog: AUDIOS,
+      hour: DAY,
+      featuredId: 'g2',
+    });
+    expect(notPlayable.alternatives.map((audio) => audio.id)).not.toContain('g2');
+  });
+
+  it('ninguna pista «Próximamente» entra, ni siquiera con intención que casa', () => {
+    for (const intent of ['bond', 'renewal', 'clarity', 'calm'] as const) {
+      const response = respondToArrival(`intent:${intent}`, { catalog: AUDIOS, hour: DAY });
+      for (const audio of response.alternatives) {
+        expect(audio.availability, `${intent}: ${audio.id}`).toBe('ready');
+      }
+    }
+  });
+});
+
+describe('respondToArrival: frecuencia siempre al final (M6)', () => {
+  it('sin ninguna naturaleza en el catálogo, la frecuencia nunca va primera', () => {
+    const catalog = AUDIOS.filter((audio) => audio.kind !== 'nature');
+    for (const key of ALL_KEYS) {
+      const response = respondToArrival(key, { catalog, hour: DAY });
+      expect(response.alternatives[0]!.kind, key).not.toBe('frequency');
+      expect(kindsOf(response.alternatives).size, key).toBeGreaterThanOrEqual(2);
+    }
+  });
+
+  it('con naturaleza, la frecuencia de la tabla va después de las demás', () => {
+    const response = respondToArrival('mood:calm', { catalog: READY_CATALOG, hour: DAY });
+    const kinds = response.alternatives.map((audio) => audio.kind);
+    expect(kinds.indexOf('frequency')).toBe(kinds.length - 1);
   });
 });

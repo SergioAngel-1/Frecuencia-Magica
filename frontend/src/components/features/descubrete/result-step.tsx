@@ -68,7 +68,7 @@ export function ResultStep({
 
       <p className="text-fg-soft text-body max-w-[48ch] text-center leading-[1.8]">{description}</p>
 
-      <DiscoverArrival arrivalKey={arrivalKey} ctaLabel={arrivalCta} />
+      <DiscoverArrival arrivalKey={arrivalKey} featuredId={audio.id} ctaLabel={arrivalCta} />
 
       <AtmospherePicker />
 

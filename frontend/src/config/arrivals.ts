@@ -1,5 +1,6 @@
 import type { AtmosphereId } from '@/types/atmosphere';
 import type { AudioKind, Intent } from '@/types/content';
+
 import type { MoodId } from '@/types/mood';
 
 /** Una entrada del check-in (un estado del diario) o de Descúbrete (una intención). */
@@ -96,6 +97,30 @@ export const ARRIVALS: Record<ArrivalKey, ArrivalEntry> = {
     kinds: ['nature', 'melody', 'frequency'],
     explanationKey: 'intents.renewal.explanation',
   },
+};
+
+/**
+ * Intención que cada estado del diario busca en las pistas (decisión propia:
+ * la tabla §5.3 habla de sonidos, no de intenciones). Dentro de cada tipo, la
+ * pista que la lleva en `Audio.intents` va primero.
+ */
+export const MOOD_INTENT: Record<MoodId, Intent> = {
+  calm: 'calm',
+  tiredness: 'rest',
+  nostalgia: 'bond',
+  sadness: 'bond',
+  joy: 'bond',
+  gratitude: 'bond',
+  clarity: 'clarity',
+  breathe: 'calm',
+};
+
+/**
+ * Pistas que acompañan mejor una atmósfera mientras no hay material propio. En
+ * bosque, la lluvia (n2) antes que el mar: el bosque real aún no existe.
+ */
+export const ATMOSPHERE_SOUNDS: Partial<Record<AtmosphereId, readonly string[]>> = {
+  forest: ['n2'],
 };
 
 /** Entrada neutra: lo que llega sin reconocer cae aquí (calma). */

@@ -23,8 +23,11 @@ export const ARRIVAL_FADE_IN_SECONDS = 2.5;
 
 export type ArrivalControls = {
   flow: ArrivalFlow;
-  /** Elige una entrada: fija la atmósfera y, con el gesto, abre la primera pista. */
-  choose(key: ArrivalKey): void;
+  /**
+   * Elige una entrada: fija la atmósfera y, con el gesto, abre la primera pista.
+   * `featuredId` es la pista que recomienda el disco de Descúbrete, si la hay.
+   */
+  choose(key: ArrivalKey, featuredId?: string): void;
   /** Siguiente (`1`) o anterior (`-1`) alternativa; abre la que queda. */
   step(delta: 1 | -1): void;
   /** «Elegir otra opción»: otra atmósfera, sin reiniciar el flujo ni cortar el sonido. */
@@ -45,8 +48,12 @@ export function useArrival(): ArrivalControls {
   const close = usePlayerStore((state) => state.close);
 
   const choose = useCallback(
-    (key: ArrivalKey) => {
-      const next = chooseArrival(key, { catalog: AUDIOS, hour: new Date().getHours() });
+    (key: ArrivalKey, featuredId?: string) => {
+      const next = chooseArrival(key, {
+        catalog: AUDIOS,
+        hour: new Date().getHours(),
+        ...(featuredId ? { featuredId } : {}),
+      });
       setFlow(next);
       if (next.atmosphere) setManual(next.atmosphere);
 

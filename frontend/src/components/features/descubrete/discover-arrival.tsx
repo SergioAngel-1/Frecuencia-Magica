@@ -8,6 +8,8 @@ import { useArrival } from '@/hooks/use-arrival';
 type DiscoverArrivalProps = {
   /** La intención dominante del resultado, como entrada de llegada. */
   arrivalKey: ArrivalKey;
+  /** La pista que recomienda el disco: la misma que suena primero en el panel. */
+  featuredId: string;
   ctaLabel: string;
 };
 
@@ -15,13 +17,13 @@ type DiscoverArrivalProps = {
  * La misma respuesta de «¿Cómo llegas hoy?», con la intención dominante. Sólo
  * la pide el gesto: hasta pulsarla no suena ni cambia nada.
  */
-export function DiscoverArrival({ arrivalKey, ctaLabel }: DiscoverArrivalProps) {
+export function DiscoverArrival({ arrivalKey, featuredId, ctaLabel }: DiscoverArrivalProps) {
   const { flow, choose, step, other, stop } = useArrival();
 
   if (!flow.response) {
     return (
       <div className="flex justify-center">
-        <Button variant="outline" onClick={() => choose(arrivalKey)}>
+        <Button variant="outline" onClick={() => choose(arrivalKey, featuredId)}>
           {ctaLabel}
         </Button>
       </div>
