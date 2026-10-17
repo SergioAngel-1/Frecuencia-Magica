@@ -38,19 +38,19 @@ export function TuningStep({ tuningLabel, onFinish }: TuningStepProps) {
         className="relative flex h-[120px] w-[120px] items-center justify-center"
       >
         <div
-          className="border-gold/20 absolute inset-0 animate-[fm-spin_4s_linear_infinite] rounded-full border"
+          className="border-line absolute inset-0 animate-[fm-spin_4s_linear_infinite] rounded-full border"
           style={{ clipPath: 'inset(0 50% 0 0)' }}
         />
         <div
-          className="border-teal/20 absolute inset-[12px] animate-[fm-spin-r_3s_linear_infinite] rounded-full border"
+          className="border-accent-2/20 absolute inset-[12px] animate-[fm-spin-r_3s_linear_infinite] rounded-full border"
           style={{ clipPath: 'inset(0 0 0 50%)' }}
         />
-        <div className="animate-fm-sparkle bg-gold/40 h-[16px] w-[16px] rounded-full" />
+        <div className="animate-fm-sparkle bg-accent/40 h-[16px] w-[16px] rounded-full" />
       </div>
 
       <p
         className={`tracking-soft font-serif text-[20px] italic transition-opacity duration-700 ${
-          reveal ? 'text-ivory' : 'text-fg-meta'
+          reveal ? 'text-fg' : 'text-fg-meta'
         }`}
       >
         {tuningLabel}

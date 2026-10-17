@@ -25,7 +25,7 @@ export function CourseDetail({ course, media, currentLesson }: CourseDetailProps
     <div>
       <Link
         href="/academia"
-        className="text-fg-muted hover:text-ivory text-meta tracking-ui inline-flex min-h-11 items-center py-3 font-sans uppercase transition-colors"
+        className="text-fg-muted hover:text-fg text-meta tracking-ui inline-flex min-h-11 items-center py-3 font-sans uppercase transition-colors"
       >
         ← {t('backLabel')}
       </Link>
@@ -57,7 +57,7 @@ export function CourseDetail({ course, media, currentLesson }: CourseDetailProps
                 scrim="bottom"
               />
             </div>
-            <figcaption className="border-gold/20 bg-ivory/[0.025] text-fg-meta text-label tracking-caps border-x border-b px-5 py-4 font-sans uppercase">
+            <figcaption className="border-line bg-fg/[0.025] text-fg-meta text-label tracking-caps border-x border-b px-5 py-4 font-sans uppercase">
               {t('media.alt.courseCover', { title })}
             </figcaption>
           </Float>

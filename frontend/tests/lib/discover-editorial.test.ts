@@ -98,7 +98,7 @@ describe('Descúbrete editorial composition', () => {
     expect(stepSource).not.toContain('bg-glass');
     expect(stepSource).not.toContain('backdrop-blur');
     expect(stepSource).toContain('min-h-11');
-    expect(stepSource).toContain('focus-visible:ring-gold');
+    expect(stepSource).toContain('focus-visible:ring-accent');
     expect(stepSource).toContain('text-body');
     expect(resultSource).toContain('text-body');
   });

@@ -60,7 +60,7 @@ export function ExperienceRow({
     return (
       <article
         className={cn(
-          'text-ivory relative isolate min-h-[clamp(430px,42vw,620px)] overflow-hidden',
+          'text-fg relative isolate min-h-[clamp(430px,42vw,620px)] overflow-hidden',
           className,
         )}
         data-editorial-media="experiences.featured"
@@ -116,7 +116,7 @@ export function ExperienceRow({
                   {date.dow} {date.day} {date.month}
                 </time>
                 <span>{experience.dur}</span>
-                <span className="text-gold font-serif text-[30px]">
+                <span className="text-accent font-serif text-[30px]">
                   {formatPrice(experience.price)}
                 </span>
               </div>
@@ -132,7 +132,7 @@ export function ExperienceRow({
       className={cn(
         // Desde `md` la fila mide 16:9, el ratio de su imagen: `e2…e4` llegan
         // sin recorte (antes 2,45:1 en 1440). En móvil manda el texto.
-        'rounded-card-lg text-ivory relative isolate min-h-[clamp(320px,34vw,470px)] overflow-hidden md:aspect-[16/9] md:min-h-0',
+        'rounded-card-lg text-fg relative isolate min-h-[clamp(320px,34vw,470px)] overflow-hidden md:aspect-[16/9] md:min-h-0',
         className,
       )}
       data-editorial-media="experiences-visual"
@@ -151,16 +151,16 @@ export function ExperienceRow({
       <div className="relative z-10 grid min-h-[clamp(320px,34vw,470px)] items-end gap-8 px-[clamp(24px,6vw,72px)] py-[clamp(28px,5vw,60px)] md:h-full md:min-h-0 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-12">
         <div className="max-w-[600px]">
           <Badge>{modeLabel}</Badge>
-          <h3 className="text-ivory mt-4 max-w-[14ch] font-serif text-[clamp(32px,4.5vw,58px)] leading-[0.94]">
+          <h3 className="text-fg mt-4 max-w-[14ch] font-serif text-[clamp(32px,4.5vw,58px)] leading-[0.94]">
             {title}
           </h3>
         </div>
-        <div className="border-ivory/25 flex min-h-11 flex-wrap items-center gap-x-6 gap-y-3 border-t pt-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+        <div className="border-fg/25 flex min-h-11 flex-wrap items-center gap-x-6 gap-y-3 border-t pt-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
           <div className="flex min-h-11 flex-col justify-center">
             <span className="text-fg-muted text-meta tracking-ui font-sans uppercase">
               {dateLabel}
             </span>
-            <time dateTime={date.iso} className="text-ivory mt-1 font-serif text-[22px]">
+            <time dateTime={date.iso} className="text-fg mt-1 font-serif text-[22px]">
               {date.dow} {date.day} {date.month}
             </time>
           </div>
@@ -168,9 +168,11 @@ export function ExperienceRow({
             <span className="text-fg-muted text-meta tracking-ui font-sans uppercase">
               {durationLabel}
             </span>
-            <span className="text-ivory mt-1 font-serif text-[26px]">{experience.dur}</span>
+            <span className="text-fg mt-1 font-serif text-[26px]">{experience.dur}</span>
           </div>
-          <span className="text-gold font-serif text-[30px]">{formatPrice(experience.price)}</span>
+          <span className="text-accent font-serif text-[30px]">
+            {formatPrice(experience.price)}
+          </span>
           <BookingLink bookLabel={bookLabel} experience={experience} variant="accent" />
         </div>
       </div>

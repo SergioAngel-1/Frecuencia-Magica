@@ -34,7 +34,7 @@ export function RecommendationCard({
   return (
     <Link
       href={href}
-      className="group fm-surface rounded-card hover:border-gold/45 focus-visible:ring-gold/60 flex h-full flex-col overflow-hidden transition-colors outline-none focus-visible:ring-2"
+      className="group fm-surface rounded-card hover:border-accent/45 focus-visible:ring-accent/60 flex h-full flex-col overflow-hidden transition-colors outline-none focus-visible:ring-2"
     >
       {/* Una sola caja para los tres ratios (16:8, 16:9 y 1:1): el texto va
           debajo, así que la imagen no lleva velo. */}
@@ -51,11 +51,11 @@ export function RecommendationCard({
         <Kicker tone="teal" spacing="wide">
           {kind}
         </Kicker>
-        <p className="text-ivory group-hover:text-gold font-serif text-[clamp(22px,2.2vw,26px)] leading-tight transition-colors">
+        <p className="text-fg group-hover:text-accent font-serif text-[clamp(22px,2.2vw,26px)] leading-tight transition-colors">
           {title}
         </p>
         <p className="text-fg-meta text-meta tracking-soft font-sans">{meta}</p>
-        <span className="text-gold text-label tracking-caps mt-auto inline-flex min-h-11 items-center pt-2 font-sans uppercase">
+        <span className="text-accent text-label tracking-caps mt-auto inline-flex min-h-11 items-center pt-2 font-sans uppercase">
           {openLabel}
           <ArrowGlyph />
         </span>

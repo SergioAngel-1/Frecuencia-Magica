@@ -83,7 +83,7 @@ export function DailyFrequency({
                 type="button"
                 aria-pressed={isActive}
                 onClick={() => open(audioId)}
-                className={arrowLinkClasses('gold', isActive && 'bg-gold/4')}
+                className={arrowLinkClasses('gold', isActive && 'bg-accent/4')}
               >
                 {cta}
                 <ArrowGlyph />
@@ -95,7 +95,7 @@ export function DailyFrequency({
 
         <section
           aria-labelledby="home-resonario-title"
-          className="border-ivory/10 mt-block pt-block border-t"
+          className="border-fg/10 mt-block pt-block border-t"
         >
           <header className="mb-10 flex flex-wrap items-end justify-between gap-x-5 gap-y-2">
             <div>

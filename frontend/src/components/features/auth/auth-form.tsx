@@ -108,7 +108,7 @@ export function AuthForm({ media }: AuthFormProps) {
       data-auth-layout="form"
       // En móvil el panel continúa la banda del héroe: sin filete ni fondo
       // propio, su atmósfera y su velo funden el borde superior en la noche.
-      className="border-gold/15 min-[900px]:bg-void-2/84 relative isolate min-h-[clamp(620px,100svh,980px)] overflow-hidden min-[900px]:min-h-[100svh] min-[900px]:border-l"
+      className="border-accent/15 min-[900px]:bg-void-2/84 relative isolate min-h-[clamp(620px,100svh,980px)] overflow-hidden min-[900px]:min-h-[100svh] min-[900px]:border-l"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-30">
         <EditorialImage
@@ -122,7 +122,7 @@ export function AuthForm({ media }: AuthFormProps) {
       </div>
       <div
         aria-hidden="true"
-        className="fm-fade-top pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(15,27,46,0.68),rgba(10,18,32,0.94))]"
+        className="fm-fade-top pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgb(var(--scrim)_/_0.68),rgba(10,18,32,0.94))]"
       />
 
       {/* Una sola columna: conmutador, campos y botones comparten ancho. Antes
@@ -234,7 +234,7 @@ export function AuthForm({ media }: AuthFormProps) {
                       <button
                         type="button"
                         onClick={() => setRecovery('asking')}
-                        className="rounded-pill hover:text-ivory text-meta tracking-soft text-fg-muted min-h-11 px-3 font-sans transition-colors"
+                        className="rounded-pill hover:text-fg text-meta tracking-soft text-fg-muted min-h-11 px-3 font-sans transition-colors"
                       >
                         {t('auth.forgot')}
                       </button>

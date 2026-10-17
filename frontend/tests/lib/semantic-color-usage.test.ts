@@ -81,11 +81,10 @@ export function findRawColorUse(source: string): string[] {
   return hits;
 }
 
-const PENDING = 'pendiente de migrar en T0.5';
-
 /** Excepciones con dueño: archivo (relativo a `src/`) -> motivo. */
 const ALLOWED: Record<string, string> = {
-  // Decorativos permanentes: sólo halos, geometría o trazos de color, sin texto ni controles.
+  // Decorativos permanentes: halos, aros, geometría y brillos sin texto ni controles.
+  // Su visibilidad en atmósferas claras la gobierna el perfil de engine (T0.7).
   'app/[locale]/not-found.tsx': 'geometría sagrada: anillos orbitales del 404 (decorativo)',
   'components/features/auth/auth-aside.tsx':
     'geometría sagrada y halo de la ilustración de acceso (decorativo)',
@@ -105,53 +104,31 @@ const ALLOWED: Record<string, string> = {
   'components/world/wave-separator.tsx': 'halos del world engine: separador de ondas (decorativo)',
   'lib/cosmic/scene.ts': 'campo de estrellas del world engine (decorativo)',
 
-  'app/[locale]/kit/kit-catalog.tsx': PENDING,
-  'app/[locale]/tienda/[productId]/page.tsx': PENDING,
-  'app/not-found.tsx': PENDING,
-  'components/features/about/about-paths.tsx': PENDING,
-  'components/features/about/about-story.tsx': PENDING,
-  'components/features/about/angel-experiences.tsx': PENDING,
-  'components/features/about/marisol-portrait.tsx': PENDING,
-  'components/features/academy/course-card.tsx': PENDING,
-  'components/features/academy/course-detail.tsx': PENDING,
-  'components/features/academy/course-list.tsx': PENDING,
-  'components/features/academy/lesson-list.tsx': PENDING,
-  'components/features/academy/lesson-player.tsx': PENDING,
-  'components/features/auth/auth-form.tsx': PENDING,
-  'components/features/auth/guest-entry.tsx': PENDING,
-  'components/features/auth/recover-form.tsx': PENDING,
-  'components/features/descubrete/quiz-step.tsx': PENDING,
-  'components/features/descubrete/recommendation-card.tsx': PENDING,
-  'components/features/descubrete/tuning-step.tsx': PENDING,
-  'components/features/experiences/booking-flow.tsx': PENDING,
-  'components/features/experiences/experience-row.tsx': PENDING,
-  'components/features/home/daily-frequency.tsx': PENDING,
-  'components/features/home/realm-card.tsx': PENDING,
-  'components/features/portal/enter-button.tsx': PENDING,
-  'components/features/sanctuary/continue-card.tsx': PENDING,
-  'components/features/sanctuary/daily-card.tsx': PENDING,
-  'components/features/sanctuary/journal-entry.tsx': PENDING,
-  'components/features/sanctuary/journal-panel.tsx': PENDING,
-  'components/features/store/cart-button.tsx': PENDING,
-  'components/features/store/cart-view.tsx': PENDING,
-  'components/features/store/order-summary.tsx': PENDING,
-  'components/features/store/product-card.tsx': PENDING,
-  'components/features/store/product-detail.tsx': PENDING,
-  'components/features/store/product-sections.tsx': PENDING,
-  'components/ui/band.tsx': PENDING,
-  'components/ui/editorial-banner.tsx': PENDING,
-  'components/ui/editorial-overlay.tsx': PENDING,
-  'components/ui/frequency-disc.tsx': PENDING,
   // Aros y halos del UI Kit: decorativos, no se migran (T0.7 decide su visibilidad por atmósfera).
   'components/ui/empty-state.tsx': 'aros orbitales del vacío (decorativo)',
   'components/ui/error-state.tsx': 'aros orbitales del estado de error (decorativo)',
   'components/ui/loading-orb.tsx': 'aros, halo y núcleo del orbe de espera (decorativo)',
   'components/ui/media-skeleton.tsx': 'aros y halo de luz de la zebra (decorativo)',
-  // El velo `void-2` (#0a1220) no tiene token: `scrim` es #0f1b2e. Decisión abierta.
+  'components/ui/editorial-banner.tsx': 'aro orbital decorativo de la banda (border-gold/25)',
+  'components/ui/frequency-disc.tsx':
+    'aros, halos y resplandor del disco (decorativo); texto y bordes ya migrados',
+  'components/features/experiences/experience-row.tsx': 'aros orbitales de la fila (decorativo)',
+  'components/features/home/realm-card.tsx':
+    'aros orbitales de la card (decorativo) y peldaño void-2 del fundido (sin token)',
+
+  // El velo void-2 (#0a1220) no tiene token: `scrim` es #0f1b2e, y en la noche la
+  // diferencia no es cero, así que no se migra. Decisión abierta (ver el informe de T0.5).
   'components/ui/modal.tsx': 'velo void-2/72 sin token equivalente (decisión abierta)',
   'components/features/player/video-player.tsx':
     'fondo y velo void-2 del vídeo: sin token equivalente (decisión abierta, como modal)',
-  'config/bands.ts': PENDING,
+  'components/ui/band.tsx':
+    'base void-2 del degradado inferior de la card: sin token equivalente (decisión abierta)',
+  'components/ui/editorial-overlay.tsx':
+    'peldaño void-2 del velo oscuro de la noche: sin token equivalente (decisión abierta)',
+  'components/features/auth/auth-form.tsx':
+    'velo void-2 del panel y peldaño void-2 del degradado: sin token equivalente (decisión abierta)',
+  'components/features/sanctuary/journal-panel.tsx':
+    'velo void-2/60 sobre la imagen: sin token equivalente (decisión abierta)',
 };
 
 describe('semantic color usage', () => {

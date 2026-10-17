@@ -66,7 +66,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
       <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
         <section
           className={cn(
-            'rounded-card-lg border-gold/20 relative isolate overflow-hidden border lg:sticky lg:top-[112px]',
+            'rounded-card-lg border-line relative isolate overflow-hidden border lg:sticky lg:top-[112px]',
             DETAIL_ASPECT[media.detail.aspect],
           )}
           data-editorial-media={media.detail.slot}
@@ -87,10 +87,10 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
             <Kicker tone="gold" spacing="widest" className="mt-6">
               {t('kicker')}
             </Kicker>
-            <h1 className="text-ivory mt-4 font-serif text-[clamp(36px,5vw,72px)] leading-[0.94]">
+            <h1 className="text-fg mt-4 font-serif text-[clamp(36px,5vw,72px)] leading-[0.94]">
               {title}
             </h1>
-            <p className="text-gold tracking-soft mt-6 font-serif text-[30px]">
+            <p className="text-accent tracking-soft mt-6 font-serif text-[30px]">
               {formatPrice(product.price)}
             </p>
           </div>
@@ -127,8 +127,8 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
             aria-label={`${frequency.playing ? tPlayer('pause') : tPlayer('play')} — ${frequencyTitle}`}
             onClick={() => toggleAudio(product.relatedAudioId)}
             className={cn(
-              'bg-glass hover:border-gold/60 mt-1 flex min-h-11 items-center gap-3 self-start rounded-full border px-5 py-3 text-left transition-[border-color,box-shadow] duration-300',
-              frequency.active ? 'border-gold/60 shadow-glow-card' : 'border-glass-brd',
+              'bg-surface hover:border-accent/60 mt-1 flex min-h-11 items-center gap-3 self-start rounded-full border px-5 py-3 text-left transition-[border-color,box-shadow] duration-300',
+              frequency.active ? 'border-accent/60 shadow-glow-card' : 'border-line',
             )}
             data-frequency-state={
               frequency.playing ? 'playing' : frequency.active ? 'paused' : 'idle'
@@ -137,17 +137,17 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
             <span
               aria-hidden="true"
               className={cn(
-                'text-gold flex size-8 shrink-0 items-center justify-center rounded-full border transition-colors duration-300',
-                frequency.active ? 'border-gold/70 bg-gold/15' : 'border-gold/50',
+                'text-accent flex size-8 shrink-0 items-center justify-center rounded-full border transition-colors duration-300',
+                frequency.active ? 'border-accent/70 bg-accent/15' : 'border-accent/50',
               )}
             >
               <PlayPauseIcon playing={frequency.playing} size={12} />
             </span>
             <span className="flex flex-col">
-              <span className="text-teal text-label tracking-label font-sans uppercase">
+              <span className="text-accent-2 text-label tracking-label font-sans uppercase">
                 {t('relatedFrequencyLabel')}
               </span>
-              <span className="text-ivory font-serif text-[16px]">{frequencyTitle}</span>
+              <span className="text-fg font-serif text-[16px]">{frequencyTitle}</span>
             </span>
           </button>
 

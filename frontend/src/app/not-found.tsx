@@ -21,7 +21,7 @@ export default function RootNotFound() {
       <head>
         <title>Frecuencia Mágica</title>
       </head>
-      <body className="bg-void text-ivory m-0 min-h-dvh antialiased">
+      <body className="bg-scrim text-fg m-0 min-h-dvh antialiased">
         <FullBleedSection
           media={media}
           mode="viewport"
@@ -47,7 +47,7 @@ export default function RootNotFound() {
               </Prose>
               <Link
                 href="/"
-                className="rounded-pill text-ivory hover:text-ivory focus-visible:outline-gold border-gold/50 bg-gold/6 relative mt-[32px] inline-flex min-h-14 items-center justify-center border px-8 font-serif text-[18px] transition-transform duration-300 hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-3"
+                className="rounded-pill text-fg hover:text-fg focus-visible:outline-accent border-accent/50 bg-accent/6 relative mt-[32px] inline-flex min-h-14 items-center justify-center border px-8 font-serif text-[18px] transition-transform duration-300 hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-3"
               >
                 Volver al portal
               </Link>

@@ -47,7 +47,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
   return (
     <article
       className={cn(
-        'group rounded-card-lg border-gold/20 bg-glass hover:border-gold/45 relative flex flex-col overflow-hidden border transition-colors',
+        'group rounded-card-lg border-line bg-surface hover:border-accent/45 relative flex flex-col overflow-hidden border transition-colors',
         className,
       )}
       data-product-id={product.id}
@@ -105,7 +105,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
           )}
           <h3
             className={cn(
-              'text-ivory group-hover:text-gold font-serif leading-tight transition-colors',
+              'text-fg group-hover:text-accent font-serif leading-tight transition-colors',
               featured ? 'text-[clamp(24px,3vw,34px)]' : 'text-[20px]',
             )}
           >
@@ -130,7 +130,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
           featured && 'px-6 pb-6 md:absolute md:right-0 md:bottom-0 md:w-1/2',
         )}
       >
-        <span className="text-gold tracking-soft font-serif text-[21px]">
+        <span className="text-accent tracking-soft font-serif text-[21px]">
           {formatPrice(product.price)}
         </span>
         <Button variant="accent" tone="gold" onClick={() => add(product.id)}>

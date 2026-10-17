@@ -42,7 +42,7 @@ import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="border-ivory/10 border-t py-12">
+    <section className="border-fg/10 border-t py-12">
       <Kicker tone="muted" spacing="tight" className="mb-6">
         {title}
       </Kicker>

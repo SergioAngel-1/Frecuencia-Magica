@@ -21,7 +21,7 @@ export function OrderSummary({ lines, onPlaceOrder }: OrderSummaryProps) {
 
   return (
     <GlassPanel className="h-fit p-5 md:sticky md:top-[150px]" glow>
-      <h3 className="text-ivory mb-5 font-serif text-[20px]">{t('summary')}</h3>
+      <h3 className="text-fg mb-5 font-serif text-[20px]">{t('summary')}</h3>
 
       <div className="space-y-3">
         <div className="text-fg-soft text-body flex justify-between font-sans">
@@ -32,10 +32,10 @@ export function OrderSummary({ lines, onPlaceOrder }: OrderSummaryProps) {
           <span>{t('shipping')}</span>
           <span>{shipping === 0 ? t('shippingFree') : formatPrice(shipping)}</span>
         </div>
-        <div className="border-ivory/10 border-t pt-3">
-          <div className="text-ivory flex justify-between font-serif text-[21px]">
+        <div className="border-fg/10 border-t pt-3">
+          <div className="text-fg flex justify-between font-serif text-[21px]">
             <span>{t('total')}</span>
-            <span className="text-gold">{formatPrice(total)}</span>
+            <span className="text-accent">{formatPrice(total)}</span>
           </div>
         </div>
       </div>

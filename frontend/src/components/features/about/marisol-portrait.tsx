@@ -20,7 +20,7 @@ export function MarisolPortrait({ media, className }: MarisolPortraitProps) {
       data-editorial-zone="human-focus"
     >
       {/* El retrato flota como el resto de la materia viva del sitio. */}
-      <Float className="border-gold/35 relative aspect-[3/4] overflow-hidden rounded-[200px_200px_8px_8px] border">
+      <Float className="border-accent/35 relative aspect-[3/4] overflow-hidden rounded-[200px_200px_8px_8px] border">
         <EditorialImage
           media={media}
           aspect="3:4"
@@ -31,7 +31,7 @@ export function MarisolPortrait({ media, className }: MarisolPortraitProps) {
         />
         <div
           aria-hidden="true"
-          className="border-gold/30 pointer-events-none absolute inset-[8%] rounded-[45%] border opacity-75"
+          className="border-accent/30 pointer-events-none absolute inset-[8%] rounded-[45%] border opacity-75"
         />
       </Float>
     </div>

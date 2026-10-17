@@ -49,7 +49,7 @@ export function LessonPlayer({
           />
         </div>
         <div className="relative z-10 flex min-h-[clamp(430px,48vw,680px)] max-w-[600px] flex-col justify-end px-[clamp(24px,7vw,84px)] py-[clamp(30px,7vw,84px)]">
-          <span className="border-gold/60 bg-void/35 text-gold mb-5 inline-flex size-14 items-center justify-center rounded-full border font-serif text-[24px] backdrop-blur-sm">
+          <span className="border-accent/60 bg-scrim/35 text-accent mb-5 inline-flex size-14 items-center justify-center rounded-full border font-serif text-[24px] backdrop-blur-sm">
             <span aria-hidden="true">✓</span>
             <span className="sr-only">{t('completion.title')}</span>
           </span>
@@ -76,7 +76,7 @@ export function LessonPlayer({
     <article>
       <Link
         href={{ pathname: '/academia/[courseId]', params: { courseId: course.id } }}
-        className="text-fg-muted hover:text-ivory text-meta tracking-ui inline-flex min-h-11 items-center py-3 font-sans uppercase transition-colors"
+        className="text-fg-muted hover:text-fg text-meta tracking-ui inline-flex min-h-11 items-center py-3 font-sans uppercase transition-colors"
       >
         ← {t('backLabel')}
       </Link>
@@ -120,7 +120,7 @@ export function LessonPlayer({
             />
           }
         />
-        <figcaption className="border-gold/20 bg-ivory/[0.025] text-fg-meta text-label tracking-caps border-x border-b px-5 py-4 font-sans uppercase">
+        <figcaption className="border-line bg-fg/[0.025] text-fg-meta text-label tracking-caps border-x border-b px-5 py-4 font-sans uppercase">
           {t('media.alt.lesson', { title: lessonTitle })}
         </figcaption>
       </figure>

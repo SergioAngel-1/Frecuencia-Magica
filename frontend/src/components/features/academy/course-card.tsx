@@ -30,7 +30,7 @@ export function CourseCard({
     return (
       <article
         className={cn(
-          'rounded-card-lg text-ivory relative isolate min-h-[clamp(420px,42vw,600px)] overflow-hidden',
+          'rounded-card-lg text-fg relative isolate min-h-[clamp(420px,42vw,600px)] overflow-hidden',
           className,
         )}
         data-course-id={course.id}
@@ -56,7 +56,7 @@ export function CourseCard({
             </p>
           ) : null}
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
-            <span className="border-gold/55 text-gold text-label tracking-caps min-h-11 border-b py-3 font-sans uppercase">
+            <span className="border-line-strong text-accent text-label tracking-caps min-h-11 border-b py-3 font-sans uppercase">
               {cta}
             </span>
             <span className="text-fg-soft text-meta tracking-ui font-sans uppercase">
@@ -72,7 +72,7 @@ export function CourseCard({
     <GlassPanel
       as="article"
       radius={22}
-      className={cn('group hover:border-gold/45 overflow-hidden transition-colors', className)}
+      className={cn('group hover:border-accent/45 overflow-hidden transition-colors', className)}
       data-course-id={course.id}
       data-editorial-media="academy-course-cover"
     >
@@ -90,9 +90,7 @@ export function CourseCard({
       </div>
 
       <div className="px-6 pt-5 pb-7">
-        <h3 className="text-ivory font-serif text-[clamp(26px,3vw,34px)] leading-[1.05]">
-          {title}
-        </h3>
+        <h3 className="text-fg font-serif text-[clamp(26px,3vw,34px)] leading-[1.05]">{title}</h3>
         <p className="text-fg-muted text-meta tracking-soft mt-3 font-sans">{lessonsLabel}</p>
       </div>
     </GlassPanel>

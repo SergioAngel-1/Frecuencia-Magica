@@ -68,7 +68,7 @@ export function RealmCard({
           href={href as '/resonario'}
           data-editorial-panel="featured"
           className={cn(
-            'group border-teal/35 focus-visible:ring-teal rounded-card relative grid h-full min-h-[360px] overflow-hidden border transition-transform duration-500 outline-none hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(150,198,188,0.14)] focus-visible:ring-2 sm:min-h-[400px] lg:grid-cols-[1.15fr_0.85fr]',
+            'group border-accent-2/35 focus-visible:ring-accent-2 rounded-card relative grid h-full min-h-[360px] overflow-hidden border transition-transform duration-500 outline-none hover:-translate-y-1 hover:shadow-[0_0_42px_color-mix(in_srgb,var(--color-accent-2)_14%,transparent)] focus-visible:ring-2 sm:min-h-[400px] lg:grid-cols-[1.15fr_0.85fr]',
           )}
           style={{ backgroundImage: band }}
         >
@@ -104,7 +104,7 @@ export function RealmCard({
               </div>
               <RealmGlyph
                 size={82}
-                color="var(--color-teal)"
+                color="var(--color-accent-2)"
                 className="absolute top-1/2 right-[15%] -translate-y-1/2"
               />
             </div>
@@ -120,8 +120,8 @@ export function RealmCard({
         href={href as '/resonario'}
         data-editorial-panel={store ? 'conversion' : 'secondary'}
         className={cn(
-          'group border-glass-brd focus-visible:ring-gold rounded-card relative flex h-full min-h-[230px] flex-col justify-end overflow-hidden border p-[clamp(24px,3vw,38px)] transition-transform duration-500 outline-none hover:-translate-y-1 hover:shadow-[0_0_34px_rgba(216,185,120,0.12)] focus-visible:ring-2',
-          store && 'border-gold/35 lg:min-h-[300px]',
+          'group border-line focus-visible:ring-accent rounded-card relative flex h-full min-h-[230px] flex-col justify-end overflow-hidden border p-[clamp(24px,3vw,38px)] transition-transform duration-500 outline-none hover:-translate-y-1 hover:shadow-[0_0_34px_rgb(var(--halo)_/_0.12)] focus-visible:ring-2',
+          store && 'border-accent/35 lg:min-h-[300px]',
         )}
         style={{ backgroundImage: band }}
       >
@@ -137,7 +137,7 @@ export function RealmCard({
             aria-hidden="true"
             className="pointer-events-none absolute top-[18px] right-[18px] opacity-75"
           >
-            <RealmGlyph size={46} color="var(--color-gold)" />
+            <RealmGlyph size={46} color="var(--color-accent)" />
           </div>
         )}
         {store && geometry ? (
@@ -158,14 +158,14 @@ export function RealmCard({
 
         <div className="relative z-[2]">
           {store && actionLabel ? (
-            <span className="rounded-pill border-gold/45 text-gold text-label tracking-label mb-4 inline-flex min-h-11 items-center border px-3 font-sans uppercase">
+            <span className="rounded-pill border-accent/45 text-accent text-label tracking-label mb-4 inline-flex min-h-11 items-center border px-3 font-sans uppercase">
               {actionLabel}
             </span>
           ) : null}
           <p className="text-fg-soft text-label tracking-caps font-sans uppercase">{emotion}</p>
           <h3
             className={cn(
-              'text-ivory mt-2 font-serif leading-[0.98] font-light',
+              'text-fg mt-2 font-serif leading-[0.98] font-light',
               store ? 'text-[clamp(32px,4vw,52px)]' : 'text-[clamp(28px,3.2vw,42px)]',
             )}
           >

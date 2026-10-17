@@ -43,7 +43,7 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
         <EditorialImage aspect="1:1" className="h-full" media={productMedia} />
       </div>
       <div className="min-w-0">
-        <p className="text-ivory text-lead line-clamp-2 font-serif">
+        <p className="text-fg text-lead line-clamp-2 font-serif">
           {tStore(`products.${product.id}.title`)}
         </p>
         <p className="text-fg-meta text-meta font-sans">{tStore(categoryKey(product.catKey))}</p>
@@ -53,24 +53,24 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
           <button
             type="button"
             onClick={() => setQuantity(product.id, quantity - 1)}
-            className="border-ivory/20 text-fg-muted hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
+            className="border-fg/20 text-fg-muted hover:border-fg/40 hover:text-fg flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
             aria-label={t('decrease')}
           >
             −
           </button>
-          <span className="text-ivory min-w-[24px] text-center font-serif text-[18px]">
+          <span className="text-fg min-w-[24px] text-center font-serif text-[18px]">
             {quantity}
           </span>
           <button
             type="button"
             onClick={() => setQuantity(product.id, quantity + 1)}
-            className="border-ivory/20 text-fg-muted hover:border-ivory/40 hover:text-ivory flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
+            className="border-fg/20 text-fg-muted hover:border-fg/40 hover:text-fg flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
             aria-label={t('increase')}
           >
             +
           </button>
         </div>
-        <p className="text-gold text-right font-serif text-[18px]">
+        <p className="text-accent text-right font-serif text-[18px]">
           {formatPrice(product.price * quantity)}
         </p>
       </div>

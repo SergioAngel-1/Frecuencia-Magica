@@ -7,10 +7,10 @@
 import type { PhotoTreatment } from './realms';
 
 export const BANDS = {
-  gold: 'linear-gradient(150deg, rgba(216,185,120,0.42), rgba(15,27,46,0.5) 70%)',
-  teal: 'linear-gradient(150deg, rgba(150,198,188,0.40), rgba(15,27,46,0.5) 70%)',
-  lav: 'linear-gradient(150deg, rgba(185,176,214,0.42), rgba(15,27,46,0.5) 70%)',
-  mix: 'linear-gradient(150deg, rgba(150,198,188,0.34), rgba(185,176,214,0.30) 60%, rgba(15,27,46,0.5))',
+  gold: 'linear-gradient(150deg, rgb(var(--halo) / 0.42), rgb(var(--scrim) / 0.5) 70%)',
+  teal: 'linear-gradient(150deg, color-mix(in srgb, var(--color-accent-2) 40%, transparent), rgb(var(--scrim) / 0.5) 70%)',
+  lav: 'linear-gradient(150deg, color-mix(in srgb, var(--color-accent-3) 42%, transparent), rgb(var(--scrim) / 0.5) 70%)',
+  mix: 'linear-gradient(150deg, color-mix(in srgb, var(--color-accent-2) 34%, transparent), color-mix(in srgb, var(--color-accent-3) 30%, transparent) 60%, rgb(var(--scrim) / 0.5))',
 } as const;
 
 export type BandKey = keyof typeof BANDS;

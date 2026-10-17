@@ -8,6 +8,7 @@ import type {
   EditorialMedia,
   EditorialMediaAspect,
   EditorialOverlayDirection,
+  EditorialScrimTone,
   EditorialVisual,
 } from '@/types/editorial-media';
 import { Band } from './band';
@@ -32,6 +33,8 @@ export interface EditorialImageProps {
   bandMedia?: boolean;
   /** Clases del velo tintado (`overlay`), p. ej. para pintarlo sólo en móvil. */
   overlayClassName?: string;
+  /** Esquema de los dos velos: `light` en los scopes de esquema claro. */
+  scrimTone?: EditorialScrimTone;
   className?: string;
 }
 
@@ -73,6 +76,7 @@ export function EditorialImage({
   sizes,
   bandMedia = false,
   overlayClassName,
+  scrimTone,
   className,
 }: EditorialImageProps) {
   const visual = editorialVisual(media);
@@ -100,9 +104,16 @@ export function EditorialImage({
         sizes={sizes}
         visual={visual}
       />
-      {scrimDirection ? <EditorialOverlay direction={scrimDirection} /> : null}
+      {scrimDirection ? (
+        <EditorialOverlay direction={scrimDirection} scrimTone={scrimTone} />
+      ) : null}
       {overlayDirection ? (
-        <EditorialOverlay direction={overlayDirection} tone="teal" className={overlayClassName} />
+        <EditorialOverlay
+          direction={overlayDirection}
+          tone="teal"
+          scrimTone={scrimTone}
+          className={overlayClassName}
+        />
       ) : null}
     </div>
   );
