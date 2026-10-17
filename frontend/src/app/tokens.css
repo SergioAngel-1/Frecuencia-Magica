@@ -317,6 +317,7 @@
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0f1b2e 45%, #0a1220 100%);
   --atmo-backdrop: radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0f1b2e 45%, #0a1220 100%);
   --scrim: 15 27 46;
+  --scrim-deep: 10 18 32;
   --halo: 216 185 120;
   --page-inset: 24px;
   --container-max: 1240px;
@@ -361,6 +362,7 @@
   --color-surface-strong: rgb(15 27 46 / 0.72);
   --color-on-accent: var(--color-ink);
   --scrim: 15 27 46;
+  --scrim-deep: 10 18 32;
   --halo: 216 185 120;
   --color-scrim: rgb(var(--scrim));
   --color-halo: rgb(var(--halo));
@@ -384,6 +386,7 @@
   --color-surface-strong: rgb(20 13 18 / 0.72);
   --color-on-accent: #2b1c22;
   --scrim: 20 13 18;
+  --scrim-deep: 10 18 32;
   --halo: 214 149 122;
   --color-scrim: rgb(var(--scrim));
   --color-halo: rgb(var(--halo));
@@ -407,6 +410,7 @@
   --color-surface-strong: rgb(255 255 255 / 0.72);
   --color-on-accent: #f7f4ea;
   --scrim: 246 249 251;
+  --scrim-deep: 246 249 251;
   --halo: 200 170 110;
   --color-scrim: rgb(var(--scrim));
   --color-halo: rgb(var(--halo));
@@ -430,6 +434,7 @@
   --color-surface-strong: rgb(6 11 21 / 0.72);
   --color-on-accent: #0b1426;
   --scrim: 6 11 21;
+  --scrim-deep: 10 18 32;
   --halo: 207 216 230;
   --color-scrim: rgb(var(--scrim));
   --color-halo: rgb(var(--halo));
@@ -453,6 +458,7 @@
   --color-surface-strong: rgb(16 27 21 / 0.72);
   --color-on-accent: #12213a;
   --scrim: 16 27 21;
+  --scrim-deep: 10 18 32;
   --halo: 216 196 138;
   --color-scrim: rgb(var(--scrim));
   --color-halo: rgb(var(--halo));
@@ -476,6 +482,7 @@
   --color-surface-strong: rgb(255 255 255 / 0.75);
   --color-on-accent: #f7f4ea;
   --scrim: 252 250 244;
+  --scrim-deep: 252 250 244;
   --halo: 200 170 110;
   --color-scrim: rgb(var(--scrim));
   --color-halo: rgb(var(--halo));
@@ -499,6 +506,7 @@
   --color-surface-strong: rgb(255 255 255 / 0.75);
   --color-on-accent: #f7f4ea;
   --scrim: 252 248 240;
+  --scrim-deep: 252 248 240;
   --halo: 200 170 110;
   --color-scrim: rgb(var(--scrim));
   --color-halo: rgb(var(--halo));
@@ -522,6 +530,7 @@
   --color-surface-strong: rgb(58 40 32 / 0.72);
   --color-on-accent: #3a2820;
   --scrim: 58 40 32;
+  --scrim-deep: 10 18 32;
   --halo: 242 217 166;
   --color-scrim: rgb(var(--scrim));
   --color-halo: rgb(var(--halo));
@@ -545,6 +554,7 @@
   --color-surface-strong: rgb(255 255 255 / 0.75);
   --color-on-accent: #f7f4ea;
   --scrim: 252 247 238;
+  --scrim-deep: 252 247 238;
   --halo: 200 170 110;
   --color-scrim: rgb(var(--scrim));
   --color-halo: rgb(var(--halo));

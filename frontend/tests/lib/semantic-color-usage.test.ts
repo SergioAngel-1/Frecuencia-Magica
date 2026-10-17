@@ -143,8 +143,6 @@ const ALLOWED: Record<string, string> = {
     'fondo y velo void-2 del vídeo: sin token equivalente (decisión abierta, como modal)',
   'components/ui/band.tsx':
     'base void-2 del degradado inferior de la card: sin token equivalente (decisión abierta)',
-  'components/ui/editorial-overlay.tsx':
-    'peldaño void-2 del velo oscuro de la noche: sin token equivalente (decisión abierta)',
   'components/features/auth/auth-form.tsx':
     'velo void-2 del panel y peldaño void-2 del degradado: sin token equivalente (decisión abierta)',
   'components/features/sanctuary/journal-panel.tsx':

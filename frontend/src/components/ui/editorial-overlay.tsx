@@ -7,12 +7,13 @@ import type {
 } from '@/types/editorial-media';
 
 /**
- * Peldaño más denso del velo. En el tono `dark` (la noche) es void-2, el punto
- * más oscuro del fondo; no tiene token (`scrim` vale #0f1b2e), así que se queda
- * crudo y figura en ALLOWED de `semantic-color-usage`. En `light` lee `--scrim`.
+ * Peldaño más denso del velo. Lee `--scrim-deep`: en la noche y las atmósferas
+ * oscuras vale el navy de siempre (10 18 32); en las claras, su propio `--scrim`
+ * (ver `tokens.css`), para que el borde del velo no dibuje una franja oscura
+ * sobre una atmósfera clara. `tone` sigue eligiendo el peldaño medio.
  */
 function denseStop(tone: EditorialScrimTone, alpha: string): string {
-  return tone === 'dark' ? `rgba(10,18,32,${alpha})` : `rgb(var(--scrim) / ${alpha})`;
+  return tone === 'dark' ? `rgb(var(--scrim-deep) / ${alpha})` : `rgb(var(--scrim) / ${alpha})`;
 }
 
 /** Peldaño medio del velo: `--scrim`, que en cada atmósfera es el color del velo. */
