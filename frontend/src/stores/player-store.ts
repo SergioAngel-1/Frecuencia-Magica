@@ -119,9 +119,10 @@ export function createPlayerStore(
       const track = audio ? toEngineTrack(audio) : null;
       if (!track) return;
 
-      set({ audioId: id, mode });
       const options: PlayOptions = mode === 'preview' ? { preview: PREVIEW_SECONDS } : {};
-      engine.play(track, options);
+      // Sin Web Audio el motor no acepta la pista: no dejamos un dock abierto sin sonido.
+      if (!engine.play(track, options)) return;
+      set({ audioId: id, mode });
     };
 
     return {

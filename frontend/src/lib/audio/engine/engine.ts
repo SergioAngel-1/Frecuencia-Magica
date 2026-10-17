@@ -29,7 +29,8 @@ export type PlayOptions = {
 };
 
 export type AudioEngine = {
-  play(track: EngineTrack, options?: PlayOptions): void;
+  /** `false` si no hay Web Audio y la pista no ha podido ponerse en marcha ni quedar pendiente. */
+  play(track: EngineTrack, options?: PlayOptions): boolean;
   pause(): void;
   resume(): void;
   stop(): void;
@@ -265,14 +266,14 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
     );
   }
 
-  function play(track: EngineTrack, options: PlayOptions = {}): void {
+  function play(track: EngineTrack, options: PlayOptions = {}): boolean {
     const same = current !== null && current.track.id === track.id;
     const samePreview = current?.preview === options.preview;
 
     if (same && samePreview) {
       // Pulsar la misma pista mientras suena no la reinicia; si está en pausa, la reanuda.
       if (state === 'paused') resume();
-      return;
+      return true;
     }
 
     // Reintentar la misma pista tras un bloqueo la retoma donde se quedó.
@@ -282,15 +283,16 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
         : 0;
 
     const context = ensureContext();
-    if (!context) return;
+    if (!context) return false;
 
     if (context.state !== 'running') {
       block(context, track, options, carried);
-      return;
+      return true;
     }
 
     pending = null;
     startTrack(context, track, options, carried);
+    return true;
   }
 
   function pause(): void {

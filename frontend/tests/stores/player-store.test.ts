@@ -268,3 +268,16 @@ describe('createPlayerStore', () => {
     expect(state()).toMatchObject({ audioId: 'a2', isPlaying: false, engineState: 'blocked' });
   });
 });
+
+describe('sin Web Audio', () => {
+  it('abrir una pista sin contexto de audio no deja nada abierto ni un dock vacío', () => {
+    const engine = createAudioEngine({ getContext: () => null });
+    const store = createPlayerStore(engine, new MemoryStorage());
+
+    store.getState().open('a2');
+    store.getState().open('a3', 'preview');
+
+    expect(store.getState()).toMatchObject({ audioId: null, mode: 'full', isPlaying: false });
+    engine.dispose();
+  });
+});
