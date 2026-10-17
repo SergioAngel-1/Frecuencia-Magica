@@ -564,29 +564,29 @@
   body {
     /* La atmósfera activa. Sin atributo en `<html>` (antes de hidratar) es la noche. */
     background: var(--atmo-bg);
-    color: var(--color-ivory);
+    color: var(--color-fg);
     font-family: var(--font-sans);
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    background: rgba(216, 185, 120, 0.3);
-    color: #fff;
+    background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+    color: var(--color-fg);
   }
 
   a {
-    color: var(--color-gold);
+    color: var(--color-accent);
     text-decoration: none;
   }
 
   a:hover {
-    color: var(--color-ivory);
+    color: var(--color-fg);
   }
 
   /* Foco visible sobre fondo oscuro. El prototipo no lo tenía; es obligatorio. */
   :focus-visible {
-    outline: 2px solid var(--color-gold);
+    outline: 2px solid var(--color-accent);
     outline-offset: 3px;
   }
 

@@ -197,7 +197,10 @@
     min-height: 100%;
   }
 
+  /* Bloque contenedor del fondo de atmósfera (`AtmosphereBackdrop`): sus capas
+     llenan el documento, como el gradiente del body de antes, y no el viewport. */
   body {
+    position: relative;
     min-height: 100vh;
     min-height: 100dvh;
   }

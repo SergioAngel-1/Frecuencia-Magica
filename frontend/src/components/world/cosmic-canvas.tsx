@@ -6,6 +6,7 @@ import type { VisualMode } from '@/config/realms';
 import { useEngineProfile } from '@/hooks/use-engine-profile';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { useRealm } from '@/hooks/use-realm';
+import { pauseDelayMs, shouldRunCanvas } from '@/lib/atmosphere/canvas-pause';
 import { fadeDuration } from '@/lib/atmosphere/engine-profile';
 import { hexToRgb, type Rgb } from '@/lib/cosmic/colors';
 import type { CosmicMessage, CosmicReply } from '@/lib/cosmic/protocol';
@@ -194,26 +195,24 @@ export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMod
     painterRef.current?.setReduced(reduced);
   }, [reduced]);
 
-  // Multiplicador a 0 (atmósferas claras): se pausa al acabar el fundido, no antes,
-  // para no congelar las estrellas mientras se desvanecen. Al montar, sin espera.
+  // Opacidad final bajo el umbral (atmósferas claras): el bucle se para al acabar el
+  // fundido, no antes, para no congelar las estrellas mientras se desvanecen.
   const previousLevel = useRef<number | null>(null);
   useEffect(() => {
-    const wasLive = previousLevel.current !== null && previousLevel.current > 0;
+    const delay = pauseDelayMs(previousLevel.current, level, fade);
     previousLevel.current = level;
     clearTimeout(pauseTimer.current);
 
-    if (level > 0) {
+    if (shouldRunCanvas(level)) {
       liveRef.current = true;
       painterRef.current?.setVisible(!document.hidden);
       return;
     }
 
-    const pause = () => {
+    pauseTimer.current = setTimeout(() => {
       liveRef.current = false;
       painterRef.current?.setVisible(false);
-    };
-    if (wasLive && fade > 0) pauseTimer.current = setTimeout(pause, fade * 1000);
-    else pause();
+    }, delay);
 
     return () => clearTimeout(pauseTimer.current);
   }, [level, fade]);

@@ -68,9 +68,11 @@ function layerStyle({ fade, lit }: Slot, top: boolean): CSSProperties {
 }
 
 /**
- * Fondo de la atmósfera activa, fijo bajo todo el motor. Mantiene dos capas y
- * funde por `opacity` al cambiar de atmósfera. Con movimiento reducido o con el
- * portal ocupado el cambio es inmediato: el velo ya cubre la pantalla.
+ * Fondo de la atmósfera activa, bajo todo el motor. Va anclado al documento (el
+ * `body` es su bloque contenedor), como el gradiente que antes pintaba el body: se
+ * estira con la página y no con el viewport. Mantiene dos capas y funde por
+ * `opacity` al cambiar de atmósfera. Con movimiento reducido o con el portal
+ * ocupado el cambio es inmediato: el velo ya cubre la pantalla.
  */
 export function AtmosphereBackdrop() {
   const { atmosphereId } = useAtmosphere();
@@ -102,7 +104,7 @@ export function AtmosphereBackdrop() {
   useEffect(() => () => clearTimeout(settleTimer.current), []);
 
   return (
-    <div aria-hidden="true" className="z-world pointer-events-none fixed inset-0">
+    <div aria-hidden="true" className="z-world pointer-events-none absolute inset-0">
       {backdrop.slots.map((slot, index) => (
         <div
           key={`${index}-${slot.key}`}
