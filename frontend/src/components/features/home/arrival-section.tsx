@@ -31,18 +31,22 @@ export function ArrivalSection() {
   const reduced = useReducedMotionSafe();
   const { flow, atmosphere, choose, step, other, stop } = useArrival();
 
-  const scheme = ATMOSPHERES[atmosphere].scheme;
+  // Sin elección, el bloque es de día (`dawn`): es el peldaño claro del ritmo de la Home
+  // (spec §10). Al elegir adopta la atmósfera elegida. El store sigue sin elección: sólo
+  // se pinta, no se fija.
+  const shown = atmosphere === 'night' ? 'dawn' : atmosphere;
+  const scheme = ATMOSPHERES[shown].scheme;
   const options = MOOD_IDS.map((id) => ({ id, label: tJournal(`moods.${id}`) }));
 
   return (
     <section aria-labelledby="arrival-title" className="fm-editorial-full-bleed py-section">
       <AnimatePresence initial={false}>
         <motion.div
-          key={atmosphere}
+          key={shown}
           aria-hidden="true"
-          data-atmosphere={atmosphere}
+          data-atmosphere={shown}
           data-scheme={scheme}
-          className="absolute inset-0 -z-10"
+          className="fm-fade-top absolute inset-0 -z-10"
           style={{ background: 'var(--atmo-backdrop)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -52,7 +56,7 @@ export function ArrivalSection() {
       </AnimatePresence>
 
       <AtmosphereScope
-        atmosphere={atmosphere}
+        atmosphere={shown}
         scheme={scheme}
         className="fm-container relative flex flex-col items-center text-center"
       >
@@ -75,13 +79,7 @@ export function ArrivalSection() {
           <p className="text-fg-meta text-meta tracking-ui font-sans">{t('silent')}</p>
         </div>
 
-        <ArrivalPanel
-          flow={flow}
-          atmosphere={atmosphere}
-          onStep={step}
-          onOther={other}
-          onStop={stop}
-        />
+        <ArrivalPanel flow={flow} atmosphere={shown} onStep={step} onOther={other} onStop={stop} />
       </AtmosphereScope>
     </section>
   );

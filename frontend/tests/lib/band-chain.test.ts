@@ -53,21 +53,31 @@ describe('band chain', () => {
       return source.slice(start, source.indexOf('</BandChain>', start));
     };
 
-    // Inicio: héroe → frecuencia del día → banner de realms, encadenados. Después,
-    // con el ritmo `section`, la membresía (banda suelta) y Marisol, que cierra
-    // la página antes de la despedida del footer.
+    // Inicio (ritmo del spec §10): héroe → frecuencia del día, encadenados en la
+    // noche. Después, con el ritmo `section`, el bloque de llegada (amanecer), la
+    // tienda (atmósfera `store`), el bento de realms (noche), la membresía y
+    // Marisol, que cierra la página en su atmósfera antes del footer.
     const home = view('app/[locale]/inicio/page.tsx');
     const homeChain = chainOf(home);
     expect(homeChain.indexOf('<HeroSection')).toBeGreaterThan(-1);
     expect(homeChain.indexOf('<DailyFrequency')).toBeGreaterThan(homeChain.indexOf('<HeroSection'));
-    expect(homeChain.indexOf('<RealmsGrid')).toBeGreaterThan(homeChain.indexOf('<DailyFrequency'));
+    expect(homeChain).not.toContain('<RealmsGrid');
     expect(homeChain).not.toContain('<MembershipSection');
     const afterChain = home.slice(home.indexOf('</BandChain>'));
-    expect(afterChain).toContain('py-section gap-section');
-    expect(afterChain.indexOf('<MembershipSection')).toBeGreaterThan(-1);
-    expect(afterChain.indexOf('<AboutSection')).toBeGreaterThan(
-      afterChain.indexOf('<MembershipSection'),
-    );
+    const order = [
+      '<ArrivalSection',
+      '<StoreShowcase',
+      '<RealmsGrid',
+      '<MembershipSection',
+      'atmosphere="marisol"',
+      '<AboutSection',
+    ].map((marker) => afterChain.indexOf(marker));
+    for (const [index, position] of order.entries()) {
+      expect(position, `marker ${index}`).toBeGreaterThan(-1);
+      if (index > 0) expect(position, `marker ${index}`).toBeGreaterThan(order[index - 1]!);
+    }
+    // El bento ya no se toca con otra banda: vuelve al ritmo `section`.
+    expect(afterChain).toContain('py-section');
     // Marisol no es una banda: el footer recupera su filete y su hueco.
     expect(home).not.toContain('<BandChain intoFooter>');
     // `intoFooter` sigue siendo una primitiva disponible del UI Kit.

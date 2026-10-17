@@ -21,7 +21,13 @@ import { featuredProducts } from '@/lib/store/showcase';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { videoPosterMedia } from '@/lib/video/poster';
-import { ArrowGlyph, arrowLinkClasses, BandChain } from '@/components/ui';
+import {
+  ArrowGlyph,
+  arrowLinkClasses,
+  AtmosphereBackdrop,
+  AtmosphereScope,
+  BandChain,
+} from '@/components/ui';
 
 type PageProps = { params: LocaleParams };
 
@@ -138,8 +144,11 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      {/* Las bandas consecutivas se encadenan sin hueco y se encuentran en la
-          noche; entre bloques que no son bandas, el ritmo es `section`. */}
+      {/* Ritmo de la Home (spec §10): héroe (noche) → frecuencia del día →
+          «¿Cómo llegas hoy?» (amanecer) → tienda → bento de realms (noche) →
+          Marisol → pie. Las bandas consecutivas se encadenan sin hueco y se
+          encuentran en la noche; las secciones con atmósfera funden su borde
+          con ella y entre bloques que no son bandas el ritmo es `section`. */}
       <BandChain>
         <HeroSection
           media={homeMedia.hero}
@@ -178,7 +187,24 @@ export default async function HomePage({ params }: PageProps) {
             audios: resonarioAudios,
           }}
         />
+      </BandChain>
 
+      {/* «¿Cómo llegas hoy?» no es una banda: va fuera de la cadena, con el ritmo
+          `section` que trae su propia sección. De día por defecto: funde su borde
+          superior con la noche del bloque de arriba. */}
+      <ArrivalSection />
+
+      {/* Tienda: otra banda clara; cierra fundiéndose con el bento, que es de noche. */}
+      <StoreShowcase
+        kicker={t('storeShowcase.kicker')}
+        title={t('storeShowcase.title')}
+        description={t('storeShowcase.description')}
+        cta={t('storeShowcase.cta')}
+        items={storeItems}
+        scheme={ATMOSPHERES.store.scheme}
+      />
+
+      <div className="py-section">
         <RealmsGrid
           media={homeMedia.realms}
           kicker={t('realms.kicker')}
@@ -193,26 +219,12 @@ export default async function HomePage({ params }: PageProps) {
           storeCta={t('realms.storeCta')}
           featuredBadge={t('realms.featuredBadge')}
         />
-      </BandChain>
+      </div>
 
-      {/* «¿Cómo llegas hoy?» no es una banda: va fuera de la cadena, con el ritmo
-          `section` que trae su propia sección. Tras el bento, antes de la tienda. */}
-      <ArrivalSection />
-
-      {/* Tienda: una banda clara entre el bento y la membresía, que siguen oscuras. */}
-      <StoreShowcase
-        kicker={t('storeShowcase.kicker')}
-        title={t('storeShowcase.title')}
-        description={t('storeShowcase.description')}
-        cta={t('storeShowcase.cta')}
-        items={storeItems}
-        scheme={ATMOSPHERES.store.scheme}
-      />
-
-      {/* Ninguna sección trae su propio margen exterior: lo pone este contenedor.
-          La membresía sigue al bento de realms y Marisol cierra la página antes
-          de la despedida del footer: entre una y otra, el ritmo es `section`. */}
-      <div className="py-section gap-section relative flex flex-col">
+      {/* Ninguna sección trae su propio margen exterior: lo pone el contenedor.
+          La membresía sigue al bento y Marisol cierra la página antes de la
+          despedida del footer, en su propia atmósfera. */}
+      <div className="pb-section relative">
         <MembershipSection
           media={homeMedia.membership}
           kicker={t('membership.kicker')}
@@ -220,7 +232,14 @@ export default async function HomePage({ params }: PageProps) {
           description={t('membership.description')}
           cta={t('membership.cta')}
         />
+      </div>
 
+      <AtmosphereScope
+        atmosphere="marisol"
+        scheme={ATMOSPHERES.marisol.scheme}
+        className="py-section relative isolate"
+      >
+        <AtmosphereBackdrop fade="both" />
         <AboutSection
           media={homeMedia.marisol}
           kicker={t('about.kicker')}
@@ -244,7 +263,7 @@ export default async function HomePage({ params }: PageProps) {
             />
           }
         />
-      </div>
+      </AtmosphereScope>
     </PageShell>
   );
 }

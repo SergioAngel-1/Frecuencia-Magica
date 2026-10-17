@@ -1,7 +1,11 @@
-import type { CSSProperties } from 'react';
-
 import { ButtonLink } from '@/components/layout';
-import { AtmosphereScope, Display, EditorialImage, Kicker } from '@/components/ui';
+import {
+  AtmosphereBackdrop,
+  AtmosphereScope,
+  Display,
+  EditorialImage,
+  Kicker,
+} from '@/components/ui';
 import { Link } from '@/i18n/navigation';
 import type { AtmosphereScheme } from '@/types/atmosphere';
 import type { EditorialMedia } from '@/types/editorial-media';
@@ -24,9 +28,6 @@ export type StoreShowcaseProps = {
   scheme: AtmosphereScheme;
 };
 
-/** El fondo de la atmósfera `store`: el mismo degradado que pinta el sitio en la Tienda. */
-const BACKDROP: CSSProperties = { background: 'var(--atmo-backdrop)' };
-
 /**
  * Bloque de Tienda en la Home: una banda clara, dentro de la atmósfera `store`,
  * con unos pocos productos y la puerta a la tienda. Presentacional: recibe el
@@ -44,9 +45,12 @@ export function StoreShowcase({
     <AtmosphereScope atmosphere="store" scheme={scheme}>
       <section
         className="fm-editorial-full-bleed text-fg py-section relative isolate"
-        style={BACKDROP}
         aria-labelledby="store-showcase-title"
       >
+        {/* El mismo degradado que pinta el sitio en la Tienda. Sólo funde su
+            borde inferior con la noche del bento: arriba toca el bloque de
+            llegada, claro también. */}
+        <AtmosphereBackdrop fade="bottom" />
         <div className="fm-container flex flex-col gap-10">
           <div className="flex flex-col items-start gap-4">
             <Kicker tone="teal" spacing="wide">
