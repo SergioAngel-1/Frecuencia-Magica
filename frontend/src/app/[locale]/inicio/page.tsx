@@ -8,12 +8,11 @@ import { MembershipSection } from '@/components/features/home/membership-section
 import { RealmsGrid } from '@/components/features/home/realms-grid';
 import { ButtonLink, PageShell } from '@/components/layout';
 import { Link } from '@/i18n/navigation';
-import { AUDIOS } from '@/data';
+import { AUDIOS, PRODUCTS } from '@/data';
 import { ATMOSPHERES } from '@/config/atmospheres';
 import { BANDS } from '@/config/bands';
 import { NAV_REALMS } from '@/config/realms';
 import { STORE_SHOWCASE_IDS } from '@/config/store-showcase';
-import { PRODUCTS } from '@/data';
 import { formatPrice } from '@/lib/format';
 import { featuredProducts } from '@/lib/store/showcase';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';

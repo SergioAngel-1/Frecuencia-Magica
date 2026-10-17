@@ -10,6 +10,8 @@ import { readSource, SRC, sourceFiles } from '../helpers/source-files';
 
 const README = readSource(resolve(process.cwd(), 'public/editorial/README.md'));
 
+const PAINTING_HOOK = readSource(resolve(SRC, 'hooks/use-atmosphere-painting.ts'));
+
 const SOURCE = sourceFiles(SRC)
   .map((file) => readSource(file))
   .join('\n');
@@ -37,8 +39,10 @@ describe('editorial slot inventory', () => {
 
   it('reports the real wiring status of each slot', () => {
     for (const slot of EDITORIAL_MEDIA_SLOTS) {
+      // Un paisaje del selector sólo cuenta como cableado si su hook llama a `atmospherePainting`.
       const wired =
-        SOURCE.includes(`resolveEditorialMedia('${slot}'`) || PAINTED_BY_PICKER.has(slot);
+        SOURCE.includes(`resolveEditorialMedia('${slot}'`) ||
+        (PAINTED_BY_PICKER.has(slot) && PAINTING_HOOK.includes('atmospherePainting('));
       const row = inventoryRow(slot) ?? '';
 
       if (wired) {
