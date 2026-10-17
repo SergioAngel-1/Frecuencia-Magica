@@ -242,6 +242,14 @@ describe('resonario editorial composition contracts', () => {
     expect(enMessages.resonario.nowPlaying).not.toBe(esMessages.resonario.nowPlaying);
   });
 
+  it('the now-playing label keeps its space and only fades its opacity, so the sphere does not jump', () => {
+    // Montado siempre, con su hueco de altura fijo; sólo cambia la opacidad y sin movimiento reducido.
+    expect(trackCardSource).not.toMatch(/\{playing \? \(/);
+    expect(trackCardSource).toContain('h-7');
+    expect(trackCardSource).toContain('transition-opacity');
+    expect(trackCardSource).toContain('motion-reduce:transition-none');
+  });
+
   it('the featured track is the sun: a large AudioDisc with its photo, not a card', () => {
     expect(sunSource).toContain('size="lg"');
     expect(sunSource).toContain('cover={cover}');

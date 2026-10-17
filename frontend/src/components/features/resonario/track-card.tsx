@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import { AudioDisc } from '@/components/features/player/audio-disc';
+import { cn } from '@/lib/cn';
 import { Badge, Button } from '@/components/ui';
 import { isPlayable } from '@/data';
 import { useAudioPlayback, usePlayerStore } from '@/stores/player-store';
@@ -38,11 +39,16 @@ export function TrackCard({ audio }: TrackCardProps) {
       data-kind={audio.kind}
       data-availability={audio.availability}
     >
-      {playing ? (
-        <div className="flex w-full justify-center">
-          <Badge solid>{t('nowPlaying')}</Badge>
-        </div>
-      ) : null}
+      {/* El hueco de la etiqueta siempre existe: aparecer no empuja la esfera. */}
+      <div
+        aria-hidden={!playing}
+        className={cn(
+          'flex h-7 w-full justify-center transition-opacity duration-300 motion-reduce:transition-none',
+          playing ? 'opacity-100' : 'opacity-0',
+        )}
+      >
+        <Badge solid>{t('nowPlaying')}</Badge>
+      </div>
 
       <AudioDisc
         audio={{ id: audio.id, hz: audio.hz, band: audio.band }}
