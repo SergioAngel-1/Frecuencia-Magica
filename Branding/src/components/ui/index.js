@@ -1,5 +1,6 @@
 export { AddToCartButton } from './AddToCartButton'
 export { ArrowLink } from './ArrowLink'
+export { AtmosphereBackdrop } from './AtmosphereBackdrop'
 export { Badge } from './Badge'
 export { Button } from './Button'
 export { Checkbox } from './Checkbox'

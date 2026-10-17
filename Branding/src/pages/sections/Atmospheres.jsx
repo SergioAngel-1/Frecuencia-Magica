@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Section, Specimen, Mono } from '../../components/showcase/Section'
+import { AtmosphereBackdrop } from '../../components/ui'
 
 // Las nueve atmósferas (DESIGN.md § Atmósferas). Sólo el id y el carácter: los valores
 // viven en frontend/src/app/tokens.css y se leen en vivo del bloque de cada muestra.
@@ -54,6 +55,16 @@ export function Atmospheres() {
           {ATMOSPHERES.map(([id, name, scheme, use]) => (
             <AtmosphereSample key={id} id={id} name={name} scheme={scheme} use={use} />
           ))}
+        </div>
+      </Specimen>
+      <Specimen title="Bordes fundidos" note="Una sección con atmósfera no corta en seco contra la noche: su fondo (AtmosphereBackdrop) se disuelve en el borde con la máscara fm-fade-*. Aquí, un amanecer entre dos tramos de noche, como en el ritmo de la Home.">
+        <div className="bg-[image:var(--atmo-bg)] rounded-card-lg flex flex-col overflow-hidden py-6">
+          <p className="text-fg-meta text-meta px-6 pb-6 font-sans">Noche</p>
+          <div data-atmosphere="dawn" data-scheme="light" className="text-fg relative isolate px-6 py-12">
+            <AtmosphereBackdrop fade="both" />
+            <p className="font-serif text-[24px]">¿Cómo llegas hoy?</p>
+          </div>
+          <p className="text-fg-meta text-meta px-6 pt-6 font-sans">Noche</p>
         </div>
       </Specimen>
     </Section>
