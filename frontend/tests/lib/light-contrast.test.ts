@@ -107,12 +107,15 @@ describe('banner veil in the night scheme', () => {
     expect(rule).toContain('linear-gradient(');
   });
 
-  it('the night veil uses the semantic scrim token at 0.6 opacity, fading out at the edges', () => {
-    // 0,6 (no 0,5): con 0,5 la etiqueta de melodías queda en 3,2:1 de mediana (ver informe).
+  it('the night veil is dense (0.8) where the eyebrow sits, 0.6 at its edges, and fades out', () => {
+    // La etiqueta cae entre el 21 % y el 40 % de la altura del banner (kicker de
+    // melodías: 3,97:1 con el velo a 0,6; con 0,8 en esa franja pasa de 4,5:1).
     const base = GLOBALS.slice(GLOBALS.indexOf('.fm-banner-veil {'));
     const rule = base.slice(0, base.indexOf('}'));
 
-    expect(rule).toContain('rgb(var(--scrim) / 0.6)');
+    expect(rule).toContain('rgb(var(--scrim) / 0.8) 18%');
+    expect(rule).toContain('rgb(var(--scrim) / 0.8) 42%');
+    expect(rule).toContain('rgb(var(--scrim) / 0.6) 70%');
     expect(rule).toContain('transparent 100%');
   });
 
