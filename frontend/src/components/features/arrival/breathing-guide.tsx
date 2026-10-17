@@ -4,8 +4,10 @@ import { animate } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 
+import { VideoSlot } from '@/components/features/player/video-slot';
 import { Button, Display } from '@/components/ui';
 import { BREATHING } from '@/config/breathing';
+import { getVideo } from '@/config/videos';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import {
   advanceBreath,
@@ -14,6 +16,7 @@ import {
   orbScale,
   type BreathPhase,
 } from '@/lib/breathing/guide';
+import { videoPosterMedia } from '@/lib/video/poster';
 
 const PHASE_KEY: Record<BreathPhase, 'inhale' | 'hold' | 'exhale'> = {
   inhale: 'inhale',
@@ -31,11 +34,13 @@ type BreathingGuideProps = {
  * exhalar, con los mismos segundos que la indicación (`BREATHING`). Sólo escala
  * (transform). Con movimiento reducido no se mueve y quedan las indicaciones.
  *
- * El slot de video `breathing-guide` (la grabación de Marisol) entra en la fase
- * E: hasta entonces no se promete a nadie en pantalla.
+ * El video `breathing-guide` (la grabación de Marisol) tiene su espacio bajo el
+ * orbe: hasta que ella lo entregue dice «Próximamente», sin play. No se promete
+ * a nadie en pantalla antes de tiempo.
  */
 export function BreathingGuide({ onClose }: BreathingGuideProps) {
   const t = useTranslations('arrival.breathing');
+  const tVideo = useTranslations('video');
   const reduced = useReducedMotionSafe();
   const [state, setState] = useState(initialBreath);
   const current = currentBreathPhase(state);
@@ -117,6 +122,16 @@ export function BreathingGuide({ onClose }: BreathingGuideProps) {
           </Button>
         ) : null}
       </div>
+
+      <VideoSlot
+        video={getVideo('breathing-guide')}
+        media={videoPosterMedia(getVideo('breathing-guide'), {
+          alt: tVideo('titles.breathingGuide'),
+          sizes: '(min-width: 640px) 420px, 90vw',
+        })}
+        title={tVideo('titles.breathingGuide')}
+        className="rounded-card aspect-[16/9] w-full max-w-[420px]"
+      />
     </section>
   );
 }

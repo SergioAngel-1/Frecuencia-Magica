@@ -7,17 +7,20 @@ import { DailyFrequency } from '@/components/features/home/daily-frequency';
 import { HeroSection } from '@/components/features/home/hero-section';
 import { MembershipSection } from '@/components/features/home/membership-section';
 import { RealmsGrid } from '@/components/features/home/realms-grid';
+import { VideoSlot } from '@/components/features/player/video-slot';
 import { ButtonLink, PageShell } from '@/components/layout';
 import { Link } from '@/i18n/navigation';
 import { PLAYABLE_AUDIOS, PRODUCTS } from '@/data';
 import { ATMOSPHERES } from '@/config/atmospheres';
 import { BANDS } from '@/config/bands';
+import { getVideo } from '@/config/videos';
 import { NAV_REALMS } from '@/config/realms';
 import { STORE_SHOWCASE_IDS } from '@/config/store-showcase';
 import { formatPrice } from '@/lib/format';
 import { featuredProducts } from '@/lib/store/showcase';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { videoPosterMedia } from '@/lib/video/poster';
 import { ArrowGlyph, arrowLinkClasses, BandChain } from '@/components/ui';
 
 type PageProps = { params: LocaleParams };
@@ -68,6 +71,7 @@ export default async function HomePage({ params }: PageProps) {
   const common = await getTranslations('common');
   const tResonario = await getTranslations('resonario');
   const nav = await getTranslations('nav');
+  const tVideo = await getTranslations('video');
 
   const firstAudio = PLAYABLE_AUDIOS[0]!;
   // La del día ya ocupa el disco grande: la muestra sigue con las cuatro siguientes.
@@ -227,6 +231,17 @@ export default async function HomePage({ params }: PageProps) {
             <ButtonLink variant="outline" href="/sobre-marisol">
               {t('about.cta')} →
             </ButtonLink>
+          }
+          video={
+            <VideoSlot
+              video={getVideo('welcome')}
+              media={videoPosterMedia(getVideo('welcome'), {
+                alt: tVideo('titles.welcome'),
+                sizes: '(min-width: 1280px) 1240px, calc(100vw - 48px)',
+              })}
+              title={tVideo('titles.welcome')}
+              className="rounded-card-lg aspect-[16/9] sm:aspect-[16/7]"
+            />
           }
         />
       </div>

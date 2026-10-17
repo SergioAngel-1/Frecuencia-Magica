@@ -590,7 +590,6 @@
     },
     "videoLabel": "Video de la lección",
     "videoSeek": "Buscar en el video",
-    "videoDeferred": "El video de esta práctica se incorporará aquí. Mientras tanto, permanece con la lectura y vuelve a tu respiración.",
     "featuredBadge": "Destacado",
     "featuredDescription": "Un recorrido guiado para reencontrarte contigo a través de la respiración, el silencio y pequeños rituales diarios.",
     "featuredCta": "Comenzar curso",
@@ -1061,6 +1060,18 @@
     "picker": {
       "label": "Ambiente",
       "site": "Ambiente del sitio"
+    }
+  },
+  "video": {
+    "soon": "Próximamente",
+    "region": "Video de «{title}»",
+    "seek": "Buscar en el video",
+    "titles": {
+      "welcome": "Un saludo de Marisol",
+      "marisolIntro": "Conoce a Marisol",
+      "breathingGuide": "Respira con Marisol",
+      "courseIntro": "Presentación del curso",
+      "lesson": "Video de la lección"
     }
   }
 }

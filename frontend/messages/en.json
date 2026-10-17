@@ -585,7 +585,6 @@
     },
     "videoLabel": "Lesson video",
     "videoSeek": "Seek within the video",
-    "videoDeferred": "The video for this practice will be added here. For now, stay with the reading and return to your breath.",
     "featuredBadge": "Featured",
     "featuredDescription": "A guided journey to reunite with yourself through breath, silence and small daily rituals.",
     "featuredCta": "Start course",
@@ -1056,6 +1055,18 @@
     "picker": {
       "label": "Atmosphere",
       "site": "Site atmosphere"
+    }
+  },
+  "video": {
+    "soon": "Coming soon",
+    "region": "Video: {title}",
+    "seek": "Seek in the video",
+    "titles": {
+      "welcome": "A welcome from Marisol",
+      "marisolIntro": "Meet Marisol",
+      "breathingGuide": "Breathe with Marisol",
+      "courseIntro": "Course introduction",
+      "lesson": "Lesson video"
     }
   }
 }

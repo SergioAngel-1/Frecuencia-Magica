@@ -12,9 +12,11 @@ type AboutSectionProps = {
   p2: string;
   /** Entrada a la vista interna de Marisol. */
   action?: ReactNode;
+  /** El video de bienvenida (`VideoSlot`), bajo el texto. */
+  video?: ReactNode;
 };
 
-export function AboutSection({ media, kicker, title, p1, p2, action }: AboutSectionProps) {
+export function AboutSection({ media, kicker, title, p1, p2, action, video }: AboutSectionProps) {
   return (
     <section className="fm-editorial-full-bleed relative">
       <div
@@ -38,6 +40,9 @@ export function AboutSection({ media, kicker, title, p1, p2, action }: AboutSect
           {action ? <div className="mt-9">{action}</div> : null}
         </div>
       </div>
+      {video ? (
+        <div className="fm-container relative mt-[clamp(36px,6vw,72px)]">{video}</div>
+      ) : null}
     </section>
   );
 }

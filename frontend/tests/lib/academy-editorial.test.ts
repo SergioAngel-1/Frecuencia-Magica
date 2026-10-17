@@ -125,6 +125,7 @@ describe('academy editorial composition contracts', () => {
 
   it('plays the lesson in the shared player bar, with custom video controls', () => {
     const videoSource = readSource('components/features/player/video-player.tsx');
+    const slotSource = readSource('components/features/player/video-slot.tsx');
     const barSource = readSource('components/features/player/player-bar.tsx');
     const dockSource = readSource('components/features/player/player-dock.tsx');
 
@@ -139,8 +140,9 @@ describe('academy editorial composition contracts', () => {
     expect(coverCall.slice(0, coverCall.indexOf('})'))).toContain('instance: course.id');
     expect(lessonPageSource).toContain('const lessonMedia = courseCover.src');
     expect(lessonPageSource).toContain("resolveEditorialMedia('academy-lesson-visual'");
-    // La lección lleva el reproductor de video del sitio, nunca el nativo.
-    expect(playerSource).toContain('<VideoPlayer');
+    // La lección lleva el espacio de video del sitio (con fuente, su reproductor), nunca el nativo.
+    expect(playerSource).toContain('<VideoSlot');
+    expect(slotSource).toContain('<VideoPlayer');
     expect(playerSource).toContain('key={lessonIndex}');
     expect(playerSource).not.toMatch(/<audio|<video/);
     expect(videoSource).toContain('<video');
@@ -158,7 +160,8 @@ describe('academy editorial composition contracts', () => {
     expect(videoSource).toContain("setVeil('fade')");
     expect(videoSource).toContain("current === 'clear' ? 'cut' : current");
     expect(videoSource).toContain('data-video-veil={veil}');
-    expect(videoSource).toContain('TODO(backend)');
+    // Sin fuente no hay reproductor: la fuente es obligatoria (ver video-playback-guard).
+    expect(videoSource).toContain('  src: string;');
     expect(playerSource).toContain('previousLesson');
     expect(playerSource).toContain('nextLesson');
     expect(playerSource).toContain('completionMedia');

@@ -2,10 +2,11 @@
 
 import { useTranslations } from 'next-intl';
 
-import { VideoPlayer } from '@/components/features/player/video-player';
+import { VideoSlot } from '@/components/features/player/video-slot';
 import { Button, Display, EditorialImage, Kicker } from '@/components/ui';
+import { getVideo, lessonVideoId } from '@/config/videos';
 import { Link } from '@/i18n/navigation';
-import { buildLessons, lessonSeconds } from '@/lib/academy/lessons';
+import { buildLessons } from '@/lib/academy/lessons';
 import type { EditorialMedia } from '@/types/editorial-media';
 import type { Course } from '@/types/content';
 
@@ -27,9 +28,7 @@ export function LessonPlayer({
   completionMedia,
 }: LessonPlayerProps) {
   const t = useTranslations('academy');
-  const tPlayer = useTranslations('player');
   const lessons = buildLessons(course);
-  const lesson = lessons[lessonIndex];
   const prevIndex = lessonIndex > 0 ? lessonIndex - 1 : null;
   const nextIndex = !isLast ? lessonIndex + 1 : null;
 
@@ -92,43 +91,20 @@ export function LessonPlayer({
         className="rounded-card-lg relative mt-9 overflow-hidden"
         data-editorial-media={lessonMedia.slot}
       >
-        {/* El video de la lección, con los controles del sitio (la barra del
-            dock de frecuencias en su versión de video) sobre la imagen del
-            curso. `key`: cada lección estrena su propio reproductor. */}
-        <VideoPlayer
+        {/* El video de la lección: con fuente, el reproductor del sitio; sin ella,
+            el póster del curso con «Próximamente», sin play ni reloj. `key`:
+            cada lección estrena su propio espacio. */}
+        <VideoSlot
           key={lessonIndex}
+          video={getVideo(lessonVideoId(course.id, lessonIndex + 1))}
+          media={lessonMedia}
+          title={lessonTitle}
           className="aspect-[16/9] sm:aspect-[16/8]"
-          duration={lesson ? lessonSeconds(lesson) : 0}
-          labels={{
-            region: t('videoLabel'),
-            play: tPlayer('play'),
-            pause: tPlayer('pause'),
-            seek: t('videoSeek'),
-            mute: tPlayer('mute'),
-            unmute: tPlayer('unmute'),
-            fullscreen: tPlayer('fullscreen'),
-            exitFullscreen: tPlayer('exitFullscreen'),
-          }}
-          poster={
-            <EditorialImage
-              aspect="16:8"
-              className="h-full"
-              focalPoint={lessonMedia.position}
-              media={lessonMedia}
-              overlay={false}
-              scrim="bottom"
-            />
-          }
         />
         <figcaption className="border-line bg-fg/[0.025] text-fg-meta text-label tracking-caps border-x border-b px-5 py-4 font-sans uppercase">
           {t('media.alt.lesson', { title: lessonTitle })}
         </figcaption>
       </figure>
-
-      {/* TODO(backend): la nota desaparece cuando la lección traiga su video. */}
-      <p className="text-fg-soft text-meta mt-4 max-w-[60ch] font-sans leading-[1.6]">
-        {t('videoDeferred')}
-      </p>
 
       <div className="mt-7 flex flex-wrap items-center justify-between gap-3">
         {prevIndex !== null ? (
