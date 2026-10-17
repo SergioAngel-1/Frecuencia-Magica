@@ -67,9 +67,11 @@ type Current = {
   track: EngineTrack;
   graph: TrackGraph;
   preview: number | undefined;
+  options: PlayOptions;
 };
 
-type Pending = { track: EngineTrack; options: PlayOptions };
+/** Una pista que espera al contexto, con la posición en la que se quedó. */
+type Pending = { track: EngineTrack; options: PlayOptions; offset: number };
 
 /**
  * Motor de reproducción: una pista a la vez, sobre un único contexto.
@@ -103,12 +105,37 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
       master = ctx.createGain();
       master.gain.value = volume;
       master.connect(ctx.destination);
+      ctx.addEventListener('statechange', onContextStateChange);
     }
     return ctx;
   }
 
+  /**
+   * El navegador puede suspender el contexto con una pista sonando (llamada,
+   * segundo plano, Siri): se trata como un bloqueo, guardando la posición. Al
+   * volver a `running`, la pista retoma desde ahí.
+   */
+  function onContextStateChange(): void {
+    if (!ctx) return;
+
+    if (ctx.state === 'running') {
+      if (state === 'blocked' && pending) {
+        const next = pending;
+        pending = null;
+        startTrack(ctx, next.track, next.options, next.offset);
+      }
+      return;
+    }
+
+    if (state === 'playing' && current) {
+      block(ctx, current.track, current.options, elapsedNow());
+    }
+  }
+
   function elapsedNow(): number {
-    if (!current || !ctx) return 0;
+    // Sin pista sonando, bloqueado: la posición que se guardó al bloquear.
+    if (!current) return pending?.offset ?? 0;
+    if (!ctx) return 0;
 
     const position = current.graph.position();
     if (position !== null) return position;
@@ -118,7 +145,12 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
   }
 
   function emit(ended = false): void {
-    latest = { state, trackId: current?.track.id ?? null, elapsed: elapsedNow(), ended };
+    latest = {
+      state,
+      trackId: current?.track.id ?? pending?.track.id ?? null,
+      elapsed: elapsedNow(),
+      ended,
+    };
     for (const listener of listeners) listener(latest);
   }
 
@@ -169,7 +201,12 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
   }
 
   /** Empieza la pista: la anterior baja, y la nueva entra cuando ella acaba. */
-  function startTrack(context: AudioContext, track: EngineTrack, options: PlayOptions): void {
+  function startTrack(
+    context: AudioContext,
+    track: EngineTrack,
+    options: PlayOptions,
+    startAt = 0,
+  ): void {
     const now = context.currentTime;
     const masterNode = master;
     if (!masterNode) return;
@@ -186,9 +223,10 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
     gain.setValueAtTime(0, entry);
     gain.linearRampToValueAtTime(1, entry + (options.fadeIn ?? FADE_IN_SECONDS));
     graph.start();
+    if (startAt > 0) graph.seek(startAt);
 
-    current = { track, graph, preview: options.preview };
-    offset = 0;
+    current = { track, graph, preview: options.preview, options };
+    offset = startAt;
     clockBase = entry;
     clockRunning = true;
     state = 'playing';
@@ -200,14 +238,19 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
    * El navegador no deja sonar: se calla lo que hubiera, se recuerda la pista y
    * se reintenta al reanudarse el contexto. Nunca queda en `playing`.
    */
-  function block(context: AudioContext, track: EngineTrack, options: PlayOptions): void {
+  function block(
+    context: AudioContext,
+    track: EngineTrack,
+    options: PlayOptions,
+    resumeAt: number,
+  ): void {
     if (current) fadeOutAndStop(current, context.currentTime);
     current = null;
     offset = 0;
     clockRunning = false;
     stopTimer();
 
-    const token: Pending = { track, options };
+    const token: Pending = { track, options, offset: resumeAt };
     pending = token;
     state = 'blocked';
     emit();
@@ -216,7 +259,7 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
       () => {
         if (pending !== token || context.state !== 'running') return;
         pending = null;
-        startTrack(context, track, options);
+        startTrack(context, track, options, token.offset);
       },
       () => undefined,
     );
@@ -232,16 +275,22 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
       return;
     }
 
+    // Reintentar la misma pista tras un bloqueo la retoma donde se quedó.
+    const carried =
+      pending && pending.track.id === track.id && pending.options.preview === options.preview
+        ? pending.offset
+        : 0;
+
     const context = ensureContext();
     if (!context) return;
 
     if (context.state !== 'running') {
-      block(context, track, options);
+      block(context, track, options, carried);
       return;
     }
 
     pending = null;
-    startTrack(context, track, options);
+    startTrack(context, track, options, carried);
   }
 
   function pause(): void {
@@ -263,6 +312,11 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
 
   function resume(): void {
     if (!current || !ctx || state !== 'paused') return;
+    // Con el contexto suspendido no se reanuda: queda bloqueada, en la misma posición.
+    if (ctx.state !== 'running') {
+      block(ctx, current.track, current.options, offset);
+      return;
+    }
 
     const now = ctx.currentTime;
     clockBase = now;
@@ -317,6 +371,7 @@ export function createAudioEngine(deps: AudioEngineDeps): AudioEngine {
     },
     dispose() {
       pending = null;
+      ctx?.removeEventListener('statechange', onContextStateChange);
       if (current && ctx) fadeOutAndStop(current, ctx.currentTime);
       current = null;
       stopTimer();

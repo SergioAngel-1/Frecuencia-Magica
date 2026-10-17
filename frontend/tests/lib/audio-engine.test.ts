@@ -173,3 +173,127 @@ describe('motor de audio', () => {
     expect(engine.getSnapshot().elapsed).toBeCloseTo(13.5);
   });
 });
+
+describe('vigilancia del contexto y cobertura del motor', () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it('si el navegador suspende el contexto durante la reproducción, deja de decir que suena', () => {
+    const { ctx, engine } = setup({ resumable: false });
+    engine.play(TONE);
+    ctx.currentTime = 5;
+
+    ctx.setState('suspended');
+
+    expect(engine.getSnapshot()).toMatchObject({ state: 'blocked', trackId: 'a1' });
+    expect(audibleTrackOutputs(ctx, 6)).toBe(0);
+    engine.dispose();
+  });
+
+  it('al reanudarse el contexto, la pista vuelve desde donde se quedó', () => {
+    const { ctx, engine } = setup({ resumable: false });
+    engine.play(TONE);
+    ctx.currentTime = 5;
+    ctx.setState('suspended');
+
+    ctx.setState('running');
+    ctx.currentTime = 7;
+    vi.advanceTimersByTime(250);
+
+    expect(engine.getSnapshot().state).toBe('playing');
+    expect(engine.getSnapshot().elapsed).toBeCloseTo(7);
+    expect(audibleTrackOutputs(ctx, 7.5)).toBe(1);
+    engine.dispose();
+  });
+
+  it('reanudar desde pausa con el contexto suspendido queda en blocked, nunca en playing', () => {
+    const { ctx, engine } = setup({ resumable: false });
+    engine.play(TONE);
+    engine.pause();
+    ctx.setState('suspended');
+
+    engine.resume();
+
+    expect(engine.getSnapshot().state).toBe('blocked');
+    engine.dispose();
+  });
+
+  it('un reemplazo A→B→C dentro del fundido deja sólo C audible, nunca dos a la vez', () => {
+    const { ctx, engine } = setup({ resumable: false });
+    engine.play(TONE);
+    ctx.currentTime = 1;
+    engine.play(OTHER);
+    ctx.currentTime = 1.1;
+    engine.play({ ...OTHER, id: 'a3' });
+
+    for (let t = 1; t <= 3; t += 0.01) {
+      expect(audibleTrackOutputs(ctx, t)).toBeLessThanOrEqual(1);
+    }
+    expect(engine.getSnapshot().trackId).toBe('a3');
+    expect(audibleTrackOutputs(ctx, 3)).toBe(1);
+    engine.dispose();
+  });
+
+  it('pausar mientras el motor está bloqueado no cambia su estado', () => {
+    const { ctx, engine } = setup({ state: 'suspended', resumable: false });
+    engine.play(TONE);
+
+    engine.pause();
+
+    expect(engine.getSnapshot().state).toBe('blocked');
+    expect(ctx.oscillators.every((oscillator) => oscillator.started.length === 0)).toBe(true);
+    engine.dispose();
+  });
+
+  it('seek lleva el reloj a la posición pedida, acotada a la duración, y el avance sigue desde ahí', () => {
+    const { ctx, engine } = setup({ resumable: false });
+    engine.play(TONE);
+
+    engine.seek(100);
+    expect(engine.getSnapshot().elapsed).toBeCloseTo(100);
+
+    ctx.currentTime = 1;
+    vi.advanceTimersByTime(250);
+    expect(engine.getSnapshot().elapsed).toBeCloseTo(101);
+
+    engine.seek(999999);
+    expect(engine.getSnapshot().elapsed).toBeCloseTo(TONE.durationSeconds);
+    engine.dispose();
+  });
+
+  it('una muestra suspendida no termina mientras está bloqueada; al reanudarse termina en su tope', () => {
+    const { ctx, engine } = setup({ resumable: false });
+    const endings: boolean[] = [];
+    engine.subscribe((snapshot) => endings.push(snapshot.ended));
+    engine.play(TONE, { preview: 25 });
+    ctx.currentTime = 10;
+    ctx.setState('suspended');
+
+    ctx.currentTime = 40;
+    vi.advanceTimersByTime(250);
+    expect(endings).not.toContain(true);
+    expect(engine.getSnapshot()).toMatchObject({ state: 'blocked', ended: false });
+
+    // Retoma en 10 s: el tope de 25 s se alcanza con el reloj en 55 s.
+    ctx.setState('running');
+    ctx.currentTime = 55;
+    vi.advanceTimersByTime(250);
+    expect(endings).toContain(true);
+    expect(engine.getSnapshot().state).toBe('idle');
+    engine.dispose();
+  });
+
+  it('dispose quita el listener de estado del contexto', () => {
+    const { ctx, engine } = setup({ resumable: false });
+    engine.play(TONE);
+    expect(ctx.stateListenerCount).toBe(1);
+
+    engine.dispose();
+    expect(ctx.stateListenerCount).toBe(0);
+  });
+});

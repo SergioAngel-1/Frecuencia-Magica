@@ -13,12 +13,15 @@ type AutomationPoint = { t: number; v: number; linear: boolean };
 
 export class FakeAudioParam {
   private points: AutomationPoint[];
+  private readonly created: number;
 
   constructor(
     private readonly clock: { currentTime: number },
     initial: number,
   ) {
-    this.points = [{ t: -Infinity, v: initial, linear: false }];
+    // Un parámetro nace en el instante de su nodo: antes de existir no suena.
+    this.created = clock.currentTime;
+    this.points = [{ t: this.created, v: initial, linear: false }];
   }
 
   private add(point: AutomationPoint): this {
@@ -42,12 +45,14 @@ export class FakeAudioParam {
   }
 
   cancelScheduledValues(t: number): this {
-    this.points = this.points.filter((point) => point.t < t);
+    // El punto de nacimiento nunca se cancela: el parámetro siempre tiene valor.
+    this.points = [this.points[0]!, ...this.points.slice(1).filter((point) => point.t < t)];
     return this;
   }
 
   /** Valor del parámetro en el instante `time` del contexto. */
   valueAt(time: number): number {
+    if (time < this.created) return 0;
     let anchor = this.points[0]!;
 
     for (let i = 1; i < this.points.length; i += 1) {
@@ -227,19 +232,44 @@ export class FakeAudioContext {
     return node;
   }
 
+  private readonly stateListeners = new Set<() => void>();
+
+  addEventListener(type: string, listener: () => void): void {
+    if (type === 'statechange') this.stateListeners.add(listener);
+  }
+
+  removeEventListener(type: string, listener: () => void): void {
+    if (type === 'statechange') this.stateListeners.delete(listener);
+  }
+
+  /**
+   * Cambia el estado como lo haría el navegador (llamada, segundo plano,
+   * bloqueo) y despacha `statechange` a quien escuche.
+   */
+  setState(next: 'running' | 'suspended' | 'closed'): void {
+    if (this.state === next) return;
+    this.state = next;
+    for (const listener of this.stateListeners) listener();
+  }
+
+  /** Listeners registrados (para comprobar que se liberan). */
+  get stateListenerCount(): number {
+    return this.stateListeners.size;
+  }
+
   resume(): Promise<void> {
     this.resumeCalls += 1;
-    if (this.resumable && this.state === 'suspended') this.state = 'running';
+    if (this.resumable && this.state === 'suspended') this.setState('running');
     return Promise.resolve();
   }
 
   suspend(): Promise<void> {
-    this.state = 'suspended';
+    this.setState('suspended');
     return Promise.resolve();
   }
 
   close(): Promise<void> {
-    this.state = 'closed';
+    this.setState('closed');
     return Promise.resolve();
   }
 }
