@@ -79,6 +79,17 @@
   background: var(--fm-night);
 }
 
+/* Fundido entre atmósferas (`AtmosphereBackdrop`): la capa nueva sube de 0 a 1
+   sobre la anterior. La duración la pone el componente desde `config/motion.ts`. */
+@keyframes fm-atmo-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes fm-portal-iris {
   0% {
     transform: scale(0.015);

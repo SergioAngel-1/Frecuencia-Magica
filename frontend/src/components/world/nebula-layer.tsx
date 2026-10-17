@@ -1,6 +1,9 @@
 import type { CSSProperties } from 'react';
 
 import type { VisualMode } from '@/config/realms';
+import { useEngineProfile } from '@/hooks/use-engine-profile';
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { fadeDuration } from '@/lib/atmosphere/engine-profile';
 
 /** Un blob circular difuminado a la deriva. */
 type Blob = {
@@ -8,12 +11,6 @@ type Blob = {
   gradient: string;
   blur: number;
   animation: string;
-};
-
-const MODE_OPACITY: Record<VisualMode, number> = {
-  cosmic: 1,
-  editorial: 0.68,
-  quiet: 0.46,
 };
 
 const BLOBS: readonly Blob[] = [
@@ -42,11 +39,15 @@ const BLOBS: readonly Blob[] = [
  * oscurece el borde inferior. Decorativa y sin interacción.
  */
 export function NebulaLayer({ visualMode = 'cosmic' }: { visualMode?: VisualMode }) {
+  const { nebula } = useEngineProfile(visualMode);
+  const reduced = useReducedMotionSafe();
+  const fade = fadeDuration(reduced);
+
   return (
     <div
       aria-hidden="true"
       className="z-atmosphere pointer-events-none fixed inset-0 overflow-hidden"
-      style={{ opacity: MODE_OPACITY[visualMode] }}
+      style={{ opacity: nebula, transition: `opacity ${fade}s ease-in-out` }}
     >
       {BLOBS.map((blob, i) => (
         <div

@@ -562,7 +562,8 @@
   }
 
   body {
-    background: var(--fm-night);
+    /* La atmósfera activa. Sin atributo en `<html>` (antes de hidratar) es la noche. */
+    background: var(--atmo-bg);
     color: var(--color-ivory);
     font-family: var(--font-sans);
     font-weight: 300;

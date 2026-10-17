@@ -1,13 +1,11 @@
 import type { CSSProperties } from 'react';
 
 import type { VisualMode } from '@/config/realms';
+import { useEngineProfile } from '@/hooks/use-engine-profile';
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { fadeDuration } from '@/lib/atmosphere/engine-profile';
 
 const STAR_PATH = 'M12 0 L13.4 10.6 L24 12 L13.4 13.4 L12 24 L10.6 13.4 L0 12 L10.6 10.6 Z';
-const MODE_OPACITY: Record<VisualMode, number> = {
-  cosmic: 1,
-  editorial: 0.7,
-  quiet: 0.5,
-};
 
 /** Los cuatro destellos de cuatro puntas, con su posición, color y ritmo. */
 type Sparkle = {
@@ -48,11 +46,15 @@ const SPARKLES: readonly Sparkle[] = [
  * cuatro puntas parpadeando desincronizados. Decorativas y sin interacción.
  */
 export function BrandFigures({ visualMode = 'cosmic' }: { visualMode?: VisualMode }) {
+  const { figures } = useEngineProfile(visualMode);
+  const reduced = useReducedMotionSafe();
+  const fade = fadeDuration(reduced);
+
   return (
     <div
       aria-hidden="true"
       className="z-atmosphere pointer-events-none fixed inset-0 overflow-hidden"
-      style={{ opacity: MODE_OPACITY[visualMode] }}
+      style={{ opacity: figures, transition: `opacity ${fade}s ease-in-out` }}
     >
       {/* Aro superior derecho */}
       <svg
