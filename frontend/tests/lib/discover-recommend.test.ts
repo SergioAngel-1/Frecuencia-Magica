@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 import { describe, expect, it } from 'vitest';
 
 import { COURSES, EXPERIENCES, PLAYABLE_AUDIOS, PRODUCTS } from '@/data';
@@ -115,11 +118,17 @@ describe('recommend', () => {
       (audio) => audio.id,
     );
     for (const id of frequencyIds) expect(audios.has(id), id).toBe(true);
-    for (const id of audios)
-      expect(
-        PLAYABLE_AUDIOS.some((audio) => audio.id === id),
-        id,
-      ).toBe(true);
+  });
+
+  it('la página de Descúbrete pasa al cuestionario sólo pistas reproducibles', () => {
+    // La guarda real: la página, no la función, decide qué catálogo recibe.
+    const page = readFileSync(
+      resolve(process.cwd(), 'src/app/[locale]/descubrete/page.tsx'),
+      'utf8',
+    );
+
+    expect(page).toContain('audios: PLAYABLE_AUDIOS');
+    expect(page).not.toMatch(/audios:\s*AUDIOS\b/);
   });
 
   it('answers a calm-seeking quiz with the calm frequency', () => {
