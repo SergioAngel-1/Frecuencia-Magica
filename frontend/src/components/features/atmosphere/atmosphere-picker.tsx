@@ -12,7 +12,11 @@ import { placeFromPathname } from '@/lib/realm-from-pathname';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
 
 const OPTION_BASE =
-  'rounded-pill border min-h-11 px-5 font-sans text-body tracking-ui transition-colors duration-300 ease-out';
+  'rounded-pill border-line-strong min-h-11 border px-5 font-sans text-body tracking-ui transition-colors duration-300 ease-out';
+/** Opción pulsada: halo de acento y texto pleno. */
+const OPTION_ACTIVE = 'bg-accent/16 text-fg';
+/** Opción sin pulsar: vidrio y texto atenuado, que se ilumina al pasar el cursor. */
+const OPTION_IDLE = 'bg-surface text-fg-soft hover:text-fg';
 
 /**
  * Selector manual de atmósfera: «Ambiente del sitio» y las atmósferas elegibles.
@@ -39,6 +43,7 @@ export function AtmospherePicker() {
 
   const chosen = mounted ? manual : null;
   const shown = resolveAtmosphere(place, chosen);
+  const siteActive = mounted && manual === null;
 
   return (
     <div className="flex flex-col items-center gap-3 text-center">
@@ -53,14 +58,9 @@ export function AtmospherePicker() {
       >
         <button
           type="button"
-          aria-pressed={mounted && manual === null}
+          aria-pressed={siteActive}
           onClick={clear}
-          className={cn(
-            OPTION_BASE,
-            mounted && manual === null
-              ? 'border-line-strong bg-accent/16 text-fg'
-              : 'border-line bg-surface text-fg-soft hover:text-fg',
-          )}
+          className={cn(OPTION_BASE, siteActive ? OPTION_ACTIVE : OPTION_IDLE)}
         >
           {t('picker.site')}
         </button>
@@ -74,12 +74,7 @@ export function AtmospherePicker() {
               type="button"
               aria-pressed={pressed}
               onClick={() => setManual(id)}
-              className={cn(
-                OPTION_BASE,
-                pressed
-                  ? 'border-line-strong bg-accent/16 text-fg'
-                  : 'border-line bg-surface text-fg-soft hover:text-fg',
-              )}
+              className={cn(OPTION_BASE, pressed ? OPTION_ACTIVE : OPTION_IDLE)}
             >
               {t(`${id}.pickerLabel`)}
             </button>
