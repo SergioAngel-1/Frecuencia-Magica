@@ -493,7 +493,7 @@ Plan: `docs/superpowers/plans/2026-10-17-ambientes-v2.md`; contrato: `docs/super
 
 - Fase 0 completa. Sigue **T1.1** (selector manual de ambiente): descripción y etiqueta del selector en `atmospheres.<id>`.
 - Rojo del mar: resuelto como `dusk` (Atardecer, spec § 11 D2: reflejos rojizos y ámbar sin saturar). Calibrable en T1.5.
-- Correcciones de docs fuera de este archivo, pendientes: `ambient-contrast` → `atmosphere-contrast` en `DESIGN.md` y spec § 4.8; `SEGMENT_TO_REALM` → `SEGMENT_TO_PLACE` en `frontend/README.md`; escalera clara 0,9/0,8/0,74/0,7 en `DESIGN.md`.
+- Correcciones de docs (`atmosphere-contrast`, `SEGMENT_TO_PLACE`, escalera clara 0,9/0,8/0,74/0,7): ya aplicadas en `DESIGN.md`, el spec y `frontend/README.md`.
 - Deuda menor diferida: scrollbars `void-2` en claras (token pendiente), crossfade interrumpido en menos de 1,6 s, y coste de las capas `absolute` en gama media (Tienda).
 
 ---
