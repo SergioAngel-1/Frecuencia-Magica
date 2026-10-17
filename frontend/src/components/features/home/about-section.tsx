@@ -18,7 +18,7 @@ type AboutSectionProps = {
 
 export function AboutSection({ media, kicker, title, p1, p2, action, video }: AboutSectionProps) {
   return (
-    <section className="fm-editorial-full-bleed relative">
+    <section className="relative">
       <div
         className="pointer-events-none absolute top-[18%] left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(150,198,188,0.1),transparent_68%)] blur-3xl"
         aria-hidden="true"

@@ -31,6 +31,10 @@ describe('fundidos de borde de la Home', () => {
   it('Marisol cierra la página en su atmósfera, fundida arriba y abajo', () => {
     const scope = HOME.slice(HOME.indexOf('atmosphere="marisol"'));
 
+    // A sangre: el fondo ocupa todo el ancho, no sólo la columna de la vista.
+    expect(scope.slice(0, scope.indexOf('<AtmosphereBackdrop'))).toContain(
+      'fm-editorial-full-bleed',
+    );
     expect(scope).toContain('<AtmosphereBackdrop fade="both" />');
     expect(scope.indexOf('<AtmosphereBackdrop')).toBeLessThan(scope.indexOf('<AboutSection'));
   });

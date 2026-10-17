@@ -237,7 +237,7 @@ export default async function HomePage({ params }: PageProps) {
       <AtmosphereScope
         atmosphere="marisol"
         scheme={ATMOSPHERES.marisol.scheme}
-        className="py-section relative isolate"
+        className="fm-editorial-full-bleed py-section relative isolate"
       >
         <AtmosphereBackdrop fade="both" />
         <AboutSection
