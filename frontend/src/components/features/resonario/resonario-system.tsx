@@ -69,7 +69,7 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
         ) : (
           <div className="gap-section flex flex-col">
             {showAll && featured ? (
-              <div className="mx-auto w-full max-w-[420px]">
+              <div className="mx-auto w-full max-w-[560px]">
                 <TrackCard audio={featured} cover={media.featured} badge={t('featuredBadge')} />
               </div>
             ) : null}
