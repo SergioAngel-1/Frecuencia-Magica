@@ -32,6 +32,17 @@ export function advanceBreath(state: BreathState, rounds: number): BreathState {
   return { round: state.round + 1, step: 0 };
 }
 
+/** Tamaño del orbe al inhalar y sostener, relativo a su tamaño de reposo. */
+export const BREATH_ORB_SCALE = 1.25;
+
+/**
+ * Escala del orbe para una fase: grande al inhalar y al sostener, en reposo al
+ * exhalar. Sin fase (la guía ha terminado) queda en reposo.
+ */
+export function orbScale(phase: BreathPhase | null): number {
+  return phase === null || phase === 'exhale' ? 1 : BREATH_ORB_SCALE;
+}
+
 /** La fase en curso y su duración, o `null` cuando la guía ha terminado. */
 export function currentBreathPhase(
   state: BreathState,

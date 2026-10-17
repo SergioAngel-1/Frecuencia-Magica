@@ -1,18 +1,19 @@
 'use client';
 
+import { motion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
 
 import { Button, Display } from '@/components/ui';
-import { BREATHING, BREATHING_CYCLE_SECONDS } from '@/config/breathing';
+import { BREATHING } from '@/config/breathing';
+import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import {
   advanceBreath,
   currentBreathPhase,
   initialBreath,
+  orbScale,
   type BreathPhase,
 } from '@/lib/breathing/guide';
-import { cn } from '@/lib/cn';
-import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 
 const PHASE_KEY: Record<BreathPhase, 'inhale' | 'hold' | 'exhale'> = {
   inhale: 'inhale',
@@ -26,9 +27,9 @@ type BreathingGuideProps = {
 };
 
 /**
- * Guía de respiración: un orbe que inhala y exhala al ritmo de `BREATHING`, con
- * la indicación en texto. El orbe usa el `breathe` del sistema; con movimiento
- * reducido no escala y sólo quedan las indicaciones.
+ * Guía de respiración: un orbe que crece al inhalar y al sostener y vuelve al
+ * exhalar, con los mismos segundos que la indicación (`BREATHING`). Sólo escala
+ * (transform). Con movimiento reducido no se mueve y quedan las indicaciones.
  *
  * El slot de video `breathing-guide` (la grabación de Marisol) entra en la fase
  * E: hasta entonces no se promete a nadie en pantalla.
@@ -71,14 +72,11 @@ export function BreathingGuide({ onClose }: BreathingGuideProps) {
         aria-hidden="true"
         className="relative flex size-[min(72vw,300px)] items-center justify-center"
       >
-        <span
-          className={cn(
-            'border-accent/40 bg-accent/10 shadow-glow-card absolute inset-0 rounded-full border',
-            !reduced && !done && 'animate-fm-breathe',
-          )}
-          style={
-            !reduced && !done ? { animationDuration: `${BREATHING_CYCLE_SECONDS}s` } : undefined
-          }
+        <motion.span
+          className="border-accent bg-accent/10 shadow-glow-card absolute inset-0 rounded-full border-2"
+          initial={{ scale: 1 }}
+          animate={{ scale: reduced ? 1 : orbScale(current?.phase ?? null) }}
+          transition={{ duration: reduced || !current ? 0.2 : current.seconds, ease: 'easeInOut' }}
         />
       </div>
 
