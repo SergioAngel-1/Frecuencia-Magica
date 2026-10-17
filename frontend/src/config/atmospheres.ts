@@ -98,3 +98,10 @@ export const ATMOSPHERE_IDS = Object.keys(ATMOSPHERES) as AtmosphereId[];
 
 /** Clave de `sessionStorage` de la elección manual (dura la sesión, no el dispositivo). */
 export const ATMOSPHERE_STORAGE_KEY = 'fm.atmosphere';
+
+/**
+ * Versión del formato guardado (`persist({ version })`). El script de arranque la
+ * replica: si no coincide, zustand descarta el estado y el script también debe
+ * ignorarlo, o aparece un destello al hidratar.
+ */
+export const ATMOSPHERE_STORE_VERSION = 0;

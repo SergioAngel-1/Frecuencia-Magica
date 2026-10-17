@@ -9,7 +9,7 @@ interface AtmosphereScopeProps {
    * Esquema de la atmósfera (`data-scheme`). Lo pasa el consumidor desde
    * `ATMOSPHERES[atmosphere].scheme`: este componente no importa `config/`.
    */
-  scheme?: AtmosphereScheme;
+  scheme: AtmosphereScheme;
   children: ReactNode;
   className?: string;
 }

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-import { ATMOSPHERE_STORAGE_KEY } from '@/config/atmospheres';
+import { ATMOSPHERE_STORAGE_KEY, ATMOSPHERE_STORE_VERSION } from '@/config/atmospheres';
 import { isAtmosphereId } from '@/lib/atmosphere/resolve';
 import type { AtmosphereId } from '@/types/atmosphere';
 
@@ -26,6 +26,7 @@ export const useAtmosphereStore = create<AtmosphereState>()(
     }),
     {
       name: ATMOSPHERE_STORAGE_KEY,
+      version: ATMOSPHERE_STORE_VERSION,
       // En el servidor no hay `sessionStorage`: `createJSONStorage` lo absorbe
       // y el store funciona sin persistir.
       storage: createJSONStorage(() => sessionStorage),

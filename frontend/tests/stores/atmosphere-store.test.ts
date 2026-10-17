@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ATMOSPHERE_STORAGE_KEY } from '@/config/atmospheres';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
@@ -51,6 +51,28 @@ describe('useAtmosphereStore', () => {
     await useAtmosphereStore.persist.rehydrate();
 
     expect(useAtmosphereStore.getState().manual).toBeNull();
+  });
+
+  it('al rehidratar, un JSON roto deja la elección en null sin lanzar', async () => {
+    useAtmosphereStore.setState({ manual: null });
+    sessionStorage.setItem(ATMOSPHERE_STORAGE_KEY, '{"state":');
+
+    await expect(useAtmosphereStore.persist.rehydrate()).resolves.toBeUndefined();
+    expect(useAtmosphereStore.getState().manual).toBeNull();
+  });
+
+  it('si sessionStorage no es legible, el store arranca sin elección y no lanza', async () => {
+    useAtmosphereStore.setState({ manual: null });
+    const spy = vi.spyOn(sessionStorage, 'getItem').mockImplementation(() => {
+      throw new Error('SecurityError');
+    });
+
+    try {
+      await expect(useAtmosphereStore.persist.rehydrate()).resolves.toBeUndefined();
+      expect(useAtmosphereStore.getState().manual).toBeNull();
+    } finally {
+      spy.mockRestore();
+    }
   });
 
   it('al rehidratar, un id válido guardado se recupera', async () => {
