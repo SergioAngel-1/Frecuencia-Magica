@@ -7,7 +7,7 @@ Fecha: 2026-10-17. Rama `feat/ambientes-v2`. Build de producción (`next build` 
 - Resonario bajo `dusk` (Descanso) y `dawn` (Calma de día), con la noche como control.
 - Tienda (`/tienda`) y detalle de producto (`/tienda/p1`), bajo `store`.
 - Bloque de Tienda en la Home (`/inicio`), entre el bento y la membresía.
-- Anchos 1440, 1280, 768 y 390 px. Capturas de página completa en `docs/superpowers/audits/assets/ambientes-muestras/` (`<escena>-<ancho>.png`) y medición en `medicion.json` (mismo directorio).
+- Anchos 1440, 1280, 768 y 390 px. Capturas de página completa en `docs/superpowers/audits/assets/ambientes-muestras/` (`<escena>-<ancho>.webp`, WebP q80) y medición en `medicion.json` (mismo directorio).
 
 Elección de atmósfera: `sessionStorage` `fm.atmosphere` (`{state:{manual}, version:0}`) antes de cargar. El atributo `data-atmosphere` de `<html>` confirma la atmósfera en cada captura.
 
@@ -62,3 +62,13 @@ Estado tras los arreglos (revisado en las capturas nuevas de `shots2`):
 - Móvil 768 y 390: capturas hechas, no revisadas a fondo en esta ronda.
 
 Capturas: `docs/superpowers/audits/assets/ambientes-muestras/` (las de `dusk`/`night`/`inicio` incluidas); `medicion.json` con desborde 0 px en todas.
+
+
+## Ronda 2 (2026-10-17)
+
+- Banners con foto en esquema claro: velo claro que funde a los bordes (`.fm-banner-veil`, sólo bajo `data-scheme='light'`). Resonario `dawn`: el kicker «Dentro del archivo» se lee y la franja oscura de los bordes desaparece. Banda de ritual de Tienda: sin franja, el enlace se lee; el kicker «Materia para tu práctica» sigue débil (dorado sobre velo claro): **abierto**.
+- Cifras de las esferas en claro: halo de tinta bajo marfil (`.fm-disc-num`, `.fm-disc-unit`). Las cifras se leen; las unidades «HZ» sobre las portadas más pálidas siguen débiles: **abierto**.
+- Noche sin cambios: la diferencia entre la captura anterior y la nueva de `/resonario` (noche) tiene la misma magnitud que la diferencia entre dos capturas del mismo build (media 0,047/255; máx. 72 por el campo de estrellas). Verificado.
+- Capturas re-hechas: `resonario` `dawn` y `night` a 1440 y 390; Tienda a 1440 y 390. Las demás escenas son de la ronda anterior.
+- Peso: capturas convertidas a WebP (q80, ancho original). Total 3,3 MB; los PNG se han retirado del árbol. Las capturas nuevas no deben ser PNG.
+- Descúbrete con resultado a 390 px: sigue sin capturar.

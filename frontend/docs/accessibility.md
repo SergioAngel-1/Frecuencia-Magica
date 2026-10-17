@@ -88,3 +88,5 @@ Todo control sin texto visible lleva `aria-label` (o `aria-label` descriptivo en
 - Pendiente de verificación: foco visible y hit targets de los puntos de navegación sobre fondo claro (hallazgo 3).
 
 Ronda de arreglo (2026-10-17): el velo denso de las atmósferas claras sale de `--scrim-deep` (ya no es navy fijo). Los números de las esferas usan `--color-on-media` (marfil en todas las atmósferas). Pendiente: el kicker de los banners sobre foto clara en `dawn` y el de la banda de ritual de Tienda siguen con contraste bajo; no lo cubre ninguna guarda (sólo tokens). Las capturas se hicieron con movimiento reducido: la deriva del paisaje no se ha visto.
+
+Ronda 2: los banners con foto en esquema claro llevan un velo claro que funde a los bordes; el kicker del banner de Resonario en `dawn` se lee, el de la banda de ritual de Tienda sigue débil (abierto). Las cifras de las esferas en claro llevan un halo de tinta; las unidades «HZ» sobre las portadas pálidas siguen débiles (abierto). La noche no cambia.
