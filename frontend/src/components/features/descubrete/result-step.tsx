@@ -1,5 +1,6 @@
 'use client';
 
+import { AtmosphereBand } from '@/components/features/atmosphere/atmosphere-band';
 import { AtmospherePicker } from '@/components/features/atmosphere/atmosphere-picker';
 import { AudioDisc, type AudioDiscItem } from '@/components/features/player/audio-disc';
 import { Button, Display, Float, Kicker } from '@/components/ui';
@@ -45,6 +46,8 @@ export function ResultStep({
 }: ResultStepProps) {
   return (
     <div className="pb-block flex w-full max-w-[1040px] flex-col items-center gap-6">
+      {/* El paisaje de la atmósfera elegida a protagonismo; en la noche no pinta nada. */}
+      <AtmosphereBand />
       <Kicker tone="gold" spacing="widest">
         {kicker}
       </Kicker>

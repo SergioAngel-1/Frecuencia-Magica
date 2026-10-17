@@ -76,7 +76,7 @@ describe('band chain', () => {
 
     // Resonario: héroe → banner del archivo.
     const resonario = chainOf(view('app/[locale]/resonario/page.tsx'));
-    expect(resonario).toContain('<RealmHero');
+    expect(resonario).toContain('<AtmosphereHero');
     expect(resonario).toContain('<EditorialBanner');
 
     // Experiencias: héroe → destacada.

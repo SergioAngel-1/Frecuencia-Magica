@@ -7,6 +7,7 @@ import type {
   EditorialMediaAspect,
   EditorialMediaMode,
   EditorialOverlayDirection,
+  EditorialScrimTone,
 } from '@/types/editorial-media';
 import { mediaLayout } from '@/lib/editorial/media-layout';
 import { mediaSizes } from '@/lib/editorial/media-sizes';
@@ -44,6 +45,8 @@ export interface FullBleedSectionProps {
    */
   mediaClassName?: string;
   contentClassName?: string;
+  /** Esquema de los velos: `light` sobre una atmósfera clara (ver `EditorialOverlay`). */
+  scrimTone?: EditorialScrimTone;
 }
 
 const MODE_CLASSES: Record<EditorialMediaMode, string> = {
@@ -88,6 +91,7 @@ export function FullBleedSection({
   className,
   mediaClassName,
   contentClassName,
+  scrimTone,
 }: FullBleedSectionProps) {
   const layout = mediaLayout(mode, 'desktop');
   const defaultOverlay = layout.overlay;
@@ -137,6 +141,7 @@ export function FullBleedSection({
             overlay={tint ? overlayDirection : false}
             overlayClassName={tint === 'mobile' ? 'md:hidden' : undefined}
             scrim={overlayDirection}
+            scrimTone={scrimTone}
             sizes={sizes ?? mediaSizes(mode, media.aspect)}
           />
         </div>
