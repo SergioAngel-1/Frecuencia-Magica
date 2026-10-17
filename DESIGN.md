@@ -123,7 +123,7 @@ Mientras no hay fotografía real, cada slot pinta el fallback de su contrato: la
 - Serif Cormorant Garamond ligera (peso 300) para voz y números; Jost 300 para interfaz; kickers en mayúsculas espaciadas.
 - Composición editorial: héroes y bandas a sangre, una sola línea de contenido, jerarquía por escala y no por cajas.
 - Imagen de paisaje luminoso: cielo arriba y materia abajo, para no duplicar el campo de estrellas que ya pinta el engine.
-- Cada realm conserva su identidad (quiz, sistema orbital, bento, filas de reserva, diario); la fotografía se adapta al realm, no al revés.
+- Cada realm conserva su identidad (quiz, sol y esferas por tipo de escucha, bento, filas de reserva, diario); la fotografía se adapta al realm, no al revés.
 - Movimiento siempre presente y siempre contenido: sólo `transform` y `opacity`, con `prefers-reduced-motion` respetado.
 
 **El brief manda sobre los hábitos genéricos.** Las guías generales de diseño con IA desaconsejan kickers sobre titulares, texto con gradiente, tríos de métricas y glassmorphism. Aquí el cliente los fija de forma explícita (kickers en mayúsculas 11px, `heroTitleEm` con gradiente oro→teal→lavanda, stats del hero, cristal astral). Se mantienen; este documento prevalece sobre cualquier preset externo.
@@ -341,7 +341,7 @@ La **constelación**: seis puntos de luz, uno por realm, tintados con el acento 
 
 ### Frequency Disc (signature)
 
-El disco orbital de frecuencia es la pieza identitaria: esfera con luz especular, aros contrarrotados, cifra en serif y unidad «Hz». Cuatro escalas (`xs` 92px, `sm` 150px, `md` 190px, `lg` 380px); sólo la grande lleva ecualizador. Las pequeñas y la destacada llevan un **aura**: la banda del propio audio, difuminada y respirando detrás de la esfera, de modo que cada frecuencia irradia su color; la destacada le suma un halo dorado amplio y tenue (el color cerca, el oro lejos). La portada fotográfica de un audio se pinta **dentro** de la esfera (`cover`), nunca en un marco propio alrededor del disco. Todo disco que abre el reproductor pasa por `AudioDisc` (`components/features/player`). En el Resonario no hay rejilla de tarjetas: el destacado es el sol y seis discos orbitan a su alrededor.
+El disco orbital de frecuencia es la pieza identitaria: esfera con luz especular, aros contrarrotados, cifra en serif y unidad «Hz». Cuatro escalas (`xs` 92px, `sm` 150px, `md` 190px, `lg` 380px); sólo la grande lleva ecualizador. Las pequeñas y la destacada llevan un **aura**: la banda del propio audio, difuminada y respirando detrás de la esfera, de modo que cada frecuencia irradia su color; la destacada le suma un halo dorado amplio y tenue (el color cerca, el oro lejos). La portada fotográfica de un audio se pinta **dentro** de la esfera (`cover`), nunca en un marco propio alrededor del disco. Todo disco que abre el reproductor pasa por `AudioDisc` (`components/features/player`). En el Resonario, el destacado es el sol (la esfera grande, con su foto) y cada pista de cada tipo de escucha es una esfera dentro de su tarjeta, en una sección por tipo. Las esferas no ocupan posiciones orbitales fijas: con 16 pistas no caben. Sonando ahora se marca en la tarjeta activa y en el sol.
 
 ### Reproductor (dock)
 

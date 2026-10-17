@@ -58,10 +58,10 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 
 ### Resonario (`/resonario`)
 
-- [x] Sistema solar: disco destacado («el sol», su foto se funde con una máscara radial) + 6 discos en posiciones orbitales exactas, sin columna de texto duplicada. Apilado en <1024px.
-- [x] Filtros por tags (5 pills), `EmptyState` cuando no hay resultados.
+- [x] Sol y esferas por tipo: disco destacado («el sol», su foto se funde con una máscara radial) y, debajo, una sección por tipo de escucha con una esfera por tarjeta. Sin posiciones orbitales fijas (con 16 pistas no caben).
+- [x] Filtros por tipo de escucha («Todo» y los 5 tipos), `EmptyState` cuando no hay resultados.
 - [x] Disco destacado centrado (`FrequencyDisc` con `mx-auto`), aros que escalan.
-- [x] Grid responsive < 900px.
+- [x] Rejilla de tarjetas: 1 columna en móvil, hasta 4 en escritorio.
 
 ### Academia (`/academia`, `/[courseId]`, `/[courseId]/[lessonId]`)
 
