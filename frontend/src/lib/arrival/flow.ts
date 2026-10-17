@@ -1,7 +1,27 @@
 import type { ArrivalKey } from '@/config/arrivals';
 import { respondToArrival, type ArrivalContext, type ArrivalResponse } from '@/lib/arrival/respond';
+import type { EngineState } from '@/lib/audio/engine/engine';
 import type { AtmosphereId } from '@/types/atmosphere';
 import type { Audio } from '@/types/content';
+
+/**
+ * Subida de la primera pista de una llegada, en segundos. Entra en fundido
+ * desde el silencio, sin tocar el volumen guardado del reproductor.
+ */
+export const ARRIVAL_FADE_IN_SECONDS = 2.5;
+
+/**
+ * Fundido para abrir una pista de llegada: sólo si no suena nada (sin pista o
+ * parada). Si ya suena otra, el cambio no funde. `undefined` = sin fundido.
+ */
+export function arrivalFadeIn(player: {
+  audioId: string | null;
+  engineState: EngineState;
+}): number | undefined {
+  return player.audioId === null || player.engineState !== 'playing'
+    ? ARRIVAL_FADE_IN_SECONDS
+    : undefined;
+}
 
 /**
  * Estado del panel de llegada: la entrada elegida, su respuesta, la alternativa

@@ -5,6 +5,8 @@ import { useCallback, useState } from 'react';
 import type { ArrivalKey } from '@/config/arrivals';
 import { AUDIOS } from '@/data/audios';
 import {
+  ARRIVAL_FADE_IN_SECONDS,
+  arrivalFadeIn,
   chooseArrival,
   currentAlternative,
   cycleAtmosphere,
@@ -14,12 +16,6 @@ import {
 } from '@/lib/arrival/flow';
 import { usePlayerStore } from '@/stores/player-store';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
-
-/**
- * Subida de la primera pista de una llegada, en segundos. Entra en fundido
- * desde el silencio, sin tocar el volumen guardado del reproductor.
- */
-export const ARRIVAL_FADE_IN_SECONDS = 2.5;
 
 export type ArrivalControls = {
   flow: ArrivalFlow;
@@ -70,7 +66,9 @@ export function useArrival(): ArrivalControls {
 
       setFlow(next);
       const audio = currentAlternative(next);
-      if (audio) open(audio.id);
+      // Lo decide el estado del reproductor en este instante, no el de la última render.
+      const fadeIn = arrivalFadeIn(usePlayerStore.getState());
+      if (audio) open(audio.id, 'full', { fadeIn });
     },
     [flow, open],
   );

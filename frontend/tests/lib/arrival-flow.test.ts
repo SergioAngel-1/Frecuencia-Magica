@@ -3,6 +3,8 @@ import { describe, expect, it } from 'vitest';
 import type { ArrivalKey } from '@/config/arrivals';
 import { AUDIOS, isPlayable } from '@/data/audios';
 import {
+  ARRIVAL_FADE_IN_SECONDS,
+  arrivalFadeIn,
   chooseArrival,
   currentAlternative,
   cycleAtmosphere,
@@ -96,5 +98,21 @@ describe('flujo de llegada (función pura)', () => {
 
     const day = chooseArrival('mood:calm', DAY);
     expect(day.response!.otherAtmospheres).not.toContain('moon');
+  });
+});
+
+describe('fundido de arranque de una pista de llegada (M3)', () => {
+  it('desde el silencio (sin pista o parada) entra con fundido', () => {
+    expect(arrivalFadeIn({ audioId: null, engineState: 'idle' })).toBe(ARRIVAL_FADE_IN_SECONDS);
+    expect(arrivalFadeIn({ audioId: 'a1', engineState: 'paused' })).toBe(ARRIVAL_FADE_IN_SECONDS);
+    expect(arrivalFadeIn({ audioId: 'a1', engineState: 'idle' })).toBe(ARRIVAL_FADE_IN_SECONDS);
+  });
+
+  it('si ya suena algo, el cambio de pista no vuelve a fundir', () => {
+    expect(arrivalFadeIn({ audioId: 'a1', engineState: 'playing' })).toBeUndefined();
+  });
+
+  it('el fundido dura unos 2,5 s', () => {
+    expect(ARRIVAL_FADE_IN_SECONDS).toBe(2.5);
   });
 });

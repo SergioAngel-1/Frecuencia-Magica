@@ -49,6 +49,9 @@ export function ArrivalPanel({ flow, onStep, onOther, onStop }: ArrivalPanelProp
               <p className="text-fg font-serif text-[clamp(20px,2.4vw,24px)] leading-tight">
                 {tResonario(`audios.${audio.id}.title` as 'audios.a1.title')}
               </p>
+              {audio.headphones ? (
+                <p className="text-fg-meta text-meta tracking-ui font-sans">{t('headphones')}</p>
+              ) : null}
             </div>
           </Swap>
           {count > 1 ? (

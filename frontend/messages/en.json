@@ -899,6 +899,7 @@
     "legend": "How you arrive",
     "silent": "Sound only starts when you choose it.",
     "listenKind": "To listen to",
+    "headphones": "Best with headphones",
     "position": "{current} of {total}",
     "previous": "Previous",
     "next": "Next",
