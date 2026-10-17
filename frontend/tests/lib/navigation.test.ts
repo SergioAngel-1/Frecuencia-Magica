@@ -9,6 +9,9 @@ import { readSource, SRC } from '../helpers/source-files';
 
 const NAV = readSource(`${SRC}/components/layout/realm-nav.tsx`);
 const MENU = readSource(`${SRC}/components/layout/realm-menu.tsx`);
+const HEADER = readSource(`${SRC}/components/layout/site-header.tsx`);
+const STORE = readSource(`${SRC}/components/layout/store-link.tsx`);
+const SECTION = readSource(`${SRC}/components/layout/current-section-label.tsx`);
 
 describe('site navigation', () => {
   it('adds the site story after the realms, as its own entry', () => {
@@ -17,6 +20,10 @@ describe('site navigation', () => {
     expect(NAV_REALMS.map((realm) => realm.href)).not.toContain(NAV_STORY.href);
     // Marfil: no es un realm y no toma el acento de ninguno.
     expect(NAV_STORY.accent).toBe('#F7F4EA');
+  });
+
+  it('opens the constellation with the store', () => {
+    expect(NAV_REALMS[0]?.id).toBe('tienda');
   });
 
   it('shows the story in the desktop constellation and in the menu', () => {
@@ -34,13 +41,36 @@ describe('site navigation', () => {
     expect(en.nav.story.emotion).not.toBe(es.nav.story.emotion);
   });
 
-  it('opens the same menu from the header below 1024px and from the constellation above', () => {
+  it('opens the same menu from the header at every width and from the constellation above 1024px', () => {
     expect(MENU).toContain('useNavMenuStore');
-    expect(MENU).toContain('className="lg:hidden"');
+    // El botón del header es visible en todos los anchos: ya no sólo por debajo de 1024px.
+    expect(MENU).not.toContain('lg:hidden');
     expect(NAV).toContain('useNavMenuStore');
     expect(NAV).toContain('onClick={openMenu}');
     expect(NAV).toContain('aria-haspopup="dialog"');
     // Un aro hueco, no un punto: no se confunde con un realm.
     expect(NAV).toContain('rounded-full border');
+  });
+
+  it('labels the menu button «Menú» with an icon, and names the current section next to it', () => {
+    expect(MENU).toContain("tHeader('menu')");
+    expect(MENU).toContain('border-line-strong');
+    expect(HEADER).toContain('<CurrentSectionLabel');
+    expect(HEADER).toContain('<RealmMenu');
+    expect(SECTION).toContain('currentSection(');
+    expect(SECTION).toContain("t('current.home')");
+    expect(SECTION).toContain("t('story.label')");
+  });
+
+  it('gives the store a text link in the header, and moves it into the menu below 640px', () => {
+    expect(HEADER).toContain('<StoreLink');
+    expect(STORE).toContain('href="/tienda"');
+    expect(STORE).toContain("t('store')");
+    expect(STORE).toContain('useCartCount');
+    // Por debajo de 640px el enlace se oculta en el header y el carrito pasa al panel del menú.
+    expect(STORE).toMatch(/\bhidden\b/);
+    expect(STORE).toContain('sm:inline-flex');
+    expect(MENU).toContain('href="/tienda/carrito"');
+    expect(MENU).toContain('sm:hidden');
   });
 });

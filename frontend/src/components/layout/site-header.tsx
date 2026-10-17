@@ -7,9 +7,11 @@ import type { Locale } from '@/i18n/routing';
 
 import { AudioToggle } from './audio-toggle';
 import { BrandMark } from './brand-mark';
+import { CurrentSectionLabel } from './current-section-label';
 import { LanguageToggle } from './language-toggle';
 import { RealmMenu } from './realm-menu';
 import { SessionLink } from './session-link';
+import { StoreLink } from './store-link';
 
 /**
  * Barra fija superior.
@@ -23,6 +25,8 @@ export function SiteHeader() {
   const tCommon = useTranslations('common');
   const locale = useLocale() as Locale;
   const { realmId } = useRealm();
+  // La tienda no se ofrece en el portal ni en el acceso, igual que el menú.
+  const showStore = realmId !== 'portal' && realmId !== 'auth';
 
   return (
     <header className="fm-safe-area-top z-header pointer-events-none fixed inset-x-0 top-0 flex items-center justify-between py-4 pr-[max(20px,env(safe-area-inset-right))] pl-[max(20px,env(safe-area-inset-left))] md:py-[22px] md:pr-[max(34px,env(safe-area-inset-right))] md:pl-[max(34px,env(safe-area-inset-left))]">
@@ -45,6 +49,8 @@ export function SiteHeader() {
         <LanguageToggle locale={locale} />
         <AudioToggle />
         <SessionLink label={t('signIn')} active={realmId === 'auth'} />
+        {showStore && <StoreLink active={realmId === 'tienda'} />}
+        <CurrentSectionLabel />
         <RealmMenu />
       </div>
     </header>

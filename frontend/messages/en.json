@@ -16,7 +16,9 @@
     "languageLabel": "ES",
     "soundOn": "Mute ambient sound",
     "soundOff": "Turn on ambient sound",
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "store": "Store",
+    "menu": "Menu"
   },
   "talk": {
     "region": "Direct contact",
@@ -46,7 +48,10 @@
       "label": "Our essence",
       "emotion": "Origin"
     },
-    "menu": "Menu"
+    "menu": "Menu",
+    "current": {
+      "home": "Home"
+    }
   },
   "footer": {
     "tagline": "We accompany real processes of transformation. You need not become someone else: only remember who you have always been.",

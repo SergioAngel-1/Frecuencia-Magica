@@ -16,7 +16,9 @@
     "languageLabel": "EN",
     "soundOn": "Silenciar el sonido ambiental",
     "soundOff": "Activar el sonido ambiental",
-    "skipToContent": "Saltar al contenido"
+    "skipToContent": "Saltar al contenido",
+    "store": "Tienda",
+    "menu": "Menú"
   },
   "talk": {
     "region": "Contacto directo",
@@ -46,7 +48,10 @@
       "label": "Nuestra esencia",
       "emotion": "Origen"
     },
-    "menu": "Menú"
+    "menu": "Menú",
+    "current": {
+      "home": "Inicio"
+    }
   },
   "footer": {
     "tagline": "Acompañamos procesos reales de transformación. Porque no necesitas ser alguien diferente: solo recordar quién siempre has sido.",
