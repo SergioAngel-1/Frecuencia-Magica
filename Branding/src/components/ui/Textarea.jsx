@@ -5,7 +5,7 @@ import { FIELD } from './Input'
 export function Textarea({ variant = 'default', className, ...rest }) {
   return (
     <textarea
-      className={cn(FIELD, 'resize-y', variant === 'journal' && 'bg-void/35 font-serif text-[17px] leading-[1.6]', className)}
+      className={cn(FIELD, 'resize-y', variant === 'journal' && 'bg-scrim/35 font-serif text-[17px] leading-[1.6]', className)}
       {...rest}
     />
   )

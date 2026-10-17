@@ -21,9 +21,9 @@ interface KickerProps {
 }
 
 const TONE_CLASSES: Record<KickerTone, string> = {
-  gold: 'text-gold',
-  teal: 'text-teal',
-  lav: 'text-lav',
+  gold: 'text-accent',
+  teal: 'text-accent-2',
+  lav: 'text-accent-3',
   muted: 'text-fg-meta',
 };
 

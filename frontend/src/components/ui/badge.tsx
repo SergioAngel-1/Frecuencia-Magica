@@ -5,9 +5,9 @@ import { cn } from '@/lib/cn';
 export type BadgeTone = 'gold' | 'teal' | 'lav';
 
 const TONE_TEXT_CLASSES: Record<BadgeTone, string> = {
-  gold: 'text-gold',
-  teal: 'text-teal',
-  lav: 'text-lav',
+  gold: 'text-accent',
+  teal: 'text-accent-2',
+  lav: 'text-accent-3',
 };
 
 interface BadgeOwnProps {
@@ -20,9 +20,9 @@ interface BadgeOwnProps {
    */
   tone?: BadgeTone;
   /**
-   * `true` = tratamiento "Destacado": fondo oro sólido
-   * `rgba(216,185,120,0.92)`, texto `ink`. Por defecto `false`
-   * (variante translúcida: fondo `rgba(15,27,46,0.35)`, borde marfil).
+   * `true` = tratamiento "Destacado": fondo oro sólido (`accent` al 92%),
+   * texto `on-accent`. Por defecto `false` (variante translúcida: fondo
+   * `scrim` al 35%, borde `fg`).
    */
   solid?: boolean;
   className?: string;
@@ -44,8 +44,8 @@ export function Badge({ children, tone = 'gold', solid = false, className, ...re
       className={cn(
         'rounded-pill text-label tracking-caps inline-flex w-fit items-center self-start px-[14px] py-[6px] font-sans whitespace-nowrap uppercase',
         solid
-          ? 'bg-gold/92 text-ink'
-          : cn('border-ivory/16 bg-void/35 border', TONE_TEXT_CLASSES[tone]),
+          ? 'bg-accent/92 text-on-accent'
+          : cn('border-fg/16 bg-scrim/35 border', TONE_TEXT_CLASSES[tone]),
         className,
       )}
       {...rest}

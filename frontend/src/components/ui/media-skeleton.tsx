@@ -52,7 +52,7 @@ export function MediaSkeleton({
 
   return (
     <div
-      className={cn('bg-void relative isolate overflow-hidden', ASPECT_CLASSES[aspect], className)}
+      className={cn('bg-scrim relative isolate overflow-hidden', ASPECT_CLASSES[aspect], className)}
       data-media-slot={slot}
     >
       <span className="sr-only">{label}</span>

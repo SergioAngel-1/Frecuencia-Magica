@@ -27,15 +27,15 @@ export function SeekBar({ value, max, onChange, label, valueText, className }: S
 
   return (
     <div className={cn('group relative flex h-11 items-center', className)}>
-      <div className="bg-ivory/14 relative h-[3px] w-full overflow-hidden rounded-[3px]">
+      <div className="bg-fg/14 relative h-[3px] w-full overflow-hidden rounded-[3px]">
         <div
-          className="bg-gold absolute inset-0 origin-left rounded-[3px]"
+          className="bg-accent absolute inset-0 origin-left rounded-[3px]"
           style={{ transform: `scaleX(${ratio})` }}
         />
       </div>
       <span
         aria-hidden="true"
-        className="bg-ivory shadow-glow-gold absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 scale-0 rounded-full transition-transform duration-200 ease-out group-focus-within:scale-100 group-hover:scale-100"
+        className="bg-fg shadow-glow-gold absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 scale-0 rounded-full transition-transform duration-200 ease-out group-focus-within:scale-100 group-hover:scale-100"
         style={{ left: `${ratio * 100}%` }}
       />
       <input
@@ -50,7 +50,7 @@ export function SeekBar({ value, max, onChange, label, valueText, className }: S
       />
       <span
         aria-hidden="true"
-        className="ring-gold pointer-events-none absolute inset-x-[-6px] inset-y-2 rounded-[8px] opacity-0 ring-2 peer-focus-visible:opacity-100"
+        className="ring-accent pointer-events-none absolute inset-x-[-6px] inset-y-2 rounded-[8px] opacity-0 ring-2 peer-focus-visible:opacity-100"
       />
     </div>
   );

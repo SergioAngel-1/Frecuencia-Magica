@@ -27,7 +27,7 @@ interface StepProgressLabeledProps extends StepProgressBaseProps {
 
 export type StepProgressProps = StepProgressDashesProps | StepProgressLabeledProps;
 
-const DIM_BG = 'bg-ivory/14';
+const DIM_BG = 'bg-fg/14';
 
 /**
  * Indicador de progreso por pasos discretos. `variant="dashes"` dibuja los
@@ -55,7 +55,7 @@ export function StepProgress(props: StepProgressProps) {
             aria-hidden="true"
             className={cn(
               'h-[3px] w-11 rounded-[2px] transition-colors duration-500',
-              index <= current ? 'bg-lav' : DIM_BG,
+              index <= current ? 'bg-accent-3' : DIM_BG,
             )}
           />
         ))}
@@ -71,13 +71,13 @@ export function StepProgress(props: StepProgressProps) {
             aria-hidden="true"
             className={cn(
               'mb-[10px] h-[3px] rounded-[2px] transition-colors duration-500',
-              index <= current ? 'bg-lav' : DIM_BG,
+              index <= current ? 'bg-accent-3' : DIM_BG,
             )}
           />
           <span
             className={cn(
               'text-label tracking-label font-sans uppercase',
-              index === current ? 'text-ivory' : 'text-fg-meta',
+              index === current ? 'text-fg' : 'text-fg-meta',
             )}
           >
             {label}

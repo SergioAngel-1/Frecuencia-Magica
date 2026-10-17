@@ -78,7 +78,7 @@ export function SegmentedControl<Value extends string = string>({
       role="tablist"
       aria-label={ariaLabel}
       className={cn(
-        'rounded-pill border-glass-brd bg-glass flex max-w-[340px] gap-[6px] border p-[5px] backdrop-blur-[10px]',
+        'rounded-pill border-line bg-surface flex max-w-[340px] gap-[6px] border p-[5px] backdrop-blur-[10px]',
         className,
       )}
     >
@@ -100,7 +100,7 @@ export function SegmentedControl<Value extends string = string>({
             className={cn(
               'rounded-pill tracking-soft min-h-11 flex-1 py-[11px] font-serif text-[18px]',
               'transition-colors duration-300 ease-out',
-              active ? 'text-ivory bg-gold/16' : 'text-fg-meta bg-transparent',
+              active ? 'text-fg bg-accent/16' : 'text-fg-meta bg-transparent',
             )}
           >
             {option.label}

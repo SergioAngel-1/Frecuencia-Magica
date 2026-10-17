@@ -52,6 +52,10 @@
   --color-surface: var(--color-glass);
   --color-surface-strong: rgb(15 27 46 / 0.72);
   --color-on-accent: var(--color-ink); /* tinta sobre relleno de acento */
+  /* Velo y luz como utilidades (`bg-scrim/60`, `bg-halo/12`). Leen los tripletes
+     de atmósfera de `:root` y de cada `[data-atmosphere]`: no se redeclaran. */
+  --color-scrim: rgb(var(--scrim));
+  --color-halo: rgb(var(--halo));
 
   /* Tipografía */
   --font-serif: var(--font-cormorant), Georgia, serif;
@@ -637,17 +641,18 @@
   }
 }
 
-/* Vidrio astral: la superficie de todas las cards. */
+/* Vidrio astral: la superficie de todas las cards. Lee los semánticos de
+   atmósfera (`surface`, `line`): en la noche valen lo mismo que el vidrio v1. */
 @utility fm-surface {
-  background: var(--color-glass);
-  border: 1px solid var(--color-glass-brd);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
   backdrop-filter: blur(12px);
 }
 
 /* Vidrio denso: dock del reproductor y badge de la navegación. */
 @utility fm-surface-strong {
-  background: rgba(15, 27, 46, 0.72);
-  border: 1px solid var(--color-glass-brd);
+  background: var(--color-surface-strong);
+  border: 1px solid var(--color-line);
   backdrop-filter: blur(22px);
 }
 

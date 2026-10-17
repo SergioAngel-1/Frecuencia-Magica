@@ -24,7 +24,7 @@ export function EmptyState({ title, body, action, media, fill = false, className
     <div className={cn('relative isolate grid place-items-center overflow-hidden rounded-card', fill ? 'flex-1' : 'min-h-[clamp(380px,48vw,600px)]', className)}>
       <div className="absolute inset-0">
         <MediaSkeleton slot={media.slot} label={media.label} aspect="16:9" className="h-full w-full" />
-        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,transparent_20%,rgba(15,27,46,0.88)_100%)]" />
+        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,transparent_20%,rgb(var(--scrim)_/_0.88)_100%)]" />
       </div>
       {content}
     </div>

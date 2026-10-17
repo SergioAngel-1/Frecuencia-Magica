@@ -15,8 +15,18 @@ const BARS: Record<EqualizerScale, readonly number[]> = {
 const DELAYS = ['0s', '.2s', '.4s', '.1s', '.5s', '.3s'] as const;
 
 const SCALE = {
-  sm: { width: 3, gap: 'gap-[3px]', color: 'rgba(247,244,234,0.75)', opacity: 0.7 },
-  lg: { width: 4, gap: 'gap-[5px]', color: 'rgba(247,244,234,0.85)', opacity: 0.75 },
+  sm: {
+    width: 3,
+    gap: 'gap-[3px]',
+    color: 'color-mix(in srgb, var(--color-fg) 75%, transparent)',
+    opacity: 0.7,
+  },
+  lg: {
+    width: 4,
+    gap: 'gap-[5px]',
+    color: 'color-mix(in srgb, var(--color-fg) 85%, transparent)',
+    opacity: 0.75,
+  },
 } as const;
 
 interface EqualizerProps {

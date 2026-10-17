@@ -32,10 +32,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function 
     <textarea
       ref={ref}
       className={cn(
-        'rounded-field border-glass-brd bg-glass w-full resize-none border px-[20px] py-[16px]',
-        'text-ivory placeholder:text-fg-meta',
+        'rounded-field border-line bg-surface w-full resize-none border px-[20px] py-[16px]',
+        'text-fg placeholder:text-fg-meta',
         'transition-[border-color,box-shadow] duration-300 ease-out outline-none',
-        'focus:border-gold/55 focus:shadow-[0_0_0_3px_rgba(216,185,120,0.12)]',
+        'focus:border-line-strong focus:shadow-[0_0_0_3px_rgb(var(--halo)_/_0.12)]',
         'aria-[invalid=true]:border-warn',
         VARIANT_CLASSES[variant],
         className,

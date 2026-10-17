@@ -18,7 +18,7 @@ const HEIGHT_CLASSES: Record<ProgressBarHeight, string> = {
 };
 
 /**
- * Barra de progreso lineal: pista translúcida (`rgba(247,244,234,0.14)`) con
+ * Barra de progreso lineal: pista translúcida (`bg-fg/14`) con
  * relleno en degradado teal→oro cuyo avance se expresa con `transform: scaleX`
  * desde el borde izquierdo. Así el cambio discreto de valor no anima una
  * propiedad de layout y respeta el presupuesto de movimiento del proyecto.
@@ -34,13 +34,13 @@ export function ProgressBar({ value, height = 4, ariaLabel, className }: Progres
       aria-valuemax={100}
       aria-label={ariaLabel}
       className={cn(
-        'bg-ivory/14 w-full overflow-hidden rounded-[3px]',
+        'bg-fg/14 w-full overflow-hidden rounded-[3px]',
         HEIGHT_CLASSES[height],
         className,
       )}
     >
       <div
-        className="h-full origin-left rounded-[3px] bg-[linear-gradient(90deg,var(--color-teal),var(--color-gold))] transition-transform duration-500 ease-out"
+        className="h-full origin-left rounded-[3px] bg-[linear-gradient(90deg,var(--color-accent-2),var(--color-accent))] transition-transform duration-500 ease-out"
         style={{ transform: `scaleX(${clamped / 100})` }}
       />
     </div>

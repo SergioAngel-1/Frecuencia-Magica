@@ -8,9 +8,10 @@ import { fromSrc, readSource, SRC, sourceFiles } from '../helpers/source-files';
  * El color del texto, los bordes, los fondos y los halos sale de los tokens
  * semánticos de `tokens.css` (`text-fg*`, `text-accent*`, `border-line*`,
  * `bg-surface*`, `rgb(var(--halo) / a)`…), que cambian con la atmósfera. Una
- * utilidad de paleta cruda (`text-gold`, `bg-void/70`…) o un `rgba()` con un
- * triplete de la paleta en JSX se quedan fijos en la noche: el test los
- * detecta por archivo.
+ * utilidad de paleta cruda (`text-gold`, `bg-void/70`…), una variable de la
+ * paleta (`var(--color-gold)` en un valor arbitrario o un estilo inline) o un
+ * `rgba()` con un triplete de la paleta se quedan fijos en la noche: el test
+ * los detecta por archivo.
  *
  * `ALLOWED` lista los archivos que hoy incumplen, cada uno con su motivo. La
  * lista sólo puede reducirse: un archivo que deja de incumplir debe salir de
@@ -55,12 +56,19 @@ const PALETTE_TRIPLES = new Set([
 
 const RGB_CALL = /rgba?\(\s*(\d{1,3})[\s,]+(\d{1,3})[\s,]+(\d{1,3})(?=[\s,)/])/g;
 
+/** Variable de la paleta: `var(--color-gold)` en un valor arbitrario o un estilo inline. */
+const PALETTE_VAR = /var\(--color-(?:glass-brd|glass|void-2|void|ivory|gold|teal|lav)\)/g;
+
 /** Hallazgos de una fuente: `L<línea>: <texto>`. Vacío si cumple. */
 export function findRawColorUse(source: string): string[] {
   const hits: string[] = [];
 
   source.split('\n').forEach((line, index) => {
     for (const match of line.matchAll(UTILITY)) {
+      hits.push(`L${index + 1}: ${match[0]}`);
+    }
+
+    for (const match of line.matchAll(PALETTE_VAR)) {
       hits.push(`L${index + 1}: ${match[0]}`);
     }
 
@@ -140,31 +148,17 @@ const ALLOWED: Record<string, string> = {
   'components/layout/site-footer.tsx': PENDING,
   'components/layout/site-header.tsx': PENDING,
   'components/layout/talk-float.tsx': PENDING,
-  'components/ui/arrow-link.tsx': PENDING,
-  'components/ui/badge.tsx': PENDING,
   'components/ui/band.tsx': PENDING,
-  'components/ui/button.tsx': PENDING,
   'components/ui/editorial-banner.tsx': PENDING,
   'components/ui/editorial-overlay.tsx': PENDING,
-  'components/ui/empty-state.tsx': PENDING,
-  'components/ui/equalizer.tsx': PENDING,
-  'components/ui/error-state.tsx': PENDING,
   'components/ui/frequency-disc.tsx': PENDING,
-  'components/ui/icon-button.tsx': PENDING,
-  'components/ui/input.tsx': PENDING,
-  'components/ui/kicker.tsx': PENDING,
-  'components/ui/loading-orb.tsx': PENDING,
-  'components/ui/media-skeleton.tsx': PENDING,
-  'components/ui/modal.tsx': PENDING,
-  'components/ui/pill.tsx': PENDING,
-  'components/ui/progress-bar.tsx': PENDING,
-  'components/ui/prose.tsx': PENDING,
-  'components/ui/seek-bar.tsx': PENDING,
-  'components/ui/segmented-control.tsx': PENDING,
-  'components/ui/skeleton.tsx': PENDING,
-  'components/ui/stat.tsx': PENDING,
-  'components/ui/step-progress.tsx': PENDING,
-  'components/ui/textarea.tsx': PENDING,
+  // Aros y halos del UI Kit: decorativos, no se migran (T0.7 decide su visibilidad por atmósfera).
+  'components/ui/empty-state.tsx': 'aros orbitales del vacío (decorativo)',
+  'components/ui/error-state.tsx': 'aros orbitales del estado de error (decorativo)',
+  'components/ui/loading-orb.tsx': 'aros, halo y núcleo del orbe de espera (decorativo)',
+  'components/ui/media-skeleton.tsx': 'aros y halo de luz de la zebra (decorativo)',
+  // El velo `void-2` (#0a1220) no tiene token: `scrim` es #0f1b2e. Decisión abierta.
+  'components/ui/modal.tsx': 'velo void-2/72 sin token equivalente (decisión abierta)',
   'config/bands.ts': PENDING,
 };
 
@@ -173,6 +167,10 @@ describe('semantic color usage', () => {
     expect(findRawColorUse('<p className="hover:text-gold/80 md:bg-void">')).toHaveLength(2);
     expect(findRawColorUse('stroke="rgba(216,185,120,0.4)"')).toHaveLength(1);
     expect(findRawColorUse('color: rgb(247 244 234 / 0.82)')).toHaveLength(1);
+    expect(findRawColorUse("background: 'var(--color-gold)'")).toHaveLength(1);
+    expect(
+      findRawColorUse('bg-[linear-gradient(var(--color-teal),var(--color-lav))]'),
+    ).toHaveLength(2);
   });
 
   it('ignores semantic tokens and non-palette colors', () => {
@@ -180,6 +178,7 @@ describe('semantic color usage', () => {
       'text-accent bg-surface-strong border-line-strong text-fg shadow-glow-gold',
       'text-warn bg-gold-soft text-ink bg-ivory-ish',
       'rgb(var(--halo) / 0.4) rgba(200, 100, 50, 0.1)',
+      'var(--color-accent) var(--color-surface) var(--color-scrim) var(--color-glass-x)',
     ].join('\n');
 
     expect(findRawColorUse(clean)).toEqual([]);

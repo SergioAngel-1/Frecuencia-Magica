@@ -12,8 +12,8 @@ export function Pill({ children, active = false, disabled = false, className, ..
         'transition-[color,background-color,border-color] duration-300 ease-out active:scale-[0.98]',
         disabled && 'pointer-events-none opacity-45',
         active
-          ? 'text-ivory border-gold/55 bg-gold/16'
-          : 'border-ivory/14 bg-ivory/4 text-fg-soft hover:border-ivory/22 hover:bg-ivory/8',
+          ? 'text-fg border-accent/55 bg-accent/16'
+          : 'border-fg/14 bg-fg/4 text-fg-soft hover:border-fg/22 hover:bg-fg/8',
         className,
       )}
       {...rest}

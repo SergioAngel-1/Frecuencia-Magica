@@ -1,6 +1,6 @@
 import { cn } from '../../lib/cn'
 
-const SHIMMER = 'linear-gradient(90deg, rgba(247,244,234,0.04), rgba(247,244,234,0.10), rgba(247,244,234,0.04))'
+const SHIMMER = 'linear-gradient(90deg, color-mix(in srgb, var(--color-fg) 4%, transparent), color-mix(in srgb, var(--color-fg) 10%, transparent), color-mix(in srgb, var(--color-fg) 4%, transparent))'
 const VARIANTS = { text: 'h-[1em] rounded-[4px]', disc: 'aspect-square rounded-full', card: 'rounded-card', band: 'rounded-card' }
 
 /** Silueta de carga con barrido de luz. Nunca un spinner como carga principal. */
