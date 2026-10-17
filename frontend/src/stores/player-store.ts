@@ -16,6 +16,12 @@ export type PlayerMode = 'full' | 'preview';
 
 /** Segundos de la muestra; al llegar aquí se detiene y no reanuda nada. */
 export const PREVIEW_SECONDS = 25;
+/** Opciones de `open`. El fundido sube la pista sin tocar el volumen maestro guardado. */
+export type OpenOptions = {
+  /** Segundos de entrada en fundido. Sin él, el de por defecto del motor. */
+  fadeIn?: number;
+};
+
 /** Clave de `localStorage` del volumen: lo único del reproductor que persiste. */
 export const VOLUME_STORAGE_KEY = 'fm.player-volume';
 const DEFAULT_VOLUME = 0.8;
@@ -35,7 +41,7 @@ type PlayerState = {
   /** Cuántas veces la persona ha abierto una pista. Avanzar sola no lo cambia. */
   opened: number;
   /** Abre un audio y lo reproduce (o la muestra). Reabrir el mismo no reinicia el tiempo. */
-  open(id: string, mode?: PlayerMode): void;
+  open(id: string, mode?: PlayerMode, options?: OpenOptions): void;
   /** Pausa o reanuda el audio abierto. Sin audio abierto no hace nada. */
   toggle(): void;
   /** El control de un audio concreto: pausa si ese audio suena; si no, lo abre o reanuda. */
@@ -116,12 +122,15 @@ export function createPlayerStore(
 
   const store: PlayerStore = create<PlayerState>((set, get) => {
     /** Pone en marcha un audio. Con la misma pista y modo, el motor la reanuda o reintenta. */
-    const start = (id: string, mode: PlayerMode) => {
+    const start = (id: string, mode: PlayerMode, fadeIn?: number) => {
       const audio = getAudio(id);
       const track = audio ? toEngineTrack(audio) : null;
       if (!track) return;
 
-      const options: PlayOptions = mode === 'preview' ? { preview: PREVIEW_SECONDS } : {};
+      const options: PlayOptions = {
+        ...(mode === 'preview' ? { preview: PREVIEW_SECONDS } : {}),
+        ...(fadeIn !== undefined ? { fadeIn } : {}),
+      };
       // Sin Web Audio el motor no acepta la pista: no dejamos un dock abierto sin sonido.
       if (!engine.play(track, options)) return;
       set({ audioId: id, mode });
@@ -136,7 +145,7 @@ export function createPlayerStore(
       minimized: false,
       volume: initialVolume,
       opened: 0,
-      open(id, mode = 'full') {
+      open(id, mode = 'full', options = {}) {
         if (!isAvailable(id)) return;
 
         const { audioId, mode: currentMode, engineState, opened } = get();
@@ -144,12 +153,12 @@ export function createPlayerStore(
         // si estaba en pausa o bloqueado, y desde la misma posición.
         if (audioId === id && currentMode === mode) {
           set({ minimized: false });
-          if (engineState !== 'playing') start(id, mode);
+          if (engineState !== 'playing') start(id, mode, options.fadeIn);
           return;
         }
 
         set({ minimized: false, opened: opened + 1 });
-        start(id, mode);
+        start(id, mode, options.fadeIn);
       },
       toggle() {
         const { audioId, mode, isPlaying } = get();

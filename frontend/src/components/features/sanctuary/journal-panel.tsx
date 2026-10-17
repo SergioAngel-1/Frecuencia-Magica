@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 
 import { Button, EditorialImage, GlassPanel, Kicker, Textarea } from '@/components/ui';
 import { useMounted } from '@/hooks/use-mounted';
+import { ArrivalCheckIn } from '@/components/features/arrival/arrival-check-in';
 import { cn } from '@/lib/cn';
 import { hasEditorialVisual } from '@/lib/editorial/visual';
 import { useJournalStore } from '@/stores/journal-store';
@@ -71,23 +72,13 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
           {tJournal('moodLabel')}
         </p>
 
-        <div className="mb-5 flex flex-wrap gap-2" role="group" aria-label={tJournal('moodLabel')}>
-          {MOOD_IDS.map((mood) => (
-            <button
-              key={mood}
-              type="button"
-              onClick={() => setMood(mood)}
-              aria-pressed={draft.mood === mood}
-              className={cn(
-                'rounded-pill text-label tracking-ui min-h-11 flex-1 basis-[86px] border px-3 py-2 font-sans uppercase transition-[color,background-color,border-color] duration-300',
-                draft.mood === mood
-                  ? 'bg-accent/15 text-accent border-accent/40'
-                  : 'bg-surface text-fg-muted border-line hover:border-fg/20',
-              )}
-            >
-              {tJournal(`moods.${mood}`)}
-            </button>
-          ))}
+        <div className="mb-5">
+          <ArrivalCheckIn
+            legend={tJournal('moodLabel')}
+            options={MOOD_IDS.map((id) => ({ id, label: tJournal(`moods.${id}`) }))}
+            selected={draft.mood}
+            onSelect={setMood}
+          />
         </div>
 
         {/* El diario se escribe sobre su cuaderno: la foto es el fondo del

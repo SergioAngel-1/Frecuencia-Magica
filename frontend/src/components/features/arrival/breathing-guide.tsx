@@ -62,7 +62,7 @@ export function BreathingGuide({ onClose }: BreathingGuideProps) {
       aria-labelledby="breathing-guide-title"
       className="flex flex-col items-center gap-6 text-center"
     >
-      <Display level="h3" size="md" id="breathing-guide-title">
+      <Display level="h3" size="md" id="breathing-guide-title" className="text-fg">
         {t('title')}
       </Display>
       <p className="text-fg-soft text-body max-w-[44ch] leading-[1.8]">{t('intro')}</p>

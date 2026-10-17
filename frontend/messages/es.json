@@ -897,6 +897,64 @@
       "done": "Terminado. Vuelve a tu ritmo cuando quieras.",
       "again": "Otra ronda",
       "stop": "Parar"
+    },
+    "kicker": "Llegada",
+    "title": "¿Cómo llegas hoy?",
+    "intro": "Elige lo que más se parezca a ti. La atmósfera cambia y te ofrecemos algo para escuchar, sin prisa.",
+    "legend": "Cómo llegas",
+    "silent": "El sonido sólo empieza cuando tú lo eliges.",
+    "listenKind": "Para escuchar",
+    "position": "{current} de {total}",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "otherOption": "Elegir otra opción",
+    "stop": "Parar",
+    "discoverCta": "Escuchar lo que te acompaña",
+    "moods": {
+      "calm": {
+        "explanation": "Un momento de calma, con agua y aire cerca, para quedarte sin prisa."
+      },
+      "tiredness": {
+        "explanation": "Para el cuerpo que pide descanso: un sonido que baja el ritmo, sin esfuerzo."
+      },
+      "nostalgia": {
+        "explanation": "Para lo que vuelve y trae un poco de dulzura. Melodías que acompañan la memoria."
+      },
+      "sadness": {
+        "explanation": "Si hoy pesa, no hace falta explicarlo. Puedes quedarte un rato, despacio, con compañía suave."
+      },
+      "joy": {
+        "explanation": "Para la luz que ya está en ti. Melodías que acompañan lo que celebras."
+      },
+      "gratitude": {
+        "explanation": "Para dar las gracias por lo que tienes cerca. Sonidos suaves que lo acompañan."
+      },
+      "clarity": {
+        "explanation": "Para ordenar la mente sin forzarla: naturaleza y un pulso claro para pensar."
+      },
+      "breathe": {
+        "explanation": "Para cuando sólo necesitas respirar. Una guía lenta que sigues con el aire."
+      }
+    },
+    "intents": {
+      "calm": {
+        "explanation": "Una calma de día: agua, aire y un tono que no pide nada."
+      },
+      "grounding": {
+        "explanation": "Volver a la tierra: bosque, raíz y agua que corre."
+      },
+      "clarity": {
+        "explanation": "Claridad para pensar con ligereza: melodía, naturaleza y un pulso binaural."
+      },
+      "rest": {
+        "explanation": "Descanso al caer la tarde: sonidos reales de mar y tonos que bajan el ritmo."
+      },
+      "bond": {
+        "explanation": "Cercanía: melodías cálidas y sonidos de agua para pasar un rato acompañado."
+      },
+      "renewal": {
+        "explanation": "Renovarte: bosque, cascada y un tono que despierta con suavidad."
+      }
     }
   },
   "states": {

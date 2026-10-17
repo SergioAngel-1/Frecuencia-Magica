@@ -8,6 +8,7 @@ import {
   audibleTrackOutputs,
   FakeAudioContext,
   type FakeContextOptions,
+  type FakeGainNode,
 } from '../helpers/fake-audio-context';
 
 /** Almacenamiento en memoria con la forma que usa el store (`getItem`/`setItem`). */
@@ -25,6 +26,16 @@ class MemoryStorage {
   keys(): string[] {
     return [...this.values.keys()];
   }
+}
+
+/** Nivel más alto de las salidas de pista que llegan al maestro, en el instante `t`. */
+function trackLevelAt(ctx: FakeAudioContext, t: number): number {
+  const masters = ctx.gains.filter((gain) => gain.connections.includes(ctx.destination));
+  const levels = ctx.gains
+    .filter((gain) => gain.connections.some((node) => masters.includes(node as FakeGainNode)))
+    .map((gain) => gain.gain.valueAt(t));
+
+  return Math.max(0, ...levels);
 }
 
 type Env = {
@@ -93,6 +104,28 @@ describe('createPlayerStore', () => {
   it('abrir un audio lo reproduce desde el principio', () => {
     state().open('a2');
     expect(state()).toMatchObject({ audioId: 'a2', isPlaying: true, elapsed: 0 });
+  });
+
+  it('abrir con fundido de entrada sube la pista despacio sin tocar el volumen guardado', () => {
+    const before = env.storage.getItem(VOLUME_STORAGE_KEY);
+    const start = env.ctx.currentTime;
+
+    env.store.getState().open('a1', 'full', { fadeIn: 2.5 });
+
+    expect(trackLevelAt(env.ctx, start)).toBeLessThan(0.05);
+    expect(trackLevelAt(env.ctx, start + 1)).toBeGreaterThan(0.2);
+    expect(trackLevelAt(env.ctx, start + 1)).toBeLessThan(0.6);
+    expect(trackLevelAt(env.ctx, start + 2.6)).toBe(1);
+    expect(env.storage.getItem(VOLUME_STORAGE_KEY)).toBe(before);
+    expect(state().volume).toBe(0.8);
+  });
+
+  it('abrir sin fundido usa la entrada corta del motor', () => {
+    const start = env.ctx.currentTime;
+
+    env.store.getState().open('a1');
+
+    expect(trackLevelAt(env.ctx, start + 1)).toBe(1);
   });
 
   it('abrir otro audio reinicia el tiempo', () => {

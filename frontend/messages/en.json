@@ -892,6 +892,64 @@
       "done": "Done. Return to your own pace whenever you like.",
       "again": "Another round",
       "stop": "Stop"
+    },
+    "kicker": "Arrival",
+    "title": "How do you arrive today?",
+    "intro": "Pick what feels most like you. The atmosphere shifts and we offer something to listen to, without hurry.",
+    "legend": "How you arrive",
+    "silent": "Sound only starts when you choose it.",
+    "listenKind": "To listen to",
+    "position": "{current} of {total}",
+    "previous": "Previous",
+    "next": "Next",
+    "otherOption": "Choose another option",
+    "stop": "Stop",
+    "discoverCta": "Listen to what keeps you company",
+    "moods": {
+      "calm": {
+        "explanation": "A moment of calm, with water and air close by, to stay without hurry."
+      },
+      "tiredness": {
+        "explanation": "For a body asking for rest: a sound that lowers the pace, without effort."
+      },
+      "nostalgia": {
+        "explanation": "For what comes back and brings a little sweetness. Melodies that keep memory company."
+      },
+      "sadness": {
+        "explanation": "If today feels heavy, there is no need to explain it. You can stay a while, slowly, with gentle company."
+      },
+      "joy": {
+        "explanation": "For the light already in you. Melodies that go along with what you celebrate."
+      },
+      "gratitude": {
+        "explanation": "To give thanks for what is close to you. Soft sounds that keep it company."
+      },
+      "clarity": {
+        "explanation": "To order the mind without forcing it: nature and a clear pulse for thinking."
+      },
+      "breathe": {
+        "explanation": "For when you only need to breathe. A slow guide you follow with your air."
+      }
+    },
+    "intents": {
+      "calm": {
+        "explanation": "A daylight calm: water, air and a tone that asks nothing of you."
+      },
+      "grounding": {
+        "explanation": "Back to the earth: forest, roots and running water."
+      },
+      "clarity": {
+        "explanation": "Clarity to think lightly: melody, nature and a binaural pulse."
+      },
+      "rest": {
+        "explanation": "Rest as the evening falls: real sea sounds and tones that slow the pace."
+      },
+      "bond": {
+        "explanation": "Closeness: warm melodies and water sounds to spend a while in good company."
+      },
+      "renewal": {
+        "explanation": "Renewal: forest, waterfall and a tone that wakes you gently."
+      }
     }
   },
   "states": {

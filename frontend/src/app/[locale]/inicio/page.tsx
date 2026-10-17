@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { AboutSection } from '@/components/features/home/about-section';
+import { ArrivalSection } from '@/components/features/home/arrival-section';
 import { StoreShowcase } from '@/components/features/home/store-showcase';
 import { DailyFrequency } from '@/components/features/home/daily-frequency';
 import { HeroSection } from '@/components/features/home/hero-section';
@@ -189,6 +190,10 @@ export default async function HomePage({ params }: PageProps) {
           featuredBadge={t('realms.featuredBadge')}
         />
       </BandChain>
+
+      {/* «¿Cómo llegas hoy?» no es una banda: va fuera de la cadena, con el ritmo
+          `section` que trae su propia sección. Tras el bento, antes de la tienda. */}
+      <ArrivalSection />
 
       {/* Tienda: una banda clara entre el bento y la membresía, que siguen oscuras. */}
       <StoreShowcase

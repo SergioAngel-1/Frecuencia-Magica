@@ -22,6 +22,7 @@ const statsSource = readSource('components/features/sanctuary/stats-row.tsx');
 const continueSource = readSource('components/features/sanctuary/continue-card.tsx');
 const dailySource = readSource('components/features/sanctuary/daily-card.tsx');
 const journalSource = readSource('components/features/sanctuary/journal-panel.tsx');
+const checkInSource = readSource('components/features/arrival/arrival-check-in.tsx');
 const emptySource = readSource('components/features/sanctuary/journal-empty.tsx');
 const emptyStateSource = readSource('components/ui/empty-state.tsx');
 
@@ -121,7 +122,8 @@ describe('sanctuary editorial composition contracts', () => {
     expect(emptyStateSource).toContain('data-editorial-media={media.slot}');
     expect(emptySource).toContain("t('emptyJournal')");
     expect(journalSource).toContain('aria-live="polite"');
-    expect(journalSource).toContain('aria-pressed={draft.mood === mood}');
+    expect(journalSource).toContain('<ArrivalCheckIn');
+    expect(checkInSource).toContain('aria-pressed={selected === option.id}');
   });
 
   it('keeps the orb decorative and the greeting as the only h1', () => {
