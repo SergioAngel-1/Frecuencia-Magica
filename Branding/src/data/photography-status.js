@@ -135,6 +135,7 @@ export const COMPLETED = [
   'store-product-visual-p8.avif',
   'atmosphere-forest-autumn.avif',
   'atmosphere-study.avif',
+  'atmosphere-marisol.avif',
 ]
 
 /**
