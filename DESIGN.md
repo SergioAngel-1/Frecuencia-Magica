@@ -1,6 +1,6 @@
 ---
 name: Frecuencia Mágica
-description: Portal inmersivo de bienestar (marca Marisol). Paisaje luminoso nocturno como materia estructural sobre un world engine vivo, en una paleta cerrada de noche, oro, teal y lavanda.
+description: Portal inmersivo de bienestar (marca Marisol). Paisaje luminoso como materia estructural sobre un world engine vivo, en una paleta cerrada de noche, oro, teal y lavanda, con nueve atmósferas (la noche es una de ellas).
 colors:
   void: "#0F1B2E"
   void-deep: "#0a1220"
@@ -111,11 +111,11 @@ components:
 
 **Creative North Star: "El Umbral Luminoso"**
 
-Frecuencia Mágica no es un sitio sobre bienestar: es un lugar al que se entra. El visitante cruza un portal y llega a nueve _realms_ que comparten una sola atmósfera, noche azul profunda atravesada por oro, teal y lavanda, donde todo respira. La tesis es una frase de dos mitades: **la imagen es el paisaje; el world engine es su energía viva**. La imagen (agua, bruma, cielo cósmico, a veces una silueta de luz) aporta peso, escala y ritmo editorial; el canvas cósmico, los halos, los aros, la geometría sagrada, el cursor luminoso y el audio ambiental la atraviesan, la iluminan y la recortan. La imagen se asienta _sobre_ la energía; nunca la sustituye. Desde la enmienda de 2026-10-10 el medio es el paisaje luminoso nocturno y no el bodegón fotográfico (ver _Imagery_).
+Frecuencia Mágica no es un sitio sobre bienestar: es un lugar al que se entra. El visitante cruza un portal y llega a nueve _realms_ que comparten una misma marca y una de nueve atmósferas: la noche azul profunda atravesada por oro, teal y lavanda es la primera y la predeterminada del portal, y donde todo respira. La tesis es una frase de dos mitades: **la imagen es el paisaje; el world engine es su energía viva**. La imagen (agua, bruma, cielo cósmico, a veces una silueta de luz) aporta peso, escala y ritmo editorial; el canvas cósmico, los halos, los aros, la geometría sagrada, el cursor luminoso y el audio ambiental la atraviesan, la iluminan y la recortan. La imagen se asienta _sobre_ la energía; nunca la sustituye. Desde la enmienda de 2026-10-10 el medio es el paisaje luminoso nocturno y no el bodegón fotográfico (ver _Imagery_).
 
 El tono visual es íntimo, sereno y poético. Se habla en segunda persona ("vuelve a ti", "respira"), se escribe con serif ligera a gran tamaño y se deja aire. Los acentos son luz (halos, bordes finos, resplandores), jamás rellenos. Nada es estático: los fondos viven, los elementos flotan, orbitan o laten, y toda entrada llega en fade-up escalonado.
 
-Mientras no hay fotografía real, cada slot pinta el fallback de su contrato: la **zebra** (bandas de la paleta a baja opacidad, quietas) en héroes y retrato; la banda de color del ítem en cursos, experiencias, productos y audios; nada en las atmósferas sin trabajo narrativo. Es arte dirigido, no un hueco; nunca una caja gris, ni stock, ni Unsplash. La zebra no late: un barrido en bucle se lee como «cargando», y la única espera del sitio es la escena de `states.loading`.
+Mientras no hay fotografía real, cada slot pinta el fallback de su contrato: la **zebra** (bandas de la paleta a baja opacidad, quietas) en héroes y retrato; la banda de color del ítem en cursos, experiencias, productos y audios; nada en las atmósferas sin trabajo narrativo. Es arte dirigido, no un hueco; nunca una caja gris, ni stock genérico, ni Unsplash. La zebra no late: un barrido en bucle se lee como «cargando», y la única espera del sitio es la escena de `states.loading`.
 
 **Key Characteristics:**
 
@@ -130,7 +130,7 @@ Mientras no hay fotografía real, cada slot pinta el fallback de su contrato: la
 
 ## Colors
 
-Un cielo nocturno con tres luces y un marfil. Siete colores, ningún otro.
+Un cielo nocturno con tres luces y un marfil. Siete colores de marca, ningún otro. Las atmósferas (§ Atmósferas) son la única capa que añade matices, y los declara sólo en `tokens.css`.
 
 ### Primary
 
@@ -143,20 +143,54 @@ Un cielo nocturno con tres luces y un marfil. Siete colores, ningún otro.
 
 ### Neutral
 
-- **Vacío** (`#0F1B2E`, `--color-void`): el fondo. Con `Vacío Hondo` (`#0a1220`) y `Vacío Elevado` (`#16273f`) forma el gradiente de la app: `radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0F1B2E 45%, #0a1220 100%)`.
+- **Vacío** (`#0F1B2E`, `--color-void`): el fondo. Con `Vacío Hondo` (`#0a1220`) y `Vacío Elevado` (`#16273f`) forma el gradiente de la app en la atmósfera `night` (las demás declaran el suyo, § Atmósferas): `radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0F1B2E 45%, #0a1220 100%)`.
 - **Marfil** (`#F7F4EA`, `--color-ivory`): todo el texto y los rellenos claros. Nunca blanco puro.
 - **Tinta** (`#12213a`, `--color-ink`): texto oscuro sobre rellenos marfil u oro (botón primario, badge). Valor del prototipo.
 - **Terracota** (`#C98B7A`, `--color-warn`): exclusivamente errores de formulario y estados de fallo.
 
 ### Named Rules
 
-**La Regla de los Cinco Marfiles.** El texto sobre fondo oscuro usa cinco peldaños y sólo cinco: `text-ivory` (100%, títulos y énfasis), `text-fg-body` (82%, párrafos), `text-fg-soft` (70%, descripciones), `text-fg-muted` (60%, apoyo) y `text-fg-meta` (55%, kickers y meta mínima). Todos cumplen AA (4.5:1) contra el punto más claro del fondo (`#16273f`). Nunca por debajo de 55%; si un diseño pide más sutileza, se cambia tamaño, peso o tracking, no la opacidad.
+**La Regla de los Cinco Marfiles.** El texto sobre fondo oscuro usa cinco peldaños y sólo cinco: `text-ivory` (100%, títulos y énfasis), `text-fg-body` (82%, párrafos), `text-fg-soft` (70%, descripciones), `text-fg-muted` (60%, apoyo) y `text-fg-meta` (55%, kickers y meta mínima). Todos cumplen AA (4.5:1) contra el punto más claro del fondo de la noche (`#16273f`); las atmósferas claras usan su derivado oscuro y cada una mide su contraste (§ Atmósferas). Nunca por debajo de 55%; si un diseño pide más sutileza, se cambia tamaño, peso o tracking, no la opacidad.
 
 **La Regla de la Luz, no del Relleno.** Oro, teal y lavanda aparecen como halo, borde de 1px o brillo. Un relleno sólido grande de acento (una barra, un panel, una píldora estirada) rompe el sistema. El relleno sólido se reserva para elementos pequeños: badge, botón circular, marfil del botón primario.
 
 **La Regla del Espectro Cerrado.** La frecuencia no es un arcoíris: sus líneas son de oro, teal y lavanda, nunca un espectro de colores saturados ni neón. Ni en imagen ni en componentes.
 
-**La Regla de la Paleta Cerrada.** Ningún hex nuevo en componentes. Las portadas de audio, curso, experiencia y producto usan los nueve tintes de `frontend/src/config/covers.ts` (mezclas desaturadas de la paleta con el vacío); `tests/lib/palette.test.ts` lo verifica.
+**La Regla de la Paleta Cerrada.** Ningún hex nuevo en componentes; los valores de atmósfera viven sólo en `tokens.css`. Las portadas de audio, curso, experiencia y producto usan los nueve tintes de `frontend/src/config/covers.ts` (mezclas desaturadas de la paleta con el vacío); `tests/lib/palette.test.ts` lo verifica.
+
+## Atmósferas
+
+Nueve atmósferas conviven con la marca. Cada una es un conjunto de valores declarado **sólo en `frontend/src/app/tokens.css`** (`Branding/` lo muestra sin copiarlo). La noche es la primera (la v1, sin cambios) y no la única verdad del sistema. El nombre en código es `atmosphere` (`config/atmospheres.ts`, `data-atmosphere`); `ambient` ya nombra el drone.
+
+| id | UI | Esquema | Carácter | Dónde vive por defecto |
+| --- | --- | --- | --- | --- |
+| `night` | Noche cósmica | oscuro | la v1 actual, sin cambios | portal, acceso, 404 |
+| `dusk` | Atardecer · Descanso | oscuro cálido | terracota, coral oscuro, ámbar suave; mar tranquilo al atardecer; sin rojo intenso ni luces deslumbrantes | elegible; respuesta a «descansar» |
+| `dawn` | Amanecer · Calma de día | claro | azul cielo, marfil, dorado tenue; amanecer sobre lago o mar | elegible; respuesta a «calma» |
+| `moon` | Luna · Escucha nocturna | oscuro profundo | azul noche y plata; mar bajo la luna, pocas estrellas | elegible; se ofrece primero como «otra opción» de noche |
+| `forest` | Bosque · Raíz y agua | verde natural, luz media | verde natural y luz filtrada; cascada y helechos; variante otoñal con nostalgia | elegible; respuesta a «Raíz» y «Renovación»; escucha para estudiar |
+| `study` | Estudio · Academia | claro | claro, acogedor, luz para leer; rincón junto a una ventana | Academia |
+| `store` | Taller · Tienda | claro cálido | arena, crema, verde suave; productos sobre piedra o madera con luz lateral | Tienda |
+| `gathering` | Encuentro · Experiencias | cálido, luz media | humano y cercano; personas en un espacio cálido | Experiencias |
+| `marisol` | Luz de Marisol | claro cálido | personal, cálido y luminoso; fotos y videos reales de ella | Sobre Marisol |
+
+Mi Santuario, Descúbrete, Resonario y Home no tienen atmósfera fija: toman la de su sitio o la que elija la persona. Los realms con identidad propia (Academia, Tienda, Experiencias, Sobre Marisol) no se pisan por esa elección.
+
+**Lo común de marca** (no cambia entre atmósferas): Cormorant Garamond y Jost con sus escalas; el isotipo y el logo; la forma del vidrio y los radios; la luz como acento (halos, nunca rellenos grandes); el movimiento lento (flotar, respirar, entrada escalonada); la voz del texto; el reproductor como pieza reconocible; el pie.
+
+**Qué redefine cada atmósfera** (y sólo esto):
+
+- **Superficie:** gradiente de fondo (sustituye a `--fm-night` en su ámbito), vidrio y su borde, scrim.
+- **Texto:** la escalera de cinco peldaños (`fg`, `fg-body`, `fg-soft`, `fg-muted`, `fg-meta`) y un acento de texto propio. Sobre claro, el oro de marca (`#D8B978`) da ≈1,7:1 contra marfil: no sirve de texto, y cada atmósfera clara declara su derivado oscuro.
+- **Luz:** halos y glows que reemplazan a los dorados.
+- **Controles:** botón primario, foco, píldoras, barra y disco del reproductor.
+- **Perfil de engine:** opacidad del canvas, de la nebulosa y de los blobs; estrellas sólo en las oscuras, en las claras nada o motas de luz.
+- **Sonido:** nota y voz del drone.
+- **Barra del navegador:** `theme-color`.
+
+**Contraste como guarda.** Cada atmósfera cumple AA sobre su propia superficie: 4,5:1 para texto y 3:1 para UI grande y foco, también en el caso sin imagen (su degradado de respaldo). Lo comprueba un test por atmósfera (`ambient-contrast`). Los controles fijos (header, constelación, reproductor, WhatsApp) usan vidrio denso tintado por la atmósfera activa, no transparente, y su contraste se mide sobre esa superficie.
+
+**Imagen natural.** Los paisajes de atmósfera conservan sus colores naturales (tratamiento `natural`, sin tintar); el etalonaje de la noche no se les aplica. Sin stock genérico: fotografía propia o con licencia comercial documentada. Sin foto, el fallback es el degradado de la propia atmósfera, nunca la zebra (la zebra es de la noche) ni una caja gris. El texto sobre foto usa un scrim que gana tono claro u oscuro según la atmósfera, y su contraste AA se mide sobre ese scrim.
 
 ## Typography
 
@@ -242,7 +276,7 @@ Las bandas y héroes a sangre no llevan radio. El retrato de Marisol conserva su
 
 > Dirección vigente tras la enmienda de 2026-10-10 de `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md`. El inventario, los prompts y las reglas por imagen viven en `docs/brief-fotografico.md` (generado desde `Branding/src/data/photography.js`).
 
-**Paisaje luminoso nocturno.** Las imágenes de fondo son paisajes de noche, no bodegones: agua en calma, bruma y montaña, cielo cósmico. La luz es un único foco dorado; teal y lavanda son los únicos matices. Es una referencia de sensación (energía, quietud, cosmos), traducida a la paleta cerrada: nunca neón, arcoíris ni saturación alta.
+**Paisaje luminoso nocturno.** Las imágenes de fondo de la noche son paisajes de noche, no bodegones (las demás atmósferas siguen § Atmósferas, con color natural): agua en calma, bruma y montaña, cielo cósmico. La luz es un único foco dorado; teal y lavanda son los únicos matices. Es una referencia de sensación (energía, quietud, cosmos), traducida a la paleta cerrada: nunca neón, arcoíris ni saturación alta.
 
 **Cielo arriba, materia abajo.** El cosmos ocupa como mucho el tercio superior de la imagen, con estrellas escasas. El campo estelar, las partículas y la nebulosa son del world engine; una imagen con el cielo completo las duplicaría y competiría con el canvas.
 
@@ -336,7 +370,7 @@ El único momento coreografiado de la web: se cruza un umbral de luz y se llega 
 - **Cruce reciente** (`brief`, 760 ms): el mismo iris, más ágil. El iris se abre hasta cubrir la pantalla en **todos** los cruces; lo que cambia con el reposo de 24 h es el ritmo, no la forma. Un cruce que sólo mostraba el punto de luz se leía como un loader, no como un umbral.
 - **Movimiento reducido** (`quick`): sólo la noche que funde y vuelve, sin iris ni punto de luz.
 
-**La Regla de la Noche que Cubre.** Lo que tapa la pantalla es la noche de la app, nunca un color de acento: la luz del cruce es filo o halo. Un relleno claro a pantalla completa deslumbra, rompe la paleta y deja un lavado gris al disolverse.
+**La Regla de la Noche que Cubre.** Lo que tapa la pantalla es el fondo de la atmósfera activa, nunca un color de acento: la luz del cruce es filo o halo. Un relleno claro a pantalla completa deslumbra, rompe la paleta y deja un lavado gris al disolverse.
 
 ## Do's and Don'ts
 
@@ -353,7 +387,7 @@ El único momento coreografiado de la web: se cruza un umbral de luz y se llega 
 ### Don't:
 
 - **Don't** añadir hex, fuentes ni colores de acento fuera de la paleta; ni `rgba()` de la paleta en clases cuando existe el token con opacidad (`border-gold/20`).
-- **Don't** usar rellenos sólidos grandes de acento, cajas grises, stock, Unsplash ni emojis.
+- **Don't** usar rellenos sólidos grandes de acento, cajas grises, stock genérico, Unsplash ni emojis.
 - **Don't** escribir `text-[Npx]` (<16px), `tracking-[…]` ni `text-ivory/NN` sueltos: hay tokens.
 - **Don't** repetir el mismo mensaje en dos bandas de una misma vista, ni el mismo texto en kicker y badge.
 - **Don't** dibujar scrims propios sobre fotografía ni poner texto sobre imagen por debajo de AA.

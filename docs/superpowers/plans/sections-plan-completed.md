@@ -14,6 +14,7 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 | 8 | Fase 15 | 3D perezoso | ❌ No ejecutada | — |
 | 9 | Fase 16 | Estados, a11y, responsive, rendimiento | ✅ Completada (salvo 16.2.4/16.2.5 manuales) | 2026-08-11 |
 | 10 | Armonización visual | Auditoría de coherencia (impeccable), tokens, eje de página y corrección de defectos visibles | ✅ Completada (decisiones abiertas en la auditoría) | 2026-09-30 |
+| 11 | Ambientes v2 · Task 0.1 | Enmienda de contratos: atmósferas en AGENTS.md, DESIGN.md, spec editorial y checklist de realm | Task 0.1 completada (sólo documentación); el resto de la fase 0 sigue pendiente | 2026-10-17 |
 
 > **Auditoría 2026-07-28 (ver sección final «Auditoría completa»).** Las fases 9–14 se construyeron y los cuatro comandos de verificación están en verde, pero varias tareas quedaron incompletas respecto al plan (Task 12.3, 12.4, 13.1 y los `// TODO(backend)`). **La Fase 15 (3D) no se ejecutó en absoluto** y **la Fase 16 (estados/404/error/loading, a11y, responsive, rendimiento) tampoco**. Detalle abajo.
 
@@ -431,4 +432,19 @@ Plan: `docs/superpowers/plans/2026-10-10-image-harmony-refactor.md` (spec y audi
 - Cambios pedidos por el cliente al cierre: héroe del inicio (isotipo, triángulo, composición móvil), orden Membresía → Sobre Marisol, Descúbrete (velo, ritmo, revelación con el portal), audio activo al centro del resonario, destacado de tienda y diario a todo el alto.
 
 **Pendiente**: fuentes a 2880 px (ampliación descartada por el cliente; regenerar a medida si se quiere); `home.hero` en tableta vertical (768) sigue perdiendo los pies; contraste del texto sobre foto; Safari, Firefox y móviles reales; logo de 81 KB en el header.
+
+---
+
+## Sección 13 — Ambientes v2 · Task 0.1 (enmienda de contratos, 2026-10-17)
+
+Plan: `docs/superpowers/plans/2026-10-17-ambientes-v2.md`; contrato: `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md` (§ 4, atmósferas).
+
+**Entregado**
+
+- `AGENTS.md`: enmienda de la paleta (cerrada; las atmósferas son una capa declarada sólo en `tokens.css`), fondo de app = el de la atmósfera activa, «sin stock» → «sin stock genérico; fotografía propia o con licencia comercial documentada».
+- `DESIGN.md`: sección «Atmósferas» (catálogo de nueve, lo común de marca, qué redefine cada una, contraste e imagen natural) y corrección de los pasajes que tomaban la noche como única verdad.
+- Spec editorial de 2026-08-11: notas de enmienda en §2 y §4 que remiten al spec v2.
+- `frontend/README.md`: paso 9 de «Añadir un realm nuevo» (atmósfera por defecto).
+
+**Pendiente**: la implementación (`config/atmospheres.ts`, `AtmosphereProvider`, tests `ambient-contrast`, `palette.test.ts` y `branding-tokens` con los bloques de atmósfera) y la decisión abierta del rojo del mar (spec v2 § 11).
 
