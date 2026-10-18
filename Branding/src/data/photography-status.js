@@ -58,8 +58,6 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
-  'resonario-audio-cover-b2.avif':
-    'Primer intento rechazado (6,5/10, archivado en `.editorial-trials/`): las puntas de las raíces y el inicio de la línea de luz cruzaban el centro, y la línea tocaba el borde derecho. El prompt ya pide raíces sólo en el 30 % izquierdo y la línea tenue entre el 50 % y el 85 % del ancho.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
@@ -106,6 +104,7 @@ export const COMPLETED = [
   'resonario-audio-cover-a7.avif',
   'resonario-audio-cover-b1.avif',
   'resonario-audio-cover-n1.avif',
+  'resonario-audio-cover-b2.avif',
   'auth-form-atmosphere.avif',
   'og-image.jpg',
   'discover-hero.avif',
