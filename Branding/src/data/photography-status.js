@@ -102,6 +102,7 @@ export const COMPLETED = [
   'home-hero.avif',
   'home-marisol-portrait.avif',
   'resonario-audio-cover-a7.avif',
+  'resonario-audio-cover-b1.avif',
   'auth-form-atmosphere.avif',
   'og-image.jpg',
   'discover-hero.avif',
