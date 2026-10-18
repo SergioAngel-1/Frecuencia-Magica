@@ -179,6 +179,7 @@ export const COMPLETED = [
   'home-daily-frequency-dawn.avif',
   'home-realms-banner-dawn.avif',
   'sanctuary-hero-dawn.avif',
+  'home-footer-banner-dawn.avif',
 ]
 
 /**
