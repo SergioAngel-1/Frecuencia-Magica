@@ -144,7 +144,8 @@ describe('academy editorial composition contracts', () => {
     const barSource = readSource('components/features/player/player-bar.tsx');
     const dockSource = readSource('components/features/player/player-dock.tsx');
 
-    expect(playerSource).toContain('<EditorialImage');
+    // El cierre del curso usa el panel de confirmación compartido (ver ui/confirmation-panel).
+    expect(playerSource).toContain('<ConfirmationPanel');
     expect(playerSource).toContain('media={lessonMedia}');
     expect(playerSource).toContain('data-editorial-media={lessonMedia.slot}');
     // La lección consume la imagen de su curso (por instancia); la escena

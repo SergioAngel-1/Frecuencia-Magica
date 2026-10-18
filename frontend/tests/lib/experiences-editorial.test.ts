@@ -19,7 +19,16 @@ const bookingPageSource = readSource('app/[locale]/experiencias/[experienceId]/r
 const listSource = readSource('components/features/experiences/experience-list.tsx');
 const rowSource = readSource('components/features/experiences/experience-row.tsx');
 const dateSource = readSource('components/features/experiences/experience-date.tsx');
-const bookingSource = readSource('components/features/experiences/booking-flow.tsx');
+// El flujo se reparte en pasos y en la confirmación; el contrato vive en todos.
+const bookingSource = [
+  'components/features/experiences/booking-flow.tsx',
+  'components/features/experiences/booking-date-step.tsx',
+  'components/features/experiences/booking-details-step.tsx',
+  'components/features/experiences/booking-confirmation.tsx',
+  'components/ui/confirmation-panel.tsx',
+]
+  .map((file) => readSource(file))
+  .join('\n');
 const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/experiencias/(catalogo)/loading.tsx');
 
@@ -126,9 +135,9 @@ describe('experiences editorial composition contracts', () => {
     );
     expect(bookingSource).toContain('media: BookingMedia');
     expect(bookingSource).toContain('data-editorial-media="booking.hero"');
-    expect(bookingSource).toContain('data-editorial-media="booking.confirmation"');
+    expect(bookingSource).toContain('slot="booking.confirmation"');
     expect(bookingSource).toContain('<EditorialImage');
-    expect(bookingSource).toContain('aria-live="polite"');
+    expect(bookingSource).toContain("aria-live={announce ? 'polite' : undefined}");
     expect(bookingSource).toContain('aria-pressed={booking.state.date === d.iso}');
     expect(bookingSource).toContain('aria-pressed={booking.state.time === time}');
     expect(bookingSource).toContain('booking.canContinue');
