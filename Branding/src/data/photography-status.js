@@ -165,6 +165,7 @@ export const COMPLETED = [
   'resonario-kind-banner-binaural.avif',
   'resonario-kind-banner-guided.avif',
   'discover-hero-forest.avif',
+  'academy-hero-dusk.avif',
 ]
 
 /**
