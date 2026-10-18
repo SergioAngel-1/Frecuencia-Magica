@@ -20,8 +20,11 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function ResonarioPage({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'resonario' });
-  const tStates = await getTranslations({ locale, namespace: 'states' });
+  // En paralelo: cada `getTranslations` es una espera independiente.
+  const [t, tStates] = await Promise.all([
+    getTranslations({ locale, namespace: 'resonario' }),
+    getTranslations({ locale, namespace: 'states' }),
+  ]);
   const resonarioMedia = {
     hero: resolveEditorialMedia('resonario.hero', { alt: t('media.alt.hero') }),
     featured: resolveEditorialMedia('resonario.featured', {

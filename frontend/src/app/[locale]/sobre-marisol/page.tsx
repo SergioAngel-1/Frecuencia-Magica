@@ -32,8 +32,11 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function AboutMarisolPage({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'about' });
-  const tVideo = await getTranslations({ locale, namespace: 'video' });
+  // En paralelo: cada `getTranslations` es una espera independiente.
+  const [t, tVideo] = await Promise.all([
+    getTranslations({ locale, namespace: 'about' }),
+    getTranslations({ locale, namespace: 'video' }),
+  ]);
 
   const media = {
     hero: resolveEditorialMedia('about.hero', {

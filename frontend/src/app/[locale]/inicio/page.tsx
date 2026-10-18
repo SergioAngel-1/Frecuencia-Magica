@@ -67,11 +67,15 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function HomePage({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'home' });
-  const common = await getTranslations('common');
-  const tResonario = await getTranslations('resonario');
-  const nav = await getTranslations('nav');
-  const tVideo = await getTranslations('video');
+  // En paralelo: cada `getTranslations` es una espera independiente.
+  const [t, common, tResonario, nav, tVideo, storeTranslations] = await Promise.all([
+    getTranslations({ locale, namespace: 'home' }),
+    getTranslations('common'),
+    getTranslations('resonario'),
+    getTranslations('nav'),
+    getTranslations('video'),
+    getTranslations('store'),
+  ]);
 
   const firstAudio = PLAYABLE_AUDIOS[0]!;
   // La del día ya ocupa el disco grande: la muestra sigue con las cuatro siguientes.
@@ -101,7 +105,6 @@ export default async function HomePage({ params }: PageProps) {
     description: t(`realms.descriptions.${r.id}`),
   }));
 
-  const storeTranslations = await getTranslations('store');
   const storeItems = featuredProducts(STORE_SHOWCASE_IDS, PRODUCTS).map((product) => {
     const title = storeTranslations(`products.${product.id}.title`);
 
