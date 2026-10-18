@@ -349,6 +349,16 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   scroll-padding-bottom: calc(140px + env(safe-area-inset-bottom));
 }
 
+/* Bloque grande que queda fuera de pantalla al cargar (secciones de catálogo,
+   p. ej. los tipos de escucha del Resonario): el navegador se salta su render
+   hasta que se acerca. El hueco intrínseco evita el salto de scroll mientras
+   no está pintado. No animar dentro: el bloque puede tener animaciones
+   infinitas, que no corren hasta que entra (es justo lo que se busca). */
+@utility fm-defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
 /* Velo de una banda con foto. En la noche, sin él la etiqueta y el título caen
    sobre la luz de la foto: un velo del token de scrim (0,6, igual que el claro),
    denso en el centro del texto y desvanecido en los bordes. */

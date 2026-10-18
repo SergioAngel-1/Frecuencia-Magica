@@ -67,8 +67,13 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
           <div className="gap-section flex flex-col">
             {showAll && featured ? <FeaturedSun audio={featured} cover={media.featured} /> : null}
 
-            {sections.map(({ entry, tracks }) => (
-              <KindSection key={entry.kind} entry={entry} banner={media.kindBanners[entry.kind]}>
+            {sections.map(({ entry, tracks }, index) => (
+              <KindSection
+                key={entry.kind}
+                entry={entry}
+                banner={media.kindBanners[entry.kind]}
+                deferRender={index > 0}
+              >
                 {entry.kind === 'melody' ? <CelticFeature media={media.celtic} /> : null}
                 <div className={TRACK_GRID}>
                   {tracks.map((audio) => (
