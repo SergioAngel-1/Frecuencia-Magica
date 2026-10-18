@@ -12,51 +12,19 @@ import { ButtonLink, PageShell } from '@/components/layout';
 import { Link } from '@/i18n/navigation';
 import { PLAYABLE_AUDIOS } from '@/data/audios';
 import { PRODUCTS } from '@/data/products';
-import { BANDS } from '@/config/bands';
 import { getVideo } from '@/config/videos';
 import { NAV_REALMS } from '@/config/realms';
 import { STORE_SHOWCASE_IDS } from '@/config/store-showcase';
-import { formatPrice } from '@/lib/format';
+import { buildHomeMedia } from '@/lib/home/home-media';
+import { buildRealmCards, arrangeBento } from '@/lib/home/realm-cards';
+import { buildResonarioSamples } from '@/lib/home/resonario-samples';
+import { buildStoreItems } from '@/lib/home/store-items';
 import { featuredProducts } from '@/lib/store/showcase';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
-import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { videoPosterMedia } from '@/lib/video/poster';
 import { ArrowGlyph, arrowLinkClasses, BandChain } from '@/components/ui';
 
 type PageProps = { params: LocaleParams };
-
-/** Celdas del bento que siguen a la Academia, en el orden que fija su rejilla. */
-const BENTO_ORDER = ['descubrete', 'resonario', 'experiencias', 'tienda', 'sanctuario'] as const;
-
-/** El héroe de la vista interna de cada realm de la navegación. */
-const REALM_HERO_SLOTS = {
-  descubrete: 'discover.hero',
-  resonario: 'resonario.hero',
-  academia: 'academy.hero',
-  experiencias: 'experiences.hero',
-  tienda: 'store.hero',
-  sanctuario: 'sanctuary.hero',
-} as const;
-
-/**
- * Foco propio de la tarjeta cuando su recorte deja fuera lo que el héroe
- * cuenta: Tienda es una columna alta y sus objetos viven a la derecha.
- */
-const REALM_CARD_FOCUS: Partial<Record<keyof typeof REALM_HERO_SLOTS, string>> = {
-  tienda: '97% 50%',
-};
-
-/**
- * Ancho que pinta cada héroe 16:9 en su tarjeta del bento. `cover` escala por
- * el alto en las tarjetas más altas que anchas: Tienda ocupa dos filas y su
- * imagen mide mucho más que la columna.
- */
-const REALM_CARD_SIZES = {
-  academia: '(min-width: 1024px) 760px, 100vw',
-  sanctuario: '(min-width: 1024px) 860px, 100vw',
-  tienda: '(min-width: 1024px) 1100px, (min-width: 640px) 60vw, 100vw',
-  default: '(min-width: 1024px) 540px, (min-width: 640px) 60vw, 100vw',
-} as const;
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
@@ -79,62 +47,13 @@ export default async function HomePage({ params }: PageProps) {
 
   const firstAudio = PLAYABLE_AUDIOS[0]!;
   // La del día ya ocupa el disco grande: la muestra sigue con las cuatro siguientes.
-  const resonarioAudios = PLAYABLE_AUDIOS.slice(1, 5).map((a) => ({
-    id: a.id,
-    hz: a.hz,
-    band: a.band,
-    title: tResonario(`audios.${a.id}.title`),
-    meta: `${tResonario(`tags.${a.tagId}`)} · ${a.duration ?? ''}`,
-  }));
-
-  const realmData = NAV_REALMS.map((r) => ({
-    id: r.id,
-    href: r.href,
-    band: BANDS[r.accentKey],
-    // Cada puerta se ve como lo que hay detrás: el héroe de su vista interna,
-    // recortado a la tarjeta. Decorativo: la tarjeta ya dice su nombre.
-    media: resolveEditorialMedia(REALM_HERO_SLOTS[r.id as keyof typeof REALM_HERO_SLOTS], {
-      alt: '',
-      priority: false,
-      position: REALM_CARD_FOCUS[r.id as keyof typeof REALM_CARD_FOCUS],
-      sizes: REALM_CARD_SIZES[r.id as keyof typeof REALM_CARD_SIZES] ?? REALM_CARD_SIZES.default,
-      band: BANDS[r.accentKey],
-    }),
-    emotion: nav(`emotions.${r.id}`),
-    title: nav(`realms.${r.id}`),
-    description: t(`realms.descriptions.${r.id}`),
-  }));
-
-  const storeItems = featuredProducts(STORE_SHOWCASE_IDS, PRODUCTS).map((product) => {
-    const title = storeTranslations(`products.${product.id}.title`);
-
-    return {
-      id: product.id,
-      title,
-      price: formatPrice(product.price),
-      media: resolveEditorialMedia('store-product-visual', {
-        instance: product.id,
-        alt: storeTranslations('media.alt.product', { title }),
-        sizes: '(min-width: 1024px) 280px, 50vw',
-      }),
-    };
-  });
-
-  const academiaData = realmData.find((r) => r.id === 'academia')!;
-  // El bento tiene su propia composición (Tienda ocupa dos filas en la
-  // cuarta celda): no sigue el orden del menú.
-  const otherRealms = BENTO_ORDER.flatMap((id) => realmData.filter((r) => r.id === id));
-  const homeMedia = {
-    hero: resolveEditorialMedia('home.hero', { alt: t('media.alt.hero') }),
-    daily: resolveEditorialMedia('home.daily-frequency', {
-      alt: t('media.alt.dailyFrequency'),
-    }),
-    realms: resolveEditorialMedia('home.realms-banner', { alt: t('media.alt.realmsBanner') }),
-    marisol: resolveEditorialMedia('home-marisol-portrait', {
-      alt: t('media.alt.marisolPortrait'),
-    }),
-    membership: resolveEditorialMedia('home-membership', { alt: t('media.alt.membership') }),
-  };
+  const resonarioAudios = buildResonarioSamples(PLAYABLE_AUDIOS.slice(1, 5), tResonario);
+  const bento = arrangeBento(buildRealmCards(NAV_REALMS, { home: t, nav }));
+  const storeItems = buildStoreItems(
+    featuredProducts(STORE_SHOWCASE_IDS, PRODUCTS),
+    storeTranslations,
+  );
+  const homeMedia = buildHomeMedia(t);
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
@@ -203,11 +122,11 @@ export default async function HomePage({ params }: PageProps) {
           title={t('realms.title')}
           intro={t('realms.intro')}
           academia={{
-            ...academiaData,
+            ...bento.academia,
             featuredCta: t('realms.featuredCta'),
             description: t('realms.featuredDescription'),
           }}
-          realms={otherRealms}
+          realms={bento.others}
           storeCta={t('realms.storeCta')}
           featuredBadge={t('realms.featuredBadge')}
         />
