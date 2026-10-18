@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 113 completadas · 0 a corregir · 14 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 114 completadas · 0 a corregir · 13 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -244,7 +244,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `store-hero-forest.avif` | Tienda · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `sanctuary-hero-dusk.avif` | Mi Santuario · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `sanctuary-hero-dawn.avif` | Mi Santuario · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Faltantes |
-| `sanctuary-hero-forest.avif` | Mi Santuario · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Faltantes |
+| `sanctuary-hero-forest.avif` | Mi Santuario · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `home-daily-frequency-dawn.avif` | Home · frecuencia del día · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
 | `home-realms-banner-dawn.avif` | Home · banner de realms · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
 | `home-footer-banner-dawn.avif` | Home · cierre · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
@@ -270,7 +270,7 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (14)
+### 5.2 Faltantes (13)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
@@ -288,22 +288,6 @@ Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota
 
 ```text
 A personal sanctuary at sunrise: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, resting on a cushion beside a large window that opens onto a mirror-calm lake in morning light, seen from behind looking out, sheer curtains stirring, a lit candle on the sill, soft pale-gold light balanced with a faint sky-blue glow, exactly three thin vertical light filaments in total, one gold, one teal and one lavender, rising from the water outside, and no other vertical lines anywhere. Window on the right with the figure beneath it, left third plain ivory wall and soft curtain light, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `sanctuary.hero · Bosque` — Mi Santuario · hero · tema · P1
-
-- **Archivo:** `sanctuary-hero-forest.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Bosque de `sanctuary.hero`: la misma vista y el mismo encuadre, con la escena del tema. El espacio personal: la materia que recibe al volver. Cuerpo de luz.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A personal sanctuary in the forest: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, resting on a cushion beside a large window that opens onto a still forest pool among tall ferns, seen from behind looking out, sheer curtains stirring, a lit candle on the sill, soft golden-green light balanced with a faint teal glow, exactly three thin vertical light filaments in total, one gold, one teal and one lavender, rising from the water outside, and no other vertical lines anywhere. Window on the right with the figure beneath it, left third plain calm wall and soft curtain light, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
 ```
 
 #### `home.daily-frequency · Amanecer` — Home · frecuencia del día · tema · P1
@@ -514,7 +498,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (113)
+### 5.5 Completadas (114)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -633,6 +617,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `store-hero-dusk.avif` | Tienda · hero · tema · Atardecer | `store.hero` | 16:9 | P1 |
 | `store-hero-forest.avif` | Tienda · hero · tema · Bosque | `store.hero` | 16:9 | P1 |
 | `sanctuary-hero-dusk.avif` | Mi Santuario · hero · tema · Atardecer | `sanctuary.hero` | 16:9 | P1 |
+| `sanctuary-hero-forest.avif` | Mi Santuario · hero · tema · Bosque | `sanctuary.hero` | 16:9 | P1 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (61)
 

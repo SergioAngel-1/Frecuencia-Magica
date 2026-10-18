@@ -175,6 +175,7 @@ export const COMPLETED = [
   'store-hero-dusk.avif',
   'store-hero-forest.avif',
   'sanctuary-hero-dusk.avif',
+  'sanctuary-hero-forest.avif',
 ]
 
 /**
