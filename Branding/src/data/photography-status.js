@@ -181,6 +181,7 @@ export const COMPLETED = [
   'sanctuary-hero-dawn.avif',
   'home-footer-banner-dawn.avif',
   'home-membership-dawn.avif',
+  'about-angels-dawn.avif',
 ]
 
 /**

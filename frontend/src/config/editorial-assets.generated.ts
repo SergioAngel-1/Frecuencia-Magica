@@ -5,6 +5,7 @@
  */
 export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
   'about.angels': '/editorial/about-angels.avif',
+  'about.angels@dawn': '/editorial/about-angels-dawn.avif',
   'about.hero': '/editorial/about-hero.avif',
   'about.hero@dawn': '/editorial/about-hero-dawn.avif',
   'about.hero@dusk': '/editorial/about-hero-dusk.avif',
@@ -130,6 +131,7 @@ export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
  * creciente. Los lee el loader de `next/image` (`lib/editorial/image-loader.ts`).
  */
 export const EDITORIAL_ASSET_WIDTHS: Readonly<Record<string, readonly number[]>> = {
+  '/editorial/about-angels-dawn.avif': [640, 828, 1200, 1774],
   '/editorial/about-angels.avif': [640, 828, 1200, 1672],
   '/editorial/about-hero-dawn.avif': [640, 828, 1200, 1672],
   '/editorial/about-hero-dusk.avif': [640, 828, 1200, 1672],
