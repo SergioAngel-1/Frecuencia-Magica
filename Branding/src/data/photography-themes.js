@@ -10,8 +10,9 @@
  * Llevan el estilo de las atmósferas (color natural, sin personas) y son provisionales. La lista de slots y
  * temas la fija `THEME_VARIANTS` de `frontend/src/config/editorial-media.ts`; un test la cruza con esta.
  *
- * Las siete primeras son las atmósferas de Ambientes v2 ya entregadas (`atmosphere-*`), reasignadas al slot al
- * que sirven ahora (`reusedFrom`); `experiences.hero@dusk` se retiró porque era una sala de cojines y sus hermanas
+ * Las tres primeras son las atmósferas de Ambientes v2 ya entregadas (`atmosphere-*`), reasignadas al slot al
+ * que sirven ahora (`reusedFrom`); los cuatro paisajes de `resonario.hero` también se retiraron (no eran la escena del
+ * héroe base, los discos sobre el agua) y se rehacen abajo; `experiences.hero@dusk` se retiró porque era una sala de cojines y sus hermanas
  * (dawn, forest) son un camino hacia un pabellón. El resto está por generar.
  */
 import { BODY_OF_LIGHT, HALO, LIGHT_BODY_TRAITS, filaments } from './photography-phrases.js'
@@ -28,43 +29,6 @@ const SIGNATURE_FRAME = (open) =>
 
 export const THEME_VARIANTS = [
   /* Atmósferas ya entregadas, reasignadas a su slot */
-  {
-    base: "resonario.hero",
-    theme: "dusk",
-    focal: "62% 50%",
-    subject: "A calm sea at dusk seen from a low shoreline: the sun almost completely hidden, only a thin sliver of its upper rim visible above the horizon, the sky a muted, slightly desaturated gradient of dusky rose, terracotta and soft amber, more rose and brown than orange, with a few thin horizontal bands of cloud lit warm from below, a broad soft band of pale amber and dusty rose reflection spreading over the gently moving water toward the viewer, fine small ripples and slow low waves, never an intense red and never a dazzling glare, a dark smooth strip of wet sand with two small rocks along the bottom edge at the right",
-    frame: "Horizon at 54% from the top (the sky takes the upper 54% of the frame and the sea and shore the lower 46%, never a higher horizon), the sun and its reflection entirely inside the band between 60% and 85% of the frame width and its center at 72% horizontal, the left 40% of the frame is open calm sea and soft sky in quiet low-contrast tones, with no rocks, clouds or reflections there",
-    provisional: "Atardecer natural, sin rojo intenso (D2 del spec). Sustituir por fotografía propia o con licencia comercial documentada.",
-    reusedFrom: "atmosphere.dusk",
-  },
-  {
-    base: "resonario.hero",
-    theme: "dawn",
-    focal: "58% 50%",
-    subject: "A calm lake at sunrise seen from a low shore: a perfectly clear horizon, the sun just risen as a soft pale-gold glow low behind the horizon with no hard sun disc, a luminous open sky of soft sky blue fading to ivory with a faint pale gold near the horizon, a few thin high clouds, the lake like a mirror with long gentle ripples reflecting the pale sky, a distant low line of hills in faint blue haze on the far shore, spacious and airy",
-    frame: "Horizon at 50% from the top, the glow and its reflection inside the band between 50% and 80% of the frame width, the left 40% of the frame is open calm sky and still water in quiet low-contrast tones",
-    provisional: "Sustituir por fotografía propia o con licencia comercial documentada.",
-    reusedFrom: "atmosphere.dawn",
-  },
-  {
-    base: "resonario.hero",
-    theme: "moon",
-    focal: "62% 40%",
-    subject: "A calm sea at night under a high moon: a full moon as a soft round glow with faint dark marks, never blinding, a long soft path of silver reflection on the gently moving deep blue water, a few dozen fine pinpoint stars in the upper third and a thin veil of cirrus mist across part of the sky, the water calm with very low waves",
-    frame: "Horizon at 58% from the top, the moon at 66% horizontal and 22% vertical and its reflection inside the band between 55% and 80% of the frame width, the left 40% of the frame is dark and empty because that side of the scene is unlit sea and sky",
-    provisional: "Sustituir por fotografía propia o con licencia comercial documentada.",
-    reusedFrom: "atmosphere.moon",
-    safe: "left",
-  },
-  {
-    base: "resonario.hero",
-    theme: "forest",
-    focal: "62% 50%",
-    subject: "A lush temperate forest with a slender waterfall: tall tree ferns and broad green fern fronds in the foreground and along both sides, a waterfall of two soft white streams falling down a dark mossy rock face into a still green pool, warm filtered golden sunlight entering from the upper left between the canopy, a fine mist rising off the pool, deep natural greens with glints of gold",
-    frame: "The waterfall and its pool inside the band between 58% and 82% of the frame width, the pool in the lower center-right, the left 40% of the frame is soft slightly out-of-focus ferns and shaded trunks in even tones, low in detail, with no bright patch of sunlight there",
-    provisional: "Sustituir por fotografía propia o con licencia comercial documentada.",
-    reusedFrom: "atmosphere.forest",
-  },
   {
     base: "academy.hero",
     theme: "dawn",
@@ -361,5 +325,97 @@ export const THEME_VARIANTS = [
     theme: 'dawn',
     subject: `Objects of ritual as matter in daylight: a top-down flat lay on pale sand-coloured stone of matches, copal resin, a small brass dish, dried herbs and a quartz point, soft morning light from the left with gentle natural shadows`,
     frame: 'Objects grouped in the upper two thirds, the bottom third plain pale stone for text',
+  },
+
+  /* Héroes en Luna: la misma escena que su slot, bajo luz de luna (azul noche y plata) */
+  {
+    base: 'portal.hero',
+    theme: 'moon',
+    subject: `A vast threshold over still water at night under a high moon: a circular opening of cool silver light, ${HALO}, hovering low above a calm deep blue sea at the horizon, its reflection on the water short and soft, ending at about 70% of the frame height, the sky deep night blue with a few dozen fine pinpoint stars in the upper third and a thin veil of cirrus mist, a faint teal glow low on the horizon at the left and a faint lavender glow low on the horizon at the right, both fading out well before the frame edges`,
+    frame: RING_FRAME,
+  },
+  {
+    base: 'home.hero',
+    theme: 'moon',
+    subject: `The brand signature image under the moon: an ${BODY_OF_LIGHT}, resting on its side across the surface of a calm deep blue sea, seen softly from behind with the head turned away from the camera, its head close to the water where a soft diffuse silver glow gathers beneath it and ripples outward in concentric rings, the silhouette edged in cool silver with faint teal and lavender light flowing through it like fine veins of current, a few dozen fine pinpoint stars in the upper third and a pale moon high in the upper left, a thin veil of cirrus mist`,
+    frame: SIGNATURE_FRAME('open calm sea and soft moonlit sky'),
+  },
+  {
+    base: 'resonario.hero',
+    theme: 'moon',
+    subject: `A vast resonant space over still water under a high moon: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm deep blue surface that doubles them, cool silver rims, a pale moon high in the sky and a few dozen fine pinpoint stars, drifting haze, cinematic depth of field`,
+    frame: 'Discs receding from the upper right toward the center, the left third calm moonlit water and sky, low in detail',
+  },
+  {
+    base: 'about.hero',
+    theme: 'moon',
+    subject: `The place where the work begins, under the moon: a quiet terrace of dark stone opening onto a calm deep blue sea and a distant headland in silver haze, a low wooden table with a crystal singing bowl and a single lit candle standing in the middle distance at the far end of the terrace, near the edge of the water, a linen shawl left over a stone bench as if someone had just stepped out, cool silver moonlight and a few dozen fine pinpoint stars`,
+    frame:
+      'Table and candle at 60% horizontal and 40% vertical, which is the middle distance: the stone floor of the terrace extends in front of them across the whole lower half of the frame, the left third calm moonlit sea and sky for the title, the lower edge calm',
+  },
+  {
+    base: 'auth.hero',
+    theme: 'moon',
+    subject: `A tall arched doorway of soft silver-white light set into a wall of moonlit stone at the edge of a calm deep blue sea, seen from a few steps back, a gentle path of light spilling across the wet stone and the water toward the viewer, a deep night blue sky with a few fine stars above, quiet, inviting, nobody in the frame`,
+    frame: 'Arch placed in the right half, the left third plain calm wall, sea and soft sky for a quote',
+  },
+  {
+    base: 'discover.hero',
+    theme: 'moon',
+    subject: `The beginning of a discovery under the moon: a narrow path of pale stone steps rising from a calm deep blue sea into a silver mist under a high moon over distant ridges in haze, a sense of a first step, no people`,
+    frame:
+      'Path entering from the lower right corner and curving gently to the left as it recedes, so that its far end and the pale light converge exactly at the horizontal center of the frame (50% horizontal, 40% vertical), the left third calm and low in detail',
+  },
+  {
+    base: 'academy.hero',
+    theme: 'moon',
+    subject: `Study as a scene under the moon: a low wooden desk on a quiet seaside terrace with an open blank notebook, a ceramic bowl and a lit candle, a calm deep blue sea and a far headland in silver haze, cool moonlight, no people`,
+    frame: 'Desk in the right half, the left third calm sea and soft sky, low in detail for the headline',
+  },
+  {
+    base: 'experiences.hero',
+    theme: 'moon',
+    subject: `The journey as a promise under the moon: a path of pale stepping stones across a calm deep blue lake toward a simple open pavilion on the far shore: a pavilion of timber with slim square posts and a low plain gabled roof, with no curved eaves, no tiered roof and no ornament, belonging to no particular culture, silver mist between dark trees and hills, a pale moon high in the sky, nobody present`,
+    frame:
+      'Pavilion centered at exactly 55% of the frame width (just right of center) and 40% vertical, stepping stones leading in from the lower left, the left third calm moonlit water and mist, low in detail',
+  },
+  {
+    base: 'booking.hero',
+    theme: 'moon',
+    subject: `An empty serene place ready to receive: floor cushions arranged in a circle on a wooden deck over a calm deep blue sea at night, a few candles that are not lit, unburnt white wax with dark wicks and no flame, giving no light at all, so that the only light in the scene is the cool silver moonlight on the planks and the headland beyond`,
+    frame:
+      'Wide symmetrical, circle of cushions in the middle distance, the left third open calm sea and soft sky for the headline: the horizon and the haze continue across the whole width with no gradient, no band and no vertical edge',
+  },
+  {
+    base: 'store.hero',
+    theme: 'moon',
+    subject: `The ritual of acquiring under the moon: a dark stone ledge at the edge of a calm deep blue sea with a still life of an amber glass bottle, a honey-coloured candle, a rose quartz point and a bundle of incense, cool silver moonlight raking across the objects and reflecting in the water behind them`,
+    frame: 'Objects in the right half at 40% vertical, the left third calm open water and soft sky for the headline',
+  },
+  {
+    base: 'sanctuary.hero',
+    theme: 'moon',
+    subject: `A personal sanctuary under the moon: an ${BODY_OF_LIGHT}, resting on a cushion beside a large window that opens onto a calm deep blue sea under a high moon, seen from behind looking out, sheer curtains stirring, a lit candle on the sill, cool silver light balanced with a faint teal glow, ${filaments('rising from the water outside')}`,
+    frame: 'Window on the right with the figure beneath it, left third calm wall and soft curtain light, low in detail',
+  },
+
+  /* Resonario: la misma escena del héroe base (discos suspendidos sobre el agua) en cada tema */
+  {
+    base: 'resonario.hero',
+    theme: 'dusk',
+    subject: `A vast resonant space over a calm sea at dusk: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm surface that doubles them, warm amber rims, a sky of dusky rose, terracotta and soft amber with thin warm clouds, drifting haze, cinematic depth of field`,
+    frame: 'Discs receding from the upper right toward the center, the left third calm sea and soft sky, low in detail',
+  },
+  {
+    base: 'resonario.hero',
+    theme: 'dawn',
+    subject: `A vast resonant space over a mirror-calm lake at sunrise: rows of softly glowing translucent discs suspended at different depths like a solar system above the water that doubles them, pale gold rims, a luminous open sky of soft sky blue fading to ivory with a faint pale gold near the horizon, drifting bright haze, cinematic depth of field`,
+    frame: 'Discs receding from the upper right toward the center, the left third calm lake and soft sky, low in detail',
+  },
+  {
+    base: 'resonario.hero',
+    theme: 'forest',
+    subject: `A vast resonant space over a still forest pool: rows of softly glowing translucent discs suspended at different depths like a solar system above the water that doubles them, golden-green rims, tall tree ferns and slender trunks along the far shore, warm filtered golden light between the canopy, a fine mist drifting, cinematic depth of field`,
+    frame: 'Discs receding from the upper right toward the center, the left third still water and soft out-of-focus foliage, low in detail',
   },
 ]

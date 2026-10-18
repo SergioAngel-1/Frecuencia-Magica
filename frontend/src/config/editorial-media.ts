@@ -56,15 +56,16 @@ export type EditorialMediaSlot = (typeof EDITORIAL_MEDIA_SLOTS)[number];
 /** Los cinco temas del sitio (`AtmosphereId`); se repite aquí para no importar de `types/` en el contrato. */
 export type EditorialTheme = 'night' | 'dusk' | 'dawn' | 'moon' | 'forest';
 
-const HERO_THEMES = ['dusk', 'dawn', 'forest'] as const;
+const HERO_THEMES = ['dusk', 'dawn', 'moon', 'forest'] as const;
 
 /**
  * Slots que tienen una variante de imagen por tema (`slot@tema` en el manifiesto,
- * `<archivo>-<tema>.avif`). La noche es siempre la base, y la luna comparte la imagen
- * de la noche salvo donde se lista. Un tema que no figura aquí ve la imagen base.
+ * `<archivo>-<tema>.avif`). La noche es siempre la base. Un tema que no figura aquí ve la
+ * imagen base.
  *
- * - Los héroes de cada vista llevan variante en Atardecer, Amanecer y Bosque: son la
- *   primera impresión y un paisaje nocturno azul no funciona bajo un tema cálido, claro o verde.
+ * - Los héroes de cada vista llevan variante en los cuatro temas que no son la noche (la base):
+ *   son la primera impresión de cada vista y un paisaje nocturno azul no funciona bajo un tema
+ *   cálido, claro o verde; Luna también tiene el suyo, con la misma escena bajo luz de luna.
  * - Las bandas con texto encima y los fondos de cristal llevan variante en Amanecer, el único
  *   tema claro: una foto oscura bajo un velo claro se ve sucia, y la tinta oscura del cristal
  *   no lee sobre ella. En los temas oscuros la imagen nocturna funde bien.
@@ -81,7 +82,7 @@ export const THEME_VARIANTS: Readonly<
   'about.hero': HERO_THEMES,
   'auth.hero': HERO_THEMES,
   'discover.hero': HERO_THEMES,
-  'resonario.hero': ['dusk', 'dawn', 'moon', 'forest'],
+  'resonario.hero': HERO_THEMES,
   'academy.hero': HERO_THEMES,
   'experiences.hero': HERO_THEMES,
   'booking.hero': HERO_THEMES,
@@ -107,10 +108,6 @@ export const THEME_VARIANTS: Readonly<
  * a la derecha para dejar libre el titular.
  */
 export const THEME_VARIANT_POSITIONS: Readonly<Record<string, string>> = {
-  'resonario.hero@dusk': '62% 50%',
-  'resonario.hero@dawn': '58% 50%',
-  'resonario.hero@moon': '62% 40%',
-  'resonario.hero@forest': '62% 50%',
   'academy.hero@dawn': '70% 50%',
   'store.hero@dawn': '60% 55%',
   'about.hero@dawn': '66% 50%',

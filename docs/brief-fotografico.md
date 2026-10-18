@@ -6,9 +6,9 @@
 > Dirección vigente: enmienda 2026-10-10 de `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md` — la imagen es el paisaje luminoso; el world engine es su energía.
 > Enmienda 2026-10-17 (`docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`): además de la noche hay atmósferas con paisajes de color natural y escenas claras. Tienen estilo propio (sección 2) y son provisionales (sección 5.6).
 
-**128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
+**138 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 99 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 127 completadas · 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 123 completadas · 0 a corregir · 14 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -211,10 +211,6 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `resonario-kind-banner-binaural.avif` | Resonario · tipo de escucha · Binaurales | 16:8 | 2880×1440 | P2 | Completadas |
 | `resonario-kind-banner-guided.avif` | Resonario · tipo de escucha · Prácticas guiadas | 16:8 | 2880×1440 | P2 | Completadas |
 | `og-image.jpg` | Metadatos · Open Graph | 1.91:1 | 1200×630 | P0 | Completadas |
-| `resonario-hero-dusk.avif` | Resonario · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
-| `resonario-hero-dawn.avif` | Resonario · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
-| `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
-| `resonario-hero-forest.avif` | Resonario · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `academy-hero-dawn.avif` | Academia · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `store-hero-dawn.avif` | Tienda · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `about-hero-dawn.avif` | Sobre Marisol · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
@@ -257,6 +253,20 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `academy-featured-course-dawn.avif` | Academia · curso destacado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `store-ritual-banner-dawn.avif` | Tienda · banner ritual · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
+| `portal-hero-moon.avif` | Portal · umbral · tema · Luna | 16:9 | 2880×1620 | P0 | Faltantes |
+| `home-hero-moon.avif` | Home · hero · tema · Luna | 16:9 | 2880×1620 | P0 | Faltantes |
+| `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `about-hero-moon.avif` | Sobre Marisol · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `auth-hero-moon.avif` | Acceso · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `discover-hero-moon.avif` | Descúbrete · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `academy-hero-moon.avif` | Academia · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `experiences-hero-moon.avif` | Experiencias · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `booking-hero-moon.avif` | Reserva · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `store-hero-moon.avif` | Tienda · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `sanctuary-hero-moon.avif` | Mi Santuario · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `resonario-hero-dusk.avif` | Resonario · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Faltantes |
+| `resonario-hero-dawn.avif` | Resonario · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Faltantes |
+| `resonario-hero-forest.avif` | Resonario · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Faltantes |
 
 ## 5. Estado de las imágenes
 
@@ -270,11 +280,234 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (0)
+### 5.2 Faltantes (14)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
-Ninguna.
+#### `portal.hero · Luna` — Portal · umbral · tema · P0
+
+- **Archivo:** `portal-hero-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
+- **Contenido:** Variante del tema Luna de `portal.hero`: la misma vista y el mismo encuadre, con la escena del tema. Umbral de entrada al universo: lo primero que ve el visitante.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A vast threshold over still water at night under a high moon: a circular opening of cool silver light, a soft diffuse halo of light: a broad blurred glow about one fifth of the ring's diameter wide, brightest in the middle of its width and fading smoothly on both sides, with no outline and no hard edge, like the corona of an eclipse seen through mist, never a thin glowing line or neon tube, hovering low above a calm deep blue sea at the horizon, its reflection on the water short and soft, ending at about 70% of the frame height, the sky deep night blue with a few dozen fine pinpoint stars in the upper third and a thin veil of cirrus mist, a faint teal glow low on the horizon at the left and a faint lavender glow low on the horizon at the right, both fading out well before the frame edges. Centered, balanced wide composition with the horizon at about 52% from the top, the ring at 50% horizontal and 40% vertical, calm open space all around, the bottom 30% of the frame plain calm water with no reflections, for a logo and a button. Wide landscape framing. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `home.hero · Luna` — Home · hero · tema · P0
+
+- **Archivo:** `home-hero-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 62% 40% · foco móvil 75% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Luna de `home.hero`: la misma vista y el mismo encuadre, con la escena del tema. El universo entero en una imagen: materia del hero con kicker, título y CTA sobre scrim. Cuerpo de luz: la imagen firma de la marca.
+- **Nota:** El foco móvil rige por debajo de 768 px: así el cuerpo de luz (62–88 % del ancho) queda dentro de la ventana visible.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+The brand signature image under the moon: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, resting on its side across the surface of a calm deep blue sea, seen softly from behind with the head turned away from the camera, its head close to the water where a soft diffuse silver glow gathers beneath it and ripples outward in concentric rings, the silhouette edged in cool silver with faint teal and lavender light flowing through it like fine veins of current, a few dozen fine pinpoint stars in the upper third and a pale moon high in the upper left, a thin veil of cirrus mist. The whole figure is small, only about a quarter of the frame width, and sits entirely inside the band between 62% and 88% of the frame width, never left of 62% and never closer to the right edge than 12%: its head at 62% horizontal and 40% vertical, its body extending to the right and ending at 88%, so a strip of calm open water stays between its feet and the right edge and no part of it touches or crosses that edge; the left 55% of the frame is open calm sea and soft moonlit sky for the headline, low camera angle at water level. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `resonario.hero · Luna` — Resonario · hero · tema · P1
+
+- **Archivo:** `resonario-hero-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Luna de `resonario.hero`: la misma vista y el mismo encuadre, con la escena del tema. Cabecera del archivo sonoro: la escucha como paisaje.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A vast resonant space over still water under a high moon: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm deep blue surface that doubles them, cool silver rims, a pale moon high in the sky and a few dozen fine pinpoint stars, drifting haze, cinematic depth of field. Discs receding from the upper right toward the center, the left third calm moonlit water and sky, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `about.hero · Luna` — Sobre Marisol · hero · tema · P1
+
+- **Archivo:** `about-hero-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Luna de `about.hero`: la misma vista y el mismo encuadre, con la escena del tema. Cabecera de la vista de Marisol: el lugar desde el que acompaña.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+The place where the work begins, under the moon: a quiet terrace of dark stone opening onto a calm deep blue sea and a distant headland in silver haze, a low wooden table with a crystal singing bowl and a single lit candle standing in the middle distance at the far end of the terrace, near the edge of the water, a linen shawl left over a stone bench as if someone had just stepped out, cool silver moonlight and a few dozen fine pinpoint stars. Table and candle at 60% horizontal and 40% vertical, which is the middle distance: the stone floor of the terrace extends in front of them across the whole lower half of the frame, the left third calm moonlit sea and sky for the title, the lower edge calm. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `auth.hero · Luna` — Acceso · hero · tema · P1
+
+- **Archivo:** `auth-hero-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Luna de `auth.hero`: la misma vista y el mismo encuadre, con la escena del tema. El umbral personal que recibe antes del formulario.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A tall arched doorway of soft silver-white light set into a wall of moonlit stone at the edge of a calm deep blue sea, seen from a few steps back, a gentle path of light spilling across the wet stone and the water toward the viewer, a deep night blue sky with a few fine stars above, quiet, inviting, nobody in the frame. Arch placed in the right half, the left third plain calm wall, sea and soft sky for a quote. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `discover.hero · Luna` — Descúbrete · hero · tema · P1
+
+- **Archivo:** `discover-hero-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Luna de `discover.hero`: la misma vista y el mismo encuadre, con la escena del tema. Bienvenida del quiz: la materia que abre la exploración.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+The beginning of a discovery under the moon: a narrow path of pale stone steps rising from a calm deep blue sea into a silver mist under a high moon over distant ridges in haze, a sense of a first step, no people. Path entering from the lower right corner and curving gently to the left as it recedes, so that its far end and the pale light converge exactly at the horizontal center of the frame (50% horizontal, 40% vertical), the left third calm and low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `academy.hero · Luna` — Academia · hero · tema · P1
+
+- **Archivo:** `academy-hero-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Luna de `academy.hero`: la misma vista y el mismo encuadre, con la escena del tema. Cabecera de la academia: el estudio como escena.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+Study as a scene under the moon: a low wooden desk on a quiet seaside terrace with an open blank notebook, a ceramic bowl and a lit candle, a calm deep blue sea and a far headland in silver haze, cool moonlight, no people. Desk in the right half, the left third calm sea and soft sky, low in detail for the headline. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `experiences.hero · Luna` — Experiencias · hero · tema · P1
+
+- **Archivo:** `experiences-hero-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Luna de `experiences.hero`: la misma vista y el mismo encuadre, con la escena del tema. Cabecera de experiencias: el viaje como promesa.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+The journey as a promise under the moon: a path of pale stepping stones across a calm deep blue lake toward a simple open pavilion on the far shore: a pavilion of timber with slim square posts and a low plain gabled roof, with no curved eaves, no tiered roof and no ornament, belonging to no particular culture, silver mist between dark trees and hills, a pale moon high in the sky, nobody present. Pavilion centered at exactly 55% of the frame width (just right of center) and 40% vertical, stepping stones leading in from the lower left, the left third calm moonlit water and mist, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `booking.hero · Luna` — Reserva · hero · tema · P1
+
+- **Archivo:** `booking-hero-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Luna de `booking.hero`: la misma vista y el mismo encuadre, con la escena del tema. El lugar de la experiencia elegida, antes de reservar.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+An empty serene place ready to receive: floor cushions arranged in a circle on a wooden deck over a calm deep blue sea at night, a few candles that are not lit, unburnt white wax with dark wicks and no flame, giving no light at all, so that the only light in the scene is the cool silver moonlight on the planks and the headland beyond. Wide symmetrical, circle of cushions in the middle distance, the left third open calm sea and soft sky for the headline: the horizon and the haze continue across the whole width with no gradient, no band and no vertical edge. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `store.hero · Luna` — Tienda · hero · tema · P1
+
+- **Archivo:** `store-hero-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Luna de `store.hero`: la misma vista y el mismo encuadre, con la escena del tema. Cabecera de la tienda: el ritual de adquirir.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+The ritual of acquiring under the moon: a dark stone ledge at the edge of a calm deep blue sea with a still life of an amber glass bottle, a honey-coloured candle, a rose quartz point and a bundle of incense, cool silver moonlight raking across the objects and reflecting in the water behind them. Objects in the right half at 40% vertical, the left third calm open water and soft sky for the headline. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `sanctuary.hero · Luna` — Mi Santuario · hero · tema · P1
+
+- **Archivo:** `sanctuary-hero-moon.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Luna de `sanctuary.hero`: la misma vista y el mismo encuadre, con la escena del tema. El espacio personal: la materia que recibe al volver. Cuerpo de luz.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A personal sanctuary under the moon: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, resting on a cushion beside a large window that opens onto a calm deep blue sea under a high moon, seen from behind looking out, sheer curtains stirring, a lit candle on the sill, cool silver light balanced with a faint teal glow, exactly three thin vertical light filaments in total, one gold, one teal and one lavender, rising from the water outside, and no other vertical lines anywhere. Window on the right with the figure beneath it, left third calm wall and soft curtain light, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `resonario.hero · Atardecer` — Resonario · hero · tema · P1
+
+- **Archivo:** `resonario-hero-dusk.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Atardecer de `resonario.hero`: la misma vista y el mismo encuadre, con la escena del tema. Cabecera del archivo sonoro: la escucha como paisaje.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A vast resonant space over a calm sea at dusk: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm surface that doubles them, warm amber rims, a sky of dusky rose, terracotta and soft amber with thin warm clouds, drifting haze, cinematic depth of field. Discs receding from the upper right toward the center, the left third calm sea and soft sky, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `resonario.hero · Amanecer` — Resonario · hero · tema · P1
+
+- **Archivo:** `resonario-hero-dawn.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Amanecer de `resonario.hero`: la misma vista y el mismo encuadre, con la escena del tema. Cabecera del archivo sonoro: la escucha como paisaje.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A vast resonant space over a mirror-calm lake at sunrise: rows of softly glowing translucent discs suspended at different depths like a solar system above the water that doubles them, pale gold rims, a luminous open sky of soft sky blue fading to ivory with a faint pale gold near the horizon, drifting bright haze, cinematic depth of field. Discs receding from the upper right toward the center, the left third calm lake and soft sky, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `resonario.hero · Bosque` — Resonario · hero · tema · P1
+
+- **Archivo:** `resonario-hero-forest.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Bosque de `resonario.hero`: la misma vista y el mismo encuadre, con la escena del tema. Cabecera del archivo sonoro: la escucha como paisaje.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A vast resonant space over a still forest pool: rows of softly glowing translucent discs suspended at different depths like a solar system above the water that doubles them, golden-green rims, tall tree ferns and slender trunks along the far shore, warm filtered golden light between the canopy, a fine mist drifting, cinematic depth of field. Discs receding from the upper right toward the center, the left third still water and soft out-of-focus foliage, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
 
 ### 5.3 Por cablear (crear vistas) (0)
 
@@ -290,7 +523,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (127)
+### 5.5 Completadas (123)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -377,10 +610,6 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-kind-banner-binaural.avif` | Resonario · tipo de escucha · Binaurales | `resonario.kind-banner.*` | 16:8 | P2 |
 | `resonario-kind-banner-guided.avif` | Resonario · tipo de escucha · Prácticas guiadas | `resonario.kind-banner.*` | 16:8 | P2 |
 | `og-image.jpg` | Metadatos · Open Graph | `og-image` | 1.91:1 | P0 |
-| `resonario-hero-dusk.avif` | Resonario · hero · tema · Atardecer | `resonario.hero` | 16:9 | P1 |
-| `resonario-hero-dawn.avif` | Resonario · hero · tema · Amanecer | `resonario.hero` | 16:9 | P1 |
-| `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
-| `resonario-hero-forest.avif` | Resonario · hero · tema · Bosque | `resonario.hero` | 16:9 | P1 |
 | `academy-hero-dawn.avif` | Academia · hero · tema · Amanecer | `academy.hero` | 16:9 | P1 |
 | `store-hero-dawn.avif` | Tienda · hero · tema · Amanecer | `store.hero` | 16:9 | P1 |
 | `about-hero-dawn.avif` | Sobre Marisol · hero · tema · Amanecer | `about.hero` | 16:9 | P1 |
@@ -424,7 +653,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | `experiences.featured` | 16:8 | P1 |
 | `store-ritual-banner-dawn.avif` | Tienda · banner ritual · tema · Amanecer | `store.ritual-banner` | 16:9 | P2 |
 
-### 5.6 Provisionales: reemplazar antes de publicar (61)
+### 5.6 Provisionales: reemplazar antes de publicar (71)
 
 Imágenes generadas que hacen de marco mientras llegan las fotografías reales (propias de Marisol o con licencia comercial documentada). Pueden estar completadas y seguir siendo provisionales: esta lista no es un estado, cruza los de arriba.
 
@@ -434,17 +663,16 @@ Imágenes generadas que hacen de marco mientras llegan las fotografías reales (
 | `atmosphere.forest-autumn` | Atmósfera · Bosque otoñal (nostalgia) | `atmosphere-forest-autumn.avif` | Sólo si hay material: la variante otoñal es opcional (spec §4.2). Sustituir por fotografía propia o con licencia comercial documentada. |
 | `resonario.celtic` | Resonario · música de inspiración celta | `resonario-celtic.avif` | Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `resonario.kind-banner.*` | Resonario · tipo de escucha | `resonario-kind-banner-melody.avif`, `resonario-kind-banner-nature.avif`, `resonario-kind-banner-frequency.avif`, `resonario-kind-banner-binaural.avif`, `resonario-kind-banner-guided.avif` | Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `resonario.hero` | Resonario · hero · tema | `resonario-hero-dusk.avif`, `resonario-hero-dawn.avif`, `resonario-hero-moon.avif`, `resonario-hero-forest.avif` | Atardecer natural, sin rojo intenso (D2 del spec). Sustituir por fotografía propia o con licencia comercial documentada. |
-| `academy.hero` | Academia · hero · tema | `academy-hero-dawn.avif`, `academy-hero-dusk.avif`, `academy-hero-forest.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
-| `store.hero` | Tienda · hero · tema | `store-hero-dawn.avif`, `store-hero-dusk.avif`, `store-hero-forest.avif` | Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo. |
-| `about.hero` | Sobre Marisol · hero · tema | `about-hero-dawn.avif`, `about-hero-dusk.avif`, `about-hero-forest.avif` | Marco provisional. Sustituir por fotografías y videos reales de Marisol (spec §8). |
-| `portal.hero` | Portal · umbral · tema | `portal-hero-dusk.avif`, `portal-hero-dawn.avif`, `portal-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `home.hero` | Home · hero · tema | `home-hero-dusk.avif`, `home-hero-dawn.avif`, `home-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `auth.hero` | Acceso · hero · tema | `auth-hero-dusk.avif`, `auth-hero-dawn.avif`, `auth-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `discover.hero` | Descúbrete · hero · tema | `discover-hero-dusk.avif`, `discover-hero-dawn.avif`, `discover-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `experiences.hero` | Experiencias · hero · tema | `experiences-hero-dusk.avif`, `experiences-hero-dawn.avif`, `experiences-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `booking.hero` | Reserva · hero · tema | `booking-hero-dusk.avif`, `booking-hero-dawn.avif`, `booking-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `sanctuary.hero` | Mi Santuario · hero · tema | `sanctuary-hero-dusk.avif`, `sanctuary-hero-dawn.avif`, `sanctuary-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `academy.hero` | Academia · hero · tema | `academy-hero-dawn.avif`, `academy-hero-dusk.avif`, `academy-hero-forest.avif`, `academy-hero-moon.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
+| `store.hero` | Tienda · hero · tema | `store-hero-dawn.avif`, `store-hero-dusk.avif`, `store-hero-forest.avif`, `store-hero-moon.avif` | Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo. |
+| `about.hero` | Sobre Marisol · hero · tema | `about-hero-dawn.avif`, `about-hero-dusk.avif`, `about-hero-forest.avif`, `about-hero-moon.avif` | Marco provisional. Sustituir por fotografías y videos reales de Marisol (spec §8). |
+| `portal.hero` | Portal · umbral · tema | `portal-hero-dusk.avif`, `portal-hero-dawn.avif`, `portal-hero-forest.avif`, `portal-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.hero` | Home · hero · tema | `home-hero-dusk.avif`, `home-hero-dawn.avif`, `home-hero-forest.avif`, `home-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `auth.hero` | Acceso · hero · tema | `auth-hero-dusk.avif`, `auth-hero-dawn.avif`, `auth-hero-forest.avif`, `auth-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `discover.hero` | Descúbrete · hero · tema | `discover-hero-dusk.avif`, `discover-hero-dawn.avif`, `discover-hero-forest.avif`, `discover-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `experiences.hero` | Experiencias · hero · tema | `experiences-hero-dusk.avif`, `experiences-hero-dawn.avif`, `experiences-hero-forest.avif`, `experiences-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `booking.hero` | Reserva · hero · tema | `booking-hero-dusk.avif`, `booking-hero-dawn.avif`, `booking-hero-forest.avif`, `booking-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `sanctuary.hero` | Mi Santuario · hero · tema | `sanctuary-hero-dusk.avif`, `sanctuary-hero-dawn.avif`, `sanctuary-hero-forest.avif`, `sanctuary-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `home.daily-frequency` | Home · frecuencia del día · tema | `home-daily-frequency-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `home.realms-banner` | Home · banner de realms · tema | `home-realms-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `home.footer-banner` | Home · cierre · tema | `home-footer-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
@@ -457,3 +685,4 @@ Imágenes generadas que hacen de marco mientras llegan las fotografías reales (
 | `academy.featured-course` | Academia · curso destacado · tema | `academy-featured-course-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `experiences.featured` | Experiencias · destacada · tema | `experiences-featured-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `store.ritual-banner` | Tienda · banner ritual · tema | `store-ritual-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `resonario.hero` | Resonario · hero · tema | `resonario-hero-moon.avif`, `resonario-hero-dusk.avif`, `resonario-hero-dawn.avif`, `resonario-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |

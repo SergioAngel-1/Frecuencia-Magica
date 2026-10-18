@@ -26,10 +26,6 @@ const MIN = 4.5;
 
 /** Héroe con imagen propia de un tema publicada -> tema cuyos tokens pinta y archivo de la variante. */
 const HEROES = [
-  { place: 'Resonario', id: 'dusk', file: 'resonario-hero-dusk' },
-  { place: 'Resonario', id: 'dawn', file: 'resonario-hero-dawn' },
-  { place: 'Resonario', id: 'moon', file: 'resonario-hero-moon' },
-  { place: 'Resonario', id: 'forest', file: 'resonario-hero-forest' },
   { place: 'Academia', id: 'dawn', file: 'academy-hero-dawn' },
   { place: 'Sobre Marisol', id: 'dawn', file: 'about-hero-dawn' },
   { place: 'Tienda', id: 'dawn', file: 'store-hero-dawn' },
