@@ -58,8 +58,6 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
-  'resonario-audio-cover-g1.avif':
-    'Primer intento rechazado (6/10, archivado en `.editorial-trials/`): el prompt contradecía su propia regla (columna centrada y centro oscuro a la vez) y la base brillante de la niebla caía justo en el centro, bajo el número de la esfera. El prompt ya coloca la columna entre el 66 % y el 86 % del ancho.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
@@ -111,6 +109,7 @@ export const COMPLETED = [
   'resonario-audio-cover-m1.avif',
   'resonario-audio-cover-n3.avif',
   'resonario-audio-cover-m2.avif',
+  'resonario-audio-cover-g1.avif',
   'auth-form-atmosphere.avif',
   'og-image.jpg',
   'discover-hero.avif',
