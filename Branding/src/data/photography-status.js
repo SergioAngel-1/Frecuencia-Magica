@@ -58,6 +58,8 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
+  'resonario-featured-dawn.avif':
+    'Primer intento rechazado (4/10, archivado en `.editorial-trials/`): llegó en vertical 3:4 y era un amanecer con sol y horizonte, sin los cinco anillos concéntricos. El prompt ya pide vista cenital, sin sol ni horizonte, y los anillos centrados en un panorama 2:1.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */

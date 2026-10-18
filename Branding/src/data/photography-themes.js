@@ -335,8 +335,8 @@ export const THEME_VARIANTS = [
   {
     base: 'resonario.featured',
     theme: 'dawn',
-    subject: `A backdrop for a featured disc: soft concentric rings of pale gold light radiating from an empty center across calm bright water, faint sky-blue and peach halos at the edges`,
-    frame: 'Empty calm center (a disc is placed on top in the UI), rings fading to soft pale ivory at the edges',
+    subject: `A backdrop for a featured disc, seen from directly above: calm bright water the color of pale ivory and soft sky blue, with exactly five thin concentric rings of pale gold light lying on the water and radiating from an empty calm center at the exact center of the frame, each ring a little fainter than the one inside it and the outermost about 45% of the frame height in diameter, faint sky-blue and peach tints at the outer edges, and the water continuing plain and smooth to the left and right edges; no sun, no horizon, no sky, no objects`,
+    frame: 'Wide 2:1 panorama, top-down view, the empty calm center at 50% horizontal and 50% vertical, rings fading to soft pale ivory before the edges',
   },
   {
     base: 'resonario.archive-banner',
