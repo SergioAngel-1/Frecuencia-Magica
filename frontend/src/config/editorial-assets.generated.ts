@@ -114,6 +114,7 @@ export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
   'store.hero': '/editorial/store-hero.avif',
   'store.hero@dawn': '/editorial/store-hero-dawn.avif',
   'store.hero@dusk': '/editorial/store-hero-dusk.avif',
+  'store.hero@forest': '/editorial/store-hero-forest.avif',
   'store.ritual-banner': '/editorial/store-ritual-banner.avif',
 };
 
@@ -223,6 +224,7 @@ export const EDITORIAL_ASSET_WIDTHS: Readonly<Record<string, readonly number[]>>
   '/editorial/states-offline.avif': [640, 828, 1200, 1672],
   '/editorial/store-hero-dawn.avif': [640, 828, 1200, 1672],
   '/editorial/store-hero-dusk.avif': [640, 828, 1200, 1672],
+  '/editorial/store-hero-forest.avif': [640, 828, 1200, 1672],
   '/editorial/store-hero.avif': [640, 828, 1200, 1672],
   '/editorial/store-product-visual-p1.avif': [640, 828, 1200, 1254],
   '/editorial/store-product-visual-p2.avif': [640, 828, 1200, 1254],
