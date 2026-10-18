@@ -42,15 +42,17 @@ export function StoreShowcase({
   scheme,
 }: StoreShowcaseProps) {
   return (
-    <AtmosphereScope atmosphere="store" scheme={scheme}>
+    // `-mt-section`: sube un `fade-band` sobre el pie del bloque de llegada (su relleno
+    // inferior vale lo mismo) y su borde superior, que se funde, deja ver el fondo de ese
+    // bloque: un cruce de claro a claro en vez de una arista.
+    <AtmosphereScope atmosphere="store" scheme={scheme} className="-mt-section">
       <section
         className="fm-editorial-full-bleed text-fg py-section relative isolate"
         aria-labelledby="store-showcase-title"
       >
-        {/* El mismo degradado que pinta el sitio en la Tienda. Sólo funde su
-            borde inferior con la noche del bento: arriba toca el bloque de
-            llegada, claro también. */}
-        <AtmosphereBackdrop fade="bottom" />
+        {/* El mismo degradado que pinta el sitio en la Tienda. Arriba se cruza con
+            el fondo del bloque de llegada; abajo se funde con la noche del bento. */}
+        <AtmosphereBackdrop fade="both" />
         <div className="fm-container flex flex-col gap-10">
           <div className="flex flex-col items-start gap-4">
             <Kicker tone="teal" spacing="wide">

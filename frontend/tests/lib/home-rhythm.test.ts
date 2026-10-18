@@ -24,8 +24,11 @@ describe('fundidos de borde de la Home', () => {
     expect(ARRIVAL).toContain('fm-fade-top');
   });
 
-  it('la tienda funde el borde inferior con el bento, que es de noche', () => {
-    expect(STORE).toContain('<AtmosphereBackdrop fade="bottom" />');
+  it('la tienda se cruza con el bloque de llegada por arriba y se funde con la noche por abajo', () => {
+    expect(STORE).toContain('<AtmosphereBackdrop fade="both" />');
+    // Sube un fade-band sobre el relleno inferior del bloque de llegada (mismo valor).
+    expect(STORE).toContain('className="-mt-section"');
+    expect(ARRIVAL).toContain('py-section');
   });
 
   it('Marisol cierra la página en su atmósfera, fundida arriba y abajo', () => {
