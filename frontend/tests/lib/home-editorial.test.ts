@@ -105,7 +105,8 @@ describe('home editorial composition contracts', () => {
       expect(homeMediaSource).toContain(`alt: t('media.alt.${altKey}')`);
     }
 
-    expect(footerSource).toContain("alt: tHome('media.alt.footerBanner')");
+    expect(footerSource).toContain("tHome('media.alt.footerBanner')");
+    expect(footerSource).toContain('useMemo(');
     expect(homeSources).not.toMatch(/alt:\s*['"][^'"]*[áéíóúñ]/i);
   });
 

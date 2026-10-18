@@ -2,6 +2,7 @@
 
 import type { Product } from '@/types/content';
 
+import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Button, EditorialImage, EmptyState, GlassPanel, Kicker } from '@/components/ui';
@@ -25,14 +26,20 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
   const t = useTranslations('cart');
   const tStore = useTranslations('store');
   const setQuantity = useCartStore((state) => state.setQuantity);
-  const productMedia = resolveEditorialMedia('store-product-visual', {
-    instance: product.id,
-    alt: tStore('media.alt.product', {
-      title: tStore(`products.${product.id}.title`),
-    }),
-    sizes: '80px',
-    band: product.band,
+  // La imagen depende del producto y de su alt: se memoiza por esos valores.
+  const productAlt = tStore('media.alt.product', {
+    title: tStore(`products.${product.id}.title`),
   });
+  const productMedia = useMemo(
+    () =>
+      resolveEditorialMedia('store-product-visual', {
+        instance: product.id,
+        alt: productAlt,
+        sizes: '80px',
+        band: product.band,
+      }),
+    [product.id, product.band, productAlt],
+  );
 
   return (
     // Una sola fila cuando la columna es ancha (de `sm` a `lg`); con el resumen

@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { EditorialBanner, Kicker, ArrowGlyph, arrowLinkClasses } from '@/components/ui';
@@ -39,9 +40,11 @@ export function SiteFooter() {
   const tHome = useTranslations('home');
   const tNav = useTranslations('nav');
   const tCommon = useTranslations('common');
-  const footerMedia = resolveEditorialMedia('home.footer-banner', {
-    alt: tHome('media.alt.footerBanner'),
-  });
+  const footerAlt = tHome('media.alt.footerBanner');
+  const footerMedia = useMemo(
+    () => resolveEditorialMedia('home.footer-banner', { alt: footerAlt }),
+    [footerAlt],
+  );
 
   return (
     <footer

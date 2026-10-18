@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { getImageProps } from 'next/image';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence } from 'motion/react';
@@ -41,7 +41,11 @@ export function OfflineVeil() {
 
   const visible = !online && !dismissed;
   const duration = reduced ? 0 : DURATION.base;
-  const media = resolveEditorialMedia('states.offline', { alt: t('media.alt.offline') });
+  const offlineAlt = t('media.alt.offline');
+  const media = useMemo(
+    () => resolveEditorialMedia('states.offline', { alt: offlineAlt }),
+    [offlineAlt],
+  );
 
   return (
     <>
