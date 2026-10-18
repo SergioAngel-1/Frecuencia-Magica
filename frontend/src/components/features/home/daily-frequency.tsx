@@ -13,7 +13,7 @@ import type { EditorialMedia } from '@/types/editorial-media';
 
 type DailyFrequencyProps = {
   media: EditorialMedia;
-  hz: number;
+  hz: number | null;
   band: string;
   audioId: string;
   kicker: string;

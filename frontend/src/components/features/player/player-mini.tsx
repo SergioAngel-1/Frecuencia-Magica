@@ -3,7 +3,8 @@ import type { ReactNode } from 'react';
 import { PlayerOrb } from './player-orb';
 
 type PlayerMiniProps = {
-  hz: number;
+  /** `null` si la pista no es un tono: el aro no lleva cifra. */
+  hz: number | null;
   band: string;
   /** Portada del audio (`AudioCover`). */
   cover?: ReactNode;
@@ -30,7 +31,9 @@ export function PlayerMini({ hz, band, cover, progress, label, onExpand }: Playe
       className="fm-surface-strong shadow-glow-card hover:border-accent/45 pointer-events-auto block size-14 rounded-full transition-colors duration-300"
     >
       <PlayerOrb band={band} cover={cover} progress={progress} className="size-full">
-        <span className="text-fg text-body font-serif leading-none">{hz}</span>
+        {hz !== null ? (
+          <span className="text-fg text-body font-serif leading-none">{hz}</span>
+        ) : null}
       </PlayerOrb>
     </button>
   );

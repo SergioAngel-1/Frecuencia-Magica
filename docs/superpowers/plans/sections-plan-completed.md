@@ -14,7 +14,8 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 | 8 | Fase 15 | 3D perezoso | ❌ No ejecutada | — |
 | 9 | Fase 16 | Estados, a11y, responsive, rendimiento | ✅ Completada (salvo 16.2.4/16.2.5 manuales) | 2026-08-11 |
 | 10 | Armonización visual | Auditoría de coherencia (impeccable), tokens, eje de página y corrección de defectos visibles | ✅ Completada (decisiones abiertas en la auditoría) | 2026-09-30 |
-| 11 | Ambientes v2 · Fase 0 | Enmienda de contratos (T0.1), atmósferas en código, tokens semánticos, boot sin flash, backdrop y header | Fase 0 completa (T0.1–T0.8); sigue T1.1 (selector manual de ambiente) | 2026-10-17 |
+| 11 | Ambientes v2 · Fases 0 y 1 | Enmienda de contratos, atmósferas en código, tokens semánticos, boot sin flash, backdrop y header; muestras `dusk`, `dawn` y `store` | ✅ Completadas (fusionadas en master); la Fase 2 arrancó sin el visto bueno de Marisol sobre las muestras (decisión del usuario) | 2026-10-17 |
+| 12 | Ambientes v2 · Fase 2 | Resto de atmósferas, motor de audio, «¿Cómo llegas hoy?», galería de producto, videos y cursos, ritmo de la Home, pasada móvil y registro de materiales | ✅ Completada en `feat/ambientes-v2-fase2` (pendiente de Marisol/Sergio: material real) | 2026-10-17 |
 
 > **Auditoría 2026-07-28 (ver sección final «Auditoría completa»).** Las fases 9–14 se construyeron y los cuatro comandos de verificación están en verde, pero varias tareas quedaron incompletas respecto al plan (Task 12.3, 12.4, 13.1 y los `// TODO(backend)`). **La Fase 15 (3D) no se ejecutó en absoluto** y **la Fase 16 (estados/404/error/loading, a11y, responsive, rendimiento) tampoco**. Detalle abajo.
 
@@ -497,3 +498,23 @@ Plan: `docs/superpowers/plans/2026-10-17-ambientes-v2.md`; contrato: `docs/super
 - Deuda menor diferida: scrollbars `void-2` en claras (token pendiente), crossfade interrumpido en menos de 1,6 s, y coste de las capas `absolute` en gama media (Tienda).
 
 ---
+
+## Sección 13 (cont.) — Ambientes v2 · Fase 2 (extensión)
+
+Rama `feat/ambientes-v2-fase2` (base `32c54fe`). Spec y plan como arriba. Verificación: `docs/superpowers/audits/2026-10-17-ambientes-fase2.md` (matriz de 72 capturas, noche idéntica, contraste del héroe) y `docs/superpowers/audits/2026-10-17-ambientes-movil.md`. Registro de lo que falta: `docs/materiales-pendientes.md` (generado).
+
+**Bloque B — Audio (T2.2–T2.5, `387db75..b13c18c`)**: catálogo por cinco tipos de escucha con procedencia (`license`) y disponibilidad (`ready`/`soon`); motor Web Audio de un solo contexto (síntesis de tonos, binaurales, mar y lluvia; archivos; capas; fundidos; un solo sonido a la vez); el store y el dock del reproductor leen del motor (`isPlaying` sólo si suena de verdad) con volumen persistido y muestra; Resonario por tipo con el sol y una esfera por pista. Revisión intermedia (0 críticos, 3 importantes, 11 menores) y tres rondas de arreglo.
+
+**Bloque C — «¿Cómo llegas hoy?» (T2.6–T2.9, `4ea6f21..b151ac3`)**: registro `ARRIVALS` y respuesta pura (atmósfera, alternativas de al menos dos tipos, el tono nunca primero), diario v1 con ids estables y migración desde el índice (sin pérdida), guía de respiración (orbe 4-4-6), panel y bloque en Home, Descúbrete y Santuario con entrada de audio en fundido. Revisión intermedia (0/3/9) y ronda de arreglo.
+
+**Bloque A — Atmósferas (T2.1, `c5f177c`, `1394f2e`, `519108d`, `04900a6`, `a80a475`)**: Academia `study`, Experiencias `gathering` y Sobre Marisol `marisol` pintan su atmósfera y su paisaje; `forest` en el selector; `AtmosphereScope` fija la tinta; aro de tinta en los puntos de la constelación; velos del menú y del diario por `--scrim-deep`; contraste del héroe medido sobre la foto publicada. `atmosphere.forest-autumn` sin cablear (R32).
+
+**Bloque D — Tienda (T2.10, `a6c560d`)**: `Product` con `provisional`, tamaño, contenido y galería de tres vistas opcionales sobre slots existentes (sin slots nuevos); los ocho productos siguen provisionales y el formato de entrega de las fotos de Marisol está en el README editorial.
+
+**Bloque E — Videos y cursos (T2.11, T2.12, `3a300c8`, `afd97d6`)**: `VIDEOS` y `videoState`; `VideoSlot` sin play ni reloj sin fuente; `useVideoPlayback` ya no simula (guarda de código); `allowsLoopVideo`; `Course` con acceso, modalidad, «qué aprenderás/incluye», módulos plegables (`0fr→1fr`) y presentación por curso. Los tres cursos son de demostración (`provisional: true`).
+
+**Bloque F — Ritmo, móvil y registro (T2.13–T2.15)**: ritmo de la Home con fundidos de borde (`ScopeBackdrop`; `eb63828`, `1f3cdf7`, `6d17d8f`); pasada móvil (dock y «Hablar ahora» sin solape, ningún tapado al final del scroll, esferas del Resonario con fase escalonada) y su auditoría; registro de materiales pendientes generado y guardado por test (`d7000d5`); `performance.md`, `accessibility.md`, `fidelity-checklist.md`, `DESIGN.md` y `Branding/` al día.
+
+**Hallazgo propio de cierre**: la viñeta de la nebulosa era un navy fijo y ensuciaba de gris todas las atmósferas claras (240 → 209); ahora lee el velo de la atmósfera (la noche, idéntica) (`de4851f`).
+
+**Pendiente de Marisol/Sergio** (en `docs/materiales-pendientes.md`): audio real (melodías, naturaleza, aves, celta, prácticas guiadas), videos (bienvenida, presentación, respiración, cursos y lecciones), fotografía de producto y catálogo real, cursos reales (rituales, esencias, gratuitos y de pago), recalibrar los hex provisionales de las atmósferas, enlace de vista previa para su visto bueno (D8) y las decisiones abiertas D2–D7 del spec. **Hallazgos abiertos**: FPS de las esferas en un móvil físico sin medir; cargar el motor de audio con `import()` bajo demanda (First Load JS 280–309 kB, por encima del presupuesto); `preload` del archivo de audio a `metadata` al llegar grabaciones largas; las pistas de síntesis pausadas siguen corriendo en silencio (M4).

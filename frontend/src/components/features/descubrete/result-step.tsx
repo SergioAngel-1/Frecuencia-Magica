@@ -5,6 +5,9 @@ import { AtmospherePicker } from '@/components/features/atmosphere/atmosphere-pi
 import { AudioDisc, type AudioDiscItem } from '@/components/features/player/audio-disc';
 import { Button, Display, Float, Kicker } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
+import type { ArrivalKey } from '@/config/arrivals';
+
+import { DiscoverArrival } from './discover-arrival';
 
 import { RecommendationCard, type RecommendationCardProps } from './recommendation-card';
 
@@ -16,6 +19,9 @@ export type ResultStepProps = {
   /** La frecuencia recomendada: su disco abre el reproductor, como en el resto del sitio. */
   audio: AudioDiscItem;
   audioTitle: string;
+  /** La intención dominante como entrada de llegada, y el texto de su botón. */
+  arrivalKey: ArrivalKey;
+  arrivalCta: string;
   ctaLabel: string;
   restartLabel: string;
   pathKicker: string;
@@ -36,6 +42,8 @@ export function ResultStep({
   description,
   audio,
   audioTitle,
+  arrivalKey,
+  arrivalCta,
   ctaLabel,
   restartLabel,
   pathKicker,
@@ -59,6 +67,8 @@ export function ResultStep({
       </Display>
 
       <p className="text-fg-soft text-body max-w-[48ch] text-center leading-[1.8]">{description}</p>
+
+      <DiscoverArrival arrivalKey={arrivalKey} featuredId={audio.id} ctaLabel={arrivalCta} />
 
       <AtmospherePicker />
 

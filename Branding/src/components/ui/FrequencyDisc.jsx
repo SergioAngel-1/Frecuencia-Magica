@@ -85,8 +85,8 @@ function ringsFor(size, active) {
 /**
  * Disco orbital de frecuencia — la pieza identitaria del producto. Cuatro escalas
  * (`xs` de sugerencia, `sm` flotante, `md` de rejilla, `lg` destacado). Las pequeñas
- * y la destacada irradian la banda del audio como aura; la destacada suma un halo dorado amplio. En Resonario no hay rejilla de
- * tarjetas: son discos.
+ * y la destacada irradian la banda del audio como aura; la destacada suma un halo dorado amplio.
+ * En Resonario, el sol es un disco `lg` y cada tarjeta lleva un disco `md`: sin posiciones orbitales fijas.
  */
 export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = false, showPlay = false, showEqualizer = false, playing = true, width, className }) {
   const spec = SIZES[size]
@@ -148,10 +148,12 @@ export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = fal
           {showEqualizer && spec.eq ? (
             <Equalizer scale={spec.eq} playing={playing} className="absolute inset-x-0 bottom-[17%]" />
           ) : null}
-          <div className={cn('absolute inset-x-0 text-center', spec.play ? 'top-[36%] -translate-y-1/2' : 'top-1/2 -translate-y-1/2')}>
-            <span className={cn('text-on-media block font-serif leading-none', spec.hz)}>{hz}</span>
-            <span className={cn('text-on-media/80 block font-sans uppercase', spec.unit)}>Hz</span>
-          </div>
+          {hz !== null ? (
+            <div className={cn('absolute inset-x-0 text-center', spec.play ? 'top-[36%] -translate-y-1/2' : 'top-1/2 -translate-y-1/2')}>
+              <span className={cn('text-on-media block font-serif leading-none', spec.hz)}>{hz}</span>
+              <span className={cn('text-on-media/80 block font-sans uppercase', spec.unit)}>Hz</span>
+            </div>
+          ) : null}
           {showPlay && spec.play ? (
             <span
               aria-hidden="true"

@@ -5,7 +5,9 @@ import { CourseDetail } from '@/components/features/academy/course-detail';
 import { PageShell } from '@/components/layout';
 import { getCourse } from '@/data';
 import { resolveLocale } from '@/i18n/resolve-locale';
+import { courseIntroId, getVideo } from '@/config/videos';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { videoPosterMedia } from '@/lib/video/poster';
 import { routing } from '@/i18n/routing';
 
 type PageProps = { params: Promise<{ locale: string; courseId: string }> };
@@ -51,10 +53,18 @@ export default async function CoursePage({ params }: PageProps) {
     band: course.band,
   });
 
+  const introMedia = videoPosterMedia(getVideo(courseIntroId(course.id)), {
+    alt: t('media.alt.courseCover', {
+      title: t(`courses.${course.id}.title` as 'courses.c1.title'),
+    }),
+    sizes: '(min-width: 1024px) 580px, calc(100vw - 48px)',
+    band: course.band,
+  });
+
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
       <div className="fm-editorial-full-bleed fm-container pb-section pt-[clamp(100px,12vw,160px)]">
-        <CourseDetail course={course} media={courseMedia} />
+        <CourseDetail course={course} media={courseMedia} introMedia={introMedia} />
       </div>
     </PageShell>
   );

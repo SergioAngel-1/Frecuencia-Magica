@@ -58,6 +58,7 @@
      que sin esa redeclaración el valor de `:root` se heredaría dentro de un
      `AtmosphereScope` y el velo de la página quedaría fijo en la sección. */
   --color-scrim: rgb(var(--scrim));
+  --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
 
   /* Tipografía */
@@ -367,6 +368,7 @@
   --scrim-deep: 10 18 32;
   --halo: 216 185 120;
   --color-scrim: rgb(var(--scrim));
+  --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0f1b2e 45%, #0a1220 100%);
   --atmo-backdrop: radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0f1b2e 45%, #0a1220 100%);
@@ -392,6 +394,7 @@
   --scrim-deep: 10 18 32;
   --halo: 214 149 122;
   --color-scrim: rgb(var(--scrim));
+  --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #3a2427 0%, #2b1c22 45%, #150e13 100%);
   --atmo-backdrop: linear-gradient(160deg, #321f22 0%, #2b1c22 55%, #140d12 100%);
@@ -417,6 +420,7 @@
   --scrim-deep: 246 249 251;
   --halo: 200 170 110;
   --color-scrim: rgb(var(--scrim));
+  --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #f6fafc 0%, #dce7ec 45%, #c3d5df 100%);
   --atmo-backdrop: linear-gradient(160deg, #e9f1f5 0%, #dce7ec 55%, #c3d5df 100%);
@@ -442,6 +446,7 @@
   --scrim-deep: 10 18 32;
   --halo: 207 216 230;
   --color-scrim: rgb(var(--scrim));
+  --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #1b2b4a 0%, #0b1426 45%, #060b15 100%);
   --atmo-backdrop: linear-gradient(160deg, #15233d 0%, #0b1426 55%, #060b15 100%);
@@ -467,6 +472,7 @@
   --scrim-deep: 10 18 32;
   --halo: 216 196 138;
   --color-scrim: rgb(var(--scrim));
+  --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #1e3328 0%, #1a2d23 45%, #101b15 100%);
   --atmo-backdrop: linear-gradient(160deg, #1c3026 0%, #1a2d23 55%, #101b15 100%);
@@ -492,6 +498,7 @@
   --scrim-deep: 252 250 244;
   --halo: 200 170 110;
   --color-scrim: rgb(var(--scrim));
+  --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #fcfaf4 0%, #eee9dc 45%, #ddd4c0 100%);
   --atmo-backdrop: linear-gradient(160deg, #f5f1e6 0%, #eee9dc 55%, #ddd4c0 100%);
@@ -517,6 +524,7 @@
   --scrim-deep: 252 248 240;
   --halo: 200 170 110;
   --color-scrim: rgb(var(--scrim));
+  --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #fbf6ec 0%, #ede3d1 45%, #dccfb6 100%);
   --atmo-backdrop: linear-gradient(160deg, #f6efe0 0%, #ede3d1 55%, #dccfb6 100%);
@@ -542,6 +550,7 @@
   --scrim-deep: 10 18 32;
   --halo: 242 217 166;
   --color-scrim: rgb(var(--scrim));
+  --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #3f2b21 0%, #33241c 45%, #1e1511 100%);
   --atmo-backdrop: linear-gradient(160deg, #3f2b21 0%, #33241c 55%, #1e1511 100%);
@@ -567,6 +576,7 @@
   --scrim-deep: 252 247 238;
   --halo: 200 170 110;
   --color-scrim: rgb(var(--scrim));
+  --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #fcf7ee 0%, #f3e8d4 45%, #e2d2b6 100%);
   --atmo-backdrop: linear-gradient(160deg, #f8f1e4 0%, #f3e8d4 55%, #e2d2b6 100%);

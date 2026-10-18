@@ -94,10 +94,11 @@ export const PLACE_ATMOSPHERE: Record<Place, AtmosphereId> = {
 export const LISTENING_PLACES: readonly Place[] = ['descubrete', 'resonario', 'sanctuario'];
 
 /**
- * Atmósferas que la persona puede elegir a mano, en el orden del selector. `forest`
- * entra con su calibración (ambientes v2, Fase 2): hasta entonces no se ofrece.
+ * Atmósferas que la persona puede elegir a mano, en el orden del selector. La
+ * noche no entra: es la atmósfera por defecto del portal, y `moon` es su otra
+ * opción de escucha.
  */
-export const PICKER_ATMOSPHERES: readonly AtmosphereId[] = ['dusk', 'dawn', 'moon'];
+export const PICKER_ATMOSPHERES: readonly AtmosphereId[] = ['dusk', 'dawn', 'moon', 'forest'];
 
 /** Los nueve ids, en el orden de `ATMOSPHERES`. */
 export const ATMOSPHERE_IDS = Object.keys(ATMOSPHERES) as AtmosphereId[];

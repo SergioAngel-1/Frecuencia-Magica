@@ -126,7 +126,8 @@ function ringsFor(size: DiscSize, active: boolean): readonly Ring[] {
 
 interface FrequencyDiscProps {
   size?: DiscSize;
-  hz: number;
+  /** Hz del tono; `null` si la pista no es un tono y el disco no lleva cifra. */
+  hz: number | null;
   /** Gradiente de fondo del disco. */
   band: string;
   /**
@@ -164,7 +165,8 @@ interface FrequencyDiscProps {
  * Cubre todas las escalas con una sola implementación: mínimo (sugerencias
  * dentro de una tarjeta), pequeño flotante (Resonario, Home), medio en rejilla
  * y destacado (Resonario).
- * En Resonario **no** se usa una rejilla de tarjetas: son discos.
+ * En Resonario, el destacado es el sol (un disco `lg`) y cada pista de su tarjeta
+ * es un disco `md`: no hay posiciones orbitales fijas.
  */
 export function FrequencyDisc({
   size = 'md',
@@ -270,18 +272,24 @@ export function FrequencyDisc({
           >
             {/* Marfil fijo sobre la cara. En claro, la cifra va sobre una píldora de tinta
                 (`.fm-disc-face` en globals.css); en la noche no hay píldora. */}
-            <span className="fm-disc-face inline-flex flex-col items-center">
-              <span
-                className={cn('fm-disc-num text-on-media block font-serif leading-none', spec.hz)}
-              >
-                {hz}
+            {/* Sólo los tonos tienen una cifra en Hz: el resto de discos es sólo su portada. */}
+            {hz !== null ? (
+              <span className="fm-disc-face inline-flex flex-col items-center">
+                <span
+                  className={cn('fm-disc-num text-on-media block font-serif leading-none', spec.hz)}
+                >
+                  {hz}
+                </span>
+                <span
+                  className={cn(
+                    'fm-disc-unit text-on-media/80 block font-sans uppercase',
+                    spec.unit,
+                  )}
+                >
+                  Hz
+                </span>
               </span>
-              <span
-                className={cn('fm-disc-unit text-on-media/80 block font-sans uppercase', spec.unit)}
-              >
-                Hz
-              </span>
-            </span>
+            ) : null}
           </div>
 
           {showPlay && spec.play ? (

@@ -4,8 +4,11 @@ import { AtmosphereHero } from '@/components/features/atmosphere/atmosphere-hero
 import { ResonarioSystem } from '@/components/features/resonario/resonario-system';
 import { PageShell } from '@/components/layout';
 import { BandChain, EditorialBanner } from '@/components/ui';
+import { AUDIO_KINDS } from '@/config/audio-kinds';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import type { AudioKind } from '@/types/content';
+import type { EditorialMedia } from '@/types/editorial-media';
 
 type PageProps = { params: LocaleParams };
 
@@ -28,6 +31,21 @@ export default async function ResonarioPage({ params }: PageProps) {
     }),
     // El filtro sin resultados: el vacío de marca, no el del archivo.
     empty: resolveEditorialMedia('states.empty', { alt: tStates('media.alt.empty') }),
+    // Un banner por tipo de escucha: la instancia es el slug del tipo.
+    kindBanners: Object.fromEntries(
+      AUDIO_KINDS.map(({ kind, bannerSlug }) => [
+        kind,
+        resolveEditorialMedia('resonario.kind-banner.*', {
+          instance: bannerSlug,
+          alt: t(`media.alt.kindBanner.${kind}` as 'media.alt.kindBanner.melody'),
+          sizes: '(min-width: 1024px) 1040px, 100vw',
+        }),
+      ]),
+    ) as Record<AudioKind, EditorialMedia>,
+    celtic: resolveEditorialMedia('resonario.celtic', {
+      alt: t('media.alt.celtic'),
+      sizes: '(min-width: 768px) 560px, 100vw',
+    }),
   };
 
   const archiveBanner = resolveEditorialMedia('resonario.archive-banner', {

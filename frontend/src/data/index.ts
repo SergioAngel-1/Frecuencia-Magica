@@ -1,12 +1,12 @@
 import type { Audio, Course, Experience, Product } from '@/types/content';
 
-import { AUDIOS } from './audios';
+import { AUDIOS, isPlayable, PLAYABLE_AUDIOS } from './audios';
 import { COURSES } from './courses';
 import { EXPERIENCES } from './experiences';
 import { PRODUCTS } from './products';
 import { QUESTIONS } from './questions';
 
-export { AUDIOS, COURSES, EXPERIENCES, PRODUCTS, QUESTIONS };
+export { AUDIOS, COURSES, EXPERIENCES, isPlayable, PLAYABLE_AUDIOS, PRODUCTS, QUESTIONS };
 
 export function getAudio(id: string): Audio | undefined {
   return AUDIOS.find((audio) => audio.id === id);

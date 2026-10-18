@@ -3,12 +3,14 @@ import { describe, expect, it } from 'vitest';
 import { AUDIOS, COURSES, EXPERIENCES, getProduct, PRODUCTS, QUESTIONS } from '@/data';
 
 describe('catálogo de contenido', () => {
-  it('hay siete frecuencias', () => {
-    expect(AUDIOS).toHaveLength(7);
+  it('hay siete frecuencias de tono, y el catálogo las distingue por tipo', () => {
+    expect(AUDIOS.filter((a) => a.kind === 'frequency')).toHaveLength(7);
   });
 
   it('las frecuencias conservan los Hz del prototipo', () => {
-    expect(AUDIOS.map((a) => a.hz)).toEqual([432, 528, 396, 174, 639, 417, 528]);
+    expect(AUDIOS.filter((a) => a.kind === 'frequency').map((a) => a.hz)).toEqual([
+      432, 528, 396, 174, 639, 417, 528,
+    ]);
   });
 
   it('hay tres cursos, cuatro experiencias, ocho productos y cinco preguntas', () => {
@@ -66,7 +68,7 @@ describe('catálogo de contenido', () => {
   });
 
   it('cada audio tiene una etiqueta estable e independiente del idioma', () => {
-    expect(AUDIOS.map((a) => a.tagId)).toEqual([
+    expect(AUDIOS.filter((a) => a.kind === 'frequency').map((a) => a.tagId)).toEqual([
       'meditation',
       'frequency',
       'grounding',

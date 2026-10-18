@@ -20,6 +20,7 @@ const cartPageSource = readSource('app/[locale]/tienda/carrito/page.tsx');
 const gridSource = readSource('components/features/store/product-grid.tsx');
 const cardSource = readSource('components/features/store/product-card.tsx');
 const detailSource = readSource('components/features/store/product-detail.tsx');
+const gallerySource = readSource('components/features/store/product-gallery.tsx');
 const sectionsSource = readSource('components/features/store/product-sections.tsx');
 const cartButtonSource = readSource('components/features/store/cart-button.tsx');
 const cartSource = readSource('components/features/store/cart-view.tsx');
@@ -144,16 +145,19 @@ describe('store editorial composition contracts', () => {
     expect(detailSource).toContain(
       "related: Record<(typeof PRODUCTS)[number]['id'], EditorialMedia>",
     );
-    expect(detailSource).toContain('<EditorialImage');
-    expect(detailSource).toContain('media={media.detail}');
+    // La imagen vive en la galería (T2.10): el detalle le pasa el visual propio primero.
+    expect(detailSource).toContain('<ProductGallery items={galleryItems}');
+    expect(detailSource).toContain("{ kind: 'cover', media: media.detail }");
+    expect(gallerySource).toContain('<EditorialImage');
+    expect(gallerySource).toContain('media={current.media}');
     // La ficha abre con la imagen de la tarjeta elegida, a su ratio y sin
     // velo; la atmósfera de `product.detail` sólo cubre al producto sin foto.
     expect(productPageSource).toContain(
       "const detail = ownVisual(product, t('media.alt.detail', { title }), detailSizes);",
     );
     expect(productPageSource).toContain('detail: detail.src');
-    expect(detailSource).toContain('DETAIL_ASPECT[media.detail.aspect]');
-    expect(detailSource).toContain('data-editorial-media={media.detail.slot}');
+    expect(gallerySource).toContain('DETAIL_ASPECT[items[0]!.media.aspect]');
+    expect(gallerySource).toContain('data-editorial-media={current.media.slot}');
     expect(detailSource).toContain('media={media.related[relatedProduct.id]!}');
     expect(detailSource).not.toMatch(/<OrbitalRings\s+aria-hidden/);
     expect(detailSource).toContain('onClick={() => add(product.id)}');

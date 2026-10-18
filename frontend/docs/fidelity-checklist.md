@@ -58,10 +58,10 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 
 ### Resonario (`/resonario`)
 
-- [x] Sistema solar: disco destacado («el sol», su foto se funde con una máscara radial) + 6 discos en posiciones orbitales exactas, sin columna de texto duplicada. Apilado en <1024px.
-- [x] Filtros por tags (5 pills), `EmptyState` cuando no hay resultados.
+- [x] Sol y esferas por tipo: disco destacado («el sol», su foto se funde con una máscara radial) y, debajo, una sección por tipo de escucha con una esfera por tarjeta. Sin posiciones orbitales fijas (con 16 pistas no caben).
+- [x] Filtros por tipo de escucha («Todo» y los 5 tipos), `EmptyState` cuando no hay resultados.
 - [x] Disco destacado centrado (`FrequencyDisc` con `mx-auto`), aros que escalan.
-- [x] Grid responsive < 900px.
+- [x] Rejilla de tarjetas: 1 columna en móvil, hasta 4 en escritorio.
 
 ### Academia (`/academia`, `/[courseId]`, `/[courseId]/[lessonId]`)
 
@@ -102,6 +102,19 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
 - [x] Barra de realms de móvil/tablet sin truncar, con el realm actual centrado.
 - [x] Todos los CTA presentes en el DOM (reserva, membresía, continuar).
 - [x] Escalas con nombre (texto, tracking, marfil) y paleta cerrada verificadas por test.
+
+## Criterios añadidos 2026-10-17 (Ambientes v2)
+
+- [x] Nueve atmósferas declaradas sólo en `tokens.css`; la noche no cambia (comparación de capturas contra el servidor de master).
+- [x] Cada realm con identidad propia pinta la suya: Academia `study`, Experiencias `gathering`, Tienda `store`, Sobre Marisol `marisol`; Resonario, Descúbrete y Mi Santuario toman la elegida (incluido `forest`).
+- [x] Ritmo de la Home: héroe y frecuencia del día (noche), «¿Cómo llegas hoy?» (amanecer), tienda, bento (noche), membresía, Marisol (su atmósfera), pie; las secciones claras funden su borde con la noche.
+- [x] «¿Cómo llegas hoy?» en Home, Descúbrete y Mi Santuario, con respuesta visual y sonora, alternativas y guía de respiración.
+- [x] Resonario por tipo de escucha, con muestra, volumen y guía por pista; las prácticas «Próximamente» sin play.
+- [x] Tienda: galería por producto (vistas opcionales) y tamaño/contenido sólo si existen; los ocho productos siguen provisionales.
+- [x] Videos con `VideoSlot`: sin fuente, póster con «Próximamente» y sin play ni reloj.
+- [x] Curso: acceso gratuito/de pago, modalidad, «qué aprenderás», «qué incluye» y módulos plegables.
+- [x] Registro de materiales pendientes generado (`docs/materiales-pendientes.md`).
+- [ ] Pendiente de Marisol/Sergio: fotografía, audio y video reales, catálogo y cursos reales, recalibración de hex.
 
 ## Desviaciones conscientes registradas
 

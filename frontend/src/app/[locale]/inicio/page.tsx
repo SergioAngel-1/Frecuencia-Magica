@@ -1,23 +1,33 @@
 import { getTranslations } from 'next-intl/server';
 
 import { AboutSection } from '@/components/features/home/about-section';
+import { ArrivalSection } from '@/components/features/home/arrival-section';
 import { StoreShowcase } from '@/components/features/home/store-showcase';
 import { DailyFrequency } from '@/components/features/home/daily-frequency';
 import { HeroSection } from '@/components/features/home/hero-section';
 import { MembershipSection } from '@/components/features/home/membership-section';
 import { RealmsGrid } from '@/components/features/home/realms-grid';
+import { VideoSlot } from '@/components/features/player/video-slot';
 import { ButtonLink, PageShell } from '@/components/layout';
 import { Link } from '@/i18n/navigation';
-import { AUDIOS, PRODUCTS } from '@/data';
+import { PLAYABLE_AUDIOS, PRODUCTS } from '@/data';
 import { ATMOSPHERES } from '@/config/atmospheres';
 import { BANDS } from '@/config/bands';
+import { getVideo } from '@/config/videos';
 import { NAV_REALMS } from '@/config/realms';
 import { STORE_SHOWCASE_IDS } from '@/config/store-showcase';
 import { formatPrice } from '@/lib/format';
 import { featuredProducts } from '@/lib/store/showcase';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
-import { ArrowGlyph, arrowLinkClasses, BandChain } from '@/components/ui';
+import { videoPosterMedia } from '@/lib/video/poster';
+import {
+  ArrowGlyph,
+  arrowLinkClasses,
+  ScopeBackdrop,
+  AtmosphereScope,
+  BandChain,
+} from '@/components/ui';
 
 type PageProps = { params: LocaleParams };
 
@@ -67,15 +77,16 @@ export default async function HomePage({ params }: PageProps) {
   const common = await getTranslations('common');
   const tResonario = await getTranslations('resonario');
   const nav = await getTranslations('nav');
+  const tVideo = await getTranslations('video');
 
-  const firstAudio = AUDIOS[0]!;
+  const firstAudio = PLAYABLE_AUDIOS[0]!;
   // La del día ya ocupa el disco grande: la muestra sigue con las cuatro siguientes.
-  const resonarioAudios = AUDIOS.slice(1, 5).map((a) => ({
+  const resonarioAudios = PLAYABLE_AUDIOS.slice(1, 5).map((a) => ({
     id: a.id,
     hz: a.hz,
     band: a.band,
     title: tResonario(`audios.${a.id}.title` as 'audios.a1.title'),
-    meta: `${tResonario(`tags.${a.tagId}` as 'tags.meditation')} · ${a.duration}`,
+    meta: `${tResonario(`tags.${a.tagId}` as 'tags.meditation')} · ${a.duration ?? ''}`,
   }));
 
   const bandKey = (accent: string): 'gold' | 'teal' | 'lav' =>
@@ -133,8 +144,11 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      {/* Las bandas consecutivas se encadenan sin hueco y se encuentran en la
-          noche; entre bloques que no son bandas, el ritmo es `section`. */}
+      {/* Ritmo de la Home (spec §10): héroe (noche) → frecuencia del día →
+          «¿Cómo llegas hoy?» (amanecer) → tienda → bento de realms (noche) →
+          Marisol → pie. Las bandas consecutivas se encadenan sin hueco y se
+          encuentran en la noche; las secciones con atmósfera funden su borde
+          con ella y entre bloques que no son bandas el ritmo es `section`. */}
       <BandChain>
         <HeroSection
           media={homeMedia.hero}
@@ -159,7 +173,7 @@ export default async function HomePage({ params }: PageProps) {
           kicker={t('daily.kicker')}
           title={t('daily.title')}
           description={t('daily.description')}
-          meta={`${t('daily.meta')} · ${firstAudio.duration}`}
+          meta={`${t('daily.meta')} · ${firstAudio.duration ?? ''}`}
           cta={t('daily.cta')}
           resonario={{
             kicker: t('audio.kicker'),
@@ -173,7 +187,24 @@ export default async function HomePage({ params }: PageProps) {
             audios: resonarioAudios,
           }}
         />
+      </BandChain>
 
+      {/* «¿Cómo llegas hoy?» no es una banda: va fuera de la cadena, con el ritmo
+          `section` que trae su propia sección. De día por defecto: funde su borde
+          superior con la noche del bloque de arriba. */}
+      <ArrivalSection />
+
+      {/* Tienda: otra banda clara; cierra fundiéndose con el bento, que es de noche. */}
+      <StoreShowcase
+        kicker={t('storeShowcase.kicker')}
+        title={t('storeShowcase.title')}
+        description={t('storeShowcase.description')}
+        cta={t('storeShowcase.cta')}
+        items={storeItems}
+        scheme={ATMOSPHERES.store.scheme}
+      />
+
+      <div className="py-section">
         <RealmsGrid
           media={homeMedia.realms}
           kicker={t('realms.kicker')}
@@ -188,22 +219,12 @@ export default async function HomePage({ params }: PageProps) {
           storeCta={t('realms.storeCta')}
           featuredBadge={t('realms.featuredBadge')}
         />
-      </BandChain>
+      </div>
 
-      {/* Tienda: una banda clara entre el bento y la membresía, que siguen oscuras. */}
-      <StoreShowcase
-        kicker={t('storeShowcase.kicker')}
-        title={t('storeShowcase.title')}
-        description={t('storeShowcase.description')}
-        cta={t('storeShowcase.cta')}
-        items={storeItems}
-        scheme={ATMOSPHERES.store.scheme}
-      />
-
-      {/* Ninguna sección trae su propio margen exterior: lo pone este contenedor.
-          La membresía sigue al bento de realms y Marisol cierra la página antes
-          de la despedida del footer: entre una y otra, el ritmo es `section`. */}
-      <div className="py-section gap-section relative flex flex-col">
+      {/* Ninguna sección trae su propio margen exterior: lo pone el contenedor.
+          La membresía sigue al bento y Marisol cierra la página antes de la
+          despedida del footer, en su propia atmósfera. */}
+      <div className="pb-section relative">
         <MembershipSection
           media={homeMedia.membership}
           kicker={t('membership.kicker')}
@@ -211,7 +232,14 @@ export default async function HomePage({ params }: PageProps) {
           description={t('membership.description')}
           cta={t('membership.cta')}
         />
+      </div>
 
+      <AtmosphereScope
+        atmosphere="marisol"
+        scheme={ATMOSPHERES.marisol.scheme}
+        className="fm-editorial-full-bleed py-section relative isolate"
+      >
+        <ScopeBackdrop fade="both" />
         <AboutSection
           media={homeMedia.marisol}
           kicker={t('about.kicker')}
@@ -223,8 +251,19 @@ export default async function HomePage({ params }: PageProps) {
               {t('about.cta')} →
             </ButtonLink>
           }
+          video={
+            <VideoSlot
+              video={getVideo('welcome')}
+              media={videoPosterMedia(getVideo('welcome'), {
+                alt: tVideo('titles.welcome'),
+                sizes: '(min-width: 1280px) 1240px, calc(100vw - 48px)',
+              })}
+              title={tVideo('titles.welcome')}
+              className="rounded-card-lg aspect-[16/9] sm:aspect-[16/7]"
+            />
+          }
         />
-      </div>
+      </AtmosphereScope>
     </PageShell>
   );
 }

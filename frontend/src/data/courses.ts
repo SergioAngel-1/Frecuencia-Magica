@@ -11,6 +11,19 @@ export const COURSES: readonly Course[] = [
     lessons: 8,
     hours: '3.5h',
     band: COVERS.iris,
+    access: { type: 'free' },
+    modality: 'selfPaced',
+    learnKeys: [
+      'academy.courses.c1.learn.0',
+      'academy.courses.c1.learn.1',
+      'academy.courses.c1.learn.2',
+    ],
+    includesKeys: [
+      'academy.includes.guided',
+      'academy.includes.practices',
+      'academy.includes.pace',
+    ],
+    provisional: true,
   },
   {
     id: 'c2',
@@ -20,6 +33,19 @@ export const COURSES: readonly Course[] = [
     lessons: 12,
     hours: '5h',
     band: COVERS.moss,
+    access: { type: 'paid', price: 48 },
+    modality: 'blended',
+    learnKeys: [
+      'academy.courses.c2.learn.0',
+      'academy.courses.c2.learn.1',
+      'academy.courses.c2.learn.2',
+    ],
+    includesKeys: [
+      'academy.includes.guided',
+      'academy.includes.practices',
+      'academy.includes.pace',
+    ],
+    provisional: true,
   },
   {
     id: 'c3',
@@ -29,5 +55,18 @@ export const COURSES: readonly Course[] = [
     lessons: 6,
     hours: '2.5h',
     band: COVERS.amber,
+    access: { type: 'paid', price: 36 },
+    modality: 'selfPaced',
+    learnKeys: [
+      'academy.courses.c3.learn.0',
+      'academy.courses.c3.learn.1',
+      'academy.courses.c3.learn.2',
+    ],
+    includesKeys: [
+      'academy.includes.guided',
+      'academy.includes.practices',
+      'academy.includes.pace',
+    ],
+    provisional: true,
   },
 ] as const;

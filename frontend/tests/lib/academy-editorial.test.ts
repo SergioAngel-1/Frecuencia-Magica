@@ -21,12 +21,14 @@ const listSource = readSource('components/features/academy/course-list.tsx');
 const cardSource = readSource('components/features/academy/course-card.tsx');
 const detailSource = readSource('components/features/academy/course-detail.tsx');
 const lessonListSource = readSource('components/features/academy/lesson-list.tsx');
+const moduleListSource = readSource('components/features/academy/module-list.tsx');
+const factsSource = readSource('components/features/academy/course-facts.tsx');
 const playerSource = readSource('components/features/academy/lesson-player.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/academia/(catalogo)/loading.tsx');
 
 const ACADEMY_SLOTS = [
-  { slot: 'academy.hero' as const, aspect: '16:9' as const, alt: 'hero' },
+  { slot: 'atmosphere.study' as const, aspect: '16:9' as const, alt: 'hero' },
   { slot: 'academy.featured-course' as const, aspect: '16:8' as const, alt: 'featured' },
   { slot: 'academy-course-cover' as const, aspect: '16:8' as const, alt: 'courseCover' },
   { slot: 'academy-lesson-visual' as const, aspect: '16:8' as const, alt: 'lesson' },
@@ -64,7 +66,7 @@ describe('academy editorial composition contracts', () => {
   it('composes a localized full-width hero and passes editorial media into the course archive', () => {
     expect(pageSource).toContain('const locale = await resolveLocale(params);');
     expect(pageSource).toContain("getTranslations({ locale, namespace: 'academy' })");
-    expect(pageSource).toContain("resolveEditorialMedia('academy.hero'");
+    expect(pageSource).toContain("resolveEditorialMedia('atmosphere.study'");
     expect(pageSource).toContain("resolveEditorialMedia('academy.featured-course'");
     expect(pageSource).toContain("resolveEditorialMedia('academy-course-cover'");
     expect(pageSource).toContain('<RealmHero');
@@ -102,10 +104,22 @@ describe('academy editorial composition contracts', () => {
     expect(coursePageSource).toContain("alt: t('media.alt.courseCover'");
   });
 
+  it('always shows free or paid and the modality, on the card and on the detail', () => {
+    expect(factsSource).toContain('course.access.type');
+    expect(factsSource).toContain('course.modality');
+    expect(factsSource).not.toMatch(/\? <|&& </);
+    expect(cardSource).toContain('<CourseFacts');
+    expect(detailSource).toContain('<CourseFacts');
+  });
+
   it('keeps the detail reading rail and localized lesson routes intact', () => {
-    expect(detailSource).toContain('<LessonList');
+    // T2.12: las lecciones se agrupan en módulos plegables (0fr -> 1fr), con la misma nav y el mismo marcador.
+    expect(detailSource).toContain('<ModuleList');
     expect(detailSource).toContain('sticky');
-    expect(lessonListSource).toContain('<nav');
+    expect(moduleListSource).toContain('<nav');
+    expect(moduleListSource).toContain('<LessonList');
+    expect(moduleListSource).toContain('grid-rows-[0fr]');
+    expect(moduleListSource).toContain('grid-rows-[1fr]');
     expect(lessonListSource).toContain("aria-current={isCurrent ? 'page' : undefined}");
     expect(lessonListSource).toContain('min-h-11');
     expect(lessonPageSource).toContain('<LessonPlayer');
@@ -125,6 +139,7 @@ describe('academy editorial composition contracts', () => {
 
   it('plays the lesson in the shared player bar, with custom video controls', () => {
     const videoSource = readSource('components/features/player/video-player.tsx');
+    const slotSource = readSource('components/features/player/video-slot.tsx');
     const barSource = readSource('components/features/player/player-bar.tsx');
     const dockSource = readSource('components/features/player/player-dock.tsx');
 
@@ -139,8 +154,9 @@ describe('academy editorial composition contracts', () => {
     expect(coverCall.slice(0, coverCall.indexOf('})'))).toContain('instance: course.id');
     expect(lessonPageSource).toContain('const lessonMedia = courseCover.src');
     expect(lessonPageSource).toContain("resolveEditorialMedia('academy-lesson-visual'");
-    // La lección lleva el reproductor de video del sitio, nunca el nativo.
-    expect(playerSource).toContain('<VideoPlayer');
+    // La lección lleva el espacio de video del sitio (con fuente, su reproductor), nunca el nativo.
+    expect(playerSource).toContain('<VideoSlot');
+    expect(slotSource).toContain('<VideoPlayer');
     expect(playerSource).toContain('key={lessonIndex}');
     expect(playerSource).not.toMatch(/<audio|<video/);
     expect(videoSource).toContain('<video');
@@ -158,7 +174,8 @@ describe('academy editorial composition contracts', () => {
     expect(videoSource).toContain("setVeil('fade')");
     expect(videoSource).toContain("current === 'clear' ? 'cut' : current");
     expect(videoSource).toContain('data-video-veil={veil}');
-    expect(videoSource).toContain('TODO(backend)');
+    // Sin fuente no hay reproductor: la fuente es obligatoria (ver video-playback-guard).
+    expect(videoSource).toContain('  src: string;');
     expect(playerSource).toContain('previousLesson');
     expect(playerSource).toContain('nextLesson');
     expect(playerSource).toContain('completionMedia');

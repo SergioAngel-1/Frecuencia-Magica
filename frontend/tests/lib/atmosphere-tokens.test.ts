@@ -67,6 +67,9 @@ describe('atmosphere token blocks', () => {
     const declared = ruleDeclarations(CSS, blockOf(id));
 
     expect(declared['--color-scrim'], `${id} --color-scrim`).toBe('rgb(var(--scrim))');
+    expect(declared['--color-scrim-deep'], `${id} --color-scrim-deep`).toBe(
+      'rgb(var(--scrim-deep))',
+    );
     expect(declared['--color-halo'], `${id} --color-halo`).toBe('rgb(var(--halo))');
   });
 

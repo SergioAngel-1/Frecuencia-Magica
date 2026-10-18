@@ -101,7 +101,7 @@ export function createDrone(ctx: AudioContext): DroneHandle {
     dispose() {
       voices.forEach((osc) => osc.stop());
       lfo.stop();
-      void ctx.close();
+      // El contexto es compartido con el motor de pistas: no se cierra aquí.
     },
   };
 }

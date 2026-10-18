@@ -5,13 +5,15 @@ import { useTranslations } from 'next-intl';
 
 import { Button, EditorialImage, GlassPanel, Kicker, Textarea } from '@/components/ui';
 import { useMounted } from '@/hooks/use-mounted';
+import { ArrivalCheckIn } from '@/components/features/arrival/arrival-check-in';
 import { cn } from '@/lib/cn';
 import { hasEditorialVisual } from '@/lib/editorial/visual';
 import { useJournalStore } from '@/stores/journal-store';
 import type { EditorialMedia } from '@/types/editorial-media';
+import { MOOD_IDS } from '@/types/mood';
 
 import { JournalEmpty } from './journal-empty';
-import { JournalEntryCard, MOODS } from './journal-entry';
+import { JournalEntryCard } from './journal-entry';
 
 export type JournalMedia = {
   journal: EditorialMedia;
@@ -70,23 +72,13 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
           {tJournal('moodLabel')}
         </p>
 
-        <div className="mb-5 flex flex-wrap gap-2" role="group" aria-label={tJournal('moodLabel')}>
-          {MOODS.map((mood, index) => (
-            <button
-              key={mood}
-              type="button"
-              onClick={() => setMood(index)}
-              aria-pressed={draft.mood === index}
-              className={cn(
-                'rounded-pill text-label tracking-ui min-h-11 flex-1 basis-[86px] border px-3 py-2 font-sans uppercase transition-[color,background-color,border-color] duration-300',
-                draft.mood === index
-                  ? 'bg-accent/15 text-accent border-accent/40'
-                  : 'bg-surface text-fg-muted border-line hover:border-fg/20',
-              )}
-            >
-              {tJournal(`moods.${mood}`)}
-            </button>
-          ))}
+        <div className="mb-5">
+          <ArrivalCheckIn
+            legend={tJournal('moodLabel')}
+            options={MOOD_IDS.map((id) => ({ id, label: tJournal(`moods.${id}`) }))}
+            selected={draft.mood}
+            onSelect={setMood}
+          />
         </div>
 
         {/* El diario se escribe sobre su cuaderno: la foto es el fondo del
@@ -105,7 +97,7 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
                 overlay={false}
                 scrim={false}
               />
-              <div className="bg-void-2/60 absolute inset-0" />
+              <div className="bg-scrim-deep/60 absolute inset-0" />
             </div>
           ) : null}
           <Textarea

@@ -10,6 +10,7 @@
     "lint:fix": "eslint --fix",
     "format": "prettier --write .",
     "editorial:ingest": "node scripts/editorial-ingest.mjs",
+    "export:pending-materials": "node scripts/export-pending-materials.mjs",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",

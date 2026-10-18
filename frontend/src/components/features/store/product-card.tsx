@@ -8,6 +8,7 @@ import { Badge, Button, EditorialImage, GradientText } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
 import { categoryKey } from '@/lib/store/category-key';
+import { productSpecs } from '@/lib/store/gallery';
 import { cn } from '@/lib/cn';
 import { useCartStore } from '@/stores/cart-store';
 import type { EditorialMedia, EditorialMediaAspect } from '@/types/editorial-media';
@@ -36,6 +37,8 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
   const t = useTranslations('store');
   const add = useCartStore((s) => s.add);
   const title = t(`products.${product.id}.title`);
+  // El tamaño sólo se pinta si el producto lo declara (lo confirma Marisol).
+  const size = productSpecs(product).find((spec) => spec.id === 'size');
   const media: EditorialMedia = {
     ...baseMedia,
     alt:
@@ -115,6 +118,11 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
               t(`products.${product.id}.title`)
             )}
           </h3>
+          {size ? (
+            <span className="text-fg-meta text-meta tracking-ui font-sans">
+              {t(size.key.replace(/^store\./, '') as 'notes')}
+            </span>
+          ) : null}
           {featured ? (
             <p className="text-fg-soft text-body mt-1 max-w-[52ch] leading-[1.75]">
               {t('featuredDescription')}

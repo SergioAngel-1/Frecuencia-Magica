@@ -46,11 +46,11 @@ export type VideoPlayerLabels = {
 };
 
 type VideoPlayerProps = {
-  /** Fuente del video. TODO(backend): hoy las lecciones aún no la traen. */
-  src?: string;
+  /** Fuente del video. Sin ella no se monta el reproductor (lo decide `VideoSlot`). */
+  src: string;
   /** Duración conocida de antemano, en segundos. */
   duration: number;
-  /** La imagen que se ve antes de empezar (y, sin fuente, durante la práctica). */
+  /** La imagen que se ve antes de empezar. */
   poster: ReactNode;
   labels: VideoPlayerLabels;
   className?: string;
@@ -158,15 +158,13 @@ export function VideoPlayer({ src, duration, poster, labels, className }: VideoP
       data-video-state={playing ? 'playing' : 'paused'}
     >
       <div className="absolute inset-0">{poster}</div>
-      {src ? (
-        <video
-          ref={videoRef}
-          src={src}
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 size-full object-cover"
-        />
-      ) : null}
+      <video
+        ref={videoRef}
+        src={src}
+        playsInline
+        preload="metadata"
+        className="absolute inset-0 size-full object-cover"
+      />
 
       {/* La imagen entera alterna play y pausa. Es un atajo de puntero: el
           control con nombre y foco es el play de la barra. */}
@@ -211,15 +209,13 @@ export function VideoPlayer({ src, duration, poster, labels, className }: VideoP
           labels={{ play: labels.play, pause: labels.pause, seek: labels.seek }}
           actions={
             <>
-              {src ? (
-                <IconButton
-                  variant="ghost"
-                  label={muted ? labels.unmute : labels.mute}
-                  onClick={toggleMute}
-                >
-                  <VolumeIcon muted={muted} />
-                </IconButton>
-              ) : null}
+              <IconButton
+                variant="ghost"
+                label={muted ? labels.unmute : labels.mute}
+                onClick={toggleMute}
+              >
+                <VolumeIcon muted={muted} />
+              </IconButton>
               {canFullscreen ? (
                 <IconButton
                   variant="ghost"

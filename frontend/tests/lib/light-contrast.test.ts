@@ -92,3 +92,70 @@ describe('light-scheme contrast on photos', () => {
     expect(contrast(unit, pill)).toBeGreaterThanOrEqual(MIN);
   });
 });
+
+/**
+ * El velo de la noche: en un banner con foto, el texto de la etiqueta, el título
+ * y el cuerpo quedan sobre el velo en esquema oscuro. Sin él (`display: none`)
+ * la etiqueta cae sobre la luz de la foto.
+ */
+describe('banner veil in the night scheme', () => {
+  it('the base veil is shown: it is not hidden by display none', () => {
+    const base = GLOBALS.slice(GLOBALS.indexOf('.fm-banner-veil {'));
+    const rule = base.slice(0, base.indexOf('}'));
+
+    expect(rule).not.toContain('display: none');
+    expect(rule).toContain('linear-gradient(');
+  });
+
+  it('the night veil is dense (0.8) where the eyebrow sits, 0.6 at its edges, and fades out', () => {
+    // La etiqueta cae entre el 21 % y el 40 % de la altura del banner (kicker de
+    // melodías: 3,97:1 con el velo a 0,6; con 0,8 en esa franja pasa de 4,5:1).
+    const base = GLOBALS.slice(GLOBALS.indexOf('.fm-banner-veil {'));
+    const rule = base.slice(0, base.indexOf('}'));
+
+    expect(rule).toContain('rgb(var(--scrim) / 0.8) 18%');
+    expect(rule).toContain('rgb(var(--scrim) / 0.8) 42%');
+    expect(rule).toContain('rgb(var(--scrim) / 0.6) 70%');
+    expect(rule).toContain('transparent 100%');
+  });
+
+  it('the light veil block is left as it was (0.6)', () => {
+    const rule = GLOBALS.slice(GLOBALS.indexOf("[data-scheme='light'] .fm-banner-veil"));
+    expect(rule.slice(0, rule.indexOf('}'))).toContain('rgb(var(--scrim) / 0.6)');
+    expect(rule.slice(0, rule.indexOf('}'))).toContain('display: block');
+  });
+});
+
+/**
+ * Controles fijos sobre una atmósfera clara (hallazgo 3 de la auditoría de
+ * muestras): el punto de realm-nav es oro, verdoso o lavanda a media opacidad
+ * sobre crema, ~1,7:1. El aro de tinta (`.fm-nav-dot`) es lo que lo separa del
+ * fondo: se mide la tinta contra cada parada del degradado de fondo.
+ */
+describe('realm-nav dots on light atmospheres', () => {
+  const ring = GLOBALS.slice(GLOBALS.indexOf("[data-scheme='light'] .fm-nav-dot {"));
+  const ringRule = ring.slice(0, ring.indexOf('}'));
+
+  it('the ring is the full ink at full opacity, so what is measured is what is painted', () => {
+    expect(ringRule).toContain('opacity: 1');
+    expect(ringRule).toContain('outline: 1.5px solid var(--color-fg)');
+  });
+
+  it.each(LIGHT)('%s: the ink ring reaches 3:1 against every stop of the background', (id) => {
+    const block = blockOf(id);
+    const ink = hexOf(block, 'color-fg');
+    const bg = block.match(/--atmo-bg: ([^;]+);/);
+    expect(bg, 'atmo-bg').not.toBeNull();
+    const stops = [...bg![1]!.matchAll(/#([0-9a-f]{6})/gi)].map((m) => {
+      const v = m[1]!;
+      return [
+        parseInt(v.slice(0, 2), 16),
+        parseInt(v.slice(2, 4), 16),
+        parseInt(v.slice(4, 6), 16),
+      ] as [number, number, number];
+    });
+    expect(stops.length, id).toBeGreaterThan(0);
+
+    for (const stop of stops) expect(contrast(ink, stop), id).toBeGreaterThanOrEqual(3);
+  });
+});

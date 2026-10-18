@@ -13,6 +13,7 @@ function product(id: string, catKey: string): Product {
     price: 20,
     band: 'linear-gradient(0deg,#000,#000)',
     relatedAudioId: 'a1',
+    provisional: true,
   };
 }
 

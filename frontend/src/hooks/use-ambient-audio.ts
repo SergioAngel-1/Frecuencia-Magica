@@ -6,26 +6,15 @@ import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useRealm } from '@/hooks/use-realm';
 import { ambientAudible } from '@/lib/audio/ambient-mix';
 import { baseNoteFor, createDrone, type DroneHandle } from '@/lib/audio/drone';
+import { getSharedAudioContext } from '@/lib/audio/engine/context';
 import { useAmbientStore } from '@/stores/ambient-store';
 import { useIsPlayerSounding } from '@/stores/player-store';
-
-type AudioContextCtor = typeof AudioContext;
-
-/** `AudioContext` con el prefijo de WebKit como reserva. */
-function getAudioContextCtor(): AudioContextCtor | null {
-  if (typeof window === 'undefined') return null;
-  return (
-    window.AudioContext ??
-    (window as unknown as { webkitAudioContext?: AudioContextCtor }).webkitAudioContext ??
-    null
-  );
-}
 
 /**
  * Conecta la preferencia de audio, el realm activo y el grafo del drone.
  *
- * El `AudioContext` se crea perezosamente la primera vez que el audio se activa
- * —nunca en el montaje— para no disparar el aviso de autoplay. Si el navegador
+ * El contexto compartido se pide la primera vez que el ambiente se activa —un
+ * gesto, nunca el montaje— para no disparar el aviso de autoplay. Si el navegador
  * no soporta Web Audio, degrada en silencio.
  */
 export function useAmbientAudio(): void {
@@ -46,9 +35,9 @@ export function useAmbientAudio(): void {
     }
 
     if (!droneRef.current) {
-      const Ctor = getAudioContextCtor();
-      if (!Ctor) return; // Sin Web Audio: degrada en silencio.
-      const drone = createDrone(new Ctor());
+      const ctx = getSharedAudioContext();
+      if (!ctx) return; // Sin Web Audio: degrada en silencio.
+      const drone = createDrone(ctx);
       drone.retune(baseNote);
       droneRef.current = drone;
     }

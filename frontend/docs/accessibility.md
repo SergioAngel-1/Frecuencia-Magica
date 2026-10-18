@@ -92,3 +92,21 @@ Ronda de arreglo (2026-10-17): el velo denso de las atmósferas claras sale de `
 Ronda 2: los banners con foto en esquema claro llevan un velo claro que funde a los bordes; el kicker del banner de Resonario en `dawn` se lee, el de la banda de ritual de Tienda sigue débil (abierto). Las cifras de las esferas en claro llevan un halo de tinta; las unidades «HZ» sobre las portadas pálidas siguen débiles (abierto). La noche no cambia.
 
 Ronda 3 (2026-10-17), contraste medido en claro (WCAG, mediana / cuartil adverso): kicker de banner con foto 7,78 y 10,85; título y cuerpo de banner 10,3–15,4; cifras de esfera ≥ 5,97; unidades «HZ» ≥ 5,55 (peor disco). Mecanismo: tinta (`--color-fg`) sobre velo claro y cifra de marfil sobre píldora de tinta al 72 %. La guarda `tests/lib/light-contrast.test.ts` calcula el peor caso con los valores declarados. Abierto: la medición por píxel de nuevas fotos de atmósfera (sin ingesta todavía).
+
+## Contraste por atmósfera (Fase 2, 2026-10-17)
+
+El contraste ya no se mide contra un único fondo: cada atmósfera declara su escalera de texto y su fondo en `tokens.css`, y las guardas lo comprueban por atmósfera.
+
+| Guarda                | Qué cubre                                                                                                                                                                                                                                                    |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `atmosphere-contrast` | Cada par texto/superficie de las nueve atmósferas (4,5:1 texto; 3:1 UI grande y foco), incluido el caso sin foto: el degradado de respaldo.                                                                                                                  |
+| `light-contrast`      | Tinta sobre el velo claro con la foto más oscura debajo (peor caso) en dawn, study, store y marisol; cifra de las esferas sobre su píldora; aro de los puntos de la constelación (≥ 3:1 contra cada parada del fondo).                                       |
+| `hero-photo-contrast` | El texto del héroe sobre **la foto publicada** de study, marisol, store y gathering, con el velo `left` de `RealmHero` (peor píxel de la zona del texto): 10,3–12,1:1. Chromium, a 1440/1280/768/390, con y sin movimiento reducido: ≥ 10,2:1 en los cuatro. |
+
+Controles fijos sobre atmósferas claras: los puntos de `realm-nav` llevan un aro de tinta (`.fm-nav-dot`, 1,5 px; 2,5 px en la ruta activa), porque el oro, el verdoso y el lavanda a media opacidad sobre crema dan ~1,7:1. El header, el dock y «Hablar ahora» usan vidrio denso (`fm-surface-strong`) con tinta de la atmósfera sobre su propia superficie; el menú y el velo del diario leen `--scrim-deep`, que en una atmósfera clara es el velo claro.
+
+Movimiento y datos: con `prefers-reduced-motion` no hay deriva de paisaje, ni loop de video (`allowsLoopVideo`), ni orbe de respiración animado (quedan las indicaciones en texto), y el cambio de atmósfera del engine es inmediato (0 s; el fondo del bloque de llegada de la Home, 0,2 s). Con ahorro de datos (`saveData`) tampoco hay loop de video. El cambio de atmósfera se sigue anunciando por la región `aria-live` del `AtmosphereProvider`.
+
+Videos: un espacio sin fuente («Próximamente») no tiene botón de play ni reloj, y su grupo lleva el nombre del video; con fuente, el reproductor conserva sus controles con nombre accesible. Los módulos del curso son botones con `aria-expanded` y `aria-controls`; el panel cerrado queda `inert`.
+
+Abierto: el recorrido completo por teclado y lector de pantalla sigue pendiente de auditoría manual en dispositivo real.

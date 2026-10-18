@@ -233,7 +233,7 @@
     },
     "media": {
       "alt": {
-        "hero": "The space where Marisol listens and accompanies",
+        "hero": "A bright, personal corner in morning light",
         "portrait": "Portrait of Marisol beside the light of a window",
         "angels": "A soft light descending through the dusk"
       }
@@ -386,7 +386,15 @@
         "hero": "Soundscape of the Frecuencia Mágica Resonarium",
         "featured": "Editorial field for the featured frequency",
         "archiveBanner": "Sound texture accompanying the complete archive",
-        "audioCover": "Sound cover for {title}"
+        "audioCover": "Sound cover for {title}",
+        "kindBanner": {
+          "melody": "Image of the listening type: melodies",
+          "nature": "Image of the listening type: nature",
+          "frequency": "Image of the listening type: frequencies",
+          "binaural": "Image of the listening type: binaural",
+          "guided": "Image of the listening type: guided"
+        },
+        "celtic": "A Celtic harp by a window over green hills in the mist"
       }
     },
     "archive": {
@@ -398,11 +406,7 @@
     "nowPlaying": "Now playing",
     "filtersLabel": "Filter frequencies",
     "filters": {
-      "all": "All",
-      "meditation": "Meditation",
-      "frequency": "Frequency",
-      "rest": "Rest",
-      "ritual": "Ritual"
+      "all": "All"
     },
     "tags": {
       "meditation": "Meditation",
@@ -414,26 +418,134 @@
     },
     "audios": {
       "a1": {
-        "title": "Return to Calm"
+        "title": "Return to Calm",
+        "composition": "Pure tone at 432 Hz.",
+        "guide": "Sit with your back supported and let the tone fill the silence. To return to calm after an intense day."
       },
       "a2": {
-        "title": "Inner Light"
+        "title": "Inner Light",
+        "composition": "Pure tone at 528 Hz.",
+        "guide": "Listen with a clear mind, as you start something you want to do with clarity."
       },
       "a3": {
-        "title": "Deep Roots"
+        "title": "Deep Roots",
+        "composition": "Pure tone at 396 Hz.",
+        "guide": "To ground yourself: feet on the floor, slow breath, no hurry."
       },
       "a4": {
-        "title": "Threshold of Sleep"
+        "title": "Threshold of Sleep",
+        "composition": "Pure tone at 174 Hz, the lowest in the catalogue.",
+        "guide": "For the night, with the lights off, when you want to let the day go."
       },
       "a5": {
-        "title": "Cedar Aroma"
+        "title": "Cedar Aroma",
+        "composition": "Pure tone at 639 Hz.",
+        "guide": "For a shared ritual or a gesture of care toward someone."
       },
       "a6": {
-        "title": "Breathe the Sky"
+        "title": "Breathe the Sky",
+        "composition": "Pure tone at 417 Hz.",
+        "guide": "To breathe slowly and begin again."
       },
       "a7": {
-        "title": "Open Heart"
+        "title": "Open Heart",
+        "composition": "Pure tone at 528 Hz.",
+        "guide": "To open your chest and let something renew within you."
+      },
+      "b1": {
+        "title": "Calm pulse",
+        "composition": "Sea sound with a 10 Hz binaural beat.",
+        "guide": "Sit with your back supported and your feet on the floor, with nothing to do. It may help you slow down before resting or at the end of the day."
+      },
+      "b2": {
+        "title": "Grounding pulse",
+        "composition": "6 Hz binaural beat over a 110 Hz carrier.",
+        "guide": "You can listen standing or seated, with your feet well planted. It may help you come back to the present when your mind is racing."
+      },
+      "n1": {
+        "title": "Seashore",
+        "composition": "Sea texture: filtered noise that rises and falls.",
+        "guide": "Listen to it as background, at a low volume, while you read, rest or close your eyes. It may accompany you when the day feels heavy."
+      },
+      "n2": {
+        "title": "Rain at the window",
+        "composition": "Rain texture: constant filtered noise.",
+        "guide": "Designed as background for a quiet room, with low light. It accompanies the pause and lets the sound take the place of your thoughts."
+      },
+      "n3": {
+        "title": "Birdsong",
+        "composition": "Designed as birdsong in a forest at dawn.",
+        "guide": "When it is ready, listen to it by an open window, eyes closed, if you want to feel the day wake up."
+      },
+      "m1": {
+        "title": "Celtic music to slow down",
+        "composition": "Designed as a slow melody, without lyrics.",
+        "guide": "When it is ready, listen to it without doing anything else, at a low volume and with your eyes closed if you like."
+      },
+      "m2": {
+        "title": "Piano for the pause",
+        "composition": "Designed as a short piece, with long silences.",
+        "guide": "Designed for a short pause between two things: no lyrics, no hurry."
+      },
+      "g1": {
+        "title": "Guided breathing",
+        "composition": "Designed as a guided voice, with pauses to breathe.",
+        "guide": "When it is ready, sit without hurry and let the voice set the rhythm of your breath. There is nothing you have to do right."
+      },
+      "g2": {
+        "title": "A moment for you",
+        "composition": "Designed as a guided voice, with long pauses.",
+        "guide": "Designed to close the day or begin it calmly, when you have a few minutes for yourself."
       }
+    },
+    "soon": "Coming soon",
+    "kinds": {
+      "melody": {
+        "title": "Melodies",
+        "explanation": "Piano, strings and acoustic pieces to listen to without doing anything else. Choose them when you want music to keep you company and ask nothing of you."
+      },
+      "nature": {
+        "title": "Nature",
+        "explanation": "Sea, rain, water and forest: sounds you already know. They may accompany you as you return to your body and stop thinking about what comes next. Listen at a low volume, as background."
+      },
+      "frequency": {
+        "title": "Frequencies",
+        "explanation": "A pure tone on a single frequency, with nothing else. Play it when you want silence with a touch of light: in the background while you read, meditate or rest, always at a low volume."
+      },
+      "binaural": {
+        "title": "Binaural",
+        "explanation": "Two slightly different tones, one in each ear: the brain perceives a slow pulse in the middle. They need stereo headphones. It is a listening experience, not a promise of an effect."
+      },
+      "guided": {
+        "title": "Guided",
+        "explanation": "A voice accompanies you step by step, with pauses to breathe. They are in preparation: they will appear here once they are recorded."
+      },
+      "eyebrow": "Listening type"
+    },
+    "guide": {
+      "headphones": "Use stereo headphones: the effect is only perceived with one sound in each ear.",
+      "toggle": "See the guide",
+      "composition": "What you hear"
+    },
+    "sample": {
+      "listen": "Listen to a sample",
+      "label": "Sample",
+      "full": "Listen to the full track"
+    },
+    "card": {
+      "voice": "With voice",
+      "noVoice": "No voice",
+      "headphones": "Headphones"
+    },
+    "celtic": {
+      "kicker": "Featured melody piece",
+      "heading": "Celtic-inspired music: an invitation to slow down",
+      "p1": "There are melodies that invite us to stop and listen. Celtic-inspired music can open that space: a pause to feel, to imagine and to enjoy the sound.",
+      "p2": "Part of its richness comes from traditions such as the Irish harp, which has accompanied the cultural life of Ireland for more than a thousand years. Its notes keep a history of expression, memory and encounter.",
+      "p3": "In its gentlest versions, the delicate sound of the harp, the flute phrases and slow melodies can create a welcoming atmosphere. If these sounds feel pleasant to you, they can keep you company while you rest, look at a landscape or spend a few minutes with yourself.",
+      "p4": "Research on music suggests that listening to it may help the mood, although each person responds differently. Its value also lies in what it awakens in you: serenity, emotion, memories or a sense of company.",
+      "p5": "At Frecuencia Mágica we chose these melodies to offer you a moment of listening without demands. You do not need to reach a special state. Just find a comfortable volume and notice how you feel.",
+      "closing": "Let the melody accompany you. This moment is yours."
     }
   },
   "player": {
@@ -444,12 +556,14 @@
     "minimize": "Hide the player",
     "expand": "Show the player",
     "seek": "Seek within the track",
-    "next": "Next frequency",
-    "previous": "Previous frequency",
+    "next": "Next track",
+    "previous": "Previous track",
     "mute": "Mute",
     "unmute": "Unmute",
     "fullscreen": "Full screen",
-    "exitFullscreen": "Exit full screen"
+    "exitFullscreen": "Exit full screen",
+    "volume": "Volume",
+    "volumeValue": "Volume at {percent}%"
   },
   "academy": {
     "kicker": "Academy",
@@ -462,7 +576,7 @@
     },
     "media": {
       "alt": {
-        "hero": "Frecuencia Mágica's academy of practices",
+        "hero": "A reading corner by a window, in morning light",
         "featured": "{title}: Frecuencia Mágica featured course",
         "courseCover": "{title}: a scene from the practice",
         "lesson": "Practice for lesson {title}",
@@ -471,7 +585,6 @@
     },
     "videoLabel": "Lesson video",
     "videoSeek": "Seek within the video",
-    "videoDeferred": "The video for this practice will be added here. For now, stay with the reading and return to your breath.",
     "featuredBadge": "Featured",
     "featuredDescription": "A guided journey to reunite with yourself through breath, silence and small daily rituals.",
     "featuredCta": "Start course",
@@ -491,13 +604,28 @@
     },
     "courses": {
       "c1": {
-        "title": "The Art of Returning to You"
+        "title": "The Art of Returning to You",
+        "learn": [
+          "To stop for a few minutes and notice how you breathe.",
+          "Small rituals of pause for your day.",
+          "To listen to yourself without hurry or judgment."
+        ]
       },
       "c2": {
-        "title": "Conscious Rituals"
+        "title": "Conscious Rituals",
+        "learn": [
+          "To prepare a calm corner at home.",
+          "Simple gestures to open and close your day.",
+          "To keep a ritual at your own pace."
+        ]
       },
       "c3": {
-        "title": "Aromas that Heal"
+        "title": "Aromas that Heal",
+        "learn": [
+          "To get to know aromas and how they accompany your pause.",
+          "To create a small ritual with aromas.",
+          "To choose calmly what feels good to you."
+        ]
       }
     },
     "completion": {
@@ -519,7 +647,29 @@
       "The light within you",
       "Making peace with time",
       "Beginning again"
-    ]
+    ],
+    "includes": {
+      "guided": "Lessons guided by Marisol",
+      "practices": "Practices to repeat whenever you wish",
+      "pace": "Access at your own pace, with no deadlines"
+    },
+    "facts": {
+      "free": "Free",
+      "paid": "Paid",
+      "modality": {
+        "selfPaced": "At your own pace",
+        "live": "Live",
+        "blended": "Blended"
+      },
+      "label": "Course details",
+      "learnTitle": "What you'll learn",
+      "includesTitle": "What's included",
+      "modulesTitle": "Modules",
+      "module": "Module {number}",
+      "moduleLessons": "{count} lessons",
+      "introTitle": "Course introduction",
+      "hours": "{hours} of practice"
+    }
   },
   "experiences": {
     "kicker": "Experiences",
@@ -534,7 +684,7 @@
     "durationLabel": "Duration",
     "media": {
       "alt": {
-        "hero": "The experiences awaiting you",
+        "hero": "A warm space ready to share a gathering",
         "featured": "{title}: featured experience",
         "row": "{title}: atmosphere of the experience"
       }
@@ -601,7 +751,10 @@
         "product": "{title} by Frecuencia Mágica",
         "ritualBanner": "The objects of the ritual",
         "detail": "{title}: detail",
-        "related": "{title}, an object that accompanies the ritual"
+        "related": "{title}, an object that accompanies the ritual",
+        "viewLabel": "{title}: package label",
+        "viewTexture": "{title}: texture detail",
+        "viewInUse": "{title}: in use"
       }
     },
     "ritualBanner": {
@@ -678,6 +831,20 @@
       "p8": {
         "title": "Frequency Journal"
       }
+    },
+    "gallery": {
+      "label": "Product views",
+      "views": {
+        "cover": "The product",
+        "label": "Label",
+        "texture": "Texture",
+        "inUse": "In use"
+      }
+    },
+    "specs": {
+      "label": "Product details",
+      "size": "Size",
+      "contents": "Contents"
     }
   },
   "cart": {
@@ -754,14 +921,90 @@
     "moodLabel": "Your state",
     "moods": {
       "calm": "Calm",
-      "joy": "Joy",
-      "nostalgia": "Nostalgia",
       "tiredness": "Tiredness",
-      "gratitude": "Gratitude"
+      "nostalgia": "Nostalgia",
+      "sadness": "Sadness",
+      "joy": "Joy",
+      "gratitude": "Gratitude",
+      "clarity": "Clarity",
+      "breathe": "I need to breathe",
+      "unknown": "No label"
     },
     "placeholder": "Write what wants to be heard today…",
     "save": "Save to my journal",
     "saved": "Saved. Your word now has a place."
+  },
+  "arrival": {
+    "breathing": {
+      "title": "Breathe at your own pace",
+      "intro": "Follow the orb. There is nothing to do well: just keep the air company.",
+      "inhale": "Breathe in",
+      "hold": "Hold",
+      "exhale": "Breathe out",
+      "round": "Round {current} of {total}",
+      "done": "Done. Return to your own pace whenever you like.",
+      "again": "Another round",
+      "stop": "Stop"
+    },
+    "kicker": "Arrival",
+    "title": "How do you arrive today?",
+    "intro": "Pick what feels most like you. The atmosphere shifts and we offer something to listen to, without hurry.",
+    "legend": "How you arrive",
+    "silent": "Sound only starts when you choose it.",
+    "listenKind": "To listen to",
+    "headphones": "Best with headphones",
+    "position": "{current} of {total}",
+    "previous": "Previous",
+    "next": "Next",
+    "otherOption": "Choose another option",
+    "stop": "Stop",
+    "discoverCta": "Listen to what keeps you company",
+    "moods": {
+      "calm": {
+        "explanation": "A moment of calm, with water and air close by, to stay without hurry."
+      },
+      "tiredness": {
+        "explanation": "For a body asking for rest: a background sound, with nothing to do."
+      },
+      "nostalgia": {
+        "explanation": "For what comes back and brings a little sweetness. A soft tone keeps the memory company."
+      },
+      "sadness": {
+        "explanation": "If today feels heavy, there is no need to explain it. You can stay a while, slowly, with gentle company."
+      },
+      "joy": {
+        "explanation": "For the light already in you. Water sounds in the background while you celebrate."
+      },
+      "gratitude": {
+        "explanation": "To give thanks for what is close to you. Water sounds and a soft tone keep it company."
+      },
+      "clarity": {
+        "explanation": "To think with more space: a steady pulse in the background, without hurry."
+      },
+      "breathe": {
+        "explanation": "For when you only need to breathe. A slow guide you follow with your air."
+      }
+    },
+    "intents": {
+      "calm": {
+        "explanation": "A daylight calm: water and air close by, and a soft tone to stay a while."
+      },
+      "grounding": {
+        "explanation": "Back to the earth: background rain and a soft tone."
+      },
+      "clarity": {
+        "explanation": "Clarity without hurry: a steady background pulse and a clear tone."
+      },
+      "rest": {
+        "explanation": "To keep rest company as the evening falls: background sea sounds and a soft tone."
+      },
+      "bond": {
+        "explanation": "To spend a while in company: water sounds and a warm tone in the background."
+      },
+      "renewal": {
+        "explanation": "To renew yourself calmly: background rain and a tone that goes with the breath."
+      }
+    }
   },
   "states": {
     "loading": "Gathering the light…",
@@ -849,6 +1092,18 @@
     "picker": {
       "label": "Atmosphere",
       "site": "Site atmosphere"
+    }
+  },
+  "video": {
+    "soon": "Coming soon",
+    "region": "Video: {title}",
+    "seek": "Seek in the video",
+    "titles": {
+      "welcome": "A welcome from Marisol",
+      "marisolIntro": "Meet Marisol",
+      "breathingGuide": "Breathe with Marisol",
+      "courseIntro": "Course introduction",
+      "lesson": "Lesson video"
     }
   }
 }

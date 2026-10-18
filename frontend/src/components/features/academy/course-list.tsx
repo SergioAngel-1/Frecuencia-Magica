@@ -6,6 +6,7 @@ import { Link } from '@/i18n/navigation';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { CourseCard } from './course-card';
+import { CourseFacts } from './course-facts';
 
 export type AcademyMedia = {
   hero: EditorialMedia;
@@ -37,6 +38,7 @@ function CourseRow({ course, title, level, lessonsLabel, media, order }: CourseR
         <p className="text-accent-2 text-label tracking-caps font-sans uppercase">{level}</p>
         <h3 className="mt-2 font-serif text-[clamp(26px,3vw,40px)] leading-[1.02]">{title}</h3>
         <p className="text-fg-muted text-meta tracking-soft mt-3 font-sans">{lessonsLabel}</p>
+        <CourseFacts course={course} className="mt-4" />
       </div>
     </Link>
   );

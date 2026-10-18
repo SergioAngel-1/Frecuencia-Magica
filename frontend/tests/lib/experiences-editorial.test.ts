@@ -23,7 +23,7 @@ const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/experiencias/(catalogo)/loading.tsx');
 
 const EXPERIENCE_SLOTS = [
-  { slot: 'experiences.hero' as const, aspect: '16:9' as const, alt: 'hero' },
+  { slot: 'atmosphere.gathering' as const, aspect: '16:9' as const, alt: 'hero' },
   { slot: 'experiences.featured' as const, aspect: '16:8' as const, alt: 'featured' },
   { slot: 'experiences-visual' as const, aspect: '16:9' as const, alt: 'row' },
   { slot: 'booking.hero' as const, aspect: '16:9' as const, alt: 'hero' },
@@ -77,7 +77,7 @@ describe('experiences editorial composition contracts', () => {
   it('composes a localized full-width hero and passes media into the experiences archive', () => {
     expect(pageSource).toContain('const locale = await resolveLocale(params);');
     expect(pageSource).toContain("getTranslations({ locale, namespace: 'experiences' })");
-    expect(pageSource).toContain("resolveEditorialMedia('experiences.hero'");
+    expect(pageSource).toContain("resolveEditorialMedia('atmosphere.gathering'");
     expect(pageSource).toContain("resolveEditorialMedia('experiences.featured'");
     expect(pageSource).toContain("resolveEditorialMedia('experiences-visual'");
     expect(pageSource).toContain('<RealmHero');

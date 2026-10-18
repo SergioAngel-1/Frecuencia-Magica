@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
 import type { ResultStepProps } from '@/components/features/descubrete/result-step';
+import type { ArrivalKey } from '@/config/arrivals';
 import { recommend, type DiscoverCatalog } from '@/lib/discover/recommend';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { categoryKey } from '@/lib/store/category-key';
@@ -32,6 +33,7 @@ export function useDiscoverResult(
   const tAcademy = useTranslations('academy');
   const tExperiences = useTranslations('experiences');
   const tStore = useTranslations('store');
+  const tArrival = useTranslations('arrival');
 
   const recommendation = useMemo(
     () => (enabled ? recommend(answers, questions, catalog) : null),
@@ -47,6 +49,8 @@ export function useDiscoverResult(
 
   return {
     audio,
+    arrivalKey: `intent:${reading.primary}` as ArrivalKey,
+    arrivalCta: tArrival('discoverCta'),
     kicker: t('result.kicker'),
     intent: t(`intents.${reading.primary}.name`),
     description: t(`intents.${reading.primary}.description`),

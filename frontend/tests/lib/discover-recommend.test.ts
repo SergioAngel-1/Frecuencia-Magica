@@ -1,6 +1,9 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 import { describe, expect, it } from 'vitest';
 
-import { AUDIOS, COURSES, EXPERIENCES, PRODUCTS } from '@/data';
+import { COURSES, EXPERIENCES, PLAYABLE_AUDIOS, PRODUCTS } from '@/data';
 import { QUESTIONS } from '@/data/questions';
 import {
   INTENTS,
@@ -12,7 +15,13 @@ import {
 import { recommend } from '@/lib/discover/recommend';
 import type { Intent, Question } from '@/types/content';
 
-const CATALOG = { audios: AUDIOS, courses: COURSES, experiences: EXPERIENCES, products: PRODUCTS };
+// El catálogo que recibe Descúbrete: sólo pistas reproducibles, nunca las `soon`.
+const CATALOG = {
+  audios: PLAYABLE_AUDIOS,
+  courses: COURSES,
+  experiences: EXPERIENCES,
+  products: PRODUCTS,
+};
 
 const QUESTION: Question = {
   id: 'q1',
@@ -93,7 +102,7 @@ describe('recommend', () => {
     }
   });
 
-  it('can land on every intent and on every audio of the resonario', () => {
+  it('can land on every intent and on every frequency, and only on playable audios', () => {
     const intents = new Set<Intent>();
     const audios = new Set<string>();
 
@@ -104,7 +113,22 @@ describe('recommend', () => {
     }
 
     expect([...intents].sort()).toEqual([...INTENTS].sort());
-    expect([...audios].sort()).toEqual(AUDIOS.map((audio) => audio.id).sort());
+    // Una pista por intención: los binaurales y la naturaleza sólo salen si son la afín principal.
+    const frequencyIds = PLAYABLE_AUDIOS.filter((audio) => audio.kind === 'frequency').map(
+      (audio) => audio.id,
+    );
+    for (const id of frequencyIds) expect(audios.has(id), id).toBe(true);
+  });
+
+  it('la página de Descúbrete pasa al cuestionario sólo pistas reproducibles', () => {
+    // La guarda real: la página, no la función, decide qué catálogo recibe.
+    const page = readFileSync(
+      resolve(process.cwd(), 'src/app/[locale]/descubrete/page.tsx'),
+      'utf8',
+    );
+
+    expect(page).toContain('audios: PLAYABLE_AUDIOS');
+    expect(page).not.toMatch(/audios:\s*AUDIOS\b/);
   });
 
   it('answers a calm-seeking quiz with the calm frequency', () => {

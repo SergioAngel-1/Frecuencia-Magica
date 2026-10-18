@@ -54,3 +54,15 @@ export function previousAudioId(currentId: string, catalog: readonly { id: strin
 
   return previous.id;
 }
+
+/** Rutas de compra: el reproductor no debe ocupar la pantalla donde se elige y se paga. */
+const COMPACT_ROUTE =
+  /^\/(tienda|store|experiencias\/[^/]+\/reservar|experiences\/[^/]+\/book)(\/|$)/;
+
+/**
+ * Si el dock arranca recogido al abrir una frecuencia: en las rutas de compra
+ * (tienda, carrito, reserva) y en móvil, donde el contenido manda.
+ */
+export function startsMinimized(pathname: string, narrow: boolean): boolean {
+  return narrow || COMPACT_ROUTE.test(pathname);
+}

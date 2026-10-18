@@ -22,6 +22,7 @@ const statsSource = readSource('components/features/sanctuary/stats-row.tsx');
 const continueSource = readSource('components/features/sanctuary/continue-card.tsx');
 const dailySource = readSource('components/features/sanctuary/daily-card.tsx');
 const journalSource = readSource('components/features/sanctuary/journal-panel.tsx');
+const checkInSource = readSource('components/features/arrival/arrival-check-in.tsx');
 const emptySource = readSource('components/features/sanctuary/journal-empty.tsx');
 const emptyStateSource = readSource('components/ui/empty-state.tsx');
 
@@ -121,7 +122,8 @@ describe('sanctuary editorial composition contracts', () => {
     expect(emptyStateSource).toContain('data-editorial-media={media.slot}');
     expect(emptySource).toContain("t('emptyJournal')");
     expect(journalSource).toContain('aria-live="polite"');
-    expect(journalSource).toContain('aria-pressed={draft.mood === index}');
+    expect(journalSource).toContain('<ArrivalCheckIn');
+    expect(checkInSource).toContain('aria-pressed={selected === option.id}');
   });
 
   it('keeps the orb decorative and the greeting as the only h1', () => {
@@ -156,7 +158,7 @@ describe('sanctuary editorial composition contracts', () => {
     );
     expect(field).toContain('<div aria-hidden="true" className="absolute inset-0 -z-10">');
     expect(field).toContain('media={media.journal}');
-    expect(field).toContain('bg-void-2/60');
+    expect(field).toContain('bg-scrim-deep/60');
     expect(field).toContain('<Textarea');
     expect(field).toContain("withPage && 'bg-transparent'");
     expect(journalSource).not.toContain('aspect-[16/8]');

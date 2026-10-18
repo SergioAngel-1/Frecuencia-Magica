@@ -1,3 +1,5 @@
+import type { EditorialMediaSlot } from '@/config/editorial-media';
+
 /**
  * Modelo de contenido.
  *
@@ -22,17 +24,76 @@ export type IntentAffine = {
 /** Etiqueta estable de frecuencia, independiente del idioma. */
 export type AudioTag = 'meditation' | 'frequency' | 'grounding' | 'rest' | 'ritual' | 'breath';
 
+/** Tipo de escucha: el eje del Resonario. Su orden y su explicación viven en `config/audio-kinds.ts`. */
+export type AudioKind = 'melody' | 'nature' | 'frequency' | 'binaural' | 'guided';
+
+/** `ready`: se puede reproducir o muestrear. `soon`: aún sin material; no tiene control de play. */
+export type AudioAvailability = 'ready' | 'soon';
+
+/**
+ * Procedencia. `own` grabación propia; `licensed` con licencia comercial
+ * documentada; `synthetic` tono generado por nosotros; `provisional` síntesis
+ * de relleno (o material aún no entregado) que se sustituye antes de publicar.
+ */
+export type AudioLicense = 'own' | 'licensed' | 'synthetic' | 'provisional';
+
+/** Capa de tono puro: una frecuencia. `gain` 0–1, por defecto 1. */
+export type ToneLayer = { hz: number; gain?: number };
+
+/** Capa binaural: un oscilador por oído; la diferencia de frecuencia es el pulso. */
+export type BinauralLayer = { carrierHz: number; beatHz: number; gain?: number };
+
+/** Textura de ruido filtrado (mar, lluvia). */
+export type TextureLayer = { gain?: number };
+
+/**
+ * Receta de síntesis. Cada capa presente suena a la vez: una pista puede
+ * combinar varias (p. ej. mar + binaural) sin dejar de ser una sola pista.
+ */
+export type SynthRecipe = {
+  tone?: ToneLayer;
+  binaural?: BinauralLayer;
+  sea?: TextureLayer;
+  rain?: TextureLayer;
+};
+
+/**
+ * De dónde suena una pista: sintetizada con una receta, un archivo (con su
+ * muestra opcional de 20–30 s) o ninguna todavía (`soon`).
+ */
+export type AudioSource =
+  { type: 'synth'; recipe: SynthRecipe } | { type: 'file'; src: string; sampleSrc?: string } | null;
+
 export type Audio = IntentAffine & {
   id: string;
+  kind: AudioKind;
   titleKey: string;
   tagKey: string;
-  /** Por lo que filtra el Resonario. Nunca filtrar por el texto traducido. */
+  /** Etiqueta de apoyo en las tarjetas. Nunca filtrar por ella: el filtro es `kind`. */
   tagId: AudioTag;
-  /** Etiqueta `mm:ss`. */
-  duration: string;
-  hz: number;
+  /** Etiqueta `mm:ss` de la sesión que reproduce. `null` mientras no exista (`soon`). */
+  duration: string | null;
+  /** Frecuencia de un tono puro; `null` si la pista no es un tono (naturaleza, binaural, melodía, guiadas). */
+  hz: number | null;
   band: string;
+  /** Lleva voz guiada. */
+  voice: boolean;
+  availability: AudioAvailability;
+  source: AudioSource;
+  license: AudioLicense;
+  /** Pide auriculares estéreo (binaurales). */
+  headphones: boolean;
+  /** Clave de la composición: qué suena. */
+  compositionKey: string;
+  /** Clave de la guía de escucha: postura y para qué momento sirve. */
+  guideKey: string;
 };
+
+/** Gratuito, o de pago con su precio. */
+export type CourseAccess = { type: 'free' } | { type: 'paid'; price: number };
+
+/** `selfPaced` a tu ritmo; `live` en vivo; `blended` mixta. */
+export type CourseModality = 'selfPaced' | 'live' | 'blended';
 
 export type Course = IntentAffine & {
   id: string;
@@ -42,6 +103,17 @@ export type Course = IntentAffine & {
   /** Etiqueta legible, p. ej. `"3.5h"`. */
   hours: string;
   band: string;
+  access: CourseAccess;
+  modality: CourseModality;
+  /** «Qué aprenderás»: claves de mensaje, una por punto. */
+  learnKeys: readonly string[];
+  /** «Qué incluye»: claves de mensaje, una por punto. */
+  includesKeys: readonly string[];
+  /**
+   * Curso de demostración: lo real (rituales, esencias, gratuitos y de pago) lo
+   * entrega Marisol. Lo lee el registro de pendientes.
+   */
+  provisional: boolean;
 };
 
 export type ExperienceMode = 'online' | 'inPerson';
@@ -57,6 +129,15 @@ export type Experience = IntentAffine & {
   band: string;
 };
 
+/** Vistas opcionales de la galería de un producto, además de su visual. */
+export type ProductViewKind = 'label' | 'texture' | 'inUse';
+
+/** Una vista de la galería: un slot editorial que ya existe (y su instancia). Sin slots nuevos (R12). */
+export type ProductView = { slot: EditorialMediaSlot; instance?: string };
+
+/** Galería de un producto: sólo las vistas que Marisol entregue; las demás caen al visual. */
+export type ProductGallery = Partial<Record<ProductViewKind, ProductView>>;
+
 export type Product = IntentAffine & {
   id: string;
   titleKey: string;
@@ -65,6 +146,17 @@ export type Product = IntentAffine & {
   band: string;
   /** Frecuencia que acompaña al producto en su ritual. */
   relatedAudioId: string;
+  /**
+   * Producto de demostración: nombre, precio y foto se sustituyen por los
+   * reales de Marisol antes de publicar. Lo lee el registro de pendientes.
+   */
+  provisional: boolean;
+  /** Clave del tamaño (p. ej. «30 ml»). Sin ella no se pinta: el dato lo confirma Marisol. */
+  sizeKey?: string;
+  /** Clave del contenido o ingredientes. Sin ella no se pinta. */
+  contentsKey?: string;
+  /** Vistas propias (etiqueta, textura, en uso). Sin ellas, sólo el visual del producto. */
+  gallery?: ProductGallery;
 };
 
 export type QuestionOption = {

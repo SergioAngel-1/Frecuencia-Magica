@@ -5,40 +5,27 @@ import type { Product } from '@/types/content';
 import { useTranslations } from 'next-intl';
 
 import { PlayPauseIcon } from '@/components/features/player/player-icons';
-import {
-  Badge,
-  Button,
-  EditorialImage,
-  Float,
-  Kicker,
-  Prose,
-  SectionHeading,
-} from '@/components/ui';
+import { Badge, Button, Float, Kicker, Prose, SectionHeading } from '@/components/ui';
 import { PRODUCTS } from '@/data';
 import { useRouter } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
 import { cn } from '@/lib/cn';
 import { categoryKey } from '@/lib/store/category-key';
+import { productSpecs } from '@/lib/store/gallery';
 import { relatedProducts } from '@/lib/store/related';
 import { useCartStore } from '@/stores/cart-store';
 import { useAudioPlayback, usePlayerStore } from '@/stores/player-store';
-import type { EditorialMedia, EditorialMediaAspect } from '@/types/editorial-media';
+import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ProductCard } from './product-card';
+import { ProductGallery, type ProductGalleryItem } from './product-gallery';
 import { ProductSections } from './product-sections';
-
-/** La caja de la imagen sigue el ratio de lo que pinta: el objeto a 1:1, la atmósfera a 16:8. */
-const DETAIL_ASPECT: Record<EditorialMediaAspect, string> = {
-  viewport: 'aspect-[16/9]',
-  '16:9': 'aspect-[16/9]',
-  '16:8': 'aspect-[16/8]',
-  '3:4': 'aspect-[3/4]',
-  '1:1': 'aspect-square',
-};
 
 export type ProductMedia = {
   /** La imagen del propio producto (`store-product-visual`); sin ella, la atmósfera de `product.detail`. */
   detail: EditorialMedia;
+  /** Vistas propias que el producto declara (etiqueta, textura, en uso); casi siempre vacío. */
+  gallery?: Partial<Record<'label' | 'texture' | 'inUse', EditorialMedia>>;
   related: Record<(typeof PRODUCTS)[number]['id'], EditorialMedia>;
 };
 
@@ -57,6 +44,14 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
   const router = useRouter();
   const related = relatedProducts(product, PRODUCTS, 3);
   const title = t(`products.${product.id}.title`);
+  const specs = productSpecs(product);
+  const galleryItems: ProductGalleryItem[] = [
+    { kind: 'cover', media: media.detail },
+    ...(['label', 'texture', 'inUse'] as const).flatMap((kind) => {
+      const view = media.gallery?.[kind];
+      return view ? [{ kind, media: view }] : [];
+    }),
+  ];
   const frequencyTitle = tResonario(`audios.${product.relatedAudioId}.title` as 'audios.a1.title');
 
   return (
@@ -64,22 +59,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
       {/* La imagen es la de la tarjeta que se eligió en la tienda, a su mismo
           ratio y sin velo: desde `lg` acompaña a la ficha mientras se lee. */}
       <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
-        <section
-          className={cn(
-            'rounded-card-lg border-line relative isolate overflow-hidden border lg:sticky lg:top-[112px]',
-            DETAIL_ASPECT[media.detail.aspect],
-          )}
-          data-editorial-media={media.detail.slot}
-        >
-          <EditorialImage
-            aspect={media.detail.aspect}
-            className="h-full"
-            media={media.detail}
-            overlay={false}
-            priority
-            scrim={false}
-          />
-        </section>
+        <ProductGallery items={galleryItems} />
 
         <div className="flex flex-col gap-6">
           <div>
@@ -96,6 +76,21 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
           </div>
 
           <Prose maxWidth={48}>{t('productDescription')}</Prose>
+          {/* Tamaño y contenido sólo si el dato existe: lo confirma Marisol. */}
+          {specs.length > 0 ? (
+            <dl aria-label={t('specs.label')} className="grid gap-2" data-product-specs>
+              {specs.map(({ id, key }) => (
+                <div key={id} className="flex flex-wrap gap-x-3">
+                  <dt className="text-fg-meta text-label tracking-label font-sans uppercase">
+                    {t(`specs.${id}`)}
+                  </dt>
+                  <dd className="text-fg-soft text-body font-sans">
+                    {t(key.replace(/^store\./, '') as 'notes')}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          ) : null}
           <ul className="space-y-2">
             {(t.raw('notes') as string[]).map((note) => (
               <li key={note} className="text-fg-soft text-body tracking-soft font-sans">

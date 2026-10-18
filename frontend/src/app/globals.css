@@ -349,13 +349,23 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   scroll-padding-bottom: calc(140px + env(safe-area-inset-bottom));
 }
 
-/* Velo de legibilidad de los banners con foto en esquema claro: un tramo central
-   de velo claro que se desvanece en los bordes, para que el texto oscuro se lea
-   sobre la foto sin dejar un corte. En la noche no se muestra. */
+/* Velo de una banda con foto. En la noche, sin él la etiqueta y el título caen
+   sobre la luz de la foto: un velo del token de scrim (0,6, igual que el claro),
+   denso en el centro del texto y desvanecido en los bordes. */
 .fm-banner-veil {
-  display: none;
+  background-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgb(var(--scrim) / 0.6) 10%,
+    rgb(var(--scrim) / 0.8) 18%,
+    rgb(var(--scrim) / 0.8) 42%,
+    rgb(var(--scrim) / 0.6) 70%,
+    transparent 100%
+  );
 }
 
+/* Esquema claro: un tramo central de velo claro que se desvanece en los bordes,
+   para que el texto oscuro se lea sobre la foto sin dejar un corte. */
 [data-scheme='light'] .fm-banner-veil {
   display: block;
   background-image: linear-gradient(
@@ -373,6 +383,19 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   background-color: color-mix(in srgb, var(--color-fg) 72%, transparent);
   border-radius: 999px;
   padding: 0.3em 0.9em 0.35em;
+}
+
+/* Punto de la constelación en esquema claro: el color del realm (oro, verdoso, lavanda) a
+   media opacidad apenas se distingue de la crema (~1,7:1). Un aro de tinta lo recorta del fondo
+   (>= 3:1, ver tests/lib/light-contrast) y la ruta activa lo engrosa. La noche no cambia. */
+[data-scheme='light'] .fm-nav-dot {
+  opacity: 1;
+  outline: 1.5px solid var(--color-fg);
+  outline-offset: 1px;
+}
+
+[data-scheme='light'] [aria-current='page'] .fm-nav-dot {
+  outline-width: 2.5px;
 }
 
 /* Kicker de un banner con foto en esquema claro: tinta sobre el velo claro (no dorado). */

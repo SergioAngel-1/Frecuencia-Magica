@@ -1,10 +1,26 @@
-import type { Audio } from '@/types/content';
+import type { Audio, AudioSource } from '@/types/content';
 import { COVERS } from '@/config/covers';
 
-/** Las siete frecuencias del catálogo. Portadas 1:1 del prototipo. */
+/** Tono puro a una frecuencia: la receta de las siete frecuencias del prototipo. */
+function tone(hz: number): AudioSource {
+  return { type: 'synth', recipe: { tone: { hz } } };
+}
+
+/**
+ * Catálogo de audio. Cinco tipos de escucha (`kind`). Las frecuencias son tonos
+ * sintetizados con su Hz; los binaurales y la naturaleza son síntesis
+ * provisional (`license: 'provisional'`) hasta tener material propio o con
+ * licencia; melodías y guiadas aún no existen y van como `soon`, sin fuente
+ * ni duración.
+ *
+ * Sólo claves de traducción: el copy vive en `messages/{es,en}.json`.
+ */
 export const AUDIOS: readonly Audio[] = [
+  // Frecuencias: un tono puro a su Hz. Son las del prototipo, conservan sus
+  // duraciones de sesión y sus portadas.
   {
     id: 'a1',
+    kind: 'frequency',
     intents: ['calm'],
     titleKey: 'resonario.audios.a1.title',
     tagKey: 'resonario.tags.meditation',
@@ -12,9 +28,17 @@ export const AUDIOS: readonly Audio[] = [
     duration: '18:00',
     hz: 432,
     band: COVERS.tide,
+    voice: false,
+    availability: 'ready',
+    source: tone(432),
+    license: 'synthetic',
+    headphones: false,
+    compositionKey: 'resonario.audios.a1.composition',
+    guideKey: 'resonario.audios.a1.guide',
   },
   {
     id: 'a2',
+    kind: 'frequency',
     intents: ['clarity'],
     titleKey: 'resonario.audios.a2.title',
     tagKey: 'resonario.tags.frequency',
@@ -22,9 +46,17 @@ export const AUDIOS: readonly Audio[] = [
     duration: '11:20',
     hz: 528,
     band: COVERS.violet,
+    voice: false,
+    availability: 'ready',
+    source: tone(528),
+    license: 'synthetic',
+    headphones: false,
+    compositionKey: 'resonario.audios.a2.composition',
+    guideKey: 'resonario.audios.a2.guide',
   },
   {
     id: 'a3',
+    kind: 'frequency',
     intents: ['grounding'],
     titleKey: 'resonario.audios.a3.title',
     tagKey: 'resonario.tags.grounding',
@@ -32,9 +64,17 @@ export const AUDIOS: readonly Audio[] = [
     duration: '24:40',
     hz: 396,
     band: COVERS.moss,
+    voice: false,
+    availability: 'ready',
+    source: tone(396),
+    license: 'synthetic',
+    headphones: false,
+    compositionKey: 'resonario.audios.a3.composition',
+    guideKey: 'resonario.audios.a3.guide',
   },
   {
     id: 'a4',
+    kind: 'frequency',
     intents: ['rest'],
     titleKey: 'resonario.audios.a4.title',
     tagKey: 'resonario.tags.rest',
@@ -42,9 +82,17 @@ export const AUDIOS: readonly Audio[] = [
     duration: '42:00',
     hz: 174,
     band: COVERS.indigo,
+    voice: false,
+    availability: 'ready',
+    source: tone(174),
+    license: 'synthetic',
+    headphones: false,
+    compositionKey: 'resonario.audios.a4.composition',
+    guideKey: 'resonario.audios.a4.guide',
   },
   {
     id: 'a5',
+    kind: 'frequency',
     intents: ['bond', 'grounding'],
     titleKey: 'resonario.audios.a5.title',
     tagKey: 'resonario.tags.ritual',
@@ -52,9 +100,17 @@ export const AUDIOS: readonly Audio[] = [
     duration: '09:10',
     hz: 639,
     band: COVERS.amber,
+    voice: false,
+    availability: 'ready',
+    source: tone(639),
+    license: 'synthetic',
+    headphones: false,
+    compositionKey: 'resonario.audios.a5.composition',
+    guideKey: 'resonario.audios.a5.guide',
   },
   {
     id: 'a6',
+    kind: 'frequency',
     intents: ['renewal'],
     titleKey: 'resonario.audios.a6.title',
     tagKey: 'resonario.tags.breath',
@@ -62,9 +118,17 @@ export const AUDIOS: readonly Audio[] = [
     duration: '07:30',
     hz: 417,
     band: COVERS.lagoon,
+    voice: false,
+    availability: 'ready',
+    source: tone(417),
+    license: 'synthetic',
+    headphones: false,
+    compositionKey: 'resonario.audios.a6.composition',
+    guideKey: 'resonario.audios.a6.guide',
   },
   {
     id: 'a7',
+    kind: 'frequency',
     intents: ['bond', 'renewal'],
     titleKey: 'resonario.audios.a7.title',
     tagKey: 'resonario.tags.meditation',
@@ -72,5 +136,202 @@ export const AUDIOS: readonly Audio[] = [
     duration: '15:40',
     hz: 528,
     band: COVERS.sage,
+    voice: false,
+    availability: 'ready',
+    source: tone(528),
+    license: 'synthetic',
+    headphones: false,
+    compositionKey: 'resonario.audios.a7.composition',
+    guideKey: 'resonario.audios.a7.guide',
+  },
+
+  // Binaurales: síntesis provisional. Un oscilador por oído; el pulso es la diferencia.
+  {
+    id: 'b1',
+    kind: 'binaural',
+    intents: ['calm', 'rest'],
+    titleKey: 'resonario.audios.b1.title',
+    tagKey: 'resonario.tags.meditation',
+    tagId: 'meditation',
+    duration: '20:00',
+    hz: null,
+    band: COVERS.iris,
+    voice: false,
+    availability: 'ready',
+    source: {
+      type: 'synth',
+      recipe: {
+        binaural: { carrierHz: 200, beatHz: 10, gain: 0.5 },
+        sea: { gain: 0.4 },
+      },
+    },
+    license: 'provisional',
+    headphones: true,
+    compositionKey: 'resonario.audios.b1.composition',
+    guideKey: 'resonario.audios.b1.guide',
+  },
+  {
+    id: 'b2',
+    kind: 'binaural',
+    intents: ['grounding'],
+    titleKey: 'resonario.audios.b2.title',
+    tagKey: 'resonario.tags.grounding',
+    tagId: 'grounding',
+    duration: '18:00',
+    hz: null,
+    band: COVERS.honey,
+    voice: false,
+    availability: 'ready',
+    source: {
+      type: 'synth',
+      recipe: { binaural: { carrierHz: 110, beatHz: 6 } },
+    },
+    license: 'provisional',
+    headphones: true,
+    compositionKey: 'resonario.audios.b2.composition',
+    guideKey: 'resonario.audios.b2.guide',
+  },
+
+  // Naturaleza: texturas de ruido filtrado (provisionales) y el canto de aves, aún sin grabar.
+  {
+    id: 'n1',
+    kind: 'nature',
+    intents: ['rest'],
+    titleKey: 'resonario.audios.n1.title',
+    tagKey: 'resonario.tags.rest',
+    tagId: 'rest',
+    duration: '20:00',
+    hz: null,
+    band: COVERS.lagoon,
+    voice: false,
+    availability: 'ready',
+    source: { type: 'synth', recipe: { sea: {} } },
+    license: 'provisional',
+    headphones: false,
+    compositionKey: 'resonario.audios.n1.composition',
+    guideKey: 'resonario.audios.n1.guide',
+  },
+  {
+    id: 'n2',
+    kind: 'nature',
+    intents: ['rest', 'renewal'],
+    titleKey: 'resonario.audios.n2.title',
+    tagKey: 'resonario.tags.rest',
+    tagId: 'rest',
+    duration: '20:00',
+    hz: null,
+    band: COVERS.indigo,
+    voice: false,
+    availability: 'ready',
+    source: { type: 'synth', recipe: { rain: {} } },
+    license: 'provisional',
+    headphones: false,
+    compositionKey: 'resonario.audios.n2.composition',
+    guideKey: 'resonario.audios.n2.guide',
+  },
+  {
+    id: 'n3',
+    kind: 'nature',
+    intents: ['renewal'],
+    titleKey: 'resonario.audios.n3.title',
+    tagKey: 'resonario.tags.breath',
+    tagId: 'breath',
+    duration: null,
+    hz: null,
+    band: COVERS.sage,
+    voice: false,
+    availability: 'soon',
+    source: null,
+    license: 'provisional',
+    headphones: false,
+    compositionKey: 'resonario.audios.n3.composition',
+    guideKey: 'resonario.audios.n3.guide',
+  },
+
+  // Melodías: aún sin entregar. La pieza celta es la primera de ellas.
+  {
+    id: 'm1',
+    kind: 'melody',
+    intents: ['calm'],
+    titleKey: 'resonario.audios.m1.title',
+    tagKey: 'resonario.tags.meditation',
+    tagId: 'meditation',
+    duration: null,
+    hz: null,
+    band: COVERS.amber,
+    voice: false,
+    availability: 'soon',
+    source: null,
+    license: 'provisional',
+    headphones: false,
+    compositionKey: 'resonario.audios.m1.composition',
+    guideKey: 'resonario.audios.m1.guide',
+  },
+  {
+    id: 'm2',
+    kind: 'melody',
+    intents: ['clarity'],
+    titleKey: 'resonario.audios.m2.title',
+    tagKey: 'resonario.tags.meditation',
+    tagId: 'meditation',
+    duration: null,
+    hz: null,
+    band: COVERS.indigo,
+    voice: false,
+    availability: 'soon',
+    source: null,
+    license: 'provisional',
+    headphones: false,
+    compositionKey: 'resonario.audios.m2.composition',
+    guideKey: 'resonario.audios.m2.guide',
+  },
+
+  // Guiadas con su voz: aún sin grabar.
+  {
+    id: 'g1',
+    kind: 'guided',
+    intents: ['calm', 'renewal'],
+    titleKey: 'resonario.audios.g1.title',
+    tagKey: 'resonario.tags.breath',
+    tagId: 'breath',
+    duration: null,
+    hz: null,
+    band: COVERS.violet,
+    voice: true,
+    availability: 'soon',
+    source: null,
+    license: 'provisional',
+    headphones: false,
+    compositionKey: 'resonario.audios.g1.composition',
+    guideKey: 'resonario.audios.g1.guide',
+  },
+  {
+    id: 'g2',
+    kind: 'guided',
+    intents: ['bond'],
+    titleKey: 'resonario.audios.g2.title',
+    tagKey: 'resonario.tags.ritual',
+    tagId: 'ritual',
+    duration: null,
+    hz: null,
+    band: COVERS.honey,
+    voice: true,
+    availability: 'soon',
+    source: null,
+    license: 'provisional',
+    headphones: false,
+    compositionKey: 'resonario.audios.g2.composition',
+    guideKey: 'resonario.audios.g2.guide',
   },
 ] as const;
+
+/**
+ * Una pista se puede reproducir si está lista y tiene de dónde sonar. Las
+ * `soon` no tienen play, no entran por siguiente ni anterior y no se recomiendan.
+ */
+export function isPlayable(audio: Audio): boolean {
+  return audio.availability === 'ready' && audio.source !== null;
+}
+
+/** Sólo las pistas reproducibles: lo que el reproductor y las recomendaciones pueden usar. */
+export const PLAYABLE_AUDIOS: readonly Audio[] = AUDIOS.filter(isPlayable);
