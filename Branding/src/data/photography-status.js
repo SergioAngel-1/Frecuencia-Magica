@@ -199,6 +199,7 @@ export const COMPLETED = [
   'store-hero-moon.avif',
   'sanctuary-hero-moon.avif',
   'resonario-hero-dusk.avif',
+  'resonario-hero-dawn.avif',
 ]
 
 /**
