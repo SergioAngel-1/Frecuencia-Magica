@@ -58,8 +58,6 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
-  'resonario-hero-moon.avif':
-    'Primer intento rechazado (7/10, archivado en `.editorial-trials/`): los discos salieron como lentes de cristal con contorno duro y no como luces suaves, apareció una vela y una orilla rocosa que nadie pidió, y una estela de luna ocupaba la zona del titular. El prompt ya pide discos encendidos desde dentro, sin orilla ni objetos y con la izquierda lisa.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
@@ -189,6 +187,7 @@ export const COMPLETED = [
   'store-ritual-banner-dawn.avif',
   'portal-hero-moon.avif',
   'home-hero-moon.avif',
+  'resonario-hero-moon.avif',
 ]
 
 /**
