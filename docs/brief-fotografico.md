@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 121 completadas · 0 a corregir · 6 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 122 completadas · 0 a corregir · 5 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -253,7 +253,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `auth-form-atmosphere-dawn.avif` | Acceso · formulario · tema · Amanecer | 3:4 | 1440×1920 | P2 | Faltantes |
 | `discover-question-atmosphere-dawn.avif` | Descúbrete · pregunta · tema · Amanecer | 3:4 | 1440×1920 | P2 | Faltantes |
 | `resonario-featured-dawn.avif` | Resonario · destacado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
-| `resonario-archive-banner-dawn.avif` | Resonario · archivo · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
+| `resonario-archive-banner-dawn.avif` | Resonario · archivo · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `academy-featured-course-dawn.avif` | Academia · curso destacado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
 | `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
 | `store-ritual-banner-dawn.avif` | Tienda · banner ritual · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
@@ -270,7 +270,7 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (6)
+### 5.2 Faltantes (5)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
@@ -306,22 +306,6 @@ Intimate calm in morning light: a surface of pale still water with a single soft
 
 ```text
 Soft-focus ambient abstraction: drifting translucent veils of pale sky-blue and soft peach mist with tiny pale-gold specks like slow snowfall, very light, almost abstract, the whole frame a single continuous field of soft mist with no object, no shape and no outline anywhere, the veils faint and low in saturation, and the golden specks few, tiny and out of focus. Vertical, very low contrast: the darkest part of the frame is no darker than a pale blue-grey haze, nothing sharp and nothing with an edge, the lower third as light as the rest (the question text is laid over the center). Vertical portrait framing. Interface content is laid over this image later: keep the whole image very light and very low in contrast, with nothing sharp, and make it only of what is described above, with no additional object, shape or outline. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `resonario.archive-banner · Amanecer` — Resonario · archivo · tema · P2
-
-- **Archivo:** `resonario-archive-banner-dawn.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Franja inferior en calma, sin detalle ni contraste (el texto va abajo), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Amanecer de `resonario.archive-banner`: la misma vista y el mismo encuadre, con la escena del tema. La colección completa como lugar.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The archive as a place: a long colonnade of pale limestone opening onto still water at early morning, tall niches holding softly glowing vessels — brass bowls, glass discs, ceramic jars — soft sky-blue haze, a few warm lamps far away reflected in the floor-water. One-point perspective down the colonnade, lower third calm pale stone and water for text. Wide landscape framing. Text is overlaid on the lower third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open water, mist, sky or plain ground), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
 ```
 
 #### `academy.featured-course · Amanecer` — Academia · curso destacado · tema · P1
@@ -386,7 +370,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (121)
+### 5.5 Completadas (122)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -513,6 +497,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `home-membership-dawn.avif` | Home · membresía · tema · Amanecer | `home-membership` | 16:9 | P2 |
 | `about-angels-dawn.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Amanecer | `about.angels` | 16:8 | P1 |
 | `resonario-featured-dawn.avif` | Resonario · destacado · tema · Amanecer | `resonario.featured` | 16:8 | P1 |
+| `resonario-archive-banner-dawn.avif` | Resonario · archivo · tema · Amanecer | `resonario.archive-banner` | 16:9 | P2 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (61)
 

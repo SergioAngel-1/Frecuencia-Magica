@@ -183,6 +183,7 @@ export const COMPLETED = [
   'home-membership-dawn.avif',
   'about-angels-dawn.avif',
   'resonario-featured-dawn.avif',
+  'resonario-archive-banner-dawn.avif',
 ]
 
 /**
