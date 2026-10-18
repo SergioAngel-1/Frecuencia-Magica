@@ -31,6 +31,8 @@ const HEROES = [
   { place: 'Sobre Marisol', id: 'dawn', file: 'about-hero-dawn' },
   { place: 'Tienda', id: 'dawn', file: 'store-hero-dawn' },
   { place: 'Experiencias', id: 'moon', file: 'experiences-hero-moon' },
+  { place: 'Tienda', id: 'moon', file: 'store-hero-moon' },
+  { place: 'Santuario', id: 'moon', file: 'sanctuary-hero-moon' },
   { place: 'Home', id: 'dusk', file: 'home-hero-dusk' },
   { place: 'Acceso', id: 'moon', file: 'auth-hero-moon' },
   { place: 'Home', id: 'dawn', file: 'home-hero-dawn' },
