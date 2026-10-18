@@ -32,6 +32,7 @@ const HEROES = [
   { place: 'Home', id: 'dusk', file: 'home-hero-dusk' },
   { place: 'Home', id: 'dawn', file: 'home-hero-dawn' },
   { place: 'Home', id: 'forest', file: 'home-hero-forest' },
+  { place: 'Home', id: 'moon', file: 'home-hero-moon' },
   { place: 'Sobre Marisol', id: 'dusk', file: 'about-hero-dusk' },
   { place: 'Sobre Marisol', id: 'forest', file: 'about-hero-forest' },
 ] as const;

@@ -8,7 +8,7 @@
 
 **138 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 99 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 124 completadas · 0 a corregir · 13 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 125 completadas · 0 a corregir · 12 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -254,7 +254,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `store-ritual-banner-dawn.avif` | Tienda · banner ritual · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
-| `home-hero-moon.avif` | Home · hero · tema · Luna | 16:9 | 2880×1620 | P0 | Faltantes |
+| `home-hero-moon.avif` | Home · hero · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
 | `about-hero-moon.avif` | Sobre Marisol · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
 | `auth-hero-moon.avif` | Acceso · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
@@ -280,27 +280,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (13)
+### 5.2 Faltantes (12)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `home.hero · Luna` — Home · hero · tema · P0
-
-- **Qué falta:** Primer intento rechazado (7/10, archivado en `.editorial-trials/`): la figura salió como una gota o medusa sin forma humana legible, y la luna con su estela caía en la zona del titular. El prompt ya pide una forma humana reconocible (cabeza, hombros, espalda y piernas) y no dibuja la luna.
-- **Archivo:** `home-hero-moon.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 62% 40% · foco móvil 75% 40%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Luna de `home.hero`: la misma vista y el mismo encuadre, con la escena del tema. El universo entero en una imagen: materia del hero con kicker, título y CTA sobre scrim. Cuerpo de luz: la imagen firma de la marca.
-- **Nota:** El foco móvil rige por debajo de 768 px: así el cuerpo de luz (62–88 % del ancho) queda dentro de la ventana visible.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The brand signature image in soft moonlight: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, resting on its side across the surface of a calm sea like a person lying down, clearly readable as a human form with a distinct round head, shoulders, back and the long line of the legs ending in the water, not a blob and not a jellyfish, seen softly from behind with the head turned away from the camera, its head close to the water where a soft diffuse silver glow gathers beneath it and ripples outward in concentric rings, the silhouette edged in cool silver with faint teal and lavender light flowing through it like fine veins of current, a few dozen fine pinpoint stars in the upper third and a pale moon high in the upper left, a thin veil of cirrus mist. The whole figure is small, only about a quarter of the frame width, and sits entirely inside the band between 62% and 88% of the frame width, never left of 62% and never closer to the right edge than 12%: its head at 62% horizontal and 40% vertical, its body extending to the right and ending at 88%, so a strip of calm open water stays between its feet and the right edge and no part of it touches or crosses that edge; the left 55% of the frame is open calm sea and soft moonlit sky for the headline, low camera angle at water level. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: cool silver-blue moonlight over a night of deep teal-blue, the whole scene clearly lit and readable by a soft luminous silver light on the water, the mist and the stone, with small warm accents (a candle, a distant lamp) for depth; shadows in lifted deep blue, never pure black, never a flat dark image. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `resonario.hero · Luna` — Resonario · hero · tema · P1
 
@@ -508,7 +490,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (124)
+### 5.5 Completadas (125)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -638,6 +620,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | `experiences.featured` | 16:8 | P1 |
 | `store-ritual-banner-dawn.avif` | Tienda · banner ritual · tema · Amanecer | `store.ritual-banner` | 16:9 | P2 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
+| `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (71)
 

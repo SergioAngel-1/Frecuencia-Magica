@@ -58,8 +58,6 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
-  'home-hero-moon.avif':
-    'Primer intento rechazado (7/10, archivado en `.editorial-trials/`): la figura salió como una gota o medusa sin forma humana legible, y la luna con su estela caía en la zona del titular. El prompt ya pide una forma humana reconocible (cabeza, hombros, espalda y piernas) y no dibuja la luna.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
@@ -188,6 +186,7 @@ export const COMPLETED = [
   'experiences-featured-dawn.avif',
   'store-ritual-banner-dawn.avif',
   'portal-hero-moon.avif',
+  'home-hero-moon.avif',
 ]
 
 /**
