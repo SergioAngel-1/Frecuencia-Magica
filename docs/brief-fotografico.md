@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 102 completadas · 0 a corregir · 25 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 103 completadas · 0 a corregir · 24 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -232,7 +232,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `auth-hero-forest.avif` | Acceso · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `discover-hero-dusk.avif` | Descúbrete · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `discover-hero-dawn.avif` | Descúbrete · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
-| `discover-hero-forest.avif` | Descúbrete · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Faltantes |
+| `discover-hero-forest.avif` | Descúbrete · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `academy-hero-dusk.avif` | Academia · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Faltantes |
 | `academy-hero-forest.avif` | Academia · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Faltantes |
 | `experiences-hero-dawn.avif` | Experiencias · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Faltantes |
@@ -270,25 +270,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (25)
+### 5.2 Faltantes (24)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `discover.hero · Bosque` — Descúbrete · hero · tema · P1
-
-- **Archivo:** `discover-hero-forest.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Bosque de `discover.hero`: la misma vista y el mismo encuadre, con la escena del tema. Bienvenida del quiz: la materia que abre la exploración.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The beginning of a discovery in the forest: a narrow path of mossy stone steps rising from a still pool between tall ferns into soft golden light filtering through the canopy and mist, a sense of a first step, no people. Path entering from the lower right corner and curving gently to the left as it recedes, so that its far end and the bright light converge exactly at the horizontal center of the frame (50% horizontal, 40% vertical), the left third soft out-of-focus ferns and low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `academy.hero · Atardecer` — Academia · hero · tema · P1
 
@@ -690,7 +674,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (102)
+### 5.5 Completadas (103)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -798,6 +782,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `auth-hero-forest.avif` | Acceso · hero · tema · Bosque | `auth.hero` | 16:9 | P1 |
 | `discover-hero-dusk.avif` | Descúbrete · hero · tema · Atardecer | `discover.hero` | 16:9 | P1 |
 | `discover-hero-dawn.avif` | Descúbrete · hero · tema · Amanecer | `discover.hero` | 16:9 | P1 |
+| `discover-hero-forest.avif` | Descúbrete · hero · tema · Bosque | `discover.hero` | 16:9 | P1 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (61)
 
