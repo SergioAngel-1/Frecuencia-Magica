@@ -180,6 +180,7 @@ export const COMPLETED = [
   'home-realms-banner-dawn.avif',
   'sanctuary-hero-dawn.avif',
   'home-footer-banner-dawn.avif',
+  'home-membership-dawn.avif',
 ]
 
 /**
