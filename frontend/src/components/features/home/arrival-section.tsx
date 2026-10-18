@@ -36,6 +36,7 @@ export function ArrivalSection() {
   // se pinta, no se fija.
   const shown = atmosphere === 'night' ? 'dawn' : atmosphere;
   const scheme = ATMOSPHERES[shown].scheme;
+  const fade = reduced ? 0.2 : 0.6;
   const options = MOOD_IDS.map((id) => ({ id, label: tJournal(`moods.${id}`) }));
 
   return (
@@ -50,8 +51,10 @@ export function ArrivalSection() {
           style={{ background: 'var(--atmo-backdrop)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: reduced ? 0.2 : 0.6, ease: 'easeOut' }}
+          // La capa que sale se queda opaca debajo hasta que la nueva termina de subir:
+          // con las dos fundiéndose a la vez, a mitad del cruce asomaba el fondo de la página.
+          exit={{ opacity: 0, transition: { delay: fade, duration: 0 } }}
+          transition={{ duration: fade, ease: 'easeOut' }}
         />
       </AnimatePresence>
 

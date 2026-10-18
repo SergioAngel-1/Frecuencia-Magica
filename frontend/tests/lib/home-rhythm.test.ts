@@ -24,6 +24,13 @@ describe('fundidos de borde de la Home', () => {
     expect(ARRIVAL).toContain('fm-fade-top');
   });
 
+  it('el fondo del bloque de llegada no se aclara a media transición: la capa vieja espera a la nueva', () => {
+    // Con las dos capas fundiéndose a la vez, a mitad del cruce el fondo de la página asoma
+    // (0,5 sobre 0,5 cubre 0,75). La que sale se queda opaca debajo mientras la nueva sube.
+    expect(ARRIVAL).toContain('exit={{ opacity: 0, transition: { delay: fade, duration: 0 } }}');
+    expect(ARRIVAL).toContain('const fade = reduced ? 0.2 : 0.6');
+  });
+
   it('la tienda se cruza con el bloque de llegada por arriba y se funde con la noche por abajo', () => {
     expect(STORE).toContain('<ScopeBackdrop fade="both" />');
     // Sube un fade-band sobre el relleno inferior del bloque de llegada (mismo valor).
