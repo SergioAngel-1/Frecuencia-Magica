@@ -25,9 +25,10 @@ const THEME_FADE_OUT_SECONDS = 0.35;
 const THEME_FADE_IN_SECONDS = 0.55;
 
 /**
- * El bucle no pinta dos veces en menos de esto: en pantallas de 120 Hz el
- * fondo sigue a 60 fps, que es el ritmo para el que están escritas sus
- * velocidades (el polen avanza por frame, no por tiempo).
+ * Tope de repintado del bucle: no pinta dos veces en menos de esto, para no
+ * gastar frames en pantallas de alta frecuencia. Ya no manda en la velocidad:
+ * las partículas avanzan por `dt` real (`particles.ts`), así que 60, 120 y
+ * 144 Hz se mueven igual aunque aquí se salten frames.
  */
 const MIN_FRAME_MS = 10;
 
@@ -363,7 +364,7 @@ export function createCosmicScene(
       const seconds = timestamp * 0.001;
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        if (p) particles[i] = advanceParticle(p, random, seconds);
+        if (p) advanceParticle(p, elapsed, random, seconds);
       }
       draw(timestamp, false);
     },

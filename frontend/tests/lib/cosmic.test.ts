@@ -54,8 +54,9 @@ describe('createParticles / advanceParticle', () => {
     for (const particle of particles) {
       expect(particle.vy).toBeGreaterThanOrEqual(0.02);
       expect(particle.vy).toBeLessThanOrEqual(0.1);
-      const next = advanceParticle(particle);
-      expect(next.y).toBeLessThan(particle.y);
+      const before = particle.y;
+      advanceParticle(particle);
+      expect(particle.y).toBeLessThan(before);
     }
   });
 
@@ -71,7 +72,29 @@ describe('createParticles / advanceParticle', () => {
       vx: 0,
       a: 0.4,
     };
-    expect(advanceParticle(particle).y).toBe(1.02);
+    advanceParticle(particle);
+    expect(particle.y).toBe(1.02);
+  });
+
+  it('mueve lo mismo a 60 y a 120 Hz (dt normalizado)', () => {
+    const base = {
+      kind: 'rise' as const,
+      phase: 0,
+      group: 0,
+      x: 0.5,
+      y: 0.5,
+      r: 1,
+      vy: 0.05,
+      vx: 0.01,
+      a: 0.4,
+    };
+    const once = advanceParticle({ ...base }, 2 / 60, () => 0.5, 0);
+    const twice = { ...base };
+    advanceParticle(twice, 1 / 60, () => 0.5, 0);
+    advanceParticle(twice, 1 / 60, () => 0.5, 0);
+
+    expect(once.x).toBeCloseTo(twice.x, 10);
+    expect(once.y).toBeCloseTo(twice.y, 10);
   });
 });
 

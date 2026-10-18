@@ -99,8 +99,11 @@ function wrap(value: number): number {
 }
 
 /**
- * Avanza una partícula un frame. `time` son los segundos de la escena (sólo lo usan los
- * movimientos con vaivén).
+ * Avanza una partícula un paso, mutándola en su sitio (no crea copias por frame).
+ * `dt` son los segundos desde el frame anterior —ya acotados a 0,1 s por
+ * `scene.frame`— y los incrementos se escalan por `dt` normalizado a 60 fps, de
+ * modo que 60, 120 y 144 Hz muevan igual. `time` son los segundos de la escena
+ * (sólo lo usan los movimientos con vaivén).
  *
  * - `rise` (el original): sube y deriva ligeramente; al salir por arriba (`y < -0.02`)
  *   reaparece por abajo (`y = 1.02`) con una `x` nueva.
@@ -109,48 +112,63 @@ function wrap(value: number): number {
  * - `mote`: deriva en diagonal, hacia la derecha y arriba, y vuelve a entrar por el lado contrario.
  * - `firefly`: vaga por una trayectoria suave que se cierra sobre sí misma.
  *
- * Es pura salvo por la `x` o la `y` de reaparición, que toman de `random`.
+ * Muta `p` y lo devuelve (la misma referencia), salvo por la `x` o la `y` de
+ * reaparición, que toman de `random`.
  */
 export function advanceParticle(
   p: Particle,
+  dt = 1 / 60,
   random: () => number = Math.random,
   time = 0,
 ): Particle {
+  const step = dt * 60;
+
   switch (p.kind) {
     case 'ember': {
-      const y = p.y - p.vy * 0.0024;
-      if (y < -0.02) return { ...p, y: 1.02, x: random() };
-
-      return { ...p, y, x: p.x + p.vx * 0.002 + Math.sin(time * 2.2 + p.phase) * 0.0003 };
+      p.y -= p.vy * 0.0024 * step;
+      if (p.y < -0.02) {
+        p.y = 1.02;
+        p.x = random();
+      } else {
+        p.x += (p.vx * 0.002 + Math.sin(time * 2.2 + p.phase) * 0.0003) * step;
+      }
+      return p;
     }
     case 'spore': {
-      const y = p.y + p.vy * 0.0016;
-      if (y > 1.02) return { ...p, y: -0.02, x: random() };
-
-      return { ...p, y, x: p.x + Math.sin(time * 0.9 + p.phase) * 0.00035 };
+      p.y += p.vy * 0.0016 * step;
+      if (p.y > 1.02) {
+        p.y = -0.02;
+        p.x = random();
+      } else {
+        p.x += Math.sin(time * 0.9 + p.phase) * 0.00035 * step;
+      }
+      return p;
     }
     case 'mote': {
-      const x = p.x + p.vx * 0.004;
-      const y = p.y - p.vy * 0.004;
-      if (x > 1.02) return { ...p, x: -0.02, y: random() };
-      if (y < -0.02) return { ...p, y: 1.02, x: random() };
-
-      return { ...p, x, y };
+      p.x += p.vx * 0.004 * step;
+      p.y -= p.vy * 0.004 * step;
+      if (p.x > 1.02) {
+        p.x = -0.02;
+        p.y = random();
+      } else if (p.y < -0.02) {
+        p.y = 1.02;
+        p.x = random();
+      }
+      return p;
     }
     case 'firefly':
-      return {
-        ...p,
-        x: wrap(p.x + Math.cos(time * 0.55 + p.phase) * 0.0005),
-        y: wrap(p.y + Math.sin(time * 0.4 + p.phase * 1.7) * 0.0004),
-      };
+      p.x = wrap(p.x + Math.cos(time * 0.55 + p.phase) * 0.0005 * step);
+      p.y = wrap(p.y + Math.sin(time * 0.4 + p.phase * 1.7) * 0.0004 * step);
+      return p;
     case 'rise': {
-      const y = p.y - p.vy * 0.004;
-
-      if (y < -0.02) {
-        return { ...p, y: 1.02, x: random() };
+      p.y -= p.vy * 0.004 * step;
+      if (p.y < -0.02) {
+        p.y = 1.02;
+        p.x = random();
+      } else {
+        p.x += p.vx * 0.004 * step;
       }
-
-      return { ...p, y, x: p.x + p.vx * 0.004 };
+      return p;
     }
   }
 }

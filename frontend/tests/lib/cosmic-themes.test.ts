@@ -87,7 +87,7 @@ describe('advanceParticle by kind', () => {
     let particle: Particle = { ...base, kind: 'firefly' };
 
     for (let step = 0; step < 10_000; step++) {
-      particle = advanceParticle(particle, () => 0.5, step / 60);
+      particle = advanceParticle(particle, 1 / 60, () => 0.5, step / 60);
       expect(particle.x).toBeGreaterThanOrEqual(0);
       expect(particle.x).toBeLessThan(1);
       expect(particle.y).toBeGreaterThanOrEqual(0);
@@ -96,8 +96,8 @@ describe('advanceParticle by kind', () => {
   });
 
   it('spores fall and come back in from the top', () => {
-    const falling = advanceParticle({ ...base, kind: 'spore' }, () => 0.5, 0);
-    const wrapped = advanceParticle({ ...base, kind: 'spore', y: 1.03 }, () => 0.25, 0);
+    const falling = advanceParticle({ ...base, kind: 'spore' }, 1 / 60, () => 0.5, 0);
+    const wrapped = advanceParticle({ ...base, kind: 'spore', y: 1.03 }, 1 / 60, () => 0.25, 0);
 
     expect(falling.y).toBeGreaterThan(base.y);
     expect(wrapped.y).toBe(-0.02);
@@ -105,17 +105,18 @@ describe('advanceParticle by kind', () => {
   });
 
   it('embers rise more slowly than pollen and come back in from the bottom', () => {
-    const ember = advanceParticle({ ...base, kind: 'ember' }, () => 0.5, 0);
-    const pollen = advanceParticle(base, () => 0.5, 0);
+    const ember = advanceParticle({ ...base, kind: 'ember' }, 1 / 60, () => 0.5, 0);
+    const pollen = advanceParticle({ ...base }, 1 / 60, () => 0.5, 0);
 
     expect(ember.y).toBeLessThan(base.y);
     expect(base.y - ember.y).toBeLessThan(base.y - pollen.y);
-    expect(advanceParticle({ ...base, kind: 'ember', y: -0.03 }, () => 0.7, 0).y).toBe(1.02);
+    const wrapped = advanceParticle({ ...base, kind: 'ember', y: -0.03 }, 1 / 60, () => 0.7, 0);
+    expect(wrapped.y).toBe(1.02);
   });
 
   it('motes drift to the right and re-enter from the left', () => {
-    const drifted = advanceParticle({ ...base, kind: 'mote' }, () => 0.5, 0);
-    const wrapped = advanceParticle({ ...base, kind: 'mote', x: 1.03 }, () => 0.4, 0);
+    const drifted = advanceParticle({ ...base, kind: 'mote' }, 1 / 60, () => 0.5, 0);
+    const wrapped = advanceParticle({ ...base, kind: 'mote', x: 1.03 }, 1 / 60, () => 0.4, 0);
 
     expect(drifted.x).toBeGreaterThan(base.x);
     expect(wrapped.x).toBe(-0.02);
