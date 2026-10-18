@@ -110,6 +110,7 @@ export const COMPLETED = [
   'resonario-audio-cover-n3.avif',
   'resonario-audio-cover-m2.avif',
   'resonario-audio-cover-g1.avif',
+  'resonario-audio-cover-g2.avif',
   'auth-form-atmosphere.avif',
   'og-image.jpg',
   'discover-hero.avif',

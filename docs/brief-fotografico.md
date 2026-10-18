@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 88 completadas · 0 a corregir · 39 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 89 completadas · 0 a corregir · 38 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -164,7 +164,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `resonario-audio-cover-m1.avif` | Resonario · portadas · Música celta para bajar el ritmo | 1:1 | 1024×1024 | P1 | Completadas |
 | `resonario-audio-cover-m2.avif` | Resonario · portadas · Piano para la pausa | 1:1 | 1024×1024 | P1 | Completadas |
 | `resonario-audio-cover-g1.avif` | Resonario · portadas · Respiración guiada | 1:1 | 1024×1024 | P1 | Completadas |
-| `resonario-audio-cover-g2.avif` | Resonario · portadas · Un momento para ti | 1:1 | 1024×1024 | P1 | Faltantes |
+| `resonario-audio-cover-g2.avif` | Resonario · portadas · Un momento para ti | 1:1 | 1024×1024 | P1 | Completadas |
 | `academy-hero.avif` | Academia · hero | 16:9 | 2880×1620 | P1 | Completadas |
 | `academy-featured-course.avif` | Academia · curso destacado | 16:8 | 2880×1440 | P1 | Completadas |
 | `academy-course-cover-c1.avif` | Academia · portadas de curso · El Arte de Volver a Ti | 16:8 | 2880×1440 | P1 | Completadas |
@@ -270,23 +270,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (39)
+### 5.2 Faltantes (38)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `resonario.audio-cover.* · Un momento para ti` — Resonario · portadas · P1
-
-- **Archivo:** `resonario-audio-cover-g2.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Portada de cada audio del archivo: el sonido con rostro (16 audios).
-
-**Prompt**
-
-```text
-A single warm glow seen through mist at the edge of a dark forest at night, an intimate landscape with no figures. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: warm muted gold (#D8B978) light on a dark navy ground; teal and lavender only as faint accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
 
 #### `portal.hero · Atardecer` — Portal · umbral · tema · P0
 
@@ -915,7 +901,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (88)
+### 5.5 Completadas (89)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -956,6 +942,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-audio-cover-m1.avif` | Resonario · portadas · Música celta para bajar el ritmo | `resonario.audio-cover.*` | 1:1 | P1 |
 | `resonario-audio-cover-m2.avif` | Resonario · portadas · Piano para la pausa | `resonario.audio-cover.*` | 1:1 | P1 |
 | `resonario-audio-cover-g1.avif` | Resonario · portadas · Respiración guiada | `resonario.audio-cover.*` | 1:1 | P1 |
+| `resonario-audio-cover-g2.avif` | Resonario · portadas · Un momento para ti | `resonario.audio-cover.*` | 1:1 | P1 |
 | `academy-hero.avif` | Academia · hero | `academy.hero` | 16:9 | P1 |
 | `academy-featured-course.avif` | Academia · curso destacado | `academy.featured-course` | 16:8 | P1 |
 | `academy-course-cover-c1.avif` | Academia · portadas de curso · El Arte de Volver a Ti | `academy-course-cover` | 16:8 | P1 |
