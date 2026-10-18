@@ -185,6 +185,7 @@ export const COMPLETED = [
   'academy-featured-course-dawn.avif',
   'experiences-featured-dawn.avif',
   'store-ritual-banner-dawn.avif',
+  'portal-hero-moon.avif',
 ]
 
 /**
