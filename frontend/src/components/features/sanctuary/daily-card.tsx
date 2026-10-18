@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { AudioDisc } from '@/components/features/player/audio-disc';
 import { FrequencyStrip } from '@/components/features/player/frequency-strip';
 import { ArrowGlyph, arrowLinkClasses, EditorialImage, GlassPanel, Kicker } from '@/components/ui';
-import { PLAYABLE_AUDIOS } from '@/data';
+import { PLAYABLE_AUDIOS } from '@/data/audios';
 import { suggestAudios } from '@/lib/resonario/suggestions';
 import type { EditorialMedia } from '@/types/editorial-media';
 import { usePlayerStore } from '@/stores/player-store';

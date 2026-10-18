@@ -5,7 +5,7 @@ import type { Product } from '@/types/content';
 import { useTranslations } from 'next-intl';
 
 import { Button, EditorialImage, EmptyState, GlassPanel, Kicker } from '@/components/ui';
-import { PRODUCTS } from '@/data';
+import { PRODUCTS } from '@/data/products';
 import { Link } from '@/i18n/navigation';
 import { cartLines } from '@/lib/cart/totals';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';

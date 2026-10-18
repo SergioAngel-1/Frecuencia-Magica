@@ -70,3 +70,8 @@ export const COURSES: readonly Course[] = [
     provisional: true,
   },
 ] as const;
+
+/** Un curso por id; `undefined` si no existe. */
+export function getCourse(id: string): Course | undefined {
+  return COURSES.find((course) => course.id === id);
+}

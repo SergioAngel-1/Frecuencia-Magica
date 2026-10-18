@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 
 import { Display, EditorialImage, Float, Kicker } from '@/components/ui';
-import { COURSES } from '@/data';
+import { COURSES } from '@/data/courses';
 import { Link } from '@/i18n/navigation';
 import type { EditorialMedia } from '@/types/editorial-media';
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { PRODUCTS } from '@/data';
+import { PRODUCTS } from '@/data/products';
 import { cartLines } from '@/lib/cart/totals';
 import { useCartStore } from '@/stores/cart-store';
 

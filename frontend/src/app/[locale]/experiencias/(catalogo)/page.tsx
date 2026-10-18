@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { ExperienceList } from '@/components/features/experiences/experience-list';
 import { PageShell, RealmHero } from '@/components/layout';
-import { EXPERIENCES } from '@/data';
+import { EXPERIENCES } from '@/data/experiences';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 

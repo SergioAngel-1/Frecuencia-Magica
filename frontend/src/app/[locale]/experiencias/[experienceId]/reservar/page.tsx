@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { BookingFlow } from '@/components/features/experiences/booking-flow';
 import { PageShell } from '@/components/layout';
-import { getExperience } from '@/data';
+import { getExperience } from '@/data/experiences';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { routing } from '@/i18n/routing';

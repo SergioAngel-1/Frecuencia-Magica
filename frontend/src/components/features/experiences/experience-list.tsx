@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { EXPERIENCES } from '@/data';
+import { EXPERIENCES } from '@/data/experiences';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ExperienceRow } from './experience-row';

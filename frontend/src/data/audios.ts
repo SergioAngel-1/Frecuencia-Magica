@@ -335,3 +335,8 @@ export function isPlayable(audio: Audio): boolean {
 
 /** Sólo las pistas reproducibles: lo que el reproductor y las recomendaciones pueden usar. */
 export const PLAYABLE_AUDIOS: readonly Audio[] = AUDIOS.filter(isPlayable);
+
+/** Una pista por id; `undefined` si no existe. */
+export function getAudio(id: string): Audio | undefined {
+  return AUDIOS.find((audio) => audio.id === id);
+}

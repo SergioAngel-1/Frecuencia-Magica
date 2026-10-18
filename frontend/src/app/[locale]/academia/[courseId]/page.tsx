@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { CourseDetail } from '@/components/features/academy/course-detail';
 import { PageShell } from '@/components/layout';
-import { getCourse } from '@/data';
+import { getCourse } from '@/data/courses';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { courseIntroId, getVideo } from '@/config/videos';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';

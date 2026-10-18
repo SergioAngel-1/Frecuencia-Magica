@@ -44,3 +44,8 @@ export const EXPERIENCES: readonly Experience[] = [
     band: COVERS.moss,
   },
 ] as const;
+
+/** Una experiencia por id; `undefined` si no existe. */
+export function getExperience(id: string): Experience | undefined {
+  return EXPERIENCES.find((experience) => experience.id === id);
+}

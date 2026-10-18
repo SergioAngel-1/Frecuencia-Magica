@@ -1,6 +1,6 @@
 import { create, type StoreApi, type UseBoundStore } from 'zustand';
 
-import { getAudio, isPlayable, PLAYABLE_AUDIOS } from '@/data';
+import { getAudio, isPlayable, PLAYABLE_AUDIOS } from '@/data/audios';
 import type {
   AudioEngine,
   EngineSnapshot,

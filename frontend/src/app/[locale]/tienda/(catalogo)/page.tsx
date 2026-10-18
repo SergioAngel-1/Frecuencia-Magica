@@ -10,7 +10,7 @@ import { PageShell, RealmHero } from '@/components/layout';
 import { tintForPhotoTreatment } from '@/config/bands';
 import { getRealm } from '@/config/realms';
 import { ArrowGlyph, arrowLinkClasses, EditorialBanner } from '@/components/ui';
-import { PRODUCTS } from '@/data';
+import { PRODUCTS } from '@/data/products';
 import { Link } from '@/i18n/navigation';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';

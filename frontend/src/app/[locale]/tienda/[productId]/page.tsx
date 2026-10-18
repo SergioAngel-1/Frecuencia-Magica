@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { ProductDetail } from '@/components/features/store';
 import type { ProductMedia } from '@/components/features/store/product-detail';
 import { PageShell } from '@/components/layout';
-import { PRODUCTS } from '@/data';
+import { PRODUCTS } from '@/data/products';
 import { Link } from '@/i18n/navigation';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { routing } from '@/i18n/routing';

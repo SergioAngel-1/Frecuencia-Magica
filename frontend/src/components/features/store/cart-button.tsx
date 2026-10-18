@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { PRODUCTS } from '@/data';
+import { PRODUCTS } from '@/data/products';
 import { Link } from '@/i18n/navigation';
 import { cartLines } from '@/lib/cart/totals';
 import { cn } from '@/lib/cn';

@@ -7,7 +7,7 @@ import { div as Mdiv } from 'motion/react-m';
 
 import { IconButton } from '@/components/ui';
 import { DURATION, EASE } from '@/config/motion';
-import { getAudio } from '@/data';
+import { getAudio } from '@/data/audios';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { usePathname } from '@/i18n/navigation';

@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { CourseList } from '@/components/features/academy/course-list';
 import { PageShell, RealmHero } from '@/components/layout';
-import { COURSES } from '@/data';
+import { COURSES } from '@/data/courses';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 

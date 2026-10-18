@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import { PRODUCTS } from '@/data';
+import { PRODUCTS } from '@/data/products';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ProductCard } from './product-card';

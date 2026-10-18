@@ -1,5 +1,5 @@
 import type { EditorialMediaSlot } from '@/config/editorial-media';
-import { COURSES } from '@/data';
+import { COURSES } from '@/data/courses';
 import { buildLessons, lessonSeconds } from '@/lib/academy/lessons';
 
 /** Imagen de póster de un video: un slot editorial que ya existe (y su instancia). */

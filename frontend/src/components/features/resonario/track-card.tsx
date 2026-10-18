@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { AudioDisc } from '@/components/features/player/audio-disc';
 import { cn } from '@/lib/cn';
 import { Badge, Button } from '@/components/ui';
-import { isPlayable } from '@/data';
+import { isPlayable } from '@/data/audios';
 import { floatPhase } from '@/lib/player/float-phase';
 import { useAudioPlayback, usePlayerStore } from '@/stores/player-store';
 import type { Audio } from '@/types/content';

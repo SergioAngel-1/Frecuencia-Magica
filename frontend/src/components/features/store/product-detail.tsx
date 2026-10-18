@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 
 import { PlayPauseIcon } from '@/components/features/player/player-icons';
 import { Badge, Button, Float, Kicker, Prose, SectionHeading } from '@/components/ui';
-import { PRODUCTS } from '@/data';
+import { PRODUCTS } from '@/data/products';
 import { useRouter } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
 import { cn } from '@/lib/cn';

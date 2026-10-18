@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { EmptyState, Button, Swap } from '@/components/ui';
-import { AUDIOS } from '@/data';
+import { AUDIOS } from '@/data/audios';
 import { featuredAudio, kindSections } from '@/lib/resonario/layout-slots';
 import type { AudioKind } from '@/types/content';
 import type { EditorialMedia } from '@/types/editorial-media';
