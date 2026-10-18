@@ -14,7 +14,7 @@ Plan: [`2026-07-28-frecuencia-magica-frontend.md`](2026-07-28-frecuencia-magica-
 | 8 | Fase 15 | 3D perezoso | ❌ No ejecutada | — |
 | 9 | Fase 16 | Estados, a11y, responsive, rendimiento | ✅ Completada (salvo 16.2.4/16.2.5 manuales) | 2026-08-11 |
 | 10 | Armonización visual | Auditoría de coherencia (impeccable), tokens, eje de página y corrección de defectos visibles | ✅ Completada (decisiones abiertas en la auditoría) | 2026-09-30 |
-| 11 | Ambientes v2 · Fases 0 y 1 | Enmienda de contratos, atmósferas en código, tokens semánticos, boot sin flash, backdrop y header; muestras `dusk`, `dawn` y `store` | ✅ Completadas (fusionadas en master); la Fase 2 no empezó con el visto bueno de Marisol (R1 del ledger) | 2026-10-17 |
+| 11 | Ambientes v2 · Fases 0 y 1 | Enmienda de contratos, atmósferas en código, tokens semánticos, boot sin flash, backdrop y header; muestras `dusk`, `dawn` y `store` | ✅ Completadas (fusionadas en master); la Fase 2 arrancó sin el visto bueno de Marisol sobre las muestras (decisión del usuario) | 2026-10-17 |
 | 12 | Ambientes v2 · Fase 2 | Resto de atmósferas, motor de audio, «¿Cómo llegas hoy?», galería de producto, videos y cursos, ritmo de la Home, pasada móvil y registro de materiales | ✅ Completada en `feat/ambientes-v2-fase2` (pendiente de Marisol/Sergio: material real) | 2026-10-17 |
 
 > **Auditoría 2026-07-28 (ver sección final «Auditoría completa»).** Las fases 9–14 se construyeron y los cuatro comandos de verificación están en verde, pero varias tareas quedaron incompletas respecto al plan (Task 12.3, 12.4, 13.1 y los `// TODO(backend)`). **La Fase 15 (3D) no se ejecutó en absoluto** y **la Fase 16 (estados/404/error/loading, a11y, responsive, rendimiento) tampoco**. Detalle abajo.
