@@ -18,8 +18,8 @@ describe('site navigation', () => {
     expect(NAV_STORY.href).toBe('/sobre-marisol');
     expect(Object.keys(routing.pathnames)).toContain(NAV_STORY.href);
     expect(NAV_REALMS.map((realm) => realm.href)).not.toContain(NAV_STORY.href);
-    // Marfil: no es un realm y no toma el acento de ninguno.
-    expect(NAV_STORY.accent).toBe('#F7F4EA');
+    // Marfil del tema (`--color-fg`): no es un realm y no toma el acento de ninguno.
+    expect(NAV_STORY.accent).toBe('var(--color-fg)');
   });
 
   it('opens the constellation with the store', () => {

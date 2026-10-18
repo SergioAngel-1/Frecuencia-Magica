@@ -82,13 +82,10 @@ export default async function HomePage({ params }: PageProps) {
     meta: `${tResonario(`tags.${a.tagId}` as 'tags.meditation')} · ${a.duration ?? ''}`,
   }));
 
-  const bandKey = (accent: string): 'gold' | 'teal' | 'lav' =>
-    accent === '#B9B0D6' ? 'lav' : accent === '#96C6BC' ? 'teal' : 'gold';
-
   const realmData = NAV_REALMS.map((r) => ({
     id: r.id,
     href: r.href,
-    band: BANDS[bandKey(r.accent)],
+    band: BANDS[r.accentKey],
     // Cada puerta se ve como lo que hay detrás: el héroe de su vista interna,
     // recortado a la tarjeta. Decorativo: la tarjeta ya dice su nombre.
     media: resolveEditorialMedia(REALM_HERO_SLOTS[r.id as keyof typeof REALM_HERO_SLOTS], {
@@ -96,7 +93,7 @@ export default async function HomePage({ params }: PageProps) {
       priority: false,
       position: REALM_CARD_FOCUS[r.id as keyof typeof REALM_CARD_FOCUS],
       sizes: REALM_CARD_SIZES[r.id as keyof typeof REALM_CARD_SIZES] ?? REALM_CARD_SIZES.default,
-      band: BANDS[bandKey(r.accent)],
+      band: BANDS[r.accentKey],
     }),
     emotion: nav(`emotions.${r.id}` as 'emotions.descubrete'),
     title: nav(`realms.${r.id}` as 'realms.descubrete'),

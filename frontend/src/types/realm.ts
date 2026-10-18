@@ -10,6 +10,9 @@ export type RealmId =
   | 'tienda'
   | 'sanctuario';
 
+/** Clave del acento de la paleta, para elegir banda o nebulosa sin comparar hex. */
+export type RealmAccentKey = 'gold' | 'teal' | 'lav';
+
 export type Realm = {
   id: RealmId;
   /**
@@ -19,6 +22,8 @@ export type Realm = {
   href: string;
   /** Acento en hexadecimal. Recolorea el canvas cósmico y la nebulosa. */
   accent: string;
+  /** Clave de paleta del acento: la banda y la nebulosa se eligen con ella. */
+  accentKey: RealmAccentKey;
   /** Variable CSS equivalente al acento, para usarlo desde estilos. */
   accentVar: string;
   /** Nota base del drone ambiental, en hercios. */

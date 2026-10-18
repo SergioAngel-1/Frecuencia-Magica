@@ -58,7 +58,9 @@ export async function generateMetadata({ params }: { params: LocaleParams }): Pr
 }
 
 export const viewport = {
-  themeColor: '#0F1B2E',
+  // El color de la barra del tema que pinta el servidor. El script de arranque
+  // lo corrige antes del primer pintado para el tema real del lugar.
+  themeColor: ATMOSPHERES[SERVER_ATMOSPHERE].themeColor,
   // La noche llega hasta los bordes del dispositivo y `env(safe-area-inset-*)`
   // deja de valer cero: de ahí salen los márgenes del header y de los flotantes.
   viewportFit: 'cover',

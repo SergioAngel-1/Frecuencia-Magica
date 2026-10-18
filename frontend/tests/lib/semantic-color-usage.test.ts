@@ -103,9 +103,6 @@ export function findRawColorUse(source: string): string[] {
 
 /** Excepciones con dueño: archivo (relativo a `src/`) -> motivo. */
 const ALLOWED: Record<string, string> = {
-  // Geometría sagrada del 404: anillos orbitales decorativos.
-  'app/[locale]/not-found.tsx': 'geometría sagrada: anillos orbitales del 404 (decorativo)',
-
   // Aros y halo de la zebra: materia estructural que no se re-tematiza. El borde
   // dorado del aro es parte del contrato del fallback (`fm-editorial-zebra`).
   'components/ui/media-skeleton.tsx': 'aros y halo de luz de la zebra (decorativo)',
