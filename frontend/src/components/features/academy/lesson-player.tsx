@@ -67,7 +67,7 @@ export function LessonPlayer({
       <Kicker tone="teal" spacing="widest" className="mt-8">
         {t(`courses.${course.id}.title`)}
       </Kicker>
-      <Display size="lg" level="h1" className="max-w-measure-xs mt-3">
+      <Display size="lg" level="h1" className="max-w-measure-title-lg mt-3">
         {lessonTitle}
       </Display>
 

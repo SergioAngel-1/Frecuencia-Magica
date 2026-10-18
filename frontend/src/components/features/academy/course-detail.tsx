@@ -46,10 +46,10 @@ export function CourseDetail({ course, media, introMedia, currentLesson }: Cours
           <Kicker tone="teal" spacing="widest">
             {t('featuredBadge')}
           </Kicker>
-          <Display size="lg" level="h1" className="max-w-measure-xs mt-3">
+          <Display size="lg" level="h1" className="max-w-measure-title-sm mt-3">
             {title}
           </Display>
-          <p className="text-fg-soft text-lead max-w-measure-wide mt-5 leading-[1.8]">
+          <p className="text-fg-soft text-lead max-w-measure-full mt-5 leading-[1.8]">
             {t('courseDescription')}
           </p>
           <CourseFacts course={course} className="mt-6" />

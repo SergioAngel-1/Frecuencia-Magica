@@ -90,13 +90,13 @@ export function HeroSection({
           </Mdiv>
 
           <Mdiv variants={item}>
-            <Display size="xl" level="h1" className="max-w-measure-xs">
+            <Display size="xl" level="h1" className="max-w-measure-title-md">
               {titlePre} <GradientText>{titleEm}</GradientText>
             </Display>
           </Mdiv>
 
           <Mdiv variants={item}>
-            <Prose size="base" maxWidth={52} className="text-fg-body mt-[24px]">
+            <Prose size="base" maxWidth={52} className="text-fg-body max-w-measure-full mt-[24px]">
               {subtitle}
             </Prose>
           </Mdiv>

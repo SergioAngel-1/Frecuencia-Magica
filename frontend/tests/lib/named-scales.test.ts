@@ -52,6 +52,21 @@ describe('named type, measure and spacing scales', () => {
     });
   }
 
+  it('declares in tokens.css every named scale step the code uses', () => {
+    const tokens = readSource(`${SRC}/app/tokens.css`);
+    const declared = (name: string) => tokens.includes(`--${name}:`);
+    const used = new Set<string>();
+    for (const path of sourceFiles(SRC, /\.tsx?$/)) {
+      for (const m of readSource(path).matchAll(/\bmax-w-measure-([\w-]+)/g))
+        used.add(`container-measure-${m[1]}`);
+      for (const m of readSource(path).matchAll(/\btext-serif-([\w]+)/g))
+        used.add(`text-serif-${m[1]}`);
+      for (const m of readSource(path).matchAll(/\bpt-(hero|top)\b/g)) used.add(`spacing-${m[1]}`);
+    }
+
+    expect([...used].filter((name) => !declared(name))).toEqual([]);
+  });
+
   it('keeps the exceptions list honest: every entry still has a file', () => {
     for (const rel of Object.keys(EXCEPTIONS)) {
       expect(sourceFiles(SRC, /\.tsx?$/).map(fromSrc)).toContain(rel);

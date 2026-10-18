@@ -36,9 +36,9 @@ const MAX_WIDTH_CLASSES: Record<ProseMaxWidth, string> = {
   40: 'max-w-measure-base',
   42: 'max-w-measure-base',
   44: 'max-w-measure-base',
-  46: 'max-w-measure-base',
-  48: 'max-w-measure-base',
-  50: 'max-w-measure-base',
+  46: 'max-w-measure-mid',
+  48: 'max-w-measure-mid',
+  50: 'max-w-measure-mid',
   52: 'max-w-measure-wide',
   54: 'max-w-measure-wide',
 };

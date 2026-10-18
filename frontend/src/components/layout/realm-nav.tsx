@@ -105,7 +105,7 @@ export function RealmNav() {
                   className="h-[6px] w-[6px] flex-none rounded-full"
                   style={{ background: accent, boxShadow: `0 0 8px 1px ${accent}` }}
                 />
-                <span className="text-fg tracking-soft text-serif-sm font-serif">{name}</span>
+                <span className="text-fg tracking-soft text-serif-xs font-serif">{name}</span>
               </span>
             </Link>
           );

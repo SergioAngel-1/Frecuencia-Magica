@@ -50,7 +50,7 @@ export const SIZES: Record<DiscSize, SizeSpec> = {
     inset: 9,
     hz: 'text-serif-xl',
     unit: 'text-label tracking-kicker',
-    title: 'text-serif-sm',
+    title: 'text-serif-xs',
     meta: 'text-label',
     spin: 70,
     play: null,
@@ -63,7 +63,7 @@ export const SIZES: Record<DiscSize, SizeSpec> = {
   md: {
     width: 190,
     inset: 12,
-    hz: 'text-serif-2xl',
+    hz: 'text-serif-3xl',
     unit: 'text-label tracking-kicker',
     title: 'text-serif-lg',
     meta: 'text-meta',

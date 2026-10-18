@@ -27,8 +27,8 @@ const WIDTH_CLASSES: Record<ShellWidth, string> = {
 export type ShellPadding = 'realm' | 'centered' | 'none';
 
 const PADDING_CLASSES: Record<ShellPadding, string> = {
-  realm: 'px-6 pt-hero pb-[70px] md:px-[8vw] md:pb-[90px]',
-  centered: 'px-6 pt-hero pb-[70px] md:px-6 md:pb-[80px]',
+  realm: 'px-6 pt-top pb-[70px] md:px-[8vw] md:pb-[90px]',
+  centered: 'px-6 pt-[100px] pb-[70px] md:px-6 md:pt-[120px] md:pb-[80px]',
   none: '',
 };
 

@@ -62,7 +62,7 @@ export function ResultStep({
         {intent}
       </Display>
 
-      <p className="text-fg-soft text-body max-w-measure-base text-center leading-[1.8]">
+      <p className="text-fg-soft text-body max-w-measure-mid text-center leading-[1.8]">
         {description}
       </p>
 

@@ -105,11 +105,11 @@ export function ExperienceRow({
             <Kicker tone="teal" className="mt-4">
               {mode}
             </Kicker>
-            <Display level="h2" size="feature" className="max-w-measure-xs mt-2">
+            <Display level="h2" size="feature" className="max-w-measure-title-sm mt-2">
               {title}
             </Display>
             {description ? (
-              <p className="text-fg-body text-lead max-w-measure-base mt-5 leading-[1.7]">
+              <p className="text-fg-body text-lead max-w-measure-mid mt-5 leading-[1.7]">
                 {description}
               </p>
             ) : null}
@@ -158,7 +158,7 @@ export function ExperienceRow({
       <div className="relative z-10 grid min-h-[clamp(320px,34vw,470px)] items-end gap-8 px-[clamp(24px,6vw,72px)] py-[clamp(28px,5vw,60px)] md:h-full md:min-h-0 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-12">
         <div className="max-w-[600px]">
           <Badge>{modeLabel}</Badge>
-          <h3 className="text-fg max-w-measure-xs mt-4 font-serif text-[clamp(32px,4.5vw,58px)] leading-[0.94]">
+          <h3 className="text-fg max-w-measure-title-md mt-4 font-serif text-[clamp(32px,4.5vw,58px)] leading-[0.94]">
             {title}
           </h3>
         </div>

@@ -49,11 +49,11 @@ export function CourseCard({
         </div>
         <div className="relative z-10 flex min-h-[clamp(420px,42vw,600px)] max-w-[720px] flex-col justify-end px-[clamp(24px,6vw,76px)] py-[clamp(30px,6vw,76px)]">
           <Badge solid>{level}</Badge>
-          <Display level="h2" size="feature" className="max-w-measure-xs mt-5">
+          <Display level="h2" size="feature" className="max-w-measure-title-sm mt-5">
             {title}
           </Display>
           {description ? (
-            <p className="text-fg-body text-lead max-w-measure-base mt-5 leading-[1.7]">
+            <p className="text-fg-body text-lead max-w-measure-mid mt-5 leading-[1.7]">
               {description}
             </p>
           ) : null}

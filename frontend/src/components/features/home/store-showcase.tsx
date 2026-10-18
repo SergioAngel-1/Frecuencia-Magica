@@ -34,7 +34,12 @@ export function StoreShowcase({ kicker, title, description, cta, items }: StoreS
           <Kicker tone="teal" spacing="wide">
             {kicker}
           </Kicker>
-          <Display level="h2" size="lg" id="store-showcase-title" className="max-w-measure-xs">
+          <Display
+            level="h2"
+            size="lg"
+            id="store-showcase-title"
+            className="max-w-measure-title-xl"
+          >
             {title}
           </Display>
           <p className="text-fg-body text-body max-w-measure-wide leading-[1.8]">{description}</p>

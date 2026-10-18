@@ -71,15 +71,17 @@
   --text-body: 15px; /* texto corrido y UI */
   --text-lead: 17px; /* entradillas y descripciones destacadas */
 
-  /* Escala de la serif (Cormorant) en tamaños fijos: seis peldaños. Sólo fijan
+  /* Escala de la serif (Cormorant) en tamaños fijos: ocho peldaños. Sólo fijan
      el tamaño; el interlineado va en cada uso. Los `clamp()` fluidos de
      `Display` y de los titulares de tarjeta no entran aquí. */
+  --text-serif-xs: 16px; /* menú, nombres de producto y de frecuencia */
   --text-serif-sm: 18px; /* detalles, nombres en listas, símbolos */
   --text-serif-md: 20px; /* cifras de precio y títulos pequeños */
   --text-serif-lg: 22px; /* títulos de módulo y de fila */
   --text-serif-xl: 26px; /* cifras destacadas y títulos de tarjeta */
   --text-serif-2xl: 30px; /* precios y cifras de experiencia */
-  --text-serif-3xl: 40px; /* cifra grande de Mi Santuario */
+  --text-serif-3xl: 34px; /* cifras de la Home y del disco de frecuencia */
+  --text-serif-4xl: 40px; /* cifra grande de Mi Santuario */
 
   /* Tracking: seis peldaños. Los kickers usan `label`, `kicker` o `eyebrow`. */
   --tracking-soft: 0.05em; /* botones serif, nav */
@@ -94,15 +96,27 @@
      contenido. Se usan como `py-section`, `gap-section`, `mt-block`… */
   --spacing-section: clamp(56px, 8vw, 112px);
   --spacing-block: clamp(28px, 5vw, 72px);
-  /* Arriba de página: el aire bajo el header en las vistas sin héroe propio. */
+  /* Arriba de página: el aire bajo el header en las vistas sin héroe propio.
+     `hero` es fluido (cursos y reserva, que abren con una banda); `top` es el
+     escalón de 100/130 px de las vistas de realm, la tienda y el carrito
+     (`--page-top`, declarado abajo con su salto a 768px). */
   --spacing-hero: clamp(100px, 12vw, 160px);
+  --spacing-top: var(--page-top);
 
-  /* Medidas de lectura: cuatro anchos con nombre para `max-w-measure-*`. Los
-     titulares cortos usan `xs`; `narrow`, `base` y `wide` cubren el texto corrido. */
-  --container-measure-xs: 18ch;
+  /* Medidas de lectura, en `ch` de la fuente del propio elemento. Dos familias
+     para `max-w-measure-*`: los titulares (`title-*`, serif grande, afinados
+     para cortar la línea donde toca) y el texto corrido (`narrow` … `full`). */
+  --container-measure-title-xs: 10ch;
+  --container-measure-title-sm: 13ch;
+  --container-measure-title-md: 14ch;
+  --container-measure-title-lg: 16ch;
+  --container-measure-title-xl: 18ch;
+  --container-measure-title-2xl: 22ch;
   --container-measure-narrow: 34ch;
-  --container-measure-base: 44ch;
-  --container-measure-wide: 58ch;
+  --container-measure-base: 42ch;
+  --container-measure-mid: 48ch;
+  --container-measure-wide: 52ch;
+  --container-measure-full: 58ch;
 
   /* Radios */
   --radius-card: 22px;
@@ -347,6 +361,7 @@
   --nebula-c: 216 185 120;
   --nebula-boost: 1;
   --page-inset: 24px;
+  --page-top: 100px;
   --container-max: 1240px;
   /* Alto del fundido de una banda a sangre: un peldaño `section`, para que el
      borde que se disuelve ocupe el mismo aire que separaría dos bloques. */
@@ -356,6 +371,12 @@
 @media (min-width: 640px) {
   :root {
     --page-inset: 8vw;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-top: 130px;
   }
 }
 

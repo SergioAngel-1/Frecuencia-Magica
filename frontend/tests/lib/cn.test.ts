@@ -29,13 +29,16 @@ describe('cn with the design tokens', () => {
     expect(cn('text-serif-md', 'text-meta')).toBe('text-meta');
     expect(cn('text-serif-sm', 'text-serif-3xl')).toBe('text-serif-3xl');
     expect(cn('text-label', 'text-serif-xl')).toBe('text-serif-xl');
+    expect(cn('text-serif-xs', 'text-serif-4xl')).toBe('text-serif-4xl');
   });
 
   it('resolves the reading measures and the page-top offset as their groups', () => {
     expect(cn('max-w-md', 'max-w-measure-base')).toBe('max-w-measure-base');
     expect(cn('max-w-measure-base', 'max-w-measure-wide')).toBe('max-w-measure-wide');
     expect(cn('max-w-measure-narrow', 'text-fg')).toBe('max-w-measure-narrow text-fg');
+    expect(cn('max-w-measure-title-sm', 'max-w-measure-title-xl')).toBe('max-w-measure-title-xl');
     expect(cn('pt-8', 'pt-hero')).toBe('pt-hero');
+    expect(cn('pt-hero', 'pt-top')).toBe('pt-top');
     expect(cn('pt-hero', 'pb-section')).toBe('pt-hero pb-section');
   });
 

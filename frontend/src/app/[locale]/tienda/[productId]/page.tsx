@@ -110,7 +110,7 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      <div className="fm-editorial-full-bleed fm-container pb-section pt-hero">
+      <div className="fm-editorial-full-bleed fm-container pb-section pt-top">
         <Link
           href="/tienda"
           className="text-fg-meta hover:text-accent text-meta tracking-label mb-8 inline-flex min-h-11 items-center font-sans uppercase transition-colors"

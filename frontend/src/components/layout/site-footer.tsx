@@ -76,7 +76,7 @@ export function SiteFooter() {
         ) : null}
 
         <div className="mb-11 flex flex-wrap items-start justify-between gap-10">
-          <div className="max-w-measure-base">
+          <div className="max-w-measure-narrow">
             <p className="tracking-ui text-serif-xl mb-[10px] font-serif">{tCommon('brand')}</p>
             <p className="text-fg-muted text-body mb-5 leading-[1.7]">{t('tagline')}</p>
             <NewsletterForm />

@@ -42,7 +42,7 @@ export function AngelExperiences({
         media={media}
         eyebrow={kicker}
         title={title}
-        body={<p className="max-w-measure-wide leading-[1.75]">{intro}</p>}
+        body={<p className="max-w-measure-full leading-[1.75]">{intro}</p>}
         tone="lav"
         heightClassName="min-h-[clamp(420px,46vw,640px)]"
       />

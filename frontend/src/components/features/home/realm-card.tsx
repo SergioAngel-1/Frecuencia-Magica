@@ -75,7 +75,7 @@ export function RealmCard({
           {cover}
           <div className="relative z-[2] flex flex-col justify-end p-[clamp(28px,5vw,68px)]">
             <Kicker tone="teal">{emotion}</Kicker>
-            <Display level="h3" size="feature" className="max-w-measure-xs mt-3">
+            <Display level="h3" size="feature" className="max-w-measure-title-xs mt-3">
               {title}
             </Display>
             <p className="text-fg-body text-body max-w-measure-base mt-5 leading-[1.75]">

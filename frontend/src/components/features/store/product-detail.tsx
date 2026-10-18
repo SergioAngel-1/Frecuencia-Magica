@@ -76,7 +76,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
             </p>
           </div>
 
-          <Prose maxWidth={48}>{t('productDescription')}</Prose>
+          <Prose maxWidth={52}>{t('productDescription')}</Prose>
           {/* Tamaño y contenido sólo si el dato existe: lo confirma Marisol. */}
           {specs.length > 0 ? (
             <dl aria-label={t('specs.label')} className="grid gap-2" data-product-specs>
@@ -143,7 +143,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
               <span className="text-accent-2 text-label tracking-label font-sans uppercase">
                 {t('relatedFrequencyLabel')}
               </span>
-              <span className="text-fg text-serif-sm font-serif">{frequencyTitle}</span>
+              <span className="text-fg text-serif-xs font-serif">{frequencyTitle}</span>
             </span>
           </button>
 

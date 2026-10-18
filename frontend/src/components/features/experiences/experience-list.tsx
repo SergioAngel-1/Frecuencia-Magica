@@ -58,7 +58,7 @@ export function ExperienceList({ media, hero }: ExperienceListProps) {
         className="fm-editorial-full-bleed fm-container py-section"
         data-editorial-archive="true"
       >
-        <div className="max-w-measure-wide mb-8">
+        <div className="max-w-measure-full mb-8">
           <Kicker tone="teal">{t('all')}</Kicker>
           <Display level="h2" size="md" id="experiences-archive-title" className="mt-3">
             {t('archiveTitle')}

@@ -164,13 +164,13 @@ Un cielo nocturno con tres luces y un marfil. Siete colores de marca, ningún ot
 
 Cinco temas conviven con la marca y **uno solo está activo en todo el sitio**: lo fija `<html data-atmosphere>` y todas las vistas lo leen. La persona lo elige en el header (cinco muestras y «Automático»); la elección vive en `localStorage` (`fm.atmosphere`) y se aplica antes del primer pintado. Sin elección, cada lugar sugiere el suyo. Cada tema es un conjunto de valores declarado **sólo en `frontend/src/app/tokens.css`** (`Branding/` lo muestra sin copiarlo). Ninguna sección re-tematiza una parte de una página.
 
-| id | UI | Esquema | Carácter | Lo sugiere |
-| --- | --- | --- | --- | --- |
-| `night` | Noche | oscuro | la v1, sin cambios; estrellas marfil y polen dorado | portal, Home, acceso, Descúbrete, Resonario, Mi Santuario |
-| `dusk` | Atardecer | oscuro cálido | crepúsculo del índigo al ciruela y al rosa vino, con albaricoque y rosa de acento; brasas que ascienden y titilan; sin rojo intenso ni marrón sucio | Experiencias |
-| `dawn` | Amanecer | claro, cálido | luz de piel: crema melocotón a arena rosada con tinta marino, nunca blanco frío; motas de luz ámbar que derivan | Academia, Tienda, Sobre Marisol |
-| `moon` | Luna | oscuro profundo | azul noche y plata; estrellas plateadas que parpadean y polvo de plata | — |
-| `forest` | Bosque | verde natural, luz media | verde y luz filtrada; luciérnagas que pulsan y esporas que caen | — |
+| id       | UI        | Esquema                  | Carácter                                                                                                                                            | Lo sugiere                                                |
+| -------- | --------- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `night`  | Noche     | oscuro                   | la v1, sin cambios; estrellas marfil y polen dorado                                                                                                 | portal, Home, acceso, Descúbrete, Resonario, Mi Santuario |
+| `dusk`   | Atardecer | oscuro cálido            | crepúsculo del índigo al ciruela y al rosa vino, con albaricoque y rosa de acento; brasas que ascienden y titilan; sin rojo intenso ni marrón sucio | Experiencias                                              |
+| `dawn`   | Amanecer  | claro, cálido            | luz de piel: crema melocotón a arena rosada con tinta marino, nunca blanco frío; motas de luz ámbar que derivan                                     | Academia, Tienda, Sobre Marisol                           |
+| `moon`   | Luna      | oscuro profundo          | azul noche y plata; estrellas plateadas que parpadean y polvo de plata                                                                              | —                                                         |
+| `forest` | Bosque    | verde natural, luz media | verde y luz filtrada; luciérnagas que pulsan y esporas que caen                                                                                     | —                                                         |
 
 «¿Cómo llegas hoy?» (Home, Descúbrete) también cambia el tema global: es otra forma de elegirlo.
 
@@ -211,7 +211,7 @@ Cinco temas conviven con la marca y **uno solo está activo en todo el sitio**: 
 - **Meta** (300, 13px): fechas, conteos, apoyo. `text-meta`. Nunca para información esencial única.
 - **Label** (300, 11px, MAYÚSCULAS, tracking .14em–.4em): kickers y etiquetas. `text-label`. Sólo con tracking de la escala.
 
-**Serif de tamaño fijo: seis peldaños.** Para la serif en tamaño fijo (cifras, precios, nombres de lista, símbolos) existe `text-serif-sm` 18px, `-md` 20px, `-lg` 22px, `-xl` 26px, `-2xl` 30px y `-3xl` 40px. Sólo fijan el tamaño: el interlineado va en cada uso. Los titulares fluidos (`clamp()`) siguen en `Display` y en los titulares de tarjeta; no se escribe `text-[Npx]`.
+**Serif de tamaño fijo: ocho peldaños.** Para la serif en tamaño fijo (cifras, precios, nombres de lista, símbolos) existe `text-serif-xs` 16px, `-sm` 18px, `-md` 20px, `-lg` 22px, `-xl` 26px, `-2xl` 30px, `-3xl` 34px y `-4xl` 40px. Sólo fijan el tamaño: el interlineado va en cada uso. Los titulares fluidos (`clamp()`) siguen en `Display` y en los titulares de tarjeta; no se escribe `text-[Npx]`.
 
 **Tracking: seis peldaños.** `soft` .05em (botones serif, nav), `ui` .1em (pills, meta sans), `label` .14em (stats), `caps` .2em (badges, enlaces con flecha), `kicker` .3em (kicker estándar), `eyebrow` .4em (cabecera de realm).
 
@@ -231,7 +231,7 @@ Cinco temas conviven con la marca y **uno solo está activo en todo el sitio**: 
 
 **Rejilla y ritmo.** Retículas asimétricas de 12 columnas (bento de realms: 7+5, 4+4+4 con Tienda a dos filas, 8 + resto), gap de 16–28px. Separación generosa entre bloques, apretada dentro de un grupo, con **dos peldaños y sólo dos**: `section` (`clamp(56px, 8vw, 112px)`) separa secciones y cierra la página antes del footer; `block` (`clamp(28px, 5vw, 72px)`) separa un héroe o un encabezado de su contenido. Se usan como `py-section`, `gap-section`, `mt-block`; ninguna sección trae su propio margen exterior (lo pone el contenedor de la vista) y no se escriben `clamp()` sueltos para separar bloques. El hueco de los controles fijos (el dock del reproductor) lo reserva el footer, no cada vista. Los realms con vista centrada (Descúbrete, portal) se resuelven en `min-h-dvh`.
 
-**Medidas de lectura y arriba de página, con nombre.** El ancho de un texto corrido o de un titular es `max-w-measure-xs` (18ch, titulares cortos), `-narrow` (34ch), `-base` (44ch) o `-wide` (58ch); no se escribe `max-w-[Nch]`. El aire bajo el header de una vista sin héroe propio es `pt-hero` (`clamp(100px, 12vw, 160px)`), el mismo offset en todas las vistas. Las cifras y márgenes fluidos que no son ritmo entre bloques (titulares de `Display`, paddings de tarjeta) quedan fuera de esta regla.
+**Medidas de lectura y arriba de página, con nombre.** El ancho de un texto corrido es `max-w-measure-narrow` (34ch), `-base` (42ch), `-mid` (48ch), `-wide` (52ch) o `-full` (58ch); el de un titular, afinado para cortar la línea donde toca, es `max-w-measure-title-xs` (10ch), `-sm` (13ch), `-md` (14ch), `-lg` (16ch), `-xl` (18ch) o `-2xl` (22ch). No se escribe `max-w-[Nch]`. El aire bajo el header de una vista sin héroe propio es `pt-top` (100px, 130px desde 768px; `--page-top`) y, en las vistas que abren con una banda (curso, lección, reserva), `pt-hero` (`clamp(100px, 12vw, 160px)`). Las cifras y márgenes fluidos que no son ritmo entre bloques (titulares de `Display`, paddings de tarjeta) quedan fuera de esta regla.
 
 **Breakpoints obligatorios:** 1440 / 1280 / 768 / 390. Utilidades de Tailwind en 640 (`sm`), 768 (`md`) y 1024 (`lg`); toda vista existe en móvil. Hit targets ≥44px; el texto corrido ≥15px.
 
@@ -359,6 +359,7 @@ Entradas en fade-up escalonado (`.1s`, `.25s`, `.4s`, `.55s`), curva `cubic-bezi
 **Nada sale de golpe.** Toda transición tiene ida y vuelta: lo que entra con fundido también se va con fundido. Cuando una zona cambia su contenido (un paso por el siguiente, un formulario por su confirmación, una lista al filtrarse) se envuelve en `Swap` (UI Kit), que funde el contenido anterior antes de dejar entrar el nuevo. Las capas que aparecen y desaparecen (`Modal`, el dock del reproductor) animan su salida con `AnimatePresence` y sólo entonces se desmontan; los paneles que se pliegan usan una fila de rejilla de `0fr` a `1fr`, nunca `hidden` ni `height`. Un `animate-fm-fade-up` sobre algo que se monta y desmonta por condición sólo resuelve la entrada: no basta.
 
 ### Barras de desplazamiento
+
 La pista es la noche (`void-2`) y el pulgar, una línea de luz fina y en píldora con el espectro de la frecuencia (oro, teal y lavanda) a baja opacidad, que se enciende con un halo al acercarse. Firefox sólo admite color y grosor (`scrollbar-color`, `thin`), acotado a él porque en Chrome la propiedad estándar anularía los estilos de WebKit. Vive en la base de `tokens.css`.
 
 ### Espera (signature)
