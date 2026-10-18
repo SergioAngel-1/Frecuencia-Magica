@@ -40,7 +40,7 @@ export function ExperienceDate({ count, index, label, variant = 'row' }: Experie
   return (
     <div className="flex min-h-11 flex-col justify-center">
       <span className="text-fg-muted text-meta tracking-ui font-sans uppercase">{label}</span>
-      <time dateTime={date?.iso} className="text-fg mt-1 block font-serif text-[22px]">
+      <time dateTime={date?.iso} className="text-fg text-serif-lg mt-1 block font-serif">
         {date ? (
           <>
             {date.dow} {date.day} {date.month}

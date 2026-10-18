@@ -119,7 +119,7 @@ export function RealmMenu() {
                       boxShadow: active ? `0 0 12px 2px ${accent}` : undefined,
                     }}
                   />
-                  <span className="tracking-soft flex-1 font-serif text-[22px] leading-none">
+                  <span className="tracking-soft text-serif-lg flex-1 font-serif leading-none">
                     {name}
                   </span>
                   <span className="text-fg-meta text-label tracking-caps font-sans uppercase">
@@ -136,7 +136,7 @@ export function RealmMenu() {
               onClick={closeMenu}
               className="rounded-field text-fg-body hover:text-fg flex min-h-[60px] items-center justify-between gap-4 px-3 transition-colors duration-300"
             >
-              <span className="tracking-soft font-serif text-[22px] leading-none">
+              <span className="tracking-soft text-serif-lg font-serif leading-none">
                 {tStore('cart')}
               </span>
               {cartCount > 0 && (

@@ -123,7 +123,7 @@ export function ExperienceRow({
                   variant="featured"
                 />
                 <span>{experience.dur}</span>
-                <span className="text-accent font-serif text-[30px]">
+                <span className="text-accent text-serif-2xl font-serif">
                   {formatPrice(experience.price)}
                 </span>
               </div>
@@ -168,9 +168,9 @@ export function ExperienceRow({
             <span className="text-fg-muted text-meta tracking-ui font-sans uppercase">
               {durationLabel}
             </span>
-            <span className="text-fg mt-1 font-serif text-[26px]">{experience.dur}</span>
+            <span className="text-fg text-serif-xl mt-1 font-serif">{experience.dur}</span>
           </div>
-          <span className="text-accent font-serif text-[30px]">
+          <span className="text-accent text-serif-2xl font-serif">
             {formatPrice(experience.price)}
           </span>
           <BookingLink bookLabel={bookLabel} experience={experience} variant="accent" />

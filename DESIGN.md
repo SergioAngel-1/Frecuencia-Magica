@@ -211,6 +211,8 @@ Cinco temas conviven con la marca y **uno solo está activo en todo el sitio**: 
 - **Meta** (300, 13px): fechas, conteos, apoyo. `text-meta`. Nunca para información esencial única.
 - **Label** (300, 11px, MAYÚSCULAS, tracking .14em–.4em): kickers y etiquetas. `text-label`. Sólo con tracking de la escala.
 
+**Serif de tamaño fijo: seis peldaños.** Para la serif en tamaño fijo (cifras, precios, nombres de lista, símbolos) existe `text-serif-sm` 18px, `-md` 20px, `-lg` 22px, `-xl` 26px, `-2xl` 30px y `-3xl` 40px. Sólo fijan el tamaño: el interlineado va en cada uso. Los titulares fluidos (`clamp()`) siguen en `Display` y en los titulares de tarjeta; no se escribe `text-[Npx]`.
+
 **Tracking: seis peldaños.** `soft` .05em (botones serif, nav), `ui` .1em (pills, meta sans), `label` .14em (stats), `caps` .2em (badges, enlaces con flecha), `kicker` .3em (kicker estándar), `eyebrow` .4em (cabecera de realm).
 
 ### Named Rules

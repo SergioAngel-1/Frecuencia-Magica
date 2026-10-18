@@ -54,7 +54,7 @@ export function BookingDateStep({ booking, dates }: BookingDateStepProps) {
                 <span className="text-fg-muted text-label tracking-ui font-sans uppercase">
                   {d.dow}
                 </span>
-                <span className="font-serif text-[26px] leading-[1.1]">{d.day}</span>
+                <span className="text-serif-xl font-serif leading-[1.1]">{d.day}</span>
                 <span className="text-fg-meta text-label tracking-soft font-sans uppercase">
                   {d.month}
                 </span>

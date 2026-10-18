@@ -85,7 +85,7 @@ export function VideoSlot({ video, media, title, focalPoint, className }: VideoS
           <span className="text-accent text-label tracking-kicker font-sans uppercase">
             {t('soon')}
           </span>
-          <span className="text-fg font-serif text-[18px] leading-tight">{title}</span>
+          <span className="text-fg text-serif-sm font-serif leading-tight">{title}</span>
         </div>
       </div>
     </div>

@@ -110,7 +110,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
           <h3
             className={cn(
               'text-fg group-hover:text-accent font-serif leading-tight transition-colors',
-              featured ? 'text-[clamp(24px,3vw,34px)]' : 'text-[20px]',
+              featured ? 'text-[clamp(24px,3vw,34px)]' : 'text-serif-md',
             )}
           >
             {featured ? (
@@ -139,7 +139,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
           featured && 'px-6 pb-6 md:absolute md:right-0 md:bottom-0 md:w-1/2',
         )}
       >
-        <span className="text-accent tracking-soft font-serif text-[21px]">
+        <span className="text-accent tracking-soft text-serif-md font-serif">
           {formatPrice(product.price)}
         </span>
         <Button variant="accent" tone="gold" onClick={() => add(product.id)}>

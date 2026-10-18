@@ -35,7 +35,7 @@ export function arrowLinkClasses(tone: ArrowLinkTone = 'gold', className?: Class
 /** La flecha del enlace: decorativa, el destino lo dice la etiqueta. */
 export function ArrowGlyph() {
   return (
-    <span aria-hidden="true" className="ml-3 text-[18px] leading-none">
+    <span aria-hidden="true" className="text-serif-sm ml-3 leading-none">
       →
     </span>
   );

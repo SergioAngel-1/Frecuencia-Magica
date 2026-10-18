@@ -47,7 +47,7 @@ export default function RootNotFound() {
               </Prose>
               <Link
                 href="/"
-                className="rounded-pill text-fg hover:text-fg focus-visible:outline-accent border-accent/50 bg-accent/6 relative mt-[32px] inline-flex min-h-14 items-center justify-center border px-8 font-serif text-[18px] transition-transform duration-300 hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-3"
+                className="rounded-pill text-fg hover:text-fg focus-visible:outline-accent border-accent/50 bg-accent/6 text-serif-sm relative mt-[32px] inline-flex min-h-14 items-center justify-center border px-8 font-serif transition-transform duration-300 hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-3"
               >
                 Volver al portal
               </Link>

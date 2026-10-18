@@ -22,7 +22,7 @@ export function BrandMark({ label }: { label: string }) {
         ringed
         className="size-[46px] drop-shadow-[0_0_10px_rgb(var(--halo)/0.35)]"
       />
-      <span className="tracking-label hidden shrink-0 font-serif text-[19px] font-medium whitespace-nowrap uppercase md:inline">
+      <span className="tracking-label text-serif-sm hidden shrink-0 font-serif font-medium whitespace-nowrap uppercase md:inline">
         {label}
       </span>
     </Link>

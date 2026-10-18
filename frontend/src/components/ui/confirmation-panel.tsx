@@ -71,7 +71,7 @@ export function ConfirmationPanel({
           contentClassName,
         )}
       >
-        <span className="border-accent/60 bg-scrim/35 text-accent mb-5 inline-flex size-14 items-center justify-center rounded-full border font-serif text-[24px] backdrop-blur-sm">
+        <span className="border-accent/60 bg-scrim/35 text-accent text-serif-lg mb-5 inline-flex size-14 items-center justify-center rounded-full border font-serif backdrop-blur-sm">
           <span aria-hidden="true">✓</span>
           <span className="sr-only">{iconLabel}</span>
         </span>

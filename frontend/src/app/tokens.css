@@ -71,6 +71,16 @@
   --text-body: 15px; /* texto corrido y UI */
   --text-lead: 17px; /* entradillas y descripciones destacadas */
 
+  /* Escala de la serif (Cormorant) en tamaños fijos: seis peldaños. Sólo fijan
+     el tamaño; el interlineado va en cada uso. Los `clamp()` fluidos de
+     `Display` y de los titulares de tarjeta no entran aquí. */
+  --text-serif-sm: 18px; /* detalles, nombres en listas, símbolos */
+  --text-serif-md: 20px; /* cifras de precio y títulos pequeños */
+  --text-serif-lg: 22px; /* títulos de módulo y de fila */
+  --text-serif-xl: 26px; /* cifras destacadas y títulos de tarjeta */
+  --text-serif-2xl: 30px; /* precios y cifras de experiencia */
+  --text-serif-3xl: 40px; /* cifra grande de Mi Santuario */
+
   /* Tracking: seis peldaños. Los kickers usan `label`, `kicker` o `eyebrow`. */
   --tracking-soft: 0.05em; /* botones serif, nav */
   --tracking-ui: 0.1em; /* pills, meta sans */

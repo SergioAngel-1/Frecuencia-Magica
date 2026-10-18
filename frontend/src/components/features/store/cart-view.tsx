@@ -60,24 +60,24 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
           <button
             type="button"
             onClick={() => setQuantity(product.id, quantity - 1)}
-            className="border-fg/20 text-fg-muted hover:border-fg/40 hover:text-fg flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
+            className="border-fg/20 text-fg-muted hover:border-fg/40 hover:text-fg text-serif-md flex size-11 items-center justify-center rounded-full border transition-colors"
             aria-label={t('decrease')}
           >
             −
           </button>
-          <span className="text-fg min-w-[24px] text-center font-serif text-[18px]">
+          <span className="text-fg text-serif-sm min-w-[24px] text-center font-serif">
             {quantity}
           </span>
           <button
             type="button"
             onClick={() => setQuantity(product.id, quantity + 1)}
-            className="border-fg/20 text-fg-muted hover:border-fg/40 hover:text-fg flex size-11 items-center justify-center rounded-full border text-[20px] transition-colors"
+            className="border-fg/20 text-fg-muted hover:border-fg/40 hover:text-fg text-serif-md flex size-11 items-center justify-center rounded-full border transition-colors"
             aria-label={t('increase')}
           >
             +
           </button>
         </div>
-        <p className="text-accent text-right font-serif text-[18px]">
+        <p className="text-accent text-serif-sm text-right font-serif">
           {formatPrice(product.price * quantity)}
         </p>
       </div>

@@ -49,7 +49,7 @@ export function TuningStep({ tuningLabel, onFinish }: TuningStepProps) {
       </div>
 
       <p
-        className={`tracking-soft font-serif text-[20px] italic transition-opacity duration-700 ${
+        className={`tracking-soft text-serif-md font-serif italic transition-opacity duration-700 ${
           reveal ? 'text-fg' : 'text-fg-meta'
         }`}
       >

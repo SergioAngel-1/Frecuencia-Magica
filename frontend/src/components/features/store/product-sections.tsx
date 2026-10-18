@@ -33,13 +33,13 @@ export function ProductSections() {
               aria-controls={bodyId}
               className="flex min-h-11 w-full items-center justify-between gap-4 py-4 text-left"
             >
-              <span className="text-fg font-serif text-[19px]">
+              <span className="text-fg text-serif-sm font-serif">
                 {t(`productSections.${key}.title`)}
               </span>
               <span
                 aria-hidden="true"
                 className={cn(
-                  'text-accent shrink-0 font-serif text-[22px] leading-none transition-transform duration-300 motion-reduce:transition-none',
+                  'text-accent text-serif-lg shrink-0 font-serif leading-none transition-transform duration-300 motion-reduce:transition-none',
                   isOpen && 'rotate-45',
                 )}
               >

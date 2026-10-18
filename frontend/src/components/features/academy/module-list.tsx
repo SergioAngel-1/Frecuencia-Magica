@@ -49,7 +49,7 @@ export function ModuleList({ courseId, lessons, currentIndex }: ModuleListProps)
                   className="flex min-h-11 w-full items-center justify-between gap-4 py-3 text-left"
                 >
                   <span className="flex flex-col">
-                    <span className="text-fg font-serif text-[20px] leading-tight">
+                    <span className="text-fg text-serif-md font-serif leading-tight">
                       {t('facts.module', { number: module.number })}
                     </span>
                     <span className="text-fg-meta text-meta tracking-soft font-sans">
@@ -59,7 +59,7 @@ export function ModuleList({ courseId, lessons, currentIndex }: ModuleListProps)
                   <span
                     aria-hidden="true"
                     className={cn(
-                      'text-accent shrink-0 font-serif text-[22px] leading-none transition-transform duration-300 motion-reduce:transition-none',
+                      'text-accent text-serif-lg shrink-0 font-serif leading-none transition-transform duration-300 motion-reduce:transition-none',
                       isOpen && 'rotate-45',
                     )}
                   >

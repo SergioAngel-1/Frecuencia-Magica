@@ -23,8 +23,8 @@ const TONE_CLASSES: Record<StatTone, string> = {
 };
 
 const SIZE_CLASSES: Record<StatSize, { value: string; label: string }> = {
-  hero: { value: 'mb-[4px] text-[34px]', label: 'text-label tracking-label' },
-  sanctuary: { value: 'mb-[6px] text-[40px]', label: 'text-meta tracking-ui' },
+  hero: { value: 'mb-[4px] text-serif-2xl', label: 'text-label tracking-label' },
+  sanctuary: { value: 'mb-[6px] text-serif-3xl', label: 'text-meta tracking-ui' },
 };
 
 /**

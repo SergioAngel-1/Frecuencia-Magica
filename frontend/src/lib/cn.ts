@@ -12,7 +12,22 @@ const twMerge = extendTailwindMerge({
     // Ritmo vertical de `tokens.css` (`py-section`, `gap-block`…).
     theme: { spacing: ['section', 'block'] },
     classGroups: {
-      'font-size': [{ text: ['label', 'meta', 'body', 'lead'] }],
+      'font-size': [
+        {
+          text: [
+            'label',
+            'meta',
+            'body',
+            'lead',
+            'serif-sm',
+            'serif-md',
+            'serif-lg',
+            'serif-xl',
+            'serif-2xl',
+            'serif-3xl',
+          ],
+        },
+      ],
       // Semánticos de atmósfera (`tokens.css`, bloques `[data-atmosphere]`).
       'text-color': [
         {

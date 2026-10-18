@@ -71,7 +71,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
             <h1 className="text-fg mt-4 font-serif text-[clamp(36px,5vw,72px)] leading-[0.94]">
               {title}
             </h1>
-            <p className="text-accent tracking-soft mt-6 font-serif text-[30px]">
+            <p className="text-accent tracking-soft text-serif-2xl mt-6 font-serif">
               {formatPrice(product.price)}
             </p>
           </div>
@@ -143,7 +143,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
               <span className="text-accent-2 text-label tracking-label font-sans uppercase">
                 {t('relatedFrequencyLabel')}
               </span>
-              <span className="text-fg font-serif text-[16px]">{frequencyTitle}</span>
+              <span className="text-fg text-serif-sm font-serif">{frequencyTitle}</span>
             </span>
           </button>
 

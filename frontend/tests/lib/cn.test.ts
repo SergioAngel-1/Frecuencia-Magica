@@ -23,6 +23,14 @@ describe('cn with the design tokens', () => {
     expect(cn('shadow-glow-gold', 'shadow-glow-teal')).toBe('shadow-glow-teal');
   });
 
+  it('registers the serif size scale as sizes, apart from colours', () => {
+    expect(cn('text-serif-md', 'text-fg')).toBe('text-serif-md text-fg');
+    expect(cn('text-serif-md', 'text-accent')).toBe('text-serif-md text-accent');
+    expect(cn('text-serif-md', 'text-meta')).toBe('text-meta');
+    expect(cn('text-serif-sm', 'text-serif-3xl')).toBe('text-serif-3xl');
+    expect(cn('text-label', 'text-serif-xl')).toBe('text-serif-xl');
+  });
+
   it('keeps tokens and arbitrary values coherent', () => {
     expect(cn('text-label', 'text-[13px]')).toBe('text-[13px]');
     expect(cn('tracking-label', 'tracking-[.3em]')).toBe('tracking-[.3em]');
