@@ -192,6 +192,7 @@ export const COMPLETED = [
   'discover-hero-moon.avif',
   'academy-hero-moon.avif',
   'experiences-hero-moon.avif',
+  'booking-hero-moon.avif',
 ]
 
 /**

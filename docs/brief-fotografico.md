@@ -8,7 +8,7 @@
 
 **138 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 99 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 130 completadas · 0 a corregir · 7 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 131 completadas · 0 a corregir · 6 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -261,7 +261,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `discover-hero-moon.avif` | Descúbrete · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
 | `academy-hero-moon.avif` | Academia · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
 | `experiences-hero-moon.avif` | Experiencias · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
-| `booking-hero-moon.avif` | Reserva · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `booking-hero-moon.avif` | Reserva · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
 | `store-hero-moon.avif` | Tienda · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
 | `sanctuary-hero-moon.avif` | Mi Santuario · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
 | `resonario-hero-dusk.avif` | Resonario · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Faltantes |
@@ -280,7 +280,7 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (7)
+### 5.2 Faltantes (6)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
@@ -298,22 +298,6 @@ Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota
 
 ```text
 A tall arched doorway of soft silver-white light set into a wall of moonlit stone at the edge of a calm sea, seen from a few steps back, a gentle path of light spilling across the wet stone and the water toward the viewer, a night sky with a few fine stars above, quiet, inviting, nobody in the frame. Arch placed in the right half, the left third plain calm wall, sea and soft sky for a quote. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: cool silver-blue moonlight over a night of deep teal-blue, the whole scene clearly lit and readable by a soft luminous silver light on the water, the mist and the stone, with small warm accents (a candle, a distant lamp) for depth; shadows in lifted deep blue, never pure black, never a flat dark image. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `booking.hero · Luna` — Reserva · hero · tema · P1
-
-- **Archivo:** `booking-hero-moon.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Luna de `booking.hero`: la misma vista y el mismo encuadre, con la escena del tema. El lugar de la experiencia elegida, antes de reservar.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-An empty serene place ready to receive: floor cushions arranged in a circle on a wooden deck over a calm sea at night, a few candles that are not lit, unburnt white wax with dark wicks and no flame, giving no light at all, so that the only light in the scene is the cool silver moonlight on the planks and the headland beyond. Wide symmetrical, circle of cushions in the middle distance, the left third open calm sea and soft sky for the headline: the horizon and the haze continue across the whole width with no gradient, no band and no vertical edge. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: cool silver-blue moonlight over a night of deep teal-blue, the whole scene clearly lit and readable by a soft luminous silver light on the water, the mist and the stone, with small warm accents (a candle, a distant lamp) for depth; shadows in lifted deep blue, never pure black, never a flat dark image. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
 ```
 
 #### `store.hero · Luna` — Tienda · hero · tema · P1
@@ -410,7 +394,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (130)
+### 5.5 Completadas (131)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -546,6 +530,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `discover-hero-moon.avif` | Descúbrete · hero · tema · Luna | `discover.hero` | 16:9 | P1 |
 | `academy-hero-moon.avif` | Academia · hero · tema · Luna | `academy.hero` | 16:9 | P1 |
 | `experiences-hero-moon.avif` | Experiencias · hero · tema · Luna | `experiences.hero` | 16:9 | P1 |
+| `booking-hero-moon.avif` | Reserva · hero · tema · Luna | `booking.hero` | 16:9 | P1 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (71)
 
