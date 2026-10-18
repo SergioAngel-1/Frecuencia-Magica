@@ -130,6 +130,7 @@ export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
   'store.hero@dusk': '/editorial/store-hero-dusk.avif',
   'store.hero@forest': '/editorial/store-hero-forest.avif',
   'store.ritual-banner': '/editorial/store-ritual-banner.avif',
+  'store.ritual-banner@dawn': '/editorial/store-ritual-banner-dawn.avif',
 };
 
 /**
@@ -262,5 +263,6 @@ export const EDITORIAL_ASSET_WIDTHS: Readonly<Record<string, readonly number[]>>
   '/editorial/store-product-visual-p6.avif': [640, 828, 1200, 1254],
   '/editorial/store-product-visual-p7.avif': [640, 828, 1200, 1254],
   '/editorial/store-product-visual-p8.avif': [640, 828, 1200, 1254],
+  '/editorial/store-ritual-banner-dawn.avif': [640, 828, 1200, 1672],
   '/editorial/store-ritual-banner.avif': [640, 828, 1200, 1672],
 };

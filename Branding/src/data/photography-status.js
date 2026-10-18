@@ -188,6 +188,7 @@ export const COMPLETED = [
   'discover-question-atmosphere-dawn.avif',
   'academy-featured-course-dawn.avif',
   'experiences-featured-dawn.avif',
+  'store-ritual-banner-dawn.avif',
 ]
 
 /**

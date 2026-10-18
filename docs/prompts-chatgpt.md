@@ -6,7 +6,7 @@
 > **Variantes por tema** (`<slot>-<tema>.png`, p. ej. `home-hero-dawn.png`; spec `docs/superpowers/specs/2026-10-17-temas-globales-design.md`): el sitio tiene cinco temas (noche, atardecer, amanecer, luna, bosque) y un slot escénico puede traer una imagen propia en los temas donde la de la noche no funciona. La luna comparte la imagen de la noche. Cada variante lleva el mismo ratio, prioridad y encuadre que su slot, y el estilo de las atmósferas: color natural, sin personas y otro «Avoid». El mapa de abajo dice qué falta por tema. Si una variante tarda, la web muestra la imagen de la noche: no bloquea nada.
 > Las demás imágenes de atmósfera (`atmosphere-forest-autumn`, `resonario-celtic`, `resonario-kind-banner-*`; enmienda 2026-10-17, `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`) llevan el mismo estilo. Los productos de la tienda no se generan: son fotografía real que hará Marisol.
 
-**128 imágenes:** 0 a corregir · 1 faltantes · 0 por cablear · 1 no tenidas en cuenta · 126 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
+**128 imágenes:** 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta · 127 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
 
 ## Mapa de variantes por tema
 
@@ -34,7 +34,7 @@
 | `resonario.archive-banner` | — | ✓ `resonario-archive-banner-dawn.png` | — | — |
 | `academy.featured-course` | — | ✓ `academy-featured-course-dawn.png` | — | — |
 | `experiences.featured` | — | ✓ `experiences-featured-dawn.png` | — | — |
-| `store.ritual-banner` | — | por generar `store-ritual-banner-dawn.png` | — | — |
+| `store.ritual-banner` | — | ✓ `store-ritual-banner-dawn.png` | — | — |
 
 ✓ ya entregada y publicada (reasignada de las atmósferas de Ambientes v2). — el tema usa la imagen de la noche.
 
@@ -44,20 +44,11 @@ Entregadas con una desviación. Cada entrada dice qué parte del prompt falló s
 
 Ninguna.
 
-## 2. Faltantes (1)
+## 2. Faltantes (0)
 
 Aún sin entregar. Guárdalas con el nombre indicado para que se procesen solas.
 
-### 2.1 · P2 · Tienda · banner ritual · tema · Amanecer
-
-- **Guardar como:** `store-ritual-banner-dawn.png` (luego se convierte a `store-ritual-banner-dawn.avif`)
-- **Formato:** 16:9
-- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-```text
-Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Objects of ritual as matter in daylight: a top-down flat lay on pale sand-coloured stone of matches, copal resin, a small brass dish, dried herbs and a quartz point, soft morning light from the left with gentle natural shadows. Objects grouped in the upper two thirds, the bottom third plain pale stone for text. Wide landscape framing. Text is overlaid on the lower third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open water, mist, sky or plain ground), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
-```
+Ninguna.
 
 ## 3. Por cablear (crear vistas) (0)
 
@@ -79,7 +70,7 @@ Publicadas, pero ninguna vista las pinta hoy. El prompt sólo sirve si se rehace
 Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Crystal and brass singing bowls glowing from within on a dark wooden platform over still water, candles between them, rings of light spreading across the surface, a soft haze; nobody present. The subject sits on the right, spanning roughly 50% to 80% of the frame width and centered at 45% vertical, and the left 45% of the frame is dark and empty because that side of the scene is unlit shore, water and sky, continuing across the whole width with no gradient, band or vertical edge; text is laid over that side later. Wide landscape framing. Text is overlaid on the left third of the image: keep that area dark, quiet and low in detail, dark because that side of the scene is in natural shadow (unlit hills, water and sky), never through a gradient, band or overlay. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, more than three vertical light lines, faces, facial features, eyes, nose, lips, ear, nude or anatomical detail, DNA, brain, dense starfield, lens flare, stock-photo look, cartoon, CGI plastic look.
 ```
 
-## 5. Completadas (126)
+## 5. Completadas (127)
 
 Entregadas y sin desviación conocida. Se conserva el prompt por si hay que repetirlas.
 
@@ -1336,4 +1327,15 @@ Create an image. Follow this description exactly and do not add elements, text o
 
 ```text
 Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). A sound bath in progress in morning light: a circle of abstract translucent silhouettes of pure light, each with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated around a ring of crystal singing bowls glowing pale gold and soft lavender from within, set on pale still water that mirrors them, concentric rings of light spreading across the surface, drifting bright haze above. Ring of bowls and figures in the right two thirds at 45% vertical, left third calm bright mist for the title and the booking button. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 5.127 · P2 · Tienda · banner ritual · tema · Amanecer
+
+- **Guardar como:** `store-ritual-banner-dawn.png` (luego se convierte a `store-ritual-banner-dawn.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Objects of ritual as matter in daylight: a top-down flat lay on pale sand-coloured stone of matches, copal resin, a small brass dish, dried herbs and a quartz point, soft morning light from the left with gentle natural shadows. Objects grouped in the upper two thirds, the bottom third plain pale stone for text. Wide landscape framing. Text is overlaid on the lower third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open water, mist, sky or plain ground), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
 ```
