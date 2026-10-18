@@ -2,8 +2,8 @@
 
 import type { ReactNode } from 'react';
 
+import { Collapse } from '@/components/ui';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
-import { cn } from '@/lib/cn';
 
 type ArrivalRevealProps = {
   open: boolean;
@@ -20,17 +20,11 @@ export function ArrivalReveal({ open, children }: ArrivalRevealProps) {
   const reduced = useReducedMotionSafe();
 
   return (
-    <div
-      inert={!open}
-      className={cn(
-        'grid',
-        reduced
-          ? 'transition-opacity duration-200'
-          : 'transition-[grid-template-rows,opacity] duration-500 ease-out',
-        open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
-      )}
+    <Collapse
+      open={open}
+      className={reduced ? 'transition-opacity duration-200 ease-[ease]' : 'duration-500 ease-out'}
     >
-      <div className="min-h-0 overflow-hidden">{children}</div>
-    </div>
+      {children}
+    </Collapse>
   );
 }

@@ -22,6 +22,7 @@ const cardSource = readSource('components/features/academy/course-card.tsx');
 const detailSource = readSource('components/features/academy/course-detail.tsx');
 const lessonListSource = readSource('components/features/academy/lesson-list.tsx');
 const moduleListSource = readSource('components/features/academy/module-list.tsx');
+const collapseSource = readSource('components/ui/collapse.tsx');
 const factsSource = readSource('components/features/academy/course-facts.tsx');
 const playerSource = readSource('components/features/academy/lesson-player.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
@@ -118,8 +119,10 @@ describe('academy editorial composition contracts', () => {
     expect(detailSource).toContain('sticky');
     expect(moduleListSource).toContain('<nav');
     expect(moduleListSource).toContain('<LessonList');
-    expect(moduleListSource).toContain('grid-rows-[0fr]');
-    expect(moduleListSource).toContain('grid-rows-[1fr]');
+    // El panel plegable es la primitiva `Collapse`: la fila `0fr`→`1fr` vive ahí.
+    expect(moduleListSource).toContain('<Collapse');
+    expect(collapseSource).toContain('grid-rows-[0fr]');
+    expect(collapseSource).toContain('grid-rows-[1fr]');
     expect(lessonListSource).toContain("aria-current={isCurrent ? 'page' : undefined}");
     expect(lessonListSource).toContain('min-h-11');
     expect(lessonPageSource).toContain('<LessonPlayer');

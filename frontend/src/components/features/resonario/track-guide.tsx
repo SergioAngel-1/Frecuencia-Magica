@@ -3,7 +3,7 @@
 import { useId, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { cn } from '@/lib/cn';
+import { Collapse } from '@/components/ui';
 
 type TrackGuideProps = {
   /** Postura y para qué momento sirve, ya traducido. */
@@ -31,20 +31,11 @@ export function TrackGuide({ guide }: TrackGuideProps) {
       >
         {t('guide.toggle')}
       </button>
-      <div
-        id={panelId}
-        inert={!open}
-        className={cn(
-          'grid transition-[grid-template-rows] duration-300 motion-reduce:transition-none',
-          open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
-        )}
-      >
-        <div className="overflow-hidden">
-          <div className="text-fg-body text-body flex flex-col gap-3 pt-3 font-light">
-            <p>{guide}</p>
-          </div>
+      <Collapse id={panelId} open={open} fade={false} className="duration-300 ease-[ease]">
+        <div className="text-fg-body text-body flex flex-col gap-3 pt-3 font-light">
+          <p>{guide}</p>
         </div>
-      </div>
+      </Collapse>
     </div>
   );
 }

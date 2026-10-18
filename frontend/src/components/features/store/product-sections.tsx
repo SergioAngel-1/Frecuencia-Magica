@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
+import { Collapse } from '@/components/ui';
 import { cn } from '@/lib/cn';
 
 const SECTION_KEYS = ['benefits', 'usage', 'ritual'] as const;
@@ -49,22 +50,11 @@ export function ProductSections() {
             {/* La fila de rejilla pasa de 0fr a 1fr: el panel se abre y se
                 cierra gradualmente sin animar `height`. Cerrado queda `inert`
                 y fuera del árbol de accesibilidad. */}
-            <div
-              id={bodyId}
-              aria-hidden={!isOpen}
-              inert={!isOpen}
-              data-editorial-accordion-panel={key}
-              className={cn(
-                'grid transition-[grid-template-rows,opacity] duration-[350ms] ease-[cubic-bezier(.2,.85,.25,1)]',
-                isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
-              )}
-            >
-              <div className="overflow-hidden">
-                <p className="text-fg-soft text-body pb-5 font-sans leading-[1.9]">
-                  {t(`productSections.${key}.body`)}
-                </p>
-              </div>
-            </div>
+            <Collapse id={bodyId} open={isOpen} data-editorial-accordion-panel={key}>
+              <p className="text-fg-soft text-body pb-5 font-sans leading-[1.9]">
+                {t(`productSections.${key}.body`)}
+              </p>
+            </Collapse>
           </div>
         );
       })}

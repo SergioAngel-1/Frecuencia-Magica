@@ -22,6 +22,7 @@ const cardSource = readSource('components/features/store/product-card.tsx');
 const detailSource = readSource('components/features/store/product-detail.tsx');
 const gallerySource = readSource('components/features/store/product-gallery.tsx');
 const sectionsSource = readSource('components/features/store/product-sections.tsx');
+const collapseSource = readSource('components/ui/collapse.tsx');
 const cartButtonSource = readSource('components/features/store/cart-button.tsx');
 const cartSource = readSource('components/features/store/cart-view.tsx');
 const emptyStateSource = readSource('components/ui/empty-state.tsx');
@@ -175,10 +176,11 @@ describe('store editorial composition contracts', () => {
     expect(sectionsSource).toContain('aria-controls={bodyId}');
     // Closed panels leave the tab order and the accessibility tree, and the
     // close is as gradual as the open: a grid row, never an animated height.
-    expect(sectionsSource).toContain('inert={!isOpen}');
-    expect(sectionsSource).toContain('aria-hidden={!isOpen}');
-    expect(sectionsSource).toContain('grid-rows-[1fr]');
-    expect(sectionsSource).toContain('grid-rows-[0fr]');
+    expect(sectionsSource).toContain('<Collapse');
+    expect(collapseSource).toContain('inert={!open}');
+    expect(collapseSource).toContain('aria-hidden={!open}');
+    expect(collapseSource).toContain('grid-rows-[1fr]');
+    expect(collapseSource).toContain('grid-rows-[0fr]');
     expect(sectionsSource).toContain('data-editorial-accordion="product"');
     expect(sectionsSource).not.toMatch(/transition-(?:height|\[height\])/);
   });
