@@ -120,6 +120,7 @@ export const COMPLETED = [
   'about-hero-dusk.avif',
   'about-hero-forest.avif',
   'auth-hero-dusk.avif',
+  'auth-hero-forest.avif',
   'auth-form-atmosphere.avif',
   'og-image.jpg',
   'discover-hero.avif',
