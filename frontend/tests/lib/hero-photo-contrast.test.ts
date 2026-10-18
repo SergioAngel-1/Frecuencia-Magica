@@ -39,6 +39,8 @@ const HEROES = [
   { place: 'Home', id: 'forest', file: 'home-hero-forest' },
   { place: 'Home', id: 'moon', file: 'home-hero-moon' },
   { place: 'Resonario', id: 'moon', file: 'resonario-hero-moon' },
+  { place: 'Resonario', id: 'dusk', file: 'resonario-hero-dusk' },
+  { place: 'Resonario', id: 'dawn', file: 'resonario-hero-dawn' },
   { place: 'Sobre Marisol', id: 'dusk', file: 'about-hero-dusk' },
   { place: 'Sobre Marisol', id: 'forest', file: 'about-hero-forest' },
   { place: 'Sobre Marisol', id: 'moon', file: 'about-hero-moon' },

@@ -58,6 +58,8 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
+  'resonario-hero-forest.avif':
+    'Primer intento rechazado (7/10, archivado en `.editorial-trials/`): los discos salieron como platillos planos vistos de canto, con hilos verticales que los cuelgan, lo que lee como ovni y rompe la serie (en los otros temas son círculos de frente). El prompt ya pide círculos perfectos de frente, sin hilos.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
@@ -196,6 +198,7 @@ export const COMPLETED = [
   'auth-hero-moon.avif',
   'store-hero-moon.avif',
   'sanctuary-hero-moon.avif',
+  'resonario-hero-dusk.avif',
 ]
 
 /**
