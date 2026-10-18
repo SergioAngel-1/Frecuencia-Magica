@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 115 completadas · 0 a corregir · 12 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 116 completadas · 0 a corregir · 11 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -246,7 +246,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `sanctuary-hero-dawn.avif` | Mi Santuario · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Faltantes |
 | `sanctuary-hero-forest.avif` | Mi Santuario · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `home-daily-frequency-dawn.avif` | Home · frecuencia del día · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
-| `home-realms-banner-dawn.avif` | Home · banner de realms · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
+| `home-realms-banner-dawn.avif` | Home · banner de realms · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `home-footer-banner-dawn.avif` | Home · cierre · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
 | `home-membership-dawn.avif` | Home · membresía · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
 | `about-angels-dawn.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
@@ -270,7 +270,7 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (12)
+### 5.2 Faltantes (11)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
@@ -288,22 +288,6 @@ Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota
 
 ```text
 A personal sanctuary at sunrise: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, resting on a cushion beside a large window that opens onto a mirror-calm lake in morning light, seen from behind looking out, sheer curtains stirring, a lit candle on the sill, soft pale-gold light balanced with a faint sky-blue glow, exactly three thin vertical light filaments in total, one gold, one teal and one lavender, rising from the water outside, and no other vertical lines anywhere. Window on the right with the figure beneath it, left third plain ivory wall and soft curtain light, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `home.realms-banner · Amanecer` — Home · banner de realms · tema · P1
-
-- **Archivo:** `home-realms-banner-dawn.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** Variante del tema Amanecer de `home.realms-banner`: la misma vista y el mismo encuadre, con la escena del tema. Mapa de los nueve reinos: la invitación a entrar.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A constellation as a map of nine realms in daylight: nine small luminous points of pale gold, soft teal and lavender light joined by the faintest filaments across a vast pale morning sky of soft sky blue and ivory, a slow arc of thin high cloud, a thin line of still water along the lower edge mirroring the points. Nine points spread across the width with the brightest near the center, calm pale edges. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
 ```
 
 #### `home.footer-banner · Amanecer` — Home · cierre · tema · P2
@@ -482,7 +466,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (115)
+### 5.5 Completadas (116)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -603,6 +587,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `sanctuary-hero-dusk.avif` | Mi Santuario · hero · tema · Atardecer | `sanctuary.hero` | 16:9 | P1 |
 | `sanctuary-hero-forest.avif` | Mi Santuario · hero · tema · Bosque | `sanctuary.hero` | 16:9 | P1 |
 | `home-daily-frequency-dawn.avif` | Home · frecuencia del día · tema · Amanecer | `home.daily-frequency` | 16:8 | P1 |
+| `home-realms-banner-dawn.avif` | Home · banner de realms · tema · Amanecer | `home.realms-banner` | 16:8 | P1 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (61)
 
