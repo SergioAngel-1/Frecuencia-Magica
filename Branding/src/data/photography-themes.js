@@ -331,71 +331,71 @@ export const THEME_VARIANTS = [
   {
     base: 'portal.hero',
     theme: 'moon',
-    subject: `A vast threshold over still water at night under a high moon: a circular opening of cool silver light, ${HALO}, hovering low above a calm deep blue sea at the horizon, its reflection on the water short and soft, ending at about 70% of the frame height, the sky deep night blue with a few dozen fine pinpoint stars in the upper third and a thin veil of cirrus mist, a faint teal glow low on the horizon at the left and a faint lavender glow low on the horizon at the right, both fading out well before the frame edges`,
+    subject: `A vast threshold over still water at night in soft moonlight: a circular opening of cool silver light, ${HALO}, hovering low above a calm sea at the horizon, its reflection on the water short and soft, ending at about 70% of the frame height, the sky deep night blue with a few dozen fine pinpoint stars in the upper third and a thin veil of cirrus mist, a faint teal glow low on the horizon at the left and a faint lavender glow low on the horizon at the right, both fading out well before the frame edges`,
     frame: RING_FRAME,
   },
   {
     base: 'home.hero',
     theme: 'moon',
-    subject: `The brand signature image under the moon: an ${BODY_OF_LIGHT}, resting on its side across the surface of a calm deep blue sea, seen softly from behind with the head turned away from the camera, its head close to the water where a soft diffuse silver glow gathers beneath it and ripples outward in concentric rings, the silhouette edged in cool silver with faint teal and lavender light flowing through it like fine veins of current, a few dozen fine pinpoint stars in the upper third and a pale moon high in the upper left, a thin veil of cirrus mist`,
+    subject: `The brand signature image in soft moonlight: an ${BODY_OF_LIGHT}, resting on its side across the surface of a calm sea, seen softly from behind with the head turned away from the camera, its head close to the water where a soft diffuse silver glow gathers beneath it and ripples outward in concentric rings, the silhouette edged in cool silver with faint teal and lavender light flowing through it like fine veins of current, a few dozen fine pinpoint stars in the upper third and a pale moon high in the upper left, a thin veil of cirrus mist`,
     frame: SIGNATURE_FRAME('open calm sea and soft moonlit sky'),
   },
   {
     base: 'resonario.hero',
     theme: 'moon',
-    subject: `A vast resonant space over still water under a high moon: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm deep blue surface that doubles them, cool silver rims, a pale moon high in the sky and a few dozen fine pinpoint stars, drifting haze, cinematic depth of field`,
+    subject: `A vast resonant space over still water in soft moonlight: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm surface that doubles them, cool silver rims, a few dozen fine pinpoint stars, drifting haze, cinematic depth of field`,
     frame: 'Discs receding from the upper right toward the center, the left third calm moonlit water and sky, low in detail',
   },
   {
     base: 'about.hero',
     theme: 'moon',
-    subject: `The place where the work begins, under the moon: a quiet terrace of dark stone opening onto a calm deep blue sea and a distant headland in silver haze, a low wooden table with a crystal singing bowl and a single lit candle standing in the middle distance at the far end of the terrace, near the edge of the water, a linen shawl left over a stone bench as if someone had just stepped out, cool silver moonlight and a few dozen fine pinpoint stars`,
+    subject: `The place where the work begins, in soft moonlight: a quiet terrace of dark stone opening onto a calm sea and a distant headland in silver haze, a low wooden table with a crystal singing bowl and a single lit candle standing in the middle distance at the far end of the terrace, near the edge of the water, a linen shawl left over a stone bench as if someone had just stepped out, cool silver moonlight and a few dozen fine pinpoint stars`,
     frame:
       'Table and candle at 60% horizontal and 40% vertical, which is the middle distance: the stone floor of the terrace extends in front of them across the whole lower half of the frame, the left third calm moonlit sea and sky for the title, the lower edge calm',
   },
   {
     base: 'auth.hero',
     theme: 'moon',
-    subject: `A tall arched doorway of soft silver-white light set into a wall of moonlit stone at the edge of a calm deep blue sea, seen from a few steps back, a gentle path of light spilling across the wet stone and the water toward the viewer, a deep night blue sky with a few fine stars above, quiet, inviting, nobody in the frame`,
+    subject: `A tall arched doorway of soft silver-white light set into a wall of moonlit stone at the edge of a calm sea, seen from a few steps back, a gentle path of light spilling across the wet stone and the water toward the viewer, a night sky with a few fine stars above, quiet, inviting, nobody in the frame`,
     frame: 'Arch placed in the right half, the left third plain calm wall, sea and soft sky for a quote',
   },
   {
     base: 'discover.hero',
     theme: 'moon',
-    subject: `The beginning of a discovery under the moon: a narrow path of pale stone steps rising from a calm deep blue sea into a silver mist under a high moon over distant ridges in haze, a sense of a first step, no people`,
+    subject: `The beginning of a discovery in soft moonlight: a narrow path of pale stone steps rising from a calm sea into a soft silver mist over distant ridges in haze, a sense of a first step, no people`,
     frame:
       'Path entering from the lower right corner and curving gently to the left as it recedes, so that its far end and the pale light converge exactly at the horizontal center of the frame (50% horizontal, 40% vertical), the left third calm and low in detail',
   },
   {
     base: 'academy.hero',
     theme: 'moon',
-    subject: `Study as a scene under the moon: a low wooden desk on a quiet seaside terrace with an open blank notebook, a ceramic bowl and a lit candle, a calm deep blue sea and a far headland in silver haze, cool moonlight, no people`,
+    subject: `Study as a scene in soft moonlight: a low wooden desk on a quiet seaside terrace with an open blank notebook, a ceramic bowl and a lit candle, a calm sea and a far headland in silver haze, cool moonlight, no people`,
     frame: 'Desk in the right half, the left third calm sea and soft sky, low in detail for the headline',
   },
   {
     base: 'experiences.hero',
     theme: 'moon',
-    subject: `The journey as a promise under the moon: a path of pale stepping stones across a calm deep blue lake toward a simple open pavilion on the far shore: a pavilion of timber with slim square posts and a low plain gabled roof, with no curved eaves, no tiered roof and no ornament, belonging to no particular culture, silver mist between dark trees and hills, a pale moon high in the sky, nobody present`,
+    subject: `The journey as a promise in soft moonlight: a path of pale stepping stones across a calm lake toward a simple open pavilion on the far shore: a pavilion of timber with slim square posts and a low plain gabled roof, with no curved eaves, no tiered roof and no ornament, belonging to no particular culture, silver mist between dark trees and hills, nobody present`,
     frame:
       'Pavilion centered at exactly 55% of the frame width (just right of center) and 40% vertical, stepping stones leading in from the lower left, the left third calm moonlit water and mist, low in detail',
   },
   {
     base: 'booking.hero',
     theme: 'moon',
-    subject: `An empty serene place ready to receive: floor cushions arranged in a circle on a wooden deck over a calm deep blue sea at night, a few candles that are not lit, unburnt white wax with dark wicks and no flame, giving no light at all, so that the only light in the scene is the cool silver moonlight on the planks and the headland beyond`,
+    subject: `An empty serene place ready to receive: floor cushions arranged in a circle on a wooden deck over a calm sea at night, a few candles that are not lit, unburnt white wax with dark wicks and no flame, giving no light at all, so that the only light in the scene is the cool silver moonlight on the planks and the headland beyond`,
     frame:
       'Wide symmetrical, circle of cushions in the middle distance, the left third open calm sea and soft sky for the headline: the horizon and the haze continue across the whole width with no gradient, no band and no vertical edge',
   },
   {
     base: 'store.hero',
     theme: 'moon',
-    subject: `The ritual of acquiring under the moon: a dark stone ledge at the edge of a calm deep blue sea with a still life of an amber glass bottle, a honey-coloured candle, a rose quartz point and a bundle of incense, cool silver moonlight raking across the objects and reflecting in the water behind them`,
+    subject: `The ritual of acquiring in soft moonlight: a dark stone ledge at the edge of a calm sea with a still life of an amber glass bottle, a honey-coloured candle, a rose quartz point and a bundle of incense, cool silver moonlight raking across the objects and reflecting in the water behind them`,
     frame: 'Objects in the right half at 40% vertical, the left third calm open water and soft sky for the headline',
   },
   {
     base: 'sanctuary.hero',
     theme: 'moon',
-    subject: `A personal sanctuary under the moon: an ${BODY_OF_LIGHT}, resting on a cushion beside a large window that opens onto a calm deep blue sea under a high moon, seen from behind looking out, sheer curtains stirring, a lit candle on the sill, cool silver light balanced with a faint teal glow, ${filaments('rising from the water outside')}`,
+    subject: `A personal sanctuary in soft moonlight: an ${BODY_OF_LIGHT}, resting on a cushion beside a large window that opens onto a calm sea in soft moonlight, seen from behind looking out, sheer curtains stirring, a lit candle on the sill, cool silver light balanced with a faint teal glow, ${filaments('rising from the water outside')}`,
     frame: 'Window on the right with the figure beneath it, left third calm wall and soft curtain light, low in detail',
   },
 

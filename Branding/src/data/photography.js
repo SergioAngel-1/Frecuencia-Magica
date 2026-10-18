@@ -155,7 +155,7 @@ export const GLOBAL = {
     treatments: {
       dusk: 'Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light.',
       dawn: 'Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows.',
-      moon: 'Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black.',
+      moon: 'Dominant tone: cool silver-blue moonlight over a night of deep teal-blue, the whole scene clearly lit and readable by a soft luminous silver light on the water, the mist and the stone, with small warm accents (a candle, a distant lamp) for depth; shadows in lifted deep blue, never pure black, never a flat dark image.',
       forest: 'Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated.',
       'forest-autumn': 'Dominant tone: natural amber, russet and gold foliage with a few soft greens; warm and cozy, not saturated.',
       study: 'Dominant tone: cream, ivory, natural wood and linen in soft morning light; bright and welcoming.',

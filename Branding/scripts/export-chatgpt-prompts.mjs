@@ -24,6 +24,11 @@ const AVOID_ATMOSPHERE =
   'Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, ' +
   'blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, ' +
   'people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.'
+/** Luna: su tono es el azul noche, así que no se prohíbe «un tinte marino»; se prohíbe lo contrario (naranja) y la imagen plana y oscura. */
+const AVOID_MOON = AVOID_ATMOSPHERE.replace(
+  'a navy or gold color cast over the whole image, crushed black shadows,',
+  'a warm orange or gold color cast over the whole image, a flat black image, a large detailed moon disc, crushed black shadows,',
+)
 const AVOID_PORTRAIT = AVOID.replace('faces, facial features, eyes, nose, lips, ear, ', '')
 
 const FORMAT = {
@@ -93,7 +98,9 @@ for (const [index, state] of STATES.entries()) {
   for (const [position, { row, status }] of items.entries()) {
     const label = row.title ? `${row.view} · ${row.title}` : row.view
     const avoid = isAtmosphere(row)
-      ? AVOID_ATMOSPHERE
+      ? row.theme === 'moon'
+        ? AVOID_MOON
+        : AVOID_ATMOSPHERE
       : row.reference
         ? AVOID_REFERENCE
         : row.realShoot
