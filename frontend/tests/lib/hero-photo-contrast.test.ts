@@ -36,6 +36,7 @@ const HEROES = [
   { place: 'Resonario', id: 'moon', file: 'resonario-hero-moon' },
   { place: 'Sobre Marisol', id: 'dusk', file: 'about-hero-dusk' },
   { place: 'Sobre Marisol', id: 'forest', file: 'about-hero-forest' },
+  { place: 'Sobre Marisol', id: 'moon', file: 'about-hero-moon' },
 ] as const;
 
 const W = 640;

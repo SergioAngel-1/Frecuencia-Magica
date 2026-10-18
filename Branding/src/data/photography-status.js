@@ -188,6 +188,7 @@ export const COMPLETED = [
   'portal-hero-moon.avif',
   'home-hero-moon.avif',
   'resonario-hero-moon.avif',
+  'about-hero-moon.avif',
 ]
 
 /**

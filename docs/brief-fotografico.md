@@ -8,7 +8,7 @@
 
 **138 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 99 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 126 completadas · 0 a corregir · 11 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 127 completadas · 0 a corregir · 10 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -256,7 +256,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
-| `about-hero-moon.avif` | Sobre Marisol · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `about-hero-moon.avif` | Sobre Marisol · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
 | `auth-hero-moon.avif` | Acceso · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
 | `discover-hero-moon.avif` | Descúbrete · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
 | `academy-hero-moon.avif` | Academia · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
@@ -280,25 +280,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (11)
+### 5.2 Faltantes (10)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `about.hero · Luna` — Sobre Marisol · hero · tema · P1
-
-- **Archivo:** `about-hero-moon.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Luna de `about.hero`: la misma vista y el mismo encuadre, con la escena del tema. Cabecera de la vista de Marisol: el lugar desde el que acompaña.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The place where the work begins, in soft moonlight: a quiet terrace of dark stone opening onto a calm sea and a distant headland in silver haze, a low wooden table with a crystal singing bowl and a single lit candle standing in the middle distance at the far end of the terrace, near the edge of the water, a linen shawl left over a stone bench as if someone had just stepped out, cool silver moonlight and a few dozen fine pinpoint stars. Table and candle at 60% horizontal and 40% vertical, which is the middle distance: the stone floor of the terrace extends in front of them across the whole lower half of the frame, the left third calm moonlit sea and sky for the title, the lower edge calm. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: cool silver-blue moonlight over a night of deep teal-blue, the whole scene clearly lit and readable by a soft luminous silver light on the water, the mist and the stone, with small warm accents (a candle, a distant lamp) for depth; shadows in lifted deep blue, never pure black, never a flat dark image. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `auth.hero · Luna` — Acceso · hero · tema · P1
 
@@ -474,7 +458,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (126)
+### 5.5 Completadas (127)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -606,6 +590,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
+| `about-hero-moon.avif` | Sobre Marisol · hero · tema · Luna | `about.hero` | 16:9 | P1 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (71)
 
