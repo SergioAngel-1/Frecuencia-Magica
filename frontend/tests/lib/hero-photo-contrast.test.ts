@@ -27,6 +27,7 @@ const MIN = 4.5;
 /** Héroe con imagen propia de un tema publicada -> tema cuyos tokens pinta y archivo de la variante. */
 const HEROES = [
   { place: 'Academia', id: 'dawn', file: 'academy-hero-dawn' },
+  { place: 'Academia', id: 'moon', file: 'academy-hero-moon' },
   { place: 'Sobre Marisol', id: 'dawn', file: 'about-hero-dawn' },
   { place: 'Tienda', id: 'dawn', file: 'store-hero-dawn' },
   { place: 'Home', id: 'dusk', file: 'home-hero-dusk' },
