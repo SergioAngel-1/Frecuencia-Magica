@@ -75,11 +75,21 @@ function EmptyContent({ title, body, action, illustration, className }: EmptyCon
           size={120}
           spin={140}
           rings={[
-            { r: 96, stroke: 'rgba(247,244,234,0.14)', width: 0.8 },
-            { r: 62, stroke: 'rgba(247,244,234,0.10)', width: 0.7, dash: '1 8' },
+            { r: 96, stroke: 'color-mix(in srgb, var(--color-fg) 14%, transparent)', width: 0.8 },
+            {
+              r: 62,
+              stroke: 'color-mix(in srgb, var(--color-fg) 10%, transparent)',
+              width: 0.7,
+              dash: '1 8',
+            },
           ]}
         >
-          <OrbitalRings.Node angle={-90} radius={96} color="rgba(247,244,234,0.28)" size={6} />
+          <OrbitalRings.Node
+            angle={-90}
+            radius={96}
+            color="color-mix(in srgb, var(--color-fg) 28%, transparent)"
+            size={6}
+          />
         </OrbitalRings>
       )}
 

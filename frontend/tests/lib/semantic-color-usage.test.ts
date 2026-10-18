@@ -115,19 +115,13 @@ const ALLOWED: Record<string, string> = {
     'geometría sagrada y halo del isotipo del héroe (decorativo)',
   'components/features/portal/portal-scene.tsx': 'portal: anillos y halo del cruce (decorativo)',
   'components/features/sanctuary/sanctuary-header.tsx': 'halo decorativo sin texto ni controles',
-  'components/features/player/player-orb.tsx': 'brillo especular del orbe (decorativo)',
   'components/layout/brand-mark.tsx': 'halo del isotipo (decorativo)',
   'components/layout/talk-float.tsx': 'aura decorativa del botón de hablar (decorativo)',
-  'components/world/wave-separator.tsx': 'halos del world engine: separador de ondas (decorativo)',
 
-  // Aros y halos del UI Kit: decorativos, no se migran (T0.7 decide su visibilidad por atmósfera).
-  'components/ui/empty-state.tsx': 'aros orbitales del vacío (decorativo)',
-  'components/ui/error-state.tsx': 'aros orbitales del estado de error (decorativo)',
-  'components/ui/loading-orb.tsx': 'aros, halo y núcleo del orbe de espera (decorativo)',
+  // Aros y halos decorativos con utilidad de paleta cruda que quedan: su visibilidad
+  // en atmósferas claras la gobierna el perfil de engine (T0.7), no el tema.
   'components/ui/media-skeleton.tsx': 'aros y halo de luz de la zebra (decorativo)',
   'components/ui/editorial-banner.tsx': 'aro orbital decorativo de la banda (border-gold/25)',
-  'components/ui/frequency-disc.tsx':
-    'aros, halos y resplandor del disco (decorativo); texto y bordes ya migrados',
   'components/features/experiences/experience-row.tsx': 'aros orbitales de la fila (decorativo)',
   'components/features/home/realm-card.tsx':
     'aros orbitales de la card (decorativo) y peldaño void-2 del fundido (sin token)',
@@ -138,8 +132,6 @@ const ALLOWED: Record<string, string> = {
   // acceso es siempre noche y el degradado de la card cae sobre foto con texto `on-media`.
   'components/features/player/video-player.tsx':
     'fondo y velo void-2 del vídeo: superficie de medio, oscura en toda atmósfera (controles en marfil)',
-  'components/ui/band.tsx':
-    'base void-2 del degradado inferior de la card: sin token equivalente (decisión abierta)',
 };
 
 describe('semantic color usage', () => {

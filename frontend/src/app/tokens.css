@@ -91,11 +91,13 @@
   --radius-field: 14px;
   --radius-pill: 999px;
 
-  /* Halos: el oro/teal/lavanda como luz, nunca como relleno. */
-  --shadow-glow-gold: 0 0 24px rgb(216 185 120 / 0.25);
-  --shadow-glow-teal: 0 0 24px rgb(150 198 188 / 0.25);
-  --shadow-glow-lav: 0 0 24px rgb(185 176 214 / 0.25);
-  --shadow-glow-card: 0 0 60px rgb(216 185 120 / 0.18);
+  /* Halos: el oro/teal/lavanda como luz, nunca como relleno. Leen el tema en
+     tiempo de ejecución: `--halo` es el halo activo y los acentos 2 y 3, las
+     bandas secundarias. */
+  --shadow-glow-gold: 0 0 24px rgb(var(--halo) / 0.25);
+  --shadow-glow-teal: 0 0 24px color-mix(in srgb, var(--color-accent-2) 25%, transparent);
+  --shadow-glow-lav: 0 0 24px color-mix(in srgb, var(--color-accent-3) 25%, transparent);
+  --shadow-glow-card: 0 0 60px rgb(var(--halo) / 0.18);
 
   /* Animaciones. Las duraciones que varían por instancia (los 60s/70s/90s/
      100s/110s/130s/200s de las geometrías) se aplican inline en cada uso. */

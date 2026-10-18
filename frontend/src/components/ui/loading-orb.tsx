@@ -5,16 +5,20 @@ import { cn } from '@/lib/cn';
 
 export type OrbTone = 'lav' | 'gold' | 'teal';
 
-/** Acento del orbe como terna RGB, para componer sus luces a distinta opacidad. */
-const TONE_RGB: Record<OrbTone, string> = {
-  lav: '185,176,214',
-  gold: '216,185,120',
-  teal: '150,198,188',
+/** Acento del orbe como token de tema, para componer sus luces a distinta opacidad. */
+const TONE_COLOR: Record<OrbTone, string> = {
+  lav: 'var(--color-accent-3)',
+  gold: 'var(--color-accent)',
+  teal: 'var(--color-accent-2)',
 };
 
+/** El acento del orbe a una opacidad dada. */
+const tint = (color: string, alpha: number) =>
+  `color-mix(in srgb, ${color} ${Math.round(alpha * 100)}%, transparent)`;
+
 /** Núcleo del remate: luz que nace descentrada, como una esfera iluminada de lado. */
-const core = (rgb: string) =>
-  `radial-gradient(circle at 42% 38%, rgba(247,244,234,0.92), rgba(${rgb},0.6) 44%, transparent 72%)`;
+const core = (color: string) =>
+  `radial-gradient(circle at 42% 38%, ${tint('var(--color-fg)', 0.92)}, ${tint(color, 0.6)} 44%, transparent 72%)`;
 
 interface LoadingOrbProps {
   size?: number;
@@ -49,7 +53,7 @@ export function LoadingOrb({
   loading = true,
   className,
 }: LoadingOrbProps) {
-  const rgb = TONE_RGB[tone];
+  const color = TONE_COLOR[tone];
 
   return (
     <div
@@ -57,32 +61,32 @@ export function LoadingOrb({
       {...(loading ? { role: 'status' } : {})}
     >
       <div className="relative" style={{ width: size, height: size }}>
-        <Halo color={`rgba(${rgb},0.3)`} blur={16} inset={loading ? '-14%' : '-22%'} />
+        <Halo color={tint(color, 0.3)} blur={16} inset={loading ? '-14%' : '-22%'} />
 
         {loading ? (
           <>
             <span
               aria-hidden="true"
-              className="animate-fm-ring border-ivory/35 absolute inset-[31%] rounded-full border"
+              className="animate-fm-ring border-fg/35 absolute inset-[31%] rounded-full border"
             />
             <OrbitalRings
               size={size}
               spin={7}
-              rings={[{ r: 62, stroke: `rgba(${rgb},0.42)`, width: 0.8 }]}
+              rings={[{ r: 62, stroke: tint(color, 0.42), width: 0.8 }]}
               className="absolute inset-0"
               style={{ width: '100%', height: '100%' }}
             >
-              <OrbitalRings.Node angle={-90} radius={62} color="var(--color-ivory)" size={6} />
+              <OrbitalRings.Node angle={-90} radius={62} color="var(--color-fg)" size={6} />
             </OrbitalRings>
             <OrbitalRings
               size={size}
               spin={11}
               direction="ccw"
-              rings={[{ r: 62, stroke: 'rgba(216,185,120,0.4)', width: 0.9, dash: '2 9' }]}
+              rings={[{ r: 62, stroke: tint(TONE_COLOR.gold, 0.4), width: 0.9, dash: '2 9' }]}
               className="absolute inset-[14%]"
               style={{ width: '72%', height: '72%' }}
             >
-              <OrbitalRings.Node angle={140} radius={62} color="var(--color-gold)" size={5} />
+              <OrbitalRings.Node angle={140} radius={62} color="var(--color-accent)" size={5} />
             </OrbitalRings>
           </>
         ) : null}
@@ -95,8 +99,8 @@ export function LoadingOrb({
             aria-hidden="true"
             className="absolute inset-0 rounded-full"
             style={{
-              background: core(rgb),
-              boxShadow: `0 0 ${Math.round(size * 0.6)}px ${Math.round(size * 0.16)}px rgba(${rgb},0.3)`,
+              background: core(color),
+              boxShadow: `0 0 ${Math.round(size * 0.6)}px ${Math.round(size * 0.16)}px ${tint(color, 0.3)}`,
             }}
           />
         )}

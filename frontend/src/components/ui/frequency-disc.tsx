@@ -51,8 +51,8 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     eq: null,
     halo: null,
     aura: { inset: '-10%', blur: 12, rest: 0.6, active: 0.9 },
-    restGlow: '0 0 18px rgba(216,185,120,0.14), inset 0 0 14px rgba(15,27,46,0.35)',
-    activeGlow: '0 0 30px rgba(216,185,120,0.42), inset 0 0 14px rgba(15,27,46,0.35)',
+    restGlow: '0 0 18px rgb(var(--halo) / 0.14), inset 0 0 14px rgb(var(--scrim) / 0.35)',
+    activeGlow: '0 0 30px rgb(var(--halo) / 0.42), inset 0 0 14px rgb(var(--scrim) / 0.35)',
   },
   sm: {
     width: 150,
@@ -66,8 +66,8 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     eq: null,
     halo: null,
     aura: { inset: '-12%', blur: 14, rest: 0.6, active: 0.9 },
-    restGlow: '0 0 26px rgba(216,185,120,0.16), inset 0 0 20px rgba(15,27,46,0.35)',
-    activeGlow: '0 0 44px rgba(216,185,120,0.45), inset 0 0 20px rgba(15,27,46,0.35)',
+    restGlow: '0 0 26px rgb(var(--halo) / 0.16), inset 0 0 20px rgb(var(--scrim) / 0.35)',
+    activeGlow: '0 0 44px rgb(var(--halo) / 0.45), inset 0 0 20px rgb(var(--scrim) / 0.35)',
   },
   md: {
     width: 190,
@@ -83,8 +83,8 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     eq: null,
     halo: { inset: '-10%', blur: 14, alpha: 0.22 },
     aura: null,
-    restGlow: '0 0 22px rgba(15,27,46,0.5)',
-    activeGlow: '0 0 44px rgba(216,185,120,0.4)',
+    restGlow: '0 0 22px rgb(var(--scrim) / 0.5)',
+    activeGlow: '0 0 44px rgb(var(--halo) / 0.4)',
   },
   lg: {
     width: 380,
@@ -98,8 +98,8 @@ const SIZES: Record<DiscSize, SizeSpec> = {
     eq: 'lg',
     halo: { inset: '-26%', blur: 34, alpha: 0.2 },
     aura: { inset: '-9%', blur: 34, rest: 0.75, active: 1 },
-    restGlow: '0 0 46px rgba(216,185,120,0.26), inset 0 0 44px rgba(15,27,46,0.42)',
-    activeGlow: '0 0 64px rgba(216,185,120,0.44), inset 0 0 44px rgba(15,27,46,0.42)',
+    restGlow: '0 0 46px rgb(var(--halo) / 0.26), inset 0 0 44px rgb(var(--scrim) / 0.42)',
+    activeGlow: '0 0 64px rgb(var(--halo) / 0.44), inset 0 0 44px rgb(var(--scrim) / 0.42)',
   },
 };
 
@@ -109,15 +109,22 @@ function ringsFor(size: DiscSize, active: boolean): readonly Ring[] {
 
   if (size === 'lg') {
     return [
-      { r: 98, stroke: `rgba(216,185,120,${active ? 0.75 : 0.55})`, width: 0.7 },
-      { r: 86, stroke: 'rgba(185,176,214,0.35)', width: 0.6, dash: '1 7' },
+      { r: 98, stroke: `rgb(var(--halo) / ${active ? 0.75 : 0.55})`, width: 0.7 },
+      {
+        r: 86,
+        stroke: 'color-mix(in srgb, var(--color-accent-3) 35%, transparent)',
+        width: 0.6,
+        dash: '1 7',
+      },
     ];
   }
 
   return [
     {
       r: 97,
-      stroke: active ? `rgba(216,185,120,${dim})` : 'rgba(247,244,234,0.22)',
+      stroke: active
+        ? `rgb(var(--halo) / ${dim})`
+        : 'color-mix(in srgb, var(--color-fg) 22%, transparent)',
       width: size === 'md' ? 1 : 1.2,
       dash: size === 'md' ? '1 7' : '1 8',
     },
@@ -200,7 +207,7 @@ export function FrequencyDisc({
       <div className="relative mx-auto aspect-square w-full" style={float}>
         {spec.halo ? (
           <Halo
-            color={`rgba(216,185,120,${spec.halo.alpha})`}
+            color={`rgb(var(--halo) / ${spec.halo.alpha})`}
             blur={spec.halo.blur}
             inset={spec.halo.inset}
           />
@@ -229,13 +236,20 @@ export function FrequencyDisc({
           className="absolute inset-0"
           style={{ width: '100%', height: '100%', opacity: active ? 1 : 0.7 }}
         >
-          <OrbitalRings.Node angle={-90} radius={97} color="var(--color-gold)" size={5} />
+          <OrbitalRings.Node angle={-90} radius={97} color="var(--color-accent)" size={5} />
         </OrbitalRings>
 
         {size === 'lg' ? (
           <OrbitalRings
             size={box}
-            rings={[{ r: 90, stroke: 'rgba(150,198,188,0.4)', width: 0.6, dash: '2 12' }]}
+            rings={[
+              {
+                r: 90,
+                stroke: 'color-mix(in srgb, var(--color-accent-2) 40%, transparent)',
+                width: 0.6,
+                dash: '2 12',
+              },
+            ]}
             spin={80}
             direction="ccw"
             className="absolute inset-0"
