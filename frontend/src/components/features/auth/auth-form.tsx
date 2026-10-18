@@ -108,7 +108,7 @@ export function AuthForm({ media }: AuthFormProps) {
       data-auth-layout="form"
       // En móvil el panel continúa la banda del héroe: sin filete ni fondo
       // propio, su atmósfera y su velo funden el borde superior en la noche.
-      className="border-accent/15 min-[900px]:bg-void-2/84 relative isolate min-h-[clamp(620px,100svh,980px)] overflow-hidden min-[900px]:min-h-[100svh] min-[900px]:border-l"
+      className="border-accent/15 min-[900px]:bg-scrim-deep/84 relative isolate min-h-[clamp(620px,100svh,980px)] overflow-hidden min-[900px]:min-h-[100svh] min-[900px]:border-l"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-30">
         <EditorialImage
@@ -122,7 +122,7 @@ export function AuthForm({ media }: AuthFormProps) {
       </div>
       <div
         aria-hidden="true"
-        className="fm-fade-top pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgb(var(--scrim)_/_0.68),rgba(10,18,32,0.94))]"
+        className="fm-fade-top pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgb(var(--scrim)_/_0.68),rgb(var(--scrim-deep)_/_0.94))]"
       />
 
       {/* Una sola columna: conmutador, campos y botones comparten ancho. Antes

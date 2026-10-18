@@ -5,9 +5,9 @@ import { Halo, Isotype, OrbitalRings } from '@/components/world';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 const ASIDE_GRADIENT =
-  'linear-gradient(150deg, rgba(150,198,188,0.16), rgba(15,27,46,0.55) 55%, rgba(185,176,214,0.14))';
-const ASIDE_GLOW = 'radial-gradient(60% 55% at 50% 44%, rgba(216,185,120,0.18), transparent 62%)';
-const ASIDE_FADE = 'linear-gradient(180deg, transparent 60%, rgba(10,18,32,0.78))';
+  'linear-gradient(150deg, rgb(var(--nebula-a) / 0.16), rgb(var(--scrim) / 0.55) 55%, rgb(var(--nebula-b) / 0.14))';
+const ASIDE_GLOW = 'radial-gradient(60% 55% at 50% 44%, rgb(var(--halo) / 0.18), transparent 62%)';
+const ASIDE_FADE = 'linear-gradient(180deg, transparent 60%, rgb(var(--scrim-deep) / 0.78))';
 
 export interface AuthAsideProps {
   media: EditorialMedia;

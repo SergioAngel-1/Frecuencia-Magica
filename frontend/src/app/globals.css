@@ -421,7 +421,8 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
    en dos mitades: se lava hasta quedar como un paisaje velado sobre el fondo del tema. Cuando la
    variante existe, la regla de arriba oculta la base y esta no importa. */
 [data-scheme='light'] [data-photo-night] {
-  opacity: 0.38;
+  opacity: 0.4;
+  filter: sepia(0.9) saturate(1.3) brightness(1.55) contrast(0.85);
 }
 
 /* Durante el fundido de un cambio de tema (`AtmosphereProvider`), los colores del sitio transitan

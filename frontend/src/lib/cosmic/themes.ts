@@ -75,11 +75,11 @@ export const SCENE_THEMES: Record<AtmosphereId, SceneTheme> = {
       },
     ],
     nebulae: [
-      [232, 164, 143],
-      [230, 194, 143],
-      [201, 179, 201],
+      [214, 120, 130],
+      [240, 170, 110],
+      [170, 140, 210],
     ],
-    nebulaAlpha: 0.12,
+    nebulaAlpha: 0.18,
   },
   dawn: {
     stars: { count: 0, rgb: [255, 255, 255], alpha: 0, twinkle: 0 },
@@ -88,17 +88,17 @@ export const SCENE_THEMES: Record<AtmosphereId, SceneTheme> = {
         kind: 'mote',
         count: 44,
         mobile: 24,
-        rgb: [190, 140, 60],
+        rgb: [168, 104, 52],
         radius: [1.2, 3.4],
         alpha: [0.3, 0.65],
       },
     ],
     nebulae: [
-      [170, 200, 220],
-      [240, 190, 150],
-      [214, 180, 110],
+      [226, 150, 140],
+      [238, 196, 130],
+      [214, 164, 190],
     ],
-    nebulaAlpha: 0.3,
+    nebulaAlpha: 0.26,
   },
   moon: {
     stars: { count: 150, rgb: [214, 224, 240], alpha: 1, twinkle: 0.8 },
@@ -117,7 +117,7 @@ export const SCENE_THEMES: Record<AtmosphereId, SceneTheme> = {
       [207, 216, 230],
       [185, 176, 214],
     ],
-    nebulaAlpha: 0.1,
+    nebulaAlpha: 0.14,
   },
   forest: {
     stars: { count: 40, rgb: [235, 240, 215], alpha: 0.5, twinkle: 0.5 },
@@ -144,7 +144,7 @@ export const SCENE_THEMES: Record<AtmosphereId, SceneTheme> = {
       [216, 196, 138],
       [150, 198, 188],
     ],
-    nebulaAlpha: 0.11,
+    nebulaAlpha: 0.16,
   },
 };
 

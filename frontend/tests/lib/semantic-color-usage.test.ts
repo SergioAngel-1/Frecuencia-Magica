@@ -140,8 +140,6 @@ const ALLOWED: Record<string, string> = {
     'fondo y velo void-2 del vídeo: superficie de medio, oscura en toda atmósfera (controles en marfil)',
   'components/ui/band.tsx':
     'base void-2 del degradado inferior de la card: sin token equivalente (decisión abierta)',
-  'components/features/auth/auth-form.tsx':
-    'velo void-2 del panel y peldaño void-2 del degradado: sin token equivalente (decisión abierta)',
 };
 
 describe('semantic color usage', () => {

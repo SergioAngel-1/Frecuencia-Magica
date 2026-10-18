@@ -19,13 +19,13 @@ export const ATMOSPHERES: Record<AtmosphereId, AtmosphereDefinition> = {
   },
   dusk: {
     scheme: 'dark',
-    themeColor: '#2B1C22',
+    themeColor: '#2A1A3C',
     engine: { canvas: 1, nebula: 1, figures: 0.9 },
     droneNote: 87.3,
   },
   dawn: {
     scheme: 'light',
-    themeColor: '#DCE7EC',
+    themeColor: '#F0D6C3',
     engine: { canvas: 1, nebula: 1, figures: 0.7 },
     droneNote: 146.8,
   },
