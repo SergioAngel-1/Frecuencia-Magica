@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 122 completadas · 0 a corregir · 5 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 123 completadas · 0 a corregir · 4 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -250,7 +250,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `home-footer-banner-dawn.avif` | Home · cierre · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `home-membership-dawn.avif` | Home · membresía · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `about-angels-dawn.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
-| `auth-form-atmosphere-dawn.avif` | Acceso · formulario · tema · Amanecer | 3:4 | 1440×1920 | P2 | Faltantes |
+| `auth-form-atmosphere-dawn.avif` | Acceso · formulario · tema · Amanecer | 3:4 | 1440×1920 | P2 | Completadas |
 | `discover-question-atmosphere-dawn.avif` | Descúbrete · pregunta · tema · Amanecer | 3:4 | 1440×1920 | P2 | Faltantes |
 | `resonario-featured-dawn.avif` | Resonario · destacado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `resonario-archive-banner-dawn.avif` | Resonario · archivo · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
@@ -270,25 +270,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (5)
+### 5.2 Faltantes (4)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `auth.form-atmosphere · Amanecer` — Acceso · formulario · tema · P2
-
-- **Archivo:** `auth-form-atmosphere-dawn.avif`
-- **Medidas:** master 1440×1920 · tablet 1080×1440 · móvil 780×1040 · generar a 1536×2048 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 3:4 · foco 50% 50%
-- **Zona de texto:** Luminosidad alta y contraste muy bajo: va detrás de un formulario de cristal en un tema claro
-- **Contenido:** Variante del tema Amanecer de `auth.form-atmosphere`: la misma vista y el mismo encuadre, con la escena del tema. Fondo atmosférico del formulario de acceso.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Intimate calm in morning light: a surface of pale still water with a single soft pale-gold point of light as small as a distant star, hovering just above the water, its reflection a short soft streak on the surface directly beneath it, the only element in the frame, with nothing around it or in front of it, and faint blue mist drifting low, a soft blurred ivory background. Vertical, very light and low contrast (a form is laid over it later), the point of light in the lower third, generous soft ivory space above. Vertical portrait framing. Interface content is laid over this image later: keep the whole image very light and very low in contrast, with nothing sharp, and make it only of what is described above, with no additional object, shape or outline. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `discover.question-atmosphere · Amanecer` — Descúbrete · pregunta · tema · P2
 
@@ -370,7 +354,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (122)
+### 5.5 Completadas (123)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -496,6 +480,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `home-footer-banner-dawn.avif` | Home · cierre · tema · Amanecer | `home.footer-banner` | 16:9 | P2 |
 | `home-membership-dawn.avif` | Home · membresía · tema · Amanecer | `home-membership` | 16:9 | P2 |
 | `about-angels-dawn.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Amanecer | `about.angels` | 16:8 | P1 |
+| `auth-form-atmosphere-dawn.avif` | Acceso · formulario · tema · Amanecer | `auth.form-atmosphere` | 3:4 | P2 |
 | `resonario-featured-dawn.avif` | Resonario · destacado · tema · Amanecer | `resonario.featured` | 16:8 | P1 |
 | `resonario-archive-banner-dawn.avif` | Resonario · archivo · tema · Amanecer | `resonario.archive-banner` | 16:9 | P2 |
 

@@ -184,6 +184,7 @@ export const COMPLETED = [
   'about-angels-dawn.avif',
   'resonario-featured-dawn.avif',
   'resonario-archive-banner-dawn.avif',
+  'auth-form-atmosphere-dawn.avif',
 ]
 
 /**
