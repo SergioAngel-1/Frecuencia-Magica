@@ -337,7 +337,7 @@ export const THEME_VARIANTS = [
   {
     base: 'home.hero',
     theme: 'moon',
-    subject: `The brand signature image in soft moonlight: an ${BODY_OF_LIGHT}, resting on its side across the surface of a calm sea, seen softly from behind with the head turned away from the camera, its head close to the water where a soft diffuse silver glow gathers beneath it and ripples outward in concentric rings, the silhouette edged in cool silver with faint teal and lavender light flowing through it like fine veins of current, a few dozen fine pinpoint stars in the upper third and a pale moon high in the upper left, a thin veil of cirrus mist`,
+    subject: `The brand signature image in soft moonlight: an ${BODY_OF_LIGHT}, resting on its side across the surface of a calm sea like a person lying down, clearly readable as a human form with a distinct round head, shoulders, back and the long line of the legs ending in the water, not a blob and not a jellyfish, seen softly from behind with the head turned away from the camera, its head close to the water where a soft diffuse silver glow gathers beneath it and ripples outward in concentric rings, the silhouette edged in cool silver with faint teal and lavender light flowing through it like fine veins of current, a few dozen fine pinpoint stars in the upper third and a pale moon high in the upper left, a thin veil of cirrus mist`,
     frame: SIGNATURE_FRAME('open calm sea and soft moonlit sky'),
   },
   {
