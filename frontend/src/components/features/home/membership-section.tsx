@@ -25,7 +25,9 @@ export function MembershipSection({
         media={membershipMedia}
         eyebrow={kicker}
         title={title}
-        body={<p className="text-fg-body text-lead max-w-[54ch] leading-[1.75]">{description}</p>}
+        body={
+          <p className="text-fg-body text-lead max-w-measure-wide leading-[1.75]">{description}</p>
+        }
         align="center"
         tone="gold"
         action={

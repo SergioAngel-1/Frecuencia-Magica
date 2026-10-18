@@ -93,12 +93,12 @@ function EmptyContent({ title, body, action, illustration, className }: EmptyCon
         </OrbitalRings>
       )}
 
-      <p className="text-fg-muted mt-[26px] max-w-[34ch] font-serif text-[clamp(20px,2.6vw,24px)] leading-[1.4] italic">
+      <p className="text-fg-muted max-w-measure-narrow mt-[26px] font-serif text-[clamp(20px,2.6vw,24px)] leading-[1.4] italic">
         {title}
       </p>
 
       {body ? (
-        <p className="text-fg-meta text-body mt-[12px] max-w-[42ch] font-sans leading-[1.7]">
+        <p className="text-fg-meta text-body max-w-measure-base mt-[12px] font-sans leading-[1.7]">
           {body}
         </p>
       ) : null}

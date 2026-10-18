@@ -91,7 +91,7 @@ export function BreathingGuide({ onClose }: BreathingGuideProps) {
       <Display level="h3" size="md" id="breathing-guide-title" className="text-fg">
         {t('title')}
       </Display>
-      <p className="text-fg-soft text-body max-w-[44ch] leading-[1.8]">{t('intro')}</p>
+      <p className="text-fg-soft text-body max-w-measure-base leading-[1.8]">{t('intro')}</p>
 
       <div
         aria-hidden="true"

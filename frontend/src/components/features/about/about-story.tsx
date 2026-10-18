@@ -27,12 +27,12 @@ export function AboutStory({ media, kicker, title, p1, p2, quote }: AboutStoryPr
           <Kicker tone="gold" spacing="widest">
             {kicker}
           </Kicker>
-          <Display id="about-story-title" size="md" className="mt-4 max-w-[18ch]">
+          <Display id="about-story-title" size="md" className="max-w-measure-xs mt-4">
             {title}
           </Display>
-          <p className="text-fg-body text-lead mt-7 max-w-[60ch] leading-[1.85]">{p1}</p>
-          <p className="text-fg-body text-body mt-5 max-w-[60ch] leading-[1.8]">{p2}</p>
-          <blockquote className="border-accent/30 text-fg-soft mt-9 max-w-[30ch] border-t pt-7 font-serif text-[clamp(22px,3vw,34px)] leading-[1.25] font-light italic">
+          <p className="text-fg-body text-lead max-w-measure-wide mt-7 leading-[1.85]">{p1}</p>
+          <p className="text-fg-body text-body max-w-measure-wide mt-5 leading-[1.8]">{p2}</p>
+          <blockquote className="border-accent/30 text-fg-soft max-w-measure-narrow mt-9 border-t pt-7 font-serif text-[clamp(22px,3vw,34px)] leading-[1.25] font-light italic">
             {quote}
           </blockquote>
         </div>

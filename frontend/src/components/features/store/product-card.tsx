@@ -125,7 +125,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
             </span>
           ) : null}
           {featured ? (
-            <p className="text-fg-soft text-body mt-1 max-w-[52ch] leading-[1.75]">
+            <p className="text-fg-soft text-body max-w-measure-wide mt-1 leading-[1.75]">
               {t('featuredDescription')}
             </p>
           ) : null}

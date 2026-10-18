@@ -41,7 +41,7 @@ export function RealmHero({
       <Kicker tone="teal" spacing="wide">
         {kicker}
       </Kicker>
-      <Display size="xl" level="h1" className="mt-4 max-w-[16ch]">
+      <Display size="xl" level="h1" className="max-w-measure-xs mt-4">
         {title}
       </Display>
     </>

@@ -15,7 +15,7 @@ export function CoursePoints({ title, keys }: CoursePointsProps) {
 
   return (
     <section>
-      <Display level="h2" size="md" className="max-w-[16ch]">
+      <Display level="h2" size="md" className="max-w-measure-xs">
         {title}
       </Display>
       <ul className="mt-6 flex flex-col gap-4">

@@ -10,7 +10,7 @@ import { extendTailwindMerge } from 'tailwind-merge';
 const twMerge = extendTailwindMerge({
   extend: {
     // Ritmo vertical de `tokens.css` (`py-section`, `gap-block`…).
-    theme: { spacing: ['section', 'block'] },
+    theme: { spacing: ['section', 'block', 'hero'] },
     classGroups: {
       'font-size': [
         {
@@ -47,6 +47,8 @@ const twMerge = extendTailwindMerge({
       ],
       'border-color': [{ border: ['line', 'line-strong'] }],
       'bg-color': [{ bg: ['surface', 'surface-strong', 'scrim', 'scrim-deep', 'halo'] }],
+      // Medidas de lectura de `tokens.css` (`max-w-measure-*`).
+      'max-w': [{ 'max-w': ['measure-xs', 'measure-narrow', 'measure-base', 'measure-wide'] }],
       tracking: [{ tracking: ['soft', 'ui', 'label', 'caps', 'kicker', 'eyebrow'] }],
       shadow: [{ shadow: ['glow-gold', 'glow-teal', 'glow-lav', 'glow-card'] }],
       // Capas con nombre de `globals.css`.

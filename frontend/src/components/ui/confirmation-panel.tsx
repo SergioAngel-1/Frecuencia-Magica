@@ -78,7 +78,9 @@ export function ConfirmationPanel({
         <Display size="md" level="h1">
           {title}
         </Display>
-        <p className="text-fg-body text-lead mt-5 max-w-[42ch] leading-[1.8]">{description}</p>
+        <p className="text-fg-body text-lead max-w-measure-base mt-5 leading-[1.8]">
+          {description}
+        </p>
         {children}
       </div>
     </section>

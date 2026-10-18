@@ -62,7 +62,9 @@ export function ResultStep({
         {intent}
       </Display>
 
-      <p className="text-fg-soft text-body max-w-[48ch] text-center leading-[1.8]">{description}</p>
+      <p className="text-fg-soft text-body max-w-measure-base text-center leading-[1.8]">
+        {description}
+      </p>
 
       <DiscoverArrival arrivalKey={arrivalKey} featuredId={audio.id} ctaLabel={arrivalCta} />
 

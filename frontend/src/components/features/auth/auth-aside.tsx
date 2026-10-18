@@ -103,7 +103,7 @@ export async function AuthAside({ media }: AuthAsideProps) {
         </div>
 
         <div className="relative z-10 mt-4 min-[900px]:mt-8">
-          <p className="text-fg-body max-w-[22ch] font-serif text-[clamp(24px,3vw,44px)] leading-[1.25] text-balance italic">
+          <p className="text-fg-body max-w-measure-xs font-serif text-[clamp(24px,3vw,44px)] leading-[1.25] text-balance italic">
             &ldquo;{t('quote')}&rdquo;
           </p>
           <Kicker tone="gold" className="mt-3">

@@ -56,10 +56,14 @@ export default async function NotFound() {
           <Kicker tone="gold" spacing="wide" className="relative mb-[18px]">
             404
           </Kicker>
-          <Display size="lg" level="h1" className="text-fg-body relative max-w-[34ch] text-balance">
+          <Display
+            size="lg"
+            level="h1"
+            className="text-fg-body max-w-measure-narrow relative text-balance"
+          >
             {t('notFoundTitle')}
           </Display>
-          <Prose muted className="text-body relative mt-[16px] max-w-[42ch] leading-[1.7]">
+          <Prose muted className="text-body max-w-measure-base relative mt-[16px] leading-[1.7]">
             {t('notFoundBody')}
           </Prose>
 

@@ -39,7 +39,7 @@ export function ArrivalSection() {
           <Display level="h2" size="md" id="arrival-title">
             {t('title')}
           </Display>
-          <p className="text-fg-soft text-body max-w-[52ch] leading-[1.8]">{t('intro')}</p>
+          <p className="text-fg-soft text-body max-w-measure-wide leading-[1.8]">{t('intro')}</p>
 
           <ArrivalCheckIn
             legend={t('legend')}

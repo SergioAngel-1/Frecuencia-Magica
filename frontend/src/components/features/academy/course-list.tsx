@@ -79,7 +79,7 @@ export function CourseList({ media }: { media: AcademyMedia }) {
       </Float>
 
       <section data-editorial-archive="true" aria-labelledby="academy-archive-title">
-        <div className="mb-7 max-w-[58ch]">
+        <div className="max-w-measure-wide mb-7">
           <Kicker tone="teal">{t('archive.kicker')}</Kicker>
           <Display level="h2" size="md" id="academy-archive-title" className="mt-3">
             {t('archive.title')}

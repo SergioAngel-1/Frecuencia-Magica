@@ -111,7 +111,7 @@ function OfflineScene({ kicker, message, dismissLabel, media, onDismiss }: Offli
         <Kicker tone="lav" spacing="wide" className="mb-[18px]">
           {kicker}
         </Kicker>
-        <Display id="offline-veil-title" size="lg" level="h2" className="max-w-[18ch]">
+        <Display id="offline-veil-title" size="lg" level="h2" className="max-w-measure-xs">
           {message}
         </Display>
         <Button variant="outline" onClick={onDismiss} className="mt-block">

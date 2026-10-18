@@ -94,6 +94,15 @@
      contenido. Se usan como `py-section`, `gap-section`, `mt-block`… */
   --spacing-section: clamp(56px, 8vw, 112px);
   --spacing-block: clamp(28px, 5vw, 72px);
+  /* Arriba de página: el aire bajo el header en las vistas sin héroe propio. */
+  --spacing-hero: clamp(100px, 12vw, 160px);
+
+  /* Medidas de lectura: cuatro anchos con nombre para `max-w-measure-*`. Los
+     titulares cortos usan `xs`; `narrow`, `base` y `wide` cubren el texto corrido. */
+  --container-measure-xs: 18ch;
+  --container-measure-narrow: 34ch;
+  --container-measure-base: 44ch;
+  --container-measure-wide: 58ch;
 
   /* Radios */
   --radius-card: 22px;

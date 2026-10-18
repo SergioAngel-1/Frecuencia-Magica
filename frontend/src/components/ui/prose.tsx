@@ -27,19 +27,20 @@ const SIZE_CLASSES: Record<ProseSize, string> = {
 };
 
 /**
- * Los ocho anchos del prototipo se listan de forma literal para que el
- * escáner de Tailwind detecte la clase arbitraria en build: una plantilla
- * `max-w-[${n}ch]` construida en runtime no es estática y no generaría CSS.
+ * Los ocho anchos del prototipo se traducen a las medidas con nombre de
+ * `tokens.css` (`max-w-measure-*`). Se listan de forma literal para que el
+ * escáner de Tailwind detecte cada clase en build: una plantilla construida
+ * en runtime no es estática y no generaría CSS.
  */
 const MAX_WIDTH_CLASSES: Record<ProseMaxWidth, string> = {
-  40: 'max-w-[40ch]',
-  42: 'max-w-[42ch]',
-  44: 'max-w-[44ch]',
-  46: 'max-w-[46ch]',
-  48: 'max-w-[48ch]',
-  50: 'max-w-[50ch]',
-  52: 'max-w-[52ch]',
-  54: 'max-w-[54ch]',
+  40: 'max-w-measure-base',
+  42: 'max-w-measure-base',
+  44: 'max-w-measure-base',
+  46: 'max-w-measure-base',
+  48: 'max-w-measure-base',
+  50: 'max-w-measure-base',
+  52: 'max-w-measure-wide',
+  54: 'max-w-measure-wide',
 };
 
 /**

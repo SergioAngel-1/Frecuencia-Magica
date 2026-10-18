@@ -75,10 +75,12 @@ export function RealmCard({
           {cover}
           <div className="relative z-[2] flex flex-col justify-end p-[clamp(28px,5vw,68px)]">
             <Kicker tone="teal">{emotion}</Kicker>
-            <Display level="h3" size="feature" className="mt-3 max-w-[10ch]">
+            <Display level="h3" size="feature" className="max-w-measure-xs mt-3">
               {title}
             </Display>
-            <p className="text-fg-body text-body mt-5 max-w-[42ch] leading-[1.75]">{description}</p>
+            <p className="text-fg-body text-body max-w-measure-base mt-5 leading-[1.75]">
+              {description}
+            </p>
             {actionLabel ? (
               <span className={arrowLinkClasses('teal', 'mt-7')}>
                 {actionLabel}
@@ -174,7 +176,12 @@ export function RealmCard({
           >
             {title}
           </h3>
-          <p className={cn('text-fg-soft text-body mt-3 leading-[1.7]', !store && 'max-w-[34ch]')}>
+          <p
+            className={cn(
+              'text-fg-soft text-body mt-3 leading-[1.7]',
+              !store && 'max-w-measure-narrow',
+            )}
+          >
             {description}
           </p>
         </div>
