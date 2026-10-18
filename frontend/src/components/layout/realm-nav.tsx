@@ -7,7 +7,6 @@ import { useRealm } from '@/hooks/use-realm';
 import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
 import { useNavMenuStore } from '@/stores/nav-menu-store';
-import type { RealmId } from '@/types/realm';
 
 /**
  * Navegación de constelación, desde 1024px.
@@ -42,7 +41,7 @@ export function RealmNav() {
       href: realm.href,
       accent: realm.accent,
       active: !storyActive && realm.id === realmId,
-      name: t(`realms.${realm.id as RealmId}` as 'realms.resonario'),
+      name: t(`realms.${realm.id}`),
     })),
     // La narrativa del sitio cierra la constelación, en marfil y un poco aparte.
     {

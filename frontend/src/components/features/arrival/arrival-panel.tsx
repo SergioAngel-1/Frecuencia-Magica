@@ -42,8 +42,8 @@ export function ArrivalPanel({ flow, atmosphere, onStep, onOther, onStop }: Arri
         explanation: t(response.explanationKey),
         ...(audio
           ? {
-              kind: tResonario(`kinds.${audio.kind}.title` as 'kinds.melody.title'),
-              title: tResonario(`audios.${audio.id}.title` as 'audios.a1.title'),
+              kind: tResonario(`kinds.${audio.kind}.title`),
+              title: tResonario(`audios.${audio.id}.title`),
               position: t('position', { current: flow.index + 1, total: count }),
             }
           : {}),
@@ -72,10 +72,10 @@ export function ArrivalPanel({ flow, atmosphere, onStep, onOther, onStop }: Arri
                   <Swap id={`alternative-${flow.key}-${flow.index}`}>
                     <div className="flex flex-col items-center gap-1">
                       <p className="text-fg-meta text-label tracking-label font-sans uppercase">
-                        {tResonario(`kinds.${audio.kind}.title` as 'kinds.melody.title')}
+                        {tResonario(`kinds.${audio.kind}.title`)}
                       </p>
                       <p className="text-fg font-serif text-[clamp(20px,2.4vw,24px)] leading-tight">
-                        {tResonario(`audios.${audio.id}.title` as 'audios.a1.title')}
+                        {tResonario(`audios.${audio.id}.title`)}
                       </p>
                       {audio.headphones ? (
                         <p className="text-fg-meta text-meta tracking-ui font-sans">

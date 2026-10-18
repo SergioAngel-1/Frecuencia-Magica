@@ -84,8 +84,8 @@ export function PlayerDock() {
     node.querySelector<HTMLElement>('[data-player-focus]')?.focus();
   };
 
-  const title = audio ? tResonario(`audios.${audio.id}.title` as 'audios.a1.title') : '';
-  const tag = audio ? tResonario(`tags.${audio.tagId}` as 'tags.meditation') : '';
+  const title = audio ? tResonario(`audios.${audio.id}.title`) : '';
+  const tag = audio ? tResonario(`tags.${audio.tagId}`) : '';
   const elapsedLabel = formatDuration(Math.min(elapsed, total));
   // La misma portada que el disco del audio en cualquier vista. Decorativa:
   // el título ya está escrito al lado (o en el nombre del disco recogido).

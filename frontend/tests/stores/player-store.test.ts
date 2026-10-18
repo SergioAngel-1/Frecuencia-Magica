@@ -239,7 +239,7 @@ describe('createPlayerStore', () => {
   });
 
   it('siguiente y anterior nunca llevan a una pista soon, dando la vuelta entera', () => {
-    const playableIds = new Set(PLAYABLE_AUDIOS.map((audio) => audio.id));
+    const playableIds = new Set<string>(PLAYABLE_AUDIOS.map((audio) => audio.id));
     const soonIds = AUDIOS.filter((audio) => !playableIds.has(audio.id)).map((audio) => audio.id);
     expect(soonIds.length).toBeGreaterThan(0);
 

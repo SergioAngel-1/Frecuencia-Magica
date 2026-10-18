@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 
 import { Display, EditorialImage, Float, Kicker } from '@/components/ui';
 import { COURSES } from '@/data/courses';
+import { messageKey } from '@/i18n/keys';
 import { Link } from '@/i18n/navigation';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -49,10 +50,8 @@ export function CourseList({ media }: { media: AcademyMedia }) {
   const featured = COURSES[0]!;
   const others = COURSES.slice(1);
 
-  const courseTitle = (course: (typeof COURSES)[number]) =>
-    t(`courses.${course.id}.title` as 'courses.c1.title');
-  const level = (course: (typeof COURSES)[number]) =>
-    t(course.levelKey.replace('academy.', '') as 'levels.foundations');
+  const courseTitle = (course: (typeof COURSES)[number]) => t(`courses.${course.id}.title`);
+  const level = (course: (typeof COURSES)[number]) => t(messageKey('academy', course.levelKey));
   const courseMedia = (course: (typeof COURSES)[number]): EditorialMedia => ({
     ...media.courseCovers[course.id]!,
     alt: t('media.alt.courseCover', { title: courseTitle(course) }),

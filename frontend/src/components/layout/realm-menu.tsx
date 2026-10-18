@@ -10,7 +10,6 @@ import { useRealm } from '@/hooks/use-realm';
 import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
 import { useNavMenuStore } from '@/stores/nav-menu-store';
-import type { RealmId } from '@/types/realm';
 
 /**
  * Menú de navegación: la constelación en una tarjeta modal. Lo abre el botón
@@ -53,8 +52,8 @@ export function RealmMenu() {
       href: realm.href,
       accent: realm.accent,
       active: !storyActive && realm.id === realmId,
-      name: t(`realms.${realm.id as RealmId}` as 'realms.resonario'),
-      emotion: t(`emotions.${realm.id as RealmId}` as 'emotions.resonario'),
+      name: t(`realms.${realm.id}`),
+      emotion: t(`emotions.${realm.id}`),
     })),
     {
       id: NAV_STORY.id,

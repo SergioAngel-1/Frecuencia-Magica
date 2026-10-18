@@ -52,7 +52,7 @@ export function BookingFlow({ experience, media }: BookingFlowProps) {
   const booking = useBooking();
   const dates = useUpcomingDates(BOOKING_DAYS);
   const stepLabels = [t('steps.date'), t('steps.details'), t('steps.done')];
-  const title = expT(`items.${experience.id}.title` as 'items.e1.title');
+  const title = expT(`items.${experience.id}.title`);
   const selectedDate = formatSelectedDate(booking.state.date, locale);
 
   return (

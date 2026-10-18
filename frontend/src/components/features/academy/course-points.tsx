@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl';
 
 import { Display } from '@/components/ui';
+import { messageKey } from '@/i18n/keys';
 
 type CoursePointsProps = {
   title: string;
@@ -24,7 +25,7 @@ export function CoursePoints({ title, keys }: CoursePointsProps) {
               aria-hidden="true"
               className="bg-accent mt-[0.7em] size-[6px] shrink-0 rounded-full"
             />
-            {t(key.replace(/^academy\./, '') as 'courses.c1.title')}
+            {t(messageKey('academy', key))}
           </li>
         ))}
       </ul>

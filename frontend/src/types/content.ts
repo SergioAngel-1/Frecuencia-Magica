@@ -1,4 +1,16 @@
 import type { EditorialMediaSlot } from '@/config/editorial-media';
+import type catalog from '../../messages/es.json';
+
+/**
+ * Ids del catálogo, derivados de las claves del mensaje español: un id sin su
+ * bloque de copy no compila, y las plantillas `` `audios.${id}.title` `` tipan
+ * solas contra `src/types/messages.d.ts` sin cast.
+ */
+export type AudioId = keyof typeof catalog.resonario.audios;
+export type CourseId = keyof typeof catalog.academy.courses;
+export type ExperienceId = keyof typeof catalog.experiences.items;
+export type ProductId = keyof typeof catalog.store.products;
+export type QuestionId = keyof typeof catalog.discover.questions;
 
 /**
  * Modelo de contenido.
@@ -65,7 +77,7 @@ export type AudioSource =
   { type: 'synth'; recipe: SynthRecipe } | { type: 'file'; src: string; sampleSrc?: string } | null;
 
 export type Audio = IntentAffine & {
-  id: string;
+  id: AudioId;
   kind: AudioKind;
   titleKey: string;
   tagKey: string;
@@ -96,7 +108,7 @@ export type CourseAccess = { type: 'free' } | { type: 'paid'; price: number };
 export type CourseModality = 'selfPaced' | 'live' | 'blended';
 
 export type Course = IntentAffine & {
-  id: string;
+  id: CourseId;
   titleKey: string;
   levelKey: string;
   lessons: number;
@@ -119,7 +131,7 @@ export type Course = IntentAffine & {
 export type ExperienceMode = 'online' | 'inPerson';
 
 export type Experience = IntentAffine & {
-  id: string;
+  id: ExperienceId;
   titleKey: string;
   modeKey: string;
   mode: ExperienceMode;
@@ -139,13 +151,13 @@ export type ProductView = { slot: EditorialMediaSlot; instance?: string };
 export type ProductGallery = Partial<Record<ProductViewKind, ProductView>>;
 
 export type Product = IntentAffine & {
-  id: string;
+  id: ProductId;
   titleKey: string;
   catKey: string;
   price: number;
   band: string;
   /** Frecuencia que acompaña al producto en su ritual. */
-  relatedAudioId: string;
+  relatedAudioId: AudioId;
   /**
    * Producto de demostración: nombre, precio y foto se sustituyen por los
    * reales de Marisol antes de publicar. Lo lee el registro de pendientes.
@@ -166,7 +178,7 @@ export type QuestionOption = {
 };
 
 export type Question = {
-  id: string;
+  id: QuestionId;
   promptKey: string;
   options: readonly QuestionOption[];
 };

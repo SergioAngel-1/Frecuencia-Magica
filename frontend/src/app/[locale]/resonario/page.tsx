@@ -36,7 +36,7 @@ export default async function ResonarioPage({ params }: PageProps) {
         kind,
         resolveEditorialMedia('resonario.kind-banner.*', {
           instance: bannerSlug,
-          alt: t(`media.alt.kindBanner.${kind}` as 'media.alt.kindBanner.melody'),
+          alt: t(`media.alt.kindBanner.${kind}`),
           sizes: '(min-width: 1024px) 1040px, 100vw',
         }),
       ]),

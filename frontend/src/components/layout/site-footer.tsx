@@ -88,7 +88,7 @@ export function SiteFooter() {
                 {column.links.map((link) => (
                   <p key={link.key} className="mb-[10px]">
                     <Link href={link.href as '/resonario'} data-magnetic className={LINK_CLASSES}>
-                      {tNav(`realms.${link.key}` as 'realms.resonario')}
+                      {tNav(`realms.${link.key}`)}
                     </Link>
                   </p>
                 ))}

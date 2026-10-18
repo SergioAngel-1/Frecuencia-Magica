@@ -5,6 +5,7 @@ import type { Product } from '@/types/content';
 import { useTranslations } from 'next-intl';
 
 import { Badge, Button, EditorialImage, GradientText } from '@/components/ui';
+import { messageKey } from '@/i18n/keys';
 import { Link } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
 import { categoryKey } from '@/lib/store/category-key';
@@ -120,7 +121,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
           </h3>
           {size ? (
             <span className="text-fg-meta text-meta tracking-ui font-sans">
-              {t(size.key.replace(/^store\./, '') as 'notes')}
+              {t(messageKey('store', size.key))}
             </span>
           ) : null}
           {featured ? (

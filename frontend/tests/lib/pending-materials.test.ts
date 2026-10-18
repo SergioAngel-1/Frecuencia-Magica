@@ -19,7 +19,7 @@ const input = collectPendingInputs();
 /** Una pista mínima para probar la guarda sin depender del catálogo. */
 function track(patch: Partial<Audio>): Audio {
   return {
-    id: 'x1',
+    id: 'a1',
     kind: 'nature',
     intents: ['calm'],
     titleKey: 'resonario.audios.a1.title',
@@ -65,7 +65,7 @@ describe('registro de materiales pendientes', () => {
 
   it('la guarda falla si una pista provisional se declarara publicable', () => {
     const provisional = track({ license: 'provisional' });
-    const soon = track({ id: 'x2', availability: 'soon', source: null, license: 'provisional' });
+    const soon = track({ id: 'a2', availability: 'soon', source: null, license: 'provisional' });
 
     expect(publishableAudios([provisional, soon])).toEqual([]);
     expect(provisionalAudios([provisional, soon])).toEqual([provisional]);

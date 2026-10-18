@@ -81,7 +81,7 @@ export function LessonPlayer({
       </Link>
 
       <Kicker tone="teal" spacing="widest" className="mt-8">
-        {t(`courses.${course.id}.title` as 'courses.c1.title')}
+        {t(`courses.${course.id}.title`)}
       </Kicker>
       <Display size="lg" level="h1" className="mt-3 max-w-[15ch]">
         {lessonTitle}

@@ -23,11 +23,7 @@ export function CurrentSectionLabel() {
 
   const { key } = section;
   const label =
-    key === 'home'
-      ? t('current.home')
-      : key === 'story'
-        ? t('story.label')
-        : t(`realms.${key}` as 'realms.resonario');
+    key === 'home' ? t('current.home') : key === 'story' ? t('story.label') : t(`realms.${key}`);
 
   return (
     <span className="text-fg-soft text-meta tracking-ui hidden font-sans whitespace-nowrap lg:inline-block">

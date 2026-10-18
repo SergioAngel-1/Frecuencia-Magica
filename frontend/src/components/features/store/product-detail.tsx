@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import { PlayPauseIcon } from '@/components/features/player/player-icons';
 import { Badge, Button, Float, Kicker, Prose, SectionHeading } from '@/components/ui';
 import { PRODUCTS } from '@/data/products';
+import { messageKey } from '@/i18n/keys';
 import { useRouter } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
 import { cn } from '@/lib/cn';
@@ -52,7 +53,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
       return view ? [{ kind, media: view }] : [];
     }),
   ];
-  const frequencyTitle = tResonario(`audios.${product.relatedAudioId}.title` as 'audios.a1.title');
+  const frequencyTitle = tResonario(`audios.${product.relatedAudioId}.title`);
 
   return (
     <div>
@@ -85,7 +86,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
                     {t(`specs.${id}`)}
                   </dt>
                   <dd className="text-fg-soft text-body font-sans">
-                    {t(key.replace(/^store\./, '') as 'notes')}
+                    {t(messageKey('store', key))}
                   </dd>
                 </div>
               ))}

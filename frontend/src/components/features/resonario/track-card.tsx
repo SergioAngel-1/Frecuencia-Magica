@@ -29,8 +29,8 @@ export function TrackCard({ audio }: TrackCardProps) {
   const { playing } = useAudioPlayback(audio.id);
   const ready = isPlayable(audio);
 
-  const title = t(`audios.${audio.id}.title` as 'audios.a1.title');
-  const kind = t(`kinds.${audio.kind}.title` as 'kinds.melody.title');
+  const title = t(`audios.${audio.id}.title`);
+  const kind = t(`kinds.${audio.kind}.title`);
   const duration = audio.duration ?? t('soon');
   const voice = audio.voice ? t('card.voice') : t('card.noVoice');
 
@@ -74,12 +74,12 @@ export function TrackCard({ audio }: TrackCardProps) {
         <span className="text-fg-meta text-label tracking-caps font-sans uppercase">
           {t('guide.composition')}
         </span>
-        <span>{t(`audios.${audio.id}.composition` as 'audios.a1.composition')}</span>
+        <span>{t(`audios.${audio.id}.composition`)}</span>
         {audio.headphones ? <span>{t('guide.headphones')}</span> : null}
       </div>
 
       <div className="w-full text-left">
-        <TrackGuide guide={t(`audios.${audio.id}.guide` as 'audios.a1.guide')} />
+        <TrackGuide guide={t(`audios.${audio.id}.guide`)} />
       </div>
 
       {ready ? (

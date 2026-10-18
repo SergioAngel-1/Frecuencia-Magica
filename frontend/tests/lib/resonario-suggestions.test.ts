@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
 import { suggestAudios } from '@/lib/resonario/suggestions';
-import type { Audio, Intent } from '@/types/content';
+import type { Audio, AudioId, Intent } from '@/types/content';
 
-const audio = (id: string, intents: Intent[]): Audio => ({
+const audio = (id: AudioId, intents: Intent[]): Audio => ({
   id,
   kind: 'frequency',
   titleKey: `resonario.audios.${id}.title`,

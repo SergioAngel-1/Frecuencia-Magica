@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 
 import { Swap } from '@/components/ui';
 import { QUESTIONS } from '@/data/questions';
+import { messageKey } from '@/i18n/keys';
 import { useDiscoverResult } from '@/hooks/use-discover-result';
 import { usePortalReveal } from '@/hooks/use-portal-reveal';
 import { useQuiz } from '@/hooks/use-quiz';
@@ -67,8 +68,8 @@ export function QuizContainer({ catalog, media }: QuizContainerProps) {
 
           {quiz.step === 'questions' && question && (
             <QuizStep
-              prompt={t(`questions.${question.id}.prompt` as 'questions.q1.prompt')}
-              options={question.options.map(({ key }) => t(key as 'questions.q1.options.0'))}
+              prompt={t(`questions.${question.id}.prompt`)}
+              options={question.options.map(({ key }) => t(messageKey('discover', key)))}
               currentIndex={quiz.currentQuestion}
               total={quiz.totalQuestions}
               progressLabel={t('questionCount', {

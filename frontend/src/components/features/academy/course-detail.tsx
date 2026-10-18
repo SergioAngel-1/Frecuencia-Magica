@@ -30,7 +30,7 @@ type CourseDetailProps = {
 export function CourseDetail({ course, media, introMedia, currentLesson }: CourseDetailProps) {
   const t = useTranslations('academy');
   const lessons = buildLessons(course);
-  const title = t(`courses.${course.id}.title` as 'courses.c1.title');
+  const title = t(`courses.${course.id}.title`);
 
   return (
     <div>

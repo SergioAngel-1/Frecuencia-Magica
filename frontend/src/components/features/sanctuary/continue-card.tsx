@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { ButtonLink } from '@/components/layout';
 import { EditorialImage, GlassPanel, Kicker, ProgressBar } from '@/components/ui';
+import { messageKey } from '@/i18n/keys';
 import type { ResumeTarget } from '@/lib/sanctuary/profile';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -14,8 +15,8 @@ type ContinueCardProps = {
 export async function ContinueCard({ media, resume }: ContinueCardProps) {
   const t = await getTranslations('sanctuary');
   const tAcademy = await getTranslations('academy');
-  const courseTitle = tAcademy(`courses.${resume.course.id}.title` as 'courses.c1.title');
-  const lessonTitle = tAcademy(`lessonTitles.${resume.titleIndex}` as 'lessonTitles.0');
+  const courseTitle = tAcademy(`courses.${resume.course.id}.title`);
+  const lessonTitle = tAcademy(messageKey('academy', `lessonTitles.${resume.titleIndex}`));
 
   return (
     <GlassPanel

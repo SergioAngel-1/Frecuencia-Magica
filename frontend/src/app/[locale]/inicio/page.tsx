@@ -79,8 +79,8 @@ export default async function HomePage({ params }: PageProps) {
     id: a.id,
     hz: a.hz,
     band: a.band,
-    title: tResonario(`audios.${a.id}.title` as 'audios.a1.title'),
-    meta: `${tResonario(`tags.${a.tagId}` as 'tags.meditation')} · ${a.duration ?? ''}`,
+    title: tResonario(`audios.${a.id}.title`),
+    meta: `${tResonario(`tags.${a.tagId}`)} · ${a.duration ?? ''}`,
   }));
 
   const realmData = NAV_REALMS.map((r) => ({
@@ -96,9 +96,9 @@ export default async function HomePage({ params }: PageProps) {
       sizes: REALM_CARD_SIZES[r.id as keyof typeof REALM_CARD_SIZES] ?? REALM_CARD_SIZES.default,
       band: BANDS[r.accentKey],
     }),
-    emotion: nav(`emotions.${r.id}` as 'emotions.descubrete'),
-    title: nav(`realms.${r.id}` as 'realms.descubrete'),
-    description: t(`realms.descriptions.${r.id}` as 'realms.descriptions.descubrete'),
+    emotion: nav(`emotions.${r.id}`),
+    title: nav(`realms.${r.id}`),
+    description: t(`realms.descriptions.${r.id}`),
   }));
 
   const storeTranslations = await getTranslations('store');
