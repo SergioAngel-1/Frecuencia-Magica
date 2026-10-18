@@ -58,8 +58,6 @@ export const UNUSED = {
 
 /** Notas de las faltantes que, al llegar, piden algo más que publicarlas. */
 export const PENDING_NOTES = {
-  'resonario-audio-cover-n3.avif':
-    'Primer intento rechazado (7/10, archivado en `.editorial-trials/`): el horizonte, la franja dorada y la silueta del bosque caían entre el 35 % y el 48 % de la altura y rozaban el centro, donde va el número de la esfera. El prompt ya sube todo eso al 15–35 % y deja el prado oscuro desde el 40 % hacia abajo.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
@@ -109,6 +107,7 @@ export const COMPLETED = [
   'resonario-audio-cover-b2.avif',
   'resonario-audio-cover-n2.avif',
   'resonario-audio-cover-m1.avif',
+  'resonario-audio-cover-n3.avif',
   'auth-form-atmosphere.avif',
   'og-image.jpg',
   'discover-hero.avif',
