@@ -49,8 +49,9 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
     >
       <Image
         alt={media.alt}
-        className={`${className} transition-opacity duration-700 ease-out motion-reduce:duration-0`}
+        className={className}
         data-photo-base
+        data-photo-night=""
         fill
         priority={priority}
         sizes={sizes}
@@ -62,7 +63,7 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
           key={variant}
           alt=""
           aria-hidden="true"
-          className={`${className} transition-opacity duration-700 ease-out motion-reduce:duration-0`}
+          className={className}
           fill
           onError={() => setFailed(variant)}
           onLoad={() => setLoaded(variant)}

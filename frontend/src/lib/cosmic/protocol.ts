@@ -1,3 +1,5 @@
+import type { AtmosphereId } from '@/types/atmosphere';
+
 import type { Rgb } from './colors';
 import type { CosmicViewport } from './scene';
 
@@ -8,11 +10,13 @@ export type CosmicMessage =
       canvas: OffscreenCanvas;
       viewport: CosmicViewport;
       accent: Rgb;
+      theme: AtmosphereId;
       reduced: boolean;
       visible: boolean;
     }
   | { type: 'resize'; viewport: CosmicViewport }
   | { type: 'accent'; accent: Rgb }
+  | { type: 'theme'; theme: AtmosphereId }
   | { type: 'reduced'; reduced: boolean }
   | { type: 'visible'; visible: boolean };
 

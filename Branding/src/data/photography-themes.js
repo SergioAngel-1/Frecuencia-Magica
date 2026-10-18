@@ -20,8 +20,6 @@ export const THEME_LABELS = { dusk: 'Atardecer', dawn: 'Amanecer', moon: 'Luna',
 /** Zona de texto equivalente cuando la imagen del tema no es oscura: «en calma» en vez de «oscura». */
 export const CALM_SAFE = { left: 'calm-left', 'left-bottom': 'calm-left', bottom: 'calm-bottom', low: 'calm-low' }
 
-const PROVISIONAL = 'Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.'
-
 const RING_FRAME =
   'Centered, balanced wide composition with the horizon at about 52% from the top, the ring at 50% horizontal and 40% vertical, calm open space all around, the bottom 30% of the frame plain calm water with no reflections, for a logo and a button'
 const SIGNATURE_FRAME = (open) =>

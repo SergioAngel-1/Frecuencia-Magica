@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 
 import type { VisualMode } from '@/config/realms';
+import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useEngineProfile } from '@/hooks/use-engine-profile';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { useRealm } from '@/hooks/use-realm';
@@ -11,6 +12,7 @@ import { fadeDuration } from '@/lib/atmosphere/engine-profile';
 import { hexToRgb, type Rgb } from '@/lib/cosmic/colors';
 import type { CosmicMessage, CosmicReply } from '@/lib/cosmic/protocol';
 import { createCosmicDriver, createCosmicScene, type CosmicViewport } from '@/lib/cosmic/scene';
+import type { AtmosphereId } from '@/types/atmosphere';
 
 const MOBILE_QUERY = '(max-width: 767px)';
 const RESIZE_DEBOUNCE_MS = 150;
@@ -19,6 +21,7 @@ const RESIZE_DEBOUNCE_MS = 150;
 type Painter = {
   resize: (viewport: CosmicViewport) => void;
   setAccent: (accent: Rgb) => void;
+  setTheme: (theme: AtmosphereId) => void;
   setReduced: (reduced: boolean) => void;
   setVisible: (visible: boolean) => void;
   destroy: () => void;
@@ -42,11 +45,11 @@ function createCanvas(host: HTMLElement): HTMLCanvasElement {
 }
 
 /** Pinta en el hilo principal: el camino de los navegadores sin `OffscreenCanvas`. */
-function paintOnMainThread(host: HTMLElement, accent: Rgb): Painter | null {
+function paintOnMainThread(host: HTMLElement, accent: Rgb, theme: AtmosphereId): Painter | null {
   const ctx = createCanvas(host).getContext('2d');
   if (!ctx) return null;
 
-  const scene = createCosmicScene(ctx, readViewport(), accent);
+  const scene = createCosmicScene(ctx, readViewport(), accent, Math.random, theme);
   const driver = createCosmicDriver(scene, requestAnimationFrame, cancelAnimationFrame);
 
   return {
@@ -58,6 +61,10 @@ function paintOnMainThread(host: HTMLElement, accent: Rgb): Painter | null {
       scene.setAccent(next);
       driver.refresh();
     },
+    setTheme: (next) => {
+      scene.setTheme(next);
+      driver.refresh();
+    },
     setReduced: driver.setReduced,
     setVisible: driver.setVisible,
     destroy: driver.stop,
@@ -65,7 +72,12 @@ function paintOnMainThread(host: HTMLElement, accent: Rgb): Painter | null {
 }
 
 /** Pinta en un worker. Si el worker no puede, `onFailed` pide el otro camino. */
-function paintInWorker(host: HTMLElement, accent: Rgb, onFailed: () => void): Painter | null {
+function paintInWorker(
+  host: HTMLElement,
+  accent: Rgb,
+  theme: AtmosphereId,
+  onFailed: () => void,
+): Painter | null {
   const canvas = createCanvas(host);
   if (typeof Worker === 'undefined' || typeof canvas.transferControlToOffscreen !== 'function') {
     return null;
@@ -93,6 +105,7 @@ function paintInWorker(host: HTMLElement, accent: Rgb, onFailed: () => void): Pa
       canvas: offscreen,
       viewport: readViewport(),
       accent,
+      theme,
       reduced: false,
       visible: !document.hidden,
     },
@@ -102,6 +115,7 @@ function paintInWorker(host: HTMLElement, accent: Rgb, onFailed: () => void): Pa
   return {
     resize: (viewport) => send({ type: 'resize', viewport }),
     setAccent: (next) => send({ type: 'accent', accent: next }),
+    setTheme: (next) => send({ type: 'theme', theme: next }),
     setReduced: (reduced) => send({ type: 'reduced', reduced }),
     setVisible: (visible) => send({ type: 'visible', visible }),
     destroy: () => worker.terminate(),
@@ -109,8 +123,8 @@ function paintInWorker(host: HTMLElement, accent: Rgb, onFailed: () => void): Pa
 }
 
 /**
- * Fondo cósmico: estrellas que parpadean, polen dorado que asciende y tres
- * nebulosas a la deriva, recoloreadas al acento del realm (`lib/cosmic/scene`).
+ * Fondo vivo: estrellas, partículas y tres nebulosas a la deriva, con la escena del
+ * tema activo (`lib/cosmic/themes`); en la noche, recoloreado al acento del realm.
  *
  * Se pinta en un worker sobre un `OffscreenCanvas`: es la única capa que
  * dibuja en cada frame, y fuera del hilo principal deja de competir con el
@@ -127,12 +141,14 @@ export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMod
   const hostRef = useRef<HTMLDivElement>(null);
   const painterRef = useRef<Painter | null>(null);
   const { accent } = useRealm();
+  const { atmosphereId } = useAtmosphere();
   const reduced = useReducedMotionSafe();
   const { canvas: level } = useEngineProfile(visualMode);
   const fade = fadeDuration(reduced);
 
   // Lo último que se le dijo al fondo: el pintor que se monte lo recibe.
   const accentRef = useRef(accent);
+  const themeRef = useRef(atmosphereId);
   const reducedRef = useRef(reduced);
   // Si el fondo se ve: con el multiplicador a 0 el rAF se para al acabar el fundido.
   const liveRef = useRef(true);
@@ -149,11 +165,14 @@ export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMod
     };
     const fallBack = () => {
       painterRef.current?.destroy();
-      adopt(paintOnMainThread(host, hexToRgb(accentRef.current)));
+      adopt(paintOnMainThread(host, hexToRgb(accentRef.current), themeRef.current));
     };
 
     const initialAccent = hexToRgb(accentRef.current);
-    adopt(paintInWorker(host, initialAccent, fallBack) ?? paintOnMainThread(host, initialAccent));
+    adopt(
+      paintInWorker(host, initialAccent, themeRef.current, fallBack) ??
+        paintOnMainThread(host, initialAccent, themeRef.current),
+    );
 
     // El frame quieto de movimiento reducido se repinta al momento; el bucle
     // espera a que el tamaño se asiente.
@@ -189,6 +208,11 @@ export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMod
     accentRef.current = accent;
     painterRef.current?.setAccent(hexToRgb(accent));
   }, [accent]);
+
+  useEffect(() => {
+    themeRef.current = atmosphereId;
+    painterRef.current?.setTheme(atmosphereId);
+  }, [atmosphereId]);
 
   useEffect(() => {
     reducedRef.current = reduced;

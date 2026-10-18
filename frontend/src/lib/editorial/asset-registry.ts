@@ -1,5 +1,9 @@
 import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
-import { EDITORIAL_MEDIA_REGISTRY, THEME_VARIANT_POSITIONS } from '@/config/editorial-media';
+import {
+  EDITORIAL_MEDIA_REGISTRY,
+  THEME_VARIANT_POSITIONS,
+  THEME_VARIANTS,
+} from '@/config/editorial-media';
 import { ATMOSPHERE_IDS } from '@/config/atmospheres';
 import type { EditorialMedia, EditorialMediaInput } from '@/types/editorial-media';
 import type { EditorialMediaSlot } from '@/config/editorial-media';
@@ -61,6 +65,7 @@ export function resolveEditorialMedia(
 
   if (hasSource) {
     resolved.src = src;
+    if (THEME_VARIANTS[slot]) resolved.themed = true;
 
     const themed = media?.src ? undefined : themeVariants(assetKey(slot, media?.instance));
     if (themed) Object.assign(resolved, themed);

@@ -49,8 +49,8 @@ const dotStyle: CSSProperties = {
   width: DOT_BASE,
   height: DOT_BASE,
   borderRadius: '50%',
-  background: 'var(--color-gold)',
-  boxShadow: '0 0 14px 3px rgba(216,185,120,0.75), 0 0 30px 8px rgba(216,185,120,0.35)',
+  background: 'var(--color-accent)',
+  boxShadow: '0 0 14px 3px rgb(var(--halo) / 0.75), 0 0 30px 8px rgb(var(--halo) / 0.35)',
   transition: 'transform .25s',
   willChange: 'transform',
 };
@@ -62,7 +62,7 @@ const ringStyle: CSSProperties = {
   width: RING_BASE,
   height: RING_BASE,
   borderRadius: '50%',
-  border: '1px solid rgba(216,185,120,0.45)',
+  border: '1px solid rgb(var(--halo) / 0.45)',
   transition: 'transform .3s',
   willChange: 'transform',
 };

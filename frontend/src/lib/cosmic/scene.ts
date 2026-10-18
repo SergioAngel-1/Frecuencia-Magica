@@ -1,19 +1,22 @@
+import type { AtmosphereId } from '@/types/atmosphere';
+
 import type { Rgb } from './colors';
 import { advanceParticle, createParticles, createStars, type Particle } from './particles';
+import { SCENE_THEMES, type ParticleKind, type SceneTheme } from './themes';
 
 const STAR_COUNT = 220;
-/** Partículas en desktop; se baja a 28 por debajo de 768px (presupuesto 16.4). */
-const PARTICLE_COUNT = 54;
-const PARTICLE_COUNT_MOBILE = 28;
-const STAR_FILL = 'rgb(247,244,234)';
 const TAU = Math.PI * 2;
 
-/** Nebulosas fijas del canvas. La tercera se recolorea con el acento del realm. */
-const NEBULAE: readonly { x: number; y: number; r: number; color: Rgb | null }[] = [
-  { x: 0.22, y: 0.3, r: 0.42, color: [150, 198, 188] },
-  { x: 0.78, y: 0.7, r: 0.4, color: [185, 176, 214] },
-  { x: 0.55, y: 0.45, r: 0.34, color: null },
+/** Posición (x, y) y radio de cada nebulosa, en fracciones del lienzo. Los colores los pone el tema. */
+const NEBULA_SPOTS: readonly (readonly [number, number, number])[] = [
+  [0.22, 0.3, 0.42],
+  [0.78, 0.7, 0.4],
+  [0.55, 0.45, 0.34],
 ];
+
+/** Segundos que tarda el tema viejo en apagarse y el nuevo en encenderse al cambiar de tema. */
+const THEME_FADE_OUT_SECONDS = 0.35;
+const THEME_FADE_IN_SECONDS = 0.55;
 
 /**
  * El bucle no pinta dos veces en menos de esto: en pantallas de 120 Hz el
@@ -36,17 +39,42 @@ export type CosmicViewport = {
 export type CosmicScene = {
   resize: (viewport: CosmicViewport) => void;
   setAccent: (accent: Rgb) => void;
-  /** Avanza el polen un paso y pinta el frame de `timestamp` (ms). */
+  /**
+   * Cambia de tema. Con el bucle en marcha el viejo se apaga y el nuevo se enciende
+   * (`frame`); con movimiento reducido (`still`) el cambio es inmediato.
+   */
+  setTheme: (theme: AtmosphereId) => void;
+  /** Avanza las partículas un paso y pinta el frame de `timestamp` (ms). */
   frame: (timestamp: number) => void;
   /** Un frame quieto, sin parpadeo: lo que se ve con movimiento reducido. */
   still: () => void;
 };
 
+/** Brillo propio de cada tipo de partícula en el instante `time` (segundos), de 0 a 1. */
+function flicker(kind: ParticleKind, phase: number, time: number): number {
+  switch (kind) {
+    case 'ember':
+      return 0.65 + 0.35 * Math.sin(time * 7 + phase);
+    case 'mote':
+      return 0.8 + 0.2 * Math.sin(time * 1.3 + phase);
+    case 'firefly': {
+      const pulse = Math.max(0, Math.sin(time * 1.8 + phase));
+
+      return 0.08 + 0.92 * pulse * pulse;
+    }
+    case 'spore':
+      return 0.75;
+    case 'rise':
+      return 1;
+  }
+}
+
 /**
- * Fondo cósmico: estrellas que parpadean, polen dorado que asciende y tres
- * nebulosas a la deriva. Se recolorea al acento del realm sin regenerar nada.
+ * Fondo vivo: estrellas que parpadean, partículas que se mueven a su manera y
+ * tres nebulosas a la deriva, según el tema (`themes.ts`). Se recolorea al acento
+ * del realm sin regenerar nada (la noche) y se transforma al cambiar de tema.
  *
- * Port literal de `setupCanvas` / `drawFrame` del prototipo; los valores
+ * Port de `setupCanvas` / `drawFrame` del prototipo para la noche; los valores
  * mágicos son intencionales. No toca el DOM: el mismo código pinta desde un
  * worker (`OffscreenCanvas`) o desde el hilo principal.
  */
@@ -55,29 +83,56 @@ export function createCosmicScene(
   initial: CosmicViewport,
   initialAccent: Rgb,
   random: () => number = Math.random,
+  initialTheme: AtmosphereId = 'night',
 ): CosmicScene {
   let width = 0;
   let height = 0;
   let dpr = 1;
+  let small = initial.small;
   let accent = initialAccent;
+  let themeId: AtmosphereId = initialTheme;
+  let theme: SceneTheme = SCENE_THEMES[initialTheme];
 
   const stars = createStars(STAR_COUNT, random);
   let particles: Particle[] = [];
   // Gradiente de cada partícula, pre-horneado en coordenadas locales centradas
   // en el origen: el bucle lo coloca con la transformación en lugar de crear
-  // 54 gradientes por frame (Task 16.4 — presupuesto de animación). Se
-  // regeneran al cambiar el acento o el número de partículas.
+  // un gradiente por partícula y frame (Task 16.4 — presupuesto de animación).
+  // Se regeneran al cambiar el acento, el tema o el número de partículas.
   let sprites: CanvasGradient[] = [];
 
-  const rebuildSprites = () => {
-    const [r, g, b] = accent;
+  // Cambio de tema: `out` apaga el viejo, `in` enciende el nuevo; `level` es el alfa global.
+  let pending: AtmosphereId | null = null;
+  let phase: 'idle' | 'out' | 'in' = 'idle';
+  let level = 1;
+  let lastTimestamp: number | null = null;
 
+  const rebuildSprites = () => {
     sprites = particles.map((p) => {
+      const [r, g, b] = theme.groups[p.group]?.rgb ?? accent;
       const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, p.r * 4);
-      gradient.addColorStop(0, `rgba(${r},${g},${b},${p.a})`);
+      gradient.addColorStop(0, `rgba(${r},${g},${b},1)`);
       gradient.addColorStop(1, `rgba(${r},${g},${b},0)`);
       return gradient;
     });
+  };
+
+  const rebuildParticles = () => {
+    particles = theme.groups.flatMap((group, index) =>
+      createParticles(small ? group.mobile : group.count, random, {
+        kind: group.kind,
+        group: index,
+        radius: group.radius,
+        alpha: group.alpha,
+      }),
+    );
+    rebuildSprites();
+  };
+
+  const applyTheme = (id: AtmosphereId) => {
+    themeId = id;
+    theme = SCENE_THEMES[id];
+    rebuildParticles();
   };
 
   const resize = (viewport: CosmicViewport) => {
@@ -86,11 +141,10 @@ export function createCosmicScene(
     ctx.canvas.height = height * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    // Cambio de breakpoint: regenerar partículas (54 → 28) y sus sprites.
-    const count = viewport.small ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT;
-    if (particles.length !== count) {
-      particles = createParticles(count, random);
-      rebuildSprites();
+    // Cambio de breakpoint: regenerar las partículas del tema y sus sprites.
+    if (small !== viewport.small || particles.length === 0) {
+      small = viewport.small;
+      rebuildParticles();
     }
   };
 
@@ -99,16 +153,17 @@ export function createCosmicScene(
     const max = Math.max(width, height);
 
     // Nebulosas radiales a la deriva.
-    for (let i = 0; i < NEBULAE.length; i++) {
-      const nebula = NEBULAE[i];
-      if (!nebula) continue;
-      const [r, g, b] = nebula.color ?? accent;
-      const dx = Math.sin(time * (0.6 + i * 0.3)) * 0.03;
-      const dy = Math.cos(time * (0.5 + i * 0.25)) * 0.03;
-      const cx = (nebula.x + dx) * width;
-      const cy = (nebula.y + dy) * height;
-      const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, nebula.r * max);
-      gradient.addColorStop(0, `rgba(${r},${g},${b},0.11)`);
+    ctx.globalAlpha = level;
+    for (let i = 0; i < theme.nebulae.length; i++) {
+      const [r, g, b] = theme.nebulae[i] ?? accent;
+      const dx = Math.sin(time * 0.0001 * (0.6 + i * 0.3)) * 0.03;
+      const dy = Math.cos(time * 0.0001 * (0.5 + i * 0.25)) * 0.03;
+      const [spotX, spotY, spotR] = NEBULA_SPOTS[i]!;
+      const cx = (spotX + dx) * width;
+      const cy = (spotY + dy) * height;
+      const radius = spotR * max;
+      const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+      gradient.addColorStop(0, `rgba(${r},${g},${b},${theme.nebulaAlpha})`);
       gradient.addColorStop(1, `rgba(${r},${g},${b},0)`);
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
@@ -117,22 +172,30 @@ export function createCosmicScene(
     // Estrellas: parpadeo senoidal. El alfa va en `globalAlpha` sobre un
     // relleno fijo: mismo resultado que un `rgba()` por estrella, sin
     // construir ni analizar 220 cadenas de color en cada frame.
-    ctx.fillStyle = STAR_FILL;
-    for (const star of stars) {
-      const tw = twinkleFrozen ? 0.7 : 0.5 + 0.5 * Math.sin(time * 6 * star.sp + star.tw);
-      ctx.globalAlpha = 0.25 + 0.6 * tw;
-      ctx.beginPath();
-      ctx.arc(star.x * width, star.y * height, star.r, 0, TAU);
-      ctx.fill();
+    const { stars: look } = theme;
+    if (look.count > 0) {
+      const [sr, sg, sb] = look.rgb;
+      ctx.fillStyle = `rgb(${sr},${sg},${sb})`;
+      const swing = 0.6 * (look.twinkle / 0.6);
+      for (let i = 0; i < look.count && i < stars.length; i++) {
+        const star = stars[i]!;
+        const tw = twinkleFrozen
+          ? 0.7
+          : 0.5 + 0.5 * Math.sin(time * 0.0001 * 6 * star.sp + star.tw);
+        ctx.globalAlpha = (0.25 + swing * tw) * look.alpha * level;
+        ctx.beginPath();
+        ctx.arc(star.x * width, star.y * height, star.r, 0, TAU);
+        ctx.fill();
+      }
     }
-    ctx.globalAlpha = 1;
 
-    // Partículas de polen con el color de acento, dibujadas con el sprite
-    // pre-horneado: la transformación lo lleva a su sitio.
+    // Partículas, dibujadas con el sprite pre-horneado: la transformación lo lleva a su sitio.
+    const seconds = twinkleFrozen ? 0.5 : time * 0.001;
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
       const sprite = sprites[i];
       if (!p || !sprite) continue;
+      ctx.globalAlpha = p.a * flicker(p.kind, p.phase, seconds) * level;
       ctx.setTransform(dpr, 0, 0, dpr, p.x * width * dpr, p.y * height * dpr);
       ctx.fillStyle = sprite;
       ctx.beginPath();
@@ -140,6 +203,22 @@ export function createCosmicScene(
       ctx.fill();
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.globalAlpha = 1;
+  };
+
+  /** Hace avanzar el fundido del cambio de tema `seconds` y devuelve el alfa global. */
+  const advanceFade = (seconds: number) => {
+    if (phase === 'out') {
+      level = Math.max(0, level - seconds / THEME_FADE_OUT_SECONDS);
+      if (level === 0 && pending) {
+        applyTheme(pending);
+        pending = null;
+        phase = 'in';
+      }
+    } else if (phase === 'in') {
+      level = Math.min(1, level + seconds / THEME_FADE_IN_SECONDS);
+      if (level === 1) phase = 'idle';
+    }
   };
 
   resize(initial);
@@ -150,14 +229,35 @@ export function createCosmicScene(
       accent = next;
       rebuildSprites();
     },
+    setTheme: (next) => {
+      if (next === themeId && pending === null) return;
+      // Si ya hay un cambio en curso, sólo cambia el destino.
+      pending = next;
+      if (phase === 'idle' || phase === 'in') phase = 'out';
+    },
     frame: (timestamp) => {
+      const elapsed =
+        lastTimestamp === null ? 0 : Math.min((timestamp - lastTimestamp) / 1000, 0.1);
+      lastTimestamp = timestamp;
+      advanceFade(elapsed);
+      const seconds = timestamp * 0.001;
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        if (p) particles[i] = advanceParticle(p, random);
+        if (p) particles[i] = advanceParticle(p, random, seconds);
       }
-      draw(timestamp * 0.0001, false);
+      draw(timestamp, false);
     },
-    still: () => draw(0, true),
+    still: () => {
+      // Sin bucle no hay fundido: el tema pendiente se aplica de golpe.
+      if (pending) {
+        applyTheme(pending);
+        pending = null;
+      }
+      phase = 'idle';
+      level = 1;
+      lastTimestamp = null;
+      draw(0, true);
+    },
   };
 }
 

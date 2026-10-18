@@ -21,6 +21,8 @@ export type EditorialMedia = {
    */
   variants?: Partial<Record<Exclude<AtmosphereId, 'night'>, string>>;
   /** Foco propio de una variante cuyo sujeto no está donde el de la base. */
+  /** El slot tiene o tendrá imagen propia por tema: su base es la foto nocturna (`THEME_VARIANTS`). */
+  themed?: true;
   variantPositions?: Partial<Record<Exclude<AtmosphereId, 'night'>, string>>;
   alt: string;
   aspect: EditorialMediaAspect;

@@ -415,3 +415,23 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   > [data-photo-base] {
   opacity: 0;
 }
+
+/* Una foto de slot con imagen por tema (`media.themed`) es nocturna en su base. Bajo el tema
+   claro y sin variante publicada todavía, la noche oscura contra un velo claro corta el héroe
+   en dos mitades: se lava hasta quedar como un paisaje velado sobre el fondo del tema. Cuando la
+   variante existe, la regla de arriba oculta la base y esta no importa. */
+[data-scheme='light'] [data-photo-night] {
+  opacity: 0.38;
+}
+
+/* Durante el fundido de un cambio de tema (`AtmosphereProvider`), los colores del sitio transitan
+   en vez de saltar. Sólo mientras dura: el resto del tiempo cada elemento lleva sus propias
+   transiciones. Con movimiento reducido el atributo nunca se pone. */
+[data-theme-switching] *,
+[data-theme-switching] *::before,
+[data-theme-switching] *::after {
+  transition-property:
+    color, background-color, border-color, fill, stroke, box-shadow, opacity !important;
+  transition-duration: 0.9s !important;
+  transition-timing-function: ease-in-out !important;
+}

@@ -5,7 +5,7 @@ import { useEngineProfile } from '@/hooks/use-engine-profile';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { fadeDuration } from '@/lib/atmosphere/engine-profile';
 
-/** Un blob circular difuminado a la deriva. */
+/** Un blob circular difuminado a la deriva. Su color es `--nebula-a|b|c` del tema activo y su fuerza, `--nebula-boost`. */
 type Blob = {
   style: CSSProperties;
   gradient: string;
@@ -16,19 +16,22 @@ type Blob = {
 const BLOBS: readonly Blob[] = [
   {
     style: { top: '-18%', left: '-10%', width: '60vw', height: '60vw' },
-    gradient: 'radial-gradient(circle, rgba(150,198,188,0.10), transparent 62%)',
+    gradient:
+      'radial-gradient(circle, rgb(var(--nebula-a) / calc(0.1 * var(--nebula-boost))), transparent 62%)',
     blur: 30,
     animation: 'fm-drift 34s ease-in-out infinite',
   },
   {
     style: { bottom: '-22%', right: '-8%', width: '55vw', height: '55vw' },
-    gradient: 'radial-gradient(circle, rgba(185,176,214,0.10), transparent 62%)',
+    gradient:
+      'radial-gradient(circle, rgb(var(--nebula-b) / calc(0.1 * var(--nebula-boost))), transparent 62%)',
     blur: 30,
     animation: 'fm-drift 42s ease-in-out infinite reverse',
   },
   {
     style: { top: '30%', left: '55%', width: '40vw', height: '40vw' },
-    gradient: 'radial-gradient(circle, rgba(216,185,120,0.08), transparent 60%)',
+    gradient:
+      'radial-gradient(circle, rgb(var(--nebula-c) / calc(0.08 * var(--nebula-boost))), transparent 60%)',
     blur: 26,
     animation: 'fm-drift 50s ease-in-out infinite',
   },

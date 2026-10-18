@@ -22,6 +22,17 @@ const PUBLIC = resolve(process.cwd(), 'public/editorial');
 // Prettier parte los selectores largos en varias líneas: se compara sin saltos.
 const GLOBALS = readSource(`${SRC}/app/globals.css`).replace(/\s+/g, ' ');
 
+type BriefRow = {
+  id: string;
+  slotId: string;
+  file: string;
+  theme?: string;
+  preset: string;
+  priority: string;
+};
+
+const briefRows = () => expandAll() as BriefRow[];
+
 const contractPairs = Object.entries(THEME_VARIANTS).flatMap(([slot, themes]) =>
   (themes ?? []).map((theme) => `${slot}@${theme}`),
 );
@@ -48,23 +59,24 @@ describe('theme image variants', () => {
   });
 
   it('give every variant a brief row that inherits the ratio and priority of its slot', () => {
-    const rows = expandAll();
+    const rows = briefRows();
 
     for (const pair of contractPairs) {
-      const row = rows.find((candidate: { id: string }) => candidate.id === pair);
+      const row = rows.find((candidate) => candidate.id === pair);
+      const base = rows.find((candidate) => candidate.id === row?.slotId);
       expect(row, pair).toBeDefined();
-      const base = rows.find((candidate: { id: string }) => candidate.id === row.slotId);
-      expect(row.preset, pair).toBe(base.preset);
-      expect(row.priority, pair).toBe(base.priority);
-      expect(row.file, pair).toBe(`${base.file.replace(/\.avif$/, '')}-${row.theme}.avif`);
+      expect(base, pair).toBeDefined();
+      expect(row!.preset, pair).toBe(base!.preset);
+      expect(row!.priority, pair).toBe(base!.priority);
+      expect(row!.file, pair).toBe(`${base!.file.replace(/\.avif$/, '')}-${row!.theme}.avif`);
     }
   });
 
   it('are published exactly when the brief says so, and the file exists', () => {
-    const rows = expandAll();
+    const rows = briefRows();
 
     for (const pair of contractPairs) {
-      const row = rows.find((candidate: { id: string }) => candidate.id === pair);
+      const row = rows.find((candidate) => candidate.id === pair)!;
       const published = statusOf(row.file).state !== 'faltante';
 
       expect(pair in EDITORIAL_ASSETS, `${pair} in manifest`).toBe(published);

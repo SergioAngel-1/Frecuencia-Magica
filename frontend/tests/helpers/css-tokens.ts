@@ -32,6 +32,7 @@ export const ATMOSPHERE_TOKENS = [
   '--nebula-a',
   '--nebula-b',
   '--nebula-c',
+  '--nebula-boost',
   '--atmo-bg',
   '--atmo-backdrop',
 ] as const;

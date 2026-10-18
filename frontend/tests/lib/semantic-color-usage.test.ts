@@ -118,11 +118,7 @@ const ALLOWED: Record<string, string> = {
   'components/features/player/player-orb.tsx': 'brillo especular del orbe (decorativo)',
   'components/layout/brand-mark.tsx': 'halo del isotipo (decorativo)',
   'components/layout/talk-float.tsx': 'aura decorativa del botón de hablar (decorativo)',
-  'components/world/brand-figures.tsx': 'figuras de marca del world engine (decorativo)',
-  'components/world/luminous-cursor.tsx': 'cursor luminoso (decorativo)',
-  'components/world/nebula-layer.tsx': 'halos del world engine: nebulosa (decorativo)',
   'components/world/wave-separator.tsx': 'halos del world engine: separador de ondas (decorativo)',
-  'lib/cosmic/scene.ts': 'campo de estrellas del world engine (decorativo)',
 
   // Aros y halos del UI Kit: decorativos, no se migran (T0.7 decide su visibilidad por atmósfera).
   'components/ui/empty-state.tsx': 'aros orbitales del vacío (decorativo)',

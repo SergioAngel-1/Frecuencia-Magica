@@ -324,6 +324,7 @@
   --nebula-a: 150 198 188;
   --nebula-b: 185 176 214;
   --nebula-c: 216 185 120;
+  --nebula-boost: 1;
   --page-inset: 24px;
   --container-max: 1240px;
   /* Alto del fundido de una banda a sangre: un peldaño `section`, para que el
@@ -377,6 +378,7 @@
   --nebula-a: 150 198 188;
   --nebula-b: 185 176 214;
   --nebula-c: 216 185 120;
+  --nebula-boost: 1;
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0f1b2e 45%, #0a1220 100%);
   --atmo-backdrop: radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0f1b2e 45%, #0a1220 100%);
 }
@@ -406,6 +408,7 @@
   --nebula-a: 232 164 143;
   --nebula-b: 230 194 143;
   --nebula-c: 201 179 201;
+  --nebula-boost: 1.4;
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #3a2427 0%, #2b1c22 45%, #150e13 100%);
   --atmo-backdrop: linear-gradient(160deg, #321f22 0%, #2b1c22 55%, #140d12 100%);
 }
@@ -435,6 +438,7 @@
   --nebula-a: 170 200 220;
   --nebula-b: 240 190 150;
   --nebula-c: 214 180 110;
+  --nebula-boost: 2.6;
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #f6fafc 0%, #dce7ec 45%, #c3d5df 100%);
   --atmo-backdrop: linear-gradient(160deg, #e9f1f5 0%, #dce7ec 55%, #c3d5df 100%);
 }
@@ -464,6 +468,7 @@
   --nebula-a: 150 175 210;
   --nebula-b: 207 216 230;
   --nebula-c: 185 176 214;
+  --nebula-boost: 1.2;
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #1b2b4a 0%, #0b1426 45%, #060b15 100%);
   --atmo-backdrop: linear-gradient(160deg, #15233d 0%, #0b1426 55%, #060b15 100%);
 }
@@ -493,6 +498,7 @@
   --nebula-a: 120 180 140;
   --nebula-b: 216 196 138;
   --nebula-c: 150 198 188;
+  --nebula-boost: 1.4;
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #1e3328 0%, #1a2d23 45%, #101b15 100%);
   --atmo-backdrop: linear-gradient(160deg, #1c3026 0%, #1a2d23 55%, #101b15 100%);
 }

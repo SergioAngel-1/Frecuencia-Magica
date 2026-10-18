@@ -22,4 +22,5 @@ export { SessionLink } from './session-link';
 export { SiteFooter } from './site-footer';
 export { SiteHeader } from './site-header';
 export { TalkFloat } from './talk-float';
+export { ThemeSwitcher } from './theme-switcher';
 export { ButtonLink } from './button-link';

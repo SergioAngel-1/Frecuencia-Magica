@@ -166,8 +166,10 @@ function EditorialMatter({
   } as CSSProperties;
 
   const photoSizes = sizes ?? media.sizes;
-  const photoClass =
-    'object-cover object-[var(--fm-pos-mobile,var(--fm-pos))] md:object-[var(--fm-pos)]';
+  const photoClass = cn(
+    'object-cover object-[var(--fm-pos-mobile,var(--fm-pos))] md:object-[var(--fm-pos)]',
+    media.themed && 'transition-opacity duration-700 ease-out motion-reduce:duration-0',
+  );
 
   // Con imagen propia en algún tema, la foto la monta un hijo cliente que lee el tema activo.
   if (media.variants && Object.keys(media.variants).length > 0) {
@@ -185,6 +187,7 @@ function EditorialMatter({
   const photo = (
     <Image
       alt={media.alt}
+      data-photo-night={media.themed ? '' : undefined}
       className={photoClass}
       fill
       priority={priority ?? media.priority}

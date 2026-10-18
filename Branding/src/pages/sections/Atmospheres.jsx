@@ -1,19 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { Section, Specimen, Mono } from '../../components/showcase/Section'
-import { ScopeBackdrop } from '../../components/ui'
 
-// Las nueve atmósferas (DESIGN.md § Atmósferas). Sólo el id y el carácter: los valores
+// Los cinco temas (DESIGN.md § Atmósferas). Sólo el id y el carácter: los valores
 // viven en frontend/src/app/tokens.css y se leen en vivo del bloque de cada muestra.
 const ATMOSPHERES = [
-  ['night', 'Noche cósmica', 'oscuro', 'La v1, sin cambios. Portal, acceso y 404.'],
-  ['dusk', 'Atardecer · Descanso', 'oscuro cálido', 'Terracota, coral oscuro y ámbar suave. Sin rojo intenso.'],
-  ['dawn', 'Amanecer · Calma de día', 'claro', 'Azul cielo, marfil y dorado tenue sobre agua.'],
-  ['moon', 'Luna · Escucha nocturna', 'oscuro profundo', 'Azul noche y plata. Pocas estrellas.'],
-  ['forest', 'Bosque · Raíz y agua', 'oscuro, verde', 'Verde natural y luz filtrada. Cascada y helechos.'],
-  ['study', 'Estudio · Academia', 'claro', 'Luz para leer, junto a una ventana.'],
-  ['store', 'Taller · Tienda', 'claro cálido', 'Arena, crema y verde suave.'],
-  ['gathering', 'Encuentro · Experiencias', 'cálido, texto claro', 'Humano y cercano, en un espacio cálido.'],
-  ['marisol', 'Luz de Marisol', 'claro cálido', 'Personal, cálido y luminoso.'],
+  ['night', 'Noche', 'oscuro', 'La v1, sin cambios: estrellas marfil y polen dorado. Portal, Home, Resonario y Santuario la sugieren.'],
+  ['dusk', 'Atardecer', 'oscuro cálido', 'Terracota, coral oscuro y ámbar. Brasas que ascienden y titilan. Experiencias lo sugiere.'],
+  ['dawn', 'Amanecer', 'claro', 'Azul cielo, marfil y dorado tenue. Motas de luz que derivan. Academia, Tienda y Sobre Marisol lo sugieren.'],
+  ['moon', 'Luna', 'oscuro profundo', 'Azul noche y plata. Estrellas plateadas que parpadean y polvo de plata.'],
+  ['forest', 'Bosque', 'oscuro, verde', 'Verde natural y luz filtrada. Luciérnagas que pulsan y esporas que caen.'],
 ]
 
 const ACCENTS = ['--color-accent', '--color-accent-2', '--color-accent-3']
@@ -49,22 +44,12 @@ function AtmosphereSample({ id, name, scheme, use }) {
 
 export function Atmospheres() {
   return (
-    <Section id="atmosferas" kicker="Fundamentos · atmósferas" title="Nueve ambientes, un mismo lenguaje" tone="teal" lead="Cada atmósfera redefine la escalera de texto, los acentos, el vidrio, las líneas y el fondo. Las muestras son bloques data-atmosphere: el valor que ves es el del token, leído en vivo.">
-      <Specimen title="Las nueve" note="El fondo es el degradado de cada atmósfera; el acento de texto y los tres halos vienen del mismo bloque. Ninguna muestra declara un color propio.">
+    <Section id="atmosferas" kicker="Fundamentos · atmósferas" title="Cinco temas, un mismo lenguaje" tone="teal" lead="Un tema es global: cambia la escalera de texto, los acentos, el vidrio, las líneas, el fondo y la escena viva del lienzo en todo el sitio. Las muestras son bloques data-atmosphere: el valor que ves es el del token, leído en vivo.">
+      <Specimen title="Los cinco" note="El fondo es el degradado de cada tema; el acento de texto y los tres halos vienen del mismo bloque. Ninguna muestra declara un color propio.">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {ATMOSPHERES.map(([id, name, scheme, use]) => (
             <AtmosphereSample key={id} id={id} name={name} scheme={scheme} use={use} />
           ))}
-        </div>
-      </Specimen>
-      <Specimen title="Bordes fundidos" note="Una sección con atmósfera no corta en seco contra la noche: su fondo (ScopeBackdrop) se disuelve en el borde con la máscara fm-fade-*. Aquí, un amanecer entre dos tramos de noche, como en el ritmo de la Home.">
-        <div className="bg-[image:var(--atmo-bg)] rounded-card-lg flex flex-col overflow-hidden py-6">
-          <p className="text-fg-meta text-meta px-6 pb-6 font-sans">Noche</p>
-          <div data-atmosphere="dawn" data-scheme="light" className="text-fg relative isolate px-6 py-12">
-            <ScopeBackdrop fade="both" />
-            <p className="font-serif text-[24px]">¿Cómo llegas hoy?</p>
-          </div>
-          <p className="text-fg-meta text-meta px-6 pt-6 font-sans">Noche</p>
         </div>
       </Specimen>
     </Section>

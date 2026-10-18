@@ -60,7 +60,17 @@ describe('createParticles / advanceParticle', () => {
   });
 
   it('la partícula reaparece por abajo al salir por arriba', () => {
-    const particle = { x: 0.5, y: -0.03, r: 1, vy: 0.05, vx: 0, a: 0.4 };
+    const particle = {
+      kind: 'rise' as const,
+      phase: 0,
+      group: 0,
+      x: 0.5,
+      y: -0.03,
+      r: 1,
+      vy: 0.05,
+      vx: 0,
+      a: 0.4,
+    };
     expect(advanceParticle(particle).y).toBe(1.02);
   });
 });
@@ -72,6 +82,7 @@ describe('createCosmicDriver', () => {
     const scene: CosmicScene = {
       resize: () => {},
       setAccent: () => {},
+      setTheme: () => {},
       frame: (timestamp) => calls.frame.push(timestamp),
       still: () => {
         calls.still += 1;

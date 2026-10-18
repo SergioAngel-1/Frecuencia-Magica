@@ -49,8 +49,9 @@ export type SwapPace = keyof typeof SWAP_PACE;
 export const PHASE_FADE = { exit: 0.6, enter: 1.1 } as const;
 
 /**
- * Fundido entre atmósferas, en segundos. Sólo anima `opacity`: los tokens de
- * texto cambian bajo el fundido, así que ninguna propiedad de pintado se mueve.
+ * Fundido entre temas, en segundos. El fondo y las capas del motor funden con
+ * `opacity`; los tokens cambian de golpe y, mientras dura el fundido, los colores
+ * del sitio transitan (`[data-theme-switching]`, ver `AtmosphereProvider`).
  * Con movimiento reducido no hay fundido (`fadeDuration` en `lib/atmosphere`).
  */
 export const ATMOSPHERE_FADE_SECONDS = 1.6;
