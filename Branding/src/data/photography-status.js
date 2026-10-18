@@ -194,6 +194,7 @@ export const COMPLETED = [
   'experiences-hero-moon.avif',
   'booking-hero-moon.avif',
   'auth-hero-moon.avif',
+  'store-hero-moon.avif',
 ]
 
 /**
