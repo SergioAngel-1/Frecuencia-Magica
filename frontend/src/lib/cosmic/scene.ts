@@ -7,6 +7,12 @@ import { SCENE_THEMES, type ParticleKind, type SceneTheme } from './themes';
 const STAR_COUNT = 220;
 const TAU = Math.PI * 2;
 
+/** Cubos de alfa para agrupar las estrellas: cada cubo se rellena con un solo `fill`. */
+const STAR_BUCKETS = 8;
+
+/** Techo de lado del sprite de nebulosa: una nebulosa es luz suave, no necesita más. */
+const NEBULA_SPRITE_MAX_PX = 1024;
+
 /** Posición (x, y) y radio de cada nebulosa, en fracciones del lienzo. Los colores los pone el tema. */
 const NEBULA_SPOTS: readonly (readonly [number, number, number])[] = [
   [0.22, 0.3, 0.42],
@@ -49,6 +55,61 @@ export type CosmicScene = {
   /** Un frame quieto, sin parpadeo: lo que se ve con movimiento reducido. */
   still: () => void;
 };
+
+/** Un lienzo fuera de pantalla para hornear sprites: `OffscreenCanvas` en el worker o donde exista. */
+type SpriteCanvas = {
+  canvas: OffscreenCanvas | HTMLCanvasElement;
+  ctx: CosmicContext;
+};
+
+/**
+ * Crea un lienzo de trabajo fuera de pantalla del tamaño pedido. Prefiere
+ * `OffscreenCanvas` (único disponible en el worker, sin `document`); en el hilo
+ * principal, si no lo hay o no da contexto, cae a `document.createElement`.
+ * Devuelve `null` si el entorno no puede pintar (tests sin canvas reales).
+ */
+function createSpriteCanvas(width: number, height: number): SpriteCanvas | null {
+  if (typeof OffscreenCanvas !== 'undefined') {
+    const canvas = new OffscreenCanvas(width, height);
+    const ctx = canvas.getContext('2d');
+    if (ctx) return { canvas, ctx };
+  }
+  if (typeof document !== 'undefined') {
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    if (ctx) return { canvas, ctx };
+  }
+  return null;
+}
+
+/**
+ * Hornea una nebulosa a un sprite: un gradiente radial del color del tema sobre
+ * un lienzo cuadrado, centrado, listo para colocarlo con `drawImage` en lugar de
+ * crear el gradiente y rellenar el viewport en cada frame. El bucle lo dibuja
+ * desplazado por la deriva, así que la animación no cambia.
+ */
+function bakeNebula(
+  rgb: Rgb,
+  alpha: number,
+  radiusCss: number,
+  dpr: number,
+): OffscreenCanvas | HTMLCanvasElement | null {
+  const size = Math.max(2, Math.min(Math.round(radiusCss * 2 * dpr), NEBULA_SPRITE_MAX_PX));
+  const sprite = createSpriteCanvas(size, size);
+  if (!sprite) return null;
+
+  const [r, g, b] = rgb;
+  const center = size / 2;
+  const gradient = sprite.ctx.createRadialGradient(center, center, 0, center, center, center);
+  gradient.addColorStop(0, `rgba(${r},${g},${b},${alpha})`);
+  gradient.addColorStop(1, `rgba(${r},${g},${b},0)`);
+  sprite.ctx.fillStyle = gradient;
+  sprite.ctx.fillRect(0, 0, size, size);
+
+  return sprite.canvas;
+}
 
 /** Brillo propio de cada tipo de partícula en el instante `time` (segundos), de 0 a 1. */
 function flicker(kind: ParticleKind, phase: number, time: number): number {
@@ -95,6 +156,12 @@ export function createCosmicScene(
 
   const stars = createStars(STAR_COUNT, random);
   let particles: Particle[] = [];
+  // Índices de estrellas agrupados por cubo de alfa, reutilizados cada frame para
+  // pintar cada cubo con un solo `beginPath`/`fill` (Task 4.1 — presupuesto de canvas).
+  const starBuckets: number[][] = Array.from({ length: STAR_BUCKETS }, () => []);
+  // Las tres nebulosas horneadas a sprite; `null` si el entorno no puede crear
+  // lienzos (tests), en cuyo caso `draw` cae al gradiente por frame de siempre.
+  let nebulae: (OffscreenCanvas | HTMLCanvasElement)[] | null = [];
   // Gradiente de cada partícula, pre-horneado en coordenadas locales centradas
   // en el origen: el bucle lo coloca con la transformación en lugar de crear
   // un gradiente por partícula y frame (Task 16.4 — presupuesto de animación).
@@ -117,6 +184,28 @@ export function createCosmicScene(
     });
   };
 
+  // Hornea las nebulosas al sprite de su color y radio actuales. Se rehace al
+  // cambiar tamaño (radio en píxeles), acento (la nebulosa sin color propio lo
+  // toma del acento) o tema (color). Si algún sprite no puede crearse, deja
+  // `nebulae` en `null`: `draw` usa entonces el gradiente por frame.
+  const rebuildNebulae = () => {
+    const max = Math.max(width, height) || 1;
+    const sprites: (OffscreenCanvas | HTMLCanvasElement)[] = [];
+
+    for (let i = 0; i < theme.nebulae.length; i++) {
+      const spot = NEBULA_SPOTS[i];
+      if (!spot) continue;
+      const sprite = bakeNebula(theme.nebulae[i] ?? accent, theme.nebulaAlpha, spot[2] * max, dpr);
+      if (!sprite) {
+        nebulae = null;
+        return;
+      }
+      sprites.push(sprite);
+    }
+
+    nebulae = sprites;
+  };
+
   const rebuildParticles = () => {
     particles = theme.groups.flatMap((group, index) =>
       createParticles(small ? group.mobile : group.count, random, {
@@ -133,6 +222,7 @@ export function createCosmicScene(
     themeId = id;
     theme = SCENE_THEMES[id];
     rebuildParticles();
+    rebuildNebulae();
   };
 
   const resize = (viewport: CosmicViewport) => {
@@ -140,6 +230,9 @@ export function createCosmicScene(
     ctx.canvas.width = width * dpr;
     ctx.canvas.height = height * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // El radio de las nebulosas va en píxeles: se rehornean con cada tamaño.
+    rebuildNebulae();
 
     // Cambio de breakpoint: regenerar las partículas del tema y sus sprites.
     if (small !== viewport.small || particles.length === 0) {
@@ -152,39 +245,65 @@ export function createCosmicScene(
     ctx.clearRect(0, 0, width, height);
     const max = Math.max(width, height);
 
-    // Nebulosas radiales a la deriva.
+    // Nebulosas radiales a la deriva, dibujadas con el sprite horneado: sólo se
+    // desplaza la imagen, sin crear gradientes ni rellenar el viewport por frame.
     ctx.globalAlpha = level;
-    for (let i = 0; i < theme.nebulae.length; i++) {
-      const [r, g, b] = theme.nebulae[i] ?? accent;
-      const dx = Math.sin(time * 0.0001 * (0.6 + i * 0.3)) * 0.03;
-      const dy = Math.cos(time * 0.0001 * (0.5 + i * 0.25)) * 0.03;
-      const [spotX, spotY, spotR] = NEBULA_SPOTS[i]!;
-      const cx = (spotX + dx) * width;
-      const cy = (spotY + dy) * height;
-      const radius = spotR * max;
-      const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-      gradient.addColorStop(0, `rgba(${r},${g},${b},${theme.nebulaAlpha})`);
-      gradient.addColorStop(1, `rgba(${r},${g},${b},0)`);
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, width, height);
+    if (nebulae && nebulae.length === theme.nebulae.length) {
+      for (let i = 0; i < theme.nebulae.length; i++) {
+        const sprite = nebulae[i]!;
+        const [spotX, spotY, spotR] = NEBULA_SPOTS[i]!;
+        const dx = Math.sin(time * 0.0001 * (0.6 + i * 0.3)) * 0.03;
+        const dy = Math.cos(time * 0.0001 * (0.5 + i * 0.25)) * 0.03;
+        const radius = spotR * max;
+        const cx = (spotX + dx) * width;
+        const cy = (spotY + dy) * height;
+        ctx.drawImage(sprite, cx - radius, cy - radius, radius * 2, radius * 2);
+      }
+    } else {
+      // Entornos sin lienzos de trabajo (tests): el gradiente por frame de antes.
+      for (let i = 0; i < theme.nebulae.length; i++) {
+        const [r, g, b] = theme.nebulae[i] ?? accent;
+        const dx = Math.sin(time * 0.0001 * (0.6 + i * 0.3)) * 0.03;
+        const dy = Math.cos(time * 0.0001 * (0.5 + i * 0.25)) * 0.03;
+        const [spotX, spotY, spotR] = NEBULA_SPOTS[i]!;
+        const cx = (spotX + dx) * width;
+        const cy = (spotY + dy) * height;
+        const radius = spotR * max;
+        const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+        gradient.addColorStop(0, `rgba(${r},${g},${b},${theme.nebulaAlpha})`);
+        gradient.addColorStop(1, `rgba(${r},${g},${b},0)`);
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+      }
     }
 
-    // Estrellas: parpadeo senoidal. El alfa va en `globalAlpha` sobre un
-    // relleno fijo: mismo resultado que un `rgba()` por estrella, sin
-    // construir ni analizar 220 cadenas de color en cada frame.
+    // Estrellas: parpadeo senoidal. Se agrupan por cubos de alfa (≤8) y cada cubo
+    // se pinta con un solo `beginPath`/`fill`; el alfa va en `globalAlpha`, sin
+    // construir ni analizar 220 cadenas de color por frame.
     const { stars: look } = theme;
     if (look.count > 0) {
       const [sr, sg, sb] = look.rgb;
       ctx.fillStyle = `rgb(${sr},${sg},${sb})`;
-      const swing = 0.6 * (look.twinkle / 0.6);
+      const span = look.twinkle;
+      for (const bucket of starBuckets) bucket.length = 0;
       for (let i = 0; i < look.count && i < stars.length; i++) {
         const star = stars[i]!;
         const tw = twinkleFrozen
           ? 0.7
           : 0.5 + 0.5 * Math.sin(time * 0.0001 * 6 * star.sp + star.tw);
-        ctx.globalAlpha = (0.25 + swing * tw) * look.alpha * level;
+        const bucket = Math.min(STAR_BUCKETS - 1, Math.floor(tw * STAR_BUCKETS));
+        starBuckets[bucket]!.push(i);
+      }
+      for (let b = 0; b < STAR_BUCKETS; b++) {
+        const list = starBuckets[b]!;
+        if (list.length === 0) continue;
+        const tw = (b + 0.5) / STAR_BUCKETS;
+        ctx.globalAlpha = (0.25 + span * tw) * look.alpha * level;
         ctx.beginPath();
-        ctx.arc(star.x * width, star.y * height, star.r, 0, TAU);
+        for (let k = 0; k < list.length; k++) {
+          const star = stars[list[k]!]!;
+          ctx.arc(star.x * width, star.y * height, star.r, 0, TAU);
+        }
         ctx.fill();
       }
     }
@@ -228,6 +347,7 @@ export function createCosmicScene(
     setAccent: (next) => {
       accent = next;
       rebuildSprites();
+      rebuildNebulae();
     },
     setTheme: (next) => {
       if (next === themeId && pending === null) return;
