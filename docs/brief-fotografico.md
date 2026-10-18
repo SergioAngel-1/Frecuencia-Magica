@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 125 completadas · 0 a corregir · 2 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 126 completadas · 0 a corregir · 1 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -255,7 +255,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `resonario-featured-dawn.avif` | Resonario · destacado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `resonario-archive-banner-dawn.avif` | Resonario · archivo · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `academy-featured-course-dawn.avif` | Academia · curso destacado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
-| `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
+| `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `store-ritual-banner-dawn.avif` | Tienda · banner ritual · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
 
 ## 5. Estado de las imágenes
@@ -270,25 +270,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (2)
+### 5.2 Faltantes (1)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `experiences.featured · Amanecer` — Experiencias · destacada · tema · P1
-
-- **Archivo:** `experiences-featured-dawn.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 45%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Amanecer de `experiences.featured`: la misma vista y el mismo encuadre, con la escena del tema. La experiencia destacada con presencia propia: el baño de sonido. Cuerpo de luz.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A sound bath in progress in morning light: a circle of abstract translucent silhouettes of pure light, each with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated around a ring of crystal singing bowls glowing pale gold and soft lavender from within, set on pale still water that mirrors them, concentric rings of light spreading across the surface, drifting bright haze above. Ring of bowls and figures in the right two thirds at 45% vertical, left third calm bright mist for the title and the booking button. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `store.ritual-banner · Amanecer` — Tienda · banner ritual · tema · P2
 
@@ -320,7 +304,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (125)
+### 5.5 Completadas (126)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -451,6 +435,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-featured-dawn.avif` | Resonario · destacado · tema · Amanecer | `resonario.featured` | 16:8 | P1 |
 | `resonario-archive-banner-dawn.avif` | Resonario · archivo · tema · Amanecer | `resonario.archive-banner` | 16:9 | P2 |
 | `academy-featured-course-dawn.avif` | Academia · curso destacado · tema · Amanecer | `academy.featured-course` | 16:8 | P1 |
+| `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | `experiences.featured` | 16:8 | P1 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (61)
 
