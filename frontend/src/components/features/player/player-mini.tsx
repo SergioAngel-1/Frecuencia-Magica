@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import { PlayerOrb } from './player-orb';
 
-type PlayerMiniProps = {
+export type PlayerMiniProps = {
   /** `null` si la pista no es un tono: el aro no lleva cifra. */
   hz: number | null;
   band: string;

@@ -263,7 +263,12 @@ describe('resonario editorial composition contracts', () => {
 
     expect(dockSource).toContain('<AudioCover media={resolveAudioCover(audio');
     expect(dockSource).toContain('<PlayerOrb band={audio.band} cover={cover}');
-    expect(dockSource).toContain('cover={cover}\n              progress={pct}');
+    // El aro del disco recogido lee el avance en su propia hoja (ver player-progress).
+    expect(dockSource).toContain('<PlayerMiniProgress');
+    expect(dockSource).toContain('cover={cover}');
+    expect(readSource('components/features/player/player-progress.tsx')).toContain(
+      'progress={progressPercent(elapsed, total)}',
+    );
     expect(miniSource).toContain('<PlayerOrb band={band} cover={cover}');
     expect(orbSource).toContain(
       '{cover ? <span className="absolute inset-0">{cover}</span> : null}',

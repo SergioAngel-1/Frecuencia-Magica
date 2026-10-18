@@ -167,7 +167,7 @@ describe('academy editorial composition contracts', () => {
     // Es la misma barra que el dock de frecuencias, con la posición siempre a la vista.
     expect(videoSource).toContain('<PlayerBar');
     expect(videoSource).toContain('timeline="always"');
-    expect(dockSource).toContain('<PlayerBar');
+    expect(dockSource).toContain('<PlayerProgressBar');
     expect(barSource).toContain('<SeekBar');
     // Sonido y pantalla completa propios; sin soporte, el botón no se pinta.
     expect(veilSource).toContain('requestFullscreen');
