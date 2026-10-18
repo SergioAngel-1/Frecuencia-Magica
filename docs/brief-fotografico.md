@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 90 completadas · 0 a corregir · 37 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 92 completadas · 0 a corregir · 35 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -220,8 +220,8 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `experiences-hero-dusk.avif` | Experiencias · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `about-hero-dawn.avif` | Sobre Marisol · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `portal-hero-dusk.avif` | Portal · umbral · tema · Atardecer | 16:9 | 2880×1620 | P0 | Completadas |
-| `portal-hero-dawn.avif` | Portal · umbral · tema · Amanecer | 16:9 | 2880×1620 | P0 | Faltantes |
-| `portal-hero-forest.avif` | Portal · umbral · tema · Bosque | 16:9 | 2880×1620 | P0 | Faltantes |
+| `portal-hero-dawn.avif` | Portal · umbral · tema · Amanecer | 16:9 | 2880×1620 | P0 | Completadas |
+| `portal-hero-forest.avif` | Portal · umbral · tema · Bosque | 16:9 | 2880×1620 | P0 | Completadas |
 | `home-hero-dusk.avif` | Home · hero · tema · Atardecer | 16:9 | 2880×1620 | P0 | Faltantes |
 | `home-hero-dawn.avif` | Home · hero · tema · Amanecer | 16:9 | 2880×1620 | P0 | Faltantes |
 | `home-hero-forest.avif` | Home · hero · tema · Bosque | 16:9 | 2880×1620 | P0 | Faltantes |
@@ -270,41 +270,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (37)
+### 5.2 Faltantes (35)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `portal.hero · Amanecer` — Portal · umbral · tema · P0
-
-- **Archivo:** `portal-hero-dawn.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Variante del tema Amanecer de `portal.hero`: la misma vista y el mismo encuadre, con la escena del tema. Umbral de entrada al universo: lo primero que ve el visitante.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A vast threshold over still water at sunrise: a circular opening of pale gold light, a soft diffuse halo of light: a broad blurred glow about one fifth of the ring's diameter wide, brightest in the middle of its width and fading smoothly on both sides, with no outline and no hard edge, like the corona of an eclipse seen through mist, never a thin glowing line or neon tube, hovering low above a mirror-calm lake at the horizon, its reflection on the water short and soft, ending at about 70% of the frame height, a luminous open sky of soft sky blue fading to ivory with a few thin high clouds, a distant low line of hills in faint blue haze, a faint peach glow low on the horizon at the left and a faint pale blue glow low on the horizon at the right, both fading out well before the frame edges. Centered, balanced wide composition with the horizon at about 52% from the top, the ring at 50% horizontal and 40% vertical, calm open space all around, the bottom 30% of the frame plain calm water with no reflections, for a logo and a button. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `portal.hero · Bosque` — Portal · umbral · tema · P0
-
-- **Archivo:** `portal-hero-forest.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Variante del tema Bosque de `portal.hero`: la misma vista y el mismo encuadre, con la escena del tema. Umbral de entrada al universo: lo primero que ve el visitante.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A vast threshold in a forest clearing: a circular opening of warm golden-green light, a soft diffuse halo of light: a broad blurred glow about one fifth of the ring's diameter wide, brightest in the middle of its width and fading smoothly on both sides, with no outline and no hard edge, like the corona of an eclipse seen through mist, never a thin glowing line or neon tube, hovering low above a still forest pool, framed by tall tree trunks and ferns on both sides, its reflection on the water short and soft, a fine mist rising off the pool, warm filtered golden light between the canopy, deep natural greens. Centered, balanced wide composition with the far edge of the pool at about 52% from the top, the ring at 50% horizontal and 40% vertical, the trunks and ferns confined to the outer 15% on each side, the bottom 30% of the frame plain still water with no reflections, for a logo and a button. Wide landscape framing. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `home.hero · Atardecer` — Home · hero · tema · P0
 
@@ -885,7 +853,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (90)
+### 5.5 Completadas (92)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -981,6 +949,8 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `experiences-hero-dusk.avif` | Experiencias · hero · tema · Atardecer | `experiences.hero` | 16:9 | P1 |
 | `about-hero-dawn.avif` | Sobre Marisol · hero · tema · Amanecer | `about.hero` | 16:9 | P1 |
 | `portal-hero-dusk.avif` | Portal · umbral · tema · Atardecer | `portal.hero` | 16:9 | P0 |
+| `portal-hero-dawn.avif` | Portal · umbral · tema · Amanecer | `portal.hero` | 16:9 | P0 |
+| `portal-hero-forest.avif` | Portal · umbral · tema · Bosque | `portal.hero` | 16:9 | P0 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (61)
 
