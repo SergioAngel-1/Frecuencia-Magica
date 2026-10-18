@@ -60,8 +60,6 @@ export const UNUSED = {
 export const PENDING_NOTES = {
   'resonario-audio-cover-g1.avif':
     'Primer intento rechazado (6/10, archivado en `.editorial-trials/`): el prompt contradecía su propia regla (columna centrada y centro oscuro a la vez) y la base brillante de la niebla caía justo en el centro, bajo el número de la esfera. El prompt ya coloca la columna entre el 66 % y el 86 % del ancho.',
-  'resonario-audio-cover-m2.avif':
-    'Primer intento rechazado (7,5/10, archivado en `.editorial-trials/`): un disco de luna nítido y una columna de reflejo brillante llegaban hasta el borde del centro, y faltaba el equilibrio de teal y lavanda. El prompt ya pide sin disco, el reflejo entre el 62 % y el 80 % del ancho y el resto agua oscura lisa.',
 }
 
 /** Entregadas, publicadas, cableadas y sin desviación conocida. */
@@ -112,6 +110,7 @@ export const COMPLETED = [
   'resonario-audio-cover-n2.avif',
   'resonario-audio-cover-m1.avif',
   'resonario-audio-cover-n3.avif',
+  'resonario-audio-cover-m2.avif',
   'auth-form-atmosphere.avif',
   'og-image.jpg',
   'discover-hero.avif',
