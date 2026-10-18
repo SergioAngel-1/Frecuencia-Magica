@@ -191,6 +191,7 @@ export const COMPLETED = [
   'about-hero-moon.avif',
   'discover-hero-moon.avif',
   'academy-hero-moon.avif',
+  'experiences-hero-moon.avif',
 ]
 
 /**
