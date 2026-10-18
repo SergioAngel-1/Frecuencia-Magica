@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 108 completadas · 0 a corregir · 19 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 107 completadas · 0 a corregir · 20 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -217,7 +217,6 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `resonario-hero-forest.avif` | Resonario · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `academy-hero-dawn.avif` | Academia · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `store-hero-dawn.avif` | Tienda · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
-| `experiences-hero-dusk.avif` | Experiencias · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `about-hero-dawn.avif` | Sobre Marisol · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `portal-hero-dusk.avif` | Portal · umbral · tema · Atardecer | 16:9 | 2880×1620 | P0 | Completadas |
 | `portal-hero-dawn.avif` | Portal · umbral · tema · Amanecer | 16:9 | 2880×1620 | P0 | Completadas |
@@ -235,6 +234,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `discover-hero-forest.avif` | Descúbrete · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `academy-hero-dusk.avif` | Academia · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `academy-hero-forest.avif` | Academia · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
+| `experiences-hero-dusk.avif` | Experiencias · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Faltantes |
 | `experiences-hero-dawn.avif` | Experiencias · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `experiences-hero-forest.avif` | Experiencias · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `booking-hero-dusk.avif` | Reserva · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
@@ -270,9 +270,25 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (19)
+### 5.2 Faltantes (20)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
+
+#### `experiences.hero · Atardecer` — Experiencias · hero · tema · P1
+
+- **Archivo:** `experiences-hero-dusk.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Atardecer de `experiences.hero`: la misma vista y el mismo encuadre, con la escena del tema. Cabecera de experiencias: el viaje como promesa.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+The journey as a promise at dusk: a path of warm stepping stones across a calm sea toward a simple open pavilion on the far shore: a pavilion of timber with slim square posts and a low plain gabled roof, with no curved eaves, no tiered roof and no ornament, belonging to no particular culture, soft rose and amber haze between dark trees and headlands, nobody present. Pavilion centered at exactly 55% of the frame width (just right of center) and 40% vertical, stepping stones leading in from the lower left, the left third calm sea and soft sky, low in detail. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
 
 #### `booking.hero · Amanecer` — Reserva · hero · tema · P1
 
@@ -594,7 +610,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (108)
+### 5.5 Completadas (107)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -687,7 +703,6 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-hero-forest.avif` | Resonario · hero · tema · Bosque | `resonario.hero` | 16:9 | P1 |
 | `academy-hero-dawn.avif` | Academia · hero · tema · Amanecer | `academy.hero` | 16:9 | P1 |
 | `store-hero-dawn.avif` | Tienda · hero · tema · Amanecer | `store.hero` | 16:9 | P1 |
-| `experiences-hero-dusk.avif` | Experiencias · hero · tema · Atardecer | `experiences.hero` | 16:9 | P1 |
 | `about-hero-dawn.avif` | Sobre Marisol · hero · tema · Amanecer | `about.hero` | 16:9 | P1 |
 | `portal-hero-dusk.avif` | Portal · umbral · tema · Atardecer | `portal.hero` | 16:9 | P0 |
 | `portal-hero-dawn.avif` | Portal · umbral · tema · Amanecer | `portal.hero` | 16:9 | P0 |
@@ -722,12 +737,12 @@ Imágenes generadas que hacen de marco mientras llegan las fotografías reales (
 | `resonario.hero` | Resonario · hero · tema | `resonario-hero-dusk.avif`, `resonario-hero-dawn.avif`, `resonario-hero-moon.avif`, `resonario-hero-forest.avif` | Atardecer natural, sin rojo intenso (D2 del spec). Sustituir por fotografía propia o con licencia comercial documentada. |
 | `academy.hero` | Academia · hero · tema | `academy-hero-dawn.avif`, `academy-hero-dusk.avif`, `academy-hero-forest.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
 | `store.hero` | Tienda · hero · tema | `store-hero-dawn.avif`, `store-hero-dusk.avif`, `store-hero-forest.avif` | Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo. |
-| `experiences.hero` | Experiencias · hero · tema | `experiences-hero-dusk.avif`, `experiences-hero-dawn.avif`, `experiences-hero-forest.avif` | Sin personas por regla del brief. Sustituir por fotografías propias de Marisol de un encuentro real. |
 | `about.hero` | Sobre Marisol · hero · tema | `about-hero-dawn.avif`, `about-hero-dusk.avif`, `about-hero-forest.avif` | Marco provisional. Sustituir por fotografías y videos reales de Marisol (spec §8). |
 | `portal.hero` | Portal · umbral · tema | `portal-hero-dusk.avif`, `portal-hero-dawn.avif`, `portal-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `home.hero` | Home · hero · tema | `home-hero-dusk.avif`, `home-hero-dawn.avif`, `home-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `auth.hero` | Acceso · hero · tema | `auth-hero-dusk.avif`, `auth-hero-dawn.avif`, `auth-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `discover.hero` | Descúbrete · hero · tema | `discover-hero-dusk.avif`, `discover-hero-dawn.avif`, `discover-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `experiences.hero` | Experiencias · hero · tema | `experiences-hero-dusk.avif`, `experiences-hero-dawn.avif`, `experiences-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `booking.hero` | Reserva · hero · tema | `booking-hero-dusk.avif`, `booking-hero-dawn.avif`, `booking-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `sanctuary.hero` | Mi Santuario · hero · tema | `sanctuary-hero-dusk.avif`, `sanctuary-hero-dawn.avif`, `sanctuary-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `home.daily-frequency` | Home · frecuencia del día · tema | `home-daily-frequency-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |

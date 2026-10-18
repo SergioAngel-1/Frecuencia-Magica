@@ -158,7 +158,6 @@ export const COMPLETED = [
   'academy-hero-dawn.avif',
   'about-hero-dawn.avif',
   'resonario-kind-banner-melody.avif',
-  'experiences-hero-dusk.avif',
   'resonario-celtic.avif',
   'resonario-kind-banner-nature.avif',
   'resonario-kind-banner-frequency.avif',

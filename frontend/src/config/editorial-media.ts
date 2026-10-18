@@ -113,7 +113,6 @@ export const THEME_VARIANT_POSITIONS: Readonly<Record<string, string>> = {
   'resonario.hero@forest': '62% 50%',
   'academy.hero@dawn': '70% 50%',
   'store.hero@dawn': '60% 55%',
-  'experiences.hero@dusk': '62% 55%',
   'about.hero@dawn': '66% 50%',
 };
 

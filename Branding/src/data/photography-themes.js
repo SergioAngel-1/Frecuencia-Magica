@@ -10,8 +10,9 @@
  * Llevan el estilo de las atmósferas (color natural, sin personas) y son provisionales. La lista de slots y
  * temas la fija `THEME_VARIANTS` de `frontend/src/config/editorial-media.ts`; un test la cruza con esta.
  *
- * Las ocho primeras son las atmósferas de Ambientes v2 ya entregadas (`atmosphere-*`), reasignadas al slot al
- * que sirven ahora (`reusedFrom`). El resto está por generar.
+ * Las siete primeras son las atmósferas de Ambientes v2 ya entregadas (`atmosphere-*`), reasignadas al slot al
+ * que sirven ahora (`reusedFrom`); `experiences.hero@dusk` se retiró porque era una sala de cojines y sus hermanas
+ * (dawn, forest) son un camino hacia un pabellón. El resto está por generar.
  */
 import { BODY_OF_LIGHT, HALO, LIGHT_BODY_TRAITS, filaments } from './photography-phrases.js'
 
@@ -81,15 +82,6 @@ export const THEME_VARIANTS = [
     frame: "The tabletop fills the lower 55% of the frame and the wall the upper 45%, the middle of the surfaces between 35% and 80% of the frame width is bare stone and wood, kept empty, the sprigs and the cloth stay at the outer edges of the surfaces, and the left third is plain cream plaster in soft shade; an indoor still life only, a horizontal composition of surfaces and a wall, with no sea, beach, sky, sunset or landscape anywhere in the frame",
     provisional: "Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo.",
     reusedFrom: "atmosphere.store",
-  },
-  {
-    base: "experiences.hero",
-    theme: "dusk",
-    focal: "62% 55%",
-    subject: "A warm room prepared for a shared gathering, with nobody present: a wide circle of seven low floor cushions in natural linen and terracotta wool on a wooden floor, a low round wooden table at the center of the circle with a ceramic teapot, three small cups all visible on the table and three candles each with a small steady flame, soft warm golden light entering from a window out of frame at the right and from the candles, so that the left side of the room stays in shade, a plant in a clay pot in the corner, a shawl resting on one cushion and one half-empty cup, as traces of presence",
-    frame: "The circle of cushions centered at 64% horizontal and 60% vertical, small enough to sit entirely inside the band between 42% and 92% of the frame width, with no cushion or floor object left of 40% of the width and none cut by the right edge, the left 40% of the frame is a plain warm wall in deep soft shade, a dark honey-brown in low light with no bright patch and only a faint hint of window light, calm, low in detail and dark enough for ivory text to stay readable on it",
-    provisional: "Sin personas por regla del brief. Sustituir por fotografías propias de Marisol de un encuentro real.",
-    reusedFrom: "atmosphere.gathering",
   },
   {
     base: "about.hero",
@@ -216,6 +208,13 @@ export const THEME_VARIANTS = [
   },
 
   /* Experiencias */
+  {
+    base: 'experiences.hero',
+    theme: 'dusk',
+    subject: `The journey as a promise at dusk: a path of warm stepping stones across a calm sea toward a simple open pavilion on the far shore: a pavilion of timber with slim square posts and a low plain gabled roof, with no curved eaves, no tiered roof and no ornament, belonging to no particular culture, soft rose and amber haze between dark trees and headlands, nobody present`,
+    frame:
+      'Pavilion centered at exactly 55% of the frame width (just right of center) and 40% vertical, stepping stones leading in from the lower left, the left third calm sea and soft sky, low in detail',
+  },
   {
     base: 'experiences.hero',
     theme: 'dawn',
