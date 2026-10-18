@@ -32,6 +32,7 @@ const HEROES = [
   { place: 'Tienda', id: 'dawn', file: 'store-hero-dawn' },
   { place: 'Experiencias', id: 'moon', file: 'experiences-hero-moon' },
   { place: 'Home', id: 'dusk', file: 'home-hero-dusk' },
+  { place: 'Acceso', id: 'moon', file: 'auth-hero-moon' },
   { place: 'Home', id: 'dawn', file: 'home-hero-dawn' },
   { place: 'Home', id: 'forest', file: 'home-hero-forest' },
   { place: 'Home', id: 'moon', file: 'home-hero-moon' },
