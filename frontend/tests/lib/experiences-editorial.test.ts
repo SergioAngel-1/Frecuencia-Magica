@@ -18,6 +18,7 @@ const pageSource = readSource('app/[locale]/experiencias/(catalogo)/page.tsx');
 const bookingPageSource = readSource('app/[locale]/experiencias/[experienceId]/reservar/page.tsx');
 const listSource = readSource('components/features/experiences/experience-list.tsx');
 const rowSource = readSource('components/features/experiences/experience-row.tsx');
+const dateSource = readSource('components/features/experiences/experience-date.tsx');
 const bookingSource = readSource('components/features/experiences/booking-flow.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/experiencias/(catalogo)/loading.tsx');
@@ -98,11 +99,14 @@ describe('experiences editorial composition contracts', () => {
     expect(rowSource).toContain('media={media}');
     expect(rowSource).toContain('formatPrice(experience.price)');
     expect(rowSource).toContain('experience.dur');
-    expect(rowSource).toContain('dateTime={date.iso}');
-    expect(rowSource).toContain('{date.dow} {date.day} {date.month}');
-    expect(listSource).toContain('upcomingDates(new Date(), EXPERIENCES.length, locale)');
-    expect(listSource).toContain('date={dates[0]!}');
-    expect(listSource).toContain('date={dates[index + 1]!}');
+    // La fecha se resuelve en el cliente (SSG seguro); el contrato de la fila
+    // es pasarle cuántas fechas hay y en qué posición va.
+    expect(dateSource).toContain('dateTime={date?.iso}');
+    expect(dateSource).toContain('{date.dow} {date.day} {date.month}');
+    expect(rowSource).toContain('<ExperienceDate');
+    expect(listSource).toContain('dateCount={EXPERIENCES.length}');
+    expect(listSource).toContain('dateIndex={0}');
+    expect(listSource).toContain('dateIndex={index + 1}');
     // El CTA es un ButtonLink (cliente): Button asChild + Link desaparece en Server Components.
     expect(rowSource).toContain('<ButtonLink');
     expect(rowSource).toContain("pathname: '/experiencias/[experienceId]/reservar'");

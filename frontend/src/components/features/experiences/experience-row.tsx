@@ -1,18 +1,22 @@
 import { ButtonLink } from '@/components/layout';
 import { Badge, EditorialImage, Kicker, Display } from '@/components/ui';
 import { OrbitalRings } from '@/components/world';
-import type { DateOption } from '@/lib/booking/dates';
 import { formatPrice } from '@/lib/format';
 import { cn } from '@/lib/cn';
 import type { EditorialMedia } from '@/types/editorial-media';
 import type { Experience } from '@/types/content';
+
+import { ExperienceDate } from './experience-date';
 
 type ExperienceRowProps = {
   experience: Experience;
   title: string;
   mode: string;
   modeLabel: string;
-  date: DateOption;
+  /** Cuántas fechas próximas hay en la lista; las comparte con el resto de filas. */
+  dateCount: number;
+  /** Posición de esta fila dentro de esas fechas. */
+  dateIndex: number;
   dateLabel: string;
   durationLabel: string;
   bookLabel: string;
@@ -47,7 +51,8 @@ export function ExperienceRow({
   title,
   mode,
   modeLabel,
-  date,
+  dateCount,
+  dateIndex,
   dateLabel,
   durationLabel,
   bookLabel,
@@ -111,10 +116,12 @@ export function ExperienceRow({
             <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
               <BookingLink bookLabel={bookLabel} experience={experience} variant="primary" />
               <div className="text-fg-soft text-meta tracking-ui flex flex-wrap items-center gap-x-5 gap-y-2 font-sans">
-                <time dateTime={date.iso}>
-                  <span className="sr-only">{dateLabel}: </span>
-                  {date.dow} {date.day} {date.month}
-                </time>
+                <ExperienceDate
+                  count={dateCount}
+                  index={dateIndex}
+                  label={dateLabel}
+                  variant="featured"
+                />
                 <span>{experience.dur}</span>
                 <span className="text-accent font-serif text-[30px]">
                   {formatPrice(experience.price)}
@@ -156,14 +163,7 @@ export function ExperienceRow({
           </h3>
         </div>
         <div className="border-fg/25 flex min-h-11 flex-wrap items-center gap-x-6 gap-y-3 border-t pt-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
-          <div className="flex min-h-11 flex-col justify-center">
-            <span className="text-fg-muted text-meta tracking-ui font-sans uppercase">
-              {dateLabel}
-            </span>
-            <time dateTime={date.iso} className="text-fg mt-1 font-serif text-[22px]">
-              {date.dow} {date.day} {date.month}
-            </time>
-          </div>
+          <ExperienceDate count={dateCount} index={dateIndex} label={dateLabel} variant="row" />
           <div className="flex min-h-11 flex-col justify-center">
             <span className="text-fg-muted text-meta tracking-ui font-sans uppercase">
               {durationLabel}
