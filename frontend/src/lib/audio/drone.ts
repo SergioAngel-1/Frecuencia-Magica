@@ -1,4 +1,4 @@
-import { ATMOSPHERES, LISTENING_PLACES, PLACE_ATMOSPHERE } from '@/config/atmospheres';
+import { ATMOSPHERES, PLACE_ATMOSPHERE } from '@/config/atmospheres';
 import { REALMS } from '@/config/realms';
 import type { AtmosphereId } from '@/types/atmosphere';
 import type { RealmId } from '@/types/realm';
@@ -13,16 +13,12 @@ export function baseNoteForRealm(realmId: RealmId): number {
 }
 
 /**
- * Nota del drone para la atmósfera efectiva de un realm. Sólo un lugar de escucha
- * que la persona ha re-atmosferizado a mano usa la nota de la atmósfera elegida; en
- * el resto (atmósfera por defecto del sitio, o lugares con identidad propia como
- * Academia o Tienda) manda la nota del realm, la de siempre.
+ * Nota del drone para el tema efectivo de un realm. Si el tema es el que el realm
+ * sugiere, manda la nota del realm, la de siempre; si la persona eligió otro,
+ * suena la nota de ese tema.
  */
 export function baseNoteFor(atmosphereId: AtmosphereId, realmId: RealmId): number {
-  const realmNote = baseNoteForRealm(realmId);
-  const isListening = LISTENING_PLACES.includes(realmId);
-
-  if (!isListening || atmosphereId === PLACE_ATMOSPHERE[realmId]) return realmNote;
+  if (atmosphereId === PLACE_ATMOSPHERE[realmId]) return baseNoteForRealm(realmId);
 
   return ATMOSPHERES[atmosphereId].droneNote;
 }

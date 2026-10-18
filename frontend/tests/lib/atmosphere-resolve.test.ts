@@ -1,28 +1,23 @@
 import { describe, expect, it } from 'vitest';
 
-import { PLACE_ATMOSPHERE } from '@/config/atmospheres';
 import type { AtmosphereId } from '@/types/atmosphere';
 import { resolveAtmosphere, suggestNightAlternative } from '@/lib/atmosphere/resolve';
 import { placeFromPathname, realmFromPathname } from '@/lib/realm-from-pathname';
 
 describe('resolveAtmosphere', () => {
-  it('en un lugar de escucha, la elección manual gana sobre el defecto', () => {
+  it('la elección de la persona gana en todos los lugares', () => {
     expect(resolveAtmosphere('descubrete', 'forest')).toBe('forest');
-    expect(resolveAtmosphere('resonario', 'dusk')).toBe('dusk');
-    expect(resolveAtmosphere('sanctuario', 'moon')).toBe('moon');
+    expect(resolveAtmosphere('academia', 'forest')).toBe('forest');
+    expect(resolveAtmosphere('tienda', 'dusk')).toBe('dusk');
+    expect(resolveAtmosphere('story', 'night')).toBe('night');
+    expect(resolveAtmosphere('portal', 'moon')).toBe('moon');
   });
 
-  it('fuera de los lugares de escucha, la elección manual se ignora', () => {
-    expect(resolveAtmosphere('academia', 'dawn')).toBe(PLACE_ATMOSPHERE.academia);
-    expect(resolveAtmosphere('tienda', 'dusk')).toBe(PLACE_ATMOSPHERE.tienda);
-    expect(resolveAtmosphere('story', 'night')).toBe(PLACE_ATMOSPHERE.story);
-    expect(resolveAtmosphere('portal', 'moon')).toBe(PLACE_ATMOSPHERE.portal);
-  });
-
-  it('sin elección manual, cada lugar usa su defecto', () => {
+  it('sin elección, cada lugar usa el tema que sugiere', () => {
     expect(resolveAtmosphere('descubrete')).toBe('night');
-    expect(resolveAtmosphere('academia')).toBe('study');
-    expect(resolveAtmosphere('story', null)).toBe('marisol');
+    expect(resolveAtmosphere('academia')).toBe('dawn');
+    expect(resolveAtmosphere('story', null)).toBe('dawn');
+    expect(resolveAtmosphere('experiencias', null)).toBe('dusk');
   });
 });
 
@@ -74,38 +69,36 @@ describe('suggestNightAlternative', () => {
   });
 });
 
-/**
- * Cada vista de un lugar con identidad propia (ambientes v2, R11) hereda su
- * atmósfera desde la ruta, en español y en inglés, con y sin el segmento de
- * detalle. La elección manual no llega aquí: estos lugares no son de escucha.
- */
-describe('la ruta fija la atmósfera de cada lugar con identidad propia', () => {
+/** Cada vista de un lugar sugiere su tema desde la ruta, en español y en inglés. */
+describe('la ruta sugiere el tema de cada lugar', () => {
   it.each([
-    ['/academia', 'study'],
-    ['/academia/c1', 'study'],
-    ['/academia/c1/3', 'study'],
-    ['/en/academy', 'study'],
-    ['/en/academy/c1/3', 'study'],
-    ['/experiencias', 'gathering'],
-    ['/experiencias/e1/reservar', 'gathering'],
-    ['/en/experiences', 'gathering'],
-    ['/en/experiences/e1/book', 'gathering'],
-    ['/sobre-marisol', 'marisol'],
-    ['/en/about-marisol', 'marisol'],
+    ['/academia', 'dawn'],
+    ['/academia/c1', 'dawn'],
+    ['/academia/c1/3', 'dawn'],
+    ['/en/academy', 'dawn'],
+    ['/en/academy/c1/3', 'dawn'],
+    ['/tienda', 'dawn'],
+    ['/en/store', 'dawn'],
+    ['/experiencias', 'dusk'],
+    ['/experiencias/e1/reservar', 'dusk'],
+    ['/en/experiences', 'dusk'],
+    ['/en/experiences/e1/book', 'dusk'],
+    ['/sobre-marisol', 'dawn'],
+    ['/en/about-marisol', 'dawn'],
   ])('%s resuelve a %s', (pathname, atmosphere) => {
     expect(resolveAtmosphere(placeFromPathname(pathname))).toBe(atmosphere);
   });
 });
 
-describe('la elección manual llega a los lugares de escucha, en ES y EN', () => {
+describe('la elección llega a todos los lugares, en ES y EN', () => {
   it.each<[string, AtmosphereId]>([
     ['/resonario', 'forest'],
     ['/en/resonarium', 'forest'],
-    ['/descubrete', 'forest'],
-    ['/en/discover', 'forest'],
-    ['/mi-santuario', 'forest'],
-    ['/en/my-sanctuary', 'forest'],
-  ])('%s toma la elección manual %s', (pathname, manual) => {
-    expect(resolveAtmosphere(placeFromPathname(pathname), manual)).toBe(manual);
+    ['/academia', 'forest'],
+    ['/en/academy', 'forest'],
+    ['/tienda/carrito', 'forest'],
+    ['/en/about-marisol', 'forest'],
+  ])('%s toma la elección %s', (pathname, choice) => {
+    expect(resolveAtmosphere(placeFromPathname(pathname), choice)).toBe(choice);
   });
 });

@@ -1042,61 +1042,31 @@
   },
   "atmospheres": {
     "night": {
-      "name": "Noche cósmica",
-      "description": "Estrellas y luz suave sobre el vacío.",
-      "pickerLabel": "Noche"
+      "name": "Noche",
+      "description": "Estrellas y luz suave sobre el vacío."
     },
     "dusk": {
       "name": "Atardecer",
-      "description": "Mar tranquilo al caer la tarde, con una luz cálida que invita a descansar.",
-      "pickerLabel": "Descanso",
-      "photoAlt": "Un mar tranquilo al atardecer, con reflejos cálidos sobre el agua"
+      "description": "Brasas y luz cálida al caer la tarde, para descansar."
     },
     "dawn": {
       "name": "Amanecer",
-      "description": "Luz clara y aire fresco, como el primer momento del día.",
-      "pickerLabel": "Calma de día",
-      "photoAlt": "Un lago luminoso al amanecer, con el horizonte despejado"
+      "description": "Luz clara y aire fresco, como el primer momento del día."
     },
     "moon": {
       "name": "Luna",
-      "description": "Azul profundo y plata, para escuchar en silencio bajo la luna.",
-      "pickerLabel": "Escucha nocturna",
-      "photoAlt": "Un mar bajo la luna, con reflejos plateados"
+      "description": "Azul profundo y plata, para estar en silencio bajo la luna."
     },
     "forest": {
       "name": "Bosque",
-      "description": "Verde natural y luz filtrada entre los árboles.",
-      "pickerLabel": "Raíz y agua",
-      "photoAlt": "Una cascada entre helechos en un bosque verde y luminoso"
+      "description": "Verde natural, luciérnagas y luz filtrada entre los árboles."
     },
-    "study": {
-      "name": "Estudio",
-      "description": "Luz para leer junto a una ventana, sin prisa.",
-      "pickerLabel": "Estudio",
-      "photoAlt": "Un rincón de lectura junto a una ventana, con luz de mañana"
-    },
-    "store": {
-      "name": "Taller",
-      "description": "Arena, crema y madera, con los productos bajo luz lateral.",
-      "pickerLabel": "Taller",
-      "photoAlt": "Piedra y madera con luz lateral, preparadas para los objetos del ritual"
-    },
-    "gathering": {
-      "name": "Encuentro",
-      "description": "Un espacio cálido donde estar cerca de otras personas.",
-      "pickerLabel": "Encuentro",
-      "photoAlt": "Un espacio cálido preparado para compartir un encuentro"
-    },
-    "marisol": {
-      "name": "Luz de Marisol",
-      "description": "Cálida y personal, con su propia luz.",
-      "pickerLabel": "Luz de Marisol",
-      "photoAlt": "Un rincón luminoso y personal con luz de mañana"
-    },
-    "picker": {
-      "label": "Ambiente",
-      "site": "Ambiente del sitio"
+    "switcher": {
+      "label": "Tema",
+      "open": "Cambiar de tema",
+      "auto": "Automático",
+      "autoDescription": "Cada lugar con su tema.",
+      "current": "Tema actual: {name}"
     }
   },
   "video": {

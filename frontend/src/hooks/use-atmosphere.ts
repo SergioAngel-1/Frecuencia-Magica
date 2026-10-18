@@ -13,20 +13,20 @@ export type ActiveAtmosphere = {
 };
 
 /**
- * Atmósfera efectiva: la del sitio en el que está la persona, o su elección
- * manual si el sitio es de escucha. La decisión vive en `resolveAtmosphere`; el
- * hook sólo la alimenta con la ruta y el store.
+ * Tema efectivo: la elección de la persona, o el que sugiere el lugar en el que
+ * está. La decisión vive en `resolveAtmosphere`; el hook sólo la alimenta con la
+ * ruta y el store.
  *
- * Ojo con la hidratación: `manual` se rehidrata de `sessionStorage` de forma
+ * Ojo con la hidratación: `choice` se rehidrata de `localStorage` de forma
  * síncrona en el cliente, así que en el primer render del cliente ya puede tener
- * valor y el servidor no lo tiene. Un consumidor cuyo marcado depende de `manual`
- * debe esperar al montaje (`useMounted`) antes de usar el resultado; el provider
- * no pinta nada que dependa de él y por eso no lo necesita.
+ * valor y el servidor no lo tiene. Un consumidor cuyo marcado depende de él debe
+ * esperar al montaje (`useMounted`) antes de usar el resultado; el provider no
+ * pinta nada que dependa de él y por eso no lo necesita.
  */
 export function useAtmosphere(): ActiveAtmosphere {
   const pathname = usePathname();
-  const manual = useAtmosphereStore((state) => state.manual);
-  const atmosphereId = resolveAtmosphere(placeFromPathname(pathname), manual);
+  const choice = useAtmosphereStore((state) => state.choice);
+  const atmosphereId = resolveAtmosphere(placeFromPathname(pathname), choice);
 
   return { atmosphereId, scheme: ATMOSPHERES[atmosphereId].scheme };
 }

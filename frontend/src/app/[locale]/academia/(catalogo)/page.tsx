@@ -2,10 +2,8 @@ import { getTranslations } from 'next-intl/server';
 
 import { CourseList } from '@/components/features/academy/course-list';
 import { PageShell, RealmHero } from '@/components/layout';
-import { ATMOSPHERES } from '@/config/atmospheres';
 import { COURSES } from '@/data';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
-import { scrimToneFor } from '@/lib/atmosphere/painting';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
 type PageProps = { params: LocaleParams };
@@ -22,8 +20,7 @@ export default async function AcademyPage({ params }: PageProps) {
   const t = await getTranslations({ locale, namespace: 'academy' });
   const featuredTitle = t('courses.c1.title');
   const academyMedia = {
-    // La Academia vive en la atmósfera `study`: su paisaje, no la foto del realm.
-    hero: resolveEditorialMedia('atmosphere.study', {
+    hero: resolveEditorialMedia('academy.hero', {
       alt: t('media.alt.hero'),
       sizes: '100vw',
     }),
@@ -50,7 +47,6 @@ export default async function AcademyPage({ params }: PageProps) {
         kicker={t('kicker')}
         title={t('title')}
         description={t('description')}
-        scrimTone={scrimToneFor(ATMOSPHERES.study.scheme)}
       />
 
       <div className="fm-editorial-full-bleed fm-container pt-block pb-section">

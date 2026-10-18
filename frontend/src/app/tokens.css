@@ -321,6 +321,9 @@
   --scrim: 15 27 46;
   --scrim-deep: 10 18 32;
   --halo: 216 185 120;
+  --nebula-a: 150 198 188;
+  --nebula-b: 185 176 214;
+  --nebula-c: 216 185 120;
   --page-inset: 24px;
   --container-max: 1240px;
   /* Alto del fundido de una banda a sangre: un peldaño `section`, para que el
@@ -341,8 +344,9 @@
 }
 
 /* ============================================================================
-   ATMÓSFERAS
-   Cada bloque redefine el mismo conjunto de tokens que `@theme` declara para la
+   TEMAS (cinco: night, dusk, dawn, moon, forest)
+   Un tema es global: `<html data-atmosphere>` lo fija (elección de la persona o
+   el que sugiere el lugar) y todo el sitio lo lee. Cada bloque redefine el mismo conjunto de tokens que `@theme` declara para la
    noche (guarda: tests/lib/atmosphere-tokens.test.ts). Los hex viven sólo aquí:
    `palette.test.ts` los permite dentro de estos bloques y en ningún otro sitio.
    Contraste: tests/lib/atmosphere-contrast.test.ts mide cada par sobre el punto
@@ -370,6 +374,9 @@
   --color-scrim: rgb(var(--scrim));
   --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
+  --nebula-a: 150 198 188;
+  --nebula-b: 185 176 214;
+  --nebula-c: 216 185 120;
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0f1b2e 45%, #0a1220 100%);
   --atmo-backdrop: radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0f1b2e 45%, #0a1220 100%);
 }
@@ -396,6 +403,9 @@
   --color-scrim: rgb(var(--scrim));
   --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
+  --nebula-a: 232 164 143;
+  --nebula-b: 230 194 143;
+  --nebula-c: 201 179 201;
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #3a2427 0%, #2b1c22 45%, #150e13 100%);
   --atmo-backdrop: linear-gradient(160deg, #321f22 0%, #2b1c22 55%, #140d12 100%);
 }
@@ -422,6 +432,9 @@
   --color-scrim: rgb(var(--scrim));
   --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
+  --nebula-a: 170 200 220;
+  --nebula-b: 240 190 150;
+  --nebula-c: 214 180 110;
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #f6fafc 0%, #dce7ec 45%, #c3d5df 100%);
   --atmo-backdrop: linear-gradient(160deg, #e9f1f5 0%, #dce7ec 55%, #c3d5df 100%);
 }
@@ -448,6 +461,9 @@
   --color-scrim: rgb(var(--scrim));
   --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
+  --nebula-a: 150 175 210;
+  --nebula-b: 207 216 230;
+  --nebula-c: 185 176 214;
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #1b2b4a 0%, #0b1426 45%, #060b15 100%);
   --atmo-backdrop: linear-gradient(160deg, #15233d 0%, #0b1426 55%, #060b15 100%);
 }
@@ -474,112 +490,11 @@
   --color-scrim: rgb(var(--scrim));
   --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
+  --nebula-a: 120 180 140;
+  --nebula-b: 216 196 138;
+  --nebula-c: 150 198 188;
   --atmo-bg: radial-gradient(140% 100% at 50% -10%, #1e3328 0%, #1a2d23 45%, #101b15 100%);
   --atmo-backdrop: linear-gradient(160deg, #1c3026 0%, #1a2d23 55%, #101b15 100%);
-}
-
-/* Estudio: claro, acogedor, luz para leer. */
-[data-atmosphere='study'] {
-  --color-fg: #0f1b2e;
-  --color-fg-body: rgb(15 27 46 / 0.9);
-  --color-fg-soft: rgb(15 27 46 / 0.8);
-  --color-fg-muted: rgb(15 27 46 / 0.74);
-  --color-fg-meta: rgb(15 27 46 / 0.7);
-  --color-accent: #6b5020;
-  --color-accent-2: #2a5f57;
-  --color-accent-3: #4f4574;
-  --color-line: rgb(15 27 46 / 0.22);
-  --color-line-strong: rgb(15 27 46 / 0.55);
-  --color-surface: rgb(255 255 255 / 0.45);
-  --color-surface-strong: rgb(255 255 255 / 0.75);
-  --color-on-accent: #f7f4ea;
-  --color-on-media: var(--color-ivory);
-  --scrim: 252 250 244;
-  --scrim-deep: 252 250 244;
-  --halo: 200 170 110;
-  --color-scrim: rgb(var(--scrim));
-  --color-scrim-deep: rgb(var(--scrim-deep));
-  --color-halo: rgb(var(--halo));
-  --atmo-bg: radial-gradient(140% 100% at 50% -10%, #fcfaf4 0%, #eee9dc 45%, #ddd4c0 100%);
-  --atmo-backdrop: linear-gradient(160deg, #f5f1e6 0%, #eee9dc 55%, #ddd4c0 100%);
-}
-
-/* Taller: arena, crema y verde suave. */
-[data-atmosphere='store'] {
-  --color-fg: #0f1b2e;
-  --color-fg-body: rgb(15 27 46 / 0.9);
-  --color-fg-soft: rgb(15 27 46 / 0.8);
-  --color-fg-muted: rgb(15 27 46 / 0.74);
-  --color-fg-meta: rgb(15 27 46 / 0.7);
-  --color-accent: #6b5020;
-  --color-accent-2: #2d5b47;
-  --color-accent-3: #4f4574;
-  --color-line: rgb(15 27 46 / 0.22);
-  --color-line-strong: rgb(15 27 46 / 0.55);
-  --color-surface: rgb(255 255 255 / 0.45);
-  --color-surface-strong: rgb(255 255 255 / 0.75);
-  --color-on-accent: #f7f4ea;
-  --color-on-media: var(--color-ivory);
-  --scrim: 252 248 240;
-  --scrim-deep: 252 248 240;
-  --halo: 200 170 110;
-  --color-scrim: rgb(var(--scrim));
-  --color-scrim-deep: rgb(var(--scrim-deep));
-  --color-halo: rgb(var(--halo));
-  --atmo-bg: radial-gradient(140% 100% at 50% -10%, #fbf6ec 0%, #ede3d1 45%, #dccfb6 100%);
-  --atmo-backdrop: linear-gradient(160deg, #f6efe0 0%, #ede3d1 55%, #dccfb6 100%);
-}
-
-/* Encuentro: cálido, humano, luz media. Texto claro sobre marrón cálido. */
-[data-atmosphere='gathering'] {
-  --color-fg: #f7f4ea;
-  --color-fg-body: rgb(247 244 234 / 0.82);
-  --color-fg-soft: rgb(247 244 234 / 0.7);
-  --color-fg-muted: rgb(247 244 234 / 0.6);
-  --color-fg-meta: rgb(247 244 234 / 0.55);
-  --color-accent: #f2d9a6;
-  --color-accent-2: #d3e6e0;
-  --color-accent-3: #dcd6ea;
-  --color-line: rgb(242 217 166 / 0.22);
-  --color-line-strong: rgb(242 217 166 / 0.6);
-  --color-surface: rgb(247 244 234 / 0.03);
-  --color-surface-strong: rgb(58 40 32 / 0.72);
-  --color-on-accent: #3a2820;
-  --color-on-media: var(--color-ivory);
-  --scrim: 58 40 32;
-  --scrim-deep: 10 18 32;
-  --halo: 242 217 166;
-  --color-scrim: rgb(var(--scrim));
-  --color-scrim-deep: rgb(var(--scrim-deep));
-  --color-halo: rgb(var(--halo));
-  --atmo-bg: radial-gradient(140% 100% at 50% -10%, #3f2b21 0%, #33241c 45%, #1e1511 100%);
-  --atmo-backdrop: linear-gradient(160deg, #3f2b21 0%, #33241c 55%, #1e1511 100%);
-}
-
-/* Luz de Marisol: personal, cálida y luminosa. Esquema claro. */
-[data-atmosphere='marisol'] {
-  --color-fg: #0f1b2e;
-  --color-fg-body: rgb(15 27 46 / 0.9);
-  --color-fg-soft: rgb(15 27 46 / 0.8);
-  --color-fg-muted: rgb(15 27 46 / 0.74);
-  --color-fg-meta: rgb(15 27 46 / 0.7);
-  --color-accent: #6b5020;
-  --color-accent-2: #2a5f57;
-  --color-accent-3: #4f4574;
-  --color-line: rgb(15 27 46 / 0.22);
-  --color-line-strong: rgb(15 27 46 / 0.55);
-  --color-surface: rgb(255 255 255 / 0.45);
-  --color-surface-strong: rgb(255 255 255 / 0.75);
-  --color-on-accent: #f7f4ea;
-  --color-on-media: var(--color-ivory);
-  --scrim: 252 247 238;
-  --scrim-deep: 252 247 238;
-  --halo: 200 170 110;
-  --color-scrim: rgb(var(--scrim));
-  --color-scrim-deep: rgb(var(--scrim-deep));
-  --color-halo: rgb(var(--halo));
-  --atmo-bg: radial-gradient(140% 100% at 50% -10%, #fcf7ee 0%, #f3e8d4 45%, #e2d2b6 100%);
-  --atmo-backdrop: linear-gradient(160deg, #f8f1e4 0%, #f3e8d4 55%, #e2d2b6 100%);
 }
 
 /* ============================================================================

@@ -6,36 +6,35 @@ import { isAtmosphereId } from '@/lib/atmosphere/resolve';
 import type { AtmosphereId } from '@/types/atmosphere';
 
 type AtmosphereState = {
-  /** Atmósfera que la persona eligió a mano; `null` si sigue la del sitio. */
-  manual: AtmosphereId | null;
-  setManual(id: AtmosphereId): void;
+  /** Tema que la persona eligió; `null` («Automático») si sigue el de cada lugar. */
+  choice: AtmosphereId | null;
+  setChoice(id: AtmosphereId): void;
   clear(): void;
 };
 
 /**
- * Elección manual de atmósfera. Vive en `sessionStorage` (no en `localStorage`):
- * la elección dura lo que la sesión, y una pestaña nueva arranca con la
- * atmósfera de su sitio.
+ * Elección de tema, global: manda en todo el sitio. Vive en `localStorage` y dura
+ * entre visitas; sin ella, cada lugar usa el tema que sugiere.
  */
 export const useAtmosphereStore = create<AtmosphereState>()(
   persist(
     (set) => ({
-      manual: null,
-      setManual: (id) => set({ manual: id }),
-      clear: () => set({ manual: null }),
+      choice: null,
+      setChoice: (id) => set({ choice: id }),
+      clear: () => set({ choice: null }),
     }),
     {
       name: ATMOSPHERE_STORAGE_KEY,
       version: ATMOSPHERE_STORE_VERSION,
-      // En el servidor no hay `sessionStorage`: `createJSONStorage` lo absorbe
+      // En el servidor no hay `localStorage`: `createJSONStorage` lo absorbe
       // y el store funciona sin persistir.
-      storage: createJSONStorage(() => sessionStorage),
-      partialize: (state) => ({ manual: state.manual }),
-      // Un valor guardado que no es una de las nueve atmósferas se descarta.
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({ choice: state.choice }),
+      // Un valor guardado que no es uno de los cinco temas se descarta.
       merge: (persisted, current) => {
-        const manual = (persisted as { manual?: unknown } | undefined)?.manual;
+        const choice = (persisted as { choice?: unknown } | undefined)?.choice;
 
-        return { ...current, manual: isAtmosphereId(manual) ? manual : null };
+        return { ...current, choice: isAtmosphereId(choice) ? choice : null };
       },
     },
   ),

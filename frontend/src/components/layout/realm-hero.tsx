@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import { Display, FullBleedSection, Kicker, Prose } from '@/components/ui';
 import { cn } from '@/lib/cn';
-import type { EditorialMedia, EditorialScrimTone } from '@/types/editorial-media';
+import type { EditorialMedia } from '@/types/editorial-media';
 
 /**
  * Alto del héroe de catálogo. Lo comparten el héroe y la silueta de su
@@ -17,8 +17,6 @@ export interface RealmHeroProps {
   description: string;
   /** Control que acompaña al título (el carrito de la tienda). */
   action?: ReactNode;
-  /** Esquema del velo: `light` cuando el héroe vive en una atmósfera clara. */
-  scrimTone?: EditorialScrimTone;
   /** Velo tintado de acento. `false` para un tratamiento `natural` (ver `tintForPhotoTreatment`). */
   tint?: boolean;
   className?: string;
@@ -35,7 +33,6 @@ export function RealmHero({
   title,
   description,
   action,
-  scrimTone,
   tint,
   className,
 }: RealmHeroProps) {
@@ -62,7 +59,6 @@ export function RealmHero({
       sizes="(max-width: 807px) 840px, 100vw"
       className={cn(REALM_HERO_HEIGHT, className)}
       contentClassName="flex items-center"
-      scrimTone={scrimTone}
       tint={tint}
     >
       <div className="fm-container flex w-full flex-col py-20">

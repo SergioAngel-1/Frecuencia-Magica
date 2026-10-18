@@ -3,7 +3,6 @@ import {
   ATMOSPHERE_STORAGE_KEY,
   ATMOSPHERE_STORE_VERSION,
   ATMOSPHERES,
-  LISTENING_PLACES,
   PLACE_ATMOSPHERE,
 } from '@/config/atmospheres';
 import { locales } from '@/i18n/routing';
@@ -22,7 +21,7 @@ export const SERVER_ATMOSPHERE: AtmosphereId = 'night';
  * nada, de modo que una recarga directa de `/academia` no destelle con la noche.
  *
  * No duplica reglas a mano: las tablas (segmento → lugar, lugar → atmósfera,
- * lugares de escucha, esquemas, colores, locales, clave y versión del store) se
+ * esquemas, colores, locales, clave y versión del store) se
  * serializan desde la config. La lógica replica `placeFromPathname`,
  * `resolveAtmosphere` y la rehidratación de zustand (una versión numérica distinta
  * descarta el estado). `tests/lib/atmosphere-boot.test.ts` compara el resultado
@@ -35,7 +34,6 @@ export function atmosphereBootScript(): string {
     ids: ATMOSPHERE_IDS,
     locales: [...locales],
     segments: SEGMENT_TO_PLACE,
-    listening: LISTENING_PLACES,
     placeAtmosphere: PLACE_ATMOSPHERE,
     schemes: Object.fromEntries(ATMOSPHERE_IDS.map((id) => [id, ATMOSPHERES[id].scheme])),
     themeColors: Object.fromEntries(ATMOSPHERE_IDS.map((id) => [id, ATMOSPHERES[id].themeColor])),
@@ -53,16 +51,16 @@ export function atmosphereBootScript(): string {
     if (segment !== undefined && Object.prototype.hasOwnProperty.call(c.segments, segment)) {
       place = c.segments[segment];
     }
-    var manual = null;
+    var choice = null;
     try {
-      var raw = window.sessionStorage.getItem(c.storageKey);
+      var raw = window.localStorage.getItem(c.storageKey);
       var value = raw ? JSON.parse(raw) : null;
       // Igual que zustand: sólo una versión numérica distinta descarta el estado.
       var discarded = value && typeof value.version === 'number' && value.version !== c.storeVersion;
-      var id = value && !discarded && value.state ? value.state.manual : null;
-      if (typeof id === 'string' && c.ids.indexOf(id) !== -1) manual = id;
+      var id = value && !discarded && value.state ? value.state.choice : null;
+      if (typeof id === 'string' && c.ids.indexOf(id) !== -1) choice = id;
     } catch (e) {}
-    var atmosphere = manual !== null && c.listening.indexOf(place) !== -1 ? manual : c.placeAtmosphere[place];
+    var atmosphere = choice !== null ? choice : c.placeAtmosphere[place];
     var root = document.documentElement;
     root.setAttribute('data-atmosphere', atmosphere);
     root.setAttribute('data-scheme', c.schemes[atmosphere]);

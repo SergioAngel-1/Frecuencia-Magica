@@ -3,7 +3,6 @@
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { AtmospherePicker } from '@/components/features/atmosphere/atmosphere-picker';
 import { EmptyState, Button, Swap } from '@/components/ui';
 import { AUDIOS } from '@/data';
 import { featuredAudio, kindSections } from '@/lib/resonario/layout-slots';
@@ -50,9 +49,6 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
 
   return (
     <>
-      <div className="mb-8">
-        <AtmospherePicker />
-      </div>
       <ResonarioFilters active={filter} onChange={setFilter} />
 
       {/* Al filtrar, la vista anterior se funde antes de que entre la nueva. */}

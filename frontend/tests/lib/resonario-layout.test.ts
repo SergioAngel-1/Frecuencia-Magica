@@ -22,7 +22,6 @@ const filtersSource = readSource('components/features/resonario/resonario-filter
 const trackCardSource = readSource('components/features/resonario/track-card.tsx');
 const sunSource = readSource('components/features/resonario/featured-sun.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
-const atmosphereHeroSource = readSource('components/features/atmosphere/atmosphere-hero.tsx');
 const loadingSource = readSource('app/[locale]/resonario/loading.tsx');
 
 /**
@@ -212,9 +211,8 @@ describe('resonario editorial composition contracts', () => {
     expect(pageSource).not.toContain("'resonario.audio-cover.*'");
     expect(pageSource).toContain("alt: t('media.alt.hero')");
     expect(pageSource).toContain("sizes: '(min-width: 1024px) 720px, 100vw'");
-    // El héroe es `AtmosphereHero`: la noche pinta su héroe; una atmósfera elegida, su paisaje.
-    expect(pageSource).toContain('<AtmosphereHero');
-    expect(atmosphereHeroSource).toContain('<RealmHero');
+    // El héroe es un `RealmHero`: su imagen por tema la resuelve `EditorialImage`.
+    expect(pageSource).toContain('<RealmHero');
     expect(heroSource).toContain('<FullBleedSection');
     expect(pageSource).toContain('fm-editorial-full-bleed');
     expect(pageSource).toContain('<ResonarioSystem media={resonarioMedia}');
@@ -278,8 +276,8 @@ describe('resonario editorial composition contracts', () => {
       pageSource.indexOf('<BandChain>'),
       pageSource.indexOf('</BandChain>'),
     );
-    expect(chain.indexOf('<AtmosphereHero')).toBeGreaterThan(-1);
-    expect(chain.indexOf('<EditorialBanner')).toBeGreaterThan(chain.indexOf('<AtmosphereHero'));
+    expect(chain.indexOf('<RealmHero')).toBeGreaterThan(-1);
+    expect(chain.indexOf('<EditorialBanner')).toBeGreaterThan(chain.indexOf('<RealmHero'));
     expect(chain).toContain('media={archiveBanner}');
     expect(systemSource).not.toContain('<EditorialBanner');
 

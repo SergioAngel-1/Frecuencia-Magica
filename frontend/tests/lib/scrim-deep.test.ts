@@ -3,9 +3,9 @@ import { describe, expect, it } from 'vitest';
 import { readSource, SRC } from '../helpers/source-files';
 
 /**
- * El tramo denso del velo (`--scrim-deep`) lo define cada atmósfera. En las claras
+ * El tramo denso del velo (`--scrim-deep`) lo define cada tema. En el claro (dawn)
  * debe ser su propio `--scrim`: si no, el borde del velo dibuja una franja oscura
- * sobre la foto (kicker ilegible y banda casi negra en dawn, study, store, marisol).
+ * sobre la foto (kicker ilegible y banda casi negra).
  */
 const TOKENS = readSource(`${SRC}/app/tokens.css`);
 
@@ -24,15 +24,15 @@ describe('scrim-deep token', () => {
     expect(value(blockOf("[data-atmosphere='night'] {"), 'scrim-deep')).toBe('10 18 32');
   });
 
-  it('equals the scrim of every light atmosphere, so no dark stripe reaches the photo', () => {
-    for (const id of ['dawn', 'study', 'store', 'marisol']) {
+  it('equals the scrim of every light theme, so no dark stripe reaches the photo', () => {
+    for (const id of ['dawn']) {
       const block = blockOf(`[data-atmosphere='${id}'] {`);
       expect(value(block, 'scrim-deep'), id).toBe(value(block, 'scrim'));
     }
   });
 
-  it('is defined in every atmosphere block', () => {
-    for (const id of ['dusk', 'dawn', 'moon', 'forest', 'study', 'store', 'gathering', 'marisol']) {
+  it('is defined in every theme block', () => {
+    for (const id of ['dusk', 'dawn', 'moon', 'forest']) {
       expect(value(blockOf(`[data-atmosphere='${id}'] {`), 'scrim-deep'), id).toBeDefined();
     }
   });

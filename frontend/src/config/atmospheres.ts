@@ -2,9 +2,12 @@ import { getRealm } from '@/config/realms';
 import type { AtmosphereDefinition, AtmosphereId, Place } from '@/types/atmosphere';
 
 /**
- * Las nueve atmósferas con su perfil: esquema, color de la barra, multiplicadores
- * del engine, nota del drone y slot del paisaje de fondo. Los valores son
- * provisionales hasta la calibración de la Fase 1 (ambientes v2).
+ * Los cinco temas con su perfil: esquema, color de la barra, multiplicadores del
+ * engine y nota del drone. Los colores de cada tema viven en `tokens.css`; la
+ * escena de partículas, en `lib/cosmic/themes.ts`.
+ *
+ * Los multiplicadores del engine son casi 1 en todos: cada tema pinta su propia
+ * escena, así que el motor no se apaga en los claros, se adapta.
  */
 export const ATMOSPHERES: Record<AtmosphereId, AtmosphereDefinition> = {
   // La v1, sin cambios: el portal es su lugar y su nota.
@@ -13,67 +16,37 @@ export const ATMOSPHERES: Record<AtmosphereId, AtmosphereDefinition> = {
     themeColor: '#0F1B2E',
     engine: { canvas: 1, nebula: 1, figures: 1 },
     droneNote: getRealm('portal').baseNote,
-    backdropSlot: null,
   },
   dusk: {
     scheme: 'dark',
     themeColor: '#2B1C22',
-    engine: { canvas: 0.8, nebula: 0.7, figures: 0.8 },
+    engine: { canvas: 1, nebula: 1, figures: 0.9 },
     droneNote: 87.3,
-    backdropSlot: 'atmosphere.dusk',
   },
   dawn: {
     scheme: 'light',
     themeColor: '#DCE7EC',
-    engine: { canvas: 0.05, nebula: 0.3, figures: 0.05 },
+    engine: { canvas: 1, nebula: 1, figures: 0.7 },
     droneNote: 146.8,
-    backdropSlot: 'atmosphere.dawn',
   },
   moon: {
     scheme: 'dark',
     themeColor: '#0B1426',
-    engine: { canvas: 0.9, nebula: 0.8, figures: 0.9 },
+    engine: { canvas: 1, nebula: 1, figures: 1 },
     droneNote: 98,
-    backdropSlot: 'atmosphere.moon',
   },
   forest: {
     scheme: 'dark',
     themeColor: '#1E3328',
-    engine: { canvas: 0.5, nebula: 0.5, figures: 0.5 },
+    engine: { canvas: 1, nebula: 1, figures: 0.8 },
     droneNote: 123.5,
-    backdropSlot: 'atmosphere.forest',
-  },
-  study: {
-    scheme: 'light',
-    themeColor: '#EEE9DC',
-    engine: { canvas: 0.05, nebula: 0.4, figures: 0 },
-    droneNote: 130.8,
-    backdropSlot: 'atmosphere.study',
-  },
-  store: {
-    scheme: 'light',
-    themeColor: '#EDE3D1',
-    engine: { canvas: 0, nebula: 0.3, figures: 0 },
-    droneNote: 116.5,
-    backdropSlot: 'atmosphere.store',
-  },
-  gathering: {
-    scheme: 'warm',
-    themeColor: '#3F2B21',
-    engine: { canvas: 0.3, nebula: 0.4, figures: 0.3 },
-    droneNote: 164.8,
-    backdropSlot: 'atmosphere.gathering',
-  },
-  marisol: {
-    scheme: 'light',
-    themeColor: '#F3E8D4',
-    engine: { canvas: 0.05, nebula: 0.3, figures: 0.05 },
-    droneNote: 196,
-    backdropSlot: 'atmosphere.marisol',
   },
 };
 
-/** Atmósfera que cada lugar tiene por defecto. */
+/**
+ * Tema que cada lugar sugiere mientras la persona no elige uno («Automático»).
+ * Una elección manual manda en todos los lugares.
+ */
 export const PLACE_ATMOSPHERE: Record<Place, AtmosphereId> = {
   portal: 'night',
   home: 'night',
@@ -81,34 +54,22 @@ export const PLACE_ATMOSPHERE: Record<Place, AtmosphereId> = {
   descubrete: 'night',
   resonario: 'night',
   sanctuario: 'night',
-  academia: 'study',
-  tienda: 'store',
-  experiencias: 'gathering',
-  story: 'marisol',
+  academia: 'dawn',
+  tienda: 'dawn',
+  experiencias: 'dusk',
+  story: 'dawn',
 };
 
-/**
- * Lugares donde la persona puede elegir la atmósfera a mano. Fuera de ellos
- * (academia, tienda, experiencias, Sobre Marisol) la identidad del sitio manda.
- */
-export const LISTENING_PLACES: readonly Place[] = ['descubrete', 'resonario', 'sanctuario'];
-
-/**
- * Atmósferas que la persona puede elegir a mano, en el orden del selector. La
- * noche no entra: es la atmósfera por defecto del portal, y `moon` es su otra
- * opción de escucha.
- */
-export const PICKER_ATMOSPHERES: readonly AtmosphereId[] = ['dusk', 'dawn', 'moon', 'forest'];
-
-/** Los nueve ids, en el orden de `ATMOSPHERES`. */
+/** Los cinco ids, en el orden del selector. */
 export const ATMOSPHERE_IDS = Object.keys(ATMOSPHERES) as AtmosphereId[];
 
-/** Clave de `sessionStorage` de la elección manual (dura la sesión, no el dispositivo). */
+/** Clave de `localStorage` de la elección de tema (dura entre visitas). */
 export const ATMOSPHERE_STORAGE_KEY = 'fm.atmosphere';
 
 /**
  * Versión del formato guardado (`persist({ version })`). El script de arranque la
  * replica: si no coincide, zustand descarta el estado y el script también debe
- * ignorarlo, o aparece un destello al hidratar.
+ * ignorarlo, o aparece un destello al hidratar. La 1 estrena `localStorage` y
+ * la elección global (antes, `sessionStorage` y sólo en lugares de escucha).
  */
-export const ATMOSPHERE_STORE_VERSION = 0;
+export const ATMOSPHERE_STORE_VERSION = 1;

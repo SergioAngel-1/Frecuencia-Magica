@@ -32,7 +32,7 @@ const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/tienda/(catalogo)/loading.tsx');
 
 const STORE_SLOTS = [
-  { slot: 'atmosphere.store' as const, aspect: '16:9' as const, alt: 'hero' },
+  { slot: 'store.hero' as const, aspect: '16:9' as const, alt: 'hero' },
   { slot: 'store-product-visual' as const, aspect: '1:1' as const, alt: 'product' },
   { slot: 'store.ritual-banner' as const, aspect: '16:9' as const, alt: 'ritualBanner' },
   { slot: 'product.detail' as const, aspect: '16:8' as const, alt: 'detail' },
@@ -84,7 +84,7 @@ describe('store editorial composition contracts', () => {
     expect(storePageSource).toContain('const locale = await resolveLocale(params);');
     expect(storePageSource).toContain("getTranslations({ locale, namespace: 'store' })");
     // La cabecera de la Tienda pinta el paisaje de su atmósfera (`store`), no la zebra de la noche.
-    expect(storePageSource).toContain("resolveEditorialMedia('atmosphere.store'");
+    expect(storePageSource).toContain("resolveEditorialMedia('store.hero'");
     expect(storePageSource).toContain("resolveEditorialMedia('store-product-visual'");
     expect(storePageSource).toContain("resolveEditorialMedia('store.ritual-banner'");
     expect(storePageSource).toContain('<RealmHero');

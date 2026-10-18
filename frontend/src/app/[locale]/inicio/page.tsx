@@ -11,7 +11,6 @@ import { VideoSlot } from '@/components/features/player/video-slot';
 import { ButtonLink, PageShell } from '@/components/layout';
 import { Link } from '@/i18n/navigation';
 import { PLAYABLE_AUDIOS, PRODUCTS } from '@/data';
-import { ATMOSPHERES } from '@/config/atmospheres';
 import { BANDS } from '@/config/bands';
 import { getVideo } from '@/config/videos';
 import { NAV_REALMS } from '@/config/realms';
@@ -21,13 +20,7 @@ import { featuredProducts } from '@/lib/store/showcase';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { videoPosterMedia } from '@/lib/video/poster';
-import {
-  ArrowGlyph,
-  arrowLinkClasses,
-  ScopeBackdrop,
-  AtmosphereScope,
-  BandChain,
-} from '@/components/ui';
+import { ArrowGlyph, arrowLinkClasses, BandChain } from '@/components/ui';
 
 type PageProps = { params: LocaleParams };
 
@@ -190,18 +183,16 @@ export default async function HomePage({ params }: PageProps) {
       </BandChain>
 
       {/* «¿Cómo llegas hoy?» no es una banda: va fuera de la cadena, con el ritmo
-          `section` que trae su propia sección. De día por defecto: funde su borde
-          superior con la noche del bloque de arriba. */}
+          `section` que trae su propia sección. */}
       <ArrivalSection />
 
-      {/* Tienda: otra banda clara; cierra fundiéndose con el bento, que es de noche. */}
+      {/* Tienda: unos pocos productos y la puerta a la tienda. */}
       <StoreShowcase
         kicker={t('storeShowcase.kicker')}
         title={t('storeShowcase.title')}
         description={t('storeShowcase.description')}
         cta={t('storeShowcase.cta')}
         items={storeItems}
-        scheme={ATMOSPHERES.store.scheme}
       />
 
       <div className="py-section">
@@ -223,7 +214,7 @@ export default async function HomePage({ params }: PageProps) {
 
       {/* Ninguna sección trae su propio margen exterior: lo pone el contenedor.
           La membresía sigue al bento y Marisol cierra la página antes de la
-          despedida del footer, en su propia atmósfera. */}
+          despedida del footer. */}
       <div className="pb-section relative">
         <MembershipSection
           media={homeMedia.membership}
@@ -234,12 +225,7 @@ export default async function HomePage({ params }: PageProps) {
         />
       </div>
 
-      <AtmosphereScope
-        atmosphere="marisol"
-        scheme={ATMOSPHERES.marisol.scheme}
-        className="fm-editorial-full-bleed py-section relative isolate"
-      >
-        <ScopeBackdrop fade="both" />
+      <div className="fm-editorial-full-bleed py-section relative isolate">
         <AboutSection
           media={homeMedia.marisol}
           kicker={t('about.kicker')}
@@ -263,7 +249,7 @@ export default async function HomePage({ params }: PageProps) {
             />
           }
         />
-      </AtmosphereScope>
+      </div>
     </PageShell>
   );
 }

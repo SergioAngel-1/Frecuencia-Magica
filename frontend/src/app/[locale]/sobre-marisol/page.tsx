@@ -6,11 +6,9 @@ import { AngelExperiences } from '@/components/features/about/angel-experiences'
 import { VideoSlot } from '@/components/features/player/video-slot';
 import { ButtonLink, PageShell, RealmHero } from '@/components/layout';
 import { ArrowGlyph, EditorialBanner, arrowLinkClasses } from '@/components/ui';
-import { ATMOSPHERES } from '@/config/atmospheres';
 import { getVideo } from '@/config/videos';
 import { Link } from '@/i18n/navigation';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
-import { scrimToneFor } from '@/lib/atmosphere/painting';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { videoPosterMedia } from '@/lib/video/poster';
 
@@ -38,8 +36,7 @@ export default async function AboutMarisolPage({ params }: PageProps) {
   const tVideo = await getTranslations({ locale, namespace: 'video' });
 
   const media = {
-    // Sobre Marisol vive en la atmósfera `marisol` (lugar `story`).
-    hero: resolveEditorialMedia('atmosphere.marisol', {
+    hero: resolveEditorialMedia('about.hero', {
       alt: t('media.alt.hero'),
       sizes: '100vw',
     }),
@@ -58,7 +55,6 @@ export default async function AboutMarisolPage({ params }: PageProps) {
         kicker={t('hero.kicker')}
         title={t('hero.title')}
         description={t('hero.description')}
-        scrimTone={scrimToneFor(ATMOSPHERES.marisol.scheme)}
       />
 
       <div className="py-section gap-section relative flex flex-col">

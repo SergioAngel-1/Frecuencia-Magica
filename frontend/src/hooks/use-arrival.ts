@@ -22,12 +22,11 @@ import { useAtmosphereStore } from '@/stores/atmosphere-store';
 export type ArrivalControls = {
   flow: ArrivalFlow;
   /**
-   * Atmósfera que pintan el bloque, el panel y Descúbrete: la que la persona
-   * eligió en la sesión, o la noche. Antes de montar, la noche (sin desajuste de
-   * hidratación). En los sitios de escucha es la misma que `useAtmosphere()`.
+   * Tema que pintan el bloque, el panel y Descúbrete: el que la persona eligió,
+   * o la noche. Antes de montar, la noche (sin desajuste de hidratación).
    */
   atmosphere: AtmosphereId;
-  /** Elige una entrada: fija la atmósfera y, con el gesto, abre la primera pista. */
+  /** Elige una entrada: fija el tema global y, con el gesto, abre la primera pista. */
   choose(key: ArrivalKey, featuredId?: string): void;
   /** Siguiente (`1`) o anterior (`-1`) alternativa; abre la que queda. */
   step(delta: 1 | -1): void;
@@ -40,18 +39,18 @@ export type ArrivalControls = {
 /**
  * Estado de una llegada en la interfaz. La decisión está en las funciones
  * puras (`chooseArrival`, `stepAlternative`, `nextAtmosphere`); este hook sólo
- * aplica sus efectos sobre el store de atmósfera y el reproductor. La atmósfera
- * sale del store, no de un estado propio: así «otra opción» parte de la real.
+ * aplica sus efectos sobre el store de tema y el reproductor. El tema sale del
+ * store, no de un estado propio: así «otra opción» parte del real.
  */
 export function useArrival(): ArrivalControls {
   const [flow, setFlow] = useState<ArrivalFlow>(IDLE_ARRIVAL);
   const mounted = useMounted();
-  const manual = useAtmosphereStore((state) => state.manual);
-  const setManual = useAtmosphereStore((state) => state.setManual);
+  const choice = useAtmosphereStore((state) => state.choice);
+  const setChoice = useAtmosphereStore((state) => state.setChoice);
   const open = usePlayerStore((state) => state.open);
   const close = usePlayerStore((state) => state.close);
 
-  const atmosphere: AtmosphereId = mounted && manual ? manual : 'night';
+  const atmosphere: AtmosphereId = mounted && choice ? choice : 'night';
 
   const choose = useCallback(
     (key: ArrivalKey, featuredId?: string) => {
@@ -61,12 +60,12 @@ export function useArrival(): ArrivalControls {
         ...(featuredId ? { featuredId } : {}),
       });
       setFlow(next);
-      if (next.response) setManual(next.response.atmosphere);
+      if (next.response) setChoice(next.response.atmosphere);
 
       const audio = currentAlternative(next);
       if (audio) open(audio.id, 'full', { fadeIn: ARRIVAL_FADE_IN_SECONDS });
     },
-    [open, setManual],
+    [open, setChoice],
   );
 
   const step = useCallback(
@@ -85,8 +84,8 @@ export function useArrival(): ArrivalControls {
 
   const other = useCallback(() => {
     if (!flow.response) return;
-    setManual(nextAtmosphere(flow.response, manual ?? 'night'));
-  }, [flow, manual, setManual]);
+    setChoice(nextAtmosphere(flow.response, choice ?? 'night'));
+  }, [flow, choice, setChoice]);
 
   return { flow, atmosphere, choose, step, other, stop: close };
 }
