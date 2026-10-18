@@ -513,7 +513,7 @@ Rama `feat/ambientes-v2-fase2` (base `32c54fe`). Spec y plan como arriba. Verifi
 
 **Bloque E — Videos y cursos (T2.11, T2.12, `3a300c8`, `afd97d6`)**: `VIDEOS` y `videoState`; `VideoSlot` sin play ni reloj sin fuente; `useVideoPlayback` ya no simula (guarda de código); `allowsLoopVideo`; `Course` con acceso, modalidad, «qué aprenderás/incluye», módulos plegables (`0fr→1fr`) y presentación por curso. Los tres cursos son de demostración (`provisional: true`).
 
-**Bloque F — Ritmo, móvil y registro (T2.13–T2.15)**: ritmo de la Home con fundidos de borde (`AtmosphereBackdrop`; `eb63828`, `1f3cdf7`, `6d17d8f`); pasada móvil (dock y «Hablar ahora» sin solape, ningún tapado al final del scroll, esferas del Resonario con fase escalonada) y su auditoría; registro de materiales pendientes generado y guardado por test (`d7000d5`); `performance.md`, `accessibility.md`, `fidelity-checklist.md`, `DESIGN.md` y `Branding/` al día.
+**Bloque F — Ritmo, móvil y registro (T2.13–T2.15)**: ritmo de la Home con fundidos de borde (`ScopeBackdrop`; `eb63828`, `1f3cdf7`, `6d17d8f`); pasada móvil (dock y «Hablar ahora» sin solape, ningún tapado al final del scroll, esferas del Resonario con fase escalonada) y su auditoría; registro de materiales pendientes generado y guardado por test (`d7000d5`); `performance.md`, `accessibility.md`, `fidelity-checklist.md`, `DESIGN.md` y `Branding/` al día.
 
 **Hallazgo propio de cierre**: la viñeta de la nebulosa era un navy fijo y ensuciaba de gris todas las atmósferas claras (240 → 209); ahora lee el velo de la atmósfera (la noche, idéntica) (`de4851f`).
 

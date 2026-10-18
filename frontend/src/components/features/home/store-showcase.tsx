@@ -1,11 +1,5 @@
 import { ButtonLink } from '@/components/layout';
-import {
-  AtmosphereBackdrop,
-  AtmosphereScope,
-  Display,
-  EditorialImage,
-  Kicker,
-} from '@/components/ui';
+import { ScopeBackdrop, AtmosphereScope, Display, EditorialImage, Kicker } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
 import type { AtmosphereScheme } from '@/types/atmosphere';
 import type { EditorialMedia } from '@/types/editorial-media';
@@ -52,7 +46,7 @@ export function StoreShowcase({
       >
         {/* El mismo degradado que pinta el sitio en la Tienda. Arriba se cruza con
             el fondo del bloque de llegada; abajo se funde con la noche del bento. */}
-        <AtmosphereBackdrop fade="both" />
+        <ScopeBackdrop fade="both" />
         <div className="fm-container flex flex-col gap-10">
           <div className="flex flex-col items-start gap-4">
             <Kicker tone="teal" spacing="wide">

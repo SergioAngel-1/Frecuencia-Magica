@@ -1,21 +1,21 @@
 import { cn } from '@/lib/cn';
 
-export type AtmosphereBackdropFade = 'top' | 'bottom' | 'both' | 'none';
+export type ScopeBackdropFade = 'top' | 'bottom' | 'both' | 'none';
 
-const FADE_CLASSES: Record<AtmosphereBackdropFade, string> = {
+const FADE_CLASSES: Record<ScopeBackdropFade, string> = {
   top: 'fm-fade-top',
   bottom: 'fm-fade-bottom',
   both: 'fm-fade-top fm-fade-bottom',
   none: '',
 };
 
-interface AtmosphereBackdropProps {
+interface ScopeBackdropProps {
   /**
    * Bordes que se funden con la noche de la página. Sin fundido, una sección
    * clara corta en seco contra la oscura vecina: el fondo se disuelve en el
    * borde y la noche lo recibe.
    */
-  fade?: AtmosphereBackdropFade;
+  fade?: ScopeBackdropFade;
   className?: string;
 }
 
@@ -28,7 +28,7 @@ interface AtmosphereBackdropProps {
  * Decorativa (`aria-hidden`) y estática: el fundido es una máscara, sin
  * movimiento.
  */
-export function AtmosphereBackdrop({ fade = 'both', className }: AtmosphereBackdropProps) {
+export function ScopeBackdrop({ fade = 'both', className }: ScopeBackdropProps) {
   return (
     <div
       aria-hidden="true"

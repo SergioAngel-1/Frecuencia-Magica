@@ -24,7 +24,7 @@ import { videoPosterMedia } from '@/lib/video/poster';
 import {
   ArrowGlyph,
   arrowLinkClasses,
-  AtmosphereBackdrop,
+  ScopeBackdrop,
   AtmosphereScope,
   BandChain,
 } from '@/components/ui';
@@ -239,7 +239,7 @@ export default async function HomePage({ params }: PageProps) {
         scheme={ATMOSPHERES.marisol.scheme}
         className="fm-editorial-full-bleed py-section relative isolate"
       >
-        <AtmosphereBackdrop fade="both" />
+        <ScopeBackdrop fade="both" />
         <AboutSection
           media={homeMedia.marisol}
           kicker={t('about.kicker')}
