@@ -343,8 +343,8 @@ export const THEME_VARIANTS = [
   {
     base: 'resonario.hero',
     theme: 'moon',
-    subject: `A vast resonant space over still water in soft moonlight: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm surface that doubles them, cool silver rims, a few dozen fine pinpoint stars, drifting haze, cinematic depth of field`,
-    frame: 'Discs receding from the upper right toward the center, the left third calm moonlit water and sky, low in detail',
+    subject: `A vast resonant space over still water in soft moonlight: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm surface that doubles them, cool silver rims, a few dozen fine pinpoint stars, drifting haze, each disc lit from within like a soft lantern of light, not glass and not a bubble, with no hard outline, and the horizon a plain line of mist with no shore, rocks, hills, lamps or any object other than the discs and their reflections, cinematic depth of field`,
+    frame: 'Discs receding from the upper right toward the center, the left third plain calm water and sky with no moon, no reflection column and no bright patch, low in detail',
   },
   {
     base: 'about.hero',
@@ -403,19 +403,19 @@ export const THEME_VARIANTS = [
   {
     base: 'resonario.hero',
     theme: 'dusk',
-    subject: `A vast resonant space over a calm sea at dusk: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm surface that doubles them, warm amber rims, a sky of dusky rose, terracotta and soft amber with thin warm clouds, drifting haze, cinematic depth of field`,
+    subject: `A vast resonant space over a calm sea at dusk: rows of softly glowing translucent discs suspended at different depths like a solar system above a mirror-calm surface that doubles them, warm amber rims, a sky of dusky rose, terracotta and soft amber with thin warm clouds, drifting haze, each disc lit from within like a soft lantern of light, not glass and not a bubble, with no hard outline, and the horizon a plain line of mist with no shore, rocks, hills, lamps or any object other than the discs and their reflections, cinematic depth of field`,
     frame: 'Discs receding from the upper right toward the center, the left third calm sea and soft sky, low in detail',
   },
   {
     base: 'resonario.hero',
     theme: 'dawn',
-    subject: `A vast resonant space over a mirror-calm lake at sunrise: rows of softly glowing translucent discs suspended at different depths like a solar system above the water that doubles them, pale gold rims, a luminous open sky of soft sky blue fading to ivory with a faint pale gold near the horizon, drifting bright haze, cinematic depth of field`,
+    subject: `A vast resonant space over a mirror-calm lake at sunrise: rows of softly glowing translucent discs suspended at different depths like a solar system above the water that doubles them, pale gold rims, a luminous open sky of soft sky blue fading to ivory with a faint pale gold near the horizon, drifting bright haze, each disc lit from within like a soft lantern of light, not glass and not a bubble, with no hard outline, and the horizon a plain line of mist with no shore, rocks, hills, lamps or any object other than the discs and their reflections, cinematic depth of field`,
     frame: 'Discs receding from the upper right toward the center, the left third calm lake and soft sky, low in detail',
   },
   {
     base: 'resonario.hero',
     theme: 'forest',
-    subject: `A vast resonant space over a still forest pool: rows of softly glowing translucent discs suspended at different depths like a solar system above the water that doubles them, golden-green rims, tall tree ferns and slender trunks along the far shore, warm filtered golden light between the canopy, a fine mist drifting, cinematic depth of field`,
+    subject: `A vast resonant space over a still forest pool: rows of softly glowing translucent discs suspended at different depths like a solar system above the water that doubles them, golden-green rims, tall tree ferns and slender trunks along the far shore, warm filtered golden light between the canopy, a fine mist drifting, each disc lit from within like a soft lantern of light, not glass and not a bubble, with no hard outline, and the horizon a plain line of mist with no shore, rocks, hills, lamps or any object other than the discs and their reflections, cinematic depth of field`,
     frame: 'Discs receding from the upper right toward the center, the left third still water and soft out-of-focus foliage, low in detail',
   },
 ]
