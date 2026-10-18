@@ -303,7 +303,11 @@ export function createCosmicScene(
         ctx.beginPath();
         for (let k = 0; k < list.length; k++) {
           const star = stars[list[k]!]!;
-          ctx.arc(star.x * width, star.y * height, star.r, 0, TAU);
+          const x = star.x * width;
+          const y = star.y * height;
+          // Sin `moveTo`, el canvas une cada círculo con el anterior y `fill` rellenaría el polígono.
+          ctx.moveTo(x + star.r, y);
+          ctx.arc(x, y, star.r, 0, TAU);
         }
         ctx.fill();
       }

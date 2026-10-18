@@ -148,10 +148,12 @@ describe('the scene changes theme', () => {
   /** Contexto 2D falso que sólo cuenta cuántos arcos (estrellas y partículas) se pintan. */
   function fakeContext() {
     const arcs = vi.fn();
+    const moveTo = vi.fn();
     const gradient = { addColorStop: vi.fn() };
     const ctx = {
       canvas: { width: 0, height: 0 },
       arc: arcs,
+      moveTo,
       beginPath: vi.fn(),
       fill: vi.fn(),
       fillRect: vi.fn(),
@@ -162,7 +164,7 @@ describe('the scene changes theme', () => {
       globalAlpha: 1,
     } as unknown as CosmicContext;
 
-    return { ctx, arcs };
+    return { ctx, arcs, moveTo };
   }
 
   it('paints stars and pollen under the night, and only motes under the dawn', () => {
@@ -173,6 +175,13 @@ describe('the scene changes theme', () => {
 
     expect(night.arcs).toHaveBeenCalledTimes(220 + 54);
     expect(dawn.arcs).toHaveBeenCalledTimes(44);
+  });
+
+  it('starts every batched star with its own moveTo so fill never joins circles into a polygon', () => {
+    const { ctx, moveTo } = fakeContext();
+    createCosmicScene(ctx, viewport, [216, 185, 120], Math.random, 'night').still();
+
+    expect(moveTo).toHaveBeenCalledTimes(220);
   });
 
   it('applies the new theme at once when the frame is still (reduced motion)', () => {
