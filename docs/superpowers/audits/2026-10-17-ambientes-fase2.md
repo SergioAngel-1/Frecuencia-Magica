@@ -20,7 +20,7 @@ Comprobado por captura (72 de 72): `data-atmosphere` de `<html>` coincide con la
 - **Noche, atardecer, luna y bosque** (oscuras): paisaje de fondo a sangre en el héroe, tinta marfil, constelación sin aro. Legibles en los cuatro anchos.
 - **Amanecer, estudio, tienda y Marisol** (claras): tinta oscura sobre crema o azul cielo; la constelación lleva su aro de tinta (`.fm-nav-dot`) y se distingue. Con movimiento reducido el paisaje queda quieto; sin él, deriva despacio (sólo `transform`).
 - **Encuentro** (cálida, texto marfil): el héroe lee bien sobre la foto oscura; las tarjetas de experiencia a 768 y 390 conservan contraste.
-- A 390 px el título de Academia («Procesos reales de transformación») pasa sobre las hojas de la foto; la tinta oscura sigue leyéndose (≥ 7:1 por inspección; la guarda mide la zona del texto a la izquierda).
+- A 390 px el título de Academia («Procesos reales de transformación») pasa sobre las hojas de la foto; la tinta oscura se lee a ojo sobre el verde medio; la medición y la guarda cubren la zona del texto a la izquierda (x 8–40 %), no esa franja derecha.
 
 ## La noche sigue idéntica
 
