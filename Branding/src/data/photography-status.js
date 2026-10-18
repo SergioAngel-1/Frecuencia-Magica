@@ -185,6 +185,7 @@ export const COMPLETED = [
   'resonario-featured-dawn.avif',
   'resonario-archive-banner-dawn.avif',
   'auth-form-atmosphere-dawn.avif',
+  'discover-question-atmosphere-dawn.avif',
 ]
 
 /**
