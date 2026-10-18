@@ -7,6 +7,7 @@ export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
   'about.angels': '/editorial/about-angels.avif',
   'about.hero': '/editorial/about-hero.avif',
   'about.hero@dawn': '/editorial/about-hero-dawn.avif',
+  'about.hero@dusk': '/editorial/about-hero-dusk.avif',
   'academy-course-cover:c1': '/editorial/academy-course-cover-c1.avif',
   'academy-course-cover:c2': '/editorial/academy-course-cover-c2.avif',
   'academy-course-cover:c3': '/editorial/academy-course-cover-c3.avif',
@@ -108,6 +109,7 @@ export const EDITORIAL_ASSETS: Readonly<Record<string, string>> = {
 export const EDITORIAL_ASSET_WIDTHS: Readonly<Record<string, readonly number[]>> = {
   '/editorial/about-angels.avif': [640, 828, 1200, 1672],
   '/editorial/about-hero-dawn.avif': [640, 828, 1200, 1672],
+  '/editorial/about-hero-dusk.avif': [640, 828, 1200, 1672],
   '/editorial/about-hero.avif': [640, 828, 1200, 1672],
   '/editorial/academy-completion.avif': [640, 828, 1200, 1672],
   '/editorial/academy-course-cover-c1.avif': [640, 828, 1200, 1672],
