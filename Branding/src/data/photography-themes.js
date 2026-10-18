@@ -415,7 +415,7 @@ export const THEME_VARIANTS = [
   {
     base: 'resonario.hero',
     theme: 'forest',
-    subject: `A vast resonant space over a still forest pool: rows of softly glowing translucent discs suspended at different depths like a solar system above the water that doubles them, golden-green rims, tall tree ferns and slender trunks along the far shore, warm filtered golden light between the canopy, a fine mist drifting, each disc lit from within like a soft lantern of light, not glass and not a bubble, with no hard outline, and the horizon a plain line of mist with no shore, rocks, hills, lamps or any object other than the discs and their reflections, cinematic depth of field`,
+    subject: `A vast resonant space over a still forest pool: rows of softly glowing translucent discs, each one a perfect circle seen face-on and facing the viewer like a full round moon, never a flat saucer, never an ellipse seen edge-on and never hanging from any thread, suspended at different depths like a solar system above the water that doubles them, golden-green rims, tall tree ferns and slender trunks along the far shore, warm filtered golden light between the canopy, a fine mist drifting, each disc lit from within like a soft lantern of light, not glass and not a bubble, with no hard outline, and the horizon a plain line of mist with no shore, rocks, hills, lamps or any object other than the discs and their reflections, cinematic depth of field`,
     frame: 'Discs receding from the upper right toward the center, the left third still water and soft out-of-focus foliage, low in detail',
   },
 ]
