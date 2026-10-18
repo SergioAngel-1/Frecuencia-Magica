@@ -25,7 +25,7 @@ export function SanctuaryHeader({ kicker, title }: SanctuaryHeaderProps) {
         <div
           className="pointer-events-none absolute inset-[-35%] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(216,185,120,0.2), transparent 66%)',
+            background: 'radial-gradient(circle, rgb(var(--halo) / 0.2), transparent 66%)',
             filter: 'blur(10px)',
             animation: 'fm-breathe 6s ease-in-out infinite',
           }}

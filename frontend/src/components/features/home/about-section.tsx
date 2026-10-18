@@ -20,7 +20,7 @@ export function AboutSection({ media, kicker, title, p1, p2, action, video }: Ab
   return (
     <section className="relative">
       <div
-        className="pointer-events-none absolute top-[18%] left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(150,198,188,0.1),transparent_68%)] blur-3xl"
+        className="pointer-events-none absolute top-[18%] left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--color-accent-2)_10%,transparent),transparent_68%)] blur-3xl"
         aria-hidden="true"
       />
       <div className="fm-container relative grid grid-cols-1 items-center gap-[clamp(36px,8vw,120px)] md:grid-cols-[minmax(260px,0.8fr)_minmax(0,1.2fr)]">

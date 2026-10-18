@@ -73,23 +73,32 @@ export async function AuthAside({ media }: AuthAsideProps) {
             className="opacity-55"
             style={{ width: '100%', height: '100%' }}
             rings={[
-              { r: 180, stroke: 'rgba(216,185,120,0.4)', width: 0.7 },
-              { r: 130, stroke: 'rgba(150,198,188,0.4)', width: 0.7, dash: '2 10' },
-              { r: 82, stroke: 'rgba(185,176,214,0.4)', width: 0.7 },
+              { r: 180, stroke: 'rgb(var(--halo) / 0.4)', width: 0.7 },
+              {
+                r: 130,
+                stroke: 'color-mix(in srgb, var(--color-accent-2) 40%, transparent)',
+                width: 0.7,
+                dash: '2 10',
+              },
+              {
+                r: 82,
+                stroke: 'color-mix(in srgb, var(--color-accent-3) 40%, transparent)',
+                width: 0.7,
+              },
             ]}
           >
-            <OrbitalRings.Node angle={270} radius={180} color="var(--color-gold)" size={6} />
-            <OrbitalRings.Node angle={0} radius={180} color="var(--color-teal)" size={4.8} />
-            <OrbitalRings.Node angle={90} radius={180} color="var(--color-lav)" size={4.8} />
+            <OrbitalRings.Node angle={270} radius={180} color="var(--color-accent)" size={6} />
+            <OrbitalRings.Node angle={0} radius={180} color="var(--color-accent-2)" size={4.8} />
+            <OrbitalRings.Node angle={90} radius={180} color="var(--color-accent-3)" size={4.8} />
           </OrbitalRings>
         </div>
 
         <div className="animate-fm-float relative size-[clamp(90px,16vw,170px)]">
-          <Halo color="rgba(216,185,120,0.28), transparent 68%" blur={12} inset="-16%" />
+          <Halo color="rgb(var(--halo) / 0.28), transparent 68%" blur={12} inset="-16%" />
           <Isotype
             label={brand}
             still
-            className="size-full drop-shadow-[0_0_24px_rgba(216,185,120,0.42)]"
+            className="size-full drop-shadow-[0_0_24px_rgb(var(--halo)/0.42)]"
           />
         </div>
 

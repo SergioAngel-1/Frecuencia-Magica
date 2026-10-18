@@ -97,8 +97,11 @@ export function RealmCard({
                   size={330}
                   spin={100}
                   rings={[
-                    { r: 164, stroke: 'rgba(247,244,234,0.1)' },
-                    { r: 130, stroke: 'rgba(150,198,188,0.18)' },
+                    { r: 164, stroke: 'color-mix(in srgb, var(--color-fg) 10%, transparent)' },
+                    {
+                      r: 130,
+                      stroke: 'color-mix(in srgb, var(--color-accent-2) 18%, transparent)',
+                    },
                   ]}
                 />
               </div>
@@ -128,7 +131,7 @@ export function RealmCard({
         {cover}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_22%,rgba(10,18,32,0.82)_100%)]"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_22%,rgb(var(--scrim-deep)/0.82)_100%)]"
         />
         {/* Tienda ya lleva su pill de conversión arriba a la izquierda y aros
           orbitales arriba a la derecha: un glifo encima chocaría con la pill. */}
@@ -149,8 +152,8 @@ export function RealmCard({
               size={210}
               spin={100}
               rings={[
-                { r: 105, stroke: 'rgba(216,185,120,0.1)' },
-                { r: 84, stroke: 'rgba(150,198,188,0.1)' },
+                { r: 105, stroke: 'rgb(var(--halo) / 0.1)' },
+                { r: 84, stroke: 'color-mix(in srgb, var(--color-accent-2) 10%, transparent)' },
               ]}
             />
           </div>

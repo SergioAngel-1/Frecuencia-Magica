@@ -59,7 +59,7 @@ export function QuizLayout({ children, media, phase, className }: QuizLayoutProp
         data-editorial-geometry="true"
       >
         <Halo
-          color="rgba(216,185,120,0.16), rgba(150,198,188,0.08) 55%"
+          color="rgb(var(--halo) / 0.16), color-mix(in srgb, var(--color-accent-2) 8%, transparent) 55%"
           inset="18%"
           className={cn(phase === 'questions' ? 'opacity-20' : 'opacity-70')}
         />
@@ -74,9 +74,13 @@ export function QuizLayout({ children, media, phase, className }: QuizLayoutProp
             )}
             style={{ width: 'min(92vw, 700px)', height: 'min(92vw, 700px)' }}
             rings={[
-              { r: 280, stroke: 'rgba(216,185,120,0.18)' },
-              { r: 226, stroke: 'rgba(150,198,188,0.14)', dash: '2 12' },
-              { r: 174, stroke: 'rgba(185,176,214,0.14)' },
+              { r: 280, stroke: 'rgb(var(--halo) / 0.18)' },
+              {
+                r: 226,
+                stroke: 'color-mix(in srgb, var(--color-accent-2) 14%, transparent)',
+                dash: '2 12',
+              },
+              { r: 174, stroke: 'color-mix(in srgb, var(--color-accent-3) 14%, transparent)' },
             ]}
           />
         ) : null}

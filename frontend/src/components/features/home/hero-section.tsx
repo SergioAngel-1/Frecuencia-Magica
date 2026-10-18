@@ -73,7 +73,7 @@ export function HeroSection({
         className="pointer-events-none absolute top-[84px] right-5 z-20 md:top-[100px] md:right-[34px]"
         data-editorial-zone="brand"
       >
-        <Isotype className="size-[48px] drop-shadow-[0_0_10px_rgba(216,185,120,0.35)] md:size-[64px]" />
+        <Isotype className="size-[48px] drop-shadow-[0_0_10px_rgb(var(--halo)/0.35)] md:size-[64px]" />
       </Mdiv>
       <div className="fm-container relative grid min-h-[100svh] w-full grid-cols-1 items-center gap-10 pt-[112px] pb-[112px] md:pb-[140px] lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.9fr)] lg:gap-12 lg:pt-[126px] lg:pb-[78px]">
         <Mdiv
@@ -129,9 +129,9 @@ export function HeroSection({
           className="pointer-events-none absolute inset-y-0 right-0 z-10 flex w-full items-center justify-center max-md:top-[45%] lg:w-[52%]"
           data-editorial-zone="energy"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(50%_58%_at_58%_48%,rgba(216,185,120,0.16),transparent_70%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(50%_58%_at_58%_48%,rgb(var(--halo)/0.16),transparent_70%)]" />
           <Halo
-            color="rgba(216,185,120,0.2)"
+            color="rgb(var(--halo) / 0.2)"
             inset="-12%"
             className="!animate-fm-breathe"
             style={{ width: 'min(72vw, 560px)', filter: 'blur(18px)' }}
@@ -142,19 +142,25 @@ export function HeroSection({
             className="relative h-[min(78vw,560px)] w-[min(78vw,560px)] opacity-75"
             style={{ width: 'min(78vw, 560px)', height: 'min(78vw, 560px)' }}
             rings={[
-              { r: 238, stroke: 'rgba(216,185,120,0.2)' },
-              { r: 188, stroke: 'rgba(150,198,188,0.18)' },
-              { r: 134, stroke: 'rgba(185,176,214,0.18)' },
+              { r: 238, stroke: 'rgb(var(--halo) / 0.2)' },
+              { r: 188, stroke: 'color-mix(in srgb, var(--color-accent-2) 18%, transparent)' },
+              { r: 134, stroke: 'color-mix(in srgb, var(--color-accent-3) 18%, transparent)' },
             ]}
           >
-            <OrbitalRings.Node angle={0} radius={238} color="var(--color-gold)" size={5} />
-            <OrbitalRings.Node angle={120} radius={188} color="var(--color-teal)" size={5} />
-            <OrbitalRings.Node angle={240} radius={134} color="var(--color-lav)" size={5} />
+            <OrbitalRings.Node angle={0} radius={238} color="var(--color-accent)" size={5} />
+            <OrbitalRings.Node angle={120} radius={188} color="var(--color-accent-2)" size={5} />
+            <OrbitalRings.Node angle={240} radius={134} color="var(--color-accent-3)" size={5} />
           </OrbitalRings>
           {/* Sólo aros de ambiente alrededor de la figura: sin triángulo, que
               competía con ella. */}
           <svg viewBox="0 0 400 400" className="absolute h-auto w-[min(72vw,480px)] opacity-55">
-            <circle cx="200" cy="200" r="92" fill="none" stroke="rgba(185,176,214,0.12)" />
+            <circle
+              cx="200"
+              cy="200"
+              r="92"
+              fill="none"
+              style={{ stroke: 'color-mix(in srgb, var(--color-accent-3) 12%, transparent)' }}
+            />
           </svg>
         </div>
       </div>

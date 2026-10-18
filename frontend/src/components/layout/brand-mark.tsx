@@ -16,11 +16,11 @@ export function BrandMark({ label }: { label: string }) {
       className="text-fg hover:text-fg pointer-events-auto flex min-h-11 items-center gap-[13px]"
     >
       {/* Quieto y con su círculo: en el header el isotipo es la firma completa.
-          El halo es decorativo y queda crudo a propósito (T0.7 decide su visibilidad). */}
+          El halo es decorativo y sigue el halo del tema (T0.7 decide su visibilidad). */}
       <Isotype
         spin={false}
         ringed
-        className="size-[46px] drop-shadow-[0_0_10px_rgba(216,185,120,0.35)]"
+        className="size-[46px] drop-shadow-[0_0_10px_rgb(var(--halo)/0.35)]"
       />
       <span className="tracking-label hidden shrink-0 font-serif text-[19px] font-medium whitespace-nowrap uppercase md:inline">
         {label}

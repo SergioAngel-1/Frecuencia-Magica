@@ -89,8 +89,8 @@ export function ExperienceRow({
             size={300}
             spin={100}
             rings={[
-              { r: 150, stroke: 'rgba(185,176,214,0.2)' },
-              { r: 110, stroke: 'rgba(216,185,120,0.15)', dash: '1 8' },
+              { r: 150, stroke: 'color-mix(in srgb, var(--color-accent-3) 20%, transparent)' },
+              { r: 110, stroke: 'rgb(var(--halo) / 0.15)', dash: '1 8' },
             ]}
           />
         </div>
