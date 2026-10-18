@@ -114,6 +114,7 @@ export const COMPLETED = [
   'portal-hero-dusk.avif',
   'portal-hero-dawn.avif',
   'portal-hero-forest.avif',
+  'home-hero-dusk.avif',
   'auth-form-atmosphere.avif',
   'og-image.jpg',
   'discover-hero.avif',

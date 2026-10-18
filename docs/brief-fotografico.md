@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 92 completadas · 0 a corregir · 35 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 93 completadas · 0 a corregir · 34 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -222,7 +222,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `portal-hero-dusk.avif` | Portal · umbral · tema · Atardecer | 16:9 | 2880×1620 | P0 | Completadas |
 | `portal-hero-dawn.avif` | Portal · umbral · tema · Amanecer | 16:9 | 2880×1620 | P0 | Completadas |
 | `portal-hero-forest.avif` | Portal · umbral · tema · Bosque | 16:9 | 2880×1620 | P0 | Completadas |
-| `home-hero-dusk.avif` | Home · hero · tema · Atardecer | 16:9 | 2880×1620 | P0 | Faltantes |
+| `home-hero-dusk.avif` | Home · hero · tema · Atardecer | 16:9 | 2880×1620 | P0 | Completadas |
 | `home-hero-dawn.avif` | Home · hero · tema · Amanecer | 16:9 | 2880×1620 | P0 | Faltantes |
 | `home-hero-forest.avif` | Home · hero · tema · Bosque | 16:9 | 2880×1620 | P0 | Faltantes |
 | `about-hero-dusk.avif` | Sobre Marisol · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Faltantes |
@@ -270,26 +270,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (35)
+### 5.2 Faltantes (34)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `home.hero · Atardecer` — Home · hero · tema · P0
-
-- **Archivo:** `home-hero-dusk.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 62% 40% · foco móvil 75% 40%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Atardecer de `home.hero`: la misma vista y el mismo encuadre, con la escena del tema. El universo entero en una imagen: materia del hero con kicker, título y CTA sobre scrim. Cuerpo de luz: la imagen firma de la marca.
-- **Nota:** El foco móvil rige por debajo de 768 px: así el cuerpo de luz (62–88 % del ancho) queda dentro de la ventana visible.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The brand signature image at dusk: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, resting on its side across the surface of a calm sea, seen softly from behind with the head turned away from the camera, its head close to the water where a soft diffuse warm glow gathers beneath it and ripples outward in concentric rings, the silhouette edged in warm amber with faint coral and mauve light flowing through it like fine veins of current, a sky of dusky rose, terracotta and soft amber with thin warm clouds, the first faint stars in the upper third. The whole figure is small, only about a quarter of the frame width, and sits entirely inside the band between 62% and 88% of the frame width, never left of 62% and never closer to the right edge than 12%: its head at 62% horizontal and 40% vertical, its body extending to the right and ending at 88%, so a strip of calm open water stays between its feet and the right edge and no part of it touches or crosses that edge; the left 55% of the frame is open calm sea and soft dusk sky for the headline, low camera angle at water level. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `home.hero · Amanecer` — Home · hero · tema · P0
 
@@ -853,7 +836,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (92)
+### 5.5 Completadas (93)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -951,6 +934,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `portal-hero-dusk.avif` | Portal · umbral · tema · Atardecer | `portal.hero` | 16:9 | P0 |
 | `portal-hero-dawn.avif` | Portal · umbral · tema · Amanecer | `portal.hero` | 16:9 | P0 |
 | `portal-hero-forest.avif` | Portal · umbral · tema · Bosque | `portal.hero` | 16:9 | P0 |
+| `home-hero-dusk.avif` | Home · hero · tema · Atardecer | `home.hero` | 16:9 | P0 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (61)
 
