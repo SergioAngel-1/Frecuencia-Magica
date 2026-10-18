@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 99 completadas · 0 a corregir · 28 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 100 completadas · 0 a corregir · 27 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -228,7 +228,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `about-hero-dusk.avif` | Sobre Marisol · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `about-hero-forest.avif` | Sobre Marisol · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `auth-hero-dusk.avif` | Acceso · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
-| `auth-hero-dawn.avif` | Acceso · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Faltantes |
+| `auth-hero-dawn.avif` | Acceso · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `auth-hero-forest.avif` | Acceso · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `discover-hero-dusk.avif` | Descúbrete · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Faltantes |
 | `discover-hero-dawn.avif` | Descúbrete · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Faltantes |
@@ -270,25 +270,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (28)
+### 5.2 Faltantes (27)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `auth.hero · Amanecer` — Acceso · hero · tema · P1
-
-- **Archivo:** `auth-hero-dawn.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Amanecer de `auth.hero`: la misma vista y el mismo encuadre, con la escena del tema. El umbral personal que recibe antes del formulario.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A tall arched doorway of soft pale-gold light set into a wall of pale limestone at the edge of a lake at sunrise, seen from a few steps back, a gentle path of light spilling across the wet stone and the water toward the viewer, soft sky blue and ivory above, quiet, inviting, nobody in the frame. Arch placed in the right half, the left third plain calm wall, water and soft sky for a quote. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `discover.hero · Atardecer` — Descúbrete · hero · tema · P1
 
@@ -738,7 +722,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (99)
+### 5.5 Completadas (100)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -842,6 +826,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `about-hero-dusk.avif` | Sobre Marisol · hero · tema · Atardecer | `about.hero` | 16:9 | P1 |
 | `about-hero-forest.avif` | Sobre Marisol · hero · tema · Bosque | `about.hero` | 16:9 | P1 |
 | `auth-hero-dusk.avif` | Acceso · hero · tema · Atardecer | `auth.hero` | 16:9 | P1 |
+| `auth-hero-dawn.avif` | Acceso · hero · tema · Amanecer | `auth.hero` | 16:9 | P1 |
 | `auth-hero-forest.avif` | Acceso · hero · tema · Bosque | `auth.hero` | 16:9 | P1 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (61)
