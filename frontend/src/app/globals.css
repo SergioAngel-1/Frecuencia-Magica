@@ -425,14 +425,17 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   filter: sepia(0.9) saturate(1.3) brightness(1.55) contrast(0.85);
 }
 
-/* Durante el fundido de un cambio de tema (`AtmosphereProvider`), los colores del sitio transitan
+/* Durante el fundido de un cambio de tema (`beginThemeSwitch`), los colores del sitio transitan
    en vez de saltar. Sólo mientras dura: el resto del tiempo cada elemento lleva sus propias
-   transiciones. Con movimiento reducido el atributo nunca se pone. */
-[data-theme-switching] *,
+   transiciones. Con movimiento reducido el atributo nunca se pone. Sólo propiedades de color
+   (pintado barato): ni `box-shadow` ni `opacity`, que encarecían todo el DOM. El `!important`
+   hace falta para ganar a las transiciones propias de cada elemento (p. ej. `transition-colors`
+   de Tailwind) mientras dura el fundido. Se excluye el lienzo del motor y los contenedores de
+   foto, que no tienen color que transitar y no deben repintarse. */
+[data-theme-switching] *:not(canvas):not([data-photo-night]),
 [data-theme-switching] *::before,
 [data-theme-switching] *::after {
-  transition-property:
-    color, background-color, border-color, fill, stroke, box-shadow, opacity !important;
+  transition-property: color, background-color, border-color, fill, stroke !important;
   transition-duration: 0.9s !important;
   transition-timing-function: ease-in-out !important;
 }

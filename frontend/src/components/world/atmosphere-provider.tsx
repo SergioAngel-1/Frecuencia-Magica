@@ -7,6 +7,7 @@ import { ATMOSPHERES } from '@/config/atmospheres';
 import { ATMOSPHERE_FADE_SECONDS } from '@/config/motion';
 import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { beginThemeSwitch } from '@/lib/atmosphere/theme-switching';
 import type { AtmosphereId } from '@/types/atmosphere';
 
 const THEME_COLOR_META = 'meta[name="theme-color"]';
@@ -54,14 +55,9 @@ export function AtmosphereProvider({ children }: { children: ReactNode }) {
     // texto no se vea un instante con la tinta del tema viejo sobre el fondo del nuevo.
     if (previous.current === null || previous.current === atmosphereId || reduced) return;
 
-    const root = document.documentElement;
-    root.setAttribute('data-theme-switching', '');
-    const timer = setTimeout(
-      () => root.removeAttribute('data-theme-switching'),
-      ATMOSPHERE_FADE_SECONDS * 1000,
-    );
-
-    return () => clearTimeout(timer);
+    // La limpieza del efecto retira el atributo siempre, también si un cambio de
+    // `reduced` o el desmontaje cancelan el fundido a mitad.
+    return beginThemeSwitch(document.documentElement, ATMOSPHERE_FADE_SECONDS * 1000);
   }, [atmosphereId, reduced]);
 
   useEffect(() => {
