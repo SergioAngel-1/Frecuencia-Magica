@@ -139,6 +139,7 @@ describe('academy editorial composition contracts', () => {
 
   it('plays the lesson in the shared player bar, with custom video controls', () => {
     const videoSource = readSource('components/features/player/video-player.tsx');
+    const veilSource = readSource('hooks/use-fullscreen-veil.ts');
     const slotSource = readSource('components/features/player/video-slot.tsx');
     const barSource = readSource('components/features/player/player-bar.tsx');
     const dockSource = readSource('components/features/player/player-dock.tsx');
@@ -168,11 +169,11 @@ describe('academy editorial composition contracts', () => {
     expect(dockSource).toContain('<PlayerBar');
     expect(barSource).toContain('<SeekBar');
     // Sonido y pantalla completa propios; sin soporte, el botón no se pinta.
-    expect(videoSource).toContain('requestFullscreen');
-    expect(videoSource).toContain('document.fullscreenEnabled');
+    expect(veilSource).toContain('requestFullscreen');
+    expect(veilSource).toContain('document.fullscreenEnabled');
     // Entrar y salir de pantalla completa funde a la noche: nunca un salto.
-    expect(videoSource).toContain("setVeil('fade')");
-    expect(videoSource).toContain("current === 'clear' ? 'cut' : current");
+    expect(veilSource).toContain("setVeil('fade')");
+    expect(veilSource).toContain("current === 'clear' ? 'cut' : current");
     expect(videoSource).toContain('data-video-veil={veil}');
     // Sin fuente no hay reproductor: la fuente es obligatoria (ver video-playback-guard).
     expect(videoSource).toContain('  src: string;');

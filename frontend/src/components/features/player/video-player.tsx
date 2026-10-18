@@ -1,37 +1,15 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
 
 import { IconButton } from '@/components/ui';
-import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { useFullscreenVeil, type Veil } from '@/hooks/use-fullscreen-veil';
+import { useIdleControls } from '@/hooks/use-idle-controls';
 import { useVideoPlayback } from '@/hooks/use-video-playback';
 import { cn } from '@/lib/cn';
 
 import { PlayerBar } from './player-bar';
 import { FullscreenIcon, PlayPauseIcon, VolumeIcon } from './player-icons';
-
-/** Cuánto tarda la barra en retirarse mientras el video suena y nadie la toca. */
-const CONTROLS_IDLE_MS = 2600;
-
-/**
- * Fundido a la noche antes de cambiar a pantalla completa (y al volver), en
- * ms. Corto: la llamada tiene que seguir dentro del gesto de quien pulsó.
- */
-const VEIL_FADE_MS = 280;
-/** Margen para que el navegador termine de redimensionar bajo el velo. */
-const VEIL_SETTLE_MS = 120;
-
-/**
- * El velo que cubre el salto de tamaño: `fade` funde a la noche, `cut` la
- * pone de golpe (salida con Escape, que no avisa antes) y `clear` la abre.
- */
-type Veil = 'clear' | 'fade' | 'cut';
-
-const VEIL_CLASSES: Record<Veil, string> = {
-  clear: 'opacity-0 transition-opacity duration-500',
-  fade: 'opacity-100 transition-opacity duration-300',
-  cut: 'opacity-100 transition-none',
-};
 
 export type VideoPlayerLabels = {
   /** Nombre accesible de la región, ya traducido. */
@@ -56,6 +34,12 @@ type VideoPlayerProps = {
   className?: string;
 };
 
+const VEIL_CLASSES: Record<Veil, string> = {
+  clear: 'opacity-0 transition-opacity duration-500',
+  fade: 'opacity-100 transition-opacity duration-300',
+  cut: 'opacity-100 transition-none',
+};
+
 /**
  * Reproductor de video con controles propios: la versión para video de la
  * barra del dock de frecuencias (`PlayerBar`), sobre la imagen de la lección.
@@ -70,75 +54,12 @@ type VideoPlayerProps = {
  */
 export function VideoPlayer({ src, duration, poster, labels, className }: VideoPlayerProps) {
   const frameRef = useRef<HTMLDivElement>(null);
-  const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const veilTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const reduced = useReducedMotionSafe();
   const { videoRef, playing, elapsed, total, muted, toggle, seek, toggleMute } = useVideoPlayback(
     src,
     duration,
   );
-  const [quiet, setQuiet] = useState(false);
-  const [fullscreen, setFullscreen] = useState(false);
-  const [canFullscreen, setCanFullscreen] = useState(false);
-  const [veil, setVeil] = useState<Veil>('clear');
-
-  // La barra reaparece y, si el video suena, vuelve a contar para retirarse.
-  const wake = useCallback(() => {
-    setQuiet(false);
-    if (idleTimer.current) clearTimeout(idleTimer.current);
-    if (playing) idleTimer.current = setTimeout(() => setQuiet(true), CONTROLS_IDLE_MS);
-  }, [playing]);
-
-  useEffect(() => {
-    wake();
-
-    return () => {
-      if (idleTimer.current) clearTimeout(idleTimer.current);
-    };
-  }, [wake]);
-
-  useEffect(() => {
-    // iPhone no deja poner un contenedor a pantalla completa: sin soporte, el botón no se pinta.
-    setCanFullscreen(document.fullscreenEnabled === true);
-
-    // El navegador ya ha cambiado el tamaño de golpe. Si se llegó aquí sin
-    // fundido previo (Escape), la noche cae en el acto; en ambos casos se
-    // abre despacio cuando el nuevo tamaño ya está asentado.
-    const onChange = () => {
-      setFullscreen(document.fullscreenElement === frameRef.current);
-      setVeil((current) => (current === 'clear' ? 'cut' : current));
-      if (veilTimer.current) clearTimeout(veilTimer.current);
-      veilTimer.current = setTimeout(() => setVeil('clear'), VEIL_SETTLE_MS);
-    };
-    document.addEventListener('fullscreenchange', onChange);
-
-    return () => {
-      document.removeEventListener('fullscreenchange', onChange);
-      if (veilTimer.current) clearTimeout(veilTimer.current);
-    };
-  }, []);
-
-  // Entrar y salir sin salto: el video funde a la noche, el navegador cambia
-  // el tamaño bajo ese velo y la imagen vuelve a amanecer ya en su sitio.
-  const toggleFullscreen = () => {
-    const change = () => {
-      const request = document.fullscreenElement
-        ? document.exitFullscreen()
-        : frameRef.current?.requestFullscreen();
-
-      // Si el navegador se niega, no hay `fullscreenchange` que abra el velo.
-      void request?.catch(() => setVeil('clear'));
-    };
-
-    if (reduced) {
-      change();
-      return;
-    }
-
-    setVeil('fade');
-    if (veilTimer.current) clearTimeout(veilTimer.current);
-    veilTimer.current = setTimeout(change, VEIL_FADE_MS);
-  };
+  const { quiet, wake } = useIdleControls(playing);
+  const { fullscreen, canFullscreen, veil, toggleFullscreen } = useFullscreenVeil(frameRef);
 
   // Con la barra retirada, el primer toque sólo la trae de vuelta.
   const handleSurface = () => {
