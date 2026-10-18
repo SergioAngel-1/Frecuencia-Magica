@@ -1,3 +1,4 @@
+import type { AtmosphereId } from '@/types/atmosphere';
 import type {
   EditorialMediaAspect,
   EditorialMediaFallback,
@@ -14,6 +15,13 @@ export type EditorialMediaKind = 'photo' | 'art-direction' | 'fallback';
 
 export type EditorialMedia = {
   src?: string;
+  /**
+   * Imagen propia de un tema, cuando la base (la de la noche) no funciona en él. Un tema
+   * que no figura aquí ve `src`. Las rutas son las del manifiesto.
+   */
+  variants?: Partial<Record<Exclude<AtmosphereId, 'night'>, string>>;
+  /** Foco propio de una variante cuyo sujeto no está donde el de la base. */
+  variantPositions?: Partial<Record<Exclude<AtmosphereId, 'night'>, string>>;
   alt: string;
   aspect: EditorialMediaAspect;
   slot: EditorialMediaSlot;
@@ -51,13 +59,9 @@ export type EditorialFade = 'both' | 'top' | 'bottom' | 'none';
 export type EditorialOverlayDirection = 'left' | 'right' | 'bottom' | 'top' | 'none';
 export type EditorialTone = 'gold' | 'teal' | 'lav' | 'ivory';
 
-/** Esquema del velo: `dark` es la noche; `light`, los scopes de esquema claro (ver `EditorialOverlay`). */
-export type EditorialScrimTone = 'dark' | 'light';
-
 export interface EditorialOverlayProps {
   direction?: EditorialOverlayDirection;
   tone?: EditorialTone;
-  scrimTone?: EditorialScrimTone;
   className?: string;
 }
 

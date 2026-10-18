@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react';
 import Image from 'next/image';
 
 import { LandscapeDrift } from '@/components/world/landscape-drift';
+import { ThemedPhoto } from '@/components/world/themed-photo';
 import { cn } from '@/lib/cn';
 import { editorialVisual } from '@/lib/editorial/visual';
 import type {
@@ -9,7 +10,6 @@ import type {
   EditorialMedia,
   EditorialMediaAspect,
   EditorialOverlayDirection,
-  EditorialScrimTone,
   EditorialVisual,
 } from '@/types/editorial-media';
 import { Band } from './band';
@@ -34,8 +34,6 @@ export interface EditorialImageProps {
   bandMedia?: boolean;
   /** Clases del velo tintado (`overlay`), p. ej. para pintarlo sólo en móvil. */
   overlayClassName?: string;
-  /** Esquema de los dos velos: `light` en los scopes de esquema claro. */
-  scrimTone?: EditorialScrimTone;
   className?: string;
 }
 
@@ -77,7 +75,6 @@ export function EditorialImage({
   sizes,
   bandMedia = false,
   overlayClassName,
-  scrimTone,
   className,
 }: EditorialImageProps) {
   const visual = editorialVisual(media);
@@ -105,16 +102,9 @@ export function EditorialImage({
         sizes={sizes}
         visual={visual}
       />
-      {scrimDirection ? (
-        <EditorialOverlay direction={scrimDirection} scrimTone={scrimTone} />
-      ) : null}
+      {scrimDirection ? <EditorialOverlay direction={scrimDirection} /> : null}
       {overlayDirection ? (
-        <EditorialOverlay
-          direction={overlayDirection}
-          tone="teal"
-          scrimTone={scrimTone}
-          className={overlayClassName}
-        />
+        <EditorialOverlay direction={overlayDirection} tone="teal" className={overlayClassName} />
       ) : null}
     </div>
   );
@@ -175,13 +165,30 @@ function EditorialMatter({
     ...(media.mobilePosition ? { '--fm-pos-mobile': media.mobilePosition } : {}),
   } as CSSProperties;
 
+  const photoSizes = sizes ?? media.sizes;
+  const photoClass =
+    'object-cover object-[var(--fm-pos-mobile,var(--fm-pos))] md:object-[var(--fm-pos)]';
+
+  // Con imagen propia en algún tema, la foto la monta un hijo cliente que lee el tema activo.
+  if (media.variants && Object.keys(media.variants).length > 0) {
+    return (
+      <ThemedPhoto
+        className={photoClass}
+        media={{ ...media, src: media.src }}
+        priority={priority ?? media.priority ?? false}
+        sizes={photoSizes}
+        style={focus}
+      />
+    );
+  }
+
   const photo = (
     <Image
       alt={media.alt}
-      className="object-cover object-[var(--fm-pos-mobile,var(--fm-pos))] md:object-[var(--fm-pos)]"
+      className={photoClass}
       fill
       priority={priority ?? media.priority}
-      sizes={sizes ?? media.sizes}
+      sizes={photoSizes}
       src={media.src}
       style={focus}
     />

@@ -13,7 +13,7 @@ Lo que Marisol aún no entrega y que el sitio muestra como «Próximamente» o c
 | Videos «Próximamente» | 32 |
 | Productos provisionales | 8 |
 | Cursos de demostración | 3 |
-| Imágenes provisionales | 23 |
+| Imágenes provisionales | 61 |
 
 ## Audio
 
@@ -113,17 +113,32 @@ Generadas, hacen de marco hasta tener fotografía propia de Marisol o con licenc
 | Slot | Vista | Archivos | Qué hacer |
 |---|---|---|---|
 | `store-product-visual` | Tienda · productos | `store-product-visual-p1.avif`, `store-product-visual-p2.avif`, `store-product-visual-p3.avif`, `store-product-visual-p4.avif`, `store-product-visual-p5.avif`, `store-product-visual-p6.avif`, `store-product-visual-p7.avif`, `store-product-visual-p8.avif` | Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto. |
-| `atmosphere.dusk` | Atmósfera · Atardecer (descanso) | `atmosphere-dusk.avif` | Atardecer natural, sin rojo intenso (D2 del spec). Sustituir por fotografía propia o con licencia comercial documentada. |
-| `atmosphere.dawn` | Atmósfera · Amanecer (calma de día) | `atmosphere-dawn.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
-| `atmosphere.store` | Atmósfera · Taller (tienda) | `atmosphere-store.avif` | Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo. |
-| `atmosphere.moon` | Atmósfera · Luna (escucha nocturna) | `atmosphere-moon.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
-| `atmosphere.forest` | Atmósfera · Bosque (raíz y agua) | `atmosphere-forest.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
 | `atmosphere.forest-autumn` | Atmósfera · Bosque otoñal (nostalgia) | `atmosphere-forest-autumn.avif` | Sólo si hay material: la variante otoñal es opcional (spec §4.2). Sustituir por fotografía propia o con licencia comercial documentada. |
-| `atmosphere.study` | Atmósfera · Estudio (academia) | `atmosphere-study.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
-| `atmosphere.gathering` | Atmósfera · Encuentro (experiencias) | `atmosphere-gathering.avif` | Sin personas por regla del brief. Sustituir por fotografías propias de Marisol de un encuentro real. |
-| `atmosphere.marisol` | Atmósfera · Luz de Marisol (sobre Marisol) | `atmosphere-marisol.avif` | Marco provisional. Sustituir por fotografías y videos reales de Marisol (spec §8). |
 | `resonario.celtic` | Resonario · música de inspiración celta | `resonario-celtic.avif` | Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `resonario.kind-banner.*` | Resonario · tipo de escucha | `resonario-kind-banner-melody.avif`, `resonario-kind-banner-nature.avif`, `resonario-kind-banner-frequency.avif`, `resonario-kind-banner-binaural.avif`, `resonario-kind-banner-guided.avif` | Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `resonario.hero` | Resonario · hero · tema | `resonario-hero-dusk.avif`, `resonario-hero-dawn.avif`, `resonario-hero-moon.avif`, `resonario-hero-forest.avif` | Atardecer natural, sin rojo intenso (D2 del spec). Sustituir por fotografía propia o con licencia comercial documentada. |
+| `academy.hero` | Academia · hero · tema | `academy-hero-dawn.avif`, `academy-hero-dusk.avif`, `academy-hero-forest.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
+| `store.hero` | Tienda · hero · tema | `store-hero-dawn.avif`, `store-hero-dusk.avif`, `store-hero-forest.avif` | Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo. |
+| `experiences.hero` | Experiencias · hero · tema | `experiences-hero-dusk.avif`, `experiences-hero-dawn.avif`, `experiences-hero-forest.avif` | Sin personas por regla del brief. Sustituir por fotografías propias de Marisol de un encuentro real. |
+| `about.hero` | Sobre Marisol · hero · tema | `about-hero-dawn.avif`, `about-hero-dusk.avif`, `about-hero-forest.avif` | Marco provisional. Sustituir por fotografías y videos reales de Marisol (spec §8). |
+| `portal.hero` | Portal · umbral · tema | `portal-hero-dusk.avif`, `portal-hero-dawn.avif`, `portal-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.hero` | Home · hero · tema | `home-hero-dusk.avif`, `home-hero-dawn.avif`, `home-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `auth.hero` | Acceso · hero · tema | `auth-hero-dusk.avif`, `auth-hero-dawn.avif`, `auth-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `discover.hero` | Descúbrete · hero · tema | `discover-hero-dusk.avif`, `discover-hero-dawn.avif`, `discover-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `booking.hero` | Reserva · hero · tema | `booking-hero-dusk.avif`, `booking-hero-dawn.avif`, `booking-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `sanctuary.hero` | Mi Santuario · hero · tema | `sanctuary-hero-dusk.avif`, `sanctuary-hero-dawn.avif`, `sanctuary-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.daily-frequency` | Home · frecuencia del día · tema | `home-daily-frequency-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.realms-banner` | Home · banner de realms · tema | `home-realms-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.footer-banner` | Home · cierre · tema | `home-footer-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home-membership` | Home · membresía · tema | `home-membership-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `about.angels` | Sobre Marisol · Experiencias con Ángeles · tema | `about-angels-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `auth.form-atmosphere` | Acceso · formulario · tema | `auth-form-atmosphere-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `discover.question-atmosphere` | Descúbrete · pregunta · tema | `discover-question-atmosphere-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `resonario.featured` | Resonario · destacado · tema | `resonario-featured-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `resonario.archive-banner` | Resonario · archivo · tema | `resonario-archive-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `academy.featured-course` | Academia · curso destacado · tema | `academy-featured-course-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `experiences.featured` | Experiencias · destacada · tema | `experiences-featured-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `store.ritual-banner` | Tienda · banner ritual · tema | `store-ritual-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 
 ## A revisar cuando llegue el material
 

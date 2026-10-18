@@ -402,3 +402,16 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
 [data-scheme='light'] .fm-kicker-veiled {
   color: var(--color-fg);
 }
+
+/* Foto con imagen propia en algunos temas (`ThemedPhoto`): cuando el tema activo tiene
+   variante, la base (la de la noche) se oculta y entra la del tema. Mientras carga se ve el
+   fondo del tema, nunca la foto equivocada; si la variante falla (`data-variant-failed`) vuelve
+   la base. Un `~=` por tema: CSS no itera. La noche no figura: es la base. */
+[data-atmosphere='dusk'] [data-photo-themes~='dusk']:not([data-variant-failed]) > [data-photo-base],
+[data-atmosphere='dawn'] [data-photo-themes~='dawn']:not([data-variant-failed]) > [data-photo-base],
+[data-atmosphere='moon'] [data-photo-themes~='moon']:not([data-variant-failed]) > [data-photo-base],
+[data-atmosphere='forest']
+  [data-photo-themes~='forest']:not([data-variant-failed])
+  > [data-photo-base] {
+  opacity: 0;
+}
