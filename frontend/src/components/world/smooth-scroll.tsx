@@ -1,6 +1,6 @@
 'use client';
 
-import Lenis from 'lenis';
+import type Lenis from 'lenis';
 import { useEffect, useRef, type ReactNode } from 'react';
 
 import { useRealm } from '@/hooks/use-realm';
@@ -30,41 +30,55 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!enabled) return;
 
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: easeOutExpo,
-      smoothWheel: true,
-      touchMultiplier: 1.5,
-      // Con la espera en pantalla la página no se desplaza (`ScrollLock`
-      // quita el scroll nativo): Lenis tampoco debe moverla con la rueda.
-      prevent: () => document.querySelector(LOADING_SCENE) !== null,
-    });
-    lenisRef.current = lenis;
+    // Lenis entra en un chunk aparte: la página no espera a la librería para
+    // pintar. Si el efecto se limpia antes de que resuelva, no se monta.
+    let cancelled = false;
+    let teardown: (() => void) | null = null;
 
-    // El bucle sólo corre mientras Lenis anima un desplazamiento. Encendido
-    // siempre, obligaba al navegador a producir un frame de página 60 veces
-    // por segundo aunque nadie tocara la rueda, y con él a recalcular cada
-    // animación CSS que, sola, corre en el compositor.
-    let raf = 0;
-    const loop = (time: number) => {
-      lenis.raf(time);
-      raf = lenis.isScrolling === 'smooth' ? requestAnimationFrame(loop) : 0;
-    };
-    // En captura, antes de que Lenis reciba la rueda. Poner su reloj en hora
-    // aquí evita que el primer paso sume todo el tiempo dormido y la
-    // animación llegue de un salto a su destino.
-    const wake = () => {
-      if (raf) return;
-      lenis.raf(performance.now());
-      raf = requestAnimationFrame(loop);
-    };
-    window.addEventListener('wheel', wake, { capture: true, passive: true });
+    void import('lenis').then(({ default: Lenis }) => {
+      if (cancelled) return;
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: easeOutExpo,
+        smoothWheel: true,
+        touchMultiplier: 1.5,
+        // Con la espera en pantalla la página no se desplaza (`ScrollLock`
+        // quita el scroll nativo): Lenis tampoco debe moverla con la rueda.
+        prevent: () => document.querySelector(LOADING_SCENE) !== null,
+      });
+      lenisRef.current = lenis;
+
+      // El bucle sólo corre mientras Lenis anima un desplazamiento. Encendido
+      // siempre, obligaba al navegador a producir un frame de página 60 veces
+      // por segundo aunque nadie tocara la rueda, y con él a recalcular cada
+      // animación CSS que, sola, corre en el compositor.
+      let raf = 0;
+      const loop = (time: number) => {
+        lenis.raf(time);
+        raf = lenis.isScrolling === 'smooth' ? requestAnimationFrame(loop) : 0;
+      };
+      // En captura, antes de que Lenis reciba la rueda. Poner su reloj en hora
+      // aquí evita que el primer paso sume todo el tiempo dormido y la
+      // animación llegue de un salto a su destino.
+      const wake = () => {
+        if (raf) return;
+        lenis.raf(performance.now());
+        raf = requestAnimationFrame(loop);
+      };
+      window.addEventListener('wheel', wake, { capture: true, passive: true });
+
+      teardown = () => {
+        window.removeEventListener('wheel', wake, { capture: true });
+        cancelAnimationFrame(raf);
+        lenis.destroy();
+        if (lenisRef.current === lenis) lenisRef.current = null;
+      };
+    });
 
     return () => {
-      window.removeEventListener('wheel', wake, { capture: true });
-      cancelAnimationFrame(raf);
-      lenis.destroy();
-      lenisRef.current = null;
+      cancelled = true;
+      teardown?.();
     };
   }, [enabled]);
 
