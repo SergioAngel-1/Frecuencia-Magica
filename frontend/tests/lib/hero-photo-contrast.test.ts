@@ -38,6 +38,7 @@ const HEROES = [
   { place: 'Home', id: 'dawn', file: 'home-hero-dawn' },
   { place: 'Home', id: 'forest', file: 'home-hero-forest' },
   { place: 'Sobre Marisol', id: 'dusk', file: 'about-hero-dusk' },
+  { place: 'Sobre Marisol', id: 'forest', file: 'about-hero-forest' },
 ] as const;
 
 const W = 640;

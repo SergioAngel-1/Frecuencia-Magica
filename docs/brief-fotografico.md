@@ -8,7 +8,7 @@
 
 **128 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 10 · P1 91 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 96 completadas · 0 a corregir · 31 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 97 completadas · 0 a corregir · 30 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -226,7 +226,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `home-hero-dawn.avif` | Home · hero · tema · Amanecer | 16:9 | 2880×1620 | P0 | Completadas |
 | `home-hero-forest.avif` | Home · hero · tema · Bosque | 16:9 | 2880×1620 | P0 | Completadas |
 | `about-hero-dusk.avif` | Sobre Marisol · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
-| `about-hero-forest.avif` | Sobre Marisol · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Faltantes |
+| `about-hero-forest.avif` | Sobre Marisol · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `auth-hero-dusk.avif` | Acceso · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Faltantes |
 | `auth-hero-dawn.avif` | Acceso · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Faltantes |
 | `auth-hero-forest.avif` | Acceso · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Faltantes |
@@ -270,25 +270,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (31)
+### 5.2 Faltantes (30)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `about.hero · Bosque` — Sobre Marisol · hero · tema · P1
-
-- **Archivo:** `about-hero-forest.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Bosque de `about.hero`: la misma vista y el mismo encuadre, con la escena del tema. Cabecera de la vista de Marisol: el lugar desde el que acompaña.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The place where the work begins, in the forest: a quiet wooden deck among tall trees opening onto a still forest pool, a low wooden table with a crystal singing bowl and a single lit candle standing in the middle distance at the far end of the deck, near the edge of the water, a linen shawl left over a bench as if someone had just stepped out, soft green ferns, warm filtered golden light through the canopy, a fine mist. Table and candle at 60% horizontal and 40% vertical, which is the middle distance: the wooden floor of the deck extends in front of them across the whole lower half of the frame, the left third soft out-of-focus foliage and still water for the title, the lower edge calm. Wide landscape framing. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `auth.hero · Atardecer` — Acceso · hero · tema · P1
 
@@ -786,7 +770,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (96)
+### 5.5 Completadas (97)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -888,6 +872,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `home-hero-dawn.avif` | Home · hero · tema · Amanecer | `home.hero` | 16:9 | P0 |
 | `home-hero-forest.avif` | Home · hero · tema · Bosque | `home.hero` | 16:9 | P0 |
 | `about-hero-dusk.avif` | Sobre Marisol · hero · tema · Atardecer | `about.hero` | 16:9 | P1 |
+| `about-hero-forest.avif` | Sobre Marisol · hero · tema · Bosque | `about.hero` | 16:9 | P1 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (61)
 
