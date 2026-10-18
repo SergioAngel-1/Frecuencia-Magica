@@ -22,7 +22,7 @@ interface ProseProps {
  */
 const SIZE_CLASSES: Record<ProseSize, string> = {
   sm: 'text-body',
-  base: 'text-[16px]',
+  base: 'text-lead',
   lg: 'text-[clamp(15px,1.6vw,19px)]',
 };
 

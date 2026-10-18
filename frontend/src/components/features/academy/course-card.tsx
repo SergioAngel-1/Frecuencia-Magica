@@ -53,9 +53,7 @@ export function CourseCard({
             {title}
           </Display>
           {description ? (
-            <p className="text-fg-body mt-5 max-w-[48ch] text-[16px] leading-[1.7]">
-              {description}
-            </p>
+            <p className="text-fg-body text-lead mt-5 max-w-[48ch] leading-[1.7]">{description}</p>
           ) : null}
           <CourseFacts course={course} className="mt-5" />
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">

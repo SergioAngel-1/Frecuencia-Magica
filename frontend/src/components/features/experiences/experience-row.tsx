@@ -109,7 +109,7 @@ export function ExperienceRow({
               {title}
             </Display>
             {description ? (
-              <p className="text-fg-body mt-5 max-w-[48ch] text-[16px] leading-[1.7]">
+              <p className="text-fg-body text-lead mt-5 max-w-[48ch] leading-[1.7]">
                 {description}
               </p>
             ) : null}

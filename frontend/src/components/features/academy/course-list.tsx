@@ -84,7 +84,7 @@ export function CourseList({ media }: { media: AcademyMedia }) {
           <Display level="h2" size="md" id="academy-archive-title" className="mt-3">
             {t('archive.title')}
           </Display>
-          <p className="text-fg-soft mt-4 text-[16px] leading-[1.7]">{t('archive.description')}</p>
+          <p className="text-fg-soft text-lead mt-4 leading-[1.7]">{t('archive.description')}</p>
         </div>
 
         <div>
