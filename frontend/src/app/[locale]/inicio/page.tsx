@@ -84,7 +84,7 @@ export default async function HomePage({ params }: PageProps) {
         cta2={t('heroCta2')}
         stats={[
           { value: t('stats.daily.value'), label: t('stats.daily.label') },
-          { value: t('stats.meditations.value'), label: t('stats.meditations.label') },
+          { value: String(PLAYABLE_AUDIOS.length), label: t('stats.meditations.label') },
           { value: t('stats.realms.value'), label: t('stats.realms.label') },
         ]}
       />

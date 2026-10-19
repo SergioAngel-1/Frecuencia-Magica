@@ -114,8 +114,7 @@
         "label": "Frecuencia del día"
       },
       "meditations": {
-        "value": "40+",
-        "label": "Meditaciones"
+        "label": "Piezas para escuchar"
       },
       "realms": {
         "value": "8",
@@ -393,7 +392,7 @@
       },
       "q3": {
         "prompt": "¿Qué emoción te acompaña?",
-        "options": ["Nostalgia", "Ansiedad", "Esperanza", "Gratitud"]
+        "options": ["Nostalgia", "Inquietud", "Esperanza", "Gratitud"]
       },
       "q4": {
         "prompt": "¿Dónde quisieras estar ahora?",
@@ -401,7 +400,7 @@
       },
       "q5": {
         "prompt": "¿Qué buscas al cerrar los ojos?",
-        "options": ["Soltar", "Recordar", "Sanar", "Soñar"]
+        "options": ["Soltar", "Recordar", "Respirar", "Soñar"]
       }
     },
     "meta": {
@@ -656,7 +655,7 @@
         ]
       },
       "c3": {
-        "title": "Aromas que Sanan",
+        "title": "Aromas que Acompañan",
         "learn": [
           "A conocer los aromas y cómo acompañan tu pausa.",
           "A crear un pequeño ritual con aromas.",
@@ -676,7 +675,7 @@
       "Raíces que sostienen",
       "El latido del instante",
       "Abrir la mirada",
-      "La respiración que todo lo limpia",
+      "La respiración que abre espacio",
       "El arte de soltar",
       "El eco de tu voz interior",
       "Tejer el día con calma",
@@ -833,8 +832,8 @@
     ],
     "productSections": {
       "benefits": {
-        "title": "Beneficios",
-        "body": "Cada objeto acompaña tu respiración y ayuda a bajar el ritmo: calma el sistema nervioso, invita a la presencia y convierte un instante cualquiera en una pausa consciente."
+        "title": "Lo que te ofrece",
+        "body": "Cada objeto acompaña tu respiración y te ayuda a bajar el ritmo: invita a la presencia y convierte un instante cualquiera en una pausa consciente."
       },
       "usage": {
         "title": "Modo de uso",

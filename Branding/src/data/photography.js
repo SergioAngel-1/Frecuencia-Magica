@@ -711,7 +711,7 @@ export const FAMILIES = {
     instances: [
       { slug: 'c1', es: 'El Arte de Volver a Ti', en: 'The Art of Returning to You', treatment: 'lav', subject: `A small ${BODY_OF_LIGHT}, seated cross-legged on a dark rock at the edge of still water at dawn, seen from behind with the head turned away from the camera, the whole figure made of soft glowing light from head to knees, a smooth luminous form edged in warm gold with faint teal and lavender light flowing through it like fine veins of current, its glow mirrored softly on the water, lavender and gold first light over distant misty mountains, deep calm; it is the only figure in the scene, about 12% of the frame width and centered at 55% horizontal` },
       { slug: 'c2', es: 'Rituales Conscientes', en: 'Conscious Rituals', treatment: 'teal', subject: 'Hands arranging ritual objects on dark stone — a ceramic bowl, a candle, a sprig of cedar — moss-green and gold light, unhurried gesture' },
-      { slug: 'c3', es: 'Aromas que Sanan', en: 'Aromas that Heal', treatment: 'warm', subject: 'Amber glass vials of essential oils, dried cedar and herbs on a dark wooden tray, warm golden light and a thread of fragrant smoke' },
+      { slug: 'c3', es: 'Aromas que Acompañan', en: 'Aromas that Accompany', treatment: 'warm', subject: 'Amber glass vials of essential oils, dried cedar and herbs on a dark wooden tray, warm golden light and a thread of fragrant smoke' },
     ],
   },
   experience: {

@@ -114,8 +114,7 @@
         "label": "Frequency of the day"
       },
       "meditations": {
-        "value": "40+",
-        "label": "Meditations"
+        "label": "Pieces to listen to"
       },
       "realms": {
         "value": "8",
@@ -388,7 +387,7 @@
       },
       "q3": {
         "prompt": "Which emotion accompanies you?",
-        "options": ["Nostalgia", "Anxiety", "Hope", "Gratitude"]
+        "options": ["Nostalgia", "Restlessness", "Hope", "Gratitude"]
       },
       "q4": {
         "prompt": "Where would you like to be now?",
@@ -396,7 +395,7 @@
       },
       "q5": {
         "prompt": "What do you seek when you close your eyes?",
-        "options": ["To let go", "To remember", "To heal", "To dream"]
+        "options": ["To let go", "To remember", "To breathe", "To dream"]
       }
     },
     "meta": {
@@ -651,7 +650,7 @@
         ]
       },
       "c3": {
-        "title": "Aromas that Heal",
+        "title": "Aromas that Accompany",
         "learn": [
           "To get to know aromas and how they accompany your pause.",
           "To create a small ritual with aromas.",
@@ -671,7 +670,7 @@
       "Roots that hold",
       "The heartbeat of the moment",
       "Opening your gaze",
-      "The breath that cleanses all",
+      "The breath that makes room",
       "The art of letting go",
       "The echo of your inner voice",
       "Weaving the day with calm",
@@ -828,8 +827,8 @@
     ],
     "productSections": {
       "benefits": {
-        "title": "Benefits",
-        "body": "Every object follows your breath and helps you slow down: it calms the nervous system, invites presence, and turns an ordinary moment into a conscious pause."
+        "title": "What it offers you",
+        "body": "Every object follows your breath and helps you slow down: it invites presence and turns an ordinary moment into a conscious pause."
       },
       "usage": {
         "title": "How to use it",

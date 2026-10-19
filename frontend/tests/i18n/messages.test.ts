@@ -20,7 +20,6 @@ const IDENTICAS_POR_DISENO = new Set([
   'auth.fields.password.placeholder',
   'discover.questions.q3.options.0',
   'home.stats.daily.value',
-  'home.stats.meditations.value',
   'home.stats.realms.value',
   'sanctuary.stats.days.value',
   'sanctuary.stats.frequencies.value',
