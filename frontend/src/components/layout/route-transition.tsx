@@ -6,12 +6,17 @@ import { AnimatePresence } from 'motion/react';
 import { div as Mdiv } from 'motion/react-m';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 
+import { ThemeOverrideProvider } from '@/components/world/theme-override';
 import { DURATION, EASE, ROUTE_WAIT_DELAY_MS } from '@/config/motion';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { usePathname } from '@/i18n/navigation';
+import { atmosphereForPathname } from '@/lib/atmosphere/destination';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { mediaSizes } from '@/lib/editorial/media-sizes';
+import { useAtmosphereShiftStore } from '@/stores/atmosphere-shift-store';
+import { useAtmosphereStore } from '@/stores/atmosphere-store';
 import { usePortalStore } from '@/stores/portal-store';
+import type { AtmosphereId } from '@/types/atmosphere';
 
 import { LoadingScene } from './loading-scene';
 
@@ -53,9 +58,13 @@ export function RouteTransition({ children }: { children: ReactNode }) {
   const t = useTranslations('states');
   const reducedMotion = useReducedMotionSafe();
   const portalPhase = usePortalStore((s) => s.phase);
+  const shiftPhase = useAtmosphereShiftStore((s) => s.phase);
   // Navegación pendiente: del clic en un enlace interno al cambio de ruta.
   const [pending, setPending] = useState(false);
   const [waiting, setWaiting] = useState(false);
+  // Tema que tendrá la vista de llegada; se resuelve en el clic, cuando el
+  // pathname todavía es el de origen.
+  const [waitTheme, setWaitTheme] = useState<AtmosphereId>('night');
   const prevPathname = useRef(pathname);
   // Siempre con la ruta actual: el listener de clics la compara con el
   // destino sin volver a suscribirse. Se escribe en un efecto, no durante el
@@ -65,6 +74,9 @@ export function RouteTransition({ children }: { children: ReactNode }) {
     pathnameRef.current = pathname;
   }, [pathname]);
   const portalBusy = portalPhase !== 'idle';
+  // Un cruce de atmósfera ya cubre la pantalla con su propio velo: la espera
+  // de ruta sobra y se vería encima de él.
+  const shiftBusy = shiftPhase !== 'idle';
   // La imagen sólo depende del alt: se resuelve una vez, no en cada render
   // (este componente re-renderiza con cada cambio de espera y de ruta).
   const loadingAlt = t('media.alt.loading');
@@ -88,6 +100,7 @@ export function RouteTransition({ children }: { children: ReactNode }) {
       const target = anchor.pathname.replace(/\/+$/, '') || '/';
       if (target === current) return; // mismo destino: no hay intercambio
 
+      setWaitTheme(atmosphereForPathname(anchor.pathname, useAtmosphereStore.getState().choice));
       setPending(true);
     };
 
@@ -108,13 +121,13 @@ export function RouteTransition({ children }: { children: ReactNode }) {
   // La escena sólo aparece si la navegación se alarga; una vista precargada
   // llega antes y no hay nada que tapar.
   useEffect(() => {
-    if (!pending || portalBusy) {
+    if (!pending || portalBusy || shiftBusy) {
       setWaiting(false);
       return;
     }
     const timer = window.setTimeout(() => setWaiting(true), ROUTE_WAIT_DELAY_MS);
     return () => window.clearTimeout(timer);
-  }, [pending, portalBusy]);
+  }, [pending, portalBusy, shiftBusy]);
 
   // La esfera de la espera se descarga en cuanto el navegador queda libre:
   // la espera sólo se ve con la red lenta, justo cuando una imagen pedida en
@@ -172,13 +185,16 @@ export function RouteTransition({ children }: { children: ReactNode }) {
           <Mdiv
             key="route-wait"
             aria-hidden="true"
+            data-atmosphere={waitTheme}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { duration: waitFade, ease: EASE.soft } }}
             exit={{ opacity: 0, transition: { duration: waitFade, ease: EASE.soft } }}
             className="z-veil pointer-events-none fixed inset-0 overflow-hidden"
-            style={{ background: 'var(--fm-night)' }}
+            style={{ backgroundImage: 'var(--atmo-bg)' }}
           >
-            <LoadingScene media={loadingMedia} label={t('loading')} />
+            <ThemeOverrideProvider theme={waitTheme}>
+              <LoadingScene media={loadingMedia} label={t('loading')} />
+            </ThemeOverrideProvider>
           </Mdiv>
         ) : null}
       </AnimatePresence>
