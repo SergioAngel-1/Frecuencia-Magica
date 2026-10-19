@@ -258,6 +258,7 @@ export const COMPLETED = [
   'discover-tuning-dawn.avif',
   'discover-tuning-dusk.avif',
   'discover-tuning-forest.avif',
+  'discover-tuning-moon.avif',
 ]
 
 /**
