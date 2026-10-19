@@ -199,6 +199,11 @@ export const COMPLETED = [
   'resonario-hero-dusk.avif',
   'resonario-hero-dawn.avif',
   'resonario-hero-forest.avif',
+  'home-daily-frequency-dusk.avif',
+  'home-daily-frequency-forest.avif',
+  'home-realms-banner-dusk.avif',
+  'home-realms-banner-forest.avif',
+  'home-footer-banner-dusk.avif',
 ]
 
 /**

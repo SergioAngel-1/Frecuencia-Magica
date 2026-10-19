@@ -8,7 +8,7 @@
 
 **164 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 113 · P2 39. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 137 completadas · 0 a corregir · 26 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 142 completadas · 0 a corregir · 21 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -253,11 +253,11 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `academy-featured-course-dawn.avif` | Academia · curso destacado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `store-ritual-banner-dawn.avif` | Tienda · banner ritual · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
-| `home-daily-frequency-dusk.avif` | Home · frecuencia del día · tema · Atardecer | 16:8 | 2880×1440 | P1 | Faltantes |
-| `home-daily-frequency-forest.avif` | Home · frecuencia del día · tema · Bosque | 16:8 | 2880×1440 | P1 | Faltantes |
-| `home-realms-banner-dusk.avif` | Home · banner de realms · tema · Atardecer | 16:8 | 2880×1440 | P1 | Faltantes |
-| `home-realms-banner-forest.avif` | Home · banner de realms · tema · Bosque | 16:8 | 2880×1440 | P1 | Faltantes |
-| `home-footer-banner-dusk.avif` | Home · cierre · tema · Atardecer | 16:9 | 2880×1620 | P2 | Faltantes |
+| `home-daily-frequency-dusk.avif` | Home · frecuencia del día · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
+| `home-daily-frequency-forest.avif` | Home · frecuencia del día · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
+| `home-realms-banner-dusk.avif` | Home · banner de realms · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
+| `home-realms-banner-forest.avif` | Home · banner de realms · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
+| `home-footer-banner-dusk.avif` | Home · cierre · tema · Atardecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `home-footer-banner-forest.avif` | Home · cierre · tema · Bosque | 16:9 | 2880×1620 | P2 | Faltantes |
 | `home-membership-dusk.avif` | Home · membresía · tema · Atardecer | 16:9 | 2880×1620 | P2 | Faltantes |
 | `home-membership-forest.avif` | Home · membresía · tema · Bosque | 16:9 | 2880×1620 | P2 | Faltantes |
@@ -306,89 +306,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (26)
+### 5.2 Faltantes (21)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `home.daily-frequency · Atardecer` — Home · frecuencia del día · tema · P1
-
-- **Archivo:** `home-daily-frequency-dusk.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** Variante del tema Atardecer de `home.daily-frequency`: la misma vista y el mismo encuadre, con la escena del tema. La frecuencia del día como materia: el sonido hecho imagen.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Sound made visible: a cymatic pattern, fine radial standing-wave geometry traced in still water at dusk and lit by warm amber light, symmetrical sacred-geometry structure with delicate concentric rings and petals of light in warm amber and soft coral with a faint mauve tint at the outer petals, top-down macro, the water a deep plum-indigo. Pattern centered and radially symmetric, the plum-indigo water fading to a deep calm shade at all four edges. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `home.daily-frequency · Bosque` — Home · frecuencia del día · tema · P1
-
-- **Archivo:** `home-daily-frequency-forest.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** Variante del tema Bosque de `home.daily-frequency`: la misma vista y el mismo encuadre, con la escena del tema. La frecuencia del día como materia: el sonido hecho imagen.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Sound made visible: a cymatic pattern, fine radial standing-wave geometry traced in the still water of a forest pool and lit by soft filtered golden light, symmetrical sacred-geometry structure with delicate concentric rings and petals of light in warm gold and soft green with a faint teal tint at the outer petals, top-down macro, the water a deep forest green. Pattern centered and radially symmetric, the deep green water fading to a calm dark shade at all four edges. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `home.realms-banner · Atardecer` — Home · banner de realms · tema · P1
-
-- **Archivo:** `home-realms-banner-dusk.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** Variante del tema Atardecer de `home.realms-banner`: la misma vista y el mismo encuadre, con la escena del tema. Mapa de los nueve reinos: la invitación a entrar.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A constellation as a map of nine realms at dusk: nine small luminous points of warm amber, soft coral and mauve light joined by the faintest filaments across a vast dusk sky that shades from deep indigo at the top through plum to dusky rose at the horizon, a slow arc of thin cloud edged in amber, the first faint stars, a thin line of still water along the lower edge mirroring the points. Nine points spread across the width with the brightest near the center, deep calm edges. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `home.realms-banner · Bosque` — Home · banner de realms · tema · P1
-
-- **Archivo:** `home-realms-banner-forest.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** Variante del tema Bosque de `home.realms-banner`: la misma vista y el mismo encuadre, con la escena del tema. Mapa de los nueve reinos: la invitación a entrar.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A constellation as a map of nine realms in the forest at night: nine small luminous points of warm gold, soft green and pale teal light, each like a firefly, joined by the faintest filaments across the dark air above a still forest pool, the outlines of tall trunks and ferns confined to the outer 15% on each side, a fine mist, a thin line of still water along the lower edge mirroring the points. Nine points spread across the width with the brightest near the center, deep calm edges, the trunks and ferns only at the far left and right. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `home.footer-banner · Atardecer` — Home · cierre · tema · P2
-
-- **Archivo:** `home-footer-banner-dusk.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Franja inferior en calma, sin detalle ni contraste (el texto va abajo), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Atardecer de `home.footer-banner`: la misma vista y el mismo encuadre, con la escena del tema. Cierre editorial: la despedida que invita a quedarse.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The horizon after the page at dusk: a sky that shades from deep indigo to dusky rose with faint mauve clouds above a mirror-calm plum-toned sea, a single thin line of warm amber light along the horizon, the first stars appearing, vast stillness. The horizon line sits at exactly two fifths of the frame height from the top (40%): the sky fills the upper 40% and the calm water the lower 60%, the water soft, even and deep in tone for text. Wide landscape framing. Text is overlaid on the lower third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open water, mist, sky or plain ground), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `home.footer-banner · Bosque` — Home · cierre · tema · P2
 
@@ -744,7 +664,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (137)
+### 5.5 Completadas (142)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -873,6 +793,11 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `academy-featured-course-dawn.avif` | Academia · curso destacado · tema · Amanecer | `academy.featured-course` | 16:8 | P1 |
 | `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | `experiences.featured` | 16:8 | P1 |
 | `store-ritual-banner-dawn.avif` | Tienda · banner ritual · tema · Amanecer | `store.ritual-banner` | 16:9 | P2 |
+| `home-daily-frequency-dusk.avif` | Home · frecuencia del día · tema · Atardecer | `home.daily-frequency` | 16:8 | P1 |
+| `home-daily-frequency-forest.avif` | Home · frecuencia del día · tema · Bosque | `home.daily-frequency` | 16:8 | P1 |
+| `home-realms-banner-dusk.avif` | Home · banner de realms · tema · Atardecer | `home.realms-banner` | 16:8 | P1 |
+| `home-realms-banner-forest.avif` | Home · banner de realms · tema · Bosque | `home.realms-banner` | 16:8 | P1 |
+| `home-footer-banner-dusk.avif` | Home · cierre · tema · Atardecer | `home.footer-banner` | 16:9 | P2 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
