@@ -15,15 +15,17 @@ type ThemedPhotoProps = {
   priority: boolean;
 };
 
+const NO_VARIANTS: NonNullable<EditorialMedia['variants']> = {};
+
 /**
  * Foto de un slot que tiene imagen propia en algunos temas. La base (la de la
- * noche) va en el HTML; tras montar, la variante del tema activo entra encima con
- * un fundido. Sólo se descarga la variante del tema activo.
+ * noche) va en el HTML pero se pide como `lazy` y sin prioridad: mientras el tema
+ * activo tenga variante, su regla de `globals.css` la oculta con `display: none` y
+ * el navegador no la descarga. Tras montar, la variante del tema activo entra
+ * encima con un fundido y hereda la prioridad del slot.
  *
- * Una regla de `globals.css` oculta la base cuando el tema activo tiene variante
- * (`data-photo-themes`), de modo que nunca se ve la foto equivocada: mientras la
- * variante carga se ve el fondo del tema. Si la variante falla, `data-variant-failed`
- * devuelve la base.
+ * Nunca se ve la foto equivocada: mientras la variante carga se ve el fondo del
+ * tema. Si la variante falla, `data-variant-failed` devuelve la base.
  */
 export function ThemedPhoto({ media, className, style, sizes, priority }: ThemedPhotoProps) {
   const { atmosphereId } = useAtmosphere();
@@ -31,7 +33,7 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
   const [loaded, setLoaded] = useState<string | null>(null);
   const [failed, setFailed] = useState<string | null>(null);
 
-  const variants = media.variants ?? {};
+  const variants = media.variants ?? NO_VARIANTS;
   const themes = Object.keys(variants).join(' ');
   const variant = mounted && atmosphereId !== 'night' ? variants[atmosphereId] : undefined;
   const variantFailed = variant !== undefined && failed === variant;
@@ -53,7 +55,7 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
         data-photo-base
         data-photo-night=""
         fill
-        priority={priority}
+        loading="lazy"
         sizes={sizes}
         src={media.src}
         style={style}
@@ -67,6 +69,7 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
           fill
           onError={() => setFailed(variant)}
           onLoad={() => setLoaded(variant)}
+          priority={priority}
           sizes={sizes}
           src={variant}
           style={{ ...variantStyle, opacity: loaded === variant ? 1 : 0 }}
