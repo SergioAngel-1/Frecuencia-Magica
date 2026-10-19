@@ -3,25 +3,24 @@
 import { useTranslations } from 'next-intl';
 
 import { Kicker } from '@/components/ui';
-import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useFeelingLabel } from '@/hooks/use-feeling-label';
 import { useMounted } from '@/hooks/use-mounted';
 import { activeFeeling } from '@/lib/atmosphere/shift';
-import { useArrivalStore } from '@/stores/arrival-store';
+import { useAtmosphereStore } from '@/stores/atmosphere-store';
 
 /**
- * Nombra el estado del ánimo con el que se llegó, si el tema visible sigue
- * siendo el que ese estado propone. Antes de montar no pinta nada: la llegada
- * se rehidrata de `localStorage` y el servidor no la conoce.
+ * Nombra la emoción con la que se eligió el tema, si el tema visible sigue
+ * siendo el que esa emoción propone. Antes de montar no pinta nada: la
+ * elección se rehidrata de `localStorage` y el servidor no la conoce.
  */
 export function SanctuaryFeeling() {
   const mounted = useMounted();
-  const { atmosphereId } = useAtmosphere();
-  const savedKey = useArrivalStore((state) => state.key);
+  const choice = useAtmosphereStore((state) => state.choice);
+  const savedFeeling = useAtmosphereStore((state) => state.feeling);
   const feelingLabel = useFeelingLabel();
   const t = useTranslations('sanctuary');
 
-  const feeling = mounted ? activeFeeling(atmosphereId, savedKey) : null;
+  const feeling = mounted ? activeFeeling(choice, savedFeeling) : null;
 
   if (feeling === null) return null;
 

@@ -45,17 +45,17 @@ export function planShift(request: ShiftRequest, context: ShiftContext): ShiftPl
 }
 
 /**
- * El estado del ánimo que la atmósfera activa expresa: la última llegada guardada, mientras
- * el tema visible siga siendo el que ese estado propone. Si la persona eligió otro tema a
- * mano, ya no «se siente» así y no hay estado que nombrar.
+ * La emoción que la elección guarda, mientras el tema elegido siga siendo el que esa emoción
+ * propone. Sin elección (automático) no hay emoción que nombrar, y si la persona eligió una
+ * tarjeta de tema el `feeling` ya llega nulo.
  */
 export function activeFeeling(
-  current: AtmosphereId,
-  arrival: ArrivalKey | null,
+  choice: AtmosphereId | null,
+  feeling: ArrivalKey | null,
 ): ArrivalKey | null {
-  if (arrival === null) return null;
+  if (choice === null || feeling === null) return null;
 
-  return ARRIVALS[arrival].atmosphere === current ? arrival : null;
+  return ARRIVALS[feeling].atmosphere === choice ? feeling : null;
 }
 
 /** Centro de un rectángulo como fracción del viewport (0–1): de ahí nace la onda del cruce. */

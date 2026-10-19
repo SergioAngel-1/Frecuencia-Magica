@@ -6,25 +6,36 @@ import { useAtmosphereStore } from '@/stores/atmosphere-store';
 /** Lo que escribe el middleware `persist` de Zustand en `localStorage`. */
 const stored = () => {
   const raw = localStorage.getItem(ATMOSPHERE_STORAGE_KEY);
-  return raw === null ? null : (JSON.parse(raw) as { state: { choice: unknown } });
+  return raw === null
+    ? null
+    : (JSON.parse(raw) as { state: { choice: unknown; feeling: unknown } });
 };
 
 describe('useAtmosphereStore', () => {
   beforeEach(() => {
     localStorage.clear();
     localStorage.clear();
-    useAtmosphereStore.setState({ choice: null });
+    useAtmosphereStore.setState({ choice: null, feeling: null });
   });
 
-  it('arranca sin elección', () => {
+  it('arranca sin elección ni emoción', () => {
     expect(useAtmosphereStore.getState().choice).toBeNull();
+    expect(useAtmosphereStore.getState().feeling).toBeNull();
   });
 
   it('setChoice guarda la elección en localStorage con la clave fm.atmosphere', () => {
     useAtmosphereStore.getState().setChoice('dusk');
 
     expect(useAtmosphereStore.getState().choice).toBe('dusk');
+    expect(useAtmosphereStore.getState().feeling).toBeNull();
     expect(stored()?.state.choice).toBe('dusk');
+  });
+
+  it('setChoice guarda la emoción de origen junto al tema', () => {
+    useAtmosphereStore.getState().setChoice('dusk', 'mood:tiredness');
+
+    expect(useAtmosphereStore.getState().feeling).toBe('mood:tiredness');
+    expect(stored()?.state.feeling).toBe('mood:tiredness');
   });
 
   it('al rehidratar, un tema eliminado (study) se ignora', async () => {
@@ -40,11 +51,13 @@ describe('useAtmosphereStore', () => {
 
   it('clear vuelve a null y lo refleja en el almacenamiento', () => {
     const { setChoice, clear } = useAtmosphereStore.getState();
-    setChoice('moon');
+    setChoice('moon', 'mood:clarity');
     clear();
 
     expect(useAtmosphereStore.getState().choice).toBeNull();
+    expect(useAtmosphereStore.getState().feeling).toBeNull();
     expect(stored()?.state.choice).toBeNull();
+    expect(stored()?.state.feeling).toBeNull();
   });
 
   it('al rehidratar, un valor guardado inválido se ignora', async () => {
@@ -89,5 +102,40 @@ describe('useAtmosphereStore', () => {
     await useAtmosphereStore.persist.rehydrate();
 
     expect(useAtmosphereStore.getState().choice).toBe('forest');
+  });
+
+  it('al rehidratar, una emoción válida se recupera con su tema', async () => {
+    localStorage.setItem(
+      ATMOSPHERE_STORAGE_KEY,
+      JSON.stringify({ state: { choice: 'dusk', feeling: 'mood:tiredness' }, version: 1 }),
+    );
+
+    await useAtmosphereStore.persist.rehydrate();
+
+    expect(useAtmosphereStore.getState().feeling).toBe('mood:tiredness');
+  });
+
+  it('al rehidratar, una emoción fuera del registro se descarta', async () => {
+    localStorage.setItem(
+      ATMOSPHERE_STORAGE_KEY,
+      JSON.stringify({ state: { choice: 'dusk', feeling: 'mood:inventado' }, version: 1 }),
+    );
+
+    await useAtmosphereStore.persist.rehydrate();
+
+    expect(useAtmosphereStore.getState().choice).toBe('dusk');
+    expect(useAtmosphereStore.getState().feeling).toBeNull();
+  });
+
+  it('al rehidratar sin elección, la emoción también se descarta', async () => {
+    localStorage.setItem(
+      ATMOSPHERE_STORAGE_KEY,
+      JSON.stringify({ state: { choice: null, feeling: 'mood:tiredness' }, version: 1 }),
+    );
+
+    await useAtmosphereStore.persist.rehydrate();
+
+    expect(useAtmosphereStore.getState().choice).toBeNull();
+    expect(useAtmosphereStore.getState().feeling).toBeNull();
   });
 });

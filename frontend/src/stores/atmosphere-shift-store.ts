@@ -46,7 +46,7 @@ export function applyChoice(request: ShiftRequest) {
   const atmosphere = useAtmosphereStore.getState();
 
   if (request.choice === null) atmosphere.clear();
-  else atmosphere.setChoice(request.choice);
+  else atmosphere.setChoice(request.choice, request.feeling);
 }
 
 /**
