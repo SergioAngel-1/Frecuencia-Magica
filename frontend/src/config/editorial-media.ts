@@ -57,6 +57,8 @@ export type EditorialMediaSlot = (typeof EDITORIAL_MEDIA_SLOTS)[number];
 export type EditorialTheme = 'night' | 'dusk' | 'dawn' | 'moon' | 'forest';
 
 const HERO_THEMES = ['dusk', 'dawn', 'moon', 'forest'] as const;
+/** Bandas y fondos: Amanecer (el claro) y, desde 2026-10-18, Atardecer y Bosque, los dos temas cuyo tono la noche azul no sigue. */
+const BAND_THEMES = ['dawn', 'dusk', 'forest'] as const;
 
 /**
  * Slots que tienen una variante de imagen por tema (`slot@tema` en el manifiesto,
@@ -68,7 +70,11 @@ const HERO_THEMES = ['dusk', 'dawn', 'moon', 'forest'] as const;
  *   cálido, claro o verde; Luna también tiene el suyo, con la misma escena bajo luz de luna.
  * - Las bandas con texto encima y los fondos de cristal llevan variante en Amanecer, el único
  *   tema claro: una foto oscura bajo un velo claro se ve sucia, y la tinta oscura del cristal
- *   no lee sobre ella. En los temas oscuros la imagen nocturna funde bien.
+ *   no lee sobre ella. También en Atardecer y Bosque (2026-10-18): la noche azul funde con
+ *   Luna, pero desentona con el ciruela y con el verde, y esos dos temas ya son el camino por
+ *   defecto de Experiencias y Academia. Luna no lleva variantes de banda.
+ *   `booking.confirmation` (Atardecer) y `academy.completion` (Bosque) llevan sólo la del tema
+ *   de su lugar.
  * - Portadas de audio, de curso, visuales de experiencia y productos son contenido del ítem y
  *   no cambian con el tema.
  *
@@ -88,18 +94,20 @@ export const THEME_VARIANTS: Readonly<
   'booking.hero': HERO_THEMES,
   'store.hero': HERO_THEMES,
   'sanctuary.hero': HERO_THEMES,
-  'home.daily-frequency': ['dawn'],
-  'home.realms-banner': ['dawn'],
-  'home.footer-banner': ['dawn'],
-  'home-membership': ['dawn'],
-  'about.angels': ['dawn'],
-  'auth.form-atmosphere': ['dawn'],
-  'discover.question-atmosphere': ['dawn'],
-  'resonario.featured': ['dawn'],
-  'resonario.archive-banner': ['dawn'],
-  'academy.featured-course': ['dawn'],
-  'experiences.featured': ['dawn'],
-  'store.ritual-banner': ['dawn'],
+  'home.daily-frequency': BAND_THEMES,
+  'home.realms-banner': BAND_THEMES,
+  'home.footer-banner': BAND_THEMES,
+  'home-membership': BAND_THEMES,
+  'about.angels': BAND_THEMES,
+  'auth.form-atmosphere': BAND_THEMES,
+  'discover.question-atmosphere': BAND_THEMES,
+  'resonario.featured': BAND_THEMES,
+  'resonario.archive-banner': BAND_THEMES,
+  'academy.featured-course': BAND_THEMES,
+  'academy.completion': ['forest'],
+  'experiences.featured': BAND_THEMES,
+  'booking.confirmation': ['dusk'],
+  'store.ritual-banner': BAND_THEMES,
 };
 
 /**
@@ -114,10 +122,8 @@ export const NIGHT_BACKDROP_SLOTS: readonly EditorialMediaSlot[] = [
   'sanctuary.daily',
   'sanctuary.journal',
   'sanctuary.empty',
-  'booking.confirmation',
   'checkout.confirmation',
   'cart.empty',
-  'academy.completion',
   'discover.tuning',
   'discover.result',
 ];

@@ -327,6 +327,193 @@ export const THEME_VARIANTS = [
     frame: 'Objects grouped in the upper two thirds, the bottom third plain pale stone for text',
   },
 
+  /* Bandas y fondos en Atardecer y Bosque (2026-10-18): la misma escena que su hermana de Amanecer y que la base,
+     con la paleta de sus héroes. Atardecer: índigo a ciruela y rosa vino, con ámbar y coral (nunca marrón);
+     Bosque: verde y oro filtrado, helechos, bruma y estanque quieto. Los dos son temas oscuros: la zona de texto
+     queda honda y calma, no clara. Luna no lleva variante: su azul noche funde con la foto base. */
+  {
+    base: "home.daily-frequency",
+    theme: "dusk",
+    subject: `Sound made visible: a cymatic pattern, fine radial standing-wave geometry traced in still water at dusk and lit by warm amber light, symmetrical sacred-geometry structure with delicate concentric rings and petals of light in warm amber and soft coral with a faint mauve tint at the outer petals, top-down macro, the water a deep plum-indigo`,
+    frame:
+      "Pattern centered and radially symmetric, the plum-indigo water fading to a deep calm shade at all four edges",
+  },
+  {
+    base: "home.daily-frequency",
+    theme: "forest",
+    subject: `Sound made visible: a cymatic pattern, fine radial standing-wave geometry traced in the still water of a forest pool and lit by soft filtered golden light, symmetrical sacred-geometry structure with delicate concentric rings and petals of light in warm gold and soft green with a faint teal tint at the outer petals, top-down macro, the water a deep forest green`,
+    frame:
+      "Pattern centered and radially symmetric, the deep green water fading to a calm dark shade at all four edges",
+  },
+  {
+    base: "home.realms-banner",
+    theme: "dusk",
+    subject: `A constellation as a map of nine realms at dusk: nine small luminous points of warm amber, soft coral and mauve light joined by the faintest filaments across a vast dusk sky that shades from deep indigo at the top through plum to dusky rose at the horizon, a slow arc of thin cloud edged in amber, the first faint stars, a thin line of still water along the lower edge mirroring the points`,
+    frame:
+      "Nine points spread across the width with the brightest near the center, deep calm edges",
+  },
+  {
+    base: "home.realms-banner",
+    theme: "forest",
+    subject: `A constellation as a map of nine realms in the forest at night: nine small luminous points of warm gold, soft green and pale teal light, each like a firefly, joined by the faintest filaments across the dark air above a still forest pool, the outlines of tall trunks and ferns confined to the outer 15% on each side, a fine mist, a thin line of still water along the lower edge mirroring the points`,
+    frame:
+      "Nine points spread across the width with the brightest near the center, deep calm edges, the trunks and ferns only at the far left and right",
+  },
+  {
+    base: "home.footer-banner",
+    theme: "dusk",
+    subject: `The horizon after the page at dusk: a sky that shades from deep indigo to dusky rose with faint mauve clouds above a mirror-calm plum-toned sea, a single thin line of warm amber light along the horizon, the first stars appearing, vast stillness`,
+    frame:
+      "The horizon line sits at exactly two fifths of the frame height from the top (40%): the sky fills the upper 40% and the calm water the lower 60%, the water soft, even and deep in tone for text",
+  },
+  {
+    base: "home.footer-banner",
+    theme: "forest",
+    subject: `The horizon after the page in the forest: a mirror-calm forest pool whose far shore is a soft low line of out-of-focus trees under a dim green-gold sky between the canopy, a single thin line of warm golden light along the far shore, a fine mist lying on the water, vast stillness`,
+    frame:
+      "The far shore line sits at exactly two fifths of the frame height from the top (40%): the trees and the sky fill the upper 40% and the calm water the lower 60%, the water soft, even and deep green for text",
+  },
+  {
+    base: "home-membership",
+    theme: "dusk",
+    subject: `Golden light pouring from above onto a still sea at dusk: a warm beam of light, one color only, warm amber, with no colored bands, falling from the top of the frame onto mist-covered water, a wide circle of low smooth stones lying flat on the shore as a gathering place, none stacked and none higher than a hand, dust motes and mist drifting, deep indigo-plum shadows in the corners`,
+    frame:
+      "The light source sits near the top edge at 15% vertical, the ring of stones in the middle distance, lower third deep calm mist and water for text",
+  },
+  {
+    base: "home-membership",
+    theme: "forest",
+    subject: `Golden light pouring from above through the canopy onto a still forest pool: a warm beam of light, one color only, warm gold, with no colored bands, falling from the top of the frame onto mist-covered water, a wide circle of low smooth moss-edged stones lying flat on the shore as a gathering place, none stacked and none higher than a hand, ferns at the outer edges, dust motes and mist drifting, deep green shadows in the corners`,
+    frame:
+      "The light source sits near the top edge at 15% vertical, the ring of stones in the middle distance, the ferns confined to the outer 15% on each side, lower third deep calm mist and water for text",
+  },
+  {
+    base: "about.angels",
+    theme: "dusk",
+    subject: `Presence without a figure at dusk: a soft shaft of pale rose and warm amber light descending through still dusky air onto a mist-covered lake, a single white feather suspended mid-fall, fine luminous dust around it, no wings, no faces, no statues, no religious iconography`,
+    frame:
+      "Light source and feather in the upper third at 30% vertical, lower half deep calm mist and water for the headline",
+  },
+  {
+    base: "about.angels",
+    theme: "forest",
+    subject: `Presence without a figure in the forest: a soft shaft of pale gold and green light descending through the canopy and still air onto a mist-covered forest pool, a single white feather suspended mid-fall, fine luminous dust around it, no wings, no faces, no statues, no religious iconography`,
+    frame:
+      "Light source and feather in the upper third at 30% vertical, lower half deep calm mist and water for the headline",
+  },
+  {
+    base: "auth.form-atmosphere",
+    theme: "dusk",
+    subject: `Intimate calm at dusk: a surface of deep plum-indigo still water with a single soft warm amber point of light as small as a distant star, hovering just above the water, its reflection a short soft streak on the surface directly beneath it, the only element in the frame, with nothing around it or in front of it, and faint rose mist drifting low, a blurred velvet-dark plum background, a soft warm glow at the bottom of the frame`,
+    frame:
+      "Vertical, very dark and low contrast (a form is laid over it later), the point of light in the lower third, generous dark space above",
+  },
+  {
+    base: "auth.form-atmosphere",
+    theme: "forest",
+    subject: `Intimate calm in the forest: a surface of nearly black green still water with a single soft golden-green point of light as small as a distant star, hovering just above the water, its reflection a short soft streak on the surface directly beneath it, the only element in the frame, with nothing around it or in front of it, and faint green mist drifting low, a blurred velvet-dark forest-green background, a soft warm glow at the bottom of the frame`,
+    frame:
+      "Vertical, very dark and low contrast (a form is laid over it later), the point of light in the lower third, generous dark space above",
+  },
+  {
+    base: "discover.question-atmosphere",
+    theme: "dusk",
+    subject: `Soft-focus ambient abstraction: drifting translucent veils of dusky rose and plum mist with tiny warm amber specks like slow snowfall, very dark, almost abstract, the whole frame a single continuous field of soft mist with no object, no shape and no outline anywhere, the veils faint and low in saturation, and the amber specks few, tiny and out of focus`,
+    frame:
+      "Vertical, very low contrast: the brightest part of the frame is no lighter than a deep plum-rose haze, nothing sharp and nothing with an edge, the lower third as dark as the rest (the question text is laid over the center)",
+  },
+  {
+    base: "discover.question-atmosphere",
+    theme: "forest",
+    subject: `Soft-focus ambient abstraction: drifting translucent veils of soft green and pale teal mist with tiny pale-gold specks like slow fireflies out of focus, very dark, almost abstract, the whole frame a single continuous field of soft mist with no object, no shape and no outline anywhere, the veils faint and low in saturation, and the golden specks few, tiny and out of focus`,
+    frame:
+      "Vertical, very low contrast: the brightest part of the frame is no lighter than a deep green-grey haze, nothing sharp and nothing with an edge, the lower third as dark as the rest (the question text is laid over the center)",
+  },
+  {
+    base: "resonario.featured",
+    theme: "dusk",
+    subject: `A backdrop for a featured disc, seen from directly above: calm water the color of deep plum-indigo, with exactly five thin concentric rings of warm amber light lying on the water and radiating from an empty calm center at the exact center of the frame, each ring a little fainter than the one inside it and the outermost about 45% of the frame height in diameter, faint coral and mauve tints at the outer edges, and the water continuing plain and smooth to the left and right edges; no sun, no horizon, no sky, no objects`,
+    frame:
+      "Wide 2:1 panorama, top-down view, the empty calm center at 50% horizontal and 50% vertical, rings fading to deep plum before the edges",
+  },
+  {
+    base: "resonario.featured",
+    theme: "forest",
+    subject: `A backdrop for a featured disc, seen from directly above: calm still forest-pool water the color of deep green, with exactly five thin concentric rings of warm gold light lying on the water and radiating from an empty calm center at the exact center of the frame, each ring a little fainter than the one inside it and the outermost about 45% of the frame height in diameter, faint soft green and teal tints at the outer edges, and the water continuing plain and smooth to the left and right edges; no sun, no horizon, no sky, no leaves, no objects`,
+    frame:
+      "Wide 2:1 panorama, top-down view, the empty calm center at 50% horizontal and 50% vertical, rings fading to deep green before the edges",
+  },
+  {
+    base: "resonario.archive-banner",
+    theme: "dusk",
+    subject: `The archive as a place: a long colonnade of dark stone opening onto still water at dusk, tall niches holding softly glowing vessels — brass bowls, glass discs, ceramic jars — dusky rose haze, a few warm amber lamps far away reflected in the floor-water`,
+    frame:
+      "One-point perspective down the colonnade, lower third deep calm stone and water for text",
+  },
+  {
+    base: "resonario.archive-banner",
+    theme: "forest",
+    subject: `The archive as a place in the forest: a long colonnade of dark moss-streaked stone opening onto a still forest pool, ferns at the feet of the columns, tall niches holding softly glowing vessels — brass bowls, glass discs, ceramic jars — a soft green mist, warm filtered golden light, a few warm lamps far away reflected in the floor-water`,
+    frame:
+      "One-point perspective down the colonnade, lower third deep calm stone and water for text",
+  },
+  {
+    base: "academy.featured-course",
+    theme: "dusk",
+    subject: `The featured practice at dusk: a pair of hands cradling a small brass singing bowl with a wooden striker resting on its rim, warm amber light of the sunset on the hands, a soft mist of dusky rose and mauve behind, close framing`,
+    frame:
+      "Hands and bowl in the right-center, the left third deep calm mist and low in detail for the course title",
+  },
+  {
+    base: "academy.featured-course",
+    theme: "forest",
+    subject: `The featured practice in the forest: a pair of hands cradling a small brass singing bowl with a wooden striker resting on its rim, soft filtered golden light on the hands, a green mist behind with a few out-of-focus fern fronds, close framing`,
+    frame:
+      "Hands and bowl in the right-center, the left third deep calm green mist and low in detail for the course title",
+  },
+  {
+    base: "academy.completion",
+    theme: "forest",
+    subject: `A completed cycle closed in light in the forest: a ring of exactly twelve small golden lights, evenly spaced and with no other lights, floating on the still water of a forest pool seen from a slightly oblique overhead angle, a small ${BODY_OF_LIGHT}, seated cross-legged at the far side of the ring, every light steady and one slightly brighter, concentric ripples radiating outward, a fine green mist and the dark edge of ferns only at the outer corners`,
+    frame:
+      "Ring centered at 50% horizontal, its middle empty, deep green and perfectly still water because content is laid over it later, the ripples spreading outward from the ring only, the small figure no taller than 12% of the frame height at the far edge of the ring at 50% horizontal and 30% vertical",
+  },
+  {
+    base: "experiences.featured",
+    theme: "dusk",
+    subject: `A sound bath in progress at dusk: a circle of abstract translucent silhouettes of pure light, each ${LIGHT_BODY_TRAITS}, seated around a ring of crystal singing bowls glowing warm amber and soft rose from within, set on still plum-indigo water that mirrors them, concentric rings of light spreading across the surface, drifting dusky haze above`,
+    frame:
+      "Ring of bowls and figures in the right two thirds at 45% vertical, left third deep calm haze for the title and the booking button",
+  },
+  {
+    base: "experiences.featured",
+    theme: "forest",
+    subject: `A sound bath in progress in the forest: a circle of abstract translucent silhouettes of pure light, each ${LIGHT_BODY_TRAITS}, seated around a ring of crystal singing bowls glowing warm gold and soft green from within, set on the still water of a forest pool that mirrors them, concentric rings of light spreading across the surface, a fine mist drifting above and tall ferns only at the outer edges`,
+    frame:
+      "Ring of bowls and figures in the right two thirds at 45% vertical, left third deep calm green mist for the title and the booking button",
+  },
+  {
+    base: "booking.confirmation",
+    theme: "dusk",
+    subject: `The same serene place now with its candles lit: a warm amber glow over the circle of cushions on the wooden deck above a calm sea at dusk, reflected in the still water, a steaming cup set beside them, a soft rose light on the horizon`,
+    frame:
+      "Warm center, deep plum-indigo edges, calm space in the middle because content is laid over it later",
+  },
+  {
+    base: "store.ritual-banner",
+    theme: "dusk",
+    subject: `Objects of ritual as matter at dusk: a top-down flat lay on dark slate of matches, copal resin, a small brass dish, dried herbs and a quartz point, a warm amber rim light from the low sun on the left with a faint rose reflection on the slate`,
+    frame:
+      "Objects grouped in the upper two thirds, the bottom third plain dark slate for text",
+  },
+  {
+    base: "store.ritual-banner",
+    theme: "forest",
+    subject: `Objects of ritual as matter in the forest: a top-down flat lay on dark slate with a thin film of green moss along its far edge, of matches, copal resin, a small brass dish, dried herbs and a quartz point, soft filtered golden light from the left with the faint shadow of leaves across the slate`,
+    frame:
+      "Objects grouped in the upper two thirds, the moss only at the far edge, the bottom third plain dark slate for text",
+  },
+
   /* Héroes en Luna: la misma escena que su slot, bajo luz de luna (azul noche y plata) */
   {
     base: 'portal.hero',

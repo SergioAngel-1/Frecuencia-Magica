@@ -43,9 +43,11 @@ Hoy se lavan bajo `dawn` (suficiente y legible). Una foto propia `@dawn` los mej
 
 Portadas de audio, de curso, visuales de experiencia y productos: son **contenido del ítem** y no cambian con el tema (contrato de `editorial-media.ts`). Sobre `dawn` se leen como piezas oscuras enmarcadas; es una decisión de marca (objetos bañados en la misma luz), no un fallo.
 
-### Cómo pedirlas
+### Prompts listos
 
-Cada variante nueva sigue la cadena de `CLAUDE.md` § Temas globales: entrada en `THEME_VARIANTS`, prompt en `Branding/src/data/photography-themes.js`, PNG en `frontend/.editorial-originals/<archivo>-<tema>.png`, `photography-status.js`, `npm run editorial:ingest` y regenerar `export:photo-brief`, `export:chatgpt-prompts` y `export:pending-materials`. Recomendación de orden: primero las cinco de prioridad alta (≈ 8 imágenes con Home), después las 16 de prioridad media.
+Los 26 prompts de las variantes que se piden (las 12 bandas en Atardecer y Bosque, más `booking.confirmation@dusk` y `academy.completion@forest`) ya están en `docs/prompts-chatgpt.md` («Mapa de variantes por tema»), escritos a partir del prompt aprobado de su hermana de Amanecer y de la base nocturna: misma escena, mismo encuadre, paleta de los héroes de su tema. Declaradas en `THEME_VARIANTS` (`BAND_THEMES`) y en `Branding/src/data/photography-themes.js`; hasta que lleguen las imágenes, el sitio muestra la base nocturna (que Amanecer lava). La cuenta de arriba (≈ 8 + 16) era una estimación a ojo: son 26 en total, 12 de prioridad alta según la tabla y 14 medias.
+
+Al llegar cada PNG: `frontend/.editorial-originals/<archivo>-<tema>.png`, `photography-status.js`, `npm run editorial:ingest` y regenerar los tres documentos (`export:photo-brief`, `export:chatgpt-prompts`, `export:pending-materials`).
 
 ## Pendiente / decisiones abiertas
 

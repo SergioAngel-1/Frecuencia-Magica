@@ -13,7 +13,7 @@ Lo que Marisol aún no entrega y que el sitio muestra como «Próximamente» o c
 | Videos «Próximamente» | 32 |
 | Productos provisionales | 8 |
 | Cursos de demostración | 3 |
-| Imágenes provisionales | 71 |
+| Imágenes provisionales | 97 |
 
 ## Audio
 
@@ -126,18 +126,20 @@ Generadas, hacen de marco hasta tener fotografía propia de Marisol o con licenc
 | `experiences.hero` | Experiencias · hero · tema | `experiences-hero-dusk.avif`, `experiences-hero-dawn.avif`, `experiences-hero-forest.avif`, `experiences-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `booking.hero` | Reserva · hero · tema | `booking-hero-dusk.avif`, `booking-hero-dawn.avif`, `booking-hero-forest.avif`, `booking-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `sanctuary.hero` | Mi Santuario · hero · tema | `sanctuary-hero-dusk.avif`, `sanctuary-hero-dawn.avif`, `sanctuary-hero-forest.avif`, `sanctuary-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `home.daily-frequency` | Home · frecuencia del día · tema | `home-daily-frequency-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `home.realms-banner` | Home · banner de realms · tema | `home-realms-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `home.footer-banner` | Home · cierre · tema | `home-footer-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `home-membership` | Home · membresía · tema | `home-membership-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `about.angels` | Sobre Marisol · Experiencias con Ángeles · tema | `about-angels-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `auth.form-atmosphere` | Acceso · formulario · tema | `auth-form-atmosphere-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `discover.question-atmosphere` | Descúbrete · pregunta · tema | `discover-question-atmosphere-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `resonario.featured` | Resonario · destacado · tema | `resonario-featured-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `resonario.archive-banner` | Resonario · archivo · tema | `resonario-archive-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `academy.featured-course` | Academia · curso destacado · tema | `academy-featured-course-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `experiences.featured` | Experiencias · destacada · tema | `experiences-featured-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `store.ritual-banner` | Tienda · banner ritual · tema | `store-ritual-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.daily-frequency` | Home · frecuencia del día · tema | `home-daily-frequency-dawn.avif`, `home-daily-frequency-dusk.avif`, `home-daily-frequency-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.realms-banner` | Home · banner de realms · tema | `home-realms-banner-dawn.avif`, `home-realms-banner-dusk.avif`, `home-realms-banner-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.footer-banner` | Home · cierre · tema | `home-footer-banner-dawn.avif`, `home-footer-banner-dusk.avif`, `home-footer-banner-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home-membership` | Home · membresía · tema | `home-membership-dawn.avif`, `home-membership-dusk.avif`, `home-membership-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `about.angels` | Sobre Marisol · Experiencias con Ángeles · tema | `about-angels-dawn.avif`, `about-angels-dusk.avif`, `about-angels-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `auth.form-atmosphere` | Acceso · formulario · tema | `auth-form-atmosphere-dawn.avif`, `auth-form-atmosphere-dusk.avif`, `auth-form-atmosphere-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `discover.question-atmosphere` | Descúbrete · pregunta · tema | `discover-question-atmosphere-dawn.avif`, `discover-question-atmosphere-dusk.avif`, `discover-question-atmosphere-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `resonario.featured` | Resonario · destacado · tema | `resonario-featured-dawn.avif`, `resonario-featured-dusk.avif`, `resonario-featured-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `resonario.archive-banner` | Resonario · archivo · tema | `resonario-archive-banner-dawn.avif`, `resonario-archive-banner-dusk.avif`, `resonario-archive-banner-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `academy.featured-course` | Academia · curso destacado · tema | `academy-featured-course-dawn.avif`, `academy-featured-course-dusk.avif`, `academy-featured-course-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `experiences.featured` | Experiencias · destacada · tema | `experiences-featured-dawn.avif`, `experiences-featured-dusk.avif`, `experiences-featured-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `store.ritual-banner` | Tienda · banner ritual · tema | `store-ritual-banner-dawn.avif`, `store-ritual-banner-dusk.avif`, `store-ritual-banner-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `academy.completion` | Academia · curso completado · tema | `academy-completion-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `booking.confirmation` | Reserva · confirmación · tema | `booking-confirmation-dusk.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `resonario.hero` | Resonario · hero · tema | `resonario-hero-moon.avif`, `resonario-hero-dusk.avif`, `resonario-hero-dawn.avif`, `resonario-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 
 ## A revisar cuando llegue el material
