@@ -1,6 +1,9 @@
 import { act, renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+// El portal (`/`) es el umbral: ahí el tema se aplica sin cruce, que es lo que estos tests miden.
+vi.mock('@/i18n/navigation', () => ({ usePathname: () => '/' }));
+
 import { useArrival } from '@/hooks/use-arrival';
 import { useArrivalStore } from '@/stores/arrival-store';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
