@@ -953,6 +953,8 @@
     "kicker": "Arrival",
     "title": "How do you arrive today?",
     "intro": "Pick what feels most like you. The atmosphere shifts and we offer something to listen to, without hurry.",
+    "returnTitle": "Your arrival",
+    "returnIntro": "This is what keeps you company today. You can change it whenever you like.",
     "legend": "How you arrive",
     "silent": "Sound only starts when you choose it.",
     "listenKind": "To listen to",

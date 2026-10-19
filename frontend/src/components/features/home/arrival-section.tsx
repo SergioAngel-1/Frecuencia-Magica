@@ -6,27 +6,22 @@ import { ArrivalCheckIn } from '@/components/features/arrival/arrival-check-in';
 import { ArrivalPanel } from '@/components/features/arrival/arrival-panel';
 import { Display, Kicker } from '@/components/ui';
 import { useArrival } from '@/hooks/use-arrival';
-import { MOOD_IDS, type MoodId } from '@/types/mood';
-
-/** `mood:<id>` → `<id>`; cualquier otra entrada (una intención) no es un estado. */
-function selectedMood(key: string | null): MoodId | null {
-  if (!key?.startsWith('mood:')) return null;
-  const id = key.slice('mood:'.length);
-
-  return (MOOD_IDS as readonly string[]).includes(id) ? (id as MoodId) : null;
-}
+import { selectedMood } from '@/lib/arrival/selected-mood';
+import { MOOD_IDS } from '@/types/mood';
 
 /**
- * «¿Cómo llegas hoy?» en la Home. Sin sesión: cualquiera puede elegir. Elegir un
- * estado cambia el tema de todo el sitio (la respuesta nombra el tema que
- * propone), y la persona puede volver a cambiarlo desde el header.
+ * «Tu llegada» en la Home. Sin estado guardado es el check-in de siempre; con uno
+ * (elegido en el portal o aquí antes), responde directamente con el panel, sin
+ * sonar, y deja las píldoras para cambiarlo. Elegir un estado cambia el tema de
+ * todo el sitio (la respuesta nombra el tema que propone).
  */
 export function ArrivalSection() {
   const t = useTranslations('arrival');
   const tJournal = useTranslations('journal');
-  const { flow, atmosphere, choose, step, other, stop } = useArrival();
+  const { flow, atmosphere, choose, step, other, stop } = useArrival({ restore: true });
 
   const options = MOOD_IDS.map((id) => ({ id, label: tJournal(`moods.${id}`) }));
+  const returning = flow.key !== null;
 
   return (
     <section aria-labelledby="arrival-title" className="fm-editorial-full-bleed py-section">
@@ -37,9 +32,11 @@ export function ArrivalSection() {
             {t('kicker')}
           </Kicker>
           <Display level="h2" size="md" id="arrival-title">
-            {t('title')}
+            {returning ? t('returnTitle') : t('title')}
           </Display>
-          <p className="text-fg-soft text-body max-w-measure-wide leading-[1.8]">{t('intro')}</p>
+          <p className="text-fg-soft text-body max-w-measure-wide leading-[1.8]">
+            {returning ? t('returnIntro') : t('intro')}
+          </p>
 
           <ArrivalCheckIn
             legend={t('legend')}
