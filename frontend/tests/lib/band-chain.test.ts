@@ -53,32 +53,38 @@ describe('band chain', () => {
       return source.slice(start, source.indexOf('</BandChain>', start));
     };
 
-    // Inicio (ritmo del spec §10): héroe → frecuencia del día, encadenados en la
-    // noche. Después, con el ritmo `section`, el bloque de llegada, la tienda, el
-    // bento de realms, la membresía y Marisol, que cierra la página antes del
-    // footer. Todo bajo el mismo tema: la Home no declara temas locales.
+    // Inicio (spec §3.3): héroe (banda) → tarjetas de realms (noche) → llegada
+    // (noche) → frecuencia del día (banda) → tienda (noche) → membresía (banda) →
+    // Marisol (noche) → pie. La Home no encadena: nunca dos bandas seguidas.
     const home = view('app/[locale]/inicio/page.tsx');
-    const homeChain = chainOf(home);
-    expect(homeChain.indexOf('<HeroSection')).toBeGreaterThan(-1);
-    expect(homeChain.indexOf('<DailyFrequency')).toBeGreaterThan(homeChain.indexOf('<HeroSection'));
-    expect(homeChain).not.toContain('<RealmsGrid');
-    expect(homeChain).not.toContain('<MembershipSection');
-    const afterChain = home.slice(home.indexOf('</BandChain>'));
-    const order = [
-      '<ArrivalSection',
-      '<StoreShowcase',
-      '<RealmsGrid',
-      '<MembershipSection',
-      '<AboutSection',
-    ].map((marker) => afterChain.indexOf(marker));
-    for (const [index, position] of order.entries()) {
-      expect(position, `marker ${index}`).toBeGreaterThan(-1);
-      if (index > 0) expect(position, `marker ${index}`).toBeGreaterThan(order[index - 1]!);
-    }
-    // El bento ya no se toca con otra banda: vuelve al ritmo `section`.
-    expect(afterChain).toContain('py-section');
-    // Marisol no es una banda: el footer recupera su filete y su hueco.
+    expect(home).not.toContain('<BandChain');
     expect(home).not.toContain('<BandChain intoFooter>');
+    const homeSequence = [
+      ...home.matchAll(
+        /<(HeroSection|RealmsGrid|ArrivalSection|DailyFrequency|StoreShowcase|MembershipSection|AboutSection)\b/g,
+      ),
+    ].map((match) => match[1]);
+    expect(homeSequence).toEqual([
+      'HeroSection',
+      'RealmsGrid',
+      'ArrivalSection',
+      'DailyFrequency',
+      'StoreShowcase',
+      'MembershipSection',
+      'AboutSection',
+    ]);
+    const homeBands = new Set(['HeroSection', 'DailyFrequency', 'MembershipSection']);
+    for (let index = 1; index < homeSequence.length; index++) {
+      const pair = [homeSequence[index - 1], homeSequence[index]];
+      expect(
+        pair.every((name) => homeBands.has(name!)),
+        pair.join(' → '),
+      ).toBe(false);
+    }
+    // El bento y la llegada son contenido con ritmo `section`: ni banda ni cadena.
+    expect(readSource(`${SRC}/components/features/home/realms-grid.tsx`)).not.toContain(
+      '<EditorialBanner',
+    );
     // `intoFooter` sigue siendo una primitiva disponible del UI Kit.
     expect(CHAIN).toMatch(/data-band-chain=\{intoFooter \? 'footer' : 'true'\}/);
     expect(view('components/features/home/daily-frequency.tsx')).toContain('mode="anchored"');
