@@ -218,6 +218,13 @@ export const COMPLETED = [
   'resonario-archive-banner-dusk.avif',
   'academy-featured-course-dusk.avif',
   'academy-featured-course-forest.avif',
+  'resonario-archive-banner-forest.avif',
+  'academy-completion-forest.avif',
+  'experiences-featured-dusk.avif',
+  'experiences-featured-forest.avif',
+  'booking-confirmation-dusk.avif',
+  'store-ritual-banner-dusk.avif',
+  'store-ritual-banner-forest.avif',
 ]
 
 /**

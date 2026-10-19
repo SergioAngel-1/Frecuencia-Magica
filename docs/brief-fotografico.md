@@ -8,7 +8,7 @@
 
 **164 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 113 · P2 39. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 156 completadas · 0 a corregir · 7 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 163 completadas · 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -270,15 +270,15 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `resonario-featured-dusk.avif` | Resonario · destacado · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `resonario-featured-forest.avif` | Resonario · destacado · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
 | `resonario-archive-banner-dusk.avif` | Resonario · archivo · tema · Atardecer | 16:9 | 2880×1620 | P2 | Completadas |
-| `resonario-archive-banner-forest.avif` | Resonario · archivo · tema · Bosque | 16:9 | 2880×1620 | P2 | Faltantes |
+| `resonario-archive-banner-forest.avif` | Resonario · archivo · tema · Bosque | 16:9 | 2880×1620 | P2 | Completadas |
 | `academy-featured-course-dusk.avif` | Academia · curso destacado · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `academy-featured-course-forest.avif` | Academia · curso destacado · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
-| `academy-completion-forest.avif` | Academia · curso completado · tema · Bosque | 16:8 | 2880×1440 | P1 | Faltantes |
-| `experiences-featured-dusk.avif` | Experiencias · destacada · tema · Atardecer | 16:8 | 2880×1440 | P1 | Faltantes |
-| `experiences-featured-forest.avif` | Experiencias · destacada · tema · Bosque | 16:8 | 2880×1440 | P1 | Faltantes |
-| `booking-confirmation-dusk.avif` | Reserva · confirmación · tema · Atardecer | 16:8 | 2880×1440 | P1 | Faltantes |
-| `store-ritual-banner-dusk.avif` | Tienda · banner ritual · tema · Atardecer | 16:9 | 2880×1620 | P2 | Faltantes |
-| `store-ritual-banner-forest.avif` | Tienda · banner ritual · tema · Bosque | 16:9 | 2880×1620 | P2 | Faltantes |
+| `academy-completion-forest.avif` | Academia · curso completado · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
+| `experiences-featured-dusk.avif` | Experiencias · destacada · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
+| `experiences-featured-forest.avif` | Experiencias · destacada · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
+| `booking-confirmation-dusk.avif` | Reserva · confirmación · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
+| `store-ritual-banner-dusk.avif` | Tienda · banner ritual · tema · Atardecer | 16:9 | 2880×1620 | P2 | Completadas |
+| `store-ritual-banner-forest.avif` | Tienda · banner ritual · tema · Bosque | 16:9 | 2880×1620 | P2 | Completadas |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
@@ -306,121 +306,11 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (7)
+### 5.2 Faltantes (0)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
-#### `resonario.archive-banner · Bosque` — Resonario · archivo · tema · P2
-
-- **Archivo:** `resonario-archive-banner-forest.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Franja inferior en calma, sin detalle ni contraste (el texto va abajo), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Bosque de `resonario.archive-banner`: la misma vista y el mismo encuadre, con la escena del tema. La colección completa como lugar.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The archive as a place in the forest: a long colonnade of dark moss-streaked stone opening onto a still forest pool, ferns at the feet of the columns, tall niches holding softly glowing vessels — brass bowls, glass discs, ceramic jars — a soft green mist, warm filtered golden light, a few warm lamps far away reflected in the floor-water. One-point perspective down the colonnade, lower third deep calm stone and water for text. Wide landscape framing. Text is overlaid on the lower third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open water, mist, sky or plain ground), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `academy.completion · Bosque` — Academia · curso completado · tema · P1
-
-- **Archivo:** `academy-completion-forest.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Variante del tema Bosque de `academy.completion`: la misma vista y el mismo encuadre, con la escena del tema. Celebración del curso terminado: el logro con luz. Cuerpo de luz.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A completed cycle closed in light in the forest: a ring of exactly twelve small golden lights, evenly spaced and with no other lights, floating on the still water of a forest pool seen from a slightly oblique overhead angle, a small abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated cross-legged at the far side of the ring, every light steady and one slightly brighter, concentric ripples radiating outward, a fine green mist and the dark edge of ferns only at the outer corners. Ring centered at 50% horizontal, its middle empty, deep green and perfectly still water because content is laid over it later, the ripples spreading outward from the ring only, the small figure no taller than 12% of the frame height at the far edge of the ring at 50% horizontal and 30% vertical. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `experiences.featured · Atardecer` — Experiencias · destacada · tema · P1
-
-- **Archivo:** `experiences-featured-dusk.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 45%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Atardecer de `experiences.featured`: la misma vista y el mismo encuadre, con la escena del tema. La experiencia destacada con presencia propia: el baño de sonido. Cuerpo de luz.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A sound bath in progress at dusk: a circle of abstract translucent silhouettes of pure light, each with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated around a ring of crystal singing bowls glowing warm amber and soft rose from within, set on still plum-indigo water that mirrors them, concentric rings of light spreading across the surface, drifting dusky haze above. Ring of bowls and figures in the right two thirds at 45% vertical, left third deep calm haze for the title and the booking button. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `experiences.featured · Bosque` — Experiencias · destacada · tema · P1
-
-- **Archivo:** `experiences-featured-forest.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 45%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Bosque de `experiences.featured`: la misma vista y el mismo encuadre, con la escena del tema. La experiencia destacada con presencia propia: el baño de sonido. Cuerpo de luz.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A sound bath in progress in the forest: a circle of abstract translucent silhouettes of pure light, each with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated around a ring of crystal singing bowls glowing warm gold and soft green from within, set on the still water of a forest pool that mirrors them, concentric rings of light spreading across the surface, a fine mist drifting above and tall ferns only at the outer edges. Ring of bowls and figures in the right two thirds at 45% vertical, left third deep calm green mist for the title and the booking button. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `booking.confirmation · Atardecer` — Reserva · confirmación · tema · P1
-
-- **Archivo:** `booking-confirmation-dusk.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Variante del tema Atardecer de `booking.confirmation`: la misma vista y el mismo encuadre, con la escena del tema. Confirmación con la materia del lugar: el sí con imagen.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The same serene place now with its candles lit: a warm amber glow over the circle of cushions on the wooden deck above a calm sea at dusk, reflected in the still water, a steaming cup set beside them, a soft rose light on the horizon. Warm center, deep plum-indigo edges, calm space in the middle because content is laid over it later. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `store.ritual-banner · Atardecer` — Tienda · banner ritual · tema · P2
-
-- **Archivo:** `store-ritual-banner-dusk.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Franja inferior en calma, sin detalle ni contraste (el texto va abajo), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Atardecer de `store.ritual-banner`: la misma vista y el mismo encuadre, con la escena del tema. Franja del ritual: los objetos como materia de práctica.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Objects of ritual as matter at dusk: a top-down flat lay on dark slate of matches, copal resin, a small brass dish, dried herbs and a quartz point, a warm amber rim light from the low sun on the left with a faint rose reflection on the slate. Objects grouped in the upper two thirds, the bottom third plain dark slate for text. Wide landscape framing. Text is overlaid on the lower third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open water, mist, sky or plain ground), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `store.ritual-banner · Bosque` — Tienda · banner ritual · tema · P2
-
-- **Archivo:** `store-ritual-banner-forest.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Franja inferior en calma, sin detalle ni contraste (el texto va abajo), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Bosque de `store.ritual-banner`: la misma vista y el mismo encuadre, con la escena del tema. Franja del ritual: los objetos como materia de práctica.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Objects of ritual as matter in the forest: a top-down flat lay on dark slate with a thin film of green moss along its far edge, of matches, copal resin, a small brass dish, dried herbs and a quartz point, soft filtered golden light from the left with the faint shadow of leaves across the slate. Objects grouped in the upper two thirds, the moss only at the far edge, the bottom third plain dark slate for text. Wide landscape framing. Text is overlaid on the lower third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open water, mist, sky or plain ground), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
+Ninguna.
 
 ### 5.3 Por cablear (crear vistas) (0)
 
@@ -436,7 +326,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (156)
+### 5.5 Completadas (163)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -582,8 +472,15 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-featured-dusk.avif` | Resonario · destacado · tema · Atardecer | `resonario.featured` | 16:8 | P1 |
 | `resonario-featured-forest.avif` | Resonario · destacado · tema · Bosque | `resonario.featured` | 16:8 | P1 |
 | `resonario-archive-banner-dusk.avif` | Resonario · archivo · tema · Atardecer | `resonario.archive-banner` | 16:9 | P2 |
+| `resonario-archive-banner-forest.avif` | Resonario · archivo · tema · Bosque | `resonario.archive-banner` | 16:9 | P2 |
 | `academy-featured-course-dusk.avif` | Academia · curso destacado · tema · Atardecer | `academy.featured-course` | 16:8 | P1 |
 | `academy-featured-course-forest.avif` | Academia · curso destacado · tema · Bosque | `academy.featured-course` | 16:8 | P1 |
+| `academy-completion-forest.avif` | Academia · curso completado · tema · Bosque | `academy.completion` | 16:8 | P1 |
+| `experiences-featured-dusk.avif` | Experiencias · destacada · tema · Atardecer | `experiences.featured` | 16:8 | P1 |
+| `experiences-featured-forest.avif` | Experiencias · destacada · tema · Bosque | `experiences.featured` | 16:8 | P1 |
+| `booking-confirmation-dusk.avif` | Reserva · confirmación · tema · Atardecer | `booking.confirmation` | 16:8 | P1 |
+| `store-ritual-banner-dusk.avif` | Tienda · banner ritual · tema · Atardecer | `store.ritual-banner` | 16:9 | P2 |
+| `store-ritual-banner-forest.avif` | Tienda · banner ritual · tema · Bosque | `store.ritual-banner` | 16:9 | P2 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
