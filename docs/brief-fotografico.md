@@ -8,7 +8,7 @@
 
 **204 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 132 · P2 60. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 181 completadas · 0 a corregir · 22 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 182 completadas · 0 a corregir · 21 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -297,7 +297,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `sanctuary-daily-dawn.avif` | Mi Santuario · práctica diaria · tema · Amanecer | 1:1 | 1024×1024 | P1 | Completadas |
 | `sanctuary-daily-dusk.avif` | Mi Santuario · práctica diaria · tema · Atardecer | 1:1 | 1024×1024 | P1 | Completadas |
 | `sanctuary-daily-forest.avif` | Mi Santuario · práctica diaria · tema · Bosque | 1:1 | 1024×1024 | P1 | Completadas |
-| `sanctuary-journal-dawn.avif` | Mi Santuario · diario · tema · Amanecer | 16:8 | 2880×1440 | P2 | Faltantes |
+| `sanctuary-journal-dawn.avif` | Mi Santuario · diario · tema · Amanecer | 16:8 | 2880×1440 | P2 | Completadas |
 | `sanctuary-journal-dusk.avif` | Mi Santuario · diario · tema · Atardecer | 16:8 | 2880×1440 | P2 | Faltantes |
 | `sanctuary-journal-forest.avif` | Mi Santuario · diario · tema · Bosque | 16:8 | 2880×1440 | P2 | Faltantes |
 | `sanctuary-empty-dawn.avif` | Mi Santuario · vacío · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
@@ -346,25 +346,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (22)
+### 5.2 Faltantes (21)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `sanctuary.journal · Amanecer` — Mi Santuario · diario · tema · P2
-
-- **Archivo:** `sanctuary-journal-dawn.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Luminosidad alta y contraste muy bajo: va detrás de un formulario de cristal en un tema claro
-- **Contenido:** Variante del tema Amanecer de `sanctuary.journal`: la misma vista y el mismo encuadre, con la escena del tema. La página sobre la que se escribe: el cuaderno, desenfocado y en penumbra, es el fondo del campo del diario y el texto va encima.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The journal as a soft page to write on, entirely out of focus: an open linen-bound notebook with blank pages lying flat on pale oak wood, seen from directly above, a brass pen resting on the right page and one dried sprig of lavender beside the pen, soft morning light from a window grazing the paper, the whole image softly blurred as if photographed far out of focus, the edges of the notebook, the pen and the lavender dissolving into a gentle blur with no crisp line anywhere, the paper a warm cream, no writing on the pages, the table holding only these three things and nothing else. The open notebook lies horizontally at the exact center of the frame, its spread between 25% and 75% of the frame width and between 30% and 70% of the frame height, the pen and the lavender inside that same area on the right page, the left page completely empty; the top quarter and the bottom quarter of the frame are only pale wood in soft shade, and so are the left and right fifths, so the image can be cropped to its middle horizontal band or to its central square without losing anything; very low contrast, nothing darker than a soft warm grey. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Interface content is laid over this image later: keep the whole image very light and very low in contrast, with nothing sharp, and make it only of what is described above, with no additional object, shape or outline. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `sanctuary.journal · Atardecer` — Mi Santuario · diario · tema · P2
 
@@ -716,7 +700,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (181)
+### 5.5 Completadas (182)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -889,6 +873,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `sanctuary-daily-dawn.avif` | Mi Santuario · práctica diaria · tema · Amanecer | `sanctuary.daily` | 1:1 | P1 |
 | `sanctuary-daily-dusk.avif` | Mi Santuario · práctica diaria · tema · Atardecer | `sanctuary.daily` | 1:1 | P1 |
 | `sanctuary-daily-forest.avif` | Mi Santuario · práctica diaria · tema · Bosque | `sanctuary.daily` | 1:1 | P1 |
+| `sanctuary-journal-dawn.avif` | Mi Santuario · diario · tema · Amanecer | `sanctuary.journal` | 16:8 | P2 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |

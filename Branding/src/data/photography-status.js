@@ -243,6 +243,7 @@ export const COMPLETED = [
   'sanctuary-daily-dawn.avif',
   'sanctuary-continue-forest.avif',
   'sanctuary-continue-dusk.avif',
+  'sanctuary-journal-dawn.avif',
 ]
 
 /**
