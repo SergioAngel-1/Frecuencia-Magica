@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { EmptyState, Button, Swap } from '@/components/ui';
+import { EmptyState, Button, Float, Swap } from '@/components/ui';
 import { AUDIOS } from '@/data/audios';
 import { featuredAudio, kindSections } from '@/lib/resonario/layout-slots';
 import type { AudioKind } from '@/types/content';
@@ -74,10 +74,16 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
                 banner={media.kindBanners[entry.kind]}
                 deferRender={index > 0}
               >
-                {entry.kind === 'melody' ? <CelticFeature media={media.celtic} /> : null}
+                {entry.kind === 'melody' ? (
+                  <Float>
+                    <CelticFeature media={media.celtic} />
+                  </Float>
+                ) : null}
                 <div className={TRACK_GRID}>
-                  {tracks.map((audio) => (
-                    <TrackCard key={audio.id} audio={audio} />
+                  {tracks.map((audio, trackIndex) => (
+                    <Float key={audio.id} order={trackIndex} className="grid">
+                      <TrackCard audio={audio} />
+                    </Float>
                   ))}
                 </div>
               </KindSection>

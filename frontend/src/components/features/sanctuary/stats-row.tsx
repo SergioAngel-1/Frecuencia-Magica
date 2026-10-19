@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
-import { GlassPanel, Stat } from '@/components/ui';
+import { Float, GlassPanel, Stat } from '@/components/ui';
 import { useMounted } from '@/hooks/use-mounted';
 import { useJournalStore } from '@/stores/journal-store';
 
@@ -39,15 +39,17 @@ export function StatsRow({ days, frequencies, courses }: StatsRowProps) {
 
   return (
     <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-      {stats.map((stat) => (
-        <GlassPanel key={stat.id} className="flex items-center justify-center p-5 text-center">
-          <Stat
-            value={format(stat.value)}
-            label={t(`${stat.id}.label`)}
-            tone={stat.tone}
-            size="sanctuary"
-          />
-        </GlassPanel>
+      {stats.map((stat, index) => (
+        <Float key={stat.id} order={index} className="grid">
+          <GlassPanel className="flex items-center justify-center p-5 text-center">
+            <Stat
+              value={format(stat.value)}
+              label={t(`${stat.id}.label`)}
+              tone={stat.tone}
+              size="sanctuary"
+            />
+          </GlassPanel>
+        </Float>
       ))}
     </div>
   );

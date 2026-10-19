@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { EditorialImage, Kicker } from '@/components/ui';
+import { EditorialImage, Float, Kicker } from '@/components/ui';
 import { Halo, Isotype, OrbitalRings } from '@/components/world';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -93,14 +93,14 @@ export async function AuthAside({ media }: AuthAsideProps) {
           </OrbitalRings>
         </div>
 
-        <div className="animate-fm-float relative size-[clamp(90px,16vw,170px)]">
+        <Float depth="deep" className="relative size-[clamp(90px,16vw,170px)]">
           <Halo color="rgb(var(--halo) / 0.28), transparent 68%" blur={12} inset="-16%" />
           <Isotype
             label={brand}
             still
             className="size-full drop-shadow-[0_0_24px_rgb(var(--halo)/0.42)]"
           />
-        </div>
+        </Float>
 
         <div className="relative z-10 mt-4 min-[900px]:mt-8">
           <p className="text-fg-body max-w-measure-title-2xl font-serif text-[clamp(24px,3vw,44px)] leading-[1.25] text-balance italic">

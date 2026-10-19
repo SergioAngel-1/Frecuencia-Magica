@@ -5,7 +5,7 @@ import { AboutStory } from '@/components/features/about/about-story';
 import { AngelExperiences } from '@/components/features/about/angel-experiences';
 import { VideoSlot } from '@/components/features/player/video-slot';
 import { ButtonLink, PageShell, RealmHero } from '@/components/layout';
-import { ArrowGlyph, EditorialBanner, arrowLinkClasses } from '@/components/ui';
+import { ArrowGlyph, EditorialBanner, Float, arrowLinkClasses } from '@/components/ui';
 import { getVideo } from '@/config/videos';
 import { Link } from '@/i18n/navigation';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
@@ -73,15 +73,17 @@ export default async function AboutMarisolPage({ params }: PageProps) {
         {/* Su presentación en video: hasta que ella la grabe, «Próximamente». */}
         <section className="fm-editorial-full-bleed" aria-label={tVideo('titles.marisolIntro')}>
           <div className="fm-container">
-            <VideoSlot
-              video={getVideo('marisol-intro')}
-              media={videoPosterMedia(getVideo('marisol-intro'), {
-                alt: tVideo('titles.marisolIntro'),
-                sizes: '(min-width: 1280px) 1240px, calc(100vw - 48px)',
-              })}
-              title={tVideo('titles.marisolIntro')}
-              className="rounded-card-lg aspect-[16/9] sm:aspect-[16/7]"
-            />
+            <Float>
+              <VideoSlot
+                video={getVideo('marisol-intro')}
+                media={videoPosterMedia(getVideo('marisol-intro'), {
+                  alt: tVideo('titles.marisolIntro'),
+                  sizes: '(min-width: 1280px) 1240px, calc(100vw - 48px)',
+                })}
+                title={tVideo('titles.marisolIntro')}
+                className="rounded-card-lg aspect-[16/9] sm:aspect-[16/7]"
+              />
+            </Float>
           </div>
         </section>
 

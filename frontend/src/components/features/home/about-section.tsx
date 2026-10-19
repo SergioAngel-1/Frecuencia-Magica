@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { MarisolPortrait } from '@/components/features/about/marisol-portrait';
-import { Display, Kicker } from '@/components/ui';
+import { Display, Float, Kicker } from '@/components/ui';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 type AboutSectionProps = {
@@ -41,7 +41,9 @@ export function AboutSection({ media, kicker, title, p1, p2, action, video }: Ab
         </div>
       </div>
       {video ? (
-        <div className="fm-container relative mt-[clamp(36px,6vw,72px)]">{video}</div>
+        <div className="fm-container relative mt-[clamp(36px,6vw,72px)]">
+          <Float order={2}>{video}</Float>
+        </div>
       ) : null}
     </section>
   );

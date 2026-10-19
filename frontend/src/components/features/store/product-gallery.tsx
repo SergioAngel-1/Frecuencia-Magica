@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { EditorialImage, Swap } from '@/components/ui';
+import { EditorialImage, Float, Swap } from '@/components/ui';
 import { cn } from '@/lib/cn';
 import type { GalleryViewKind } from '@/lib/store/gallery';
 import type { EditorialMedia, EditorialMediaAspect } from '@/types/editorial-media';
@@ -37,7 +37,8 @@ export function ProductGallery({ items }: ProductGalleryProps) {
 
   return (
     <div className="lg:sticky lg:top-[112px]">
-      <section
+      <Float
+        as="section"
         className={cn(
           'rounded-card-lg border-line relative isolate overflow-hidden border',
           DETAIL_ASPECT[items[0]!.media.aspect],
@@ -54,7 +55,7 @@ export function ProductGallery({ items }: ProductGalleryProps) {
             scrim={false}
           />
         </Swap>
-      </section>
+      </Float>
 
       {items.length > 1 ? (
         <div

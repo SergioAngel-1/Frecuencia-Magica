@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 
 import { ArrivalCheckIn } from '@/components/features/arrival/arrival-check-in';
 import { ArrivalPanel } from '@/components/features/arrival/arrival-panel';
-import { Display, Kicker } from '@/components/ui';
+import { Display, Float, Kicker } from '@/components/ui';
 import { ARRIVALS } from '@/config/arrivals';
 import { useArrival } from '@/hooks/use-arrival';
 import { selectedMood } from '@/lib/arrival/selected-mood';
@@ -43,12 +43,14 @@ export function ArrivalSection() {
             {returning ? t('returnIntro') : t('intro')}
           </p>
 
-          <ArrivalCheckIn
-            legend={t('legend')}
-            options={options}
-            selected={selectedMood(flow.key)}
-            onSelect={(id) => choose(`mood:${id}`)}
-          />
+          <Float className="w-full">
+            <ArrivalCheckIn
+              legend={t('legend')}
+              options={options}
+              selected={selectedMood(flow.key)}
+              onSelect={(id) => choose(`mood:${id}`)}
+            />
+          </Float>
           <p className="text-fg-meta text-meta tracking-ui font-sans">{t('silent')}</p>
         </div>
 

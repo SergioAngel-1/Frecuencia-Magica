@@ -1,5 +1,5 @@
 import { ButtonLink } from '@/components/layout';
-import { Display, EditorialImage, Kicker } from '@/components/ui';
+import { Display, EditorialImage, Float, Kicker } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -46,8 +46,8 @@ export function StoreShowcase({ kicker, title, description, cta, items }: StoreS
         </div>
 
         <ul className="grid grid-cols-2 gap-5 lg:grid-cols-4">
-          {items.map((item) => (
-            <li key={item.id} data-product-id={item.id}>
+          {items.map((item, index) => (
+            <Float as="li" key={item.id} order={index} data-product-id={item.id}>
               <Link
                 href={{ pathname: '/tienda/[productId]', params: { productId: item.id } }}
                 className="group flex flex-col gap-3"
@@ -65,7 +65,7 @@ export function StoreShowcase({ kicker, title, description, cta, items }: StoreS
                 </span>
                 <span className="text-fg-meta text-meta tracking-soft font-sans">{item.price}</span>
               </Link>
-            </li>
+            </Float>
           ))}
         </ul>
 

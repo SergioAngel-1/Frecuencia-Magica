@@ -5,6 +5,7 @@ import type { EditorialMedia, EditorialMediaAspect } from '@/types/editorial-med
 
 import { Display } from './display';
 import { EditorialImage } from './editorial-image';
+import { Float } from './float';
 
 export interface ConfirmationPanelProps {
   media: EditorialMedia;
@@ -48,41 +49,47 @@ export function ConfirmationPanel({
   className,
 }: ConfirmationPanelProps) {
   return (
-    <section
-      className={cn('rounded-card-lg relative isolate overflow-hidden', minHeightClass, className)}
-      data-editorial-media={slot}
-      role={announce ? 'status' : undefined}
-      aria-live={announce ? 'polite' : undefined}
-    >
-      <div className="absolute inset-0">
-        <EditorialImage
-          aspect={aspect}
-          className="h-full"
-          focalPoint={media.position}
-          media={media}
-          overlay="bottom"
-          scrim="bottom"
-        />
-      </div>
-      <div
+    <Float>
+      <section
         className={cn(
-          'relative z-10 flex flex-col justify-end px-[clamp(24px,7vw,84px)] py-[clamp(30px,7vw,84px)]',
+          'rounded-card-lg relative isolate overflow-hidden',
           minHeightClass,
-          contentClassName,
+          className,
         )}
+        data-editorial-media={slot}
+        role={announce ? 'status' : undefined}
+        aria-live={announce ? 'polite' : undefined}
       >
-        <span className="border-accent/60 bg-scrim/35 text-accent text-serif-lg mb-5 inline-flex size-14 items-center justify-center rounded-full border font-serif backdrop-blur-sm">
-          <span aria-hidden="true">✓</span>
-          <span className="sr-only">{iconLabel}</span>
-        </span>
-        <Display size="md" level="h1">
-          {title}
-        </Display>
-        <p className="text-fg-body text-lead max-w-measure-base mt-5 leading-[1.8]">
-          {description}
-        </p>
-        {children}
-      </div>
-    </section>
+        <div className="absolute inset-0">
+          <EditorialImage
+            aspect={aspect}
+            className="h-full"
+            focalPoint={media.position}
+            media={media}
+            overlay="bottom"
+            scrim="bottom"
+          />
+        </div>
+        <div
+          className={cn(
+            'relative z-10 flex flex-col justify-end px-[clamp(24px,7vw,84px)] py-[clamp(30px,7vw,84px)]',
+            minHeightClass,
+            contentClassName,
+          )}
+        >
+          <span className="border-accent/60 bg-scrim/35 text-accent text-serif-lg mb-5 inline-flex size-14 items-center justify-center rounded-full border font-serif backdrop-blur-sm">
+            <span aria-hidden="true">✓</span>
+            <span className="sr-only">{iconLabel}</span>
+          </span>
+          <Display size="md" level="h1">
+            {title}
+          </Display>
+          <p className="text-fg-body text-lead max-w-measure-base mt-5 leading-[1.8]">
+            {description}
+          </p>
+          {children}
+        </div>
+      </section>
+    </Float>
   );
 }

@@ -5,7 +5,7 @@ import type { Product } from '@/types/content';
 import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { Button, EditorialImage, EmptyState, GlassPanel, Kicker } from '@/components/ui';
+import { Button, EditorialImage, EmptyState, Float, GlassPanel, Kicker } from '@/components/ui';
 import { PRODUCTS } from '@/data/products';
 import { Link } from '@/i18n/navigation';
 import { cartLines } from '@/lib/cart/totals';
@@ -45,43 +45,45 @@ function CartLineRow({ product, quantity }: { product: Product; quantity: number
     // Una sola fila cuando la columna es ancha (de `sm` a `lg`); con el resumen
     // al lado, desde `lg`, la columna se estrecha y la fila vuelve a dos
     // líneas para no recortar el nombre.
-    <GlassPanel className="grid grid-cols-[64px_minmax(0,1fr)] gap-x-4 gap-y-3 p-4 sm:grid-cols-[80px_minmax(0,1fr)_auto_auto] sm:items-center lg:grid-cols-[80px_minmax(0,1fr)] lg:items-start">
-      <div className="relative row-span-2 aspect-square overflow-hidden rounded-[14px] sm:row-span-1 lg:row-span-2">
-        <EditorialImage aspect="1:1" className="h-full" media={productMedia} />
-      </div>
-      <div className="min-w-0">
-        <p className="text-fg text-lead line-clamp-2 font-serif">
-          {tStore(`products.${product.id}.title`)}
-        </p>
-        <p className="text-fg-meta text-meta font-sans">{tStore(categoryKey(product.catKey))}</p>
-      </div>
-      <div className="col-start-2 flex min-h-11 items-center justify-between gap-4 sm:contents lg:flex">
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => setQuantity(product.id, quantity - 1)}
-            className="border-fg/20 text-fg-muted hover:border-fg/40 hover:text-fg text-serif-md flex size-11 items-center justify-center rounded-full border transition-colors"
-            aria-label={t('decrease')}
-          >
-            −
-          </button>
-          <span className="text-fg text-serif-sm min-w-[24px] text-center font-serif">
-            {quantity}
-          </span>
-          <button
-            type="button"
-            onClick={() => setQuantity(product.id, quantity + 1)}
-            className="border-fg/20 text-fg-muted hover:border-fg/40 hover:text-fg text-serif-md flex size-11 items-center justify-center rounded-full border transition-colors"
-            aria-label={t('increase')}
-          >
-            +
-          </button>
+    <Float>
+      <GlassPanel className="grid grid-cols-[64px_minmax(0,1fr)] gap-x-4 gap-y-3 p-4 sm:grid-cols-[80px_minmax(0,1fr)_auto_auto] sm:items-center lg:grid-cols-[80px_minmax(0,1fr)] lg:items-start">
+        <div className="relative row-span-2 aspect-square overflow-hidden rounded-[14px] sm:row-span-1 lg:row-span-2">
+          <EditorialImage aspect="1:1" className="h-full" media={productMedia} />
         </div>
-        <p className="text-accent text-serif-sm text-right font-serif">
-          {formatPrice(product.price * quantity)}
-        </p>
-      </div>
-    </GlassPanel>
+        <div className="min-w-0">
+          <p className="text-fg text-lead line-clamp-2 font-serif">
+            {tStore(`products.${product.id}.title`)}
+          </p>
+          <p className="text-fg-meta text-meta font-sans">{tStore(categoryKey(product.catKey))}</p>
+        </div>
+        <div className="col-start-2 flex min-h-11 items-center justify-between gap-4 sm:contents lg:flex">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setQuantity(product.id, quantity - 1)}
+              className="border-fg/20 text-fg-muted hover:border-fg/40 hover:text-fg text-serif-md flex size-11 items-center justify-center rounded-full border transition-colors"
+              aria-label={t('decrease')}
+            >
+              −
+            </button>
+            <span className="text-fg text-serif-sm min-w-[24px] text-center font-serif">
+              {quantity}
+            </span>
+            <button
+              type="button"
+              onClick={() => setQuantity(product.id, quantity + 1)}
+              className="border-fg/20 text-fg-muted hover:border-fg/40 hover:text-fg text-serif-md flex size-11 items-center justify-center rounded-full border transition-colors"
+              aria-label={t('increase')}
+            >
+              +
+            </button>
+          </div>
+          <p className="text-accent text-serif-sm text-right font-serif">
+            {formatPrice(product.price * quantity)}
+          </p>
+        </div>
+      </GlassPanel>
+    </Float>
   );
 }
 

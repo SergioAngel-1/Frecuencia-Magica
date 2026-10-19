@@ -36,7 +36,7 @@ export function TrackCard({ audio }: TrackCardProps) {
 
   return (
     <article
-      className="fm-surface rounded-card flex flex-col items-center gap-4 p-4 text-center sm:p-5"
+      className="fm-surface rounded-card flex h-full flex-col items-center gap-4 p-4 text-center sm:p-5"
       data-kind={audio.kind}
       data-availability={audio.availability}
     >

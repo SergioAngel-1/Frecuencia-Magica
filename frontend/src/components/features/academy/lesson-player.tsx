@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import { VideoSlot } from '@/components/features/player/video-slot';
-import { Button, ConfirmationPanel, Display, Kicker } from '@/components/ui';
+import { Button, ConfirmationPanel, Display, Float, Kicker } from '@/components/ui';
 import { getVideo, lessonVideoId } from '@/config/videos';
 import { Link } from '@/i18n/navigation';
 import { buildLessons } from '@/lib/academy/lessons';
@@ -71,7 +71,8 @@ export function LessonPlayer({
         {lessonTitle}
       </Display>
 
-      <figure
+      <Float
+        as="figure"
         className="rounded-card-lg relative mt-9 overflow-hidden"
         data-editorial-media={lessonMedia.slot}
       >
@@ -88,7 +89,7 @@ export function LessonPlayer({
         <figcaption className="border-line bg-fg/[0.025] text-fg-meta text-label tracking-caps border-x border-b px-5 py-4 font-sans uppercase">
           {t('media.alt.lesson', { title: lessonTitle })}
         </figcaption>
-      </figure>
+      </Float>
 
       <div className="mt-7 flex flex-wrap items-center justify-between gap-3">
         {prevIndex !== null ? (
