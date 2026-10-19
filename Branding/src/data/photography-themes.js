@@ -604,8 +604,8 @@ export const THEME_VARIANTS = [
   {
     base: 'sanctuary.continue',
     theme: 'dusk',
-    subject: `Continuity at dusk: the same linen cushion on a dark wooden floor with a half-burned candle beside it and a blank open book, the last warm amber light from a window falling across them, a feeling that someone has just stepped away and will return`,
-    frame: 'Objects in the right half, the left third a plain dark wall in soft shade, deep and calm, low in detail for the lesson title',
+    subject: `Continuity at dusk: the same linen cushion on a dark wooden floor with a half-burned candle beside it and a blank open book, the last warm amber light from a window falling across them, a feeling that someone has just stepped away and will return, the room itself in dusky plum, mauve and deep indigo shadow with the floor a dark aubergine-grey wood, never brown, caramel or sepia, the amber only as the light that enters through the window`,
+    frame: 'Objects in the right half, the left third a plain wall in deep plum-indigo shade, calm, low in detail for the lesson title',
   },
   {
     base: 'sanctuary.continue',
