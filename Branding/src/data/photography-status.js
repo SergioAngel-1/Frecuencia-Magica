@@ -263,6 +263,7 @@ export const COMPLETED = [
   'discover-result-dusk.avif',
   'discover-result-forest.avif',
   'discover-result-moon.avif',
+  'booking-confirmation-dawn.avif',
 ]
 
 /**
