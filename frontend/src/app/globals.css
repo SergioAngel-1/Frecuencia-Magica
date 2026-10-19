@@ -129,6 +129,16 @@
   }
 }
 
+/* Foto que sale al cambiar de tema (`ThemedPhoto`): se queda encima y se desvanece. */
+@keyframes fm-photo-leave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 @keyframes fm-portal-iris {
   0% {
     transform: scale(0.015);
@@ -494,15 +504,17 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
 
 /* Durante el fundido de un cambio de tema (`beginThemeSwitch`), los colores del sitio transitan
    en vez de saltar. Sólo mientras dura: el resto del tiempo cada elemento lleva sus propias
-   transiciones. Con movimiento reducido el atributo nunca se pone. Sólo propiedades de color
-   (pintado barato): ni `box-shadow` ni `opacity`, que encarecían todo el DOM. El `!important`
-   hace falta para ganar a las transiciones propias de cada elemento (p. ej. `transition-colors`
-   de Tailwind) mientras dura el fundido. Se excluye el lienzo del motor y los contenedores de
-   foto, que no tienen color que transitar y no deben repintarse. */
+   transiciones. Con movimiento reducido el atributo nunca se pone. La duración es la misma que
+   la del fondo (`ATMOSPHERE_FADE_SECONDS`): si el color corre más, hay un instante de tinta
+   clara sobre fondo claro. Sólo propiedades de color (pintado barato): ni `box-shadow` ni
+   `opacity`, que encarecían todo el DOM. El `!important` hace falta para ganar a las
+   transiciones propias de cada elemento (p. ej. `transition-colors` de Tailwind) mientras dura
+   el fundido. Se excluye el lienzo del motor y los contenedores de foto, que no tienen color
+   que transitar y no deben repintarse. */
 [data-theme-switching] *:not(canvas):not([data-photo-night]),
 [data-theme-switching] *::before,
 [data-theme-switching] *::after {
   transition-property: color, background-color, border-color, fill, stroke !important;
-  transition-duration: 0.9s !important;
+  transition-duration: 1.6s !important;
   transition-timing-function: ease-in-out !important;
 }
