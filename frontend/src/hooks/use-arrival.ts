@@ -45,8 +45,8 @@ export type ArrivalControls = {
 
 export type ArrivalOptions = {
   /**
-   * Muestra la última llegada guardada al montar, sin sonido. Sólo la Home lo pide:
-   * Descúbrete tiene su propia entrada y no debe heredar la de otra vista.
+   * Muestra la última llegada guardada al montar, sin sonido. La piden la Home y el
+   * portal; Descúbrete tiene su propia entrada y no debe heredar la de otra vista.
    */
   restore?: boolean;
 };

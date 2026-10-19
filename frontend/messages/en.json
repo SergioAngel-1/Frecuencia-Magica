@@ -83,6 +83,10 @@
     "cta": "Cross the portal",
     "crossing": "Crossing the portal…",
     "hint": "The light you seek already lives in you",
+    "arrival": {
+      "optional": "Optional: you can cross without choosing.",
+      "proposed": "It brings the {name} theme with you."
+    },
     "media": {
       "alt": {
         "hero": "Light and cosmos at the threshold of Frecuencia Mágica",

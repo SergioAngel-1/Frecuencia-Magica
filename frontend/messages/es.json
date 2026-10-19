@@ -83,6 +83,10 @@
     "cta": "Cruzar el portal",
     "crossing": "Cruzando el portal…",
     "hint": "La luz que buscas ya vive en ti",
+    "arrival": {
+      "optional": "Opcional: puedes cruzar sin elegir.",
+      "proposed": "Te acompaña el tema {name}."
+    },
     "media": {
       "alt": {
         "hero": "Luz y cosmos en el umbral de Frecuencia Mágica",
