@@ -8,7 +8,7 @@
 
 **164 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 113 · P2 39. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 152 completadas · 0 a corregir · 11 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 153 completadas · 0 a corregir · 10 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -268,7 +268,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `discover-question-atmosphere-dusk.avif` | Descúbrete · pregunta · tema · Atardecer | 3:4 | 1440×1920 | P2 | Completadas |
 | `discover-question-atmosphere-forest.avif` | Descúbrete · pregunta · tema · Bosque | 3:4 | 1440×1920 | P2 | Completadas |
 | `resonario-featured-dusk.avif` | Resonario · destacado · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
-| `resonario-featured-forest.avif` | Resonario · destacado · tema · Bosque | 16:8 | 2880×1440 | P1 | Faltantes |
+| `resonario-featured-forest.avif` | Resonario · destacado · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
 | `resonario-archive-banner-dusk.avif` | Resonario · archivo · tema · Atardecer | 16:9 | 2880×1620 | P2 | Faltantes |
 | `resonario-archive-banner-forest.avif` | Resonario · archivo · tema · Bosque | 16:9 | 2880×1620 | P2 | Faltantes |
 | `academy-featured-course-dusk.avif` | Academia · curso destacado · tema · Atardecer | 16:8 | 2880×1440 | P1 | Faltantes |
@@ -306,25 +306,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (11)
+### 5.2 Faltantes (10)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `resonario.featured · Bosque` — Resonario · destacado · tema · P1
-
-- **Archivo:** `resonario-featured-forest.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Variante del tema Bosque de `resonario.featured`: la misma vista y el mismo encuadre, con la escena del tema. Fondo del audio destacado de la semana.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A backdrop for a featured disc, seen from directly above: calm still forest-pool water the color of deep green, with exactly five thin concentric rings of warm gold light lying on the water and radiating from an empty calm center at the exact center of the frame, each ring a little fainter than the one inside it and the outermost about 45% of the frame height in diameter, faint soft green and teal tints at the outer edges, and the water continuing plain and smooth to the left and right edges; no sun, no horizon, no sky, no leaves, no objects. Wide 2:1 panorama, top-down view, the empty calm center at 50% horizontal and 50% vertical, rings fading to deep green before the edges. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `resonario.archive-banner · Atardecer` — Resonario · archivo · tema · P2
 
@@ -500,7 +484,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (152)
+### 5.5 Completadas (153)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -644,6 +628,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `discover-question-atmosphere-dusk.avif` | Descúbrete · pregunta · tema · Atardecer | `discover.question-atmosphere` | 3:4 | P2 |
 | `discover-question-atmosphere-forest.avif` | Descúbrete · pregunta · tema · Bosque | `discover.question-atmosphere` | 3:4 | P2 |
 | `resonario-featured-dusk.avif` | Resonario · destacado · tema · Atardecer | `resonario.featured` | 16:8 | P1 |
+| `resonario-featured-forest.avif` | Resonario · destacado · tema · Bosque | `resonario.featured` | 16:8 | P1 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |

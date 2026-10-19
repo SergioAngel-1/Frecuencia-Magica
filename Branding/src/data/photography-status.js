@@ -214,6 +214,7 @@ export const COMPLETED = [
   'discover-question-atmosphere-dusk.avif',
   'discover-question-atmosphere-forest.avif',
   'resonario-featured-dusk.avif',
+  'resonario-featured-forest.avif',
 ]
 
 /**
