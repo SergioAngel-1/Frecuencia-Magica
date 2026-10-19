@@ -11,11 +11,12 @@ const FILES = sourceFiles(SRC, /\.(ts|tsx)$/).map((file) => ({
   source: readSource(file),
 }));
 
-/** Los únicos sitios que escriben `data-atmosphere`: el documento, el fondo en fundido y las muestras. */
+/** Los únicos sitios que escriben `data-atmosphere`: el documento, el fondo en fundido, el velo del cruce (pinta el tema al que se va) y las muestras. */
 const MAY_SET_ATTRIBUTE = new Set([
   'app/[locale]/layout.tsx',
   'components/world/atmosphere-provider.tsx',
   'components/world/atmosphere-backdrop.tsx',
+  'components/world/atmosphere-shift-veil.tsx',
   'components/ui/theme-swatch.tsx',
   'components/layout/theme-switcher.tsx',
   'lib/atmosphere/boot-script.ts',

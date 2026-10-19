@@ -103,3 +103,22 @@ export type PortalMode = keyof typeof PORTAL_TIMING;
  * en vez de dejar al visitante a oscuras.
  */
 export const PORTAL_MAX_HOLD = 5000;
+
+/**
+ * Cruce de atmósfera, en milisegundos: lo que se vive al cambiar de tema. Es la
+ * única fuente: el store secuencia las fases con ellos y el overlay los pasa a sus
+ * animaciones.
+ *
+ * - `cover`: lo que tarda la luz del tema nuevo en cubrir la pantalla.
+ * - `hold`: pantalla cubierta, ya con el tema aplicado debajo y con su nombre a la vista. Dura
+ *   más que `ATMOSPHERE_FADE_SECONDS` para que los colores del sitio asienten antes de revelar.
+ * - `reveal`: lo que tarda el velo en disolverse sobre el mundo nuevo.
+ *
+ * `quick` es el cruce de movimiento reducido: un fundido, sin ondas.
+ */
+export const ATMOSPHERE_SHIFT_TIMING = {
+  full: { cover: 1000, hold: 1700, reveal: 1100 },
+  quick: { cover: 220, hold: 700, reveal: 420 },
+} as const;
+
+export type AtmosphereShiftMode = keyof typeof ATMOSPHERE_SHIFT_TIMING;

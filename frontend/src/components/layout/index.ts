@@ -11,6 +11,7 @@ export { BrandMark } from './brand-mark';
 export { LanguageToggle } from './language-toggle';
 export { LoadingScene, type LoadingSceneProps } from './loading-scene';
 export { NewsletterForm } from './newsletter-form';
+export { AtmosphereShiftConfirm } from './atmosphere-shift-confirm';
 export { OfflineVeil } from './offline-veil';
 export { PageShell, type ShellPadding, type ShellWidth } from './page-shell';
 export { RealmFooter } from './realm-footer';

@@ -5,6 +5,7 @@ import { LazyMotion, domAnimation } from 'motion/react';
 
 import { PlayerDock } from '@/components/features/player/player-dock';
 import {
+  AtmosphereShiftConfirm,
   OfflineVeil,
   RealmFooter,
   RealmNav,
@@ -123,6 +124,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
                     <PlayerDock />
                     <TalkFloat />
                   </div>
+                  <AtmosphereShiftConfirm />
                   <OfflineVeil />
                 </SmoothScroll>
               </AtmosphereProvider>

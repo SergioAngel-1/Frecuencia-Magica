@@ -6,6 +6,7 @@ import { useRealm } from '@/hooks/use-realm';
 
 import { AtmosphereBackdrop } from './atmosphere-backdrop';
 import { BrandFigures } from './brand-figures';
+import { AtmosphereShiftVeil } from './atmosphere-shift-veil';
 import { CosmicCanvas } from './cosmic-canvas';
 import { LuminousCursorMount } from './luminous-cursor-mount';
 import { NebulaLayer } from './nebula-layer';
@@ -36,6 +37,7 @@ export function WorldEngine({ visualMode }: WorldEngineProps = {}) {
       <LuminousCursorMount />
       <PortalTransition />
       <PortalAnnouncer />
+      <AtmosphereShiftVeil />
     </>
   );
 }

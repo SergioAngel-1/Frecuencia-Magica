@@ -1065,11 +1065,20 @@
       "description": "Natural green, fireflies and filtered light among the trees."
     },
     "switcher": {
-      "label": "Theme",
-      "open": "Change theme",
-      "auto": "Automatic",
-      "autoDescription": "Each place with its own theme.",
-      "current": "Current theme: {name}"
+      "label": "Atmosphere",
+      "open": "Change atmosphere",
+      "auto": "As you feel",
+      "autoDescription": "Each place suggests its own: the light, the images and the sound change with you.",
+      "current": "Current atmosphere: {name}"
+    },
+    "shift": {
+      "title": "Change atmosphere",
+      "close": "Close",
+      "changes": "The light, the images and the sound that keep you company change across the whole site.",
+      "feeling": "Today: {feeling}",
+      "crossing": "Crossing into {name}",
+      "confirm": "Cross into {name}",
+      "cancel": "Stay here"
     }
   },
   "video": {

@@ -79,6 +79,39 @@
   background: var(--fm-night);
 }
 
+/* Cruce de atmósfera (`AtmosphereShiftVeil`): una onda con el fondo del tema nuevo y un filo de
+   su luz (`--halo`), que nace donde se pidió el cambio. Mide 100vmax con el núcleo opaco hasta
+   el 100% del radio: con la escala final (0.12) su radio opaco (6vmax) pasa de la diagonal de
+   cualquier viewport (1,42vmax), así que al terminar ya lo cubre todo. El centrado va en
+   `translate`; los keyframes sólo tocan `transform` y `opacity`. */
+.fm-shift-wave {
+  position: absolute;
+  width: 100vmax;
+  height: 100vmax;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--atmo-bg);
+  box-shadow:
+    0 0 0 1px rgb(var(--halo) / 0.55),
+    0 0 90px 24px rgb(var(--halo) / 0.3);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+@keyframes fm-shift-wave {
+  0% {
+    transform: scale(0.01);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.12);
+    opacity: 1;
+  }
+}
+
 /* Fundido entre atmósferas (`AtmosphereBackdrop`): la capa nueva sube de 0 a 1
    sobre la anterior. La duración la pone el componente desde `config/motion.ts`. */
 @keyframes fm-atmo-fade {

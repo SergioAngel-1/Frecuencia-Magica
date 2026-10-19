@@ -15,6 +15,7 @@ import {
   stepAlternative,
   type ArrivalFlow,
 } from '@/lib/arrival/flow';
+import { useAtmosphereShift } from '@/hooks/use-atmosphere-shift';
 import { useMounted } from '@/hooks/use-mounted';
 import type { AtmosphereId } from '@/types/atmosphere';
 import { usePlayerStore } from '@/stores/player-store';
@@ -62,7 +63,7 @@ export function useArrival({ restore = false }: ArrivalOptions = {}): ArrivalCon
   const [flow, setFlow] = useState<ArrivalFlow>(IDLE_ARRIVAL);
   const mounted = useMounted();
   const choice = useAtmosphereStore((state) => state.choice);
-  const setChoice = useAtmosphereStore((state) => state.setChoice);
+  const shift = useAtmosphereShift();
   const savedKey = useArrivalStore((state) => state.key);
   const setSavedKey = useArrivalStore((state) => state.setKey);
   const open = usePlayerStore((state) => state.open);
@@ -90,11 +91,11 @@ export function useArrival({ restore = false }: ArrivalOptions = {}): ArrivalCon
       });
       setFlow(next);
       setSavedKey(key);
-      if (next.response) setChoice(next.response.atmosphere);
+      if (next.response) shift(next.response.atmosphere, { source: 'feeling', feeling: key });
 
       return next;
     },
-    [setChoice, setSavedKey],
+    [shift, setSavedKey],
   );
 
   const pick = useCallback((key: ArrivalKey) => void select(key), [select]);
@@ -125,8 +126,8 @@ export function useArrival({ restore = false }: ArrivalOptions = {}): ArrivalCon
 
   const other = useCallback(() => {
     if (!current.response) return;
-    setChoice(nextAtmosphere(current.response, choice ?? 'night'));
-  }, [current, choice, setChoice]);
+    shift(nextAtmosphere(current.response, choice ?? 'night'), { source: 'feeling' });
+  }, [current, choice, shift]);
 
   return { flow: current, atmosphere, choose, pick, step, other, stop: close };
 }

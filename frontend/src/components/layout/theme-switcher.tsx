@@ -8,8 +8,10 @@ import { useTranslations } from 'next-intl';
 import { ThemeSwatch } from '@/components/ui';
 import { ATMOSPHERE_IDS } from '@/config/atmospheres';
 import { useAtmosphere } from '@/hooks/use-atmosphere';
+import { useAtmosphereShift } from '@/hooks/use-atmosphere-shift';
 import { useMounted } from '@/hooks/use-mounted';
 import { cn } from '@/lib/cn';
+import { originFromRect } from '@/lib/atmosphere/shift';
 import { pressedOption, switcherOptions, type SwitcherOption } from '@/lib/atmosphere/switcher';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
 
@@ -60,8 +62,7 @@ export function ThemeSwitcher() {
   const mounted = useMounted();
   const { atmosphereId } = useAtmosphere();
   const choice = useAtmosphereStore((state) => state.choice);
-  const setChoice = useAtmosphereStore((state) => state.setChoice);
-  const clear = useAtmosphereStore((state) => state.clear);
+  const shift = useAtmosphereShift();
   const [open, setOpen] = useState(false);
   const [peek, setPeek] = useState<SwitcherOption | null>(null);
   const root = useRef<HTMLDivElement>(null);
@@ -94,9 +95,17 @@ export function ThemeSwitcher() {
     };
   }, [open]);
 
-  const choose = (option: SwitcherOption) => {
-    if (option === 'auto') clear();
-    else setChoice(option);
+  // El cambio pide confirmación y cruza con una onda que nace de la tarjeta pulsada.
+  const choose = (option: SwitcherOption, card: HTMLElement) => {
+    if (option === pressed) return;
+
+    setOpen(false);
+    shift(option === 'auto' ? null : option, {
+      origin: originFromRect(card.getBoundingClientRect(), {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      }),
+    });
   };
 
   return (
@@ -146,7 +155,7 @@ export function ThemeSwitcher() {
                     type="button"
                     role="radio"
                     aria-checked={checked}
-                    onClick={() => choose(option)}
+                    onClick={(event) => choose(option, event.currentTarget)}
                     onPointerEnter={() => setPeek(option)}
                     onPointerLeave={() => setPeek(null)}
                     onFocus={() => setPeek(option)}

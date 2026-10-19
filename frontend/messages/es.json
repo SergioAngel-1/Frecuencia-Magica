@@ -1070,11 +1070,20 @@
       "description": "Verde natural, luciérnagas y luz filtrada entre los árboles."
     },
     "switcher": {
-      "label": "Tema",
-      "open": "Cambiar de tema",
-      "auto": "Automático",
-      "autoDescription": "Cada lugar con su tema.",
-      "current": "Tema actual: {name}"
+      "label": "Atmósfera",
+      "open": "Cambiar de atmósfera",
+      "auto": "Según cómo te sientes",
+      "autoDescription": "Cada lugar propone la suya: cambian la luz, las imágenes y el sonido contigo.",
+      "current": "Atmósfera actual: {name}"
+    },
+    "shift": {
+      "title": "Cambiar de atmósfera",
+      "close": "Cerrar",
+      "changes": "Cambian la luz, las imágenes y el sonido que te acompañan, en todo el sitio.",
+      "feeling": "Hoy: {feeling}",
+      "crossing": "Cruzando a {name}",
+      "confirm": "Cruzar a {name}",
+      "cancel": "Quedarme aquí"
     }
   },
   "video": {
