@@ -103,6 +103,26 @@ export const THEME_VARIANTS: Readonly<
 };
 
 /**
+ * Fondos con texto encima que sólo tienen imagen nocturna, en ningún tema. Bajo el tema claro
+ * (Amanecer) la tinta oscura del texto cae sobre una foto oscura y no se lee: se lavan igual que
+ * una foto temable sin variante (`[data-scheme='light'] [data-photo-night]` en `globals.css`).
+ * En los temas oscuros la imagen nocturna funde sola. Cuando uno de estos slots reciba variante
+ * de Amanecer, pasa a `THEME_VARIANTS` y sale de aquí.
+ */
+export const NIGHT_BACKDROP_SLOTS: readonly EditorialMediaSlot[] = [
+  'sanctuary.continue',
+  'sanctuary.daily',
+  'sanctuary.journal',
+  'sanctuary.empty',
+  'booking.confirmation',
+  'checkout.confirmation',
+  'cart.empty',
+  'academy.completion',
+  'discover.tuning',
+  'discover.result',
+];
+
+/**
  * Foco propio de una variante cuyo sujeto no está donde el de la base (`slot@tema` → `x% y%`). Las
  * que no figuran usan el foco del slot. Son las atmósferas de Ambientes v2, compuestas con el sujeto
  * a la derecha para dejar libre el titular.

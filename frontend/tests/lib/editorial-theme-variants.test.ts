@@ -7,6 +7,7 @@ import { ATMOSPHERE_IDS } from '@/config/atmospheres';
 import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import {
   EDITORIAL_MEDIA_SLOTS,
+  NIGHT_BACKDROP_SLOTS,
   THEME_VARIANTS,
   THEME_VARIANT_POSITIONS,
   type EditorialMediaSlot,
@@ -144,5 +145,22 @@ describe('theme image variants', () => {
     ];
 
     for (const slot of content) expect(THEME_VARIANTS, slot).not.toHaveProperty(slot);
+  });
+});
+
+describe('fondos nocturnos con texto encima (sin variante de tema)', () => {
+  it('son slots del contrato y ninguno figura ya en THEME_VARIANTS', () => {
+    for (const slot of NIGHT_BACKDROP_SLOTS) {
+      expect(EDITORIAL_MEDIA_SLOTS, slot).toContain(slot);
+      expect(THEME_VARIANTS[slot], slot).toBeUndefined();
+    }
+  });
+
+  it('se marcan como temables: bajo el tema claro se lavan igual que una foto sin variante', () => {
+    for (const slot of NIGHT_BACKDROP_SLOTS) {
+      const media = resolveEditorialMedia(slot, { src: '/editorial/x.avif', alt: 'x' });
+
+      expect(media.themed, slot).toBe(true);
+    }
   });
 });
