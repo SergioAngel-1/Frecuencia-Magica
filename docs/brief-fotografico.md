@@ -8,7 +8,7 @@
 
 **204 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 132 · P2 60. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 180 completadas · 0 a corregir · 23 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 181 completadas · 0 a corregir · 22 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -292,7 +292,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `states-offline-dusk.avif` | Estados · sin conexión · tema · Atardecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-offline-forest.avif` | Estados · sin conexión · tema · Bosque | 16:9 | 2880×1620 | P2 | Completadas |
 | `sanctuary-continue-dawn.avif` | Mi Santuario · continuar · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
-| `sanctuary-continue-dusk.avif` | Mi Santuario · continuar · tema · Atardecer | 16:8 | 2880×1440 | P1 | Faltantes |
+| `sanctuary-continue-dusk.avif` | Mi Santuario · continuar · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `sanctuary-continue-forest.avif` | Mi Santuario · continuar · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
 | `sanctuary-daily-dawn.avif` | Mi Santuario · práctica diaria · tema · Amanecer | 1:1 | 1024×1024 | P1 | Completadas |
 | `sanctuary-daily-dusk.avif` | Mi Santuario · práctica diaria · tema · Atardecer | 1:1 | 1024×1024 | P1 | Completadas |
@@ -346,25 +346,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (23)
+### 5.2 Faltantes (22)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `sanctuary.continue · Atardecer` — Mi Santuario · continuar · tema · P1
-
-- **Archivo:** `sanctuary-continue-dusk.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Atardecer de `sanctuary.continue`: la misma vista y el mismo encuadre, con la escena del tema. La invitación a retomar la práctica donde se dejó.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Continuity at dusk: the same linen cushion on a dark wooden floor with a half-burned candle beside it and a blank open book, the last warm amber light from a window falling across them, a feeling that someone has just stepped away and will return, the room itself in dusky plum, mauve and deep indigo shadow with the floor a dark aubergine-grey wood, never brown, caramel or sepia, the amber only as the light that enters through the window. Objects in the right half, the left third a plain wall in deep plum-indigo shade, calm, low in detail for the lesson title. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `sanctuary.journal · Amanecer` — Mi Santuario · diario · tema · P2
 
@@ -732,7 +716,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (180)
+### 5.5 Completadas (181)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -900,6 +884,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `states-offline-dusk.avif` | Estados · sin conexión · tema · Atardecer | `states.offline` | 16:9 | P2 |
 | `states-offline-forest.avif` | Estados · sin conexión · tema · Bosque | `states.offline` | 16:9 | P2 |
 | `sanctuary-continue-dawn.avif` | Mi Santuario · continuar · tema · Amanecer | `sanctuary.continue` | 16:8 | P1 |
+| `sanctuary-continue-dusk.avif` | Mi Santuario · continuar · tema · Atardecer | `sanctuary.continue` | 16:8 | P1 |
 | `sanctuary-continue-forest.avif` | Mi Santuario · continuar · tema · Bosque | `sanctuary.continue` | 16:8 | P1 |
 | `sanctuary-daily-dawn.avif` | Mi Santuario · práctica diaria · tema · Amanecer | `sanctuary.daily` | 1:1 | P1 |
 | `sanctuary-daily-dusk.avif` | Mi Santuario · práctica diaria · tema · Atardecer | `sanctuary.daily` | 1:1 | P1 |
