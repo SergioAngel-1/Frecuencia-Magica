@@ -217,6 +217,7 @@ export const COMPLETED = [
   'resonario-featured-forest.avif',
   'resonario-archive-banner-dusk.avif',
   'academy-featured-course-dusk.avif',
+  'academy-featured-course-forest.avif',
 ]
 
 /**

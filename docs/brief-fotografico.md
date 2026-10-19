@@ -8,7 +8,7 @@
 
 **164 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 113 · P2 39. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 155 completadas · 0 a corregir · 8 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 156 completadas · 0 a corregir · 7 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -272,7 +272,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `resonario-archive-banner-dusk.avif` | Resonario · archivo · tema · Atardecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `resonario-archive-banner-forest.avif` | Resonario · archivo · tema · Bosque | 16:9 | 2880×1620 | P2 | Faltantes |
 | `academy-featured-course-dusk.avif` | Academia · curso destacado · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
-| `academy-featured-course-forest.avif` | Academia · curso destacado · tema · Bosque | 16:8 | 2880×1440 | P1 | Faltantes |
+| `academy-featured-course-forest.avif` | Academia · curso destacado · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
 | `academy-completion-forest.avif` | Academia · curso completado · tema · Bosque | 16:8 | 2880×1440 | P1 | Faltantes |
 | `experiences-featured-dusk.avif` | Experiencias · destacada · tema · Atardecer | 16:8 | 2880×1440 | P1 | Faltantes |
 | `experiences-featured-forest.avif` | Experiencias · destacada · tema · Bosque | 16:8 | 2880×1440 | P1 | Faltantes |
@@ -306,7 +306,7 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (8)
+### 5.2 Faltantes (7)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
@@ -324,22 +324,6 @@ Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota
 
 ```text
 The archive as a place in the forest: a long colonnade of dark moss-streaked stone opening onto a still forest pool, ferns at the feet of the columns, tall niches holding softly glowing vessels — brass bowls, glass discs, ceramic jars — a soft green mist, warm filtered golden light, a few warm lamps far away reflected in the floor-water. One-point perspective down the colonnade, lower third deep calm stone and water for text. Wide landscape framing. Text is overlaid on the lower third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open water, mist, sky or plain ground), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `academy.featured-course · Bosque` — Academia · curso destacado · tema · P1
-
-- **Archivo:** `academy-featured-course-forest.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 40%
-- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Bosque de `academy.featured-course`: la misma vista y el mismo encuadre, con la escena del tema. El curso destacado con materia propia en la cabecera.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-The featured practice in the forest: a pair of hands cradling a small brass singing bowl with a wooden striker resting on its rim, soft filtered golden light on the hands, a green mist behind with a few out-of-focus fern fronds, close framing. Hands and bowl in the right-center, the left third deep calm green mist and low in detail for the course title. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
 ```
 
 #### `academy.completion · Bosque` — Academia · curso completado · tema · P1
@@ -452,7 +436,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (155)
+### 5.5 Completadas (156)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -599,6 +583,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-featured-forest.avif` | Resonario · destacado · tema · Bosque | `resonario.featured` | 16:8 | P1 |
 | `resonario-archive-banner-dusk.avif` | Resonario · archivo · tema · Atardecer | `resonario.archive-banner` | 16:9 | P2 |
 | `academy-featured-course-dusk.avif` | Academia · curso destacado · tema · Atardecer | `academy.featured-course` | 16:8 | P1 |
+| `academy-featured-course-forest.avif` | Academia · curso destacado · tema · Bosque | `academy.featured-course` | 16:8 | P1 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
