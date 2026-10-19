@@ -62,8 +62,8 @@ export default async function HomePage({ params }: PageProps) {
           tienda (noche) → membresía (banda) → Marisol con su video (noche) → pie.
           Nunca dos bandas seguidas: entre dos bandas siempre hay un bloque de
           contenido sobre la noche, así que la Home no usa `BandChain`. Ninguna
-          sección trae margen exterior: el aire entre bloques es el `py-section`
-          de cada una (padding interior). */}
+          sección trae margen exterior: tras el héroe, la pila `fm-stack` pone un
+          peldaño `section` entre bloques y cierra con `pb-section`. */}
       <HeroSection
         media={homeMedia.hero}
         kicker={t('heroKicker')}
@@ -79,55 +79,55 @@ export default async function HomePage({ params }: PageProps) {
         ]}
       />
 
-      <RealmsGrid
-        media={homeMedia.realms}
-        kicker={t('realms.kicker')}
-        title={t('realms.title')}
-        intro={t('realms.intro')}
-        academia={{
-          ...bento.academia,
-          featuredCta: t('realms.featuredCta'),
-          description: t('realms.featuredDescription'),
-        }}
-        realms={bento.others}
-        storeCta={t('realms.storeCta')}
-        featuredBadge={t('realms.featuredBadge')}
-      />
+      <div className="fm-stack pt-block pb-section">
+        <RealmsGrid
+          media={homeMedia.realms}
+          kicker={t('realms.kicker')}
+          title={t('realms.title')}
+          intro={t('realms.intro')}
+          academia={{
+            ...bento.academia,
+            featuredCta: t('realms.featuredCta'),
+            description: t('realms.featuredDescription'),
+          }}
+          realms={bento.others}
+          storeCta={t('realms.storeCta')}
+          featuredBadge={t('realms.featuredBadge')}
+        />
 
-      <ArrivalSection />
+        <ArrivalSection />
 
-      <DailyFrequency
-        media={homeMedia.daily}
-        hz={firstAudio.hz}
-        band={firstAudio.band}
-        audioId={firstAudio.id}
-        kicker={t('daily.kicker')}
-        title={t('daily.title')}
-        description={t('daily.description')}
-        meta={`${t('daily.meta')} · ${firstAudio.duration ?? ''}`}
-        cta={t('daily.cta')}
-        resonario={{
-          kicker: t('audio.kicker'),
-          title: t('audio.title'),
-          action: (
-            <Link href="/resonario" className={arrowLinkClasses('teal')}>
-              {common('seeAll')}
-              <ArrowGlyph />
-            </Link>
-          ),
-          audios: resonarioAudios,
-        }}
-      />
+        <DailyFrequency
+          media={homeMedia.daily}
+          hz={firstAudio.hz}
+          band={firstAudio.band}
+          audioId={firstAudio.id}
+          kicker={t('daily.kicker')}
+          title={t('daily.title')}
+          description={t('daily.description')}
+          meta={`${t('daily.meta')} · ${firstAudio.duration ?? ''}`}
+          cta={t('daily.cta')}
+          resonario={{
+            kicker: t('audio.kicker'),
+            title: t('audio.title'),
+            action: (
+              <Link href="/resonario" className={arrowLinkClasses('teal')}>
+                {common('seeAll')}
+                <ArrowGlyph />
+              </Link>
+            ),
+            audios: resonarioAudios,
+          }}
+        />
 
-      <StoreShowcase
-        kicker={t('storeShowcase.kicker')}
-        title={t('storeShowcase.title')}
-        description={t('storeShowcase.description')}
-        cta={t('storeShowcase.cta')}
-        items={storeItems}
-      />
+        <StoreShowcase
+          kicker={t('storeShowcase.kicker')}
+          title={t('storeShowcase.title')}
+          description={t('storeShowcase.description')}
+          cta={t('storeShowcase.cta')}
+          items={storeItems}
+        />
 
-      <div className="pb-section relative">
         <MembershipSection
           media={homeMedia.membership}
           kicker={t('membership.kicker')}
@@ -135,32 +135,32 @@ export default async function HomePage({ params }: PageProps) {
           description={t('membership.description')}
           cta={t('membership.cta')}
         />
-      </div>
 
-      <div className="fm-editorial-full-bleed py-section relative isolate">
-        <AboutSection
-          media={homeMedia.marisol}
-          kicker={t('about.kicker')}
-          title={t('about.title')}
-          p1={t('about.p1')}
-          p2={t('about.p2')}
-          action={
-            <ButtonLink variant="outline" href="/sobre-marisol">
-              {t('about.cta')} →
-            </ButtonLink>
-          }
-          video={
-            <VideoSlot
-              video={getVideo('welcome')}
-              media={videoPosterMedia(getVideo('welcome'), {
-                alt: tVideo('titles.welcome'),
-                sizes: '(min-width: 1280px) 1240px, calc(100vw - 48px)',
-              })}
-              title={tVideo('titles.welcome')}
-              className="rounded-card-lg aspect-[16/9] sm:aspect-[16/7]"
-            />
-          }
-        />
+        <div className="fm-editorial-full-bleed relative isolate">
+          <AboutSection
+            media={homeMedia.marisol}
+            kicker={t('about.kicker')}
+            title={t('about.title')}
+            p1={t('about.p1')}
+            p2={t('about.p2')}
+            action={
+              <ButtonLink variant="outline" href="/sobre-marisol">
+                {t('about.cta')} →
+              </ButtonLink>
+            }
+            video={
+              <VideoSlot
+                video={getVideo('welcome')}
+                media={videoPosterMedia(getVideo('welcome'), {
+                  alt: tVideo('titles.welcome'),
+                  sizes: '(min-width: 1280px) 1240px, calc(100vw - 48px)',
+                })}
+                title={tVideo('titles.welcome')}
+                className="rounded-card-lg aspect-[16/9] sm:aspect-[16/7]"
+              />
+            }
+          />
+        </div>
       </div>
     </PageShell>
   );

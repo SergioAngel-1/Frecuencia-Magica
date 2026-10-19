@@ -29,7 +29,7 @@ export function ArrivalSection() {
   const returning = flow.key !== null;
 
   return (
-    <section aria-labelledby="arrival-title" className="fm-editorial-full-bleed py-section">
+    <section aria-labelledby="arrival-title" className="fm-editorial-full-bleed">
       <div className="fm-container relative flex flex-col items-center text-center">
         {/* Sin `gap` en el contenedor: el panel se pliega a 0 y no debe dejar hueco. */}
         <div className="flex flex-col items-center gap-6">

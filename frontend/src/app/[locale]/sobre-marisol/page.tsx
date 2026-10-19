@@ -60,7 +60,7 @@ export default async function AboutMarisolPage({ params }: PageProps) {
         description={t('hero.description')}
       />
 
-      <div className="py-section gap-section relative flex flex-col">
+      <div className="pt-block pb-section gap-section relative flex flex-col">
         <AboutStory
           media={media.portrait}
           kicker={t('story.kicker')}

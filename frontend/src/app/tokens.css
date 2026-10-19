@@ -703,6 +703,15 @@
   padding-inline: max(var(--page-inset), calc((100vw - var(--container-max)) / 2));
 }
 
+/* Pila de bloques de una vista: el aire entre dos bloques hermanos es siempre un
+   peldaño `section`. Ningún bloque trae margen o padding exterior propio: lo
+   pone la pila, así dos secciones seguidas no suman el aire de las dos. */
+@utility fm-stack {
+  & > * + * {
+    margin-top: var(--spacing-section);
+  }
+}
+
 /* Fundido de bordes de la materia editorial (foto, zebra o banda): una
    máscara, no un degradado de color, para que la imagen se disuelva en lo que
    haya detrás sin desajuste de tono. Se aplica a la capa de medios de

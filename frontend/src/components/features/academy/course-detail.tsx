@@ -41,7 +41,7 @@ export function CourseDetail({ course, media, introMedia, currentLesson }: Cours
         ← {t('backLabel')}
       </Link>
 
-      <div className="mt-8 grid gap-[clamp(36px,7vw,96px)] md:grid-cols-2 md:items-center">
+      <div className="mt-block grid gap-[clamp(36px,7vw,96px)] md:grid-cols-2 md:items-center">
         <article>
           <Kicker tone="teal" spacing="widest">
             {t('featuredBadge')}

@@ -26,7 +26,7 @@ export type StoreShowcaseProps = {
 export function StoreShowcase({ kicker, title, description, cta, items }: StoreShowcaseProps) {
   return (
     <section
-      className="fm-editorial-full-bleed text-fg py-section relative"
+      className="fm-editorial-full-bleed text-fg relative"
       aria-labelledby="store-showcase-title"
     >
       <div className="fm-container flex flex-col gap-10">

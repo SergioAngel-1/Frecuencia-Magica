@@ -56,7 +56,7 @@ export function RealmsGrid({
 
   return (
     <section
-      className="fm-editorial-full-bleed text-fg py-section relative"
+      className="fm-editorial-full-bleed text-fg relative"
       aria-labelledby="realms-grid-title"
     >
       {/* Tarjeta enmarcada, no banda a sangre: tras el héroe la Home no pega dos bandas. */}
