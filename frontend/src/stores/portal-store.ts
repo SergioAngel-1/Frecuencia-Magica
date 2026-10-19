@@ -4,9 +4,9 @@ import { PORTAL_MAX_HOLD, PORTAL_TIMING, type PortalMode } from '@/config/motion
 
 /**
  * Fases del cruce:
- * - `in`: la noche cubre la pantalla.
+ * - `in`: el tema de destino cubre la pantalla.
  * - `hold`: pantalla cubierta; se espera a que llegue el destino.
- * - `out`: la noche se disuelve sobre el destino.
+ * - `out`: el tema se disuelve sobre el destino.
  */
 export type PortalPhase = 'idle' | 'in' | 'hold' | 'out';
 
@@ -22,8 +22,10 @@ type PortalState = {
   /** Coreografía en curso: el iris completo o el fundido breve. */
   mode: PortalMode;
   reason: PortalReason;
+  /** Ruta interna a la que se cruza; `null` si no se conoce (revelación en sitio). */
+  destination: string | null;
   /** Inicia el cruce. Uno en marcha no se reinicia. */
-  cross(mode?: PortalMode, reason?: PortalReason): void;
+  cross(mode?: PortalMode, reason?: PortalReason, destination?: string | null): void;
   /** El destino ya está montado: la revelación puede empezar. */
   arrive(): void;
   setPhase(phase: PortalPhase): void;
@@ -61,7 +63,7 @@ export const usePortalStore = create<PortalState>((set, get) => {
 
     revealTimer = setTimeout(() => {
       set({ phase: 'out' });
-      settleTimer = setTimeout(() => set({ phase: 'idle' }), timing.reveal);
+      settleTimer = setTimeout(() => set({ phase: 'idle', destination: null }), timing.reveal);
     }, timing.settle);
   };
 
@@ -69,15 +71,16 @@ export const usePortalStore = create<PortalState>((set, get) => {
     phase: 'idle',
     mode: 'full',
     reason: 'route',
-    setPhase: (phase) => set({ phase }),
-    cross: (mode = 'full', reason = 'route') => {
+    destination: null,
+    setPhase: (phase) => set(phase === 'idle' ? { phase, destination: null } : { phase }),
+    cross: (mode = 'full', reason = 'route', destination = null) => {
       if (get().phase !== 'idle') return;
 
       clearTimers();
       arrived = false;
       revealing = false;
 
-      set({ phase: 'in', mode, reason });
+      set({ phase: 'in', mode, reason, destination });
       coverTimer = setTimeout(() => {
         set({ phase: 'hold' });
         if (arrived) reveal();
