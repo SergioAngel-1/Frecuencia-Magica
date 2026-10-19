@@ -55,3 +55,15 @@ Al llegar cada PNG: `frontend/.editorial-originals/<archivo>-<tema>.png`, `photo
 - **Tienda bajo `dawn`:** las fotos de producto son nocturnas por diseño; se ven como ventanas oscuras sobre crema. Si se prefiere fondo de estudio claro, sería una sesión fotográfica nueva.
 - **Blanco sobre blanco no detectado** en las demás vistas; no se midió contraste automático de las capturas (lo cubren las guardas `atmosphere-contrast` y `hero-photo-contrast`).
 - Sin revisar en dispositivo físico: el flotado de las nuevas tarjetas en móvil de gama media.
+
+## Cierre 2026-10-19
+
+**Queda resuelto.**
+
+- **Atardecer:** se recalibra de masa violeta a índigo, vino y granate cálido, con albaricoque y rosa de acento (commit `702acdc`). El tema ya no compite con la noche ni ensucia las fotos base.
+- **Halo y disco:** en los temas claros, el halo del disco usa la luz del tema y no el oro de la marca, que allí no lee (commit `8e2d149`).
+- **Ritmo vertical:** las vistas que mezclaban `clamp()` y paddings sueltos quedan normalizadas a los dos peldaños del sistema, `section` y `block`.
+- **Cruce con confirmación:** cambiar de atmósfera deja de ser un interruptor. El cambio manual pide confirmación; el que llega por un estado del ánimo cruza directo; el velo pinta el tema destino, nombra el tema y el estado, y aplica el cambio con la pantalla cubierta. Con movimiento reducido es un fundido sin onda. Contrato en `DESIGN.md` § Atmósferas y `CLAUDE.md` § Temas globales.
+- **Variantes declaradas:** además de las de Amanecer, quedan declaradas Atardecer y Bosque en los fondos de la espera, estados, Mi Santuario, carrito, compra y Descúbrete, y Luna en `discover.tuning`/`discover.result` (26 nuevas). Son 40 variantes pendientes de las 122 declaradas (82 ya publicadas): 14 Amanecer, 12 Atardecer, 12 Bosque y 2 Luna.
+
+**Sigue abierto.** Generar e ingerir esas 40 imágenes (prompts en `docs/prompts-chatgpt.md`; estado en `docs/materiales-pendientes.md`) y revisar el flotado y los cruces en móvil físico de gama media, que sigue sin medirse.
