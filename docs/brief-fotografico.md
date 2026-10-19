@@ -8,7 +8,7 @@
 
 **204 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 132 · P2 60. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 163 completadas · 0 a corregir · 40 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 164 completadas · 0 a corregir · 39 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -279,7 +279,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `booking-confirmation-dusk.avif` | Reserva · confirmación · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `store-ritual-banner-dusk.avif` | Tienda · banner ritual · tema · Atardecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `store-ritual-banner-forest.avif` | Tienda · banner ritual · tema · Bosque | 16:9 | 2880×1620 | P2 | Completadas |
-| `states-loading-dawn.avif` | Estados · carga · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
+| `states-loading-dawn.avif` | Estados · carga · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-loading-dusk.avif` | Estados · carga · tema · Atardecer | 16:9 | 2880×1620 | P2 | Faltantes |
 | `states-loading-forest.avif` | Estados · carga · tema · Bosque | 16:9 | 2880×1620 | P2 | Faltantes |
 | `states-empty-dawn.avif` | Estados · vacío · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
@@ -346,25 +346,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (40)
+### 5.2 Faltantes (39)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `states.loading · Amanecer` — Estados · carga · tema · P2
-
-- **Archivo:** `states-loading-dawn.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 42%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Variante del tema Amanecer de `states.loading`: la misma vista y el mismo encuadre, con la escena del tema. La espera con materia: cargar es también respirar.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Waiting with matter at sunrise: a single soft sphere of pale golden light floating in bright misty space above still pale water as if breathing, a faint halo, slow and calm, the air a soft blend of cream, peach and very pale sky blue. Sphere at center at 42% vertical, calm bright mist all around it, the horizon lost in the mist with no line and no band, the lower third plain calm pale water for the loading label. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `states.loading · Atardecer` — Estados · carga · tema · P2
 
@@ -1004,7 +988,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (163)
+### 5.5 Completadas (164)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -1159,6 +1143,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `booking-confirmation-dusk.avif` | Reserva · confirmación · tema · Atardecer | `booking.confirmation` | 16:8 | P1 |
 | `store-ritual-banner-dusk.avif` | Tienda · banner ritual · tema · Atardecer | `store.ritual-banner` | 16:9 | P2 |
 | `store-ritual-banner-forest.avif` | Tienda · banner ritual · tema · Bosque | `store.ritual-banner` | 16:9 | P2 |
+| `states-loading-dawn.avif` | Estados · carga · tema · Amanecer | `states.loading` | 16:9 | P2 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
