@@ -44,11 +44,11 @@
       "resonario": "Wisdom",
       "academia": "Transformation",
       "experiencias": "Encounter",
-      "tienda": "Abundance",
+      "tienda": "Care",
       "sanctuario": "Intimacy"
     },
     "story": {
-      "label": "Our essence",
+      "label": "Marisol's story",
       "emotion": "Origin"
     },
     "menu": "Menu",
@@ -57,7 +57,7 @@
     }
   },
   "footer": {
-    "tagline": "We accompany real processes of transformation. You need not become someone else: only remember who you have always been.",
+    "tagline": "So you don't have to become someone else: just remember who you have always been.",
     "newsletterPlaceholder": "Your email",
     "newsletterLabel": "Your email address",
     "newsletterSuccess": "Thank you. We will write when there is something worth your silence.",
@@ -71,7 +71,7 @@
     "columns": {
       "explore": "Explore",
       "community": "Community",
-      "brand": "Magic Frequency"
+      "brand": "Frecuencia Mágica"
     },
     "links": {
       "about": "About Marisol",
@@ -80,15 +80,15 @@
     }
   },
   "portal": {
-    "kicker": "Welcome to the threshold",
-    "title": "Magic Frequency",
+    "kicker": "Before you cross",
+    "title": "Frecuencia Mágica",
     "subtitle": "You are not about to enter a website. You are about to cross a portal toward the most important place: yourself.",
     "cta": "Cross the portal",
     "crossing": "Crossing the portal…",
     "hint": "The light you seek already lives in you",
     "arrival": {
       "optional": "Optional: you can cross without choosing.",
-      "proposed": "It brings the {name} theme with you."
+      "proposed": "{name} comes with you today."
     },
     "media": {
       "alt": {
@@ -133,7 +133,7 @@
       "title": "Sound to return to you"
     },
     "realms": {
-      "kicker": "The universe of Magic Frequency",
+      "kicker": "The universe of Frecuencia Mágica",
       "title": "Choose where to enter",
       "intro": "Each doorway opens a different way back to yourself. Step through the one that calls you today.",
       "featuredCta": "Enter the Academy",
@@ -144,16 +144,16 @@
         "descubrete": "An inner compass that listens to your present moment.",
         "resonario": "Frequencies, meditations and sound to return to you.",
         "academia": "Courses that accompany real processes of transformation.",
-        "experiencias": "Live and in-person gatherings to reunite.",
+        "experiencias": "Live and in-person gatherings to meet others.",
         "tienda": "Oils, candles and crystals born from a conviction: when you transform within, your world changes.",
         "sanctuario": "Your space: journal, progress and daily frequency."
       }
     },
     "about": {
       "kicker": "About Marisol",
-      "title": "We believe every person holds a light that never disappears.",
-      "p1": "Our mission is to create experiences that awaken that light: through knowledge, aromas, conscious rituals and nature. Every oil, every candle, every course is born from a deep conviction.",
-      "p2": "We do not want to sell wellness. We want to accompany real processes of transformation.",
+      "title": "There is a light in you that never disappears.",
+      "p1": "Knowledge, aromas, conscious rituals and nature so you can awaken that light at your own pace. Every oil, every candle and every course is born from a simple idea: returning to yourself.",
+      "p2": "Here you will not find promises of change in seven days: you will find company to look inward, without hurry.",
       "cta": "Meet Marisol"
     },
     "membership": {
@@ -200,7 +200,7 @@
     "angels": {
       "kicker": "Experiences with Angels",
       "title": "Some company makes no sound",
-      "intro": "Marisol speaks of angels without solemnity, the way you speak of someone close. She does not explain them: she tells you how they feel and invites you to recognise them in your own life.",
+      "intro": "Marisol speaks of angels without solemnity, the way you speak of someone close. She does not explain them: she tells you how they feel and invites you to recognize them in your own life.",
       "items": {
         "sign": {
           "title": "The sign",
@@ -232,7 +232,7 @@
           "cta": "See the experiences"
         },
         "tienda": {
-          "title": "Ritualise",
+          "title": "Ritualize",
           "body": "Oils, candles and objects made to accompany your practice at home.",
           "cta": "Enter the store"
         }
@@ -309,14 +309,14 @@
     "or": "or",
     "sso": "Continue with your inner light",
     "quote": "The light you seek already lives in you. You only need to remember it.",
-    "quoteBy": "Magic Frequency",
+    "quoteBy": "Frecuencia Mágica",
     "meta": {
       "title": "Sign in to your sanctuary",
       "description": "Sign in to your Frecuencia Mágica sanctuary to pick up your courses, frequencies and journal. Your space is waiting whenever you are ready to return."
     }
   },
   "discover": {
-    "kicker": "Discover yourself",
+    "kicker": "Your present moment",
     "title": "What frequency are you today?",
     "intro": "Five questions to listen to your present moment. There are no right answers: only the truth of how you arrive today. At the end, a frequency chosen for you.",
     "begin": "Begin",
@@ -460,7 +460,7 @@
       },
       "a4": {
         "title": "Threshold of Sleep",
-        "composition": "Pure tone at 174 Hz, the lowest in the catalogue.",
+        "composition": "Pure tone at 174 Hz, the lowest in the catalog.",
         "guide": "For the night, with the lights off, when you want to let the day go."
       },
       "a5": {
@@ -570,7 +570,7 @@
       "p2": "Part of its richness comes from traditions such as the Irish harp, which has accompanied the cultural life of Ireland for more than a thousand years. Its notes keep a history of expression, memory and encounter.",
       "p3": "In its gentlest versions, the delicate sound of the harp, the flute phrases and slow melodies can create a welcoming atmosphere. If these sounds feel pleasant to you, they can keep you company while you rest, look at a landscape or spend a few minutes with yourself.",
       "p4": "Research on music suggests that listening to it may help the mood, although each person responds differently. Its value also lies in what it awakens in you: serenity, emotion, memories or a sense of company.",
-      "p5": "At Frecuencia Mágica we chose these melodies to offer you a moment of listening without demands. You do not need to reach a special state. Just find a comfortable volume and notice how you feel.",
+      "p5": "These melodies offer you a moment of listening without demands. You do not need to reach a special state. Just find a comfortable volume and notice how you feel.",
       "closing": "Let the melody accompany you. This moment is yours."
     },
     "meta": {
@@ -713,7 +713,7 @@
   },
   "experiences": {
     "kicker": "Experiences",
-    "title": "Gatherings to reunite",
+    "title": "Experiences to return to yourself",
     "description": "Sound baths, circles and live rituals. Spaces to pause alongside others and breathe again.",
     "featuredBadge": "Featured experience",
     "featuredDescription": "An hour to let sound loosen what weighs today. Live bowls, gongs and frequencies that accompany you back to your center, wherever you are.",
@@ -781,7 +781,7 @@
     "confirm": "Confirm booking",
     "done": {
       "title": "Your place is reserved",
-      "description": "We sent the details by email. Breathe: you only need to show up as yourself.",
+      "description": "We sent the details by email. Breathe: you only need to show up as you are.",
       "cta": "See more experiences"
     },
     "meta": {
@@ -816,7 +816,7 @@
     "add": "Add",
     "buyNow": "Buy now",
     "featuredBadge": "Featured",
-    "featuredDescription": "Our signature piece: handcrafted in small batches, to accompany your most intimate rituals of pause and breath.",
+    "featuredDescription": "A handmade piece to accompany your most intimate rituals of pause and breath.",
     "backToStore": "All the store",
     "keepExploring": "Keep exploring",
     "productDescription": "Crafted in small batches, with intention and noble raw materials. A companion for your moments of pause, breath and ritual.",

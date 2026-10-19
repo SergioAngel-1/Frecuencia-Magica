@@ -8,6 +8,10 @@ import { flatEn, flatEs } from '../helpers/messages';
  */
 const IDENTICAS_POR_DISENO = new Set([
   'common.brand',
+  // La marca es un nombre propio y se escribe igual en ambos idiomas.
+  'portal.title',
+  'footer.columns.brand',
+  'auth.quoteBy',
   // "Realms" es término de marca: se usa en español tal cual.
   'nav.label',
   // "Nostalgia" se escribe igual en ambos idiomas.
