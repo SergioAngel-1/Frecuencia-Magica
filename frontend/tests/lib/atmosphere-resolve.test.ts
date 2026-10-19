@@ -14,8 +14,10 @@ describe('resolveAtmosphere', () => {
   });
 
   it('sin elección, cada lugar usa el tema que sugiere', () => {
-    expect(resolveAtmosphere('descubrete')).toBe('night');
-    expect(resolveAtmosphere('academia')).toBe('dawn');
+    expect(resolveAtmosphere('descubrete')).toBe('moon');
+    expect(resolveAtmosphere('academia')).toBe('forest');
+    expect(resolveAtmosphere('sanctuario')).toBe('moon');
+    expect(resolveAtmosphere('tienda')).toBe('dawn');
     expect(resolveAtmosphere('story', null)).toBe('dawn');
     expect(resolveAtmosphere('experiencias', null)).toBe('dusk');
   });
@@ -72,11 +74,15 @@ describe('suggestNightAlternative', () => {
 /** Cada vista de un lugar sugiere su tema desde la ruta, en español y en inglés. */
 describe('la ruta sugiere el tema de cada lugar', () => {
   it.each([
-    ['/academia', 'dawn'],
-    ['/academia/c1', 'dawn'],
-    ['/academia/c1/3', 'dawn'],
-    ['/en/academy', 'dawn'],
-    ['/en/academy/c1/3', 'dawn'],
+    ['/academia', 'forest'],
+    ['/academia/c1', 'forest'],
+    ['/academia/c1/3', 'forest'],
+    ['/en/academy', 'forest'],
+    ['/en/academy/c1/3', 'forest'],
+    ['/descubrete', 'moon'],
+    ['/en/discover', 'moon'],
+    ['/mi-santuario', 'moon'],
+    ['/en/my-sanctuary', 'moon'],
     ['/tienda', 'dawn'],
     ['/en/store', 'dawn'],
     ['/experiencias', 'dusk'],

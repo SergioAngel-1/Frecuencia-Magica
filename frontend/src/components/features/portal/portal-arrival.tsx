@@ -21,7 +21,11 @@ export function PortalArrival() {
   const tAtmospheres = useTranslations('atmospheres');
   const { flow, pick } = useArrival({ restore: true });
 
-  const options = MOOD_IDS.map((id) => ({ id, label: tJournal(`moods.${id}`) }));
+  const options = MOOD_IDS.map((id) => ({
+    id,
+    label: tJournal(`moods.${id}`),
+    atmosphere: ARRIVALS[`mood:${id}`].atmosphere,
+  }));
   const selected = selectedMood(flow.key);
   const theme = flow.key ? ARRIVALS[flow.key].atmosphere : null;
 

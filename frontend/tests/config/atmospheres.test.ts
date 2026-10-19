@@ -31,14 +31,18 @@ describe('registro de atmósferas', () => {
       portal: 'night',
       home: 'night',
       auth: 'night',
-      descubrete: 'night',
+      descubrete: 'moon',
       resonario: 'night',
-      sanctuario: 'night',
-      academia: 'dawn',
+      sanctuario: 'moon',
+      academia: 'forest',
       tienda: 'dawn',
       experiencias: 'dusk',
       story: 'dawn',
     });
+  });
+
+  it('la historia del sitio usa los cinco temas: ninguno se queda sin lugar', () => {
+    expect(new Set(Object.values(PLACE_ATMOSPHERE))).toEqual(new Set(ATMOSPHERE_IDS));
   });
 
   it('hay cinco temas, y la noche es el primero', () => {

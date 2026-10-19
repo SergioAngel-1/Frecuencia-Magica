@@ -89,17 +89,23 @@ describe('respondToArrival', () => {
     expect(response.explanationKey).toBe(calm.explanationKey);
   });
 
-  it('`moon` sólo se ofrece entre las 21 h y las 5 h, y primero', () => {
+  it('«otra opción» ofrece los otros cuatro temas, y de noche la luna va primero', () => {
     const night = respondToArrival('mood:calm', { catalog: AUDIOS, hour: NIGHT });
     expect(night.otherAtmospheres[0]).toBe('moon');
+    expect(night.otherAtmospheres).toHaveLength(4);
+
+    const day = respondToArrival('mood:calm', { catalog: AUDIOS, hour: DAY });
+    expect(day.otherAtmospheres[0]).toBe('forest');
+    expect(day.otherAtmospheres).toContain('moon');
+    expect(day.otherAtmospheres).toHaveLength(4);
 
     for (const hour of [21, 23, 0, 4]) {
       const response = respondToArrival('mood:calm', { catalog: AUDIOS, hour });
-      expect(response.otherAtmospheres, `hora ${hour}`).toContain('moon');
+      expect(response.otherAtmospheres[0], `hora ${hour}`).toBe('moon');
     }
     for (const hour of [5, 12, 18, 20]) {
       const response = respondToArrival('mood:calm', { catalog: AUDIOS, hour });
-      expect(response.otherAtmospheres, `hora ${hour}`).not.toContain('moon');
+      expect(response.otherAtmospheres[0], `hora ${hour}`).not.toBe('moon');
     }
   });
 

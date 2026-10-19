@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { ArrivalCheckIn } from '@/components/features/arrival/arrival-check-in';
 import { ArrivalPanel } from '@/components/features/arrival/arrival-panel';
 import { Display, Kicker } from '@/components/ui';
+import { ARRIVALS } from '@/config/arrivals';
 import { useArrival } from '@/hooks/use-arrival';
 import { selectedMood } from '@/lib/arrival/selected-mood';
 import { MOOD_IDS } from '@/types/mood';
@@ -20,7 +21,11 @@ export function ArrivalSection() {
   const tJournal = useTranslations('journal');
   const { flow, atmosphere, choose, step, other, stop } = useArrival({ restore: true });
 
-  const options = MOOD_IDS.map((id) => ({ id, label: tJournal(`moods.${id}`) }));
+  const options = MOOD_IDS.map((id) => ({
+    id,
+    label: tJournal(`moods.${id}`),
+    atmosphere: ARRIVALS[`mood:${id}`].atmosphere,
+  }));
   const returning = flow.key !== null;
 
   return (

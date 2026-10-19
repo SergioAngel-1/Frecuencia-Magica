@@ -45,31 +45,37 @@ describe('registro de llegadas (ARRIVALS)', () => {
     }
   });
 
-  it('la tabla de §5.3 fija las atmósferas de los estados', () => {
-    expect(ARRIVALS['mood:tiredness'].atmosphere).toBe('dusk');
+  it('los estados reparten los cinco temas: ninguno se queda sin estado', () => {
     expect(ARRIVALS['mood:calm'].atmosphere).toBe('dawn');
-    expect(ARRIVALS['mood:nostalgia'].atmosphere).toBe('dusk');
-    expect(ARRIVALS['mood:sadness'].atmosphere).toBe('dusk');
+    expect(ARRIVALS['mood:tiredness'].atmosphere).toBe('dusk');
+    expect(ARRIVALS['mood:nostalgia'].atmosphere).toBe('moon');
+    expect(ARRIVALS['mood:sadness'].atmosphere).toBe('night');
     expect(ARRIVALS['mood:joy'].atmosphere).toBe('dawn');
-    expect(ARRIVALS['mood:gratitude'].atmosphere).toBe('dawn');
-    expect(ARRIVALS['mood:clarity'].atmosphere).toBe('dawn');
-    expect(ARRIVALS['mood:breathe'].atmosphere).toBe('dawn');
+    expect(ARRIVALS['mood:gratitude'].atmosphere).toBe('forest');
+    expect(ARRIVALS['mood:clarity'].atmosphere).toBe('moon');
+    expect(ARRIVALS['mood:breathe'].atmosphere).toBe('forest');
+
+    const used = new Set(MOOD_IDS.map((id) => ARRIVALS[`mood:${id}`].atmosphere));
+    expect(used).toEqual(new Set(ATMOSPHERE_IDS));
   });
 
   it('la intención fija su atmósfera (R27): Raíz y Renovación en bosque', () => {
     expect(ARRIVALS['intent:grounding'].atmosphere).toBe('forest');
     expect(ARRIVALS['intent:renewal'].atmosphere).toBe('forest');
     expect(ARRIVALS['intent:rest'].atmosphere).toBe('dusk');
+    expect(ARRIVALS['intent:bond'].atmosphere).toBe('dusk');
     expect(ARRIVALS['intent:calm'].atmosphere).toBe('dawn');
-    expect(ARRIVALS['intent:clarity'].atmosphere).toBe('dawn');
-    expect(ARRIVALS['intent:bond'].atmosphere).toBe('dawn');
+    expect(ARRIVALS['intent:clarity'].atmosphere).toBe('moon');
   });
 
   it('«Necesito respirar» abre la práctica de respiración, no una pista', () => {
     expect(ARRIVALS['mood:breathe'].practice).toBe('breathing');
   });
 
-  it('las atmósferas que se ofrecen como otra opción son de la paleta de ambientes', () => {
-    expect(ARRIVAL_ATMOSPHERES).toEqual(['dusk', 'dawn', 'forest', 'moon']);
+  it('«otra opción» ofrece los cinco temas, de día y de noche, en el orden de la hora', () => {
+    expect([...ARRIVAL_ATMOSPHERES.day].sort()).toEqual([...ATMOSPHERE_IDS].sort());
+    expect([...ARRIVAL_ATMOSPHERES.night].sort()).toEqual([...ATMOSPHERE_IDS].sort());
+    expect(ARRIVAL_ATMOSPHERES.night[0]).toBe('moon');
+    expect(ARRIVAL_ATMOSPHERES.day[0]).toBe('dawn');
   });
 });

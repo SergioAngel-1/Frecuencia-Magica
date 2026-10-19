@@ -215,7 +215,7 @@ describe('atmosphereBootScript', () => {
 
   it('usa el lugar de la URL cruda aunque localStorage no sea legible', () => {
     const fakeWindow = {
-      location: { pathname: '/academia' },
+      location: { pathname: '/tienda' },
       localStorage: {
         getItem: () => {
           throw new Error('SecurityError');

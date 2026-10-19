@@ -63,3 +63,4 @@ export { Swap } from './swap';
 export { Stat, type StatSize, type StatTone } from './stat';
 export { StepProgress, type StepProgressProps } from './step-progress';
 export { Textarea, type TextareaProps, type TextareaVariant } from './textarea';
+export { ThemeSwatch, type ThemeSwatchSize } from './theme-swatch';

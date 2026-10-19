@@ -16,6 +16,7 @@ const MAY_SET_ATTRIBUTE = new Set([
   'app/[locale]/layout.tsx',
   'components/world/atmosphere-provider.tsx',
   'components/world/atmosphere-backdrop.tsx',
+  'components/ui/theme-swatch.tsx',
   'components/layout/theme-switcher.tsx',
   'lib/atmosphere/boot-script.ts',
 ]);

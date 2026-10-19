@@ -97,12 +97,13 @@ describe('flujo de llegada (función pura)', () => {
     expect(nextAtmosphere(response, 'night')).toBe(response.atmosphere);
   });
 
-  it('de noche «otra opción» ofrece la luna primero; de día no aparece', () => {
+  it('de noche «otra opción» ofrece la luna primero; de día, la luz del amanecer o el bosque', () => {
     const night = chooseArrival('mood:calm', NIGHT).response!;
     expect(nextAtmosphere(night, night.atmosphere)).toBe('moon');
 
-    const day = chooseArrival('mood:calm', DAY);
-    expect(day.response!.otherAtmospheres).not.toContain('moon');
+    const day = chooseArrival('mood:calm', DAY).response!;
+    expect(day.otherAtmospheres[0]).toBe('forest');
+    expect(day.otherAtmospheres).toContain('moon');
   });
 });
 

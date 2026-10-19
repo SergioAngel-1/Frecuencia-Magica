@@ -37,12 +37,12 @@ export const ARRIVALS: Record<ArrivalKey, ArrivalEntry> = {
     explanationKey: 'moods.tiredness.explanation',
   },
   'mood:nostalgia': {
-    atmosphere: 'dusk',
+    atmosphere: 'moon',
     kinds: ['melody', 'nature', 'guided'],
     explanationKey: 'moods.nostalgia.explanation',
   },
   'mood:sadness': {
-    atmosphere: 'dusk',
+    atmosphere: 'night',
     kinds: ['melody', 'nature', 'guided'],
     explanationKey: 'moods.sadness.explanation',
   },
@@ -52,17 +52,17 @@ export const ARRIVALS: Record<ArrivalKey, ArrivalEntry> = {
     explanationKey: 'moods.joy.explanation',
   },
   'mood:gratitude': {
-    atmosphere: 'dawn',
+    atmosphere: 'forest',
     kinds: ['melody', 'nature'],
     explanationKey: 'moods.gratitude.explanation',
   },
   'mood:clarity': {
-    atmosphere: 'dawn',
+    atmosphere: 'moon',
     kinds: ['melody', 'nature', 'binaural'],
     explanationKey: 'moods.clarity.explanation',
   },
   'mood:breathe': {
-    atmosphere: 'dawn',
+    atmosphere: 'forest',
     kinds: ['nature', 'melody'],
     explanationKey: 'moods.breathe.explanation',
     practice: 'breathing',
@@ -78,7 +78,7 @@ export const ARRIVALS: Record<ArrivalKey, ArrivalEntry> = {
     explanationKey: 'intents.grounding.explanation',
   },
   'intent:clarity': {
-    atmosphere: 'dawn',
+    atmosphere: 'moon',
     kinds: ['melody', 'nature', 'binaural'],
     explanationKey: 'intents.clarity.explanation',
   },
@@ -88,7 +88,7 @@ export const ARRIVALS: Record<ArrivalKey, ArrivalEntry> = {
     explanationKey: 'intents.rest.explanation',
   },
   'intent:bond': {
-    atmosphere: 'dawn',
+    atmosphere: 'dusk',
     kinds: ['melody', 'nature'],
     explanationKey: 'intents.bond.explanation',
   },
@@ -127,10 +127,14 @@ export const ATMOSPHERE_SOUNDS: Partial<Record<AtmosphereId, readonly string[]>>
 export const ARRIVAL_FALLBACK: ArrivalKey = 'mood:calm';
 
 /**
- * Atmósferas que se ofrecen como «otra opción». `moon` sólo aparece de noche
- * (lo decide `respondToArrival` por la hora).
+ * Los cinco temas, en el orden en que se ofrecen como «otra opción» según la hora: de día
+ * primero los de luz y tierra, de noche primero la luna y la noche (el tema de la propia
+ * entrada nunca se ofrece). Cada estado propone el suyo; «otra opción» recorre el resto.
  */
-export const ARRIVAL_ATMOSPHERES: readonly AtmosphereId[] = ['dusk', 'dawn', 'forest', 'moon'];
+export const ARRIVAL_ATMOSPHERES: Record<'day' | 'night', readonly AtmosphereId[]> = {
+  day: ['dawn', 'forest', 'dusk', 'moon', 'night'],
+  night: ['moon', 'night', 'dusk', 'forest', 'dawn'],
+};
 
 /**
  * Clave de `localStorage` de la última llegada elegida. Sólo guarda *qué* estado

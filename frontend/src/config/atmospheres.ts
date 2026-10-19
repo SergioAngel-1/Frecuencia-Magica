@@ -44,17 +44,20 @@ export const ATMOSPHERES: Record<AtmosphereId, AtmosphereDefinition> = {
 };
 
 /**
- * Tema que cada lugar sugiere mientras la persona no elige uno («Automático»).
- * Una elección manual manda en todos los lugares.
+ * Tema que cada lugar sugiere mientras la persona no elige uno («Automático»). Una elección
+ * manual manda en todos los lugares. Los cinco temas cuentan una sola historia: se cruza el
+ * umbral de noche, se vuelve hacia dentro bajo la luna (Descúbrete, Mi Santuario), se aprende
+ * entre árboles (Academia), se escoge con la luz de la mañana (Tienda, Sobre Marisol) y se
+ * celebra al atardecer (Experiencias). El sonido, que es cósmico, se queda en la noche.
  */
 export const PLACE_ATMOSPHERE: Record<Place, AtmosphereId> = {
   portal: 'night',
   home: 'night',
   auth: 'night',
-  descubrete: 'night',
+  descubrete: 'moon',
   resonario: 'night',
-  sanctuario: 'night',
-  academia: 'dawn',
+  sanctuario: 'moon',
+  academia: 'forest',
   tienda: 'dawn',
   experiencias: 'dusk',
   story: 'dawn',

@@ -23,7 +23,7 @@ const FILL_ORDER: readonly AudioKind[] = ['nature', 'binaural', 'frequency'];
 export type ArrivalContext = {
   /** Catálogo del que salen las alternativas (sólo se usan las reproducibles). */
   catalog: readonly Audio[];
-  /** Hora local, 0–23. Decide si la noche se ofrece como otra opción. */
+  /** Hora local, 0–23. Decide qué temas se ofrecen primero como otra opción. */
   hour: number;
   /**
    * Pista que Descúbrete recomienda en su disco. Si casa con la intención de la
@@ -38,7 +38,7 @@ export type ArrivalResponse = {
   atmosphere: AtmosphereId;
   /** Alternativas reproducibles, en orden de escucha, sin repetir tipo. */
   alternatives: readonly Audio[];
-  /** Otras atmósferas para «elegir otra opción», en orden; `moon` sólo de noche. */
+  /** Los otros cuatro temas para «elegir otra opción», en orden: los de la hora primero. */
   otherAtmospheres: readonly AtmosphereId[];
   explanationKey: ArrivalExplanationKey;
   practice?: 'breathing';
@@ -124,9 +124,11 @@ export function respondToArrival(
     ...rest.filter((audio) => audio.kind === 'frequency'),
   ];
 
-  const others = ARRIVAL_ATMOSPHERES.filter((id) => id !== entry.atmosphere && id !== 'moon');
-  // De noche, la luna va primero: es la otra opción que tiene sentido ahora.
-  const otherAtmospheres: readonly AtmosphereId[] = night ? ['moon', ...others] : others;
+  // Los cinco temas son estados posibles: «otra opción» recorre los otros cuatro, con los de la
+  // hora primero (de noche, la luna).
+  const otherAtmospheres: readonly AtmosphereId[] = ARRIVAL_ATMOSPHERES[
+    night ? 'night' : 'day'
+  ].filter((id) => id !== entry.atmosphere);
 
   return {
     key: resolved,

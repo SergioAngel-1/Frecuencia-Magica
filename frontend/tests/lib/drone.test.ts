@@ -33,8 +33,8 @@ describe('voiceFrequencies', () => {
 describe('baseNoteFor', () => {
   it('keeps the realm note in the default theme of a place', () => {
     expect(baseNoteFor('night', 'resonario')).toBe(130.8);
-    expect(baseNoteFor('night', 'descubrete')).toBe(98);
-    expect(baseNoteFor('night', 'sanctuario')).toBe(103.8);
+    expect(baseNoteFor('moon', 'descubrete')).toBe(98);
+    expect(baseNoteFor('moon', 'sanctuario')).toBe(103.8);
   });
 
   it('uses the note of the theme the person chose', () => {
@@ -44,7 +44,7 @@ describe('baseNoteFor', () => {
   });
 
   it('keeps the realm note when the theme is the one the place suggests', () => {
-    expect(baseNoteFor('dawn', 'academia')).toBe(146.8);
+    expect(baseNoteFor('forest', 'academia')).toBe(baseNoteForRealm('academia'));
     expect(baseNoteFor('dawn', 'tienda')).toBe(116.5);
   });
 
