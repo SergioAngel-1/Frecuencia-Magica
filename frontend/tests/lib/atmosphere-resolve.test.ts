@@ -1,8 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
-import type { AtmosphereId } from '@/types/atmosphere';
+import { ATMOSPHERE_IDS, PLACE_ATMOSPHERE } from '@/config/atmospheres';
 import { resolveAtmosphere, suggestNightAlternative } from '@/lib/atmosphere/resolve';
 import { placeFromPathname, realmFromPathname } from '@/lib/realm-from-pathname';
+import type { AtmosphereId, Place } from '@/types/atmosphere';
+
+const PLACES = Object.keys(PLACE_ATMOSPHERE) as Place[];
 
 describe('resolveAtmosphere', () => {
   it('la elección de la persona gana en todos los lugares', () => {
@@ -36,6 +39,27 @@ describe('resolveAtmosphere', () => {
     expect(resolveAtmosphere('resonario', null, null)).toBe('night');
     expect(resolveAtmosphere('resonario', null, undefined)).toBe('night');
     expect(resolveAtmosphere('resonario', undefined, null)).toBe('night');
+  });
+});
+
+describe('la elección manda sobre el lugar y sobre la escucha', () => {
+  it.each(PLACES)('en %s, cualquier elección gana con y sin escucha', (place) => {
+    for (const choice of ATMOSPHERE_IDS) {
+      expect(resolveAtmosphere(place, choice)).toBe(choice);
+
+      for (const listening of ATMOSPHERE_IDS) {
+        expect(resolveAtmosphere(place, choice, listening)).toBe(choice);
+      }
+    }
+  });
+
+  it.each(PLACES)('en %s, sin elección manda la escucha o, en su defecto, el lugar', (place) => {
+    expect(resolveAtmosphere(place, null)).toBe(PLACE_ATMOSPHERE[place]);
+
+    for (const listening of ATMOSPHERE_IDS) {
+      expect(resolveAtmosphere(place, null, listening)).toBe(listening);
+      expect(resolveAtmosphere(place, undefined, listening)).toBe(listening);
+    }
   });
 });
 
