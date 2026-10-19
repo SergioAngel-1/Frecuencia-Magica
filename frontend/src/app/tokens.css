@@ -425,7 +425,7 @@
   --atmo-backdrop: radial-gradient(140% 100% at 50% -10%, #16273f 0%, #0f1b2e 45%, #0a1220 100%);
 }
 
-/* Atardecer: cielo de crepúsculo, del índigo al ciruela y al rosa vino, con albaricoque y rosa de acento. Sin rojo intenso ni marrón sucio. */
+/* Atardecer: cielo de crepúsculo, del índigo al vino y al granate cálido, con albaricoque y rosa de acento. Poco violeta (el ciruela puro era una masa morada contra fotos albaricoque), sin rojo intenso ni marrón sucio. */
 [data-atmosphere='dusk'] {
   --color-fg: #f7f4ea;
   --color-fg-body: rgb(247 244 234 / 0.82);
@@ -438,21 +438,21 @@
   --color-line: rgb(238 160 150 / 0.22);
   --color-line-strong: rgb(240 176 150 / 0.66);
   --color-surface: rgb(255 232 236 / 0.05);
-  --color-surface-strong: rgb(26 17 40 / 0.74);
+  --color-surface-strong: rgb(28 16 36 / 0.74);
   --color-on-accent: #2a1a30;
   --color-on-media: var(--color-ivory);
-  --scrim: 27 18 44;
-  --scrim-deep: 17 11 30;
+  --scrim: 27 16 40;
+  --scrim-deep: 18 10 26;
   --halo: 238 160 120;
   --color-scrim: rgb(var(--scrim));
   --color-scrim-deep: rgb(var(--scrim-deep));
   --color-halo: rgb(var(--halo));
   --nebula-a: 214 120 130;
   --nebula-b: 240 170 110;
-  --nebula-c: 170 140 210;
-  --nebula-boost: 1.5;
-  --atmo-bg: linear-gradient(180deg, #1a1431 0%, #2a1a3c 55%, #432239 100%);
-  --atmo-backdrop: linear-gradient(160deg, #1f1736 0%, #2c1b3e 55%, #432239 100%);
+  --nebula-c: 200 130 160;
+  --nebula-boost: 1.25;
+  --atmo-bg: linear-gradient(180deg, #171a37 0%, #331a3a 52%, #52232e 100%);
+  --atmo-backdrop: linear-gradient(160deg, #1b1b3a 0%, #371b3b 55%, #52232e 100%);
 }
 
 /* Amanecer: luz de piel, de crema melocotón a arena rosada, con tinta marino. Esquema claro y cálido. */

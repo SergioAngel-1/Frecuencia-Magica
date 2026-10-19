@@ -77,7 +77,7 @@ export const SCENE_THEMES: Record<AtmosphereId, SceneTheme> = {
     nebulae: [
       [214, 120, 130],
       [240, 170, 110],
-      [170, 140, 210],
+      [200, 130, 160],
     ],
     nebulaAlpha: 0.18,
   },

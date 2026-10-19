@@ -20,7 +20,7 @@ const PALETTE = new Set([
 /** Excepciones con dueño: archivo -> hex permitidos y por qué. */
 const FILE_EXCEPTIONS: Record<string, string[]> = {
   // Color de la barra (`theme-color`) de cada tema.
-  'config/atmospheres.ts': ['#2a1a3c', '#f0d6c3', '#0b1426', '#1e3328'],
+  'config/atmospheres.ts': ['#331a3a', '#f0d6c3', '#0b1426', '#1e3328'],
   // Los nueve tintes de portada viven aquí, con nombre (ver DESIGN.md).
   'config/covers.ts': [
     '#3a5a6e',

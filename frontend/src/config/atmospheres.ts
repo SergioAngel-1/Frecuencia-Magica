@@ -19,7 +19,7 @@ export const ATMOSPHERES: Record<AtmosphereId, AtmosphereDefinition> = {
   },
   dusk: {
     scheme: 'dark',
-    themeColor: '#2A1A3C',
+    themeColor: '#331A3A',
     engine: { canvas: 1, nebula: 1, figures: 0.9 },
     droneNote: 87.3,
   },
