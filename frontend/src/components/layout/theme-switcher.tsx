@@ -161,7 +161,7 @@ export function ThemeSwitcher() {
               <section className="mb-4">
                 <p className={FEELING_TITLE_CLASSES}>{t('switcher.feelingLabel')}</p>
                 <p className={FEELING_DESCRIPTION_CLASSES}>{t('switcher.feelingDescription')}</p>
-                <div className="mt-3 grid grid-cols-2 gap-2 [&>*:last-child:nth-child(odd)]:col-span-2">
+                <div className="mt-3 grid grid-cols-2 gap-2 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:w-[calc(50%-0.25rem)] [&>*:last-child:nth-child(odd)]:justify-self-center">
                   {feelingOptions().map((mood) => (
                     <MoodOption
                       key={mood}

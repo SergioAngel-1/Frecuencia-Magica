@@ -34,7 +34,9 @@ export function ArrivalCheckIn({ legend, options, selected, onSelect }: ArrivalC
           onClick={() => onSelect(option.id)}
           aria-pressed={selected === option.id}
           className={cn(
-            'rounded-pill text-label tracking-ui flex min-h-11 flex-1 basis-[86px] items-center justify-center gap-2 border px-3 py-2 font-sans uppercase transition-[color,background-color,border-color] duration-300',
+            // En móvil, tres columnas del mismo ancho: la que queda sin par se centra sin estirarse, para que
+            // ninguna tenga más peso visual. Desde 640 px, el ancho de su contenido.
+            'rounded-pill text-label tracking-ui flex min-h-11 w-[calc((100%-1rem)/3)] flex-none items-center justify-center gap-2 border px-3 py-2 font-sans uppercase transition-[color,background-color,border-color] duration-300 sm:w-auto sm:min-w-[86px]',
             selected === option.id
               ? 'bg-accent/15 text-accent border-accent/40'
               : 'bg-surface text-fg-muted border-line hover:border-fg/20',
