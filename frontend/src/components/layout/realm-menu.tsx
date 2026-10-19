@@ -74,7 +74,7 @@ export function RealmMenu() {
         aria-expanded={open}
         aria-label={tHeader('openMenu')}
         data-magnetic
-        className="text-fg-soft hover:text-fg rounded-pill border-line-strong bg-surface text-meta tracking-ui inline-flex min-h-11 items-center gap-2 border px-4 font-sans transition-[color,background-color] duration-300 ease-out"
+        className="text-fg-soft hover:text-fg rounded-pill border-line-strong bg-surface text-meta tracking-ui inline-flex min-h-11 items-center gap-2 border px-4 font-sans transition-[color,background-color] duration-300 ease-out max-md:min-w-11 max-md:justify-center max-md:px-0"
       >
         <svg
           width="18"
@@ -88,7 +88,7 @@ export function RealmMenu() {
         >
           <path d="M5 8.5h14M5 15.5h9" />
         </svg>
-        <span>{tHeader('menu')}</span>
+        <span className="max-md:sr-only">{tHeader('menu')}</span>
       </button>
 
       <Modal

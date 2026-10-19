@@ -5,7 +5,7 @@ import { EXPERIENCES } from '@/data/experiences';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ExperienceRow } from './experience-row';
-import { BandChain, Display, Float, Kicker } from '@/components/ui';
+import { Display, Float, Kicker } from '@/components/ui';
 
 export type ExperienceMedia = {
   hero: EditorialMedia;
@@ -17,7 +17,7 @@ export type ExperienceMedia = {
 
 type ExperienceListProps = {
   media: ExperienceMedia;
-  /** Héroe del realm: banda consecutiva de la destacada, se encadena con ella. */
+  /** Héroe del realm: la banda que abre la vista. */
   hero: ReactNode;
 };
 
@@ -34,28 +34,13 @@ export function ExperienceList({ media, hero }: ExperienceListProps) {
 
   return (
     <>
-      <BandChain>
-        {hero}
-        <ExperienceRow
-          bookLabel={t('book')}
-          dateCount={EXPERIENCES.length}
-          dateIndex={0}
-          dateLabel={t('dateLabel')}
-          durationLabel={t('durationLabel')}
-          description={t('featuredDescription')}
-          experience={featured}
-          media={{ ...media.featured, band: featured.band }}
-          mode={t(`modes.${featured.mode}`)}
-          modeLabel={t('featuredBadge')}
-          title={titleFor(featured)}
-          featured
-          className="fm-editorial-full-bleed"
-        />
-      </BandChain>
+      {hero}
 
+      {/* El encabezado es texto sobre la noche; la destacada es una tarjeta con
+          foto dentro del eje de página, no otra banda a sangre. */}
       <section
         aria-labelledby="experiences-archive-title"
-        className="fm-editorial-full-bleed fm-container py-section"
+        className="fm-editorial-full-bleed fm-container pt-block pb-section"
         data-editorial-archive="true"
       >
         <div className="max-w-measure-full mb-8">
@@ -66,6 +51,21 @@ export function ExperienceList({ media, hero }: ExperienceListProps) {
         </div>
 
         <div className="flex flex-col gap-5">
+          <ExperienceRow
+            bookLabel={t('book')}
+            dateCount={EXPERIENCES.length}
+            dateIndex={0}
+            dateLabel={t('dateLabel')}
+            durationLabel={t('durationLabel')}
+            description={t('featuredDescription')}
+            experience={featured}
+            media={{ ...media.featured, band: featured.band }}
+            mode={t(`modes.${featured.mode}`)}
+            modeLabel={t('featuredBadge')}
+            title={titleFor(featured)}
+            featured
+          />
+
           {others.map((exp, index) => (
             <Float key={exp.id} order={index}>
               <ExperienceRow

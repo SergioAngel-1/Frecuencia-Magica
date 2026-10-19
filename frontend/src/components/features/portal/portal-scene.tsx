@@ -3,6 +3,7 @@ import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { Halo, Isotype, OrbitalRings } from '@/components/world';
 
 import { EnterButton } from './enter-button';
+import { PortalArrival } from './portal-arrival';
 
 type PortalSceneProps = {
   kicker: string;
@@ -109,10 +110,10 @@ export function PortalScene({
           className="mx-auto flex w-full max-w-[820px] flex-col items-center"
           style={{ animation: 'fm-fade-in 2s ease both' }}
         >
-          {/* Crece con el alto que deja libre el resto de la escena (~510/580 px), sin
-              empujar el CTA ni la pista fuera de la primera pantalla; nunca baja del
-              tamaño anterior (128/190 px). */}
-          <div className="animate-fm-float relative mb-[22px] size-[clamp(128px,calc(100svh_-_510px),240px)] md:mb-[26px] md:size-[clamp(190px,calc(100svh_-_580px),340px)]">
+          {/* Crece con el alto que deja libre el resto de la escena (~660/700 px, con el
+              bloque «¿Cómo llegas hoy?»), sin empujar el CTA ni la pista fuera de la
+              primera pantalla; nunca baja del tamaño anterior (128/190 px). */}
+          <div className="animate-fm-float relative mb-[22px] size-[clamp(128px,calc(100svh_-_660px),240px)] md:mb-[26px] md:size-[clamp(190px,calc(100svh_-_700px),340px)]">
             <Halo
               color="rgb(var(--halo) / 0.22), color-mix(in srgb, var(--color-accent-2) 10%, transparent) 55%"
               inset="-8%"
@@ -139,10 +140,12 @@ export function PortalScene({
 
           <Prose
             size="lg"
-            className="text-fg-soft mx-auto mt-[24px] mb-[38px] max-w-[520px] leading-[1.75] md:mb-[46px]"
+            className="text-fg-soft mx-auto mt-[24px] mb-[26px] max-w-[520px] leading-[1.75] md:mb-[30px]"
           >
             {subtitle}
           </Prose>
+
+          <PortalArrival />
 
           <EnterButton>{cta}</EnterButton>
         </div>

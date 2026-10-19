@@ -42,6 +42,15 @@ export function chooseArrival(key: ArrivalKey, context: ArrivalContext): Arrival
   return { key, response: respondToArrival(key, context), index: 0 };
 }
 
+/**
+ * Restaura la última entrada elegida (guardada en `arrival-store`) al volver. Devuelve
+ * el mismo flujo que `chooseArrival`, pero este camino nunca suena: el sonido lo abre
+ * el hook al elegir, no al restaurar. Así la Home muestra el panel sin reproducir nada.
+ */
+export function restoreArrival(key: ArrivalKey, context: ArrivalContext): ArrivalFlow {
+  return chooseArrival(key, context);
+}
+
 /** La alternativa en curso, o `null` sin entrada o sin alternativas. */
 export function currentAlternative(flow: ArrivalFlow): Audio | null {
   return flow.response?.alternatives[flow.index] ?? null;

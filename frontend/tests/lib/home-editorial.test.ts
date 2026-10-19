@@ -145,10 +145,14 @@ describe('home editorial composition contracts', () => {
     }
 
     expect(homeSources).toContain('<FullBleedSection');
-    expect(homeSources).toContain('<EditorialBanner');
+    // «Elige por dónde entrar» es una tarjeta enmarcada (`FramedHeading`): no pega una banda antes del bento.
+    expect(readSource('components/features/home/realms-grid.tsx')).not.toContain(
+      '<EditorialBanner',
+    );
     // La frecuencia del día pinta su foto a su ratio, anclada, dentro de la cadena.
     expect(homeSources).toContain('mode="anchored"');
-    expect(homeSources).toContain('<BandChain');
+    // La Home no encadena bandas: entre dos bandas siempre hay contenido sobre la noche.
+    expect(homeSources).not.toContain('<BandChain');
     expect(homeSources).toContain('<PageShell');
     expect(homeSources).toContain('export function SiteFooter');
   });

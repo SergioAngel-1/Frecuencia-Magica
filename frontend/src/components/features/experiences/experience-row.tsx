@@ -65,7 +65,7 @@ export function ExperienceRow({
     return (
       <article
         className={cn(
-          'text-fg relative isolate min-h-[clamp(430px,42vw,620px)] overflow-hidden',
+          'rounded-card-lg text-fg relative isolate min-h-[clamp(430px,42vw,620px)] overflow-hidden',
           className,
         )}
         data-editorial-media="experiences.featured"
@@ -74,9 +74,7 @@ export function ExperienceRow({
         <div className="absolute inset-0">
           <EditorialImage
             aspect="16:8"
-            bandMedia
             className="h-full"
-            fade="both"
             focalPoint={media.position}
             media={media}
             overlay="left"

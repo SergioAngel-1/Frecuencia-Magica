@@ -1,8 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { ResonarioSystem } from '@/components/features/resonario/resonario-system';
-import { PageShell, RealmHero } from '@/components/layout';
-import { BandChain, EditorialBanner } from '@/components/ui';
+import { FramedHeading, PageShell, RealmHero } from '@/components/layout';
 import { AUDIO_KINDS } from '@/config/audio-kinds';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -27,6 +26,9 @@ export default async function ResonarioPage({ params }: PageProps) {
   ]);
   const resonarioMedia = {
     hero: resolveEditorialMedia('resonario.hero', { alt: t('media.alt.hero') }),
+    archive: resolveEditorialMedia('resonario.archive-banner', {
+      alt: t('media.alt.archiveBanner'),
+    }),
     featured: resolveEditorialMedia('resonario.featured', {
       alt: t('media.alt.featured'),
       sizes: '(min-width: 1024px) 720px, 100vw',
@@ -50,31 +52,30 @@ export default async function ResonarioPage({ params }: PageProps) {
     }),
   };
 
-  const archiveBanner = resolveEditorialMedia('resonario.archive-banner', {
-    alt: t('media.alt.archiveBanner'),
-  });
-
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      {/* El héroe y el banner del archivo son bandas consecutivas: se tocan sin
-          hueco. Los filtros bajan junto al sistema que filtran. */}
-      <BandChain>
-        <RealmHero
-          media={resonarioMedia.hero}
-          kicker={t('kicker')}
-          title={t('title')}
-          description={t('description')}
-        />
-        <EditorialBanner
-          media={archiveBanner}
-          eyebrow={t('archive.eyebrow')}
-          title={t('archive.title')}
-          body={t('archive.description')}
-        />
-      </BandChain>
+      <RealmHero
+        media={resonarioMedia.hero}
+        kicker={t('kicker')}
+        title={t('title')}
+        description={t('description')}
+      />
 
+      {/* Tras el héroe, el archivo es una tarjeta enmarcada y no otra banda a sangre:
+          dos bandas no van seguidas (ver `band-rhythm.test`). */}
       <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
-        <ResonarioSystem media={resonarioMedia} />
+        <FramedHeading
+          media={resonarioMedia.archive}
+          kicker={t('archive.eyebrow')}
+          title={t('archive.title')}
+          description={t('archive.description')}
+          titleId="resonario-archive-title"
+          tone="gold"
+        />
+
+        <div className="mt-block">
+          <ResonarioSystem media={resonarioMedia} />
+        </div>
       </div>
     </PageShell>
   );

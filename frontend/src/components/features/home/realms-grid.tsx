@@ -1,4 +1,4 @@
-import { EditorialBanner } from '@/components/ui';
+import { FramedHeading } from '@/components/layout';
 import { WaveSeparator } from '@/components/world';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -52,21 +52,25 @@ export function RealmsGrid({
   storeCta,
   featuredBadge,
 }: RealmsGridProps) {
-  const realmsMedia = media;
   const panels = realms.slice(0, 5);
 
   return (
-    <section className="fm-editorial-full-bleed">
-      <EditorialBanner
-        media={realmsMedia}
-        eyebrow={kicker}
-        title={title}
-        body={intro}
-        tone="lav"
-        className="w-full"
-      />
+    <section
+      className="fm-editorial-full-bleed text-fg py-section relative"
+      aria-labelledby="realms-grid-title"
+    >
+      {/* Tarjeta enmarcada, no banda a sangre: tras el héroe la Home no pega dos bandas. */}
+      <div className="fm-container">
+        <FramedHeading
+          media={media}
+          kicker={kicker}
+          title={title}
+          description={intro}
+          titleId="realms-grid-title"
+        />
+      </div>
 
-      <div className="fm-editorial-full-bleed fm-container mt-block grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-12">
+      <div className="fm-container mt-block grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-12">
         <RealmCard
           href={academia.href}
           band={academia.band}

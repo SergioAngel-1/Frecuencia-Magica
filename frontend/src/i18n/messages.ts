@@ -22,6 +22,8 @@ export const BASE_NAMESPACES = [
   'states',
   'atmospheres',
   'portal',
+  'arrival',
+  'journal',
   'discover',
   'resonario',
   'player',

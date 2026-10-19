@@ -83,6 +83,10 @@
     "cta": "Cruzar el portal",
     "crossing": "Cruzando el portal…",
     "hint": "La luz que buscas ya vive en ti",
+    "arrival": {
+      "optional": "Opcional: puedes cruzar sin elegir.",
+      "proposed": "Te acompaña el tema {name}."
+    },
     "media": {
       "alt": {
         "hero": "Luz y cosmos en el umbral de Frecuencia Mágica",
@@ -954,6 +958,8 @@
     "kicker": "Llegada",
     "title": "¿Cómo llegas hoy?",
     "intro": "Elige lo que más se parezca a ti. La atmósfera cambia y te ofrecemos algo para escuchar, sin prisa.",
+    "returnTitle": "Tu llegada",
+    "returnIntro": "Esto es lo que te acompaña hoy. Puedes cambiarlo cuando quieras.",
     "legend": "Cómo llegas",
     "silent": "El sonido sólo empieza cuando tú lo eliges.",
     "listenKind": "Para escuchar",

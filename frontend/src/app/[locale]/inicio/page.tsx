@@ -22,7 +22,7 @@ import { buildStoreItems } from '@/lib/home/store-items';
 import { featuredProducts } from '@/lib/store/showcase';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { videoPosterMedia } from '@/lib/video/poster';
-import { ArrowGlyph, arrowLinkClasses, BandChain } from '@/components/ui';
+import { ArrowGlyph, arrowLinkClasses } from '@/components/ui';
 
 type PageProps = { params: LocaleParams };
 
@@ -57,56 +57,68 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      {/* Ritmo de la Home (spec §10): héroe (noche) → frecuencia del día →
-          «¿Cómo llegas hoy?» (amanecer) → tienda → bento de realms (noche) →
-          Marisol → pie. Las bandas consecutivas se encadenan sin hueco y se
-          encuentran en la noche; las secciones con atmósfera funden su borde
-          con ella y entre bloques que no son bandas el ritmo es `section`. */}
-      <BandChain>
-        <HeroSection
-          media={homeMedia.hero}
-          kicker={t('heroKicker')}
-          titlePre={t('heroTitlePre')}
-          titleEm={t('heroTitleEm')}
-          subtitle={t('heroSubtitle')}
-          cta1={t('heroCta1')}
-          cta2={t('heroCta2')}
-          stats={[
-            { value: t('stats.daily.value'), label: t('stats.daily.label') },
-            { value: t('stats.meditations.value'), label: t('stats.meditations.label') },
-            { value: t('stats.realms.value'), label: t('stats.realms.label') },
-          ]}
-        />
+      {/* Ritmo de la Home (spec §3.3): héroe (banda, ~70vh) → «Elige por dónde
+          entrar» (noche) → «Tu llegada» (noche) → frecuencia del día (banda) →
+          tienda (noche) → membresía (banda) → Marisol con su video (noche) → pie.
+          Nunca dos bandas seguidas: entre dos bandas siempre hay un bloque de
+          contenido sobre la noche, así que la Home no usa `BandChain`. Ninguna
+          sección trae margen exterior: el aire entre bloques es el `py-section`
+          de cada una (padding interior). */}
+      <HeroSection
+        media={homeMedia.hero}
+        kicker={t('heroKicker')}
+        titlePre={t('heroTitlePre')}
+        titleEm={t('heroTitleEm')}
+        subtitle={t('heroSubtitle')}
+        cta1={t('heroCta1')}
+        cta2={t('heroCta2')}
+        stats={[
+          { value: t('stats.daily.value'), label: t('stats.daily.label') },
+          { value: t('stats.meditations.value'), label: t('stats.meditations.label') },
+          { value: t('stats.realms.value'), label: t('stats.realms.label') },
+        ]}
+      />
 
-        <DailyFrequency
-          media={homeMedia.daily}
-          hz={firstAudio.hz}
-          band={firstAudio.band}
-          audioId={firstAudio.id}
-          kicker={t('daily.kicker')}
-          title={t('daily.title')}
-          description={t('daily.description')}
-          meta={`${t('daily.meta')} · ${firstAudio.duration ?? ''}`}
-          cta={t('daily.cta')}
-          resonario={{
-            kicker: t('audio.kicker'),
-            title: t('audio.title'),
-            action: (
-              <Link href="/resonario" className={arrowLinkClasses('teal')}>
-                {common('seeAll')}
-                <ArrowGlyph />
-              </Link>
-            ),
-            audios: resonarioAudios,
-          }}
-        />
-      </BandChain>
+      <RealmsGrid
+        media={homeMedia.realms}
+        kicker={t('realms.kicker')}
+        title={t('realms.title')}
+        intro={t('realms.intro')}
+        academia={{
+          ...bento.academia,
+          featuredCta: t('realms.featuredCta'),
+          description: t('realms.featuredDescription'),
+        }}
+        realms={bento.others}
+        storeCta={t('realms.storeCta')}
+        featuredBadge={t('realms.featuredBadge')}
+      />
 
-      {/* «¿Cómo llegas hoy?» no es una banda: va fuera de la cadena, con el ritmo
-          `section` que trae su propia sección. */}
       <ArrivalSection />
 
-      {/* Tienda: unos pocos productos y la puerta a la tienda. */}
+      <DailyFrequency
+        media={homeMedia.daily}
+        hz={firstAudio.hz}
+        band={firstAudio.band}
+        audioId={firstAudio.id}
+        kicker={t('daily.kicker')}
+        title={t('daily.title')}
+        description={t('daily.description')}
+        meta={`${t('daily.meta')} · ${firstAudio.duration ?? ''}`}
+        cta={t('daily.cta')}
+        resonario={{
+          kicker: t('audio.kicker'),
+          title: t('audio.title'),
+          action: (
+            <Link href="/resonario" className={arrowLinkClasses('teal')}>
+              {common('seeAll')}
+              <ArrowGlyph />
+            </Link>
+          ),
+          audios: resonarioAudios,
+        }}
+      />
+
       <StoreShowcase
         kicker={t('storeShowcase.kicker')}
         title={t('storeShowcase.title')}
@@ -115,26 +127,6 @@ export default async function HomePage({ params }: PageProps) {
         items={storeItems}
       />
 
-      <div className="py-section">
-        <RealmsGrid
-          media={homeMedia.realms}
-          kicker={t('realms.kicker')}
-          title={t('realms.title')}
-          intro={t('realms.intro')}
-          academia={{
-            ...bento.academia,
-            featuredCta: t('realms.featuredCta'),
-            description: t('realms.featuredDescription'),
-          }}
-          realms={bento.others}
-          storeCta={t('realms.storeCta')}
-          featuredBadge={t('realms.featuredBadge')}
-        />
-      </div>
-
-      {/* Ninguna sección trae su propio margen exterior: lo pone el contenedor.
-          La membresía sigue al bento y Marisol cierra la página antes de la
-          despedida del footer. */}
       <div className="pb-section relative">
         <MembershipSection
           media={homeMedia.membership}

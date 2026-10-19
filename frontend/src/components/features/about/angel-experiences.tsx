@@ -34,10 +34,11 @@ export function AngelExperiences({
 }: AngelExperiencesProps) {
   return (
     <div className="relative">
-      <div
-        aria-hidden="true"
-        className="bg-accent-3/10 pointer-events-none absolute top-1/2 right-[-12%] h-[420px] w-[420px] rounded-full blur-3xl"
-      />
+      {/* El halo se corta en el borde del viewport: sin esta caja sobresale y
+          deja una franja a la derecha de la página. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="bg-accent-3/10 absolute top-1/2 right-[-12%] h-[420px] w-[420px] rounded-full blur-3xl" />
+      </div>
       <EditorialBanner
         media={media}
         eyebrow={kicker}

@@ -531,3 +531,19 @@ Rama `feat/temas-globales` (base `30b3a27`). Spec: `docs/superpowers/specs/2026-
 - **Documentos (T6):** `DESIGN.md` § Atmósferas, `AGENTS.md`, `CLAUDE.md`, `frontend/docs/*`, showcase de `Branding/`.
 
 **Pendiente:** generar con ChatGPT las 38 variantes por tema (la tabla «Mapa de variantes por tema» dice cuáles) y publicarlas con `npm run editorial:ingest`; recalibrar contraste de las variantes de héroe publicadas con `hero-photo-contrast`; medir FPS del lienzo con las escenas nuevas en móvil físico.
+
+---
+
+## Sección 15 — Estructura de la experiencia
+
+Rama `feat/estructura-experiencia` (base `ff926db`). Spec: `docs/superpowers/specs/2026-10-18-estructura-experiencia-design.md`.
+
+- **Portal = umbral + «¿Cómo llegas hoy?» (`ef125ad`):** los ocho estados se ofrecen antes de «Cruzar el portal», opcionales; elegir recolorea el portal en vivo (tema global) y no abre pista ni reproductor. `stores/arrival-store.ts` (`fm.arrival`, v1) guarda el estado; `useArrival({ restore })` lo hidrata sin sonar (`21fbf0d`, `4740183`).
+- **Home (`e4e4941`, `03aadde`, `fdff508`):** héroe `split` (ya no compite con el del portal) → «Elige por dónde entrar» (sin banner de apertura) → «Tu llegada» (panel directo si hay estado guardado; check-in si se llegó directo) → frecuencia del día → tienda → membresía → Marisol.
+- **Regla de ritmo:** nunca dos bandas fotográficas a sangre seguidas; sólo la última puede fundir con el pie (`BandChain intoFooter`). Aplicada en Resonario (archivo = encabezado de texto) y Experiencias (destacada = tarjeta contenida); Academia, Tienda, Sobre Marisol, Santuario y Descúbrete ya cumplían. Guarda: `tests/lib/band-rhythm.test.ts` y `band-chain.test.ts`.
+
+**Decisiones a confirmar:** `arrival` y `journal` pasan a `BASE_NAMESPACES` (el portal no tiene layout propio); Acceso se trata como contenido en su `BandChain` (lista blanca de la guarda).
+
+**Cierre (`5e87027`, `1ea90b4`, `8c9aaf4`):** menú del header a icono en móvil (a 390 px los controles desbordaban el gutter); halo de `AngelExperiences` recortado en el borde; `home.realms-banner` y `resonario.archive-banner` se cablean como tarjeta enmarcada (`FramedHeading`, `components/layout`), contenida y no a sangre, así que la regla de ritmo se mantiene. 404 comprobados con `next build` + `next start`: rutas inválidas de tienda, academia (curso y lección), experiencias (detalle y reserva), ES y EN, y `/kit` responden 404; las válidas, 200.
+
+**Hallazgo menor, sin tocar:** `.fm-editorial-viewport-media` (globals.css) sin uso en `src/`.

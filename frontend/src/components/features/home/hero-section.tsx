@@ -52,15 +52,16 @@ export function HeroSection({
   return (
     <FullBleedSection
       media={heroMedia}
-      mode="viewport"
+      // Héroe de la Home: un tercio más bajo que el portal (`split`, ~70vh),
+      // para no competir con él ni pegarse a la primera banda de contenido.
+      mode="split"
       overlay="left"
       fade="bottom"
-      className="fm-editorial-viewport-media"
       // En móvil la imagen ya llena el alto: su foco vertical no mueve nada.
       // La caja baja para que la figura quede entre los CTA y las cifras (que
       // bajan al pie del héroe) y funde su borde superior en la noche.
       mediaClassName="max-md:top-[45%] max-md:fm-fade-top"
-      contentClassName="flex min-h-[100svh] items-center"
+      contentClassName="flex items-center"
     >
       {/* El isotipo, fuera de la imagen: en la esquina superior derecha, bajo
           los controles del header y alineado con ellos. Se desplaza con la
@@ -75,7 +76,7 @@ export function HeroSection({
       >
         <Isotype className="size-[48px] drop-shadow-[0_0_10px_rgb(var(--halo)/0.35)] md:size-[64px]" />
       </Mdiv>
-      <div className="fm-container relative grid min-h-[100svh] w-full grid-cols-1 items-center gap-10 pt-[112px] pb-[112px] md:pb-[140px] lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.9fr)] lg:gap-12 lg:pt-[126px] lg:pb-[78px]">
+      <div className="fm-container relative grid w-full grid-cols-1 items-center gap-10 pt-[112px] pb-[112px] md:pb-[140px] lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.9fr)] lg:gap-12 lg:pt-[126px] lg:pb-[78px]">
         <Mdiv
           variants={container}
           initial="hidden"
