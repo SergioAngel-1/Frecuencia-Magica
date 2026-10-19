@@ -47,6 +47,29 @@ describe('useAtmosphereShiftStore', () => {
     expect(useAtmosphereStore.getState().choice).toBeNull();
   });
 
+  it('rechazar la confirmación no ejecuta lo que la emoción pedía (sonido, llegada guardada)', () => {
+    const onApplied = vi.fn();
+    const shift = useAtmosphereShiftStore.getState();
+    shift.ask({ ...dusk, onApplied });
+    shift.cancel();
+    vi.runAllTimers();
+
+    expect(onApplied).not.toHaveBeenCalled();
+  });
+
+  it('aceptar ejecuta onApplied bajo el velo, con el tema ya aplicado y no antes', () => {
+    const onApplied = vi.fn(() => expect(useAtmosphereStore.getState().choice).toBe('dusk'));
+    const shift = useAtmosphereShiftStore.getState();
+    shift.ask({ ...dusk, onApplied });
+    shift.confirm();
+
+    vi.advanceTimersByTime(full.cover - 1);
+    expect(onApplied).not.toHaveBeenCalled();
+
+    vi.advanceTimersByTime(1);
+    expect(onApplied).toHaveBeenCalledTimes(1);
+  });
+
   it('aceptar cruza: el tema se aplica al cubrir la pantalla, no antes', () => {
     const shift = useAtmosphereShiftStore.getState();
     shift.ask(dusk);

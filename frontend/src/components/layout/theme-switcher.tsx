@@ -102,8 +102,14 @@ export function ThemeSwitcher() {
     });
 
     if (isMoodOption(option)) {
-      useArrivalStore.getState().setKey(option);
-      shift(ARRIVALS[option].atmosphere, { source: 'feeling', feeling: option, origin });
+      shift(ARRIVALS[option].atmosphere, {
+        source: 'feeling',
+        feeling: option,
+        origin,
+        // La llegada se guarda cuando el tema se aplica, no al pedir el cambio: si se rechaza la
+        // confirmación no debe quedar elegida una emoción que nunca se aceptó.
+        onApplied: () => useArrivalStore.getState().setKey(option),
+      });
 
       return;
     }

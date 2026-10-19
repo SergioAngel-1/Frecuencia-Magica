@@ -43,12 +43,17 @@ function clearTimers() {
   timers = [];
 }
 
-/** Aplica la elección al store de tema: la única escritura del cambio. */
+/**
+ * Aplica la elección al store de tema: la única escritura del cambio. Después avisa a quien la
+ * pidió (`onApplied`): con ceremonia, eso ocurre bajo el velo, nunca antes de aceptar.
+ */
 export function applyChoice(request: ShiftRequest) {
   const atmosphere = useAtmosphereStore.getState();
 
   if (request.choice === null) atmosphere.clear();
   else atmosphere.setChoice(request.choice, request.feeling);
+
+  request.onApplied?.();
 }
 
 /**

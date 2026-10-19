@@ -17,6 +17,11 @@ export type ShiftRequest = {
   source: ShiftSource;
   /** El estado del ánimo que lo origina, si lo hay: se nombra en el cruce. */
   feeling: ArrivalKey | null;
+  /**
+   * Lo que debe ocurrir sólo cuando el tema se aplica de verdad: guardar la llegada, mostrar su
+   * respuesta, empezar a sonar. Si la persona rechaza la confirmación no se llama.
+   */
+  onApplied?: () => void;
 };
 
 /**

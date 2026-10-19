@@ -82,32 +82,39 @@ export function useArrival({ restore = false }: ArrivalOptions = {}): ArrivalCon
 
   const atmosphere: AtmosphereId = mounted ? atmosphereId : 'night';
 
+  // Nada de lo que sigue a elegir ocurre antes de que el tema se aplique: si el cambio pide
+  // confirmación y la persona la rechaza, ni la respuesta, ni la llegada guardada, ni el sonido
+  // cambian. `commit` corre cuando el tema queda aplicado (bajo el velo, si lo hay).
   const select = useCallback(
-    (key: ArrivalKey, featuredId?: string) => {
+    (key: ArrivalKey, { featuredId, sound = false }: { featuredId?: string; sound?: boolean }) => {
       const next = chooseArrival(key, {
         catalog: AUDIOS,
         hour: new Date().getHours(),
         ...(featuredId ? { featuredId } : {}),
       });
-      setFlow(next);
-      setSavedKey(key);
-      if (next.response) shift(next.response.atmosphere, { source: 'feeling', feeling: key });
+      const commit = () => {
+        setFlow(next);
+        setSavedKey(key);
 
-      return next;
+        const audio = sound ? currentAlternative(next) : null;
+        if (audio) open(audio.id, 'full', { fadeIn: ARRIVAL_FADE_IN_SECONDS });
+      };
+
+      if (next.response) {
+        shift(next.response.atmosphere, { source: 'feeling', feeling: key, onApplied: commit });
+      } else {
+        commit();
+      }
     },
-    [shift, setSavedKey],
+    [shift, setSavedKey, open],
   );
 
-  const pick = useCallback((key: ArrivalKey) => void select(key), [select]);
+  const pick = useCallback((key: ArrivalKey) => select(key, {}), [select]);
 
   const choose = useCallback(
-    (key: ArrivalKey, featuredId?: string) => {
-      const next = select(key, featuredId);
-
-      const audio = currentAlternative(next);
-      if (audio) open(audio.id, 'full', { fadeIn: ARRIVAL_FADE_IN_SECONDS });
-    },
-    [open, select],
+    (key: ArrivalKey, featuredId?: string) =>
+      select(key, { sound: true, ...(featuredId ? { featuredId } : {}) }),
+    [select],
   );
 
   const step = useCallback(

@@ -23,6 +23,8 @@ export type ShiftOptions = {
   feeling?: ArrivalKey | null;
   /** De dónde nace la onda; sin valor, del centro. */
   origin?: ShiftOrigin | null;
+  /** Se ejecuta cuando el tema queda aplicado; si la persona rechaza el cambio, nunca. */
+  onApplied?: () => void;
 };
 
 /**
@@ -43,13 +45,14 @@ export function useAtmosphereShift() {
   return useCallback(
     (
       choice: AtmosphereId | null,
-      { source = 'manual', feeling = null, origin = null }: ShiftOptions = {},
+      { source = 'manual', feeling = null, origin = null, onApplied }: ShiftOptions = {},
     ) => {
       const request: ShiftRequest = {
         choice,
         resolved: choice ?? PLACE_ATMOSPHERE[place],
         source,
         feeling,
+        ...(onApplied ? { onApplied } : {}),
       };
       const busy =
         usePortalStore.getState().phase !== 'idle' ||
