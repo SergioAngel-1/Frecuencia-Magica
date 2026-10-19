@@ -1021,6 +1021,7 @@
     "returnIntro": "Esto es lo que te acompaña hoy. Puedes cambiarlo cuando quieras.",
     "legend": "Cómo llegas",
     "silent": "El sonido sólo empieza cuando tú lo eliges.",
+    "breatheOnly": "Sólo quiero respirar",
     "listenKind": "Para escuchar",
     "headphones": "Mejor con auriculares",
     "position": "{current} de {total}",

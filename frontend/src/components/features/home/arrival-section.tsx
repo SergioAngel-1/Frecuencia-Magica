@@ -4,10 +4,12 @@ import { useTranslations } from 'next-intl';
 
 import { ArrivalCheckIn } from '@/components/features/arrival/arrival-check-in';
 import { ArrivalPanel } from '@/components/features/arrival/arrival-panel';
-import { Display, Float, Kicker } from '@/components/ui';
+import { BreathIcon } from '@/components/layout';
+import { Button, Display, Float, Kicker } from '@/components/ui';
 import { ARRIVALS } from '@/config/arrivals';
 import { useArrival } from '@/hooks/use-arrival';
 import { selectedMood } from '@/lib/arrival/selected-mood';
+import { useBreathingStore } from '@/stores/breathing-store';
 import { MOOD_IDS } from '@/types/mood';
 
 /**
@@ -20,6 +22,7 @@ export function ArrivalSection() {
   const t = useTranslations('arrival');
   const tJournal = useTranslations('journal');
   const { flow, atmosphere, choose, step, other, stop } = useArrival({ restore: true });
+  const showBreathing = useBreathingStore((s) => s.show);
 
   const options = MOOD_IDS.map((id) => ({
     id,
@@ -52,6 +55,11 @@ export function ArrivalSection() {
             />
           </Float>
           <p className="text-fg-meta text-meta tracking-ui font-sans">{t('silent')}</p>
+          <Float order={1}>
+            <Button variant="outline" iconLeft={<BreathIcon />} onClick={showBreathing}>
+              {t('breatheOnly')}
+            </Button>
+          </Float>
         </div>
 
         <ArrivalPanel

@@ -1,11 +1,12 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
 
 import { BreathingGuide } from '@/components/features/arrival/breathing-guide';
 import { Modal } from '@/components/ui';
+import { useBreathingStore } from '@/stores/breathing-store';
 
+import { BreathIcon } from './breath-icon';
 import { dockSegmentClasses } from './control-dock';
 
 /**
@@ -16,7 +17,9 @@ import { dockSegmentClasses } from './control-dock';
  */
 export function BreathingDialog() {
   const t = useTranslations('header');
-  const [open, setOpen] = useState(false);
+  const open = useBreathingStore((s) => s.open);
+  const show = useBreathingStore((s) => s.show);
+  const hide = useBreathingStore((s) => s.hide);
 
   return (
     <>
@@ -25,32 +28,14 @@ export function BreathingDialog() {
         aria-label={t('breathe')}
         aria-haspopup="dialog"
         aria-expanded={open}
-        onClick={() => setOpen(true)}
+        onClick={show}
         data-magnetic
         className={dockSegmentClasses()}
       >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <circle cx="12" cy="12" r="7.5" />
-          <circle cx="12" cy="12" r="3" />
-        </svg>
+        <BreathIcon />
       </button>
 
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        title={t('breatheTitle')}
-        closeLabel={t('breatheClose')}
-      >
+      <Modal open={open} onClose={hide} title={t('breatheTitle')} closeLabel={t('breatheClose')}>
         <div className="px-5 pt-5 pb-6">
           <BreathingGuide />
         </div>

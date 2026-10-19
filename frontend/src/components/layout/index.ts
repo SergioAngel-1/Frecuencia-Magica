@@ -9,6 +9,7 @@
 export { AudioToggle } from './audio-toggle';
 export { BrandMark } from './brand-mark';
 export { BreathingDialog } from './breathing-dialog';
+export { BreathIcon } from './breath-icon';
 export { LanguageToggle } from './language-toggle';
 export { LoadingScene, type LoadingSceneProps } from './loading-scene';
 export { NewsletterForm } from './newsletter-form';

@@ -1016,6 +1016,7 @@
     "returnIntro": "This is what keeps you company today. You can change it whenever you like.",
     "legend": "How you arrive",
     "silent": "Sound only starts when you choose it.",
+    "breatheOnly": "I just want to breathe",
     "listenKind": "To listen to",
     "headphones": "Best with headphones",
     "position": "{current} of {total}",
