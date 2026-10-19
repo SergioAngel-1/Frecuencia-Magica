@@ -1005,7 +1005,6 @@
   },
   "arrival": {
     "breathing": {
-      "title": "Respira a tu ritmo",
       "intro": "Sigue el orbe. No hay nada que hacer bien: sólo acompañar el aire.",
       "inhale": "Inhala",
       "hold": "Sostén",
@@ -1013,7 +1012,7 @@
       "round": "Ronda {current} de {total}",
       "done": "Terminado. Vuelve a tu ritmo cuando quieras.",
       "again": "Otra ronda",
-      "stop": "Parar"
+      "finished": "Listo"
     },
     "kicker": "Llegada",
     "title": "¿Cómo llegas hoy?",

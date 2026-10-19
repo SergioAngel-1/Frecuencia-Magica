@@ -1000,7 +1000,6 @@
   },
   "arrival": {
     "breathing": {
-      "title": "Breathe at your own pace",
       "intro": "Follow the orb. There is nothing to do well: just keep the air company.",
       "inhale": "Breathe in",
       "hold": "Hold",
@@ -1008,7 +1007,7 @@
       "round": "Round {current} of {total}",
       "done": "Done. Return to your own pace whenever you like.",
       "again": "Another round",
-      "stop": "Stop"
+      "finished": "Done"
     },
     "kicker": "Arrival",
     "title": "How do you arrive today?",

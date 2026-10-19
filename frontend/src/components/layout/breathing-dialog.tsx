@@ -51,8 +51,8 @@ export function BreathingDialog() {
         title={t('breatheTitle')}
         closeLabel={t('breatheClose')}
       >
-        <div className="p-6">
-          <BreathingGuide onClose={() => setOpen(false)} />
+        <div className="px-5 pt-5 pb-6">
+          <BreathingGuide />
         </div>
       </Modal>
     </>
