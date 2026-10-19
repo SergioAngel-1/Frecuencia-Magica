@@ -254,6 +254,7 @@ export const COMPLETED = [
   'cart-empty-forest.avif',
   'checkout-confirmation-dawn.avif',
   'checkout-confirmation-dusk.avif',
+  'checkout-confirmation-forest.avif',
 ]
 
 /**
