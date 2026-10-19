@@ -178,6 +178,8 @@ Una atmósfera se nombra por lo que la persona siente, nunca por el ambiente; lo
 
 **La historia de los temas.** Sin elección, el sitio se recorre así: se cruza el umbral de noche (portal, Home, acceso), se escucha bajo el cielo cósmico (Resonario), se mira hacia dentro con luz de luna (Descúbrete, Mi Santuario), se aprende entre árboles (Academia), se escoge con la luz de la mañana (Tienda, Sobre Marisol) y se celebra al atardecer (Experiencias). Los cinco temas tienen lugar propio: no hay tema sin vista.
 
+**Automático por escucha.** En Automático (sin elección) y sólo en Resonario, el tema sigue al tipo de pista que suena: melodía → Descanso, naturaleza → Arraigo, frecuencia → Consuelo, binaural → Recogimiento, guiada → Despertar (`LISTENING_ATMOSPHERE` en `config/listening-atmosphere.ts`). Una elección manda siempre; en silencio, sin pista o fuera de Resonario vuelve el tema del lugar. Es ambiente, no ritual: no pasa por el cruce ni por el velo, sino que se deriva y cambia con el fundido ligero del tema y de las fotos.
+
 **Lo común de marca** (no cambia entre temas): Cormorant Garamond y Jost con sus escalas; el isotipo y el logo; la forma del vidrio y los radios; la luz como acento (halos, nunca rellenos grandes); el movimiento lento (flotar, respirar, entrada escalonada); la voz del texto; el reproductor como pieza reconocible; el pie.
 
 **Qué redefine cada tema** (y sólo esto):

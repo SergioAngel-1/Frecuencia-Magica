@@ -35,9 +35,7 @@ describe('global themes', () => {
 
   it('keeps no trace of the old place atmospheres or the per-section scope', () => {
     for (const { path, source } of FILES) {
-      expect(source, path).not.toMatch(
-        /AtmosphereScope|ScopeBackdrop|LISTENING_PLACES|PICKER_ATMOSPHERES/,
-      );
+      expect(source, path).not.toMatch(/AtmosphereScope|ScopeBackdrop|PICKER_ATMOSPHERES/);
       expect(source, path).not.toMatch(
         /atmosphere\.(study|store|gathering|marisol|dusk|dawn|moon|forest)['"]/,
       );
