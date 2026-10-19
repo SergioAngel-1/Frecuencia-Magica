@@ -206,6 +206,12 @@ export const COMPLETED = [
   'home-footer-banner-dusk.avif',
   'home-footer-banner-forest.avif',
   'home-membership-dusk.avif',
+  'home-membership-forest.avif',
+  'about-angels-dusk.avif',
+  'about-angels-forest.avif',
+  'auth-form-atmosphere-dusk.avif',
+  'auth-form-atmosphere-forest.avif',
+  'discover-question-atmosphere-dusk.avif',
 ]
 
 /**

@@ -8,7 +8,7 @@
 
 **164 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 113 · P2 39. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 144 completadas · 0 a corregir · 19 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 150 completadas · 0 a corregir · 13 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -260,12 +260,12 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `home-footer-banner-dusk.avif` | Home · cierre · tema · Atardecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `home-footer-banner-forest.avif` | Home · cierre · tema · Bosque | 16:9 | 2880×1620 | P2 | Completadas |
 | `home-membership-dusk.avif` | Home · membresía · tema · Atardecer | 16:9 | 2880×1620 | P2 | Completadas |
-| `home-membership-forest.avif` | Home · membresía · tema · Bosque | 16:9 | 2880×1620 | P2 | Faltantes |
-| `about-angels-dusk.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Atardecer | 16:8 | 2880×1440 | P1 | Faltantes |
-| `about-angels-forest.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Bosque | 16:8 | 2880×1440 | P1 | Faltantes |
-| `auth-form-atmosphere-dusk.avif` | Acceso · formulario · tema · Atardecer | 3:4 | 1440×1920 | P2 | Faltantes |
-| `auth-form-atmosphere-forest.avif` | Acceso · formulario · tema · Bosque | 3:4 | 1440×1920 | P2 | Faltantes |
-| `discover-question-atmosphere-dusk.avif` | Descúbrete · pregunta · tema · Atardecer | 3:4 | 1440×1920 | P2 | Faltantes |
+| `home-membership-forest.avif` | Home · membresía · tema · Bosque | 16:9 | 2880×1620 | P2 | Completadas |
+| `about-angels-dusk.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
+| `about-angels-forest.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
+| `auth-form-atmosphere-dusk.avif` | Acceso · formulario · tema · Atardecer | 3:4 | 1440×1920 | P2 | Completadas |
+| `auth-form-atmosphere-forest.avif` | Acceso · formulario · tema · Bosque | 3:4 | 1440×1920 | P2 | Completadas |
+| `discover-question-atmosphere-dusk.avif` | Descúbrete · pregunta · tema · Atardecer | 3:4 | 1440×1920 | P2 | Completadas |
 | `discover-question-atmosphere-forest.avif` | Descúbrete · pregunta · tema · Bosque | 3:4 | 1440×1920 | P2 | Faltantes |
 | `resonario-featured-dusk.avif` | Resonario · destacado · tema · Atardecer | 16:8 | 2880×1440 | P1 | Faltantes |
 | `resonario-featured-forest.avif` | Resonario · destacado · tema · Bosque | 16:8 | 2880×1440 | P1 | Faltantes |
@@ -306,107 +306,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (19)
+### 5.2 Faltantes (13)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `home-membership · Bosque` — Home · membresía · tema · P2
-
-- **Archivo:** `home-membership-forest.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 15%
-- **Zona de texto:** Franja inferior en calma, sin detalle ni contraste (el texto va abajo), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Bosque de `home-membership`: la misma vista y el mismo encuadre, con la escena del tema. Atmósfera cálida que invita a la comunidad.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Golden light pouring from above through the canopy onto a still forest pool: a warm beam of light, one color only, warm gold, with no colored bands, falling from the top of the frame onto mist-covered water, a wide circle of low smooth moss-edged stones lying flat on the shore as a gathering place, none stacked and none higher than a hand, ferns at the outer edges, dust motes and mist drifting, deep green shadows in the corners. The light source sits near the top edge at 15% vertical, the ring of stones in the middle distance, the ferns confined to the outer 15% on each side, lower third deep calm mist and water for text. Wide landscape framing. Text is overlaid on the lower third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open water, mist, sky or plain ground), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `about.angels · Atardecer` — Sobre Marisol · Experiencias con Ángeles · tema · P1
-
-- **Archivo:** `about-angels-dusk.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 30%
-- **Zona de texto:** Franja inferior en calma, sin detalle ni contraste (el texto va abajo), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Atardecer de `about.angels`: la misma vista y el mismo encuadre, con la escena del tema. La presencia sin figura: luz que desciende, nunca un ángel literal.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Presence without a figure at dusk: a soft shaft of pale rose and warm amber light descending through still dusky air onto a mist-covered lake, a single white feather suspended mid-fall, fine luminous dust around it, no wings, no faces, no statues, no religious iconography. Light source and feather in the upper third at 30% vertical, lower half deep calm mist and water for the headline. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Text is overlaid on the lower third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open water, mist, sky or plain ground), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `about.angels · Bosque` — Sobre Marisol · Experiencias con Ángeles · tema · P1
-
-- **Archivo:** `about-angels-forest.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 30%
-- **Zona de texto:** Franja inferior en calma, sin detalle ni contraste (el texto va abajo), en los tonos suaves de la propia escena
-- **Contenido:** Variante del tema Bosque de `about.angels`: la misma vista y el mismo encuadre, con la escena del tema. La presencia sin figura: luz que desciende, nunca un ángel literal.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Presence without a figure in the forest: a soft shaft of pale gold and green light descending through the canopy and still air onto a mist-covered forest pool, a single white feather suspended mid-fall, fine luminous dust around it, no wings, no faces, no statues, no religious iconography. Light source and feather in the upper third at 30% vertical, lower half deep calm mist and water for the headline. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Text is overlaid on the lower third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open water, mist, sky or plain ground), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `auth.form-atmosphere · Atardecer` — Acceso · formulario · tema · P2
-
-- **Archivo:** `auth-form-atmosphere-dusk.avif`
-- **Medidas:** master 1440×1920 · tablet 1080×1440 · móvil 780×1040 · generar a 1536×2048 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 3:4 · foco 50% 50%
-- **Zona de texto:** Luminosidad alta y contraste muy bajo: va detrás de un formulario de cristal en un tema claro
-- **Contenido:** Variante del tema Atardecer de `auth.form-atmosphere`: la misma vista y el mismo encuadre, con la escena del tema. Fondo atmosférico del formulario de acceso.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Intimate calm at dusk: a surface of deep plum-indigo still water with a single soft warm amber point of light as small as a distant star, hovering just above the water, its reflection a short soft streak on the surface directly beneath it, the only element in the frame, with nothing around it or in front of it, and faint rose mist drifting low, a blurred velvet-dark plum background, a soft warm glow at the bottom of the frame. Vertical, very dark and low contrast (a form is laid over it later), the point of light in the lower third, generous dark space above. Vertical portrait framing. Interface content is laid over this image later: keep the whole image very light and very low in contrast, with nothing sharp, and make it only of what is described above, with no additional object, shape or outline. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `auth.form-atmosphere · Bosque` — Acceso · formulario · tema · P2
-
-- **Archivo:** `auth-form-atmosphere-forest.avif`
-- **Medidas:** master 1440×1920 · tablet 1080×1440 · móvil 780×1040 · generar a 1536×2048 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 3:4 · foco 50% 50%
-- **Zona de texto:** Luminosidad alta y contraste muy bajo: va detrás de un formulario de cristal en un tema claro
-- **Contenido:** Variante del tema Bosque de `auth.form-atmosphere`: la misma vista y el mismo encuadre, con la escena del tema. Fondo atmosférico del formulario de acceso.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Intimate calm in the forest: a surface of nearly black green still water with a single soft golden-green point of light as small as a distant star, hovering just above the water, its reflection a short soft streak on the surface directly beneath it, the only element in the frame, with nothing around it or in front of it, and faint green mist drifting low, a blurred velvet-dark forest-green background, a soft warm glow at the bottom of the frame. Vertical, very dark and low contrast (a form is laid over it later), the point of light in the lower third, generous dark space above. Vertical portrait framing. Interface content is laid over this image later: keep the whole image very light and very low in contrast, with nothing sharp, and make it only of what is described above, with no additional object, shape or outline. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
-
-#### `discover.question-atmosphere · Atardecer` — Descúbrete · pregunta · tema · P2
-
-- **Archivo:** `discover-question-atmosphere-dusk.avif`
-- **Medidas:** master 1440×1920 · tablet 1080×1440 · móvil 780×1040 · generar a 1536×2048 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 3:4 · foco 50% 50%
-- **Zona de texto:** Luminosidad alta y contraste muy bajo: va detrás de un formulario de cristal en un tema claro
-- **Contenido:** Variante del tema Atardecer de `discover.question-atmosphere`: la misma vista y el mismo encuadre, con la escena del tema. Respiro visual que acompaña cada pregunta.
-- **Uso:** fondo a pantalla completa (`backdrop`), por encima de su ratio.
-- **Nota:** Por eso es de bajo contraste y sin nada nítido: la ampliación no se percibe.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Soft-focus ambient abstraction: drifting translucent veils of dusky rose and plum mist with tiny warm amber specks like slow snowfall, very dark, almost abstract, the whole frame a single continuous field of soft mist with no object, no shape and no outline anywhere, the veils faint and low in saturation, and the amber specks few, tiny and out of focus. Vertical, very low contrast: the brightest part of the frame is no lighter than a deep plum-rose haze, nothing sharp and nothing with an edge, the lower third as dark as the rest (the question text is laid over the center). Vertical portrait framing. Interface content is laid over this image later: keep the whole image very light and very low in contrast, with nothing sharp, and make it only of what is described above, with no additional object, shape or outline. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `discover.question-atmosphere · Bosque` — Descúbrete · pregunta · tema · P2
 
@@ -632,7 +534,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (144)
+### 5.5 Completadas (150)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -768,6 +670,12 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `home-footer-banner-dusk.avif` | Home · cierre · tema · Atardecer | `home.footer-banner` | 16:9 | P2 |
 | `home-footer-banner-forest.avif` | Home · cierre · tema · Bosque | `home.footer-banner` | 16:9 | P2 |
 | `home-membership-dusk.avif` | Home · membresía · tema · Atardecer | `home-membership` | 16:9 | P2 |
+| `home-membership-forest.avif` | Home · membresía · tema · Bosque | `home-membership` | 16:9 | P2 |
+| `about-angels-dusk.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Atardecer | `about.angels` | 16:8 | P1 |
+| `about-angels-forest.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Bosque | `about.angels` | 16:8 | P1 |
+| `auth-form-atmosphere-dusk.avif` | Acceso · formulario · tema · Atardecer | `auth.form-atmosphere` | 3:4 | P2 |
+| `auth-form-atmosphere-forest.avif` | Acceso · formulario · tema · Bosque | `auth.form-atmosphere` | 3:4 | P2 |
+| `discover-question-atmosphere-dusk.avif` | Descúbrete · pregunta · tema · Atardecer | `discover.question-atmosphere` | 3:4 | P2 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
