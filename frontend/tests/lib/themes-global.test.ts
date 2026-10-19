@@ -20,6 +20,7 @@ const MAY_SET_ATTRIBUTE = new Set([
   'components/layout/route-transition.tsx',
   'components/ui/theme-swatch.tsx',
   'components/layout/theme-switcher.tsx',
+  'components/layout/theme-switcher-option.tsx',
   'lib/atmosphere/boot-script.ts',
 ]);
 

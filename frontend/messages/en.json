@@ -1131,13 +1131,15 @@
       "want": "I want to come back to earth"
     },
     "switcher": {
-      "label": "How you feel",
-      "open": "Choose how you feel",
+      "label": "Your atmosphere",
+      "open": "Choose your atmosphere",
       "auto": "Automatic",
       "autoDescription": "The site chooses the light: each place and each sound suggest their own.",
       "current": "With you now: {name}",
       "feelingLabel": "How you feel",
-      "feelingDescription": "Tell us how you are and the whole site accompanies you with that light, those images and that sound."
+      "feelingDescription": "Choose how you feel: the site keeps that light until you choose another.",
+      "themeLabel": "Choose a theme",
+      "themeDescription": "Set a light without choosing an emotion. It leads over the place until you choose another."
     },
     "shift": {
       "title": "How do you want to feel?",
