@@ -899,6 +899,7 @@
     },
     "kicker": "Mi Santuario",
     "title": "Bienvenida de vuelta, {name}",
+    "feeling": "Hoy: {feeling} · {atmosphere}",
     "stats": {
       "days": {
         "label": "días de práctica"

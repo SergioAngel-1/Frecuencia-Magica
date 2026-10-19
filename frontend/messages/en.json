@@ -894,6 +894,7 @@
     },
     "kicker": "My Sanctuary",
     "title": "Welcome back, {name}",
+    "feeling": "Today: {feeling} · {atmosphere}",
     "stats": {
       "days": {
         "label": "days of practice"

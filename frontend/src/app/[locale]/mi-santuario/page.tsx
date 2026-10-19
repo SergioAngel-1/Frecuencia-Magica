@@ -4,6 +4,7 @@ import {
   ContinueCard,
   DailyCard,
   JournalPanel,
+  SanctuaryFeeling,
   SanctuaryHeader,
   StatsRow,
 } from '@/components/features/sanctuary';
@@ -56,6 +57,7 @@ export default async function SanctuaryPage({ params }: PageProps) {
       >
         <div className="fm-container flex w-full flex-col pt-[120px] pb-10">
           <SanctuaryHeader kicker={t('kicker')} title={t('title', { name: profile.name })} />
+          <SanctuaryFeeling />
         </div>
       </FullBleedSection>
 
