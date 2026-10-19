@@ -250,6 +250,7 @@ export const COMPLETED = [
   'sanctuary-empty-dusk.avif',
   'sanctuary-empty-forest.avif',
   'cart-empty-dawn.avif',
+  'cart-empty-dusk.avif',
 ]
 
 /**
