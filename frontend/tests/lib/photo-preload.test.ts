@@ -28,6 +28,29 @@ describe('preloadTheme', () => {
     expect(loadImage).toHaveBeenCalledWith('/b-dusk.avif', '50vw');
   });
 
+  it('omite las fotos lejos del viewport (serían lazy) y pide las cercanas', async () => {
+    const loadImage = vi.fn(async () => {});
+    const at = (top: number, height = 400) =>
+      ({ getBoundingClientRect: () => ({ top, bottom: top + height }) }) as unknown as Element;
+
+    register({ variants: { dusk: '/near-dusk.avif' }, sizes: '100vw', element: at(200) });
+    register({
+      variants: { dusk: '/below-dusk.avif' },
+      sizes: '100vw',
+      element: at(window.innerHeight * 3),
+    });
+    register({
+      variants: { dusk: '/above-dusk.avif' },
+      sizes: '100vw',
+      element: at(-window.innerHeight * 3),
+    });
+
+    await preloadTheme('dusk', { loadImage });
+
+    expect(loadImage).toHaveBeenCalledTimes(1);
+    expect(loadImage).toHaveBeenCalledWith('/near-dusk.avif', '100vw');
+  });
+
   it('no pide nada si ninguna foto montada tiene el tema', async () => {
     const loadImage = vi.fn(async () => {});
 

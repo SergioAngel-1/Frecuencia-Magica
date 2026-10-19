@@ -6,6 +6,8 @@ import type { AtmosphereId } from '@/types/atmosphere';
 type ThemedPhotoEntry = {
   variants: Partial<Record<AtmosphereId, string>>;
   sizes: string;
+  /** Contenedor de la foto: sólo se precargan las cercanas al viewport. Sin él, se precarga. */
+  element?: Element | null;
 };
 
 export type PreloadThemeOptions = {
@@ -19,6 +21,22 @@ export type PreloadThemeOptions = {
 const PRELOAD_TIMEOUT_MS = 2500;
 
 const mountedPhotos = new Set<ThemedPhotoEntry>();
+
+/** Cuántos viewports por encima y por debajo se consideran «cerca»: lo que `lazy` pediría al hacer scroll. */
+const NEAR_VIEWPORTS = 1;
+
+/**
+ * Las fotos lejos del viewport son `lazy`: pedirlas todas al cruzar traería, en una página
+ * larga, más bytes de los que el sitio cargaría solo. Sin elemento o sin DOM, cuenta como cerca.
+ */
+function isNearViewport(element: Element | null | undefined): boolean {
+  if (!element || typeof window === 'undefined') return true;
+
+  const rect = element.getBoundingClientRect();
+  const margin = window.innerHeight * NEAR_VIEWPORTS;
+
+  return rect.bottom > -margin && rect.top < window.innerHeight + margin;
+}
 
 /**
  * Registra una foto montada con sus variantes por tema. Devuelve la baja para
@@ -61,6 +79,8 @@ export function preloadTheme(
   const sources = new Map<string, string>();
 
   for (const photo of mountedPhotos) {
+    if (!isNearViewport(photo.element)) continue;
+
     const src = photo.variants[theme];
     if (src && !sources.has(src)) sources.set(src, photo.sizes);
   }

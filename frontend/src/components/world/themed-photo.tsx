@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 
 import { useAtmosphere } from '@/hooks/use-atmosphere';
@@ -43,6 +43,7 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
   const override = useThemeOverride();
   const theme = override ?? atmosphereId;
   const mounted = useMounted();
+  const root = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState<string | null>(null);
   const [failed, setFailed] = useState<string | null>(null);
 
@@ -51,7 +52,10 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
   // El override sólo existe en un cliente ya hidratado: no hace falta esperar al montaje.
   const variant = (override !== null || mounted) && theme !== 'night' ? variants[theme] : undefined;
 
-  useEffect(() => registerThemedPhoto({ variants, sizes }), [variants, sizes]);
+  useEffect(
+    () => registerThemedPhoto({ variants, sizes, element: root.current }),
+    [variants, sizes],
+  );
   const variantFailed = variant !== undefined && failed === variant;
   // Una variante con el sujeto en otro sitio trae su foco, en escritorio y en móvil.
   const position = theme !== 'night' ? media.variantPositions?.[theme] : undefined;
@@ -71,6 +75,7 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
 
   return (
     <div
+      ref={root}
       className="absolute inset-0"
       data-photo-themes={themes}
       data-photo-override={override ? '' : undefined}
