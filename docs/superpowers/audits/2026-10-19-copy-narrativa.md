@@ -409,3 +409,25 @@ Se aprueban los cinco nombres-emoción de § 2 (Consuelo/Solace, Descanso/Rest, 
 | L4   | Voz, género y marca (§ 5.3–5.4): `portal`, `home.about`, `footer.tagline`, `auth`, `sanctuary.title`, `discover.kicker`, `nav.*`, ortografía EN, marca EN                                                                                                                               | Sin pronombres para Marisol (7.2.1).                                                                                                                                                                                                                                      |
 | L5   | `alt` y texto de enlaces (§ 4.2) y los enlaces del footer a `/sobre-marisol`                                                                                                                                                                                                            | El `alt` describe lo que se ve **en la foto publicada** (abrir la imagen de `frontend/public/editorial/` para comprobarlo); no repetir alts entre variantes de tema. Los slots decorativos sólo pasan a `alt=""` si su contrato lo permite (`config/editorial-media.ts`). |
 | L6   | Guardas: `tests/i18n/claims.test.ts` (términos prohibidos) y `tests/lib/metadata-copy.test.ts` (longitudes, sin títulos duplicados)                                                                                                                                                     | Después de L2–L5, para que nazcan en verde.                                                                                                                                                                                                                               |
+
+---
+
+## 8. Estado de la aplicación (2026-10-19)
+
+| Lote                             | Estado   | Commit / guardas                                                                                                                                                                                                                                          |
+| -------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| L1 — Atmósferas por emoción      | aplicado | `f836283` · `tests/i18n/messages.test.ts`, `tests/i18n/icu-arguments.test.ts`, `tests/lib/atmosphere-shift.test.ts`, `tests/stores/atmosphere-shift-store.test.ts`, `tests/lib/atmosphere-shift-writers.test.ts`, `tests/lib/sanctuary-editorial.test.ts` |
+| L2 — SEO y metadatos             | aplicado | `9f6d7ed` · `tests/lib/page-metadata.test.ts`, `tests/lib/og-image.test.ts`, `tests/i18n/route-namespaces.test.ts`, `tests/i18n/messages.test.ts`                                                                                                         |
+| L3 — Salud y cifras              | aplicado | `c00d23b` · `tests/i18n/messages.test.ts`, `tests/data/audios.test.ts`, `tests/data/courses.test.ts`, `tests/data/products.test.ts`, `tests/lib/academy-editorial.test.ts`, `tests/lib/store-editorial.test.ts`                                           |
+| L4 — Voz, género y marca         | aplicado | `6e810cb` · `tests/i18n/messages.test.ts`, `tests/i18n/icu-arguments.test.ts`, `tests/lib/auth-editorial.test.ts`, `tests/lib/portal-editorial.test.ts`, `tests/lib/home-editorial.test.ts`                                                               |
+| L5 — Alts y enlaces              | aplicado | `de1696f` · `tests/lib/editorial-alt.test.ts`, `tests/lib/navigation.test.ts`, `tests/lib/home-editorial.test.ts`, `tests/lib/editorial-inventory.test.ts`                                                                                                |
+| L6 — Guardas de copy y metadatos | aplicado | `8e17820` · `tests/i18n/claims.test.ts`, `tests/lib/metadata-copy.test.ts` (ambos en verde)                                                                                                                                                               |
+
+### Sigue abierto
+
+- **Decisiones de producto de § 5.6:** membresía, newsletter, SSO, contacto/WhatsApp, páginas legales, cifra 8/9 reinos y revisión legal de los claims que quedan.
+- **JSON-LD de `Product`/`Event`/`Course`:** sólo cuando existan datos reales; hoy basta `Organization` + `WebSite` en el layout.
+- **`common.seeAll`:** sigue siendo un texto genérico en el enlace de la Home.
+- **`footer.links.contact`:** la clave existe pero no se renderiza en el pie.
+- **Página de membresía:** el enlace del pie reutiliza `/mi-santuario`; no hay página propia (queda el `TODO(backend)` en `site-footer`).
+- **Material fotográfico:** las 122 variantes por tema están publicadas (0 faltantes en `docs/prompts-chatgpt.md`).
