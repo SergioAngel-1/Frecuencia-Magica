@@ -1136,11 +1136,13 @@
       "want": "Quiero volver a la tierra"
     },
     "switcher": {
-      "label": "Cómo te sientes",
-      "open": "Elegir cómo te sientes",
-      "auto": "Según cómo te sientes",
-      "autoDescription": "Cada lugar propone cómo acompañarte: la luz, las imágenes y el sonido cambian contigo.",
-      "current": "Ahora te acompaña: {name}"
+      "label": "Tu atmósfera",
+      "open": "Elegir tu atmósfera",
+      "auto": "Automático",
+      "autoDescription": "El sitio elige la luz: cada lugar y cada sonido proponen la suya.",
+      "current": "Ahora te acompaña: {name}",
+      "feelingLabel": "Según cómo te sientes",
+      "feelingDescription": "Dinos cómo estás y todo el sitio te acompaña con esa luz, esas imágenes y ese sonido."
     },
     "shift": {
       "title": "¿Cómo quieres sentirte?",
@@ -1148,7 +1150,7 @@
       "changes": "Cambian la luz, las imágenes y el sonido que te acompañan en todo el sitio.",
       "feeling": "Hoy: {feeling}",
       "kicker": "Tu atmósfera",
-      "confirmAuto": "Que decida el lugar",
+      "confirmAuto": "Que decida el sitio",
       "cancel": "Quedarme aquí"
     }
   },

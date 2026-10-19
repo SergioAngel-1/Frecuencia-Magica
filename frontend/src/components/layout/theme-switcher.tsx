@@ -9,6 +9,7 @@ import { ThemeSwatch } from '@/components/ui';
 import { ATMOSPHERE_IDS } from '@/config/atmospheres';
 import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useAtmosphereShift } from '@/hooks/use-atmosphere-shift';
+import { useFeelingLabel } from '@/hooks/use-feeling-label';
 import { useMounted } from '@/hooks/use-mounted';
 import { cn } from '@/lib/cn';
 import { originFromRect } from '@/lib/atmosphere/shift';
@@ -48,13 +49,13 @@ function Preview({ option }: { option: SwitcherOption }) {
 
 /**
  * Selector de tema, siempre en el header. Un segmento con la muestra del tema activo abre un panel
- * con los cinco temas y «Automático» (cada lugar con el suyo), en una rejilla de tarjetas con vista
- * previa. Elegir cambia los tokens de todo el sitio; el cambio lo anuncia la región `aria-live`
- * del `AtmosphereProvider`.
+ * con dos modos: «Automático», que deja la luz al sitio (cada lugar y cada sonido proponen la
+ * suya), y «Según cómo te sientes», con las cinco tarjetas de tema. Elegir cambia los tokens de
+ * todo el sitio; el cambio lo anuncia la región `aria-live` del `AtmosphereProvider`.
  *
- * Es un `radiogroup`: una sola opción activa. La elección vive en `localStorage`, que el
- * servidor no tiene: hasta montar, «Automático» aparece pulsado para no desajustar la hidratación.
- * Debajo de la rejilla, una línea describe el tema señalado (el de la tarjeta bajo el puntero o el
+ * Es un `radiogroup`: una sola opción activa entre las seis. La elección vive en `localStorage`,
+ * que el servidor no tiene: hasta montar, «Automático» aparece pulsado para no desajustar la
+ * hidratación. Debajo, una línea describe el tema señalado (el de la tarjeta bajo el puntero o el
  * foco; si no hay ninguno, el elegido).
  */
 export function ThemeSwitcher() {
@@ -62,6 +63,8 @@ export function ThemeSwitcher() {
   const mounted = useMounted();
   const { atmosphereId } = useAtmosphere();
   const choice = useAtmosphereStore((state) => state.choice);
+  const feeling = useAtmosphereStore((state) => state.feeling);
+  const feelingLabel = useFeelingLabel();
   const shift = useAtmosphereShift();
   const [open, setOpen] = useState(false);
   const [peek, setPeek] = useState<SwitcherOption | null>(null);
@@ -108,6 +111,53 @@ export function ThemeSwitcher() {
     });
   };
 
+  const renderOption = (option: SwitcherOption) => {
+    const checked = pressed === option;
+    const automatic = option === 'auto';
+
+    return (
+      <button
+        key={option}
+        type="button"
+        role="radio"
+        aria-checked={checked}
+        onClick={(event) => choose(option, event.currentTarget)}
+        onPointerEnter={() => setPeek(option)}
+        onPointerLeave={() => setPeek(null)}
+        onFocus={() => setPeek(option)}
+        onBlur={() => setPeek(null)}
+        className={cn(
+          'rounded-field group flex min-h-11 flex-col overflow-hidden border text-left transition-[border-color,background-color] duration-300',
+          checked
+            ? 'border-accent/70 bg-accent/12'
+            : 'border-line hover:border-fg/30 bg-transparent',
+        )}
+      >
+        <Preview option={option} />
+        <span className="flex items-start justify-between gap-2 px-3 py-2.5">
+          <span className="min-w-0">
+            <span
+              className={cn(
+                'text-body tracking-ui font-sans',
+                checked ? 'text-fg' : 'text-fg-soft group-hover:text-fg',
+              )}
+            >
+              {nameOf(option)}
+            </span>
+            {automatic ? (
+              <span className="text-fg-soft text-meta mt-1 block font-sans leading-snug">
+                {t('switcher.autoDescription')}
+              </span>
+            ) : null}
+          </span>
+          {checked ? (
+            <span aria-hidden="true" className="bg-accent mt-1.5 size-1.5 rounded-full" />
+          ) : null}
+        </span>
+      </button>
+    );
+  };
+
   return (
     <div ref={root} className="relative">
       <button
@@ -141,53 +191,28 @@ export function ThemeSwitcher() {
               </p>
             </div>
 
-            <div
-              role="radiogroup"
-              aria-label={t('switcher.label')}
-              className="grid grid-cols-2 gap-2.5"
-            >
-              {switcherOptions().map((option) => {
-                const checked = pressed === option;
+            <div role="radiogroup" aria-label={t('switcher.label')}>
+              <div className="mb-5">{renderOption('auto')}</div>
 
-                return (
-                  <button
-                    key={option}
-                    type="button"
-                    role="radio"
-                    aria-checked={checked}
-                    onClick={(event) => choose(option, event.currentTarget)}
-                    onPointerEnter={() => setPeek(option)}
-                    onPointerLeave={() => setPeek(null)}
-                    onFocus={() => setPeek(option)}
-                    onBlur={() => setPeek(null)}
-                    className={cn(
-                      'rounded-field group flex min-h-11 flex-col overflow-hidden border text-left transition-[border-color,background-color] duration-300',
-                      checked
-                        ? 'border-accent/70 bg-accent/12'
-                        : 'border-line hover:border-fg/30 bg-transparent',
-                    )}
-                  >
-                    <Preview option={option} />
-                    <span className="flex items-center justify-between gap-2 px-3 py-2.5">
-                      <span
-                        className={cn(
-                          'text-body tracking-ui font-sans',
-                          checked ? 'text-fg' : 'text-fg-soft group-hover:text-fg',
-                        )}
-                      >
-                        {nameOf(option)}
-                      </span>
-                      {checked ? (
-                        <span aria-hidden="true" className="bg-accent size-1.5 rounded-full" />
-                      ) : null}
-                    </span>
-                  </button>
-                );
-              })}
+              <div className="mb-2.5">
+                <p className="text-fg-meta tracking-label text-label font-sans uppercase">
+                  {t('switcher.feelingLabel')}
+                  {mounted && feeling ? ` · ${feelingLabel(feeling)}` : ''}
+                </p>
+                <p className="text-fg-soft text-meta mt-1 font-sans leading-snug">
+                  {t('switcher.feelingDescription')}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2.5">
+                {switcherOptions()
+                  .filter((option) => option !== 'auto')
+                  .map(renderOption)}
+              </div>
             </div>
 
             <p className="text-fg-soft text-meta mt-4 min-h-10 font-sans leading-snug">
-              {descriptionOf(shown)}
+              {shown === 'auto' ? '' : descriptionOf(shown)}
             </p>
           </Mdiv>
         ) : null}

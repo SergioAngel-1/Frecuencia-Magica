@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest';
 import { pressedOption, switcherOptions } from '@/lib/atmosphere/switcher';
 
 describe('theme switcher options', () => {
-  it('lists the five themes and, last, the automatic option', () => {
-    expect(switcherOptions()).toEqual(['night', 'dusk', 'dawn', 'moon', 'forest', 'auto']);
+  it('lists the automatic option first and then the five themes', () => {
+    expect(switcherOptions()).toEqual(['auto', 'night', 'dusk', 'dawn', 'moon', 'forest']);
   });
 
   it('presses automatic when nothing was chosen, and the chosen theme otherwise', () => {
