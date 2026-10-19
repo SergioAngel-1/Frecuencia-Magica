@@ -1137,8 +1137,7 @@
       "current": "With you now: {name}",
       "feelingLabel": "How you feel",
       "feelingDescription": "Choose how you feel: the site keeps that light until you choose another.",
-      "themeLabel": "Choose a theme",
-      "themeDescription": "Set a light without choosing an emotion. It leads over the place until you choose another."
+      "themeLabel": "Choose a theme"
     },
     "shift": {
       "title": "How do you want to feel?",

@@ -1142,8 +1142,7 @@
       "current": "Ahora te acompaña: {name}",
       "feelingLabel": "Cómo te sientes",
       "feelingDescription": "Elige cómo estás: el sitio se queda con esa luz hasta que elijas otra.",
-      "themeLabel": "Elegir un tema",
-      "themeDescription": "Fija una luz sin elegir una emoción. Manda sobre el lugar hasta que elijas otra."
+      "themeLabel": "Elegir un tema"
     },
     "shift": {
       "title": "¿Cómo quieres sentirte?",

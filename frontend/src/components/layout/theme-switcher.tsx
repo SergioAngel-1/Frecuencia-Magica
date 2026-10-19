@@ -20,26 +20,28 @@ import {
   switcherOptions,
   type MoodSwitcherOption,
   type SwitcherOption,
+  type ThemeSwitcherOption,
 } from '@/lib/atmosphere/switcher';
 import { useArrivalStore } from '@/stores/arrival-store';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
 import type { MoodId } from '@/types/mood';
 
 import { dockSegmentClasses } from './control-dock';
-import { MoodOption, ThemeOption } from './theme-switcher-option';
+import { AutoOption, MoodOption, ThemeChoice } from './theme-switcher-option';
 
-const SECTION_TITLE_CLASSES = 'text-fg-meta tracking-label text-label font-sans uppercase';
-const SECTION_DESCRIPTION_CLASSES = 'text-fg-soft text-meta mt-1 font-sans leading-snug';
+const FEELING_TITLE_CLASSES = 'text-fg text-serif-md font-serif leading-none';
+const FEELING_DESCRIPTION_CLASSES = 'text-fg-soft text-meta mt-1 font-sans leading-snug';
+const THEME_LABEL_CLASSES = 'text-fg-meta tracking-label text-label mt-4 font-sans uppercase';
 
 /**
  * Selector de tema, siempre en el header. Un segmento con la muestra del tema activo abre un
- * panel con tres grupos y una sola opción activa: «Automático», que deja la luz al sitio (cada
- * lugar y cada sonido proponen la suya); «Cómo te sientes», con las ocho emociones del portal,
- * cada una con el tema que propone; y «Elegir un tema», con las cinco tarjetas. El cambio lo
- * anuncia la región `aria-live` del `AtmosphereProvider`. La elección vive en `localStorage`,
- * que el servidor no tiene: hasta montar, «Automático» aparece pulsado para no desajustar la
- * hidratación. Debajo, una línea describe la opción señalada (la del puntero o el foco; si no
- * hay ninguna, la elegida).
+ * panel con tres grupos y una sola opción activa: «Cómo te sientes» es el protagonista (las siete
+ * emociones del portal, cada una con el tema que propone), y bajo un separador queda la zona
+ * tranquila con «Automático» (deja la luz al sitio: cada lugar y cada sonido proponen la suya) y
+ * «Elegir un tema» (cinco muestras circulares). El cambio lo anuncia la región `aria-live` del
+ * `AtmosphereProvider`. La elección vive en `localStorage`, que el servidor no tiene: hasta
+ * montar, «Automático» aparece pulsado para no desajustar la hidratación. Debajo, una línea fija
+ * nombra y describe la opción señalada (la del puntero o el foco; si no hay ninguna, la elegida).
  */
 export function ThemeSwitcher() {
   const t = useTranslations('atmospheres');
@@ -148,7 +150,7 @@ export function ThemeSwitcher() {
             transition={{ duration: 0.25, ease: 'easeOut' }}
             className="border-line bg-scrim/95 rounded-card shadow-glow-card fixed inset-x-5 top-[calc(env(safe-area-inset-top)+72px)] max-h-[calc(100svh-96px)] overflow-y-auto border p-5 backdrop-blur-md sm:absolute sm:inset-x-auto sm:top-full sm:right-0 sm:mt-3 sm:w-[352px]"
           >
-            <div className="mb-4 flex items-baseline justify-between gap-4">
+            <div className="mb-3 flex items-baseline justify-between gap-4">
               <p className="text-fg-meta text-label tracking-kicker font-sans uppercase">
                 {t('switcher.label')}
               </p>
@@ -156,19 +158,10 @@ export function ThemeSwitcher() {
             </div>
 
             <div role="radiogroup" aria-label={t('switcher.label')}>
-              <div className="mb-5">
-                <ThemeOption
-                  option="auto"
-                  name={nameOf('auto')}
-                  description={t('switcher.autoDescription')}
-                  {...optionEvents('auto')}
-                />
-              </div>
-
-              <section className="mb-5">
-                <p className={SECTION_TITLE_CLASSES}>{t('switcher.feelingLabel')}</p>
-                <p className={SECTION_DESCRIPTION_CLASSES}>{t('switcher.feelingDescription')}</p>
-                <div className="mt-2.5 grid grid-cols-2 gap-2.5">
+              <section className="mb-4">
+                <p className={FEELING_TITLE_CLASSES}>{t('switcher.feelingLabel')}</p>
+                <p className={FEELING_DESCRIPTION_CLASSES}>{t('switcher.feelingDescription')}</p>
+                <div className="mt-3 grid grid-cols-2 gap-2 [&>*:last-child:nth-child(odd)]:col-span-2">
                   {feelingOptions().map((mood) => (
                     <MoodOption
                       key={mood}
@@ -180,14 +173,17 @@ export function ThemeSwitcher() {
                 </div>
               </section>
 
-              <section>
-                <p className={SECTION_TITLE_CLASSES}>{t('switcher.themeLabel')}</p>
-                <p className={SECTION_DESCRIPTION_CLASSES}>{t('switcher.themeDescription')}</p>
-                <div className="mt-2.5 grid grid-cols-2 gap-2.5">
+              <div className="border-line mb-3 border-t pt-4">
+                <AutoOption name={nameOf('auto')} {...optionEvents('auto')} />
+
+                <p className={THEME_LABEL_CLASSES}>{t('switcher.themeLabel')}</p>
+                <div className="mt-2.5 flex items-center justify-between gap-1.5">
                   {switcherOptions()
-                    .filter((option) => option !== 'auto')
+                    .filter(
+                      (option): option is Exclude<ThemeSwitcherOption, 'auto'> => option !== 'auto',
+                    )
                     .map((option) => (
-                      <ThemeOption
+                      <ThemeChoice
                         key={option}
                         option={option}
                         name={nameOf(option)}
@@ -195,12 +191,15 @@ export function ThemeSwitcher() {
                       />
                     ))}
                 </div>
-              </section>
+              </div>
             </div>
 
-            <p className="text-fg-soft text-meta mt-4 min-h-10 font-sans leading-snug">
-              {descriptionOf(shown)}
-            </p>
+            <div className="mt-4 min-h-14">
+              <p className="text-fg text-serif-xs font-serif leading-none">{nameOf(shown)}</p>
+              <p className="text-fg-soft text-meta mt-1 font-sans leading-snug">
+                {descriptionOf(shown)}
+              </p>
+            </div>
           </Mdiv>
         ) : null}
       </AnimatePresence>
