@@ -8,6 +8,7 @@ import { ATMOSPHERE_FADE_SECONDS } from '@/config/motion';
 import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { beginThemeSwitch } from '@/lib/atmosphere/theme-switching';
+import { useAtmosphereStore } from '@/stores/atmosphere-store';
 import type { AtmosphereId } from '@/types/atmosphere';
 
 const THEME_COLOR_META = 'meta[name="theme-color"]';
@@ -37,6 +38,7 @@ function setThemeColor(color: string) {
  */
 export function AtmosphereProvider({ children }: { children: ReactNode }) {
   const { atmosphereId, scheme } = useAtmosphere();
+  const choice = useAtmosphereStore((state) => state.choice);
   const t = useTranslations('atmospheres');
   const [announcement, setAnnouncement] = useState('');
   const previous = useRef<AtmosphereId | null>(null);
@@ -62,12 +64,13 @@ export function AtmosphereProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // La primera pasada sólo recuerda la atmósfera de partida: anunciar sólo
-    // los cambios, nunca la carga de la página.
+    // los cambios, nunca la carga de la página. En automático tampoco se
+    // anuncia: los cambios por lugar o por escucha no deben hablar solos.
     const changed = previous.current !== null && previous.current !== atmosphereId;
     previous.current = atmosphereId;
 
-    if (changed) setAnnouncement(t(`${atmosphereId}.name`));
-  }, [atmosphereId, t]);
+    if (changed && choice !== null) setAnnouncement(t(`${atmosphereId}.name`));
+  }, [atmosphereId, t, choice]);
 
   return (
     <>

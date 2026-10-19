@@ -47,19 +47,23 @@ describe('planShift', () => {
 });
 
 describe('activeFeeling', () => {
-  it('nombra el estado mientras el tema visible es el que propone', () => {
+  it('nombra la emoción mientras el tema elegido es el que propone', () => {
     expect(activeFeeling(ARRIVALS['mood:tiredness'].atmosphere, 'mood:tiredness')).toBe(
       'mood:tiredness',
     );
   });
 
-  it('calla si la persona eligió otro tema a mano', () => {
+  it('calla si el tema elegido no es el que propone la emoción', () => {
     const other = ARRIVALS['mood:tiredness'].atmosphere === 'night' ? 'dawn' : 'night';
 
     expect(activeFeeling(other, 'mood:tiredness')).toBeNull();
   });
 
-  it('calla si no hay estado guardado', () => {
+  it('calla en automático, aunque llegue una emoción guardada', () => {
+    expect(activeFeeling(null, 'mood:tiredness')).toBeNull();
+  });
+
+  it('calla si no hay emoción guardada', () => {
     expect(activeFeeling('night', null)).toBeNull();
   });
 });

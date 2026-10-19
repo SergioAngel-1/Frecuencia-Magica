@@ -6,11 +6,13 @@ import { useTranslations } from 'next-intl';
 import { Button, EditorialImage, GlassPanel, Kicker, Textarea } from '@/components/ui';
 import { useMounted } from '@/hooks/use-mounted';
 import { ArrivalCheckIn } from '@/components/features/arrival/arrival-check-in';
+import { ARRIVALS } from '@/config/arrivals';
+import { useArrival } from '@/hooks/use-arrival';
 import { cn } from '@/lib/cn';
 import { hasEditorialVisual } from '@/lib/editorial/visual';
 import { useJournalStore } from '@/stores/journal-store';
 import type { EditorialMedia } from '@/types/editorial-media';
-import { MOOD_IDS } from '@/types/mood';
+import { MOOD_IDS, type MoodId } from '@/types/mood';
 
 import { JournalEmpty } from './journal-empty';
 import { JournalEntryCard } from './journal-entry';
@@ -34,6 +36,7 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
   const setText = useJournalStore((s) => s.setText);
   const save = useJournalStore((s) => s.save);
   const discard = useJournalStore((s) => s.discard);
+  const { pick } = useArrival();
   const [saved, setSaved] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -43,6 +46,13 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
     },
     [],
   );
+
+  // La emoción del diario también propone su tema: fija la elección global sin
+  // sonido, como el check-in del portal. Re-elegir la misma no dispara un cruce.
+  const handleMood = (id: MoodId) => {
+    setMood(id);
+    pick(`mood:${id}`);
+  };
 
   const handleSave = () => {
     save(new Date());
@@ -81,9 +91,13 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
         <div className="mb-5">
           <ArrivalCheckIn
             legend={tJournal('moodLabel')}
-            options={MOOD_IDS.map((id) => ({ id, label: tJournal(`moods.${id}`) }))}
+            options={MOOD_IDS.map((id) => ({
+              id,
+              label: tJournal(`moods.${id}`),
+              atmosphere: ARRIVALS[`mood:${id}`].atmosphere,
+            }))}
             selected={draft.mood}
-            onSelect={setMood}
+            onSelect={handleMood}
           />
         </div>
 
