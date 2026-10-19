@@ -26,7 +26,12 @@ export function CurrentSectionLabel() {
     key === 'home' ? t('current.home') : key === 'story' ? t('story.label') : t(`realms.${key}`);
 
   return (
-    <span className="text-fg-meta text-label tracking-caps mr-1 hidden font-sans whitespace-nowrap uppercase lg:inline-block">
+    <span
+      // Ancho inline: una clase de ancho no se aplicaba a esta etiqueta en el flex del header y el
+      // texto, con su tracking, desbordaba por debajo del dock.
+      style={{ width: 'max-content' }}
+      className="text-fg-meta text-label tracking-caps mr-1 hidden shrink-0 font-sans whitespace-nowrap uppercase lg:inline-block"
+    >
       {label}
     </span>
   );
