@@ -7,6 +7,7 @@ import type { Locale } from '@/i18n/routing';
 
 import { AudioToggle } from './audio-toggle';
 import { BrandMark } from './brand-mark';
+import { ControlDock, DockDivider } from './control-dock';
 import { CurrentSectionLabel } from './current-section-label';
 import { LanguageToggle } from './language-toggle';
 import { RealmMenu } from './realm-menu';
@@ -18,8 +19,8 @@ import { ThemeSwitcher } from './theme-switcher';
  * Barra fija superior.
  *
  * El contenedor no captura el puntero (`pointer-events-none`): sólo lo hacen
- * los controles. Así el header flota sobre el contenido sin bloquear lo que
- * hay debajo, que es lo que permite que las vistas ocupen la pantalla entera.
+ * las cápsulas de controles. Así el header flota sobre el contenido sin bloquear
+ * lo que hay debajo, que es lo que permite que las vistas ocupen la pantalla entera.
  */
 export function SiteHeader() {
   const t = useTranslations('header');
@@ -28,6 +29,8 @@ export function SiteHeader() {
   const { realmId } = useRealm();
   // La tienda no se ofrece en el portal ni en el acceso, igual que el menú.
   const showStore = realmId !== 'portal' && realmId !== 'auth';
+  // El menú de navegación tampoco se ofrece en el portal ni en el acceso (`RealmMenu`).
+  const showMenu = showStore;
 
   return (
     <header className="fm-safe-area-top z-header pointer-events-none fixed inset-x-0 top-0 flex items-center justify-between py-4 pr-[max(20px,env(safe-area-inset-right))] pl-[max(20px,env(safe-area-inset-left))] md:py-[22px] md:pr-[max(34px,env(safe-area-inset-right))] md:pl-[max(34px,env(safe-area-inset-left))]">
@@ -46,14 +49,33 @@ export function SiteHeader() {
 
       <BrandMark label={tCommon('brand')} />
 
-      <div className="pointer-events-none flex items-center gap-1.5 md:gap-[10px]">
-        <LanguageToggle locale={locale} />
-        <AudioToggle />
-        <ThemeSwitcher />
-        <SessionLink label={t('signIn')} active={realmId === 'auth'} />
-        {showStore && <StoreLink active={realmId === 'tienda'} />}
+      {/* Dos cápsulas de la misma altura: las preferencias (idioma, sonido, tema) y la
+          navegación (tienda, cuenta, menú). Antes eran siete controles sueltos, de tres
+          formas distintas. La sección actual va delante, como texto, desde 1024 px. */}
+      <div className="pointer-events-none flex items-center gap-2 md:gap-3">
         <CurrentSectionLabel />
-        <RealmMenu />
+        <ControlDock label={t('preferences')}>
+          <LanguageToggle locale={locale} />
+          <DockDivider />
+          <AudioToggle />
+          <DockDivider />
+          <ThemeSwitcher />
+        </ControlDock>
+        <ControlDock label={t('shortcuts')}>
+          {showStore && (
+            <>
+              <StoreLink active={realmId === 'tienda'} />
+              <DockDivider className="max-[459px]:hidden" />
+            </>
+          )}
+          <SessionLink label={t('signIn')} active={realmId === 'auth'} />
+          {showMenu && (
+            <>
+              <DockDivider />
+              <RealmMenu />
+            </>
+          )}
+        </ControlDock>
       </div>
     </header>
   );

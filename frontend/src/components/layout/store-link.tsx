@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 
 import { useCartCount } from '@/hooks/use-cart-count';
 import { Link } from '@/i18n/navigation';
-import { cn } from '@/lib/cn';
+import { dockSegmentClasses } from './control-dock';
 
 /**
  * Enlace de texto a la tienda, con el conteo del carrito.
@@ -23,13 +23,10 @@ export function StoreLink({ active }: { active: boolean }) {
       href="/tienda"
       data-magnetic
       aria-current={active ? 'page' : undefined}
-      className={cn(
-        'rounded-pill text-meta tracking-ui pointer-events-auto hidden min-h-11 items-center gap-2 border px-4 font-sans min-[460px]:inline-flex',
-        'transition-[color,background-color,border-color] duration-300 ease-out',
-        active
-          ? 'text-accent border-accent/60 bg-accent/18'
-          : 'text-fg border-line-strong bg-surface hover:border-accent/40 hover:bg-fg/9',
-      )}
+      className={dockSegmentClasses({
+        active,
+        className: 'hidden px-3.5 min-[460px]:inline-flex',
+      })}
     >
       <span>{t('store')}</span>
       {count > 0 && (

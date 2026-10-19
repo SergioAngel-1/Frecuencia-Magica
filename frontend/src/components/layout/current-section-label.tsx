@@ -7,7 +7,7 @@ import { currentSection } from '@/lib/navigation/current-section';
 import { placeFromPathname } from '@/lib/realm-from-pathname';
 
 /**
- * Nombre de la sección en la que está la persona, junto al botón de menú.
+ * Nombre de la sección en la que está la persona, delante de las cápsulas del header.
  *
  * Desde 1024px: por debajo no cabe con el resto de controles, y la sección
  * actual sigue marcada dentro del menú. En tienda no se muestra: el enlace
@@ -26,7 +26,7 @@ export function CurrentSectionLabel() {
     key === 'home' ? t('current.home') : key === 'story' ? t('story.label') : t(`realms.${key}`);
 
   return (
-    <span className="text-fg-soft text-meta tracking-ui hidden font-sans whitespace-nowrap lg:inline-block">
+    <span className="text-fg-meta text-label tracking-caps mr-1 hidden font-sans whitespace-nowrap uppercase lg:inline-block">
       {label}
     </span>
   );

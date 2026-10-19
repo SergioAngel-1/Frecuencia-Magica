@@ -54,9 +54,12 @@ describe('site navigation', () => {
 
   it('labels the menu button «Menú» with an icon, and names the current section next to it', () => {
     expect(MENU).toContain("tHeader('menu')");
-    expect(MENU).toContain('border-line-strong');
+    // El botón es el control principal de la cápsula de navegación del header.
+    expect(MENU).toContain('dockSegmentClasses({ primary: true');
     expect(HEADER).toContain('<CurrentSectionLabel');
     expect(HEADER).toContain('<RealmMenu');
+    // Idioma, sonido y tema comparten una cápsula; tienda, cuenta y menú, otra.
+    expect(HEADER.match(/<ControlDock /g)).toHaveLength(2);
     expect(SECTION).toContain('currentSection(');
     expect(SECTION).toContain("t('current.home')");
     expect(SECTION).toContain("t('story.label')");

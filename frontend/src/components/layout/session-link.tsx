@@ -1,5 +1,5 @@
 import { Link } from '@/i18n/navigation';
-import { cn } from '@/lib/cn';
+import { dockSegmentClasses } from './control-dock';
 
 /**
  * Acceso a la sesión.
@@ -10,8 +10,7 @@ import { cn } from '@/lib/cn';
  * el de audio, engañoso para una navegación. Aquí "estás aquí" se comunica
  * con `aria-current`.
  *
- * La superficie replica la de `IconButton` a propósito: mismo hit target de
- * 44px con el disco visible de 40px centrado dentro.
+ * Vive en la cápsula de navegación del header (`ControlDock`): 44px de hit target.
  */
 export function SessionLink({ label, active }: { label: string; active: boolean }) {
   return (
@@ -20,32 +19,22 @@ export function SessionLink({ label, active }: { label: string; active: boolean 
       data-magnetic
       aria-label={label}
       aria-current={active ? 'page' : undefined}
-      className="group pointer-events-auto relative inline-flex h-11 w-11 items-center justify-center"
+      className={dockSegmentClasses({ active })}
     >
-      <span
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         aria-hidden="true"
-        className={cn(
-          'inline-flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-[10px]',
-          'transition-[color,background-color,border-color,box-shadow] duration-300 ease-out',
-          active
-            ? 'text-accent border-accent/60 bg-accent/18'
-            : 'border-line bg-surface text-fg group-hover:border-accent/40 group-hover:bg-fg/9',
-        )}
       >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="8" r="3.4" />
-          <path d="M5.5 20a6.5 6.5 0 0 1 13 0" />
-        </svg>
-      </span>
+        <circle cx="12" cy="8" r="3.4" />
+        <path d="M5.5 20a6.5 6.5 0 0 1 13 0" />
+      </svg>
     </Link>
   );
 }

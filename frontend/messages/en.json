@@ -9,6 +9,8 @@
     "close": "Close"
   },
   "header": {
+    "preferences": "Preferences",
+    "shortcuts": "Shortcuts",
     "signIn": "Sign in",
     "openMenu": "Open the realms menu",
     "closeMenu": "Close the menu",

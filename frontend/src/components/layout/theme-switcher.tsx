@@ -5,44 +5,55 @@ import { AnimatePresence } from 'motion/react';
 import { div as Mdiv } from 'motion/react-m';
 import { useTranslations } from 'next-intl';
 
-import { IconButton } from '@/components/ui';
+import { ThemeSwatch } from '@/components/ui';
+import { ATMOSPHERE_IDS } from '@/config/atmospheres';
 import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useMounted } from '@/hooks/use-mounted';
 import { cn } from '@/lib/cn';
 import { pressedOption, switcherOptions, type SwitcherOption } from '@/lib/atmosphere/switcher';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
-import type { AtmosphereId } from '@/types/atmosphere';
+
+import { dockSegmentClasses } from './control-dock';
 
 /**
- * Muestra de un tema: un disco con su fondo y un punto de su acento. Se pinta con los tokens
- * del propio tema (`data-atmosphere` en la muestra), no con colores propios.
+ * Vista previa de un tema en su tarjeta: su fondo y sus tres luces (oro, teal y lavanda del propio
+ * tema). Se pinta con los tokens del tema (`data-atmosphere` en la vista previa), no con colores
+ * propios. «Automático» enseña los cinco fondos en franjas: cada lugar con el suyo.
  */
-function Swatch({ id, className }: { id: AtmosphereId; className?: string }) {
+function Preview({ option }: { option: SwitcherOption }) {
+  if (option === 'auto') {
+    return (
+      <span aria-hidden="true" className="flex h-12 w-full overflow-hidden">
+        {ATMOSPHERE_IDS.map((id) => (
+          <span key={id} data-atmosphere={id} className="h-full flex-1 bg-[image:var(--atmo-bg)]" />
+        ))}
+      </span>
+    );
+  }
+
   return (
     <span
       aria-hidden="true"
-      data-atmosphere={id}
-      className={cn(
-        'border-line-strong relative inline-block flex-none overflow-hidden rounded-full border',
-        className,
-      )}
-      style={{ width: 24, height: 24, background: 'var(--atmo-bg)' }}
+      data-atmosphere={option}
+      className="flex h-12 w-full items-center justify-center gap-1.5 bg-[image:var(--atmo-bg)]"
     >
-      <span
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-        style={{ width: 8, height: 8, background: 'var(--color-accent)' }}
-      />
+      <span className="bg-accent size-2 rounded-full" />
+      <span className="bg-accent-2 size-1.5 rounded-full" />
+      <span className="bg-accent-3 size-1.5 rounded-full" />
     </span>
   );
 }
 
 /**
- * Selector de tema, siempre en el header. Un botón con la muestra del tema activo abre un panel
- * con los cinco temas y «Automático» (cada lugar con el suyo). Elegir cambia los tokens de todo
- * el sitio; el cambio lo anuncia la región `aria-live` del `AtmosphereProvider`.
+ * Selector de tema, siempre en el header. Un segmento con la muestra del tema activo abre un panel
+ * con los cinco temas y «Automático» (cada lugar con el suyo), en una rejilla de tarjetas con vista
+ * previa. Elegir cambia los tokens de todo el sitio; el cambio lo anuncia la región `aria-live`
+ * del `AtmosphereProvider`.
  *
  * Es un `radiogroup`: una sola opción activa. La elección vive en `localStorage`, que el
  * servidor no tiene: hasta montar, «Automático» aparece pulsado para no desajustar la hidratación.
+ * Debajo de la rejilla, una línea describe el tema señalado (el de la tarjeta bajo el puntero o el
+ * foco; si no hay ninguno, el elegido).
  */
 export function ThemeSwitcher() {
   const t = useTranslations('atmospheres');
@@ -52,9 +63,15 @@ export function ThemeSwitcher() {
   const setChoice = useAtmosphereStore((state) => state.setChoice);
   const clear = useAtmosphereStore((state) => state.clear);
   const [open, setOpen] = useState(false);
+  const [peek, setPeek] = useState<SwitcherOption | null>(null);
   const root = useRef<HTMLDivElement>(null);
 
   const pressed = pressedOption(mounted ? choice : null);
+  const shown = peek ?? pressed;
+  const nameOf = (option: SwitcherOption) =>
+    option === 'auto' ? t('switcher.auto') : t(`${option}.name`);
+  const descriptionOf = (option: SwitcherOption) =>
+    option === 'auto' ? t('switcher.autoDescription') : t(`${option}.description`);
 
   useEffect(() => {
     if (!open) return;
@@ -83,15 +100,18 @@ export function ThemeSwitcher() {
   };
 
   return (
-    <div ref={root} className="pointer-events-auto relative">
-      <IconButton
-        label={t('switcher.open')}
+    <div ref={root} className="relative">
+      <button
+        type="button"
+        aria-label={t('switcher.open')}
         aria-haspopup="true"
         aria-expanded={open}
         onClick={() => setOpen((value) => !value)}
+        data-magnetic
+        className={dockSegmentClasses({ active: open })}
       >
-        <Swatch id={mounted ? atmosphereId : 'night'} />
-      </IconButton>
+        <ThemeSwatch theme={mounted ? atmosphereId : 'night'} />
+      </button>
 
       <AnimatePresence>
         {open ? (
@@ -101,17 +121,24 @@ export function ThemeSwitcher() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="border-line bg-scrim/95 rounded-card fixed inset-x-5 top-[calc(env(safe-area-inset-top)+68px)] border p-4 backdrop-blur-md sm:absolute sm:inset-x-auto sm:top-full sm:right-0 sm:mt-2 sm:w-[288px]"
+            className="border-line bg-scrim/95 rounded-card shadow-glow-card fixed inset-x-5 top-[calc(env(safe-area-inset-top)+72px)] border p-5 backdrop-blur-md sm:absolute sm:inset-x-auto sm:top-full sm:right-0 sm:mt-3 sm:w-[352px]"
           >
-            <p className="text-fg-meta text-label tracking-kicker mb-3 font-sans uppercase">
-              {t('switcher.label')}
-            </p>
-            <div role="radiogroup" aria-label={t('switcher.label')} className="flex flex-col gap-1">
+            <div className="mb-4 flex items-baseline justify-between gap-4">
+              <p className="text-fg-meta text-label tracking-kicker font-sans uppercase">
+                {t('switcher.label')}
+              </p>
+              <p className="text-fg text-serif-md font-serif leading-none">
+                {nameOf(mounted ? (choice ?? 'auto') : 'auto')}
+              </p>
+            </div>
+
+            <div
+              role="radiogroup"
+              aria-label={t('switcher.label')}
+              className="grid grid-cols-2 gap-2.5"
+            >
               {switcherOptions().map((option) => {
                 const checked = pressed === option;
-                const name = option === 'auto' ? t('switcher.auto') : t(`${option}.name`);
-                const description =
-                  option === 'auto' ? t('switcher.autoDescription') : t(`${option}.description`);
 
                 return (
                   <button
@@ -120,30 +147,39 @@ export function ThemeSwitcher() {
                     role="radio"
                     aria-checked={checked}
                     onClick={() => choose(option)}
+                    onPointerEnter={() => setPeek(option)}
+                    onPointerLeave={() => setPeek(null)}
+                    onFocus={() => setPeek(option)}
+                    onBlur={() => setPeek(null)}
                     className={cn(
-                      'rounded-field flex min-h-11 items-center gap-3 px-3 py-2 text-left transition-colors duration-300',
-                      checked ? 'bg-accent/16 text-fg' : 'text-fg-soft hover:text-fg',
+                      'rounded-field group flex min-h-11 flex-col overflow-hidden border text-left transition-[border-color,background-color] duration-300',
+                      checked
+                        ? 'border-accent/70 bg-accent/12'
+                        : 'border-line hover:border-fg/30 bg-transparent',
                     )}
                   >
-                    {option === 'auto' ? (
+                    <Preview option={option} />
+                    <span className="flex items-center justify-between gap-2 px-3 py-2.5">
                       <span
-                        aria-hidden="true"
-                        style={{ width: 24, height: 24 }}
-                        className="border-line-strong text-fg-soft text-label inline-flex flex-none items-center justify-center rounded-full border font-sans"
+                        className={cn(
+                          'text-body tracking-ui font-sans',
+                          checked ? 'text-fg' : 'text-fg-soft group-hover:text-fg',
+                        )}
                       >
-                        A
+                        {nameOf(option)}
                       </span>
-                    ) : (
-                      <Swatch id={option} className="flex-none" />
-                    )}
-                    <span className="flex min-w-0 flex-col">
-                      <span className="text-body tracking-ui font-sans">{name}</span>
-                      <span className="text-fg-meta text-meta font-sans">{description}</span>
+                      {checked ? (
+                        <span aria-hidden="true" className="bg-accent size-1.5 rounded-full" />
+                      ) : null}
                     </span>
                   </button>
                 );
               })}
             </div>
+
+            <p className="text-fg-soft text-meta mt-4 min-h-10 font-sans leading-snug">
+              {descriptionOf(shown)}
+            </p>
           </Mdiv>
         ) : null}
       </AnimatePresence>

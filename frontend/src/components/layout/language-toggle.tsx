@@ -4,9 +4,10 @@ import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { useTransition } from 'react';
 
-import { Pill } from '@/components/ui';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { routing, type Locale } from '@/i18n/routing';
+
+import { dockSegmentClasses } from './control-dock';
 
 /**
  * Cambia de idioma conservando la ruta actual.
@@ -37,13 +38,15 @@ export function LanguageToggle({ locale }: { locale: Locale }) {
   };
 
   return (
-    <Pill
+    <button
+      type="button"
       onClick={switchLocale}
       aria-label={t('switchLanguage')}
       disabled={isPending}
-      className="pointer-events-auto"
+      data-magnetic
+      className={dockSegmentClasses({ className: 'tracking-caps uppercase disabled:opacity-45' })}
     >
       {t('languageLabel')}
-    </Pill>
+    </button>
   );
 }

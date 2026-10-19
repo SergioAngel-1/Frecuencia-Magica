@@ -11,6 +11,8 @@ import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
 import { useNavMenuStore } from '@/stores/nav-menu-store';
 
+import { dockSegmentClasses } from './control-dock';
+
 /**
  * Menú de navegación: la constelación en una tarjeta modal. Lo abre el botón
  * «Menú» del header, en todos los anchos, y desde 1024 px también el aro que
@@ -74,7 +76,7 @@ export function RealmMenu() {
         aria-expanded={open}
         aria-label={tHeader('openMenu')}
         data-magnetic
-        className="text-fg-soft hover:text-fg rounded-pill border-line-strong bg-surface text-meta tracking-ui inline-flex min-h-11 items-center gap-2 border px-4 font-sans transition-[color,background-color] duration-300 ease-out max-md:min-w-11 max-md:justify-center max-md:px-0"
+        className={dockSegmentClasses({ primary: true, className: 'px-3.5 max-md:px-0' })}
       >
         <svg
           width="18"
