@@ -226,6 +226,7 @@ export const COMPLETED = [
   'store-ritual-banner-dusk.avif',
   'store-ritual-banner-forest.avif',
   'states-loading-dawn.avif',
+  'states-loading-dusk.avif',
 ]
 
 /**
