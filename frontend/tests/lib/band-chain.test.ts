@@ -47,12 +47,6 @@ describe('band chain', () => {
 
   it('chains the consecutive full-bleed bands of each view listed in the spec', () => {
     const view = (path: string) => readSource(`${SRC}/${path}`);
-    const chainOf = (source: string, attrs = '') => {
-      const start = source.indexOf(`<BandChain${attrs}>`);
-      expect(start, `<BandChain${attrs}>`).toBeGreaterThan(-1);
-      return source.slice(start, source.indexOf('</BandChain>', start));
-    };
-
     // Inicio (spec §3.3): héroe (banda) → tarjetas de realms (noche) → llegada
     // (noche) → frecuencia del día (banda) → tienda (noche) → membresía (banda) →
     // Marisol (noche) → pie. La Home no encadena: nunca dos bandas seguidas.
@@ -92,10 +86,10 @@ describe('band chain', () => {
     // Resonario: héroe → encabezado de texto del archivo (sin cadena: no hay dos bandas).
     expect(view('app/[locale]/resonario/page.tsx')).not.toContain('<BandChain');
 
-    // Experiencias: héroe → destacada.
-    const experiences = chainOf(view('components/features/experiences/experience-list.tsx'));
-    expect(experiences).toContain('{hero}');
-    expect(experiences).toContain('featured');
+    // Experiencias: héroe → encabezado de texto → destacada como tarjeta (sin cadena).
+    const experiences = view('components/features/experiences/experience-list.tsx');
+    expect(experiences).not.toContain('<BandChain');
+    expect(experiences.indexOf('{hero}')).toBeLessThan(experiences.indexOf('<ExperienceRow'));
 
     // Acceso: héroe → atmósfera del formulario (en móvil, una sobre otra).
     const access = view('app/[locale]/acceso/page.tsx');
