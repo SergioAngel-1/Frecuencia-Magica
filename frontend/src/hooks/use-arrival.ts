@@ -15,18 +15,18 @@ import {
   stepAlternative,
   type ArrivalFlow,
 } from '@/lib/arrival/flow';
+import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useAtmosphereShift } from '@/hooks/use-atmosphere-shift';
 import { useMounted } from '@/hooks/use-mounted';
 import type { AtmosphereId } from '@/types/atmosphere';
 import { usePlayerStore } from '@/stores/player-store';
 import { useArrivalStore } from '@/stores/arrival-store';
-import { useAtmosphereStore } from '@/stores/atmosphere-store';
 
 export type ArrivalControls = {
   flow: ArrivalFlow;
   /**
-   * Tema que pintan el bloque, el panel y Descúbrete: el que la persona eligió,
-   * o la noche. Antes de montar, la noche (sin desajuste de hidratación).
+   * Tema visible que pintan el bloque, el panel y Descúbrete; antes de montar,
+   * la noche (sin desajuste de hidratación).
    */
   atmosphere: AtmosphereId;
   /** Elige una entrada: fija el tema global y, con el gesto, abre la primera pista. */
@@ -56,13 +56,13 @@ export type ArrivalOptions = {
  * Estado de una llegada en la interfaz. La decisión está en las funciones
  * puras (`chooseArrival`, `restoreArrival`, `stepAlternative`, `nextAtmosphere`);
  * este hook sólo aplica sus efectos sobre el store de tema, el de llegada y el
- * reproductor. El tema sale del store, no de un estado propio: así «otra opción»
- * parte del real.
+ * reproductor. El tema es el visible (elección o el que sugiere el lugar), no un
+ * estado propio: así «otra opción» parte del real también en modo automático.
  */
 export function useArrival({ restore = false }: ArrivalOptions = {}): ArrivalControls {
   const [flow, setFlow] = useState<ArrivalFlow>(IDLE_ARRIVAL);
   const mounted = useMounted();
-  const choice = useAtmosphereStore((state) => state.choice);
+  const { atmosphereId } = useAtmosphere();
   const shift = useAtmosphereShift();
   const savedKey = useArrivalStore((state) => state.key);
   const setSavedKey = useArrivalStore((state) => state.setKey);
@@ -80,7 +80,7 @@ export function useArrival({ restore = false }: ArrivalOptions = {}): ArrivalCon
   );
   const current = flow.key === null ? restored : flow;
 
-  const atmosphere: AtmosphereId = mounted && choice ? choice : 'night';
+  const atmosphere: AtmosphereId = mounted ? atmosphereId : 'night';
 
   const select = useCallback(
     (key: ArrivalKey, featuredId?: string) => {
@@ -126,8 +126,8 @@ export function useArrival({ restore = false }: ArrivalOptions = {}): ArrivalCon
 
   const other = useCallback(() => {
     if (!current.response) return;
-    shift(nextAtmosphere(current.response, choice ?? 'night'), { source: 'feeling' });
-  }, [current, choice, shift]);
+    shift(nextAtmosphere(current.response, atmosphereId), { source: 'feeling' });
+  }, [current, atmosphereId, shift]);
 
   return { flow: current, atmosphere, choose, pick, step, other, stop: close };
 }
