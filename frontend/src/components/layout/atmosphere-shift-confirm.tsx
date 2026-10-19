@@ -60,11 +60,19 @@ export function AtmosphereShiftConfirm() {
           <p className="text-fg-soft text-body font-sans">{description}</p>
           <p className="text-fg-meta text-meta font-sans">{t('shift.changes')}</p>
 
-          <div className="flex flex-wrap gap-3">
-            <Button variant="accent" onClick={() => confirm(reduced ? 'quick' : 'full')}>
+          {/* Dos píldoras de la misma familia y la misma medida: el principal en acento y el
+              secundario en contorno. Un `ghost` (sans, sin borde) junto a un `accent` (serif, con
+              borde) leía como dos controles de sistemas distintos. Van apiladas a todo el ancho:
+              frases como «Quiero escucharme» no caben en media tarjeta sin partirse en dos. */}
+          <div className="flex flex-col gap-3">
+            <Button
+              variant="accent"
+              className="w-full"
+              onClick={() => confirm(reduced ? 'quick' : 'full')}
+            >
               {target ? t(`${target}.want`) : t('shift.confirmAuto')}
             </Button>
-            <Button variant="ghost" onClick={cancel}>
+            <Button variant="outline" className="w-full" onClick={cancel}>
               {t('shift.cancel')}
             </Button>
           </div>
