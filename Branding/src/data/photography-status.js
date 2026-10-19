@@ -235,6 +235,7 @@ export const COMPLETED = [
   'states-error-dusk.avif',
   'states-error-forest.avif',
   'states-offline-dawn.avif',
+  'states-offline-dusk.avif',
 ]
 
 /**

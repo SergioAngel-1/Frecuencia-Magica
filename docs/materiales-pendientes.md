@@ -104,7 +104,7 @@ Los tres cursos son de demostración (acceso, modalidad, «qué aprenderás» y 
 |---|---|---|
 | `c1` | El Arte de Volver a Ti | 8 |
 | `c2` | Rituales Conscientes | 12 |
-| `c3` | Aromas que Sanan | 6 |
+| `c3` | Aromas que Acompañan | 6 |
 
 ## Imágenes provisionales
 
