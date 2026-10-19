@@ -17,7 +17,6 @@ describe('registro de llegadas (ARRIVALS)', () => {
       'joy',
       'gratitude',
       'clarity',
-      'breathe',
     ]);
     for (const id of MOOD_IDS) {
       expect(ARRIVALS, `mood:${id}`).toHaveProperty([`mood:${id}`]);
@@ -53,7 +52,6 @@ describe('registro de llegadas (ARRIVALS)', () => {
     expect(ARRIVALS['mood:joy'].atmosphere).toBe('dawn');
     expect(ARRIVALS['mood:gratitude'].atmosphere).toBe('forest');
     expect(ARRIVALS['mood:clarity'].atmosphere).toBe('moon');
-    expect(ARRIVALS['mood:breathe'].atmosphere).toBe('forest');
 
     const used = new Set(MOOD_IDS.map((id) => ARRIVALS[`mood:${id}`].atmosphere));
     expect(used).toEqual(new Set(ATMOSPHERE_IDS));
@@ -66,10 +64,6 @@ describe('registro de llegadas (ARRIVALS)', () => {
     expect(ARRIVALS['intent:bond'].atmosphere).toBe('dusk');
     expect(ARRIVALS['intent:calm'].atmosphere).toBe('dawn');
     expect(ARRIVALS['intent:clarity'].atmosphere).toBe('moon');
-  });
-
-  it('«Necesito respirar» abre la práctica de respiración, no una pista', () => {
-    expect(ARRIVALS['mood:breathe'].practice).toBe('breathing');
   });
 
   it('«otra opción» ofrece los cinco temas, de día y de noche, en el orden de la hora', () => {

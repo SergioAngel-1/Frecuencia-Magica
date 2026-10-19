@@ -48,6 +48,17 @@ describe('useArrivalStore', () => {
     expect(useArrivalStore.getState().key).toBeNull();
   });
 
+  it('al rehidratar, la emoción retirada «breathe» se descarta', async () => {
+    localStorage.setItem(
+      ARRIVAL_STORAGE_KEY,
+      JSON.stringify({ state: { key: 'mood:breathe' }, version: 1 }),
+    );
+
+    await useArrivalStore.persist.rehydrate();
+
+    expect(useArrivalStore.getState().key).toBeNull();
+  });
+
   it('al rehidratar, un valor no textual o un nombre del prototipo de objeto se descarta', async () => {
     for (const key of [42, { id: 'calm' }, 'toString', null]) {
       localStorage.setItem(ARRIVAL_STORAGE_KEY, JSON.stringify({ state: { key }, version: 1 }));

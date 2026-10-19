@@ -8,7 +8,6 @@ import { currentAlternative, type ArrivalFlow } from '@/lib/arrival/flow';
 import type { AtmosphereId } from '@/types/atmosphere';
 
 import { ArrivalReveal } from './arrival-reveal';
-import { BreathingGuide } from './breathing-guide';
 
 type ArrivalPanelProps = {
   flow: ArrivalFlow;
@@ -21,8 +20,7 @@ type ArrivalPanelProps = {
 
 /**
  * Respuesta a la llegada elegida: una frase de lo que ofrece, la alternativa en
- * curso y su recorrido, «elegir otra opción» y parar. La práctica de respiración
- * aparece debajo cuando la entrada la trae.
+ * curso y su recorrido, «elegir otra opción» y parar.
  *
  * La región `role="status"` va siempre montada, con o sin respuesta: un lector
  * de pantalla sólo anuncia lo que cambia dentro de una región que ya existía.
@@ -100,12 +98,6 @@ export function ArrivalPanel({ flow, atmosphere, onStep, onOther, onStop }: Arri
                         </Button>
                       </div>
                     ) : null}
-                  </div>
-                ) : null}
-
-                {response.practice === 'breathing' ? (
-                  <div className="mt-8">
-                    <BreathingGuide />
                   </div>
                 ) : null}
 

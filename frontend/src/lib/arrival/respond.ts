@@ -41,7 +41,6 @@ export type ArrivalResponse = {
   /** Los otros cuatro temas para «elegir otra opción», en orden: los de la hora primero. */
   otherAtmospheres: readonly AtmosphereId[];
   explanationKey: ArrivalExplanationKey;
-  practice?: 'breathing';
 };
 
 /** La intención que busca una entrada: la de Descúbrete, o la del estado del diario. */
@@ -136,6 +135,5 @@ export function respondToArrival(
     alternatives: ordered.slice(0, MAX_ALTERNATIVES),
     otherAtmospheres,
     explanationKey: entry.explanationKey,
-    ...(entry.practice ? { practice: entry.practice } : {}),
   };
 }

@@ -7,7 +7,7 @@ describe('theme switcher options', () => {
     expect(switcherOptions()).toEqual(['auto', 'night', 'dusk', 'dawn', 'moon', 'forest']);
   });
 
-  it('lists the eight portal emotions in their order', () => {
+  it('lists the seven portal emotions in their order', () => {
     expect(feelingOptions()).toEqual([
       'mood:calm',
       'mood:tiredness',
@@ -16,7 +16,6 @@ describe('theme switcher options', () => {
       'mood:joy',
       'mood:gratitude',
       'mood:clarity',
-      'mood:breathe',
     ]);
   });
 

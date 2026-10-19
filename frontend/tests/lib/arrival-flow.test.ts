@@ -56,7 +56,7 @@ describe('flujo de llegada (función pura)', () => {
   });
 
   it('recorrer nunca lleva a una pista que no es reproducible', () => {
-    for (const key of ['mood:breathe', 'mood:sadness', 'intent:rest'] as ArrivalKey[]) {
+    for (const key of ['mood:gratitude', 'mood:sadness', 'intent:rest'] as ArrivalKey[]) {
       let flow = chooseArrival(key, NIGHT);
       for (let i = 0; i < 9; i += 1) {
         const audio = currentAlternative(flow);

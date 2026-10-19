@@ -72,13 +72,6 @@ describe('respondToArrival', () => {
     expect(response.alternatives.map((audio) => audio.kind)).toEqual(['nature', 'binaural']);
   });
 
-  it('«Necesito respirar» (práctica, no pista) no entra en las alternativas', () => {
-    const response = respondToArrival('mood:breathe', { catalog: AUDIOS, hour: DAY });
-    expect(response.practice).toBe('breathing');
-    expect(response.alternatives.every((audio) => audio.kind !== 'guided')).toBe(true);
-    expect(response.alternatives.length).toBeGreaterThanOrEqual(2);
-  });
-
   it('una entrada desconocida cae a la respuesta neutra de calma', () => {
     const unknown = 'mood:inventado' as ArrivalKey;
     const response = respondToArrival(unknown, { catalog: AUDIOS, hour: DAY });

@@ -7,6 +7,7 @@ import type { Locale } from '@/i18n/routing';
 
 import { AudioToggle } from './audio-toggle';
 import { BrandMark } from './brand-mark';
+import { BreathingDialog } from './breathing-dialog';
 import { ControlDock, DockDivider } from './control-dock';
 import { CurrentSectionLabel } from './current-section-label';
 import { LanguageToggle } from './language-toggle';
@@ -58,6 +59,8 @@ export function SiteHeader() {
           <LanguageToggle locale={locale} />
           <DockDivider />
           <AudioToggle />
+          <DockDivider />
+          <BreathingDialog />
           <DockDivider />
           <ThemeSwitcher />
         </ControlDock>

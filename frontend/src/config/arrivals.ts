@@ -13,12 +13,10 @@ export type ArrivalEntry = {
   atmosphere: AtmosphereId;
   /**
    * Tipos de escucha en orden de preferencia (spec §5.3). Un tipo sin pistas
-   * reproducibles se salta; la práctica de respiración no es un tipo.
+   * reproducibles se salta.
    */
   kinds: readonly AudioKind[];
   explanationKey: ArrivalExplanationKey;
-  /** La entrada abre una práctica además de (o en lugar de) una pista. */
-  practice?: 'breathing';
 };
 
 /**
@@ -60,12 +58,6 @@ export const ARRIVALS: Record<ArrivalKey, ArrivalEntry> = {
     atmosphere: 'moon',
     kinds: ['melody', 'nature', 'binaural'],
     explanationKey: 'moods.clarity.explanation',
-  },
-  'mood:breathe': {
-    atmosphere: 'forest',
-    kinds: ['nature', 'melody'],
-    explanationKey: 'moods.breathe.explanation',
-    practice: 'breathing',
   },
   'intent:calm': {
     atmosphere: 'dawn',
@@ -112,7 +104,6 @@ export const MOOD_INTENT: Record<MoodId, Intent> = {
   joy: 'bond',
   gratitude: 'bond',
   clarity: 'clarity',
-  breathe: 'calm',
 };
 
 /**

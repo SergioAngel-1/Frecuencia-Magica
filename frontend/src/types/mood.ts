@@ -11,7 +11,6 @@ export const MOOD_IDS = [
   'joy',
   'gratitude',
   'clarity',
-  'breathe',
 ] as const;
 
 export type MoodId = (typeof MOOD_IDS)[number];

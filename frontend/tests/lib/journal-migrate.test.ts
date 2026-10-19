@@ -82,6 +82,21 @@ describe('migrateJournal', () => {
     expect(migrated.entries.map((entry) => entry.mood)).toEqual(['sadness', null]);
   });
 
+  it('una entrada guardada con la emoción retirada «breathe» no rompe: queda en null (etiqueta neutra)', () => {
+    const migrated = migrateJournal(
+      {
+        entries: [
+          { id: 'a', mood: 'breathe', text: 'respirar', createdAt: '2026-10-01T10:00:00.000Z' },
+        ],
+      },
+      1,
+    );
+
+    expect(migrated.entries).toHaveLength(1);
+    expect(migrated.entries[0]!.mood).toBeNull();
+    expect(migrated.entries[0]!.text).toBe('respirar');
+  });
+
   it('un estado corrupto no rompe: sin datos útiles, diario vacío', () => {
     for (const corrupt of [null, undefined, 'roto', 42, []]) {
       expect(migrateJournal(corrupt, 0)).toEqual({

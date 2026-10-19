@@ -19,6 +19,9 @@
     "languageLabel": "ES",
     "soundOn": "Mute ambient sound",
     "soundOff": "Turn on ambient sound",
+    "breathe": "Breathe slowly",
+    "breatheTitle": "Breathe",
+    "breatheClose": "Close",
     "skipToContent": "Skip to content",
     "store": "Store",
     "menu": "Menu"
@@ -989,7 +992,6 @@
       "joy": "Joy",
       "gratitude": "Gratitude",
       "clarity": "Clarity",
-      "breathe": "I need to breathe",
       "unknown": "No label"
     },
     "placeholder": "Write what wants to be heard today…",
@@ -1044,9 +1046,6 @@
       },
       "clarity": {
         "explanation": "To think with more space: a steady pulse in the background, without hurry."
-      },
-      "breathe": {
-        "explanation": "For when you only need to breathe. A slow guide you follow with your air."
       }
     },
     "intents": {

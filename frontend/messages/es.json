@@ -19,6 +19,9 @@
     "languageLabel": "EN",
     "soundOn": "Silenciar el sonido ambiental",
     "soundOff": "Activar el sonido ambiental",
+    "breathe": "Respirar con calma",
+    "breatheTitle": "Respira",
+    "breatheClose": "Cerrar",
     "skipToContent": "Saltar al contenido",
     "store": "Tienda",
     "menu": "Menú"
@@ -994,7 +997,6 @@
       "joy": "Alegría",
       "gratitude": "Gratitud",
       "clarity": "Claridad",
-      "breathe": "Necesito respirar",
       "unknown": "Sin etiqueta"
     },
     "placeholder": "Escribe lo que hoy quiere ser escuchado…",
@@ -1049,9 +1051,6 @@
       },
       "clarity": {
         "explanation": "Para pensar con más espacio: un pulso constante de fondo, sin prisa."
-      },
-      "breathe": {
-        "explanation": "Para cuando sólo necesitas respirar. Una guía lenta que sigues con el aire."
       }
     },
     "intents": {

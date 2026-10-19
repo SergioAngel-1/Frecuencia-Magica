@@ -18,7 +18,6 @@ const MOOD_DOT: Record<MoodId | 'unknown', string> = {
   joy: 'bg-accent',
   gratitude: 'bg-fg',
   clarity: 'bg-accent',
-  breathe: 'bg-accent-2',
   unknown: 'bg-fg/20',
 };
 
