@@ -114,7 +114,7 @@ describe('theme image variants', () => {
   it('hide the base photo with one CSS rule per theme that has variants', () => {
     for (const theme of ['dusk', 'dawn', 'moon', 'forest']) {
       expect(GLOBALS, theme).toContain(
-        `[data-atmosphere='${theme}'] [data-photo-themes~='${theme}']:not([data-variant-failed]) > [data-photo-base]`,
+        `[data-atmosphere='${theme}'] [data-photo-themes~='${theme}']:not([data-photo-override]):not([data-variant-failed]) > [data-photo-base]`,
       );
     }
   });
