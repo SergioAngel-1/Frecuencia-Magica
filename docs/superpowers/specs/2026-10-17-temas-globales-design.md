@@ -32,8 +32,9 @@ activo       = elección ?? PLACE_ATMOSPHERE[lugar]
 
 | Lugar | Tema sugerido |
 |---|---|
-| portal, home, auth, descubrete, resonario, sanctuario | `night` |
-| academia | `dawn` |
+| portal, home, auth, resonario | `night` |
+| descubrete, sanctuario | `moon` |
+| academia | `forest` |
 | tienda | `dawn` |
 | experiencias | `dusk` |
 | story (Sobre Marisol) | `dawn` |
@@ -87,3 +88,11 @@ Tema automático por hora del día; temas por usuario en servidor (no hay backen
 - **Contraste:** `atmosphere-contrast.test.ts` mide cada par de cada tema; los claros usan derivados oscuros.
 - **Guardias de código fuente** (`palette`, `atmosphere-boot`, `band-chain`, `academy-editorial`…): se actualizan al nuevo contrato sin debilitarlos.
 - **First Load JS** ya sobre presupuesto: las escenas son datos; no se añade librería.
+
+
+## Enmienda 2026-10-18: los cinco temas, en la historia
+
+- **Lugares:** Descúbrete y Mi Santuario sugieren `moon` (mirar hacia dentro), Academia `forest` (aprender entre árboles). El test `atmospheres.test` exige que los cinco temas tengan al menos un lugar.
+- **Estados de ánimo** (`config/arrivals.ts`): Calma y Alegría → `dawn`; Cansancio → `dusk`; Nostalgia y Claridad → `moon`; Tristeza → `night`; Gratitud y Necesito respirar → `forest`. Intenciones de Descúbrete: Calma → `dawn`; Raíz y Renovación → `forest`; Claridad → `moon`; Descanso y Vínculo → `dusk`. `ARRIVAL_ATMOSPHERES` ya no excluye la noche ni la luna: ordena los cinco por hora (de noche, la luna primero) y «otra opción» ofrece los cuatro que no son el propio.
+- **Panel de control del header:** dos cápsulas (`ControlDock`) de la misma altura: preferencias (idioma, sonido, tema) y atajos (tienda, cuenta, menú). El selector de tema es una rejilla de tarjetas con vista previa, con «Automático» como sexta.
+- **Fondos nocturnos sin variante:** `NIGHT_BACKDROP_SLOTS` (`config/editorial-media.ts`) lista los fondos con texto encima que sólo tienen foto nocturna; bajo `dawn` se lavan como cualquier foto temable sin variante.
