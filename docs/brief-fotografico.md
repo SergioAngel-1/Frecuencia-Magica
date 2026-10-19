@@ -8,7 +8,7 @@
 
 **204 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 132 · P2 60. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 185 completadas · 0 a corregir · 18 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 186 completadas · 0 a corregir · 17 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -301,7 +301,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `sanctuary-journal-dusk.avif` | Mi Santuario · diario · tema · Atardecer | 16:8 | 2880×1440 | P2 | Completadas |
 | `sanctuary-journal-forest.avif` | Mi Santuario · diario · tema · Bosque | 16:8 | 2880×1440 | P2 | Completadas |
 | `sanctuary-empty-dawn.avif` | Mi Santuario · vacío · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
-| `sanctuary-empty-dusk.avif` | Mi Santuario · vacío · tema · Atardecer | 16:9 | 2880×1620 | P2 | Faltantes |
+| `sanctuary-empty-dusk.avif` | Mi Santuario · vacío · tema · Atardecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `sanctuary-empty-forest.avif` | Mi Santuario · vacío · tema · Bosque | 16:9 | 2880×1620 | P2 | Faltantes |
 | `cart-empty-dawn.avif` | Carrito · vacío · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
 | `cart-empty-dusk.avif` | Carrito · vacío · tema · Atardecer | 16:9 | 2880×1620 | P2 | Faltantes |
@@ -346,25 +346,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (18)
+### 5.2 Faltantes (17)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `sanctuary.empty · Atardecer` — Mi Santuario · vacío · tema · P2
-
-- **Archivo:** `sanctuary-empty-dusk.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Variante del tema Atardecer de `sanctuary.empty`: la misma vista y el mismo encuadre, con la escena del tema. El santuario recién estrenado: vacío luminoso, no ausencia.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A luminous emptiness at dusk: an empty dark space opening onto still water, a soft pool of warm amber light gathering in the center of the floor and reflecting in the water beyond, fine dust motes drifting, no objects, the quiet of a place that is new. Light pool at center, slightly below the middle, deep calm rose-indigo space around it. Wide landscape framing. Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `sanctuary.empty · Bosque` — Mi Santuario · vacío · tema · P2
 
@@ -652,7 +636,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (185)
+### 5.5 Completadas (186)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -829,6 +813,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `sanctuary-journal-dusk.avif` | Mi Santuario · diario · tema · Atardecer | `sanctuary.journal` | 16:8 | P2 |
 | `sanctuary-journal-forest.avif` | Mi Santuario · diario · tema · Bosque | `sanctuary.journal` | 16:8 | P2 |
 | `sanctuary-empty-dawn.avif` | Mi Santuario · vacío · tema · Amanecer | `sanctuary.empty` | 16:9 | P2 |
+| `sanctuary-empty-dusk.avif` | Mi Santuario · vacío · tema · Atardecer | `sanctuary.empty` | 16:9 | P2 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
