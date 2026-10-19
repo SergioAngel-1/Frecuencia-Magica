@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 import { ATMOSPHERE_SHIFT_TIMING, type AtmosphereShiftMode } from '@/config/motion';
+import { preloadTheme } from '@/lib/atmosphere/photo-preload';
 import type { ShiftRequest } from '@/lib/atmosphere/shift';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
 
@@ -35,6 +36,7 @@ type ShiftState = {
 };
 
 let timers: ReturnType<typeof setTimeout>[] = [];
+let crossing = 0;
 
 function clearTimers() {
   for (const timer of timers) clearTimeout(timer);
@@ -57,21 +59,49 @@ export function applyChoice(request: ShiftRequest) {
 export const useAtmosphereShiftStore = create<ShiftState>((set, get) => {
   const run = (request: ShiftRequest, mode: AtmosphereShiftMode, origin: ShiftOrigin | null) => {
     const timing = ATMOSPHERE_SHIFT_TIMING[mode];
+    const id = ++crossing;
 
     clearTimers();
+    const ready = preloadTheme(request.resolved);
     set({ phase: 'in', mode, request, origin });
 
     timers.push(
       setTimeout(() => {
+        if (id !== crossing) return;
+
         applyChoice(request);
         set({ phase: 'hold' });
 
+        let holdElapsed = false;
+        let preloadDone = false;
+
+        // La revelación espera a que pasen `hold` y a que las fotos del tema estén
+        // listas (la precarga tiene su propio tope), lo que tarde más.
+        const revealIfReady = () => {
+          if (!holdElapsed || !preloadDone || id !== crossing) return;
+
+          set({ phase: 'out' });
+          timers.push(
+            setTimeout(() => {
+              if (id !== crossing) return;
+
+              set({ phase: 'idle', request: null });
+            }, timing.reveal),
+          );
+        };
+
         timers.push(
           setTimeout(() => {
-            set({ phase: 'out' });
-            timers.push(setTimeout(() => set({ phase: 'idle', request: null }), timing.reveal));
+            holdElapsed = true;
+            revealIfReady();
           }, timing.hold),
         );
+
+        const markReady = () => {
+          preloadDone = true;
+          revealIfReady();
+        };
+        void ready.then(markReady, markReady);
       }, timing.cover),
     );
   };

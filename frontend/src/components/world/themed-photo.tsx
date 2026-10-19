@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, type CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 
 import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useMounted } from '@/hooks/use-mounted';
+import { registerThemedPhoto } from '@/lib/atmosphere/photo-preload';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 type ThemedPhotoProps = {
@@ -25,7 +26,8 @@ const NO_VARIANTS: NonNullable<EditorialMedia['variants']> = {};
  * encima con un fundido y hereda la prioridad del slot.
  *
  * Nunca se ve la foto equivocada: mientras la variante carga se ve el fondo del
- * tema. Si la variante falla, `data-variant-failed` devuelve la base.
+ * tema. Si la variante falla, `data-variant-failed` devuelve la base. La foto se
+ * registra para que el cruce de atmósfera precargue su variante durante el velo.
  */
 export function ThemedPhoto({ media, className, style, sizes, priority }: ThemedPhotoProps) {
   const { atmosphereId } = useAtmosphere();
@@ -36,6 +38,8 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
   const variants = media.variants ?? NO_VARIANTS;
   const themes = Object.keys(variants).join(' ');
   const variant = mounted && atmosphereId !== 'night' ? variants[atmosphereId] : undefined;
+
+  useEffect(() => registerThemedPhoto({ variants, sizes }), [variants, sizes]);
   const variantFailed = variant !== undefined && failed === variant;
   // Una variante con el sujeto en otro sitio trae su foco, en escritorio y en móvil.
   const position = atmosphereId !== 'night' ? media.variantPositions?.[atmosphereId] : undefined;
