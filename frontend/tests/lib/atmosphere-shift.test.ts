@@ -29,8 +29,8 @@ describe('planShift', () => {
     expect(planShift(request(), context())).toBe('confirm');
   });
 
-  it('un cambio por estado del ánimo cruza directamente', () => {
-    expect(planShift(request({ source: 'feeling' }), context())).toBe('cross');
+  it('un cambio por estado del ánimo fuera del portal pide confirmación', () => {
+    expect(planShift(request({ source: 'feeling' }), context())).toBe('confirm');
   });
 
   it('si el tema visible no cambia, se aplica sin ceremonia', () => {
@@ -39,6 +39,7 @@ describe('planShift', () => {
 
   it('con otro cruce en marcha, se aplica sin pisarlo', () => {
     expect(planShift(request(), context({ busy: true }))).toBe('apply');
+    expect(planShift(request({ source: 'feeling' }), context({ busy: true }))).toBe('apply');
   });
 
   it('en el portal, que ya es el umbral, se aplica sin ceremonia', () => {

@@ -4,8 +4,8 @@ import type { AtmosphereId } from '@/types/atmosphere';
 /**
  * Quién pide el cambio de atmósfera: `manual`, la persona elige un tema (o «según cómo te
  * sientes») en el selector; `feeling`, un estado del ánimo lo propone (el portal, la Home,
- * Descúbrete, Mi Santuario). Un cambio manual se confirma antes de ocurrir; uno por sentimiento
- * ya fue una elección explícita (la emoción), así que va directo al cruce.
+ * Descúbrete, Mi Santuario). Fuera del portal, una emoción también pide confirmación: cambiar
+ * de emoción cambia el tema. En el portal, que ya es el umbral, se aplica sin ceremonia.
  */
 export type ShiftSource = 'manual' | 'feeling';
 
@@ -24,7 +24,9 @@ export type ShiftRequest = {
  * - `apply`: aplicarla ya, sin ceremonia (el tema no cambia, o hay otro cruce en marcha, o
  *   se está en el portal, que ya es el umbral).
  * - `confirm`: pedir confirmación y, si se acepta, cruzar.
- * - `cross`: cruzar directamente.
+ * - `cross`: cruzar directamente. `planShift` ya no lo produce (ni el cambio manual ni el de
+ *   emoción fuera del portal pueden saltarse la ceremonia); el cruce directo sigue disponible
+ *   en el store para quien ya lo usaba.
  */
 export type ShiftPlan = 'apply' | 'confirm' | 'cross';
 
@@ -37,11 +39,16 @@ export type ShiftContext = {
   atPortal: boolean;
 };
 
+/**
+ * Fuera del portal, cualquier cambio de tema se confirma, venga del selector (`manual`) o de
+ * una emoción (`feeling`): una emoción fuera del portal ya no cruza directo. En el portal la
+ * elección de emoción se aplica sin ceremonia, porque su propio cruce es el umbral.
+ */
 export function planShift(request: ShiftRequest, context: ShiftContext): ShiftPlan {
   if (request.resolved === context.current) return 'apply';
   if (context.busy || context.atPortal) return 'apply';
 
-  return request.source === 'manual' ? 'confirm' : 'cross';
+  return 'confirm';
 }
 
 /**

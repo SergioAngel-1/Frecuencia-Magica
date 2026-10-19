@@ -201,7 +201,7 @@ Una atmósfera se nombra por lo que la persona siente, nunca por el ambiente; lo
 
 ### Cruce de atmósfera
 
-Cambiar de tema es una experiencia, no un interruptor. Un cambio manual (selector del header) pide confirmación en un `Modal`: la luz del tema destino, su **frase** (no su nombre), el estado del ánimo y qué cambia; el botón principal dice lo que la persona quiere (`atmospheres.<id>.want`, p. ej. «Quiero descansar») y «Quedarme aquí» no toca nada. Un cambio por estado del ánimo (portal, Home, Descúbrete, Mi Santuario) cruza directo, porque la emoción ya fue la elección; en el portal o con otro cruce en marcha se aplica sin ceremonia.
+Cambiar de tema es una experiencia, no un interruptor. Un cambio manual (selector del header) pide confirmación en un `Modal`: la luz del tema destino, su **frase** (no su nombre), el estado del ánimo y qué cambia; el botón principal dice lo que la persona quiere (`atmospheres.<id>.want`, p. ej. «Quiero descansar») y «Quedarme aquí» no toca nada. Un cambio por estado del ánimo fuera del portal (Home, Descúbrete, Mi Santuario) pide la misma confirmación que uno manual; en el portal, que ya es el umbral, se aplica sin ceremonia, igual que con otro cruce en marcha. Una elección manda sobre el lugar y sobre la escucha hasta que la persona elija otra emoción u otro tema.
 
 **Frase en lugar de nombre.** El nombre-emoción (`atmospheres.<id>.name`: Consuelo, Descanso, Despertar, Recogimiento, Arraigo) vive en las tarjetas del selector, en `switcher.current` y en el `aria-live`; el diálogo, el botón y el velo usan la frase (`atmospheres.<id>.phrase`) y el deseo (`atmospheres.<id>.want`). Una atmósfera se nombra por lo que la persona siente, nunca por el ambiente.
 

@@ -28,8 +28,8 @@ export type ShiftOptions = {
 /**
  * Cambiar de atmósfera, con su ceremonia. Toda escritura de la elección de tema pasa por aquí
  * (el selector, los estados del ánimo, el resultado de Descúbrete): la decisión de si se
- * confirma, se cruza o se aplica sin más vive en `planShift`; este hook sólo la alimenta con
- * el tema visible, el lugar y los cruces en marcha, y ejecuta el plan.
+ * confirma o se aplica sin más vive en `planShift`; este hook sólo la alimenta con el tema
+ * visible, el lugar y los cruces en marcha, y ejecuta el plan.
  *
  * `choice: null` es «según cómo te sientes»: se borra la elección y cada lugar vuelve a proponer
  * el suyo.
