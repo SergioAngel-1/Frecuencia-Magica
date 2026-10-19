@@ -263,13 +263,17 @@ describe('resonario editorial composition contracts', () => {
     const orbSource = readSource('components/features/player/player-orb.tsx');
 
     expect(dockSource).toContain('<AudioCover media={resolveAudioCover(audio');
-    expect(dockSource).toContain('<PlayerOrb band={audio.band} cover={cover}');
-    // El aro del disco recogido lee el avance en su propia hoja (ver player-progress).
+    // La carátula de la barra es el mismo `PlayerOrb` con la misma portada, ahora con su aro de
+    // avance: lo lee en su propia hoja (ver player-progress), igual que el disco recogido.
+    expect(dockSource).toContain('<PlayerArtworkProgress');
+    expect(dockSource).toContain('band={audio.band}');
     expect(dockSource).toContain('<PlayerMiniProgress');
     expect(dockSource).toContain('cover={cover}');
-    expect(readSource('components/features/player/player-progress.tsx')).toContain(
-      'progress={progressPercent(elapsed, total)}',
+    const progressSource = readSource('components/features/player/player-progress.tsx');
+    expect(progressSource).toContain(
+      '<PlayerOrb {...props} progress={progressPercent(elapsed, total)}',
     );
+    expect(progressSource).toContain('progress={progressPercent(elapsed, total)}');
     expect(miniSource).toContain('<PlayerOrb band={band} cover={cover}');
     expect(orbSource).toContain(
       '{cover ? <span className="absolute inset-0">{cover}</span> : null}',

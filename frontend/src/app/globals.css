@@ -376,7 +376,16 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   }
 }
 
+/* «Hablar ahora» flota en la esquina derecha sin ocupar sitio en la fila: el reproductor se
+   centra en la pantalla y deja a cada lado lo que ocupa el botón. `--talk-w` es lo que mide con
+   el reproductor presente —el disco, y con el nombre completo desde 1280 px— y `--talk-reserve`
+   lo que el reproductor debe respetar desde el borde: el hueco de la fila, el botón y un respiro. */
 @utility fm-float-dock {
+  --talk-w: 56px;
+  --talk-reserve: calc(var(--float-gap) + var(--talk-w) + 12px);
+  @media (min-width: 1280px) {
+    --talk-w: 182px;
+  }
   padding-left: max(var(--float-gap), env(safe-area-inset-left));
   padding-right: max(var(--float-gap), env(safe-area-inset-right));
   padding-bottom: max(var(--float-gap), env(safe-area-inset-bottom));

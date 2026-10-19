@@ -23,9 +23,10 @@ type VolumeControlProps = {
 };
 
 /**
- * Volumen del reproductor: silencio y un deslizador, siempre visibles junto a
- * la pausa. El deslizador es un `<input type="range">` nativo: arrastre,
- * teclado y lector de pantalla salen gratis.
+ * Volumen del reproductor: silencio y un deslizador junto a la pausa. Por debajo de 1024 px
+ * sólo queda el silencio: la barra no cabe con el deslizador y en móvil manda el dispositivo.
+ * El deslizador es un `<input type="range">` nativo: arrastre, teclado y lector de pantalla
+ * salen gratis.
  */
 export function VolumeControl({ value, onChange, onToggleMute, labels }: VolumeControlProps) {
   const muted = value === 0;
@@ -48,7 +49,7 @@ export function VolumeControl({ value, onChange, onToggleMute, labels }: VolumeC
         aria-label={labels.volume}
         aria-valuetext={labels.valueText}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="accent-accent h-11 w-16 cursor-pointer sm:w-24"
+        className="accent-accent h-11 w-24 cursor-pointer max-lg:hidden"
       />
     </div>
   );

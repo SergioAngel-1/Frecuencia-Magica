@@ -35,15 +35,3 @@ export function PlayButton({
     </button>
   );
 }
-
-/** El avance como filo superior de la barra, donde no cabe la de posición. */
-export function EdgeProgress({ percent, className }: { percent: number; className?: string }) {
-  return (
-    <div aria-hidden="true" className={cn('bg-fg/10 absolute inset-x-0 top-0 h-[2px]', className)}>
-      <div
-        className="bg-accent h-full origin-left"
-        style={{ transform: `scaleX(${percent / 100})` }}
-      />
-    </div>
-  );
-}

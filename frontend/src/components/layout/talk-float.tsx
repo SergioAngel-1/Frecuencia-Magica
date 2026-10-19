@@ -16,23 +16,32 @@ import { usePlayerStore } from '@/stores/player-store';
  * en la esquina inferior derecha de todas las vistas. Habla el idioma del sitio: vidrio denso, trazo fino
  * y una luz que respira, sin el verde ni el logotipo de la aplicación.
  *
- * Por debajo de 640 px se queda en el disco con su icono; el nombre completo
- * sigue en el árbol de accesibilidad. Comparte la fila fija del pie con el
- * reproductor (`layout.tsx`): va en línea con la barra desplegada y, al
- * recogerse, con el disco, que queda a su izquierda.
+ * Va fuera del flujo de la fila fija del pie (`layout.tsx`), anclado a la esquina: así el
+ * reproductor se centra en la pantalla sin importar dónde esté el botón. Sin reproductor
+ * conserva su nombre completo desde 640 px; con él, el nombre sólo cabe desde 1280 px y por
+ * debajo queda el disco con su icono (el nombre sigue en el árbol de accesibilidad), que es lo
+ * que reserva `--talk-w` en `globals.css`. El reproductor deja a cada lado esa reserva.
  *
  * No aparece en el portal: es el umbral, una sola pantalla sin más salida
  * que entrar.
  */
 /**
- * La barra desplegada mide más que el botón (62 px, 78 desde 640 px, contra
- * 56): sube la mitad de la diferencia para quedar centrado con ella. Con el
- * disco recogido, de 56, ya lo está.
+ * Con la barra desplegada el botón se alinea con ella. En escritorio (desde 1024 px) comparten
+ * línea: la barra mide más que el botón (78 px contra 56), así que éste sube la mitad de la
+ * diferencia. Por debajo, la barra ocupa todo el ancho y el botón sube justo encima de ella (su
+ * alto, 66 px, más un respiro de 12; 78 desde 640 px, donde el disco y el play crecen). Con el
+ * disco recogido, de 56, ya está en línea.
  */
 const PLAYER_ALIGN = {
   closed: '',
-  expanded: '-translate-y-[3px] sm:-translate-y-[11px]',
+  expanded: '-translate-y-[78px] sm:-translate-y-[90px] lg:-translate-y-[11px]',
   minimized: '',
+} as const;
+
+/** El nombre completo: con el botón solo, desde 640 px; con reproductor, desde 1280 px. */
+const LABEL_CLASSES = {
+  closed: { link: 'sm:px-5', label: 'max-sm:hidden' },
+  withPlayer: { link: 'xl:px-5', label: 'max-xl:hidden' },
 } as const;
 
 export function TalkFloat() {
@@ -41,13 +50,14 @@ export function TalkFloat() {
   const player = usePlayerStore((s) =>
     s.audioId === null ? 'closed' : s.minimized ? 'minimized' : 'expanded',
   );
+  const labelClasses = LABEL_CLASSES[player === 'closed' ? 'closed' : 'withPlayer'];
 
   return (
     <aside
       aria-label={t('region')}
       data-layout-layer="talk"
       className={cn(
-        'pointer-events-none shrink-0 transition-transform duration-500 ease-out',
+        'pointer-events-none absolute right-[max(var(--float-gap),env(safe-area-inset-right))] bottom-[max(var(--float-gap),env(safe-area-inset-bottom))] transition-transform duration-500 ease-out',
         PLAYER_ALIGN[player],
       )}
     >
@@ -59,7 +69,6 @@ export function TalkFloat() {
           {realmId === 'portal' ? null : (
             <Mdiv
               key="talk"
-              className="pl-3"
               initial={{ opacity: 0, y: 18 }}
               animate={{
                 opacity: 1,
@@ -78,7 +87,10 @@ export function TalkFloat() {
                 rel="noopener noreferrer"
                 data-magnetic
                 aria-label={t('aria')}
-                className="group fm-surface-strong shadow-glow-card rounded-pill hover:border-accent/45 text-fg pointer-events-auto flex h-14 min-w-14 items-center justify-center gap-3 transition-colors duration-300 sm:px-5"
+                className={cn(
+                  'group fm-surface-strong shadow-glow-card rounded-pill hover:border-accent/45 text-fg pointer-events-auto flex h-14 min-w-14 items-center justify-center gap-3 transition-colors duration-300',
+                  labelClasses.link,
+                )}
               >
                 <span className="relative flex size-6 items-center justify-center">
                   {/* Aura decorativa: sigue el halo del tema (T0.7). */}
@@ -102,7 +114,12 @@ export function TalkFloat() {
                     <path d="M8.6 12c.85-1.5 1.7-1.5 2.55 0s1.7 1.5 2.55 0 1.3-1.2 1.7-.6" />
                   </svg>
                 </span>
-                <span className="text-label tracking-caps group-hover:text-fg text-fg-body font-sans uppercase transition-colors duration-300 max-sm:hidden">
+                <span
+                  className={cn(
+                    'text-label tracking-caps group-hover:text-fg text-fg-body font-sans uppercase transition-colors duration-300',
+                    labelClasses.label,
+                  )}
+                >
                   {t('label')}
                 </span>
               </a>

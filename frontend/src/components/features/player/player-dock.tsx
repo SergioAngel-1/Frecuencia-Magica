@@ -18,8 +18,12 @@ import { usePlayerStore } from '@/stores/player-store';
 
 import { AudioCover } from './audio-cover';
 import { CloseIcon, MinimizeIcon } from './player-icons';
-import { PlayerOrb } from './player-orb';
-import { PlayerElapsedLabel, PlayerMiniProgress, PlayerProgressBar } from './player-progress';
+import {
+  PlayerArtworkProgress,
+  PlayerElapsedLabel,
+  PlayerMiniProgress,
+  PlayerProgressBar,
+} from './player-progress';
 import { VolumeControl } from './volume-control';
 
 /**
@@ -112,7 +116,13 @@ export function PlayerDock() {
     >
       <AnimatePresence mode="wait">
         {!audio ? null : minimized ? (
-          <Mdiv key="mini" ref={takeFocus} {...motion} className="flex justify-end">
+          <Mdiv
+            key="mini"
+            ref={takeFocus}
+            {...motion}
+            // El disco queda a la izquierda de «Hablar ahora», que flota en la esquina.
+            className="flex justify-end pr-[calc(var(--talk-w)+12px)]"
+          >
             <PlayerMiniProgress
               hz={audio.hz}
               band={audio.band}
@@ -129,14 +139,21 @@ export function PlayerDock() {
             {...motion}
             role="region"
             aria-label={t('label')}
-            className="fm-surface-strong rounded-card shadow-glow-card pointer-events-auto relative mx-auto w-full max-w-[980px] overflow-hidden"
+            // Desde 1024 px la barra se centra en la pantalla (no en lo que deja libre «Hablar ahora»,
+            // que flota en la esquina) y deja a cada lado su reserva (`--talk-reserve`).
+            className="fm-surface-strong rounded-card shadow-glow-card pointer-events-auto relative mx-auto w-full max-w-[980px] overflow-hidden lg:absolute lg:inset-x-0 lg:bottom-[max(var(--float-gap),env(safe-area-inset-bottom))] lg:w-[min(980px,calc(100%-2*var(--talk-reserve)))] lg:max-w-none"
           >
             {/* La barra es compartida con el reproductor de video: aquí sólo
                 se decide qué lleva. En móvil no cabe la barra de posición y
                 el avance es su filo superior. */}
             <PlayerProgressBar
               artwork={
-                <PlayerOrb band={audio.band} cover={cover} className="size-11 sm:size-[52px]" />
+                <PlayerArtworkProgress
+                  band={audio.band}
+                  cover={cover}
+                  total={total}
+                  className="size-12 sm:size-[52px]"
+                />
               }
               title={title}
               meta={

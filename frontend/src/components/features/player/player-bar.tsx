@@ -5,9 +5,8 @@ import type { ReactNode } from 'react';
 import { IconButton, SeekBar } from '@/components/ui';
 import { cn } from '@/lib/cn';
 import { formatDuration } from '@/lib/format';
-import { progressPercent } from '@/lib/player/progress';
 
-import { EdgeProgress, PlayButton } from './player-controls';
+import { PlayButton } from './player-controls';
 import { NextIcon, PreviousIcon } from './player-icons';
 
 type TimelineProps = {
@@ -110,20 +109,25 @@ export function PlayerBar({
   return (
     <div
       className={cn(
-        // En móvil, la barra se parte en dos líneas si no cabe: el título conserva un
-        // ancho mínimo y los controles bajan a la segunda, sin que el título desaparezca.
-        'relative flex w-full flex-wrap items-center gap-x-3 gap-y-2 px-3 py-2 sm:gap-4 sm:px-4 sm:py-3 md:flex-nowrap',
+        'relative flex w-full items-center px-3 py-2 sm:gap-4 sm:px-4 sm:py-3',
+        // El dock (`from-md`) es una sola fila en cualquier ancho: en móvil la posición la marca el
+        // aro de la carátula y no hay anterior, siguiente, volumen ni barra de posición. El video
+        // (`always`) conserva su barra de posición y, si no cabe, se parte en dos líneas.
+        responsive ? 'gap-2.5' : 'flex-wrap gap-x-3 gap-y-2 md:flex-nowrap',
         className,
       )}
     >
-      {responsive ? (
-        <EdgeProgress percent={progressPercent(elapsed, total)} className="md:hidden" />
-      ) : null}
-
       {artwork}
 
       {title ? (
-        <div className="min-w-[8rem] flex-1 basis-0 md:w-[210px] md:min-w-0 md:flex-none md:basis-auto">
+        <div
+          className={cn(
+            'min-w-0 flex-1',
+            responsive
+              ? 'md:w-[150px] md:flex-none lg:w-[210px]'
+              : 'min-w-[8rem] basis-0 md:w-[210px] md:min-w-0 md:flex-none md:basis-auto',
+          )}
+        >
           <p className="text-fg text-lead truncate font-serif leading-tight">{title}</p>
           {meta ? (
             <p className="text-fg-meta text-meta tracking-ui truncate font-sans tabular-nums">
@@ -160,7 +164,7 @@ export function PlayerBar({
             <NextIcon />
           </IconButton>
         ) : null}
-        {volume}
+        <div className={responsive ? 'max-md:hidden' : undefined}>{volume}</div>
       </div>
 
       <Timeline
@@ -171,7 +175,11 @@ export function PlayerBar({
         className={responsive ? 'max-md:hidden' : undefined}
       />
 
-      {actions ? <div className="flex shrink-0 items-center max-md:ml-auto">{actions}</div> : null}
+      {actions ? (
+        <div className={cn('flex shrink-0 items-center', !responsive && 'max-md:ml-auto')}>
+          {actions}
+        </div>
+      ) : null}
     </div>
   );
 }
