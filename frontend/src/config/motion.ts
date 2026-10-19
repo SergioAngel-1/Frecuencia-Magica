@@ -48,14 +48,6 @@ export type SwapPace = keyof typeof SWAP_PACE;
  */
 export const PHASE_FADE = { exit: 0.6, enter: 1.1 } as const;
 
-/**
- * Fundido entre temas, en segundos. El fondo y las capas del motor funden con
- * `opacity`; los tokens cambian de golpe y, mientras dura el fundido, los colores
- * del sitio transitan (`[data-theme-switching]`, ver `AtmosphereProvider`).
- * Con movimiento reducido no hay fundido (`fadeDuration` en `lib/atmosphere`).
- */
-export const ATMOSPHERE_FADE_SECONDS = 1.6;
-
 /** Retardos de las entradas escalonadas, en segundos. */
 export const STAGGER = [0.1, 0.25, 0.4, 0.55] as const;
 
@@ -98,6 +90,19 @@ export const PORTAL_TIMING = {
 export type PortalMode = keyof typeof PORTAL_TIMING;
 
 /**
+ * Fundido entre temas, en segundos. El fondo y las capas del motor funden con
+ * `opacity`; los tokens cambian de golpe y, mientras dura el fundido, los colores
+ * del sitio transitan (`[data-theme-switching]`, ver `AtmosphereProvider`).
+ * Con movimiento reducido no hay fundido (`fadeDuration` en `lib/atmosphere`).
+ *
+ * Dura lo mismo que el cruce completo del portal (`PORTAL_TIMING.full`: cover +
+ * settle + reveal), para que el cambio de tema sin velo no se sienta más rápido
+ * que la ceremonia del portal y ambos no puedan divergir.
+ */
+export const ATMOSPHERE_FADE_SECONDS =
+  (PORTAL_TIMING.full.cover + PORTAL_TIMING.full.settle + PORTAL_TIMING.full.reveal) / 1000;
+
+/**
  * Espera máxima con la pantalla cubierta. La revelación aguarda a que el
  * destino llegue; si no llega (red caída), se revela igualmente lo que haya
  * en vez de dejar al visitante a oscuras.
@@ -110,8 +115,9 @@ export const PORTAL_MAX_HOLD = 5000;
  * animaciones.
  *
  * - `cover`: lo que tarda la luz del tema nuevo en cubrir la pantalla.
- * - `hold`: pantalla cubierta, ya con el tema aplicado debajo y con su nombre a la vista. Dura
- *   más que `ATMOSPHERE_FADE_SECONDS` para que los colores del sitio asienten antes de revelar.
+ * - `hold`: pantalla cubierta, ya con el tema aplicado debajo y con su nombre a la vista.
+ *   Bajo el velo no hay fundido: `AtmosphereProvider` omite `beginThemeSwitch` mientras
+ *   hay un cruce en marcha y las capas del motor que funden por debajo quedan tapadas.
  * - `reveal`: lo que tarda el velo en disolverse sobre el mundo nuevo.
  *
  * `quick` es el cruce de movimiento reducido: un fundido, sin ondas.

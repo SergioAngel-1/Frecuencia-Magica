@@ -127,4 +127,4 @@ La medición del transferido real (gzip) se hizo con la Performance API del nave
 
 - **Escenas del lienzo:** son datos (`lib/cosmic/themes.ts`), sin librerías nuevas. Ningún tema supera 220 estrellas ni 54 partículas (28 por debajo de 768 px; lo guarda `cosmic-themes.test`), y el gradiente de cada partícula se hornea al cambiar de tema, no por frame. El cambio de tema apaga y enciende la escena en ≈0,9 s sobre el mismo `<canvas>` y el mismo worker.
 - **Imágenes por tema:** el HTML lleva sólo la base nocturna; la variante del tema activo se descarga tras montar (una imagen más por slot visible, nunca las cuatro). Un visitante que nunca cambia de tema y está en la noche no descarga ninguna variante. `priority` sigue siendo de la base: la variante entra cuando llega, bajo el fondo del tema.
-- **Transición de colores:** `[data-theme-switching]` aplica transiciones de color a todo el sitio sólo durante el fundido (1,6 s) y sólo si no hay movimiento reducido.
+- **Transición de colores:** `[data-theme-switching]` aplica transiciones de color a todo el sitio sólo durante el fundido (2,19 s) y sólo si no hay movimiento reducido.

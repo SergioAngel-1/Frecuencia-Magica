@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
+import { ATMOSPHERE_FADE_SECONDS } from '@/config/motion';
 import { readSource, SRC } from '../helpers/source-files';
 
 const photo = readSource(`${SRC}/components/world/themed-photo.tsx`);
@@ -35,6 +36,6 @@ describe('themed photo crossfade', () => {
     const start = css.indexOf('[data-theme-switching] *:not(canvas)');
     const block = css.slice(start, css.indexOf('}', start));
 
-    expect(block).toContain('transition-duration: 1.6s');
+    expect(block).toContain(`transition-duration: ${ATMOSPHERE_FADE_SECONDS}s`);
   });
 });
