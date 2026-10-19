@@ -46,7 +46,7 @@ export function SiteHeader() {
 
       <BrandMark label={tCommon('brand')} />
 
-      <div className="pointer-events-none flex items-center gap-2 md:gap-[10px]">
+      <div className="pointer-events-none flex items-center gap-1.5 md:gap-[10px]">
         <LanguageToggle locale={locale} />
         <AudioToggle />
         <ThemeSwitcher />
