@@ -80,6 +80,7 @@ export default async function HomePage({ params }: PageProps) {
       />
 
       <RealmsGrid
+        media={homeMedia.realms}
         kicker={t('realms.kicker')}
         title={t('realms.title')}
         intro={t('realms.intro')}

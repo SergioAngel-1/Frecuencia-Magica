@@ -1,4 +1,4 @@
-import { Display, Kicker } from '@/components/ui';
+import { FramedHeading } from '@/components/layout';
 import { WaveSeparator } from '@/components/world';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -15,6 +15,7 @@ type RealmDescription = {
 };
 
 type RealmsGridProps = {
+  media: EditorialMedia;
   kicker: string;
   title: string;
   intro: string;
@@ -42,6 +43,7 @@ const BENTO_SPANS = [
 ] as const;
 
 export function RealmsGrid({
+  media,
   kicker,
   title,
   intro,
@@ -57,15 +59,15 @@ export function RealmsGrid({
       className="fm-editorial-full-bleed text-fg py-section relative"
       aria-labelledby="realms-grid-title"
     >
-      {/* Encabezado de texto sobre la noche: la Home no pega dos bandas. */}
-      <div className="fm-container flex flex-col items-start gap-4">
-        <Kicker tone="teal" spacing="wide">
-          {kicker}
-        </Kicker>
-        <Display level="h2" size="lg" id="realms-grid-title" className="max-w-measure-title-xl">
-          {title}
-        </Display>
-        <p className="text-fg-body text-body max-w-measure-wide leading-[1.8]">{intro}</p>
+      {/* Tarjeta enmarcada, no banda a sangre: tras el héroe la Home no pega dos bandas. */}
+      <div className="fm-container">
+        <FramedHeading
+          media={media}
+          kicker={kicker}
+          title={title}
+          description={intro}
+          titleId="realms-grid-title"
+        />
       </div>
 
       <div className="fm-container mt-block grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-12">

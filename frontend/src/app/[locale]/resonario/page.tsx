@@ -1,8 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
 import { ResonarioSystem } from '@/components/features/resonario/resonario-system';
-import { PageShell, RealmHero } from '@/components/layout';
-import { Display, Kicker } from '@/components/ui';
+import { FramedHeading, PageShell, RealmHero } from '@/components/layout';
 import { AUDIO_KINDS } from '@/config/audio-kinds';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -27,6 +26,9 @@ export default async function ResonarioPage({ params }: PageProps) {
   ]);
   const resonarioMedia = {
     hero: resolveEditorialMedia('resonario.hero', { alt: t('media.alt.hero') }),
+    archive: resolveEditorialMedia('resonario.archive-banner', {
+      alt: t('media.alt.archiveBanner'),
+    }),
     featured: resolveEditorialMedia('resonario.featured', {
       alt: t('media.alt.featured'),
       sizes: '(min-width: 1024px) 720px, 100vw',
@@ -59,20 +61,17 @@ export default async function ResonarioPage({ params }: PageProps) {
         description={t('description')}
       />
 
-      {/* Tras el héroe, el archivo es texto sobre la noche y no otra banda:
-          dos bandas a sangre no van seguidas (ver `band-rhythm.test`). */}
+      {/* Tras el héroe, el archivo es una tarjeta enmarcada y no otra banda a sangre:
+          dos bandas no van seguidas (ver `band-rhythm.test`). */}
       <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
-        <div className="flex flex-col items-start gap-4">
-          <Kicker tone="gold" spacing="wide">
-            {t('archive.eyebrow')}
-          </Kicker>
-          <Display level="h2" size="lg" className="max-w-measure-title-xl">
-            {t('archive.title')}
-          </Display>
-          <p className="text-fg-body text-body max-w-measure-wide leading-[1.8]">
-            {t('archive.description')}
-          </p>
-        </div>
+        <FramedHeading
+          media={resonarioMedia.archive}
+          kicker={t('archive.eyebrow')}
+          title={t('archive.title')}
+          description={t('archive.description')}
+          titleId="resonario-archive-title"
+          tone="gold"
+        />
 
         <div className="mt-block">
           <ResonarioSystem media={resonarioMedia} />

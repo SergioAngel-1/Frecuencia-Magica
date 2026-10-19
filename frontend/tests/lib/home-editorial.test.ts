@@ -145,7 +145,7 @@ describe('home editorial composition contracts', () => {
     }
 
     expect(homeSources).toContain('<FullBleedSection');
-    // «Elige por dónde entrar» es encabezado de texto: no pega una banda antes del bento.
+    // «Elige por dónde entrar» es una tarjeta enmarcada (`FramedHeading`): no pega una banda antes del bento.
     expect(readSource('components/features/home/realms-grid.tsx')).not.toContain(
       '<EditorialBanner',
     );
