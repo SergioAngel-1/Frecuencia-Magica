@@ -8,7 +8,7 @@
 
 **204 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 132 · P2 60. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 169 completadas · 0 a corregir · 34 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 170 completadas · 0 a corregir · 33 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -285,7 +285,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `states-empty-dawn.avif` | Estados · vacío · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-empty-dusk.avif` | Estados · vacío · tema · Atardecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-empty-forest.avif` | Estados · vacío · tema · Bosque | 16:9 | 2880×1620 | P2 | Completadas |
-| `states-error-dawn.avif` | Estados · error · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
+| `states-error-dawn.avif` | Estados · error · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-error-dusk.avif` | Estados · error · tema · Atardecer | 16:9 | 2880×1620 | P2 | Faltantes |
 | `states-error-forest.avif` | Estados · error · tema · Bosque | 16:9 | 2880×1620 | P2 | Faltantes |
 | `states-offline-dawn.avif` | Estados · sin conexión · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
@@ -346,25 +346,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (34)
+### 5.2 Faltantes (33)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `states.error · Amanecer` — Estados · error · tema · P2
-
-- **Archivo:** `states-error-dawn.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 58%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Variante del tema Amanecer de `states.error`: la misma vista y el mismo encuadre, con la escena del tema. El error sin ruido: compañía en el tropiezo.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Something interrupted, in morning light: a single candle flickering on a pale sandstone ledge by still water with a wisp of smoke still rising, calm and unbothered, a soft warm faint glow in the bright cream air. Candle at center, pale calm surroundings, quiet bright space above. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `states.error · Atardecer` — Estados · error · tema · P2
 
@@ -908,7 +892,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (169)
+### 5.5 Completadas (170)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -1069,6 +1053,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `states-empty-dawn.avif` | Estados · vacío · tema · Amanecer | `states.empty` | 16:9 | P2 |
 | `states-empty-dusk.avif` | Estados · vacío · tema · Atardecer | `states.empty` | 16:9 | P2 |
 | `states-empty-forest.avif` | Estados · vacío · tema · Bosque | `states.empty` | 16:9 | P2 |
+| `states-error-dawn.avif` | Estados · error · tema · Amanecer | `states.error` | 16:9 | P2 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
