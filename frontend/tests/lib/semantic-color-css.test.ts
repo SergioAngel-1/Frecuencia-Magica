@@ -54,11 +54,6 @@ export function findRawCssColor(css: string): RawColorHit[] {
 
 /** Excepciones con dueño: `archivo :: selector` -> motivo. */
 const ALLOWED: Record<string, string> = {
-  // Portal: el iris, la onda y el punto de luz del cruce son decorativos y la noche no cambia.
-  'globals.css :: .fm-portal-iris': 'portal: disco del iris con su borde de luz (decorativo)',
-  'globals.css :: .fm-portal-ripple': 'portal: onda que se adelanta al iris (decorativo)',
-  'globals.css :: .fm-portal-light': 'portal: punto de luz del cruce (decorativo)',
-
   // Barras de desplazamiento: la pista lee el velo denso del tema; el pulgar es el espectro de la frecuencia.
   'tokens.css :: ::-webkit-scrollbar-thumb:active':
     'pulgar al pulsar: espectro de la frecuencia (oro, teal, lavanda), decorativo',

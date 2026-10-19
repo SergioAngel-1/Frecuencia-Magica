@@ -6,11 +6,14 @@
 
 /* ============================================================================
    CRUCE DEL PORTAL
-   Se cruza un umbral de luz y se llega a la noche. Lo que cubre la pantalla es
-   la noche del fondo de la app (`--fm-night`); la luz es siempre filo o halo,
-   nunca relleno. Duraciones y curvas las pone `PortalTransition` desde
-   `config/motion.ts`: aquí sólo vive la forma. El centrado va en `translate`,
-   así los keyframes sólo tocan `transform` (escala) y `opacity`.
+   Se cruza un umbral de luz y se llega al tema de destino. Lo que cubre la
+   pantalla es el fondo de ese tema (`--atmo-bg`, con `--fm-night` de respaldo)
+   y el iris, la onda y la luz toman sus colores de los tokens del tema
+   (`--scrim`, `--scrim-deep`, `--halo`, `--accent*`): con `night` se ve como
+   siempre y con los demás temas el cruce toma su tonalidad. La luz es siempre
+   filo o halo, nunca relleno. Duraciones y curvas las pone `PortalTransition`
+   desde `config/motion.ts`: aquí sólo vive la forma. El centrado va en
+   `translate`, así los keyframes sólo tocan `transform` (escala) y `opacity`.
    ========================================================================= */
 
 .fm-portal-iris,
@@ -25,7 +28,7 @@
   will-change: transform, opacity;
 }
 
-/* Iris: disco de noche con el borde encendido. La noche llega al 90% del
+/* Iris: disco del tema con el borde encendido. Su cuerpo llega al 90% del
    radio, así que 160vmax (72vmax opacos) cubre la media diagonal de cualquier
    viewport, incluido el cuadrado (70,7vmax); el aro engorda con la escala,
    como algo que se acerca. */
@@ -34,13 +37,13 @@
   height: 160vmax;
   background: radial-gradient(
     circle closest-side,
-    var(--color-void) 0%,
-    var(--color-void-2) 58%,
-    var(--color-void-2) 90%,
-    color-mix(in srgb, var(--color-gold) 24%, var(--color-void-2)) 94.2%,
-    color-mix(in srgb, var(--color-ivory) 92%, transparent) 95.4%,
-    color-mix(in srgb, var(--color-gold) 58%, transparent) 96.2%,
-    color-mix(in srgb, var(--color-teal) 16%, transparent) 98.2%,
+    rgb(var(--scrim)) 0%,
+    rgb(var(--scrim-deep)) 58%,
+    rgb(var(--scrim-deep)) 90%,
+    color-mix(in srgb, rgb(var(--halo)) 24%, rgb(var(--scrim-deep))) 94.2%,
+    color-mix(in srgb, var(--color-on-media) 92%, transparent) 95.4%,
+    color-mix(in srgb, rgb(var(--halo)) 58%, transparent) 96.2%,
+    color-mix(in srgb, var(--color-accent-2) 16%, transparent) 98.2%,
     transparent 100%
   );
 }
@@ -52,8 +55,8 @@
   background: radial-gradient(
     circle closest-side,
     transparent 96.4%,
-    color-mix(in srgb, var(--color-lav) 50%, transparent) 97.5%,
-    color-mix(in srgb, var(--color-teal) 20%, transparent) 98.6%,
+    color-mix(in srgb, var(--color-accent-3) 50%, transparent) 97.5%,
+    color-mix(in srgb, var(--color-accent-2) 20%, transparent) 98.6%,
     transparent 100%
   );
 }
@@ -64,10 +67,10 @@
   height: min(64vmin, 560px);
   background: radial-gradient(
     circle closest-side,
-    color-mix(in srgb, var(--color-ivory) 90%, transparent) 0%,
-    color-mix(in srgb, var(--color-gold) 62%, transparent) 9%,
-    color-mix(in srgb, var(--color-gold) 22%, transparent) 30%,
-    color-mix(in srgb, var(--color-teal) 8%, transparent) 58%,
+    color-mix(in srgb, var(--color-on-media) 90%, transparent) 0%,
+    color-mix(in srgb, rgb(var(--halo)) 62%, transparent) 9%,
+    color-mix(in srgb, rgb(var(--halo)) 22%, transparent) 30%,
+    color-mix(in srgb, var(--color-accent-2) 8%, transparent) 58%,
     transparent 100%
   );
   /* Estado de reposo del punto: donde empalman todas sus animaciones. */
@@ -75,8 +78,11 @@
   transform: scale(0.42);
 }
 
+/* Fondo del cruce: el del tema de destino. El shorthand deja `--fm-night`
+   (la noche de la v1) como respaldo si el token del tema faltara. */
 .fm-portal-night {
   background: var(--fm-night);
+  background-image: var(--atmo-bg);
 }
 
 /* Cruce de atmósfera (`AtmosphereShiftVeil`): una onda con el fondo del tema nuevo y un filo de

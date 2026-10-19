@@ -2,49 +2,59 @@
 
 import { useTranslations } from 'next-intl';
 import { div as Mdiv } from 'motion/react-m';
-import { useEffect, useRef, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
 import { cssEase, EASE, PORTAL_TIMING } from '@/config/motion';
+import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { usePathname } from '@/i18n/navigation';
+import { portalThemeFor } from '@/lib/portal/theme';
+import { useAtmosphereStore } from '@/stores/atmosphere-store';
 import { usePortalStore } from '@/stores/portal-store';
+import type { AtmosphereId } from '@/types/atmosphere';
 
 /** Fracción de `cover` en la que la onda y el iris nacen de la luz ya reunida. */
 const IRIS_DELAY = 0.12;
 /**
- * Tramo de `cover` en el que la noche se asienta tras el iris. Termina antes
- * que el iris y éste no se retira hasta la revelación: en el relevo siempre
- * hay una capa opaca y la vista anterior no puede traslucirse.
+ * Tramo de `cover` en el que el tema de destino se asienta tras el iris.
+ * Termina antes que el iris y éste no se retira hasta la revelación: en el
+ * relevo siempre hay una capa opaca y la vista anterior no puede traslucirse.
  */
-const NIGHT_FROM = 0.5;
-const NIGHT_TO = 0.85;
+const COVER_FROM = 0.5;
+const COVER_TO = 0.85;
 
 const ms = (value: number) => `${Math.round(value)}ms`;
 
 /**
- * Overlay del cruce de portal: se cruza un umbral de luz y se llega a la noche.
+ * Overlay del cruce de portal: se cruza un umbral de luz y se llega al tema de
+ * destino.
  *
  * - `in`: la luz se reúne en el centro, una onda se adelanta y el iris —un
- *   disco de noche con el borde encendido— se abre hasta que el aro sale de
- *   pantalla. La noche se asienta detrás y la luz queda como un punto.
- * - `hold`: noche y punto de luz, hasta que el destino llega.
- * - `out`: la noche se disuelve sobre el destino y el punto se abre con ella.
+ *   disco del tema de destino con el borde encendido— se abre hasta que el aro
+ *   sale de pantalla. El tema se asienta detrás y la luz queda como un punto.
+ * - `hold`: tema y punto de luz, hasta que el destino llega.
+ * - `out`: el tema se disuelve sobre el destino y el punto se abre con él.
  *
  * La luz es siempre un halo o un filo, nunca un relleno: lo que cubre la
- * pantalla es la misma noche del fondo de la app, de modo que la revelación
- * no deja lavado. Sólo se animan `transform` y `opacity`.
+ * pantalla es el mismo fondo del tema que se verá al llegar, de modo que la
+ * revelación no deja lavado. El tema se fija al entrar en `in` (el de la ruta
+ * de destino o, si no se conoce, el visible) y no se recalcula en cada render:
+ * así el cruce no cambia de color cuando la ruta ya ha llegado. Sólo se animan
+ * `transform` y `opacity`.
  *
  * El iris se abre en todos los cruces (`full` y `brief` sólo cambian de
- * ritmo). En modo `quick` (movimiento reducido) sólo hay noche que funde. La
- * noche funde con Motion y no con keyframes: el modo
- * simplificado anula las animaciones CSS, pero un fundido de opacidad sí debe
- * verse.
+ * ritmo). En modo `quick` (movimiento reducido) sólo hay tema que funde. El
+ * tema funde con Motion y no con keyframes: el modo simplificado anula las
+ * animaciones CSS, pero un fundido de opacidad sí debe verse.
  */
 export function PortalTransition() {
   const phase = usePortalStore((state) => state.phase);
   const mode = usePortalStore((state) => state.mode);
+  const destination = usePortalStore((state) => state.destination);
   const arrive = usePortalStore((state) => state.arrive);
   const reduced = useReducedMotionSafe();
+  const { atmosphereId: visibleTheme } = useAtmosphere();
+  const [theme, setTheme] = useState<AtmosphereId | null>(null);
   const pathname = usePathname();
   const lastPathname = useRef(pathname);
 
@@ -56,16 +66,31 @@ export function PortalTransition() {
     arrive();
   }, [pathname, arrive]);
 
+  // El tema se resuelve una vez, al empezar a cubrir; en `hold`/`out` se
+  // conserva aunque la ruta ya haya cambiado.
+  useEffect(() => {
+    if (phase === 'in') {
+      setTheme(portalThemeFor(destination, visibleTheme, useAtmosphereStore.getState().choice));
+    } else if (phase === 'idle') {
+      setTheme(null);
+    }
+  }, [phase, destination, visibleTheme]);
+
   if (phase === 'idle') return null;
 
+  const activeTheme = theme ?? visibleTheme;
   const { cover, reveal } = PORTAL_TIMING[mode];
   const iris = mode !== 'quick' && !reduced;
   const covering = phase !== 'out';
-  const nightFrom = iris ? cover * NIGHT_FROM : 0;
-  const nightTo = iris ? cover * NIGHT_TO : cover;
+  const coverFrom = iris ? cover * COVER_FROM : 0;
+  const coverTo = iris ? cover * COVER_TO : cover;
 
   return (
-    <div aria-hidden="true" className="z-portal fixed inset-0 overflow-hidden">
+    <div
+      aria-hidden="true"
+      data-atmosphere={activeTheme}
+      className="z-portal fixed inset-0 overflow-hidden"
+    >
       {iris && covering ? (
         <>
           <span
@@ -89,7 +114,7 @@ export function PortalTransition() {
         animate={{ opacity: covering ? 1 : 0 }}
         transition={
           covering
-            ? { duration: (nightTo - nightFrom) / 1000, delay: nightFrom / 1000, ease: 'easeIn' }
+            ? { duration: (coverTo - coverFrom) / 1000, delay: coverFrom / 1000, ease: 'easeIn' }
             : { duration: reveal / 1000, ease: EASE.soft }
         }
       />
