@@ -104,29 +104,25 @@ export const THEME_VARIANTS: Readonly<
   'resonario.featured': BAND_THEMES,
   'resonario.archive-banner': BAND_THEMES,
   'academy.featured-course': BAND_THEMES,
-  'academy.completion': ['forest'],
+  'academy.completion': ['forest', 'dawn'],
   'experiences.featured': BAND_THEMES,
-  'booking.confirmation': ['dusk'],
+  'booking.confirmation': ['dusk', 'dawn'],
   'store.ritual-banner': BAND_THEMES,
+  // Fondos que Amanecer lavaba con un filtro: la misma escena, con la luz del día (2026-10-19). El
+  // 404 raíz (`not-found.hero`) no entra: está fuera del proveedor de tema y `ThemedPhoto` lo necesita.
+  'states.loading': ['dawn'],
+  'states.empty': ['dawn'],
+  'states.error': ['dawn'],
+  'states.offline': ['dawn'],
+  'sanctuary.continue': ['dawn'],
+  'sanctuary.daily': ['dawn'],
+  'sanctuary.journal': ['dawn'],
+  'sanctuary.empty': ['dawn'],
+  'cart.empty': ['dawn'],
+  'checkout.confirmation': ['dawn'],
+  'discover.tuning': ['dawn'],
+  'discover.result': ['dawn'],
 };
-
-/**
- * Fondos con texto encima que sólo tienen imagen nocturna, en ningún tema. Bajo el tema claro
- * (Amanecer) la tinta oscura del texto cae sobre una foto oscura y no se lee: se lavan igual que
- * una foto temable sin variante (`[data-scheme='light'] [data-photo-night]` en `globals.css`).
- * En los temas oscuros la imagen nocturna funde sola. Cuando uno de estos slots reciba variante
- * de Amanecer, pasa a `THEME_VARIANTS` y sale de aquí.
- */
-export const NIGHT_BACKDROP_SLOTS: readonly EditorialMediaSlot[] = [
-  'sanctuary.continue',
-  'sanctuary.daily',
-  'sanctuary.journal',
-  'sanctuary.empty',
-  'checkout.confirmation',
-  'cart.empty',
-  'discover.tuning',
-  'discover.result',
-];
 
 /**
  * Foco propio de una variante cuyo sujeto no está donde el de la base (`slot@tema` → `x% y%`). Las

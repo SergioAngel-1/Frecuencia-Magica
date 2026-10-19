@@ -514,6 +514,98 @@ export const THEME_VARIANTS = [
       "Objects grouped in the upper two thirds, the moss only at the far edge, the bottom third plain dark slate for text",
   },
 
+  /* Fondos que Amanecer forzaba a ser claros (2026-10-19): la espera, los estados, Mi Santuario, el carrito, la
+     compra, Descúbrete (afinación y resultado) y las dos confirmaciones. Eran una foto nocturna lavada con un filtro
+     (`[data-scheme='light'] [data-photo-night]`): bajo el tema claro quedaban como una neblina gris o con una franja
+     oscura. Cada uno es la misma escena de su base con la luz de amanecer: crema melocotón, azul cielo muy pálido y
+     oro claro, nunca blanco frío (ver la nota de paleta de Amanecer). El texto de estas vistas es tinta oscura, así
+     que la zona de texto queda clara y calma. `not-found.hero` no entra: el 404 raíz está fuera del proveedor de tema. */
+  {
+    base: 'states.loading',
+    theme: 'dawn',
+    subject: `Waiting with matter at sunrise: a single soft sphere of pale golden light floating in bright misty space above still pale water as if breathing, a faint halo, slow and calm, the air a soft blend of cream, peach and very pale sky blue`,
+    frame: 'Sphere at center at 42% vertical, calm bright mist all around it, the horizon lost in the mist with no line and no band, the lower third plain calm pale water for the loading label',
+  },
+  {
+    base: 'states.empty',
+    theme: 'dawn',
+    subject: `An empty luminous space in the morning: one soft window of pale peach light lying on still pale water, fine pale-gold dust motes drifting through it, a faint ivory haze, open space, nothing else in the frame`,
+    frame: 'Light on the water just below center, soft pale space around it, no object and no hard edge',
+  },
+  {
+    base: 'states.error',
+    theme: 'dawn',
+    subject: `Something interrupted, in morning light: a single candle flickering on a pale sandstone ledge by still water with a wisp of smoke still rising, calm and unbothered, a soft warm faint glow in the bright cream air`,
+    frame: 'Candle at center, pale calm surroundings, quiet bright space above',
+  },
+  {
+    base: 'states.offline',
+    theme: 'dawn',
+    subject: `A brief retreat at first light: a quiet cabin window with a warm lamp still lit inside and pale blue mist over a still lake outside, a sense of pausing, nobody in the frame, soft cream morning light on the sill`,
+    frame: 'Window slightly right of center at 70% horizontal, soft pale surroundings, calm and low in detail',
+  },
+  {
+    base: 'sanctuary.continue',
+    theme: 'dawn',
+    subject: `Continuity in morning light: the same cream linen cushion on a pale wooden floor with a half-burned candle beside it and a blank open book, soft natural light from a window falling across them, a feeling that someone has just stepped away and will return`,
+    frame: 'Objects in the right half, the left third a plain cream wall in soft shade, calm and low in detail for the lesson title',
+  },
+  {
+    base: 'sanctuary.daily',
+    theme: 'dawn',
+    subject: `Today's practice in the morning: a small brass bowl of still water on pale stone, a single beam of early morning light falling into it and making it glow pale gold, tiny ripples, a soft cream haze around it`,
+    frame: 'Bowl centered, beam entering from the upper left, the upper quarter of the frame plain pale and calm for a title laid over it, soft pale surroundings',
+  },
+  {
+    base: 'sanctuary.journal',
+    theme: 'dawn',
+    subject: `The journal as a soft page to write on, entirely out of focus: an open linen-bound notebook with blank pages lying flat on pale oak wood, seen from directly above, a brass pen resting on the right page and one dried sprig of lavender beside the pen, soft morning light from a window grazing the paper, the whole image softly blurred as if photographed far out of focus, the edges of the notebook, the pen and the lavender dissolving into a gentle blur with no crisp line anywhere, the paper a warm cream, no writing on the pages, the table holding only these three things and nothing else`,
+    frame: 'The open notebook lies horizontally at the exact center of the frame, its spread between 25% and 75% of the frame width and between 30% and 70% of the frame height, the pen and the lavender inside that same area on the right page, the left page completely empty; the top quarter and the bottom quarter of the frame are only pale wood in soft shade, and so are the left and right fifths, so the image can be cropped to its middle horizontal band or to its central square without losing anything; very low contrast, nothing darker than a soft warm grey',
+  },
+  {
+    base: 'sanctuary.empty',
+    theme: 'dawn',
+    subject: `Luminous emptiness in the morning: an empty bright space opening onto still water, a soft pool of pale gold light gathering in the center of the floor and reflecting in the water beyond, fine dust motes drifting, no objects, the quiet of a place that is new`,
+    frame: 'Light pool at center, slightly below the middle, soft pale cream space around it',
+  },
+  {
+    base: 'cart.empty',
+    theme: 'dawn',
+    subject: `A small empty ceramic dish on a pale stone ledge beside still water in morning light, a single ray of soft warm light falling across it, a thread of steam rising, serene and open, nothing inside`,
+    frame: 'Dish at center slightly below the middle, pale ledge and soft cream background, calm bright space above',
+  },
+  {
+    base: 'checkout.confirmation',
+    theme: 'dawn',
+    subject: `Your ritual is on its way: a small parcel wrapped in plain linen paper and tied with natural thread, a sprig of dried cedar tucked under the knot, soft morning light from a window on a pale wooden surface, no writing on the wrapping`,
+    frame: 'Parcel centered, pale wooden surface, a soft warm glow, calm empty bright space above it because content is laid over that area later',
+  },
+  {
+    base: 'discover.tuning',
+    theme: 'dawn',
+    subject: `Tuning in at sunrise: an ${BODY_OF_LIGHT}, seated at the edge of pale still water and seen from behind, head slightly bowed, edged in pale gold so it reads against the bright water, as a halo of pale golden ripples spreads across the surface toward it from a single struck point, soft sky-blue reflections in the water, ${filaments('rising from the ripples')}`,
+    frame: 'Figure centered, ripples fanning left and right across the wide frame, soft pale edges',
+  },
+  {
+    base: 'discover.result',
+    theme: 'dawn',
+    subject: `Revelation at sunrise: an ${BODY_OF_LIGHT}, standing upright with open arms at the edge of pale still water, seen from behind facing the horizon, a single narrow beam of pale gold light descending from the top center of the frame that fades out completely well before it reaches the middle of the frame, ending at about 30% of the frame height, one color only, pale gold, with no split and no colored bands, the body warm ivory-gold with only a very faint sky-blue and lavender tint inside it, never iridescent and never pastel, and its reflection on the water a single pale gold column, a moment of clarity`,
+    frame: 'The horizon line sits high, at 30% of the frame height, so the wide still water fills the lower 70%; the figure is small, about 12% of the frame height, and stands on that water close to the viewer, centered at 50% horizontal, its head at 70% of the frame height and its feet at 82%, never near the horizon; the beam stays in the top third of the frame and never crosses the middle; the band from 35% to 65% of the frame height is calm pale mist and still water with nothing bright, for the result text',
+  },
+  {
+    base: 'booking.confirmation',
+    theme: 'dawn',
+    subject: `The same serene place now with its candles lit in the morning: a pale wooden deck over a mirror-calm lake, floor cushions in a circle with a small warm candle glow among them in the soft morning light, reflected in the still water, a steaming cup set beside them, a soft peach light on the horizon`,
+    frame: 'Warm center, soft pale edges, calm space in the middle because content is laid over it later',
+  },
+  {
+    base: 'academy.completion',
+    theme: 'dawn',
+    subject: `A completed cycle closed in light at sunrise: a ring of exactly twelve small golden lights, evenly spaced and with no other lights, floating on pale still water seen from a slightly oblique overhead angle, each one a small warm point with a soft ring of light around it so it reads on the bright water, a small ${BODY_OF_LIGHT}, seated cross-legged just outside the far side of the ring, never counted as one of the twelve, every light steady and one slightly brighter, concentric ripples radiating outward from the ring only`,
+    frame:
+      'Ring centered at 50% horizontal, its middle empty, pale and perfectly still water because content is laid over it later, count the lights: twelve around the ring and the figure beyond them, the ripples spreading outward from the ring only, the small figure no taller than 12% of the frame height at the far edge of the ring at 50% horizontal and 30% vertical, nothing but soft pale mist and water around',
+  },
+
   /* Héroes en Luna: la misma escena que su slot, bajo luz de luna (azul noche y plata) */
   {
     base: 'portal.hero',

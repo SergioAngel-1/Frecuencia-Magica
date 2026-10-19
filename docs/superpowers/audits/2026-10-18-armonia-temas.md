@@ -11,7 +11,7 @@ Método: las nueve vistas en los cinco temas (escritorio 1440 y móvil 390), por
 | 3   | El header tenía siete controles sueltos en tres formas (píldora, disco, texto), con glifos musicales (♪ 𝄽) como icono y una etiqueta de sección huérfana.                                 | Dos cápsulas de la misma altura (`ControlDock`): preferencias (idioma, sonido, tema) y atajos (tienda, cuenta, menú). Altavoz dibujado en SVG. La etiqueta de sección queda delante, como texto.                     |
 | 4   | El selector de tema era una lista larga de cinco filas con muestras de 24 px.                                                                                                             | Panel de tarjetas con vista previa (fondo y tres luces de cada tema) y «Automático» con los cinco fondos en franjas; una línea describe el tema señalado.                                                            |
 | 5   | Sólo la mitad de las tarjetas flotaban; la llegada de la Home, la tienda de la Home, el resonario, el santuario, el carrito y los paneles no.                                             | Todo contenedor suelto pasa por `Float`. `tests/lib/float-coverage.test.ts` lista las vistas y prohíbe la clase de animación a mano (los dos isotipos que la llevaban ya usan `Float`).                              |
-| 6   | Bajo `dawn`, los fondos nocturnos con texto (tarjetas del santuario, campo del diario, confirmaciones) dejaban tinta oscura sobre foto oscura: «Frecuencia del día» no se leía.           | `NIGHT_BACKDROP_SLOTS` los marca como temables sin variante: el esquema claro los lava, como a cualquier foto nocturna.                                                                                              |
+| 6   | Bajo `dawn`, los fondos nocturnos con texto (tarjetas del santuario, campo del diario, confirmaciones) dejaban tinta oscura sobre foto oscura: «Frecuencia del día» no se leía.           | Primero, un lavado con filtro (`NIGHT_BACKDROP_SLOTS`); el 2026-10-19 se sustituyó por una variante de Amanecer propia para cada uno (ver abajo).                                                                    |
 
 **Excepciones deliberadas a «todo flota»:** las bandas a sangre (no son contenedores), el resumen del pedido (`sticky`) y los formularios (acceso, reserva, pago, diario): se escribe dentro y no deben moverse. `Float` se detiene con el puntero o el foco dentro, pero un campo que se desplaza 7 px justo antes de teclear es mala experiencia.
 
@@ -35,9 +35,9 @@ Un tema es incómodo con la foto nocturna cuando cambia de **tono** (el azul de 
 
 Los otros ocho slots con variante en `dawn` (`about.angels`, `auth.form-atmosphere`, `discover.question-atmosphere`, `resonario.featured`, `resonario.archive-banner`, `store.ritual-banner`, …) en `dusk` y `forest`: 16 imágenes. En `moon`, ninguna es necesaria.
 
-### Fondos del santuario y confirmaciones (`NIGHT_BACKDROP_SLOTS`)
+### Fondos que Amanecer lavaba con un filtro (2026-10-19)
 
-Hoy se lavan bajo `dawn` (suficiente y legible). Una foto propia `@dawn` los mejoraría: `sanctuary.continue`, `sanctuary.daily`, `sanctuary.journal`, `sanctuary.empty`, `booking.confirmation`, `checkout.confirmation`, `cart.empty`, `academy.completion`, `discover.tuning`, `discover.result`. Al publicar cada una, pasa a `THEME_VARIANTS` y sale de `NIGHT_BACKDROP_SLOTS`.
+El lavado (`opacity` baja y sepia sobre la foto nocturna) dejaba una neblina gris (carrito vacío), una franja oscura (la espera) o texto ilegible. Se reemplaza por una variante de Amanecer propia, la misma escena con luz de día: `states.loading`, `states.empty`, `states.error`, `states.offline`, `sanctuary.continue`, `sanctuary.daily`, `sanctuary.journal`, `sanctuary.empty`, `cart.empty`, `checkout.confirmation`, `discover.tuning`, `discover.result`, `booking.confirmation@dawn` y `academy.completion@dawn`: 14 imágenes, con su prompt en `docs/prompts-chatgpt.md`. Hasta que lleguen, el filtro sigue aplicándose (las variantes declaradas marcan el slot como temable). `not-found.hero` no entra: el 404 raíz está fuera del proveedor de tema y `ThemedPhoto` lo necesita.
 
 ### No se generan
 

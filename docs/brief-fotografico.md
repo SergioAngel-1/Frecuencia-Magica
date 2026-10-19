@@ -6,9 +6,9 @@
 > Dirección vigente: enmienda 2026-10-10 de `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md` — la imagen es el paisaje luminoso; el world engine es su energía.
 > Enmienda 2026-10-17 (`docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`): además de la noche hay atmósferas con paisajes de color natural y escenas claras. Tienen estilo propio (sección 2) y son provisionales (sección 5.6).
 
-**164 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 113 · P2 39. 1 requiere sesión real (retrato de Marisol).
+**178 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 120 · P2 46. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 163 completadas · 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 163 completadas · 0 a corregir · 14 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -279,6 +279,20 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `booking-confirmation-dusk.avif` | Reserva · confirmación · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `store-ritual-banner-dusk.avif` | Tienda · banner ritual · tema · Atardecer | 16:9 | 2880×1620 | P2 | Completadas |
 | `store-ritual-banner-forest.avif` | Tienda · banner ritual · tema · Bosque | 16:9 | 2880×1620 | P2 | Completadas |
+| `states-loading-dawn.avif` | Estados · carga · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
+| `states-empty-dawn.avif` | Estados · vacío · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
+| `states-error-dawn.avif` | Estados · error · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
+| `states-offline-dawn.avif` | Estados · sin conexión · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
+| `sanctuary-continue-dawn.avif` | Mi Santuario · continuar · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
+| `sanctuary-daily-dawn.avif` | Mi Santuario · práctica diaria · tema · Amanecer | 1:1 | 1024×1024 | P1 | Faltantes |
+| `sanctuary-journal-dawn.avif` | Mi Santuario · diario · tema · Amanecer | 16:8 | 2880×1440 | P2 | Faltantes |
+| `sanctuary-empty-dawn.avif` | Mi Santuario · vacío · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
+| `cart-empty-dawn.avif` | Carrito · vacío · tema · Amanecer | 16:9 | 2880×1620 | P2 | Faltantes |
+| `checkout-confirmation-dawn.avif` | Compra · confirmación · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
+| `discover-tuning-dawn.avif` | Descúbrete · afinación · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
+| `discover-result-dawn.avif` | Descúbrete · resultado · tema · Amanecer | 16:9 | 2880×1620 | P1 | Faltantes |
+| `booking-confirmation-dawn.avif` | Reserva · confirmación · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
+| `academy-completion-dawn.avif` | Academia · curso completado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
@@ -306,11 +320,233 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (0)
+### 5.2 Faltantes (14)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
-Ninguna.
+#### `states.loading · Amanecer` — Estados · carga · tema · P2
+
+- **Archivo:** `states-loading-dawn.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 42%
+- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
+- **Contenido:** Variante del tema Amanecer de `states.loading`: la misma vista y el mismo encuadre, con la escena del tema. La espera con materia: cargar es también respirar.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+Waiting with matter at sunrise: a single soft sphere of pale golden light floating in bright misty space above still pale water as if breathing, a faint halo, slow and calm, the air a soft blend of cream, peach and very pale sky blue. Sphere at center at 42% vertical, calm bright mist all around it, the horizon lost in the mist with no line and no band, the lower third plain calm pale water for the loading label. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `states.empty · Amanecer` — Estados · vacío · tema · P2
+
+- **Archivo:** `states-empty-dawn.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 55%
+- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
+- **Contenido:** Variante del tema Amanecer de `states.empty`: la misma vista y el mismo encuadre, con la escena del tema. El vacío de marca en cualquier vista.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+An empty luminous space in the morning: one soft window of pale peach light lying on still pale water, fine pale-gold dust motes drifting through it, a faint ivory haze, open space, nothing else in the frame. Light on the water just below center, soft pale space around it, no object and no hard edge. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `states.error · Amanecer` — Estados · error · tema · P2
+
+- **Archivo:** `states-error-dawn.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 58%
+- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
+- **Contenido:** Variante del tema Amanecer de `states.error`: la misma vista y el mismo encuadre, con la escena del tema. El error sin ruido: compañía en el tropiezo.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+Something interrupted, in morning light: a single candle flickering on a pale sandstone ledge by still water with a wisp of smoke still rising, calm and unbothered, a soft warm faint glow in the bright cream air. Candle at center, pale calm surroundings, quiet bright space above. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `states.offline · Amanecer` — Estados · sin conexión · tema · P2
+
+- **Archivo:** `states-offline-dawn.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 70% 45%
+- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
+- **Contenido:** Variante del tema Amanecer de `states.offline`: la misma vista y el mismo encuadre, con la escena del tema. La desconexión como retiro, no como fallo.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A brief retreat at first light: a quiet cabin window with a warm lamp still lit inside and pale blue mist over a still lake outside, a sense of pausing, nobody in the frame, soft cream morning light on the sill. Window slightly right of center at 70% horizontal, soft pale surroundings, calm and low in detail. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `sanctuary.continue · Amanecer` — Mi Santuario · continuar · tema · P1
+
+- **Archivo:** `sanctuary-continue-dawn.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 50%
+- **Zona de texto:** Tercio izquierdo en calma, sin detalle ni contraste (el texto va a la izquierda), en los tonos suaves de la propia escena
+- **Contenido:** Variante del tema Amanecer de `sanctuary.continue`: la misma vista y el mismo encuadre, con la escena del tema. La invitación a retomar la práctica donde se dejó.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+Continuity in morning light: the same cream linen cushion on a pale wooden floor with a half-burned candle beside it and a blank open book, soft natural light from a window falling across them, a feeling that someone has just stepped away and will return. Objects in the right half, the left third a plain cream wall in soft shade, calm and low in detail for the lesson title. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `sanctuary.daily · Amanecer` — Mi Santuario · práctica diaria · tema · P1
+
+- **Archivo:** `sanctuary-daily-dawn.avif`
+- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
+- **Ratio / focal:** 1:1 · foco 50% 50%
+- **Zona de texto:** Sin texto encima: composición libre
+- **Contenido:** Variante del tema Amanecer de `sanctuary.daily`: la misma vista y el mismo encuadre, con la escena del tema. La práctica del día con materia propia.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+Today's practice in the morning: a small brass bowl of still water on pale stone, a single beam of early morning light falling into it and making it glow pale gold, tiny ripples, a soft cream haze around it. Bowl centered, beam entering from the upper left, the upper quarter of the frame plain pale and calm for a title laid over it, soft pale surroundings. Square framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `sanctuary.journal · Amanecer` — Mi Santuario · diario · tema · P2
+
+- **Archivo:** `sanctuary-journal-dawn.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 50%
+- **Zona de texto:** Luminosidad alta y contraste muy bajo: va detrás de un formulario de cristal en un tema claro
+- **Contenido:** Variante del tema Amanecer de `sanctuary.journal`: la misma vista y el mismo encuadre, con la escena del tema. La página sobre la que se escribe: el cuaderno, desenfocado y en penumbra, es el fondo del campo del diario y el texto va encima.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+The journal as a soft page to write on, entirely out of focus: an open linen-bound notebook with blank pages lying flat on pale oak wood, seen from directly above, a brass pen resting on the right page and one dried sprig of lavender beside the pen, soft morning light from a window grazing the paper, the whole image softly blurred as if photographed far out of focus, the edges of the notebook, the pen and the lavender dissolving into a gentle blur with no crisp line anywhere, the paper a warm cream, no writing on the pages, the table holding only these three things and nothing else. The open notebook lies horizontally at the exact center of the frame, its spread between 25% and 75% of the frame width and between 30% and 70% of the frame height, the pen and the lavender inside that same area on the right page, the left page completely empty; the top quarter and the bottom quarter of the frame are only pale wood in soft shade, and so are the left and right fifths, so the image can be cropped to its middle horizontal band or to its central square without losing anything; very low contrast, nothing darker than a soft warm grey. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Interface content is laid over this image later: keep the whole image very light and very low in contrast, with nothing sharp, and make it only of what is described above, with no additional object, shape or outline. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `sanctuary.empty · Amanecer` — Mi Santuario · vacío · tema · P2
+
+- **Archivo:** `sanctuary-empty-dawn.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
+- **Contenido:** Variante del tema Amanecer de `sanctuary.empty`: la misma vista y el mismo encuadre, con la escena del tema. El santuario recién estrenado: vacío luminoso, no ausencia.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+Luminous emptiness in the morning: an empty bright space opening onto still water, a soft pool of pale gold light gathering in the center of the floor and reflecting in the water beyond, fine dust motes drifting, no objects, the quiet of a place that is new. Light pool at center, slightly below the middle, soft pale cream space around it. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `cart.empty · Amanecer` — Carrito · vacío · tema · P2
+
+- **Archivo:** `cart-empty-dawn.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
+- **Contenido:** Variante del tema Amanecer de `cart.empty`: la misma vista y el mismo encuadre, con la escena del tema. El vacío del carrito como calma, no como castigo.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A small empty ceramic dish on a pale stone ledge beside still water in morning light, a single ray of soft warm light falling across it, a thread of steam rising, serene and open, nothing inside. Dish at center slightly below the middle, pale ledge and soft cream background, calm bright space above. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `checkout.confirmation · Amanecer` — Compra · confirmación · tema · P1
+
+- **Archivo:** `checkout-confirmation-dawn.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 50%
+- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
+- **Contenido:** Variante del tema Amanecer de `checkout.confirmation`: la misma vista y el mismo encuadre, con la escena del tema. La compra confirmada con la materia del ritual.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+Your ritual is on its way: a small parcel wrapped in plain linen paper and tied with natural thread, a sprig of dried cedar tucked under the knot, soft morning light from a window on a pale wooden surface, no writing on the wrapping. Parcel centered, pale wooden surface, a soft warm glow, calm empty bright space above it because content is laid over that area later. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `discover.tuning · Amanecer` — Descúbrete · afinación · tema · P1
+
+- **Archivo:** `discover-tuning-dawn.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 50%
+- **Zona de texto:** Sin texto encima: composición libre
+- **Contenido:** Variante del tema Amanecer de `discover.tuning`: la misma vista y el mismo encuadre, con la escena del tema. El momento de la afinación personal: la materia que sintoniza. Cuerpo de luz.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+Tuning in at sunrise: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated at the edge of pale still water and seen from behind, head slightly bowed, edged in pale gold so it reads against the bright water, as a halo of pale golden ripples spreads across the surface toward it from a single struck point, soft sky-blue reflections in the water, exactly three thin vertical light filaments in total, one gold, one teal and one lavender, rising from the ripples, and no other vertical lines anywhere. Figure centered, ripples fanning left and right across the wide frame, soft pale edges. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `discover.result · Amanecer` — Descúbrete · resultado · tema · P1
+
+- **Archivo:** `discover-result-dawn.avif`
+- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
+- **Ratio / focal:** 16:9 · foco 50% 40%
+- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
+- **Contenido:** Variante del tema Amanecer de `discover.result`: la misma vista y el mismo encuadre, con la escena del tema. El resultado del quiz como revelación visual. Cuerpo de luz.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+Revelation at sunrise: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, standing upright with open arms at the edge of pale still water, seen from behind facing the horizon, a single narrow beam of pale gold light descending from the top center of the frame that fades out completely well before it reaches the middle of the frame, ending at about 30% of the frame height, one color only, pale gold, with no split and no colored bands, the body warm ivory-gold with only a very faint sky-blue and lavender tint inside it, never iridescent and never pastel, and its reflection on the water a single pale gold column, a moment of clarity. The horizon line sits high, at 30% of the frame height, so the wide still water fills the lower 70%; the figure is small, about 12% of the frame height, and stands on that water close to the viewer, centered at 50% horizontal, its head at 70% of the frame height and its feet at 82%, never near the horizon; the beam stays in the top third of the frame and never crosses the middle; the band from 35% to 65% of the frame height is calm pale mist and still water with nothing bright, for the result text. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `booking.confirmation · Amanecer` — Reserva · confirmación · tema · P1
+
+- **Archivo:** `booking-confirmation-dawn.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 50%
+- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
+- **Contenido:** Variante del tema Amanecer de `booking.confirmation`: la misma vista y el mismo encuadre, con la escena del tema. Confirmación con la materia del lugar: el sí con imagen.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+The same serene place now with its candles lit in the morning: a pale wooden deck over a mirror-calm lake, floor cushions in a circle with a small warm candle glow among them in the soft morning light, reflected in the still water, a steaming cup set beside them, a soft peach light on the horizon. Warm center, soft pale edges, calm space in the middle because content is laid over it later. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
+
+#### `academy.completion · Amanecer` — Academia · curso completado · tema · P1
+
+- **Archivo:** `academy-completion-dawn.avif`
+- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
+- **Ratio / focal:** 16:8 · foco 50% 50%
+- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
+- **Contenido:** Variante del tema Amanecer de `academy.completion`: la misma vista y el mismo encuadre, con la escena del tema. Celebración del curso terminado: el logro con luz. Cuerpo de luz.
+- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+**Prompt**
+
+```text
+A completed cycle closed in light at sunrise: a ring of exactly twelve small golden lights, evenly spaced and with no other lights, floating on pale still water seen from a slightly oblique overhead angle, each one a small warm point with a soft ring of light around it so it reads on the bright water, a small abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated cross-legged just outside the far side of the ring, never counted as one of the twelve, every light steady and one slightly brighter, concentric ripples radiating outward from the ring only. Ring centered at 50% horizontal, its middle empty, pale and perfectly still water because content is laid over it later, count the lights: twelve around the ring and the figure beyond them, the ripples spreading outward from the ring only, the small figure no taller than 12% of the frame height at the far edge of the ring at 50% horizontal and 30% vertical, nothing but soft pale mist and water around. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
+```
 
 ### 5.3 Por cablear (crear vistas) (0)
 
@@ -496,7 +732,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-hero-dawn.avif` | Resonario · hero · tema · Amanecer | `resonario.hero` | 16:9 | P1 |
 | `resonario-hero-forest.avif` | Resonario · hero · tema · Bosque | `resonario.hero` | 16:9 | P1 |
 
-### 5.6 Provisionales: reemplazar antes de publicar (97)
+### 5.6 Provisionales: reemplazar antes de publicar (111)
 
 Imágenes generadas que hacen de marco mientras llegan las fotografías reales (propias de Marisol o con licencia comercial documentada). Pueden estar completadas y seguir siendo provisionales: esta lista no es un estado, cruza los de arriba.
 
@@ -528,6 +764,18 @@ Imágenes generadas que hacen de marco mientras llegan las fotografías reales (
 | `academy.featured-course` | Academia · curso destacado · tema | `academy-featured-course-dawn.avif`, `academy-featured-course-dusk.avif`, `academy-featured-course-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `experiences.featured` | Experiencias · destacada · tema | `experiences-featured-dawn.avif`, `experiences-featured-dusk.avif`, `experiences-featured-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `store.ritual-banner` | Tienda · banner ritual · tema | `store-ritual-banner-dawn.avif`, `store-ritual-banner-dusk.avif`, `store-ritual-banner-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `academy.completion` | Academia · curso completado · tema | `academy-completion-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `booking.confirmation` | Reserva · confirmación · tema | `booking-confirmation-dusk.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `academy.completion` | Academia · curso completado · tema | `academy-completion-forest.avif`, `academy-completion-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `booking.confirmation` | Reserva · confirmación · tema | `booking-confirmation-dusk.avif`, `booking-confirmation-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `states.loading` | Estados · carga · tema | `states-loading-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `states.empty` | Estados · vacío · tema | `states-empty-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `states.error` | Estados · error · tema | `states-error-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `states.offline` | Estados · sin conexión · tema | `states-offline-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `sanctuary.continue` | Mi Santuario · continuar · tema | `sanctuary-continue-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `sanctuary.daily` | Mi Santuario · práctica diaria · tema | `sanctuary-daily-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `sanctuary.journal` | Mi Santuario · diario · tema | `sanctuary-journal-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `sanctuary.empty` | Mi Santuario · vacío · tema | `sanctuary-empty-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `cart.empty` | Carrito · vacío · tema | `cart-empty-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `checkout.confirmation` | Compra · confirmación · tema | `checkout-confirmation-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `discover.tuning` | Descúbrete · afinación · tema | `discover-tuning-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `discover.result` | Descúbrete · resultado · tema | `discover-result-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `resonario.hero` | Resonario · hero · tema | `resonario-hero-moon.avif`, `resonario-hero-dusk.avif`, `resonario-hero-dawn.avif`, `resonario-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |

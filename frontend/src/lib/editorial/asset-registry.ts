@@ -2,7 +2,6 @@ import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import {
   EDITORIAL_MEDIA_REGISTRY,
   THEME_VARIANT_POSITIONS,
-  NIGHT_BACKDROP_SLOTS,
   THEME_VARIANTS,
 } from '@/config/editorial-media';
 import { ATMOSPHERE_IDS } from '@/config/atmospheres';
@@ -66,7 +65,7 @@ export function resolveEditorialMedia(
 
   if (hasSource) {
     resolved.src = src;
-    if (THEME_VARIANTS[slot] || NIGHT_BACKDROP_SLOTS.includes(slot)) resolved.themed = true;
+    if (THEME_VARIANTS[slot]) resolved.themed = true;
 
     const themed = media?.src ? undefined : themeVariants(assetKey(slot, media?.instance));
     if (themed) Object.assign(resolved, themed);

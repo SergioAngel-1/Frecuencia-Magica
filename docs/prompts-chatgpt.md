@@ -6,7 +6,7 @@
 > **Variantes por tema** (`<slot>-<tema>.png`, p. ej. `home-hero-dawn.png`; spec `docs/superpowers/specs/2026-10-17-temas-globales-design.md`): el sitio tiene cinco temas (noche, atardecer, amanecer, luna, bosque) y un slot escénico puede traer una imagen propia en los temas donde la de la noche no funciona. La luna comparte la imagen de la noche. Cada variante lleva el mismo ratio, prioridad y encuadre que su slot, y el estilo de las atmósferas: color natural, sin personas y otro «Avoid». El mapa de abajo dice qué falta por tema. Si una variante tarda, la web muestra la imagen de la noche: no bloquea nada.
 > Las demás imágenes de atmósfera (`atmosphere-forest-autumn`, `resonario-celtic`, `resonario-kind-banner-*`; enmienda 2026-10-17, `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`) llevan el mismo estilo. Los productos de la tienda no se generan: son fotografía real que hará Marisol.
 
-**164 imágenes:** 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta · 163 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
+**178 imágenes:** 0 a corregir · 14 faltantes · 0 por cablear · 1 no tenidas en cuenta · 163 completadas. Lo que hay que generar o regenerar está en las dos primeras secciones.
 
 ## Mapa de variantes por tema
 
@@ -34,8 +34,20 @@
 | `academy.featured-course` | ✓ `academy-featured-course-dusk.png` | ✓ `academy-featured-course-dawn.png` | — | ✓ `academy-featured-course-forest.png` |
 | `experiences.featured` | ✓ `experiences-featured-dusk.png` | ✓ `experiences-featured-dawn.png` | — | ✓ `experiences-featured-forest.png` |
 | `store.ritual-banner` | ✓ `store-ritual-banner-dusk.png` | ✓ `store-ritual-banner-dawn.png` | — | ✓ `store-ritual-banner-forest.png` |
-| `academy.completion` | — | — | — | ✓ `academy-completion-forest.png` |
-| `booking.confirmation` | ✓ `booking-confirmation-dusk.png` | — | — | — |
+| `academy.completion` | — | por generar `academy-completion-dawn.png` | — | ✓ `academy-completion-forest.png` |
+| `booking.confirmation` | ✓ `booking-confirmation-dusk.png` | por generar `booking-confirmation-dawn.png` | — | — |
+| `states.loading` | — | por generar `states-loading-dawn.png` | — | — |
+| `states.empty` | — | por generar `states-empty-dawn.png` | — | — |
+| `states.error` | — | por generar `states-error-dawn.png` | — | — |
+| `states.offline` | — | por generar `states-offline-dawn.png` | — | — |
+| `sanctuary.continue` | — | por generar `sanctuary-continue-dawn.png` | — | — |
+| `sanctuary.daily` | — | por generar `sanctuary-daily-dawn.png` | — | — |
+| `sanctuary.journal` | — | por generar `sanctuary-journal-dawn.png` | — | — |
+| `sanctuary.empty` | — | por generar `sanctuary-empty-dawn.png` | — | — |
+| `cart.empty` | — | por generar `cart-empty-dawn.png` | — | — |
+| `checkout.confirmation` | — | por generar `checkout-confirmation-dawn.png` | — | — |
+| `discover.tuning` | — | por generar `discover-tuning-dawn.png` | — | — |
+| `discover.result` | — | por generar `discover-result-dawn.png` | — | — |
 | `resonario.hero` | ✓ `resonario-hero-dusk.png` | ✓ `resonario-hero-dawn.png` | ✓ `resonario-hero-moon.png` | ✓ `resonario-hero-forest.png` |
 
 ✓ ya entregada y publicada (reasignada de las atmósferas de Ambientes v2). — el tema usa la imagen de la noche.
@@ -46,11 +58,163 @@ Entregadas con una desviación. Cada entrada dice qué parte del prompt falló s
 
 Ninguna.
 
-## 2. Faltantes (0)
+## 2. Faltantes (14)
 
 Aún sin entregar. Guárdalas con el nombre indicado para que se procesen solas.
 
-Ninguna.
+### 2.1 · P2 · Estados · carga · tema · Amanecer
+
+- **Guardar como:** `states-loading-dawn.png` (luego se convierte a `states-loading-dawn.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Waiting with matter at sunrise: a single soft sphere of pale golden light floating in bright misty space above still pale water as if breathing, a faint halo, slow and calm, the air a soft blend of cream, peach and very pale sky blue. Sphere at center at 42% vertical, calm bright mist all around it, the horizon lost in the mist with no line and no band, the lower third plain calm pale water for the loading label. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.2 · P2 · Estados · vacío · tema · Amanecer
+
+- **Guardar como:** `states-empty-dawn.png` (luego se convierte a `states-empty-dawn.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. An empty luminous space in the morning: one soft window of pale peach light lying on still pale water, fine pale-gold dust motes drifting through it, a faint ivory haze, open space, nothing else in the frame. Light on the water just below center, soft pale space around it, no object and no hard edge. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.3 · P2 · Estados · error · tema · Amanecer
+
+- **Guardar como:** `states-error-dawn.png` (luego se convierte a `states-error-dawn.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Something interrupted, in morning light: a single candle flickering on a pale sandstone ledge by still water with a wisp of smoke still rising, calm and unbothered, a soft warm faint glow in the bright cream air. Candle at center, pale calm surroundings, quiet bright space above. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.4 · P2 · Estados · sin conexión · tema · Amanecer
+
+- **Guardar como:** `states-offline-dawn.png` (luego se convierte a `states-offline-dawn.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A brief retreat at first light: a quiet cabin window with a warm lamp still lit inside and pale blue mist over a still lake outside, a sense of pausing, nobody in the frame, soft cream morning light on the sill. Window slightly right of center at 70% horizontal, soft pale surroundings, calm and low in detail. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.5 · P1 · Mi Santuario · continuar · tema · Amanecer
+
+- **Guardar como:** `sanctuary-continue-dawn.png` (luego se convierte a `sanctuary-continue-dawn.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). Continuity in morning light: the same cream linen cushion on a pale wooden floor with a half-burned candle beside it and a blank open book, soft natural light from a window falling across them, a feeling that someone has just stepped away and will return. Objects in the right half, the left third a plain cream wall in soft shade, calm and low in detail for the lesson title. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. A headline and a button are overlaid on the left third of the image: keep that area calm, low in detail and low in contrast, in the soft tones of the scene itself (open sky, still water, mist, plain wall or soft out-of-focus foliage), with no bright highlight and no sharp subject there, and never through a gradient, band or overlay. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.6 · P1 · Mi Santuario · práctica diaria · tema · Amanecer
+
+- **Guardar como:** `sanctuary-daily-dawn.png` (luego se convierte a `sanctuary-daily-dawn.avif`)
+- **Formato:** 1:1
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Square image, 1:1 aspect ratio. Today's practice in the morning: a small brass bowl of still water on pale stone, a single beam of early morning light falling into it and making it glow pale gold, tiny ripples, a soft cream haze around it. Bowl centered, beam entering from the upper left, the upper quarter of the frame plain pale and calm for a title laid over it, soft pale surroundings. Square framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.7 · P2 · Mi Santuario · diario · tema · Amanecer
+
+- **Guardar como:** `sanctuary-journal-dawn.png` (luego se convierte a `sanctuary-journal-dawn.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). The journal as a soft page to write on, entirely out of focus: an open linen-bound notebook with blank pages lying flat on pale oak wood, seen from directly above, a brass pen resting on the right page and one dried sprig of lavender beside the pen, soft morning light from a window grazing the paper, the whole image softly blurred as if photographed far out of focus, the edges of the notebook, the pen and the lavender dissolving into a gentle blur with no crisp line anywhere, the paper a warm cream, no writing on the pages, the table holding only these three things and nothing else. The open notebook lies horizontally at the exact center of the frame, its spread between 25% and 75% of the frame width and between 30% and 70% of the frame height, the pen and the lavender inside that same area on the right page, the left page completely empty; the top quarter and the bottom quarter of the frame are only pale wood in soft shade, and so are the left and right fifths, so the image can be cropped to its middle horizontal band or to its central square without losing anything; very low contrast, nothing darker than a soft warm grey. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Interface content is laid over this image later: keep the whole image very light and very low in contrast, with nothing sharp, and make it only of what is described above, with no additional object, shape or outline. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.8 · P2 · Mi Santuario · vacío · tema · Amanecer
+
+- **Guardar como:** `sanctuary-empty-dawn.png` (luego se convierte a `sanctuary-empty-dawn.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Luminous emptiness in the morning: an empty bright space opening onto still water, a soft pool of pale gold light gathering in the center of the floor and reflecting in the water beyond, fine dust motes drifting, no objects, the quiet of a place that is new. Light pool at center, slightly below the middle, soft pale cream space around it. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.9 · P2 · Carrito · vacío · tema · Amanecer
+
+- **Guardar como:** `cart-empty-dawn.png` (luego se convierte a `cart-empty-dawn.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. A small empty ceramic dish on a pale stone ledge beside still water in morning light, a single ray of soft warm light falling across it, a thread of steam rising, serene and open, nothing inside. Dish at center slightly below the middle, pale ledge and soft cream background, calm bright space above. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.10 · P1 · Compra · confirmación · tema · Amanecer
+
+- **Guardar como:** `checkout-confirmation-dawn.png` (luego se convierte a `checkout-confirmation-dawn.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). Your ritual is on its way: a small parcel wrapped in plain linen paper and tied with natural thread, a sprig of dried cedar tucked under the knot, soft morning light from a window on a pale wooden surface, no writing on the wrapping. Parcel centered, pale wooden surface, a soft warm glow, calm empty bright space above it because content is laid over that area later. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.11 · P1 · Descúbrete · afinación · tema · Amanecer
+
+- **Guardar como:** `discover-tuning-dawn.png` (luego se convierte a `discover-tuning-dawn.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). Tuning in at sunrise: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated at the edge of pale still water and seen from behind, head slightly bowed, edged in pale gold so it reads against the bright water, as a halo of pale golden ripples spreads across the surface toward it from a single struck point, soft sky-blue reflections in the water, exactly three thin vertical light filaments in total, one gold, one teal and one lavender, rising from the ripples, and no other vertical lines anywhere. Figure centered, ripples fanning left and right across the wide frame, soft pale edges. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.12 · P1 · Descúbrete · resultado · tema · Amanecer
+
+- **Guardar como:** `discover-result-dawn.png` (luego se convierte a `discover-result-dawn.avif`)
+- **Formato:** 16:9
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio. Revelation at sunrise: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, standing upright with open arms at the edge of pale still water, seen from behind facing the horizon, a single narrow beam of pale gold light descending from the top center of the frame that fades out completely well before it reaches the middle of the frame, ending at about 30% of the frame height, one color only, pale gold, with no split and no colored bands, the body warm ivory-gold with only a very faint sky-blue and lavender tint inside it, never iridescent and never pastel, and its reflection on the water a single pale gold column, a moment of clarity. The horizon line sits high, at 30% of the frame height, so the wide still water fills the lower 70%; the figure is small, about 12% of the frame height, and stands on that water close to the viewer, centered at 50% horizontal, its head at 70% of the frame height and its feet at 82%, never near the horizon; the beam stays in the top third of the frame and never crosses the middle; the band from 35% to 65% of the frame height is calm pale mist and still water with nothing bright, for the result text. Wide landscape framing. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.13 · P1 · Reserva · confirmación · tema · Amanecer
+
+- **Guardar como:** `booking-confirmation-dawn.png` (luego se convierte a `booking-confirmation-dawn.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). The same serene place now with its candles lit in the morning: a pale wooden deck over a mirror-calm lake, floor cushions in a circle with a small warm candle glow among them in the soft morning light, reflected in the still water, a steaming cup set beside them, a soft peach light on the horizon. Warm center, soft pale edges, calm space in the middle because content is laid over it later. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
+
+### 2.14 · P1 · Academia · curso completado · tema · Amanecer
+
+- **Guardar como:** `academy-completion-dawn.png` (luego se convierte a `academy-completion-dawn.avif`)
+- **Formato:** 16:8
+- **Estilo:** atmósfera (v2): color natural y escena según su tono; no lleva el etalonaje nocturno de las demás.
+- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
+
+```text
+Create an image. Follow this description exactly and do not add elements, text or effects that are not described. Wide landscape image, 16:9 aspect ratio (it will be cropped to 2:1, keep the subject away from the top and bottom edges). A completed cycle closed in light at sunrise: a ring of exactly twelve small golden lights, evenly spaced and with no other lights, floating on pale still water seen from a slightly oblique overhead angle, each one a small warm point with a soft ring of light around it so it reads on the bright water, a small abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated cross-legged just outside the far side of the ring, never counted as one of the twelve, every light steady and one slightly brighter, concentric ripples radiating outward from the ring only. Ring centered at 50% horizontal, its middle empty, pale and perfectly still water because content is laid over it later, count the lights: twelve around the ring and the figure beyond them, the ripples spreading outward from the ring only, the small figure no taller than 12% of the frame height at the far edge of the ring at 50% horizontal and 30% vertical, nothing but soft pale mist and water around. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people. Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.
+```
 
 ## 3. Por cablear (crear vistas) (0)
 

@@ -7,7 +7,6 @@ import { ATMOSPHERE_IDS } from '@/config/atmospheres';
 import { EDITORIAL_ASSETS } from '@/config/editorial-assets.generated';
 import {
   EDITORIAL_MEDIA_SLOTS,
-  NIGHT_BACKDROP_SLOTS,
   THEME_VARIANTS,
   THEME_VARIANT_POSITIONS,
   type EditorialMediaSlot,
@@ -148,19 +147,32 @@ describe('theme image variants', () => {
   });
 });
 
-describe('fondos nocturnos con texto encima (sin variante de tema)', () => {
-  it('son slots del contrato y ninguno figura ya en THEME_VARIANTS', () => {
-    for (const slot of NIGHT_BACKDROP_SLOTS) {
-      expect(EDITORIAL_MEDIA_SLOTS, slot).toContain(slot);
-      expect(THEME_VARIANTS[slot], slot).toBeUndefined();
+describe('fondos con variante de Amanecer en lugar del lavado', () => {
+  it('todo fondo que el tema claro lavaba tiene su variante declarada', () => {
+    const lavados = [
+      'states.loading',
+      'states.empty',
+      'states.error',
+      'states.offline',
+      'sanctuary.continue',
+      'sanctuary.daily',
+      'sanctuary.journal',
+      'sanctuary.empty',
+      'cart.empty',
+      'checkout.confirmation',
+      'discover.tuning',
+      'discover.result',
+      'booking.confirmation',
+      'academy.completion',
+    ] as const;
+
+    for (const slot of lavados) {
+      expect(THEME_VARIANTS[slot], slot).toContain('dawn');
     }
   });
 
-  it('se marcan como temables: bajo el tema claro se lavan igual que una foto sin variante', () => {
-    for (const slot of NIGHT_BACKDROP_SLOTS) {
-      const media = resolveEditorialMedia(slot, { src: '/editorial/x.avif', alt: 'x' });
-
-      expect(media.themed, slot).toBe(true);
-    }
+  it('el 404 raíz no lleva variantes: está fuera del proveedor de tema', () => {
+    expect(THEME_VARIANTS['not-found.hero']).toBeUndefined();
+    expect(resolveEditorialMedia('not-found.hero', { alt: 'x' })).not.toHaveProperty('variants');
   });
 });
