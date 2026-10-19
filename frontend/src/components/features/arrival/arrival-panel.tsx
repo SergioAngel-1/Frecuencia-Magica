@@ -2,11 +2,12 @@
 
 import { useTranslations } from 'next-intl';
 
-import { Button, Float, GlassPanel, Kicker, Swap } from '@/components/ui';
+import { Button, Float, GlassPanel, Swap } from '@/components/ui';
 import { arrivalAnnouncement } from '@/lib/arrival/announce';
 import { currentAlternative, type ArrivalFlow } from '@/lib/arrival/flow';
 import type { AtmosphereId } from '@/types/atmosphere';
 
+import { ArrivalAlternatives } from './arrival-alternatives';
 import { ArrivalReveal } from './arrival-reveal';
 
 type ArrivalPanelProps = {
@@ -66,38 +67,16 @@ export function ArrivalPanel({ flow, atmosphere, onStep, onOther, onStop }: Arri
                 </Swap>
 
                 {audio ? (
-                  <div className="mt-6 flex flex-col items-center gap-3">
-                    <Kicker tone="teal" spacing="wide">
-                      {t('listenKind')}
-                    </Kicker>
-                    <Swap id={`alternative-${flow.key}-${flow.index}`}>
-                      <div className="flex flex-col items-center gap-1">
-                        <p className="text-fg-meta text-label tracking-label font-sans uppercase">
-                          {tResonario(`kinds.${audio.kind}.title`)}
-                        </p>
-                        <p className="text-fg font-serif text-[clamp(20px,2.4vw,24px)] leading-tight">
-                          {tResonario(`audios.${audio.id}.title`)}
-                        </p>
-                        {audio.headphones ? (
-                          <p className="text-fg-meta text-meta tracking-ui font-sans">
-                            {t('headphones')}
-                          </p>
-                        ) : null}
-                      </div>
-                    </Swap>
-                    {count > 1 ? (
-                      <div className="flex items-center gap-2">
-                        <Button variant="ghost" onClick={() => onStep(-1)}>
-                          {t('previous')}
-                        </Button>
-                        <p className="text-fg-meta text-meta tracking-ui font-sans">
-                          {t('position', { current: flow.index + 1, total: count })}
-                        </p>
-                        <Button variant="ghost" onClick={() => onStep(1)}>
-                          {t('next')}
-                        </Button>
-                      </div>
-                    ) : null}
+                  <div className="mt-6">
+                    <ArrivalAlternatives
+                      kind={tResonario(`kinds.${audio.kind}.title`)}
+                      title={tResonario(`audios.${audio.id}.title`)}
+                      headphones={Boolean(audio.headphones)}
+                      index={flow.index}
+                      count={count}
+                      swapId={`alternative-${flow.key}-${flow.index}`}
+                      onStep={onStep}
+                    />
                   </div>
                 ) : null}
 
