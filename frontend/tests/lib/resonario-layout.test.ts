@@ -206,7 +206,8 @@ describe('resonario editorial composition contracts', () => {
     expect(pageSource).toContain("getTranslations({ locale, namespace: 'resonario' })");
     expect(pageSource).toContain("resolveEditorialMedia('resonario.hero'");
     expect(pageSource).toContain("resolveEditorialMedia('resonario.featured'");
-    expect(pageSource).toContain("resolveEditorialMedia('resonario.archive-banner'");
+    // El archivo es un encabezado de texto: su banner ya no se resuelve en la página.
+    expect(pageSource).not.toContain("'resonario.archive-banner'");
     // Las portadas por audio no se resuelven en la página: las pinta cada tarjeta.
     expect(pageSource).not.toContain("'resonario.audio-cover.*'");
     expect(pageSource).toContain("alt: t('media.alt.hero')");
@@ -275,16 +276,20 @@ describe('resonario editorial composition contracts', () => {
     );
   });
 
-  it('chains the archive banner to the hero and keeps the filters above the catalog states', () => {
-    // El banner sigue al héroe en la misma cadena: dos bandas consecutivas, sin hueco.
-    const chain = pageSource.slice(
-      pageSource.indexOf('<BandChain>'),
-      pageSource.indexOf('</BandChain>'),
-    );
-    expect(chain.indexOf('<RealmHero')).toBeGreaterThan(-1);
-    expect(chain.indexOf('<EditorialBanner')).toBeGreaterThan(chain.indexOf('<RealmHero'));
-    expect(chain).toContain('media={archiveBanner}');
-    expect(systemSource).not.toContain('<EditorialBanner');
+  it('reads the archive as a text header on the night, between the hero and the system', () => {
+    // Héroe (banda) → encabezado de texto (noche) → sistema: nunca dos bandas seguidas.
+    expect(pageSource).not.toContain('<BandChain');
+    expect(pageSource).not.toContain('<EditorialBanner');
+    const hero = pageSource.indexOf('<RealmHero');
+    const archive = pageSource.indexOf("t('archive.title')");
+    const system = pageSource.indexOf('<ResonarioSystem');
+    expect(hero).toBeGreaterThan(-1);
+    expect(archive).toBeGreaterThan(hero);
+    expect(system).toBeGreaterThan(archive);
+    expect(pageSource).toContain('<Display level="h2" size="lg"');
+    expect(pageSource).toContain('<Kicker tone="gold" spacing="wide">');
+    expect(pageSource).toContain("t('archive.eyebrow')");
+    expect(pageSource).toContain("t('archive.description')");
 
     // Los filtros quedan justo encima de lo que filtran.
     const filtersIndex = systemSource.indexOf('<ResonarioFilters');

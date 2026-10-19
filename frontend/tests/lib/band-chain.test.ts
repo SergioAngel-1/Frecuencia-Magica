@@ -89,10 +89,8 @@ describe('band chain', () => {
     expect(CHAIN).toMatch(/data-band-chain=\{intoFooter \? 'footer' : 'true'\}/);
     expect(view('components/features/home/daily-frequency.tsx')).toContain('mode="anchored"');
 
-    // Resonario: héroe → banner del archivo.
-    const resonario = chainOf(view('app/[locale]/resonario/page.tsx'));
-    expect(resonario).toContain('<RealmHero');
-    expect(resonario).toContain('<EditorialBanner');
+    // Resonario: héroe → encabezado de texto del archivo (sin cadena: no hay dos bandas).
+    expect(view('app/[locale]/resonario/page.tsx')).not.toContain('<BandChain');
 
     // Experiencias: héroe → destacada.
     const experiences = chainOf(view('components/features/experiences/experience-list.tsx'));

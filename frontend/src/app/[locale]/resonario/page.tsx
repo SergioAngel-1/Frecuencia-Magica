@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { ResonarioSystem } from '@/components/features/resonario/resonario-system';
 import { PageShell, RealmHero } from '@/components/layout';
-import { BandChain, EditorialBanner } from '@/components/ui';
+import { Display, Kicker } from '@/components/ui';
 import { AUDIO_KINDS } from '@/config/audio-kinds';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -50,31 +50,33 @@ export default async function ResonarioPage({ params }: PageProps) {
     }),
   };
 
-  const archiveBanner = resolveEditorialMedia('resonario.archive-banner', {
-    alt: t('media.alt.archiveBanner'),
-  });
-
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      {/* El héroe y el banner del archivo son bandas consecutivas: se tocan sin
-          hueco. Los filtros bajan junto al sistema que filtran. */}
-      <BandChain>
-        <RealmHero
-          media={resonarioMedia.hero}
-          kicker={t('kicker')}
-          title={t('title')}
-          description={t('description')}
-        />
-        <EditorialBanner
-          media={archiveBanner}
-          eyebrow={t('archive.eyebrow')}
-          title={t('archive.title')}
-          body={t('archive.description')}
-        />
-      </BandChain>
+      <RealmHero
+        media={resonarioMedia.hero}
+        kicker={t('kicker')}
+        title={t('title')}
+        description={t('description')}
+      />
 
+      {/* Tras el héroe, el archivo es texto sobre la noche y no otra banda:
+          dos bandas a sangre no van seguidas (ver `band-rhythm.test`). */}
       <div className="fm-editorial-full-bleed fm-container pt-block pb-section">
-        <ResonarioSystem media={resonarioMedia} />
+        <div className="flex flex-col items-start gap-4">
+          <Kicker tone="gold" spacing="wide">
+            {t('archive.eyebrow')}
+          </Kicker>
+          <Display level="h2" size="lg" className="max-w-measure-title-xl">
+            {t('archive.title')}
+          </Display>
+          <p className="text-fg-body text-body max-w-measure-wide leading-[1.8]">
+            {t('archive.description')}
+          </p>
+        </div>
+
+        <div className="mt-block">
+          <ResonarioSystem media={resonarioMedia} />
+        </div>
       </div>
     </PageShell>
   );
