@@ -899,7 +899,7 @@
     },
     "kicker": "Mi Santuario",
     "title": "Bienvenida de vuelta, {name}",
-    "feeling": "Hoy: {feeling} · {atmosphere}",
+    "feeling": "Hoy: {feeling}",
     "stats": {
       "days": {
         "label": "días de práctica"
@@ -1051,39 +1051,49 @@
   },
   "atmospheres": {
     "night": {
-      "name": "Noche",
-      "description": "Estrellas y luz suave sobre el vacío."
+      "name": "Consuelo",
+      "description": "Para los días en que todo pide silencio: una luz serena que no te exige nada.",
+      "phrase": "Quédate un rato con lo que pesa.",
+      "want": "Necesito consuelo"
     },
     "dusk": {
-      "name": "Atardecer",
-      "description": "Brasas y luz cálida al caer la tarde, para descansar."
+      "name": "Descanso",
+      "description": "Para bajar el ritmo y dejar que el cuerpo suelte lo que queda de la jornada.",
+      "phrase": "Suelta el día.",
+      "want": "Quiero descansar"
     },
     "dawn": {
-      "name": "Amanecer",
-      "description": "Luz clara y aire fresco, como el primer momento del día."
+      "name": "Despertar",
+      "description": "Para cuando quieres empezar de nuevo: luz clara, aire y ganas de avanzar.",
+      "phrase": "Empieza sin prisa.",
+      "want": "Quiero empezar de nuevo"
     },
     "moon": {
-      "name": "Luna",
-      "description": "Azul profundo y plata, para estar en silencio bajo la luna."
+      "name": "Recogimiento",
+      "description": "Para mirar hacia dentro sin miedo: silencio, nostalgia y claridad.",
+      "phrase": "Baja el ruido y escúchate.",
+      "want": "Quiero escucharme"
     },
     "forest": {
-      "name": "Bosque",
-      "description": "Verde natural, luciérnagas y luz filtrada entre los árboles."
+      "name": "Arraigo",
+      "description": "Para agradecer lo que sostiene y volver al cuerpo: naturaleza, respiración y raíz.",
+      "phrase": "Vuelve a la tierra.",
+      "want": "Quiero volver a la tierra"
     },
     "switcher": {
-      "label": "Atmósfera",
-      "open": "Cambiar de atmósfera",
+      "label": "Cómo te sientes",
+      "open": "Elegir cómo te sientes",
       "auto": "Según cómo te sientes",
-      "autoDescription": "Cada lugar propone la suya: cambian la luz, las imágenes y el sonido contigo.",
-      "current": "Atmósfera actual: {name}"
+      "autoDescription": "Cada lugar propone cómo acompañarte: la luz, las imágenes y el sonido cambian contigo.",
+      "current": "Ahora te acompaña: {name}"
     },
     "shift": {
-      "title": "Cambiar de atmósfera",
+      "title": "¿Cómo quieres sentirte?",
       "close": "Cerrar",
-      "changes": "Cambian la luz, las imágenes y el sonido que te acompañan, en todo el sitio.",
+      "changes": "Cambian la luz, las imágenes y el sonido que te acompañan en todo el sitio.",
       "feeling": "Hoy: {feeling}",
-      "crossing": "Cruzando a {name}",
-      "confirm": "Cruzar a {name}",
+      "kicker": "Tu atmósfera",
+      "confirmAuto": "Que decida el lugar",
       "cancel": "Quedarme aquí"
     }
   },

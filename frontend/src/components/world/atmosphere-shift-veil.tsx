@@ -19,7 +19,7 @@ const ms = (value: number) => `${Math.round(value)}ms`;
  *
  * - `in`: una onda de la luz del tema nuevo nace donde se pidió el cambio y el fondo del tema
  *   nuevo cubre la pantalla.
- * - `hold`: pantalla cubierta; el tema ya está aplicado debajo y el velo dice su nombre (y el
+ * - `hold`: pantalla cubierta; el tema ya está aplicado debajo y el velo dice su frase (y el
  *   estado del ánimo que lo trajo, si lo hay).
  * - `out`: el velo se disuelve sobre el mundo nuevo.
  *
@@ -43,7 +43,7 @@ export function AtmosphereShiftVeil() {
   const wave = mode === 'full' && !reduced;
   const covering = phase !== 'out';
   const washDelay = wave ? cover * WASH_FROM : 0;
-  const name = t(`${request.resolved}.name`);
+  const phrase = t(`${request.resolved}.phrase`);
 
   return (
     <div
@@ -82,10 +82,10 @@ export function AtmosphereShiftVeil() {
         <Kicker spacing="widest">
           {request.feeling
             ? t('shift.feeling', { feeling: feelingLabel(request.feeling) })
-            : t('shift.title')}
+            : t('shift.kicker')}
         </Kicker>
         <Display level="span" size="md" className="text-fg">
-          {name}
+          {phrase}
         </Display>
       </Mdiv>
     </div>

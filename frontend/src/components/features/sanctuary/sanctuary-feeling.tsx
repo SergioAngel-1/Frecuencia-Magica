@@ -20,7 +20,6 @@ export function SanctuaryFeeling() {
   const savedKey = useArrivalStore((state) => state.key);
   const feelingLabel = useFeelingLabel();
   const t = useTranslations('sanctuary');
-  const tAtmospheres = useTranslations('atmospheres');
 
   const feeling = mounted ? activeFeeling(atmosphereId, savedKey) : null;
 
@@ -28,10 +27,7 @@ export function SanctuaryFeeling() {
 
   return (
     <Kicker tone="muted" spacing="tight" className="animate-fm-fade-up mt-4">
-      {t('feeling', {
-        feeling: feelingLabel(feeling),
-        atmosphere: tAtmospheres(`${atmosphereId}.name`),
-      })}
+      {t('feeling', { feeling: feelingLabel(feeling) })}
     </Kicker>
   );
 }

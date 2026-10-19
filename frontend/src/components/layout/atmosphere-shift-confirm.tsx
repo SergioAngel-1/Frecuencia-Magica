@@ -11,7 +11,7 @@ import type { ShiftRequest } from '@/lib/atmosphere/shift';
 import { useAtmosphereShiftStore } from '@/stores/atmosphere-shift-store';
 
 /**
- * Confirmación del cambio manual de atmósfera: enseña a dónde se va (su luz, su nombre, qué
+ * Confirmación del cambio manual de atmósfera: enseña a dónde se va (su luz, su frase, qué
  * cambia) antes de cruzar. «Según cómo te sientes» enseña los cinco temas en fila: cada lugar
  * propone el suyo. Aceptar empieza el cruce (`AtmosphereShiftVeil`); rechazar no cambia nada.
  */
@@ -29,7 +29,7 @@ export function AtmosphereShiftConfirm() {
   if (request && request !== shown) setShown(request);
 
   const target = shown?.choice ?? null;
-  const name = target ? t(`${target}.name`) : t('switcher.auto');
+  const phrase = target ? t(`${target}.phrase`) : t('switcher.auto');
   const description = target ? t(`${target}.description`) : t('switcher.autoDescription');
 
   return (
@@ -48,12 +48,12 @@ export function AtmosphereShiftConfirm() {
               ))}
             </span>
             <div className="flex flex-col gap-1">
-              {shown.feeling ? (
-                <Kicker tone="muted">
-                  {t('shift.feeling', { feeling: feelingLabel(shown.feeling) })}
-                </Kicker>
-              ) : null}
-              <p className="text-fg text-serif-md font-serif leading-none">{name}</p>
+              <Kicker tone="muted">
+                {shown.feeling
+                  ? t('shift.feeling', { feeling: feelingLabel(shown.feeling) })
+                  : t('shift.kicker')}
+              </Kicker>
+              <p className="text-fg text-serif-md font-serif leading-none">{phrase}</p>
             </div>
           </div>
 
@@ -62,7 +62,7 @@ export function AtmosphereShiftConfirm() {
 
           <div className="flex flex-wrap gap-3">
             <Button variant="accent" onClick={() => confirm(reduced ? 'quick' : 'full')}>
-              {t('shift.confirm', { name: t(`${shown.resolved}.name`) })}
+              {target ? t(`${target}.want`) : t('shift.confirmAuto')}
             </Button>
             <Button variant="ghost" onClick={cancel}>
               {t('shift.cancel')}
