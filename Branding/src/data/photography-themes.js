@@ -2,8 +2,8 @@
  * Variantes de imagen por tema (spec `2026-10-17-temas-globales-design.md` § 6). Un slot escénico puede traer
  * una imagen propia en algunos temas cuando la base —siempre la de la noche— no funciona en ellos: un paisaje
  * nocturno azul no se lee bajo el atardecer, bajo un tema claro ni bajo el verde del bosque. La luna comparte
- * la imagen de la noche salvo en `resonario.hero`. Portadas de audio, de curso, visuales de experiencia y
- * productos no cambian con el tema.
+ * la imagen de la noche salvo en `resonario.hero`, `discover.tuning` y `discover.result`, que son su lugar.
+ * Portadas de audio, de curso, visuales de experiencia y productos no cambian con el tema.
  *
  * Cada variante hereda del slot base el ratio, la prioridad y el foco, y sale en el brief y en
  * `docs/prompts-chatgpt.md` como una imagen más (`<slot>@<tema>`, archivo `<archivo-del-slot>-<tema>.avif`).
@@ -519,12 +519,27 @@ export const THEME_VARIANTS = [
      (`[data-scheme='light'] [data-photo-night]`): bajo el tema claro quedaban como una neblina gris o con una franja
      oscura. Cada uno es la misma escena de su base con la luz de amanecer: crema melocotón, azul cielo muy pálido y
      oro claro, nunca blanco frío (ver la nota de paleta de Amanecer). El texto de estas vistas es tinta oscura, así
-     que la zona de texto queda clara y calma. `not-found.hero` no entra: el 404 raíz está fuera del proveedor de tema. */
+     que la zona de texto queda clara y calma.
+     Desde 2026-10-19 llevan también variante en Atardecer y Bosque (la noche azul desentona con su paleta y son
+     temas oscuros: la zona de texto queda honda), y en Luna los dos de Descúbrete. `not-found.hero` no entra: el
+     404 raíz está fuera del proveedor de tema. */
   {
     base: 'states.loading',
     theme: 'dawn',
     subject: `Waiting with matter at sunrise: a single soft sphere of pale golden light floating in bright misty space above still pale water as if breathing, a faint halo, slow and calm, the air a soft blend of cream, peach and very pale sky blue`,
     frame: 'Sphere at center at 42% vertical, calm bright mist all around it, the horizon lost in the mist with no line and no band, the lower third plain calm pale water for the loading label',
+  },
+  {
+    base: 'states.loading',
+    theme: 'dusk',
+    subject: `Waiting with matter at dusk: a single soft sphere of warm amber light floating in dusky misty space above still water as if breathing, a faint halo, slow and calm, the air a deep blend of indigo, dusky rose and soft amber, the first faint stars lost in the mist`,
+    frame: 'Sphere at center at 42% vertical, calm dusky mist all around it, the horizon lost in the mist with no line and no band, the lower third plain calm dark water for the loading label',
+  },
+  {
+    base: 'states.loading',
+    theme: 'forest',
+    subject: `Waiting with matter in the forest: a single soft sphere of warm golden-green light floating in misty forest air above a still pool as if breathing, a faint halo, slow and calm, deep natural greens, the filtered golden light of the canopy, a few out-of-focus fireflies drifting around it`,
+    frame: 'Sphere at center at 42% vertical, calm green mist all around it, the horizon lost in the mist with no line and no band, the lower third plain calm dark water for the loading label',
   },
   {
     base: 'states.empty',
@@ -533,10 +548,34 @@ export const THEME_VARIANTS = [
     frame: 'Light on the water just below center, soft pale space around it, no object and no hard edge',
   },
   {
+    base: 'states.empty',
+    theme: 'dusk',
+    subject: `An empty dusky space at last light: one soft window of warm amber light lying on still dark water, fine coral dust motes drifting through it, a faint rose haze, open space, nothing else in the frame`,
+    frame: 'Light on the water just below center, deep calm space around it, no object and no hard edge',
+  },
+  {
+    base: 'states.empty',
+    theme: 'forest',
+    subject: `An empty luminous clearing in the forest: one soft window of golden-green light lying on the still water of a forest pool, fine pale-gold dust motes and a few fireflies drifting through it, a faint green haze, open space, nothing else in the frame`,
+    frame: 'Light on the water just below center, deep green calm space around it, no object and no hard edge',
+  },
+  {
     base: 'states.error',
     theme: 'dawn',
     subject: `Something interrupted, in morning light: a single candle flickering on a pale sandstone ledge by still water with a wisp of smoke still rising, calm and unbothered, a soft warm faint glow in the bright cream air`,
     frame: 'Candle at center, pale calm surroundings, quiet bright space above',
+  },
+  {
+    base: 'states.error',
+    theme: 'dusk',
+    subject: `Something interrupted, at dusk: a single candle flickering on a dark stone ledge by still water with a wisp of smoke still rising, calm and unbothered, a soft warm amber glow in the deep indigo and rose air`,
+    frame: 'Candle at center, deep calm surroundings, quiet space above',
+  },
+  {
+    base: 'states.error',
+    theme: 'forest',
+    subject: `Something interrupted, in the forest: a single candle flickering on a mossy stone ledge by a still forest pool with a wisp of smoke still rising, calm and unbothered, a soft warm golden glow in the deep green air, a few fireflies near the water`,
+    frame: 'Candle at center, deep calm green surroundings, quiet space above, ferns only at the outer corners',
   },
   {
     base: 'states.offline',
@@ -545,10 +584,34 @@ export const THEME_VARIANTS = [
     frame: 'Window slightly right of center at 70% horizontal, soft pale surroundings, calm and low in detail',
   },
   {
+    base: 'states.offline',
+    theme: 'dusk',
+    subject: `A brief retreat at dusk: a quiet cabin window with a warm lamp lit inside and rose mist over a still lake outside, a sense of pausing, nobody in the frame, the last soft amber light on the sill`,
+    frame: 'Window slightly right of center at 70% horizontal, deep calm surroundings, calm and low in detail',
+  },
+  {
+    base: 'states.offline',
+    theme: 'forest',
+    subject: `A brief retreat in the forest: a quiet cabin window with a warm lamp lit inside and green mist over a still forest pool outside, a sense of pausing, nobody in the frame, soft filtered golden light on the sill, a few fireflies in the mist`,
+    frame: 'Window slightly right of center at 70% horizontal, deep calm green surroundings, calm and low in detail',
+  },
+  {
     base: 'sanctuary.continue',
     theme: 'dawn',
     subject: `Continuity in morning light: the same cream linen cushion on a pale wooden floor with a half-burned candle beside it and a blank open book, soft natural light from a window falling across them, a feeling that someone has just stepped away and will return`,
     frame: 'Objects in the right half, the left third a plain cream wall in soft shade, calm and low in detail for the lesson title',
+  },
+  {
+    base: 'sanctuary.continue',
+    theme: 'dusk',
+    subject: `Continuity at dusk: the same linen cushion on a dark wooden floor with a half-burned candle beside it and a blank open book, the last warm amber light from a window falling across them, a feeling that someone has just stepped away and will return`,
+    frame: 'Objects in the right half, the left third a plain dark wall in soft shade, deep and calm, low in detail for the lesson title',
+  },
+  {
+    base: 'sanctuary.continue',
+    theme: 'forest',
+    subject: `Continuity in the forest: the same linen cushion on a wooden floor among ferns with a half-burned candle beside it and a blank open book, soft filtered golden-green light falling across them, a feeling that someone has just stepped away and will return`,
+    frame: 'Objects in the right half, the left third deep out-of-focus ferns and calm shade, low in detail for the lesson title',
   },
   {
     base: 'sanctuary.daily',
@@ -557,10 +620,34 @@ export const THEME_VARIANTS = [
     frame: 'Bowl centered, beam entering from the upper left, the upper quarter of the frame plain pale and calm for a title laid over it, soft pale surroundings',
   },
   {
+    base: 'sanctuary.daily',
+    theme: 'dusk',
+    subject: `Today's practice at dusk: a small brass bowl of still water on dark stone, a single beam of warm amber light falling into it and making it glow gold, tiny ripples, a soft rose haze around it`,
+    frame: 'Bowl centered, beam entering from the upper left, the upper quarter of the frame plain deep indigo and calm for a title laid over it, deep surroundings',
+  },
+  {
+    base: 'sanctuary.daily',
+    theme: 'forest',
+    subject: `Today's practice in the forest: a small brass bowl of still water on mossy stone, a single beam of filtered golden light falling into it and making it glow gold, tiny ripples, a soft green haze around it, a few fireflies`,
+    frame: 'Bowl centered, beam entering from the upper left, the upper quarter of the frame plain deep green and calm for a title laid over it, deep surroundings',
+  },
+  {
     base: 'sanctuary.journal',
     theme: 'dawn',
     subject: `The journal as a soft page to write on, entirely out of focus: an open linen-bound notebook with blank pages lying flat on pale oak wood, seen from directly above, a brass pen resting on the right page and one dried sprig of lavender beside the pen, soft morning light from a window grazing the paper, the whole image softly blurred as if photographed far out of focus, the edges of the notebook, the pen and the lavender dissolving into a gentle blur with no crisp line anywhere, the paper a warm cream, no writing on the pages, the table holding only these three things and nothing else`,
     frame: 'The open notebook lies horizontally at the exact center of the frame, its spread between 25% and 75% of the frame width and between 30% and 70% of the frame height, the pen and the lavender inside that same area on the right page, the left page completely empty; the top quarter and the bottom quarter of the frame are only pale wood in soft shade, and so are the left and right fifths, so the image can be cropped to its middle horizontal band or to its central square without losing anything; very low contrast, nothing darker than a soft warm grey',
+  },
+  {
+    base: 'sanctuary.journal',
+    theme: 'dusk',
+    subject: `The journal as a soft page to write on, entirely out of focus: an open linen-bound notebook with blank pages lying flat on dark wood, seen from directly above, a brass pen resting on the right page and one dried sprig of lavender beside the pen, warm amber candlelight from outside the frame grazing the paper, the whole image softly blurred as if photographed far out of focus, the edges of the notebook, the pen and the lavender dissolving into a gentle blur with no crisp line anywhere, the paper a warm dim ivory, no writing on the pages, the table holding only these three things and nothing else`,
+    frame: 'The open notebook lies horizontally at the exact center of the frame, its spread between 25% and 75% of the frame width and between 30% and 70% of the frame height, the pen and the lavender inside that same area on the right page, the left page completely empty; the top quarter and the bottom quarter of the frame are only dark wood in shadow, and so are the left and right fifths, so the image can be cropped to its middle horizontal band or to its central square without losing anything; very low contrast, nothing brighter than a soft warm amber-grey',
+  },
+  {
+    base: 'sanctuary.journal',
+    theme: 'forest',
+    subject: `The journal as a soft page to write on, entirely out of focus: an open linen-bound notebook with blank pages lying flat on dark mossy wood, seen from directly above, a brass pen resting on the right page and one dried sprig of lavender beside the pen, soft filtered golden-green light from the canopy grazing the paper, the whole image softly blurred as if photographed far out of focus, the edges of the notebook, the pen and the lavender dissolving into a gentle blur with no crisp line anywhere, the paper a dim muted ivory, no writing on the pages, the table holding only these three things and nothing else`,
+    frame: 'The open notebook lies horizontally at the exact center of the frame, its spread between 25% and 75% of the frame width and between 30% and 70% of the frame height, the pen and the lavender inside that same area on the right page, the left page completely empty; the top quarter and the bottom quarter of the frame are only dark mossy wood in shadow, and so are the left and right fifths, so the image can be cropped to its middle horizontal band or to its central square without losing anything; very low contrast, nothing brighter than a soft warm green-grey',
   },
   {
     base: 'sanctuary.empty',
@@ -569,10 +656,34 @@ export const THEME_VARIANTS = [
     frame: 'Light pool at center, slightly below the middle, soft pale cream space around it',
   },
   {
+    base: 'sanctuary.empty',
+    theme: 'dusk',
+    subject: `A luminous emptiness at dusk: an empty dark space opening onto still water, a soft pool of warm amber light gathering in the center of the floor and reflecting in the water beyond, fine dust motes drifting, no objects, the quiet of a place that is new`,
+    frame: 'Light pool at center, slightly below the middle, deep calm rose-indigo space around it',
+  },
+  {
+    base: 'sanctuary.empty',
+    theme: 'forest',
+    subject: `A luminous emptiness in the forest: an empty space opening onto a still forest pool, a soft pool of golden-green light gathering in the center of the floor and reflecting in the water beyond, fine dust motes and a few fireflies drifting, no objects, the quiet of a place that is new`,
+    frame: 'Light pool at center, slightly below the middle, deep calm green space around it',
+  },
+  {
     base: 'cart.empty',
     theme: 'dawn',
     subject: `A small empty ceramic dish on a pale stone ledge beside still water in morning light, a single ray of soft warm light falling across it, a thread of steam rising, serene and open, nothing inside`,
     frame: 'Dish at center slightly below the middle, pale ledge and soft cream background, calm bright space above',
+  },
+  {
+    base: 'cart.empty',
+    theme: 'dusk',
+    subject: `A small empty ceramic dish on a dark stone ledge beside still water at dusk, a single ray of warm amber light falling across it, a thread of steam rising, serene and open, nothing inside`,
+    frame: 'Dish at center slightly below the middle, dark ledge and deep rose-indigo background, calm space above',
+  },
+  {
+    base: 'cart.empty',
+    theme: 'forest',
+    subject: `A small empty ceramic dish on a mossy stone ledge beside a still forest pool, a single ray of filtered golden light falling across it, a thread of steam rising, serene and open, nothing inside`,
+    frame: 'Dish at center slightly below the middle, mossy ledge and deep green background, calm space above',
   },
   {
     base: 'checkout.confirmation',
@@ -581,16 +692,64 @@ export const THEME_VARIANTS = [
     frame: 'Parcel centered, pale wooden surface, a soft warm glow, calm empty bright space above it because content is laid over that area later',
   },
   {
+    base: 'checkout.confirmation',
+    theme: 'dusk',
+    subject: `Your ritual is on its way: a small parcel wrapped in plain linen paper and tied with natural thread, a sprig of dried cedar tucked under the knot, warm amber candlelight on a dark wooden surface, no writing on the wrapping`,
+    frame: 'Parcel centered, dark wooden surface, a soft warm glow, calm empty deep space above it because content is laid over that area later',
+  },
+  {
+    base: 'checkout.confirmation',
+    theme: 'forest',
+    subject: `Your ritual is on its way: a small parcel wrapped in plain linen paper and tied with natural thread, a sprig of dried cedar tucked under the knot, soft filtered golden-green light on a dark mossy wooden surface, no writing on the wrapping`,
+    frame: 'Parcel centered, dark mossy wooden surface, a soft warm glow, calm empty deep green space above it because content is laid over that area later',
+  },
+  {
     base: 'discover.tuning',
     theme: 'dawn',
     subject: `Tuning in at sunrise: an ${BODY_OF_LIGHT}, seated at the edge of pale still water and seen from behind, head slightly bowed, edged in pale gold so it reads against the bright water, as a halo of pale golden ripples spreads across the surface toward it from a single struck point, soft sky-blue reflections in the water, ${filaments('rising from the ripples')}`,
     frame: 'Figure centered, ripples fanning left and right across the wide frame, soft pale edges',
   },
   {
+    base: 'discover.tuning',
+    theme: 'dusk',
+    subject: `Tuning in at dusk: an ${BODY_OF_LIGHT}, seated at the edge of dark still water and seen from behind, head slightly bowed, edged in warm amber so it reads against the deep water, as a halo of warm amber ripples spreads across the surface toward it from a single struck point, soft rose and coral reflections in the water, ${filaments('rising from the ripples')}`,
+    frame: 'Figure centered, ripples fanning left and right across the wide frame, deep calm edges',
+  },
+  {
+    base: 'discover.tuning',
+    theme: 'forest',
+    subject: `Tuning in in the forest: an ${BODY_OF_LIGHT}, seated at the edge of a still forest pool and seen from behind, head slightly bowed, edged in warm golden-green light so it reads against the deep water, as a halo of golden-green ripples spreads across the surface toward it from a single struck point, soft green reflections in the water, ${filaments('rising from the ripples')}, a few fireflies above the surface`,
+    frame: 'Figure centered, ripples fanning left and right across the wide frame, deep green calm edges, ferns only in the outer corners',
+  },
+  {
+    base: 'discover.tuning',
+    theme: 'moon',
+    subject: `Tuning in under the moon: an ${BODY_OF_LIGHT}, seated at the edge of dark still water and seen from behind, head slightly bowed, edged in cool silver so it reads against the dark water, as a halo of silver ripples spreads across the surface toward it from a single struck point, soft deep-blue reflections in the water, ${filaments('rising from the ripples')}, a few dozen fine pinpoint stars above`,
+    frame: 'Figure centered, ripples fanning left and right across the wide frame, deep blue calm edges',
+  },
+  {
     base: 'discover.result',
     theme: 'dawn',
     subject: `Revelation at sunrise: an ${BODY_OF_LIGHT}, standing upright with open arms at the edge of pale still water, seen from behind facing the horizon, a single narrow beam of pale gold light descending from the top center of the frame that fades out completely well before it reaches the middle of the frame, ending at about 30% of the frame height, one color only, pale gold, with no split and no colored bands, the body warm ivory-gold with only a very faint sky-blue and lavender tint inside it, never iridescent and never pastel, and its reflection on the water a single pale gold column, a moment of clarity`,
     frame: 'The horizon line sits high, at 30% of the frame height, so the wide still water fills the lower 70%; the figure is small, about 12% of the frame height, and stands on that water close to the viewer, centered at 50% horizontal, its head at 70% of the frame height and its feet at 82%, never near the horizon; the beam stays in the top third of the frame and never crosses the middle; the band from 35% to 65% of the frame height is calm pale mist and still water with nothing bright, for the result text',
+  },
+  {
+    base: 'discover.result',
+    theme: 'dusk',
+    subject: `Revelation at dusk: an ${BODY_OF_LIGHT}, standing upright with open arms at the edge of dark still water, seen from behind facing the horizon, a single narrow beam of warm amber light descending from the top center of the frame that fades out completely well before it reaches the middle of the frame, ending at about 30% of the frame height, one color only, warm amber, with no split and no colored bands, the body warm amber-white with only a very faint rose and lavender tint inside it, never iridescent and never pastel, and its reflection on the water a single warm amber column, a moment of clarity`,
+    frame: 'The horizon line sits high, at 30% of the frame height, so the wide dark water fills the lower 70%; the figure is small, about 12% of the frame height, and stands on that water close to the viewer, centered at 50% horizontal, its head at 70% of the frame height and its feet at 82%, never near the horizon; the beam stays in the top third of the frame and never crosses the middle; the band from 35% to 65% of the frame height is calm dark mist and still water with nothing bright, for the result text',
+  },
+  {
+    base: 'discover.result',
+    theme: 'forest',
+    subject: `Revelation in the forest: an ${BODY_OF_LIGHT}, standing upright with open arms at the edge of a still forest pool, seen from behind facing the far shore, a single narrow beam of warm golden-green light descending from the top center of the frame that fades out completely well before it reaches the middle of the frame, ending at about 30% of the frame height, one color only, warm golden-green, with no split and no colored bands, the body warm gold-white with only a very faint green and teal tint inside it, never iridescent and never pastel, and its reflection on the water a single warm golden column, a moment of clarity, a few fireflies rising`,
+    frame: 'The far shore line sits high, at 30% of the frame height, so the wide dark still water fills the lower 70%; the figure is small, about 12% of the frame height, and stands on that water close to the viewer, centered at 50% horizontal, its head at 70% of the frame height and its feet at 82%, never near the shore; the beam stays in the top third of the frame and never crosses the middle; the band from 35% to 65% of the frame height is calm dark green mist and still water with nothing bright, for the result text',
+  },
+  {
+    base: 'discover.result',
+    theme: 'moon',
+    subject: `Revelation under the moon: an ${BODY_OF_LIGHT}, standing upright with open arms at the edge of dark still water, seen from behind facing the horizon, a single narrow beam of cool silver light descending from the top center of the frame that fades out completely well before it reaches the middle of the frame, ending at about 30% of the frame height, one color only, silver, with no split and no colored bands, the body cool silver-white with only a very faint teal and lavender tint inside it, never iridescent and never pastel, and its reflection on the water a single silver column, a moment of clarity, a few dozen fine pinpoint stars above`,
+    frame: 'The horizon line sits high, at 30% of the frame height, so the wide dark water fills the lower 70%; the figure is small, about 12% of the frame height, and stands on that water close to the viewer, centered at 50% horizontal, its head at 70% of the frame height and its feet at 82%, never near the horizon; the beam stays in the top third of the frame and never crosses the middle; the band from 35% to 65% of the frame height is calm dark blue mist and still water with nothing bright, for the result text',
   },
   {
     base: 'booking.confirmation',

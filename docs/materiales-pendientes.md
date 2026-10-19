@@ -13,7 +13,7 @@ Lo que Marisol aún no entrega y que el sitio muestra como «Próximamente» o c
 | Videos «Próximamente» | 32 |
 | Productos provisionales | 8 |
 | Cursos de demostración | 3 |
-| Imágenes provisionales | 111 |
+| Imágenes provisionales | 137 |
 
 ## Audio
 
@@ -140,18 +140,18 @@ Generadas, hacen de marco hasta tener fotografía propia de Marisol o con licenc
 | `store.ritual-banner` | Tienda · banner ritual · tema | `store-ritual-banner-dawn.avif`, `store-ritual-banner-dusk.avif`, `store-ritual-banner-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `academy.completion` | Academia · curso completado · tema | `academy-completion-forest.avif`, `academy-completion-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `booking.confirmation` | Reserva · confirmación · tema | `booking-confirmation-dusk.avif`, `booking-confirmation-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `states.loading` | Estados · carga · tema | `states-loading-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `states.empty` | Estados · vacío · tema | `states-empty-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `states.error` | Estados · error · tema | `states-error-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `states.offline` | Estados · sin conexión · tema | `states-offline-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `sanctuary.continue` | Mi Santuario · continuar · tema | `sanctuary-continue-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `sanctuary.daily` | Mi Santuario · práctica diaria · tema | `sanctuary-daily-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `sanctuary.journal` | Mi Santuario · diario · tema | `sanctuary-journal-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `sanctuary.empty` | Mi Santuario · vacío · tema | `sanctuary-empty-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `cart.empty` | Carrito · vacío · tema | `cart-empty-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `checkout.confirmation` | Compra · confirmación · tema | `checkout-confirmation-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `discover.tuning` | Descúbrete · afinación · tema | `discover-tuning-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
-| `discover.result` | Descúbrete · resultado · tema | `discover-result-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `states.loading` | Estados · carga · tema | `states-loading-dawn.avif`, `states-loading-dusk.avif`, `states-loading-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `states.empty` | Estados · vacío · tema | `states-empty-dawn.avif`, `states-empty-dusk.avif`, `states-empty-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `states.error` | Estados · error · tema | `states-error-dawn.avif`, `states-error-dusk.avif`, `states-error-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `states.offline` | Estados · sin conexión · tema | `states-offline-dawn.avif`, `states-offline-dusk.avif`, `states-offline-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `sanctuary.continue` | Mi Santuario · continuar · tema | `sanctuary-continue-dawn.avif`, `sanctuary-continue-dusk.avif`, `sanctuary-continue-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `sanctuary.daily` | Mi Santuario · práctica diaria · tema | `sanctuary-daily-dawn.avif`, `sanctuary-daily-dusk.avif`, `sanctuary-daily-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `sanctuary.journal` | Mi Santuario · diario · tema | `sanctuary-journal-dawn.avif`, `sanctuary-journal-dusk.avif`, `sanctuary-journal-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `sanctuary.empty` | Mi Santuario · vacío · tema | `sanctuary-empty-dawn.avif`, `sanctuary-empty-dusk.avif`, `sanctuary-empty-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `cart.empty` | Carrito · vacío · tema | `cart-empty-dawn.avif`, `cart-empty-dusk.avif`, `cart-empty-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `checkout.confirmation` | Compra · confirmación · tema | `checkout-confirmation-dawn.avif`, `checkout-confirmation-dusk.avif`, `checkout-confirmation-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `discover.tuning` | Descúbrete · afinación · tema | `discover-tuning-dawn.avif`, `discover-tuning-dusk.avif`, `discover-tuning-forest.avif`, `discover-tuning-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `discover.result` | Descúbrete · resultado · tema | `discover-result-dawn.avif`, `discover-result-dusk.avif`, `discover-result-forest.avif`, `discover-result-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `resonario.hero` | Resonario · hero · tema | `resonario-hero-moon.avif`, `resonario-hero-dusk.avif`, `resonario-hero-dawn.avif`, `resonario-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 
 ## A revisar cuando llegue el material

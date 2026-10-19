@@ -59,6 +59,9 @@ export type EditorialTheme = 'night' | 'dusk' | 'dawn' | 'moon' | 'forest';
 const HERO_THEMES = ['dusk', 'dawn', 'moon', 'forest'] as const;
 /** Bandas y fondos: Amanecer (el claro) y, desde 2026-10-18, Atardecer y Bosque, los dos temas cuyo tono la noche azul no sigue. */
 const BAND_THEMES = ['dawn', 'dusk', 'forest'] as const;
+/** Fondos de cristal: los mismos tres temas de banda, más Luna en Descúbrete, que es el lugar de la luna. */
+const BACKDROP_THEMES = ['dawn', 'dusk', 'forest'] as const;
+const DISCOVER_BACKDROP_THEMES = [...BACKDROP_THEMES, 'moon'] as const;
 
 /**
  * Slots que tienen una variante de imagen por tema (`slot@tema` en el manifiesto,
@@ -72,7 +75,8 @@ const BAND_THEMES = ['dawn', 'dusk', 'forest'] as const;
  *   tema claro: una foto oscura bajo un velo claro se ve sucia, y la tinta oscura del cristal
  *   no lee sobre ella. También en Atardecer y Bosque (2026-10-18): la noche azul funde con
  *   Luna, pero desentona con el ciruela y con el verde, y esos dos temas ya son el camino por
- *   defecto de Experiencias y Academia. Luna no lleva variantes de banda.
+ *   defecto de Experiencias y Academia. Luna no lleva variantes de banda; sí en `discover.tuning`
+ *   y `discover.result`, porque Descúbrete es su lugar.
  *   `booking.confirmation` (Atardecer) y `academy.completion` (Bosque) llevan sólo la del tema
  *   de su lugar.
  * - Portadas de audio, de curso, visuales de experiencia y productos son contenido del ítem y
@@ -108,20 +112,21 @@ export const THEME_VARIANTS: Readonly<
   'experiences.featured': BAND_THEMES,
   'booking.confirmation': ['dusk', 'dawn'],
   'store.ritual-banner': BAND_THEMES,
-  // Fondos que Amanecer lavaba con un filtro: la misma escena, con la luz del día (2026-10-19). El
-  // 404 raíz (`not-found.hero`) no entra: está fuera del proveedor de tema y `ThemedPhoto` lo necesita.
-  'states.loading': ['dawn'],
-  'states.empty': ['dawn'],
-  'states.error': ['dawn'],
-  'states.offline': ['dawn'],
-  'sanctuary.continue': ['dawn'],
-  'sanctuary.daily': ['dawn'],
-  'sanctuary.journal': ['dawn'],
-  'sanctuary.empty': ['dawn'],
-  'cart.empty': ['dawn'],
-  'checkout.confirmation': ['dawn'],
-  'discover.tuning': ['dawn'],
-  'discover.result': ['dawn'],
+  // Fondos que Amanecer lavaba con un filtro: la misma escena, con la luz de Amanecer, Atardecer y
+  // Bosque (2026-10-19), y también Luna en los dos de Descúbrete (2026-10-19). El 404 raíz
+  // (`not-found.hero`) no entra: está fuera del proveedor de tema y `ThemedPhoto` lo necesita.
+  'states.loading': BACKDROP_THEMES,
+  'states.empty': BACKDROP_THEMES,
+  'states.error': BACKDROP_THEMES,
+  'states.offline': BACKDROP_THEMES,
+  'sanctuary.continue': BACKDROP_THEMES,
+  'sanctuary.daily': BACKDROP_THEMES,
+  'sanctuary.journal': BACKDROP_THEMES,
+  'sanctuary.empty': BACKDROP_THEMES,
+  'cart.empty': BACKDROP_THEMES,
+  'checkout.confirmation': BACKDROP_THEMES,
+  'discover.tuning': DISCOVER_BACKDROP_THEMES,
+  'discover.result': DISCOVER_BACKDROP_THEMES,
 };
 
 /**
