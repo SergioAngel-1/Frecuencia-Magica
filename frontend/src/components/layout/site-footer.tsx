@@ -102,10 +102,9 @@ export function SiteFooter() {
               <Kicker tone="muted" spacing="tight" className="mb-[14px]">
                 {t('columns.brand')}
               </Kicker>
-              {/* TODO(backend): «Sobre Marisol» apunta a la sección de la home;
-                contacto y membresía no tienen página propia todavía. */}
+              {/* TODO(backend): contacto y membresía no tienen página propia todavía. */}
               <p className="mb-[10px]">
-                <Link href="/inicio" data-magnetic className={LINK_CLASSES}>
+                <Link href="/sobre-marisol" data-magnetic className={LINK_CLASSES}>
                   {t('links.about')}
                 </Link>
               </p>

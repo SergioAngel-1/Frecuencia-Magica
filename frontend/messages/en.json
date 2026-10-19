@@ -92,8 +92,8 @@
     },
     "media": {
       "alt": {
-        "hero": "Light and cosmos at the threshold of Frecuencia Mágica",
-        "field": "The portal field between worlds"
+        "hero": "A ring of light hovers over calm water, its reflection beneath an open sky",
+        "field": "Streams of light cross the dark water and meet at the center"
       }
     },
     "meta": {
@@ -164,12 +164,12 @@
     },
     "media": {
       "alt": {
-        "hero": "The Frecuencia Mágica universe in a single image",
-        "dailyFrequency": "Today's frequency, made light",
-        "realmsBanner": "The nine realms of Frecuencia Mágica",
-        "marisolPortrait": "Portrait of Marisol, founder of Frecuencia Mágica",
-        "membership": "Golden light over a serene community space",
-        "footerBanner": "The cosmos continues beyond the page"
+        "hero": "A silhouette of light lies on calm water as a soft glow ripples outward beneath it",
+        "dailyFrequency": "Concentric wave geometry is traced on the surface of calm, still water",
+        "realmsBanner": "Nine points of light, one per realm, joined above calm water",
+        "marisolPortrait": "Portrait of Marisol beside a window, in warm light",
+        "membership": "A beam of light falls on mist-covered water and a ring of smooth stones",
+        "footerBanner": "A line of light along the horizon above calm water and soft clouds"
       }
     },
     "storeShowcase": {
@@ -247,9 +247,9 @@
     },
     "media": {
       "alt": {
-        "hero": "A bright, personal corner in morning light",
-        "portrait": "Portrait of Marisol beside the light of a window",
-        "angels": "A soft light descending through the dusk"
+        "hero": "A calm, personal corner with a low table and soft light",
+        "portrait": "Portrait of Marisol beside a window, in warm light",
+        "angels": "A white feather suspended in the light falling over a mist-covered lake"
       }
     },
     "meta": {
@@ -261,8 +261,8 @@
     "kicker": "The threshold",
     "media": {
       "alt": {
-        "hero": "The doorway into your sanctuary",
-        "formAtmosphere": "Intimate calm around sign-in"
+        "hero": "An archway of light opens in a stone wall beside calm, still water",
+        "formAtmosphere": "A point of light floats above dark, still water in a faint mist"
       }
     },
     "backHome": "Back home",
@@ -322,10 +322,10 @@
     "begin": "Begin",
     "media": {
       "alt": {
-        "hero": "The beginning of your discovery",
-        "questionAtmosphere": "A serene atmosphere to listen to yourself",
-        "tuning": "Your frequency finding its tone",
-        "result": "The result of your discovery"
+        "hero": "Stone steps rise from calm water into soft mist toward distant hills",
+        "questionAtmosphere": "Translucent veils of mist drift in the dark with tiny golden specks",
+        "tuning": "A silhouette of light sits by the water as ripples spread around it",
+        "result": "A silhouette of light with open arms faces the horizon beneath a beam of light"
       }
     },
     "questionCount": "Question {current} / {total}",
@@ -409,16 +409,16 @@
     "description": "Meditations, frequencies and soundscapes. Choose by what your body asks for today.",
     "media": {
       "alt": {
-        "hero": "Soundscape of the Frecuencia Mágica Resonarium",
-        "featured": "Editorial field for the featured frequency",
-        "archiveBanner": "Sound texture accompanying the complete archive",
-        "audioCover": "Sound cover for {title}",
+        "hero": "Translucent discs of light hang above calm water, doubled in its reflection",
+        "featured": "Concentric rings of light spread across calm water from an empty center",
+        "archiveBanner": "A stone colonnade holds glowing bowls and discs in its tall niches",
+        "audioCover": "{title}: audio cover",
         "kindBanner": {
-          "melody": "Image of the listening type: melodies",
-          "nature": "Image of the listening type: nature",
-          "frequency": "Image of the listening type: frequencies",
-          "binaural": "Image of the listening type: binaural",
-          "guided": "Image of the listening type: guided"
+          "melody": "A dark wooden piano and a cello beside a window in soft light",
+          "nature": "A stream runs over mossy stones under fine rain in a green forest",
+          "frequency": "Pale sand forms a symmetrical geometric pattern on a brass plate",
+          "binaural": "Two soft beams of light meet over calm water and mirror in its surface",
+          "guided": "A linen cushion and a folded blanket by a window, with a steaming cup"
         },
         "celtic": "A Celtic harp by a window over green hills in the mist"
       }
@@ -606,11 +606,11 @@
     },
     "media": {
       "alt": {
-        "hero": "A reading corner by a window, in morning light",
-        "featured": "{title}: Frecuencia Mágica featured course",
+        "hero": "A wooden desk with an open notebook in a calm study corner",
+        "featured": "{title}: hands cradling a brass singing bowl in warm, soft light",
         "courseCover": "{title}: a scene from the practice",
-        "lesson": "Practice for lesson {title}",
-        "completion": "Completed course: a cycle closed in light"
+        "lesson": "The practice of {title}: hands at rest before the light of candles",
+        "completion": "Twelve points of light in a ring on the water, with a silhouette of light beyond"
       }
     },
     "videoLabel": "Lesson video",
@@ -724,8 +724,8 @@
     "durationLabel": "Duration",
     "media": {
       "alt": {
-        "hero": "A warm space ready to share a gathering",
-        "featured": "{title}: featured experience",
+        "hero": "A path of stepping stones crosses the water toward an open pavilion in the mist",
+        "featured": "{title}: a circle of silhouettes of light around singing bowls",
         "row": "{title}: atmosphere of the experience"
       }
     },
@@ -755,8 +755,8 @@
   "booking": {
     "media": {
       "alt": {
-        "hero": "The place of your experience",
-        "confirmation": "Your experience awaits you"
+        "hero": "Cushions in a circle on a wooden deck by the water, with unlit candles",
+        "confirmation": "The same deck with its candles lit and a steaming cup beside the cushions"
       }
     },
     "backToDate": "Back to date and time",
@@ -782,7 +782,7 @@
     "done": {
       "title": "Your place is reserved",
       "description": "We sent the details by email. Breathe: you only need to show up as you are.",
-      "cta": "See more experiences"
+      "cta": "See all experiences"
     },
     "meta": {
       "title": "Book: {title}",
@@ -795,11 +795,11 @@
     "description": "Oils, candles and crystals born from a conviction: when you transform within, your world changes.",
     "media": {
       "alt": {
-        "hero": "The store of ritual objects",
+        "hero": "A still life of oil, candle, quartz and incense on a ledge by the water",
         "product": "{title} by Frecuencia Mágica",
-        "ritualBanner": "The objects of the ritual",
-        "detail": "{title}: detail",
-        "related": "{title}, an object that accompanies the ritual",
+        "ritualBanner": "A flat lay of matches, copal, dried herbs and quartz on dark slate",
+        "detail": "{title}: detail on a dark surface in warm light, with a ribbon of smoke",
+        "related": "{title}, among other ritual objects on a shelf in warm light",
         "viewLabel": "{title}: package label",
         "viewTexture": "{title}: texture detail",
         "viewInUse": "{title}: in use"
@@ -905,8 +905,8 @@
     "thanks": "Thank you",
     "media": {
       "alt": {
-        "empty": "The cart at rest, awaiting your choice",
-        "confirmation": "Your ritual is on its way"
+        "empty": "An empty ceramic dish beside the water, with a thread of steam",
+        "confirmation": "A parcel wrapped in linen paper and tied with thread, with a cedar sprig"
       }
     },
     "quantity": "Qty {count}",
@@ -926,7 +926,7 @@
     "done": {
       "title": "Your order is on its way",
       "description": "You will receive an email with the details. May each object accompany your ritual.",
-      "cta": "Keep exploring"
+      "cta": "Back to the store"
     },
     "meta": {
       "title": "Your store cart",
@@ -936,11 +936,11 @@
   "sanctuary": {
     "media": {
       "alt": {
-        "hero": "Your sanctuary awaits you",
-        "continue": "Pick your practice up where you left it",
-        "daily": "Today's practice in your sanctuary",
-        "journal": "The pages of your journal",
-        "empty": "Your sanctuary awaits its first words"
+        "hero": "A silhouette of light rests on a cushion beside a window open to the water",
+        "continue": "A cushion beside a half-burned candle and an open, blank book",
+        "daily": "A brass bowl of still water catches a beam of light and small ripples",
+        "journal": "An open notebook, softly out of focus, with a brass pen and lavender",
+        "empty": "An empty space with a pool of light on the floor and dust in the air"
       }
     },
     "kicker": "My Sanctuary",
@@ -1079,7 +1079,7 @@
     "notFoundTitle": "This place does not exist yet",
     "notFoundBody": "The path you were looking for faded away. Return to the portal and choose another door.",
     "notFoundCta": "Back to the portal",
-    "notFoundRealmsCta": "See the realms",
+    "notFoundRealmsCta": "Explore the realms",
     "errorTitle": "Something fell out of alignment",
     "errorBody": "The frequency was lost for a moment. Breathe and try again.",
     "errorCta": "Try again",
@@ -1091,11 +1091,11 @@
     "payFailedCta": "Try again",
     "media": {
       "alt": {
-        "notFound": "A serene corner of the cosmos to find your way again",
-        "loading": "A sphere of golden light breathing above the water while you wait",
-        "empty": "A column of lavender light on still water: open space for you",
-        "error": "A candle still lit beside the water: something was interrupted, not your light",
-        "offline": "A lit cabin beside a misty lake: your brief retreat until the connection returns"
+        "notFound": "A single lantern glowing on dark, still water beneath a few faint stars",
+        "loading": "A sphere of light breathes above calm water, suspended in the mist",
+        "empty": "A window of light rests on still water, with dust motes drifting through it",
+        "error": "A lit candle beside still water, with a thin wisp of smoke still rising",
+        "offline": "A lit cabin window beside a mist-covered lake, small in the frame"
       }
     }
   },

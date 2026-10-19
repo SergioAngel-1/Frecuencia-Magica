@@ -92,8 +92,8 @@
     },
     "media": {
       "alt": {
-        "hero": "Luz y cosmos en el umbral de Frecuencia Mágica",
-        "field": "El campo del portal entre mundos"
+        "hero": "Un aro de luz flota sobre el agua en calma, con su reflejo bajo un cielo abierto",
+        "field": "Corrientes de luz cruzan el agua oscura y se encuentran en el centro"
       }
     },
     "meta": {
@@ -164,12 +164,12 @@
     },
     "media": {
       "alt": {
-        "hero": "El universo Frecuencia Mágica en una sola imagen",
-        "dailyFrequency": "La frecuencia de hoy, hecha luz",
-        "realmsBanner": "Los nueve reinos de Frecuencia Mágica",
-        "marisolPortrait": "Retrato de Marisol, fundadora de Frecuencia Mágica",
-        "membership": "Luz dorada sobre un espacio sereno de la comunidad",
-        "footerBanner": "El cosmos continúa tras la página"
+        "hero": "Una silueta de luz yace sobre el agua en calma, con un resplandor que se abre en ondas",
+        "dailyFrequency": "Geometría de ondas concéntricas se dibuja sobre el agua en calma",
+        "realmsBanner": "Nueve puntos de luz, uno por reino, unidos sobre el agua en calma",
+        "marisolPortrait": "Retrato de Marisol junto a una ventana, con luz cálida",
+        "membership": "Un haz de luz cae sobre el agua cubierta de bruma y un círculo de piedras",
+        "footerBanner": "Un horizonte de luz sobre agua en calma, bajo un cielo de nubes suaves"
       }
     },
     "storeShowcase": {
@@ -247,9 +247,9 @@
     },
     "media": {
       "alt": {
-        "hero": "Un rincón luminoso y personal con luz de mañana",
-        "portrait": "Retrato de Marisol junto a la luz de una ventana",
-        "angels": "Una luz suave que desciende en la penumbra"
+        "hero": "Un rincón sereno y personal, con una mesa baja y una luz suave",
+        "portrait": "Retrato de Marisol junto a una ventana, con luz cálida",
+        "angels": "Una pluma blanca suspendida en la luz que desciende sobre un lago en la bruma"
       }
     },
     "meta": {
@@ -261,8 +261,8 @@
     "kicker": "El umbral",
     "media": {
       "alt": {
-        "hero": "La puerta de entrada a tu santuario",
-        "formAtmosphere": "Calma íntima alrededor del acceso"
+        "hero": "Un arco de luz se abre en un muro de piedra junto al agua en calma",
+        "formAtmosphere": "Un punto de luz flota sobre agua oscura y quieta, entre una bruma tenue"
       }
     },
     "backHome": "Volver al inicio",
@@ -322,10 +322,10 @@
     "begin": "Comenzar",
     "media": {
       "alt": {
-        "hero": "El comienzo de tu descubrimiento",
-        "questionAtmosphere": "Atmósfera serena para escucharte",
-        "tuning": "Tu frecuencia encontrando su tono",
-        "result": "El resultado de tu descubrimiento"
+        "hero": "Unas escaleras de piedra suben desde el agua en calma hacia la bruma",
+        "questionAtmosphere": "Velos de bruma translúcidos se cruzan en la oscuridad con pequeños puntos dorados",
+        "tuning": "Una silueta de luz se sienta junto al agua mientras las ondas se abren a su alrededor",
+        "result": "Una silueta de luz con los brazos abiertos mira al horizonte bajo un haz de luz"
       }
     },
     "questionCount": "Pregunta {current} / {total}",
@@ -414,16 +414,16 @@
     "description": "Meditaciones, frecuencias y paisajes sonoros. Elige por lo que tu cuerpo pide hoy.",
     "media": {
       "alt": {
-        "hero": "Paisaje sonoro del Resonario de Frecuencia Mágica",
-        "featured": "Campo editorial para la frecuencia destacada",
-        "archiveBanner": "Textura sonora que acompaña el archivo completo",
-        "audioCover": "Portada sonora de {title}",
+        "hero": "Discos translúcidos de luz suspendidos sobre agua en calma, con su reflejo",
+        "featured": "Anillos concéntricos de luz se abren sobre agua en calma desde un centro vacío",
+        "archiveBanner": "Una columnata de piedra guarda cuencos y discos que brillan en sus nichos",
+        "audioCover": "{title}: portada del audio",
         "kindBanner": {
-          "melody": "Imagen del tipo de escucha: melodías",
-          "nature": "Imagen del tipo de escucha: naturaleza",
-          "frequency": "Imagen del tipo de escucha: frecuencias",
-          "binaural": "Imagen del tipo de escucha: binaurales",
-          "guided": "Imagen del tipo de escucha: guiadas"
+          "melody": "Un piano de madera oscura y un violonchelo junto a una ventana",
+          "nature": "Un arroyo entre piedras cubiertas de musgo bajo la lluvia fina de un bosque",
+          "frequency": "Arena clara dibuja un patrón geométrico simétrico sobre una placa de latón",
+          "binaural": "Dos haces de luz se encuentran sobre el mar en calma y se reflejan en el agua",
+          "guided": "Un cojín de lino y una manta doblada junto a una ventana, con una taza humeante"
         },
         "celtic": "Un arpa celta junto a una ventana sobre colinas verdes en la bruma"
       }
@@ -611,11 +611,11 @@
     },
     "media": {
       "alt": {
-        "hero": "Un rincón de lectura junto a una ventana, con luz de mañana",
-        "featured": "{title}: curso destacado de Frecuencia Mágica",
+        "hero": "Un escritorio de madera con un cuaderno abierto en un rincón sereno de estudio",
+        "featured": "{title}: manos sosteniendo un cuenco de latón bajo una luz cálida",
         "courseCover": "{title}: escena de la práctica",
-        "lesson": "Práctica de la lección {title}",
-        "completion": "El curso completado: un ciclo cerrado con luz"
+        "lesson": "La práctica de {title}: manos en reposo frente a la luz de unas velas",
+        "completion": "Doce puntos de luz en círculo sobre el agua, con una silueta de luz al fondo"
       }
     },
     "videoLabel": "Video de la lección",
@@ -729,8 +729,8 @@
     "durationLabel": "Duración",
     "media": {
       "alt": {
-        "hero": "Un espacio cálido preparado para compartir un encuentro",
-        "featured": "{title}: experiencia destacada",
+        "hero": "Un camino de piedras cruza el agua hacia un pabellón abierto, entre la bruma",
+        "featured": "{title}: un círculo de siluetas de luz en torno a unos cuencos",
         "row": "{title}: atmósfera de la vivencia"
       }
     },
@@ -760,8 +760,8 @@
   "booking": {
     "media": {
       "alt": {
-        "hero": "El lugar de tu experiencia",
-        "confirmation": "Tu experiencia te espera"
+        "hero": "Cojines en círculo sobre una plataforma de madera junto al agua, con velas sin encender",
+        "confirmation": "La misma plataforma con las velas encendidas y una taza humeante junto a los cojines"
       }
     },
     "backToDate": "Volver a fecha y hora",
@@ -787,7 +787,7 @@
     "done": {
       "title": "Tu lugar está reservado",
       "description": "Te enviamos los detalles por correo. Respira: solo tienes que venir tal como estás.",
-      "cta": "Ver más experiencias"
+      "cta": "Ver todas las experiencias"
     },
     "meta": {
       "title": "Reservar: {title}",
@@ -800,11 +800,11 @@
     "description": "Aceites, velas y cristales nacidos de una convicción: cuando transformas tu interior, cambia tu mundo.",
     "media": {
       "alt": {
-        "hero": "La tienda de los objetos del ritual",
+        "hero": "Un bodegón de aceite, vela, cuarzo y incienso sobre una repisa junto al agua",
         "product": "{title} de Frecuencia Mágica",
-        "ritualBanner": "Los objetos del ritual",
-        "detail": "{title}: detalle",
-        "related": "{title}, objeto que acompaña al ritual",
+        "ritualBanner": "Un bodegón de cerillas, copal, hierbas secas y un cuarzo sobre pizarra",
+        "detail": "{title}: detalle sobre una superficie oscura con un hilo de humo",
+        "related": "{title}, entre otros objetos del ritual sobre una estantería",
         "viewLabel": "{title}: etiqueta del envase",
         "viewTexture": "{title}: detalle de la textura",
         "viewInUse": "{title}: en uso"
@@ -910,8 +910,8 @@
     "thanks": "Gracias",
     "media": {
       "alt": {
-        "empty": "El carrito en calma, esperando tu elección",
-        "confirmation": "Tu ritual está en camino"
+        "empty": "Un cuenco de cerámica vacío junto al agua, con un hilo de vapor",
+        "confirmation": "Un paquete envuelto en papel de lino y atado con hilo, con una rama de cedro"
       }
     },
     "quantity": "Cantidad {count}",
@@ -931,7 +931,7 @@
     "done": {
       "title": "Tu pedido está en camino",
       "description": "Recibirás un correo con los detalles. Que cada objeto acompañe tu ritual.",
-      "cta": "Seguir explorando"
+      "cta": "Volver a la tienda"
     },
     "meta": {
       "title": "Tu carrito de la tienda",
@@ -941,11 +941,11 @@
   "sanctuary": {
     "media": {
       "alt": {
-        "hero": "Tu santuario te espera",
-        "continue": "Continúa tu práctica desde donde la dejaste",
-        "daily": "La práctica de hoy en tu santuario",
-        "journal": "Las páginas de tu diario",
-        "empty": "Tu santuario espera sus primeras palabras"
+        "hero": "Una silueta de luz descansa en un cojín junto a una ventana abierta al agua",
+        "continue": "Un cojín junto a una vela a medio consumir y un libro abierto",
+        "daily": "Un cuenco de latón con agua quieta recibe un haz de luz y forma ondas",
+        "journal": "Un cuaderno abierto y desenfocado, con una pluma y una rama de lavanda",
+        "empty": "Un espacio vacío con un charco de luz en el suelo y polvo en suspensión"
       }
     },
     "kicker": "Mi Santuario",
@@ -1084,7 +1084,7 @@
     "notFoundTitle": "Este lugar aún no existe",
     "notFoundBody": "El camino que buscabas se desvaneció. Vuelve al portal y elige otra puerta.",
     "notFoundCta": "Volver al portal",
-    "notFoundRealmsCta": "Ver los realms",
+    "notFoundRealmsCta": "Explorar los reinos",
     "errorTitle": "Algo se desalineó",
     "errorBody": "La frecuencia se perdió un momento. Respira e inténtalo otra vez.",
     "errorCta": "Reintentar",
@@ -1096,11 +1096,11 @@
     "payFailedCta": "Intentar de nuevo",
     "media": {
       "alt": {
-        "notFound": "Un rincón sereno del cosmos para retomar el camino",
-        "loading": "Una esfera de luz dorada respira sobre el agua mientras esperas",
-        "empty": "Una columna de luz lavanda sobre el agua quieta: espacio abierto para ti",
-        "error": "Una vela sigue encendida junto al agua: algo se interrumpió, tu luz no",
-        "offline": "Una cabaña encendida junto a un lago en bruma: tu retiro breve hasta que vuelva la conexión"
+        "notFound": "Una linterna encendida sobre agua oscura y quieta, bajo unas pocas estrellas",
+        "loading": "Una esfera de luz respira sobre el agua en calma, suspendida en la bruma",
+        "empty": "Una ventana de luz se posa sobre el agua quieta, entre partículas en suspensión",
+        "error": "Una vela encendida junto al agua, con un hilo de humo que aún sube",
+        "offline": "Una ventana iluminada en una cabaña junto a un lago cubierto de bruma"
       }
     }
   },
