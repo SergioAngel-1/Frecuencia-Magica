@@ -21,6 +21,7 @@ import { buildResonarioSamples } from '@/lib/home/resonario-samples';
 import { buildStoreItems } from '@/lib/home/store-items';
 import { featuredProducts } from '@/lib/store/showcase';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 import { videoPosterMedia } from '@/lib/video/poster';
 import { ArrowGlyph, arrowLinkClasses } from '@/components/ui';
 
@@ -28,9 +29,18 @@ type PageProps = { params: LocaleParams };
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'home' });
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'home' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
 
-  return { title: t('heroTitlePre') };
+  return buildPageMetadata({
+    locale,
+    pathname: '/inicio',
+    title: t('meta.title'),
+    description: t('meta.description'),
+    imageAlt: common('ogImageAlt'),
+  });
 }
 
 export default async function HomePage({ params }: PageProps) {

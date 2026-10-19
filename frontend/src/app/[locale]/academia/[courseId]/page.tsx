@@ -8,6 +8,7 @@ import { messageKey } from '@/i18n/keys';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { courseIntroId, getVideo } from '@/config/videos';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 import { videoPosterMedia } from '@/lib/video/poster';
 import { routing } from '@/i18n/routing';
 
@@ -32,9 +33,19 @@ export async function generateMetadata({ params }: PageProps) {
   if (!course) return {};
 
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'academy' });
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'academy' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
+  const title = t(messageKey('academy', course.titleKey));
 
-  return { title: t(messageKey('academy', course.titleKey)) };
+  return buildPageMetadata({
+    locale,
+    pathname: { pathname: '/academia/[courseId]', params: { courseId: course.id } },
+    title: t('meta.courseTitle', { title }),
+    description: t('meta.courseDescription', { title }),
+    imageAlt: common('ogImageAlt'),
+  });
 }
 
 export default async function CoursePage({ params }: PageProps) {

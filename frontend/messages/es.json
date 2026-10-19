@@ -6,7 +6,8 @@
     "seeAll": "Ver todo",
     "back": "Volver",
     "continue": "Continuar",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "metaDescription": "Un santuario digital de bienestar con meditaciones, cursos, aromas y rituales para detenerte, respirar y volver a ti. Empieza hoy, sin prisa."
   },
   "header": {
     "preferences": "Preferencias",
@@ -94,6 +95,10 @@
         "hero": "Luz y cosmos en el umbral de Frecuencia Mágica",
         "field": "El campo del portal entre mundos"
       }
+    },
+    "meta": {
+      "title": "Bienestar y rituales para volver a ti · Frecuencia Mágica",
+      "description": "Un santuario digital de bienestar con meditaciones, cursos, aromas y rituales para detenerte, respirar y volver a ti. Empieza hoy, sin prisa."
     }
   },
   "home": {
@@ -173,6 +178,10 @@
       "title": "Objetos para tu ritual",
       "description": "Velas, aromas y piedras para acompañar tus prácticas, elegidos con calma.",
       "cta": "Ver la tienda"
+    },
+    "meta": {
+      "title": "Bienestar, meditaciones y rituales",
+      "description": "Meditaciones, cursos y rituales de bienestar para bajar el ritmo y volver a ti. Entra en Frecuencia Mágica y elige hoy por dónde empezar tu camino."
     }
   },
   "about": {
@@ -243,6 +252,10 @@
         "portrait": "Retrato de Marisol junto a la luz de una ventana",
         "angels": "Una luz suave que desciende en la penumbra"
       }
+    },
+    "meta": {
+      "title": "Sobre Marisol: bienestar con alma",
+      "description": "Conoce a Marisol, quien está detrás de Frecuencia Mágica: una historia de aromas y sonido y una manera serena y cercana de acompañarte en tu pausa."
     }
   },
   "auth": {
@@ -297,7 +310,11 @@
     "or": "o",
     "sso": "Continuar con tu luz interior",
     "quote": "La luz que buscas ya vive en ti. Solo necesitas recordarlo.",
-    "quoteBy": "Frecuencia Mágica"
+    "quoteBy": "Frecuencia Mágica",
+    "meta": {
+      "title": "Iniciar sesión en tu santuario",
+      "description": "Entra en tu santuario de Frecuencia Mágica para retomar tus cursos, tus frecuencias y tu diario. Tu espacio te espera: vuelve cuando quieras."
+    }
   },
   "discover": {
     "kicker": "Descúbrete a ti mismo",
@@ -386,6 +403,10 @@
         "prompt": "¿Qué buscas al cerrar los ojos?",
         "options": ["Soltar", "Recordar", "Sanar", "Soñar"]
       }
+    },
+    "meta": {
+      "title": "Test: ¿qué frecuencia eres hoy?",
+      "description": "Haz el test de frecuencia de Frecuencia Mágica: cinco preguntas para escuchar tu momento y recibir una práctica de bienestar elegida para ti."
     }
   },
   "resonario": {
@@ -557,6 +578,10 @@
       "p4": "La investigación sobre música sugiere que escucharla puede favorecer el estado de ánimo, aunque cada persona responde de manera diferente. Su valor también está en lo que despierta en ti: serenidad, emoción, recuerdos o una sensación de compañía.",
       "p5": "En Frecuencia Mágica elegimos estas melodías para ofrecerte un momento de escucha sin exigencias. No necesitas alcanzar un estado especial. Solo encontrar un volumen cómodo y descubrir cómo te sientes.",
       "closing": "Deja que la melodía te acompañe. Este momento es tuyo."
+    },
+    "meta": {
+      "title": "Meditaciones y frecuencias",
+      "description": "Meditaciones guiadas, frecuencias y paisajes sonoros para descansar, enraizarte o volver a respirar. Escucha despacio y elige lo que tu cuerpo pide hoy."
     }
   },
   "player": {
@@ -680,6 +705,16 @@
       "moduleLessons": "{count} lecciones",
       "introTitle": "Presentación del curso",
       "hours": "{hours} de práctica"
+    },
+    "meta": {
+      "title": "Cursos de bienestar y rituales",
+      "description": "Cursos de bienestar a tu ritmo sobre respiración, silencio y rituales diarios. Aprende a volver a ti con prácticas guiadas por Marisol, sin fechas.",
+      "courseTitle": "Curso: {title}",
+      "courseDescription": "{title} es un curso de bienestar a tu ritmo con prácticas, meditaciones y rituales diarios para volver a ti. Empieza hoy cuando quieras.",
+      "lessonTitle": "Lección {number}: {title}",
+      "lessonDescription": "Lección {number} de {course}: una lección breve para escuchar tu ritmo, respirar sin prisa y volver a ti con una práctica sencilla y amable.",
+      "completionTitle": "Has completado este curso",
+      "completionDescription": "Has llegado al final de este curso de Frecuencia Mágica. Vuelve cuando quieras a las lecciones o explora el Resonario para seguir escuchando tu ritmo."
     }
   },
   "experiences": {
@@ -717,6 +752,10 @@
       "e4": {
         "title": "Meditación al Amanecer"
       }
+    },
+    "meta": {
+      "title": "Experiencias de bienestar en vivo",
+      "description": "Baños de sonido, círculos y rituales en vivo para detenerte junto a otros. Reserva tu próxima experiencia de bienestar con Marisol y vuelve a respirar."
     }
   },
   "booking": {
@@ -750,6 +789,10 @@
       "title": "Tu lugar está reservado",
       "description": "Te enviamos los detalles por correo. Respira: solo tienes que presentarte contigo mismo.",
       "cta": "Ver más experiencias"
+    },
+    "meta": {
+      "title": "Reservar: {title}",
+      "description": "Reserva tu lugar en {title}, una experiencia de bienestar guiada por Marisol. Elige día y hora y regálate una pausa de verdad, sin prisa."
     }
   },
   "store": {
@@ -856,6 +899,11 @@
       "label": "Detalles del producto",
       "size": "Tamaño",
       "contents": "Contenido"
+    },
+    "meta": {
+      "title": "Tienda de aromas, velas y cristales",
+      "description": "Aceites esenciales, velas, cristales y objetos de ritual elegidos con calma. Piezas para acompañar tu pausa y volver a ti. Descubre la tienda.",
+      "productDescription": "{title}: una pieza de Frecuencia Mágica pensada para acompañar tu ritual diario de pausa, respiración y presencia serena y consciente."
     }
   },
   "cart": {
@@ -885,6 +933,10 @@
       "title": "Tu pedido está en camino",
       "description": "Recibirás un correo con los detalles. Que cada objeto acompañe tu ritual.",
       "cta": "Seguir explorando"
+    },
+    "meta": {
+      "title": "Tu carrito de la tienda",
+      "description": "Revisa los objetos de tu ritual y completa tu pedido en Frecuencia Mágica. Atención cercana y humana si necesitas ayuda antes de terminar tu compra."
     }
   },
   "sanctuary": {
@@ -925,6 +977,10 @@
       "subtitle": "Elegida para tu mañana",
       "cta": "Escuchar ahora",
       "suggestions": "Frecuencias que podrían gustarte"
+    },
+    "meta": {
+      "title": "Mi Santuario: tu diario de bienestar",
+      "description": "Tu diario de bienestar, tus prácticas y tu frecuencia del día en un solo lugar. Vuelve hoy a tu santuario y retoma el camino donde lo dejaste."
     }
   },
   "journal": {

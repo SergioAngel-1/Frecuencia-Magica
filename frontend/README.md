@@ -8,6 +8,10 @@ Las restricciones del proyecto (paleta, tipografía, movimiento, accesibilidad, 
 
 Next.js 15 (App Router) · React 19 · TypeScript strict · Tailwind CSS v4 · Motion · next-intl · Vitest
 
+## Variables de entorno
+
+`NEXT_PUBLIC_SITE_URL` — base absoluta del sitio para `metadataBase`, canonical, hreflang, Open Graph, sitemap y robots. En producción debe ser la URL pública; si falta se usa `http://localhost:3000`.
+
 ## Comandos
 
 ```bash

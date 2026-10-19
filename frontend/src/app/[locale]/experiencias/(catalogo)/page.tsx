@@ -5,14 +5,24 @@ import { PageShell, RealmHero } from '@/components/layout';
 import { EXPERIENCES } from '@/data/experiences';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
 type PageProps = { params: LocaleParams };
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'experiences' });
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'experiences' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
 
-  return { title: t('title') };
+  return buildPageMetadata({
+    locale,
+    pathname: '/experiencias',
+    title: t('meta.title'),
+    description: t('meta.description'),
+    imageAlt: common('ogImageAlt'),
+  });
 }
 
 export default async function ExperiencesPage({ params }: PageProps) {

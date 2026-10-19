@@ -30,6 +30,7 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Todo salvo API, internos de Next/Vercel y ficheros con extensión.
+  // Todo salvo API, internos de Next/Vercel y ficheros con extensión: las
+  // rutas de metadatos (`sitemap.xml`, `robots.txt`) caen fuera del matcher.
   matcher: '/((?!api|_next|_vercel|.*\\..*).*)',
 };

@@ -5,14 +5,25 @@ import { PageShell } from '@/components/layout';
 import { BandChain } from '@/components/ui';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
 type PageProps = { params: LocaleParams };
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'auth' });
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'auth' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
 
-  return { title: t('login.title') };
+  return buildPageMetadata({
+    locale,
+    pathname: '/acceso',
+    title: t('meta.title'),
+    description: t('meta.description'),
+    imageAlt: common('ogImageAlt'),
+    noindex: true,
+  });
 }
 
 export default async function AuthPage({ params }: PageProps) {

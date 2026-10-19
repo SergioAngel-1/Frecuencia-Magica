@@ -9,6 +9,7 @@ import { Link } from '@/i18n/navigation';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { routing } from '@/i18n/routing';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
 type PageProps = { params: Promise<{ locale: string; productId: string }> };
 
@@ -31,8 +32,19 @@ export async function generateMetadata({ params }: PageProps) {
   const product = PRODUCTS.find((item) => item.id === productId);
   if (!product) return {};
 
-  const t = await getTranslations({ locale, namespace: 'store' });
-  return { title: t(`products.${product.id}.title`) };
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'store' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
+  const title = t(`products.${product.id}.title`);
+
+  return buildPageMetadata({
+    locale,
+    pathname: { pathname: '/tienda/[productId]', params: { productId: product.id } },
+    title,
+    description: t('meta.productDescription', { title }),
+    imageAlt: common('ogImageAlt'),
+  });
 }
 
 export default async function ProductPage({ params }: PageProps) {

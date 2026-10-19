@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 
 import { PortalScene } from '@/components/features/portal/portal-scene';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
 type PortalPageProps = {
   params: LocaleParams;
@@ -14,12 +15,19 @@ type PortalPageProps = {
  */
 export async function generateMetadata({ params }: PortalPageProps): Promise<Metadata> {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'common' });
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'portal' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
 
-  return {
-    title: t('brand'),
-    description: t('tagline'),
-  };
+  return buildPageMetadata({
+    locale,
+    pathname: '/',
+    title: t('meta.title'),
+    description: t('meta.description'),
+    absoluteTitle: true,
+    imageAlt: common('ogImageAlt'),
+  });
 }
 
 /**

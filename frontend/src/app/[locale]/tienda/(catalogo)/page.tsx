@@ -14,14 +14,24 @@ import { PRODUCTS } from '@/data/products';
 import { Link } from '@/i18n/navigation';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
 type PageProps = { params: LocaleParams };
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'store' });
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'store' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
 
-  return { title: t('title') };
+  return buildPageMetadata({
+    locale,
+    pathname: '/tienda',
+    title: t('meta.title'),
+    description: t('meta.description'),
+    imageAlt: common('ogImageAlt'),
+  });
 }
 
 export default async function StorePage({ params }: PageProps) {

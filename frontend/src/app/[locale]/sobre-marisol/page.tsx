@@ -10,6 +10,7 @@ import { getVideo } from '@/config/videos';
 import { Link } from '@/i18n/navigation';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 import { videoPosterMedia } from '@/lib/video/poster';
 
 type PageProps = { params: LocaleParams };
@@ -25,9 +26,18 @@ const PATHS = [
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'about' });
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'about' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
 
-  return { title: t('metaTitle') };
+  return buildPageMetadata({
+    locale,
+    pathname: '/sobre-marisol',
+    title: t('meta.title'),
+    description: t('meta.description'),
+    imageAlt: common('ogImageAlt'),
+  });
 }
 
 export default async function AboutMarisolPage({ params }: PageProps) {

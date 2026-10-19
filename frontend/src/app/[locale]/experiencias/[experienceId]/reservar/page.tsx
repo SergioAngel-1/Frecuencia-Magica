@@ -7,6 +7,7 @@ import { getExperience } from '@/data/experiences';
 import { messageKey } from '@/i18n/keys';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 import { routing } from '@/i18n/routing';
 
 type PageProps = { params: Promise<{ locale: string; experienceId: string }> };
@@ -26,10 +27,27 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const { experienceId } = await params;
-  const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'experiences' });
+  const experience = getExperience(experienceId);
+  if (!experience) return {};
 
-  return { title: t(messageKey('experiences', `items.${experienceId}.title`)) };
+  const locale = await resolveLocale(params);
+  const [t, booking, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'experiences' }),
+    getTranslations({ locale, namespace: 'booking' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
+  const title = t(messageKey('experiences', experience.titleKey));
+
+  return buildPageMetadata({
+    locale,
+    pathname: {
+      pathname: '/experiencias/[experienceId]/reservar',
+      params: { experienceId: experience.id },
+    },
+    title: booking('meta.title', { title }),
+    description: booking('meta.description', { title }),
+    imageAlt: common('ogImageAlt'),
+  });
 }
 
 export default async function BookingPage({ params }: PageProps) {

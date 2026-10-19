@@ -14,14 +14,25 @@ import { COURSES } from '@/data/courses';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { MOCK_PROFILE, resumeTarget } from '@/lib/sanctuary/profile';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
 type PageProps = { params: LocaleParams };
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'sanctuary' });
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'sanctuary' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
 
-  return { title: t('kicker') };
+  return buildPageMetadata({
+    locale,
+    pathname: '/mi-santuario',
+    title: t('meta.title'),
+    description: t('meta.description'),
+    imageAlt: common('ogImageAlt'),
+    noindex: true,
+  });
 }
 
 export default async function SanctuaryPage({ params }: PageProps) {

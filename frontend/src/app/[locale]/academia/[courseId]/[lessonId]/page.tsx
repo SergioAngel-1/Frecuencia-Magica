@@ -8,6 +8,7 @@ import { buildLessons } from '@/lib/academy/lessons';
 import { messageKey } from '@/i18n/keys';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 import { routing } from '@/i18n/routing';
 
 type PageProps = { params: Promise<{ locale: string; courseId: string; lessonId: string }> };
@@ -33,14 +34,46 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { courseId } = await params;
+  const { courseId, lessonId } = await params;
   const course = getCourse(courseId);
-  if (!course) return {};
+  if (!course || !/^\d+$/.test(lessonId)) return {};
+
+  const lessonIndex = Number(lessonId) - 1;
+  const lessons = buildLessons(course);
+  if (lessonIndex < 0 || lessonIndex > lessons.length) return {};
 
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'academy' });
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'academy' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
 
-  return { title: t(messageKey('academy', course.titleKey)) };
+  const courseTitle = t(messageKey('academy', course.titleKey));
+  const lessonData = lessons[lessonIndex];
+  const completion = lessonIndex === lessons.length;
+  const number = String(lessonIndex + 1);
+
+  const title = completion
+    ? t('meta.completionTitle')
+    : t('meta.lessonTitle', {
+        number,
+        title: t(messageKey('academy', `lessonTitles.${lessonData!.titleIndex}`)),
+      });
+  const description = completion
+    ? t('meta.completionDescription')
+    : t('meta.lessonDescription', { number, course: courseTitle });
+
+  return buildPageMetadata({
+    locale,
+    pathname: {
+      pathname: '/academia/[courseId]/[lessonId]',
+      params: { courseId: course.id, lessonId },
+    },
+    title,
+    description,
+    imageAlt: common('ogImageAlt'),
+    noindex: true,
+  });
 }
 
 export default async function LessonPage({ params }: PageProps) {

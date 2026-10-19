@@ -6,7 +6,8 @@
     "seeAll": "See all",
     "back": "Back",
     "continue": "Continue",
-    "close": "Close"
+    "close": "Close",
+    "metaDescription": "A digital wellness sanctuary with meditations, courses, aromas and rituals to pause, breathe and return to yourself. Begin whenever you are ready."
   },
   "header": {
     "preferences": "Preferences",
@@ -94,6 +95,10 @@
         "hero": "Light and cosmos at the threshold of Frecuencia Mágica",
         "field": "The portal field between worlds"
       }
+    },
+    "meta": {
+      "title": "Wellness and rituals to return to you · Frecuencia Mágica",
+      "description": "A digital wellness sanctuary with meditations, courses, aromas and rituals to pause, breathe and return to yourself. Begin whenever you are ready."
     }
   },
   "home": {
@@ -173,6 +178,10 @@
       "title": "Objects for your ritual",
       "description": "Candles, aromas and stones to accompany your practices, chosen with care.",
       "cta": "See the shop"
+    },
+    "meta": {
+      "title": "Wellness, meditations and rituals",
+      "description": "Meditations, courses and wellness rituals to slow down and return to yourself. Step into Frecuencia Mágica and choose where to begin your path today."
     }
   },
   "about": {
@@ -243,6 +252,10 @@
         "portrait": "Portrait of Marisol beside the light of a window",
         "angels": "A soft light descending through the dusk"
       }
+    },
+    "meta": {
+      "title": "About Marisol: wellness with soul",
+      "description": "Meet Marisol, the person behind Frecuencia Mágica: a story of aromas and sound and a close, unhurried way of accompanying you through your pause."
     }
   },
   "auth": {
@@ -297,7 +310,11 @@
     "or": "or",
     "sso": "Continue with your inner light",
     "quote": "The light you seek already lives in you. You only need to remember it.",
-    "quoteBy": "Magic Frequency"
+    "quoteBy": "Magic Frequency",
+    "meta": {
+      "title": "Sign in to your sanctuary",
+      "description": "Sign in to your Frecuencia Mágica sanctuary to pick up your courses, frequencies and journal. Your space is waiting whenever you are ready to return."
+    }
   },
   "discover": {
     "kicker": "Discover yourself",
@@ -381,6 +398,10 @@
         "prompt": "What do you seek when you close your eyes?",
         "options": ["To let go", "To remember", "To heal", "To dream"]
       }
+    },
+    "meta": {
+      "title": "Quiz: what frequency are you today?",
+      "description": "Take the Frecuencia Mágica frequency quiz: five questions to listen to your present moment and receive a wellness practice chosen for you today."
     }
   },
   "resonario": {
@@ -552,6 +573,10 @@
       "p4": "Research on music suggests that listening to it may help the mood, although each person responds differently. Its value also lies in what it awakens in you: serenity, emotion, memories or a sense of company.",
       "p5": "At Frecuencia Mágica we chose these melodies to offer you a moment of listening without demands. You do not need to reach a special state. Just find a comfortable volume and notice how you feel.",
       "closing": "Let the melody accompany you. This moment is yours."
+    },
+    "meta": {
+      "title": "Meditations and frequencies",
+      "description": "Guided meditations, sound frequencies and soundscapes to rest, ground yourself or breathe again. Listen slowly and choose what your body asks for today."
     }
   },
   "player": {
@@ -675,6 +700,16 @@
       "moduleLessons": "{count} lessons",
       "introTitle": "Course introduction",
       "hours": "{hours} of practice"
+    },
+    "meta": {
+      "title": "Wellness courses and rituals",
+      "description": "Self-paced wellness courses on breath, silence and daily rituals. Learn to return to yourself with practices guided by Marisol, with no deadlines.",
+      "courseTitle": "Course: {title}",
+      "courseDescription": "{title} is a self-paced wellness course with practices, meditations and rituals to return to yourself. Start today whenever you like.",
+      "lessonTitle": "Lesson {number}: {title}",
+      "lessonDescription": "Lesson {number} of {course}: a short lesson to listen to your rhythm, breathe without hurry and return to yourself with one simple practice.",
+      "completionTitle": "You completed this course",
+      "completionDescription": "You have reached the end of this Frecuencia Mágica course. Return to the lessons whenever you like or explore the Resonarium to keep listening to your rhythm."
     }
   },
   "experiences": {
@@ -712,6 +747,10 @@
       "e4": {
         "title": "Sunrise Meditation"
       }
+    },
+    "meta": {
+      "title": "Live wellness experiences",
+      "description": "Live sound baths, circles and rituals to pause alongside others. Book your next wellness experience with Marisol and breathe again at your own pace."
     }
   },
   "booking": {
@@ -745,6 +784,10 @@
       "title": "Your place is reserved",
       "description": "We sent the details by email. Breathe: you only need to show up as yourself.",
       "cta": "See more experiences"
+    },
+    "meta": {
+      "title": "Book: {title}",
+      "description": "Book your place at {title}, a wellness experience guided by Marisol. Choose a day and time and give yourself a true pause, at your own pace."
     }
   },
   "store": {
@@ -851,6 +894,11 @@
       "label": "Product details",
       "size": "Size",
       "contents": "Contents"
+    },
+    "meta": {
+      "title": "Shop for aromas, candles and crystals",
+      "description": "Essential oils, candles, crystals and ritual objects chosen with care. Pieces to accompany your pause and bring you back to yourself. Explore the shop.",
+      "productDescription": "{title}: a Frecuencia Mágica piece made to accompany your ritual of pause and breath, chosen with care for your everyday calm and presence."
     }
   },
   "cart": {
@@ -880,6 +928,10 @@
       "title": "Your order is on its way",
       "description": "You will receive an email with the details. May each object accompany your ritual.",
       "cta": "Keep exploring"
+    },
+    "meta": {
+      "title": "Your store cart",
+      "description": "Review the objects for your ritual and complete your order at Frecuencia Mágica. Friendly help if you need anything before you finish your order."
     }
   },
   "sanctuary": {
@@ -920,6 +972,10 @@
       "subtitle": "Chosen for your morning",
       "cta": "Listen now",
       "suggestions": "Frequencies you might like"
+    },
+    "meta": {
+      "title": "My Sanctuary: your wellness journal",
+      "description": "Your wellness journal, your practices and your daily frequency in one place. Return to your sanctuary today and pick up where you left off whenever you like."
     }
   },
   "journal": {

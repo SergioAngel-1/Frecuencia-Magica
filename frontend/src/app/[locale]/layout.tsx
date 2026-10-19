@@ -23,6 +23,7 @@ import { BASE_NAMESPACES, pickMessages } from '@/i18n/messages';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { routing } from '@/i18n/routing';
 import { atmosphereBootScript, SERVER_ATMOSPHERE } from '@/lib/atmosphere/boot-script';
+import { SITE_NAME, SITE_URL } from '@/lib/seo/page-metadata';
 
 import '../globals.css';
 
@@ -46,12 +47,12 @@ export async function generateMetadata({ params }: { params: LocaleParams }): Pr
 
   return {
     // Las URLs de og:image deben ser absolutas: en producción define NEXT_PUBLIC_SITE_URL.
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
+    metadataBase: new URL(SITE_URL),
     title: {
       default: t('brand'),
       template: `%s · ${t('brand')}`,
     },
-    description: t('tagline'),
+    description: t('metaDescription'),
     // Sin icono declarado, cada vista pedía un `/favicon.ico` que no existe (404).
     icons: { icon: '/logo.png', apple: '/logo.png' },
     openGraph: { type: 'website', siteName: t('brand'), images },
@@ -80,6 +81,19 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const locale = await resolveLocale(params);
   // Sólo la base: cada realm re-provee con lo suyo en su propio `layout.tsx`.
   const messages = pickMessages(await getMessages(), BASE_NAMESPACES);
+  // Datos reales de la marca: nada de Product/Event/Course hasta que existan.
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        name: SITE_NAME,
+        url: SITE_URL,
+        logo: new URL('/logo.png', SITE_URL).toString(),
+      },
+      { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
+    ],
+  };
 
   return (
     <html
@@ -94,6 +108,10 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           destelle con la noche. Ver lib/atmosphere/boot-script.ts. */}
       <head>
         <script dangerouslySetInnerHTML={{ __html: atmosphereBootScript() }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       {/* suppressHydrationWarning en los nodos raíz: extensiones de navegador
           (modo oscuro / auto-dark) inlinean los estilos computados del body en

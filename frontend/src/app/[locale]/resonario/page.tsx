@@ -5,6 +5,7 @@ import { FramedHeading, PageShell, RealmHero } from '@/components/layout';
 import { AUDIO_KINDS } from '@/config/audio-kinds';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 import type { AudioKind } from '@/types/content';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -12,9 +13,18 @@ type PageProps = { params: LocaleParams };
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'resonario' });
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'resonario' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
 
-  return { title: t('title') };
+  return buildPageMetadata({
+    locale,
+    pathname: '/resonario',
+    title: t('meta.title'),
+    description: t('meta.description'),
+    imageAlt: common('ogImageAlt'),
+  });
 }
 
 export default async function ResonarioPage({ params }: PageProps) {

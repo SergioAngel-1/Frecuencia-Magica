@@ -4,14 +4,25 @@ import { CheckoutView } from '@/components/features/store';
 import { PageShell } from '@/components/layout';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
 type PageProps = { params: LocaleParams };
 
 export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'cart' });
+  const [t, common] = await Promise.all([
+    getTranslations({ locale, namespace: 'cart' }),
+    getTranslations({ locale, namespace: 'common' }),
+  ]);
 
-  return { title: t('title') };
+  return buildPageMetadata({
+    locale,
+    pathname: '/tienda/carrito',
+    title: t('meta.title'),
+    description: t('meta.description'),
+    imageAlt: common('ogImageAlt'),
+    noindex: true,
+  });
 }
 
 export default async function CartPage({ params }: PageProps) {
