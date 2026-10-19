@@ -526,7 +526,7 @@ export const THEME_VARIANTS = [
   {
     base: 'states.loading',
     theme: 'dawn',
-    subject: `Waiting with matter at sunrise: a single soft sphere of pale golden light floating in bright misty space above still pale water as if breathing, a faint halo, slow and calm, the air a soft blend of cream, peach and very pale sky blue`,
+    subject: `Waiting with matter at sunrise: a single soft sphere of pale golden light floating in bright misty space above still pale water as if breathing, a faint halo, slow and calm, the air a soft blend of cream, peach and very pale sky blue, only a soft even haze with no cumulus, no storm or grey clouds and no dramatic sky, warm cream and peach dominate and the pale blue is only a hint`,
     frame: 'Sphere at center at 42% vertical, calm bright mist all around it, the horizon lost in the mist with no line and no band, the lower third plain calm pale water for the loading label',
   },
   {
