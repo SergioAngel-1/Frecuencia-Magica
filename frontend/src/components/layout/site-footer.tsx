@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { EditorialBanner, Kicker, ArrowGlyph, arrowLinkClasses } from '@/components/ui';
@@ -39,9 +40,11 @@ export function SiteFooter() {
   const tHome = useTranslations('home');
   const tNav = useTranslations('nav');
   const tCommon = useTranslations('common');
-  const footerMedia = resolveEditorialMedia('home.footer-banner', {
-    alt: tHome('media.alt.footerBanner'),
-  });
+  const footerAlt = tHome('media.alt.footerBanner');
+  const footerMedia = useMemo(
+    () => resolveEditorialMedia('home.footer-banner', { alt: footerAlt }),
+    [footerAlt],
+  );
 
   return (
     <footer
@@ -73,8 +76,8 @@ export function SiteFooter() {
         ) : null}
 
         <div className="mb-11 flex flex-wrap items-start justify-between gap-10">
-          <div className="max-w-[36ch]">
-            <p className="tracking-ui mb-[10px] font-serif text-[26px]">{tCommon('brand')}</p>
+          <div className="max-w-measure-narrow">
+            <p className="tracking-ui text-serif-xl mb-[10px] font-serif">{tCommon('brand')}</p>
             <p className="text-fg-muted text-body mb-5 leading-[1.7]">{t('tagline')}</p>
             <NewsletterForm />
           </div>
@@ -88,7 +91,7 @@ export function SiteFooter() {
                 {column.links.map((link) => (
                   <p key={link.key} className="mb-[10px]">
                     <Link href={link.href as '/resonario'} data-magnetic className={LINK_CLASSES}>
-                      {tNav(`realms.${link.key}` as 'realms.resonario')}
+                      {tNav(`realms.${link.key}`)}
                     </Link>
                   </p>
                 ))}

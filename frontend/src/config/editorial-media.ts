@@ -46,20 +46,72 @@ export const EDITORIAL_MEDIA_SLOTS = [
   'states.empty',
   'states.error',
   'states.offline',
-  'atmosphere.dusk',
-  'atmosphere.dawn',
-  'atmosphere.store',
-  'atmosphere.moon',
-  'atmosphere.forest',
   'atmosphere.forest-autumn',
-  'atmosphere.study',
-  'atmosphere.gathering',
-  'atmosphere.marisol',
   'resonario.celtic',
   'resonario.kind-banner.*',
 ] as const;
 
 export type EditorialMediaSlot = (typeof EDITORIAL_MEDIA_SLOTS)[number];
+
+/** Los cinco temas del sitio (`AtmosphereId`); se repite aquí para no importar de `types/` en el contrato. */
+export type EditorialTheme = 'night' | 'dusk' | 'dawn' | 'moon' | 'forest';
+
+const HERO_THEMES = ['dusk', 'dawn', 'moon', 'forest'] as const;
+
+/**
+ * Slots que tienen una variante de imagen por tema (`slot@tema` en el manifiesto,
+ * `<archivo>-<tema>.avif`). La noche es siempre la base. Un tema que no figura aquí ve la
+ * imagen base.
+ *
+ * - Los héroes de cada vista llevan variante en los cuatro temas que no son la noche (la base):
+ *   son la primera impresión de cada vista y un paisaje nocturno azul no funciona bajo un tema
+ *   cálido, claro o verde; Luna también tiene el suyo, con la misma escena bajo luz de luna.
+ * - Las bandas con texto encima y los fondos de cristal llevan variante en Amanecer, el único
+ *   tema claro: una foto oscura bajo un velo claro se ve sucia, y la tinta oscura del cristal
+ *   no lee sobre ella. En los temas oscuros la imagen nocturna funde bien.
+ * - Portadas de audio, de curso, visuales de experiencia y productos son contenido del ítem y
+ *   no cambian con el tema.
+ *
+ * Lo cruza `tests/lib/editorial-theme-variants.test.ts` con el brief (`Branding/src/data/photography-themes.js`).
+ */
+export const THEME_VARIANTS: Readonly<
+  Partial<Record<EditorialMediaSlot, readonly Exclude<EditorialTheme, 'night'>[]>>
+> = {
+  'portal.hero': HERO_THEMES,
+  'home.hero': HERO_THEMES,
+  'about.hero': HERO_THEMES,
+  'auth.hero': HERO_THEMES,
+  'discover.hero': HERO_THEMES,
+  'resonario.hero': HERO_THEMES,
+  'academy.hero': HERO_THEMES,
+  'experiences.hero': HERO_THEMES,
+  'booking.hero': HERO_THEMES,
+  'store.hero': HERO_THEMES,
+  'sanctuary.hero': HERO_THEMES,
+  'home.daily-frequency': ['dawn'],
+  'home.realms-banner': ['dawn'],
+  'home.footer-banner': ['dawn'],
+  'home-membership': ['dawn'],
+  'about.angels': ['dawn'],
+  'auth.form-atmosphere': ['dawn'],
+  'discover.question-atmosphere': ['dawn'],
+  'resonario.featured': ['dawn'],
+  'resonario.archive-banner': ['dawn'],
+  'academy.featured-course': ['dawn'],
+  'experiences.featured': ['dawn'],
+  'store.ritual-banner': ['dawn'],
+};
+
+/**
+ * Foco propio de una variante cuyo sujeto no está donde el de la base (`slot@tema` → `x% y%`). Las
+ * que no figuran usan el foco del slot. Son las atmósferas de Ambientes v2, compuestas con el sujeto
+ * a la derecha para dejar libre el titular.
+ */
+export const THEME_VARIANT_POSITIONS: Readonly<Record<string, string>> = {
+  'academy.hero@dawn': '70% 50%',
+  'store.hero@dawn': '60% 55%',
+  'about.hero@dawn': '66% 50%',
+};
 
 export type EditorialMediaAspect = 'viewport' | '16:9' | '16:8' | '3:4' | '1:1';
 export type EditorialMediaPriority = 'P0' | 'P1' | 'P2';
@@ -74,8 +126,8 @@ export type EditorialMediaPriority = 'P0' | 'P1' | 'P2';
  *   audio). Usa la banda de color del propio ítem para no perder su identidad.
  * - `none`: atmósfera sin trabajo narrativo propio. No pinta nada hasta que
  *   llegue la foto; la vista descansa en el world engine.
- * - `atmosphere`: paisaje de una atmósfera (`atmosphere.*`). Sin foto pinta el
- *   degradado `--atmo-backdrop` de la atmósfera activa: nunca zebra ni caja gris.
+ * - `atmosphere`: paisaje de apoyo sin trabajo narrativo (`atmosphere.forest-autumn`). Sin
+ *   foto pinta el degradado `--atmo-backdrop` del tema activo: nunca zebra ni caja gris.
  */
 export type EditorialMediaFallback = 'zebra' | 'band' | 'none' | 'atmosphere';
 
@@ -494,51 +546,6 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
   },
   // Atmósferas (spec 2026-10-17). Sin foto pintan el degradado de su atmósfera (`atmosphere`): la
   // zebra es de noche y desentona sobre una escena clara.
-  'atmosphere.dusk': {
-    sizes: '100vw',
-    position: '62% 50%',
-    aspect: '16:9',
-    priority: false,
-    priorityTier: 'P1',
-    fallback: 'atmosphere',
-    alt: 'Un mar tranquilo al atardecer, con reflejos cálidos sobre el agua',
-  },
-  'atmosphere.dawn': {
-    sizes: '100vw',
-    position: '58% 50%',
-    aspect: '16:9',
-    priority: false,
-    priorityTier: 'P1',
-    fallback: 'atmosphere',
-    alt: 'Un lago luminoso al amanecer, con el horizonte despejado',
-  },
-  'atmosphere.store': {
-    sizes: '100vw',
-    position: '60% 55%',
-    aspect: '16:9',
-    priority: false,
-    priorityTier: 'P1',
-    fallback: 'atmosphere',
-    alt: 'Piedra y madera con luz lateral, preparadas para los objetos del ritual',
-  },
-  'atmosphere.moon': {
-    sizes: '100vw',
-    position: '62% 40%',
-    aspect: '16:9',
-    priority: false,
-    priorityTier: 'P1',
-    fallback: 'atmosphere',
-    alt: 'Un mar bajo la luna, con reflejos plateados',
-  },
-  'atmosphere.forest': {
-    sizes: '100vw',
-    position: '62% 50%',
-    aspect: '16:9',
-    priority: false,
-    priorityTier: 'P1',
-    fallback: 'atmosphere',
-    alt: 'Una cascada entre helechos en un bosque verde y luminoso',
-  },
   'atmosphere.forest-autumn': {
     sizes: '100vw',
     position: '60% 50%',
@@ -547,33 +554,6 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
     priorityTier: 'P2',
     fallback: 'atmosphere',
     alt: 'Un sendero de bosque otoñal en tonos ámbar y dorado',
-  },
-  'atmosphere.study': {
-    sizes: '100vw',
-    position: '70% 50%',
-    aspect: '16:9',
-    priority: false,
-    priorityTier: 'P1',
-    fallback: 'atmosphere',
-    alt: 'Un rincón de lectura junto a una ventana, con luz de mañana',
-  },
-  'atmosphere.gathering': {
-    sizes: '100vw',
-    position: '62% 55%',
-    aspect: '16:9',
-    priority: false,
-    priorityTier: 'P1',
-    fallback: 'atmosphere',
-    alt: 'Un espacio cálido preparado para compartir un encuentro',
-  },
-  'atmosphere.marisol': {
-    sizes: '100vw',
-    position: '66% 50%',
-    aspect: '16:9',
-    priority: false,
-    priorityTier: 'P1',
-    fallback: 'atmosphere',
-    alt: 'Un rincón luminoso y personal con luz de mañana',
   },
   'resonario.celtic': {
     sizes: '100vw',

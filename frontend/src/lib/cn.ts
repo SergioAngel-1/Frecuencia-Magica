@@ -10,9 +10,26 @@ import { extendTailwindMerge } from 'tailwind-merge';
 const twMerge = extendTailwindMerge({
   extend: {
     // Ritmo vertical de `tokens.css` (`py-section`, `gap-block`…).
-    theme: { spacing: ['section', 'block'] },
+    theme: { spacing: ['section', 'block', 'hero', 'top'] },
     classGroups: {
-      'font-size': [{ text: ['label', 'meta', 'body', 'lead'] }],
+      'font-size': [
+        {
+          text: [
+            'label',
+            'meta',
+            'body',
+            'lead',
+            'serif-xs',
+            'serif-sm',
+            'serif-md',
+            'serif-lg',
+            'serif-xl',
+            'serif-2xl',
+            'serif-3xl',
+            'serif-4xl',
+          ],
+        },
+      ],
       // Semánticos de atmósfera (`tokens.css`, bloques `[data-atmosphere]`).
       'text-color': [
         {
@@ -32,6 +49,24 @@ const twMerge = extendTailwindMerge({
       ],
       'border-color': [{ border: ['line', 'line-strong'] }],
       'bg-color': [{ bg: ['surface', 'surface-strong', 'scrim', 'scrim-deep', 'halo'] }],
+      // Medidas de lectura de `tokens.css` (`max-w-measure-*`).
+      'max-w': [
+        {
+          'max-w': [
+            'measure-title-xs',
+            'measure-title-sm',
+            'measure-title-md',
+            'measure-title-lg',
+            'measure-title-xl',
+            'measure-title-2xl',
+            'measure-narrow',
+            'measure-base',
+            'measure-mid',
+            'measure-wide',
+            'measure-full',
+          ],
+        },
+      ],
       tracking: [{ tracking: ['soft', 'ui', 'label', 'caps', 'kicker', 'eyebrow'] }],
       shadow: [{ shadow: ['glow-gold', 'glow-teal', 'glow-lav', 'glow-card'] }],
       // Capas con nombre de `globals.css`.

@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { ProductDetail } from '@/components/features/store';
 import type { ProductMedia } from '@/components/features/store/product-detail';
 import { PageShell } from '@/components/layout';
-import { PRODUCTS } from '@/data';
+import { PRODUCTS } from '@/data/products';
 import { Link } from '@/i18n/navigation';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { routing } from '@/i18n/routing';
@@ -110,7 +110,7 @@ export default async function ProductPage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      <div className="fm-editorial-full-bleed fm-container pb-section pt-[100px] md:pt-[130px]">
+      <div className="fm-editorial-full-bleed fm-container pb-section pt-top">
         <Link
           href="/tienda"
           className="text-fg-meta hover:text-accent text-meta tracking-label mb-8 inline-flex min-h-11 items-center font-sans uppercase transition-colors"

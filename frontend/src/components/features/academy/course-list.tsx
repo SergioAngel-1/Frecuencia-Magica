@@ -1,7 +1,8 @@
 import { useTranslations } from 'next-intl';
 
 import { Display, EditorialImage, Float, Kicker } from '@/components/ui';
-import { COURSES } from '@/data';
+import { COURSES } from '@/data/courses';
+import { messageKey } from '@/i18n/keys';
 import { Link } from '@/i18n/navigation';
 import type { EditorialMedia } from '@/types/editorial-media';
 
@@ -49,10 +50,8 @@ export function CourseList({ media }: { media: AcademyMedia }) {
   const featured = COURSES[0]!;
   const others = COURSES.slice(1);
 
-  const courseTitle = (course: (typeof COURSES)[number]) =>
-    t(`courses.${course.id}.title` as 'courses.c1.title');
-  const level = (course: (typeof COURSES)[number]) =>
-    t(course.levelKey.replace('academy.', '') as 'levels.foundations');
+  const courseTitle = (course: (typeof COURSES)[number]) => t(`courses.${course.id}.title`);
+  const level = (course: (typeof COURSES)[number]) => t(messageKey('academy', course.levelKey));
   const courseMedia = (course: (typeof COURSES)[number]): EditorialMedia => ({
     ...media.courseCovers[course.id]!,
     alt: t('media.alt.courseCover', { title: courseTitle(course) }),
@@ -80,12 +79,12 @@ export function CourseList({ media }: { media: AcademyMedia }) {
       </Float>
 
       <section data-editorial-archive="true" aria-labelledby="academy-archive-title">
-        <div className="mb-7 max-w-[58ch]">
+        <div className="max-w-measure-full mb-7">
           <Kicker tone="teal">{t('archive.kicker')}</Kicker>
           <Display level="h2" size="md" id="academy-archive-title" className="mt-3">
             {t('archive.title')}
           </Display>
-          <p className="text-fg-soft mt-4 text-[16px] leading-[1.7]">{t('archive.description')}</p>
+          <p className="text-fg-soft text-lead mt-4 leading-[1.7]">{t('archive.description')}</p>
         </div>
 
         <div>

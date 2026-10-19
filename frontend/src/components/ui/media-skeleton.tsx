@@ -80,7 +80,7 @@ export function MediaSkeleton({
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_100%_at_30%_10%,rgba(247,244,234,0.07),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_100%_at_30%_10%,color-mix(in_srgb,var(--color-fg)_7%,transparent),transparent_60%)]"
       />
     </div>
   );

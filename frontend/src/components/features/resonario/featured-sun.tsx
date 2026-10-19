@@ -25,8 +25,8 @@ export function FeaturedSun({ audio, cover }: FeaturedSunProps) {
   const open = usePlayerStore((state) => state.open);
   const { playing } = useAudioPlayback(audio.id);
 
-  const title = t(`audios.${audio.id}.title` as 'audios.a1.title');
-  const kind = t(`kinds.${audio.kind}.title` as 'kinds.melody.title');
+  const title = t(`audios.${audio.id}.title`);
+  const kind = t(`kinds.${audio.kind}.title`);
 
   return (
     <div className="flex flex-col items-center gap-6 text-center" data-featured="sun">

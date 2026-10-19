@@ -23,10 +23,9 @@ const LIGHT_SWEEP =
 
 /**
  * Degradado inferior de las cards con texto sobre imagen, valor exacto del brief 4.3.
- * Su tinta es void-2 (#0a1220), sin token equivalente (`scrim` vale #0f1b2e):
- * queda cruda y figura en ALLOWED de `semantic-color-usage`.
+ * Su tinta es `--scrim-deep` (void-2 en la noche), el velo denso del tema.
  */
-const BOTTOM_OVERLAY = 'linear-gradient(180deg, transparent 30%, rgba(10,18,32,0.72))';
+const BOTTOM_OVERLAY = 'linear-gradient(180deg, transparent 30%, rgb(var(--scrim-deep) / 0.72))';
 
 interface BandProps {
   /**

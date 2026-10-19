@@ -349,6 +349,16 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   scroll-padding-bottom: calc(140px + env(safe-area-inset-bottom));
 }
 
+/* Bloque grande que queda fuera de pantalla al cargar (secciones de catálogo,
+   p. ej. los tipos de escucha del Resonario): el navegador se salta su render
+   hasta que se acerca. El hueco intrínseco evita el salto de scroll mientras
+   no está pintado. No animar dentro: el bloque puede tener animaciones
+   infinitas, que no corren hasta que entra (es justo lo que se busca). */
+@utility fm-defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
 /* Velo de una banda con foto. En la noche, sin él la etiqueta y el título caen
    sobre la luz de la foto: un velo del token de scrim (0,6, igual que el claro),
    denso en el centro del texto y desvanecido en los bordes. */
@@ -401,4 +411,41 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
 /* Kicker de un banner con foto en esquema claro: tinta sobre el velo claro (no dorado). */
 [data-scheme='light'] .fm-kicker-veiled {
   color: var(--color-fg);
+}
+
+/* Foto con imagen propia en algunos temas (`ThemedPhoto`): cuando el tema activo tiene
+   variante, la base (la de la noche) se oculta y entra la del tema. Mientras carga se ve el
+   fondo del tema, nunca la foto equivocada; si la variante falla (`data-variant-failed`) vuelve
+   la base. Un `~=` por tema: CSS no itera. La noche no figura: es la base. */
+[data-atmosphere='dusk'] [data-photo-themes~='dusk']:not([data-variant-failed]) > [data-photo-base],
+[data-atmosphere='dawn'] [data-photo-themes~='dawn']:not([data-variant-failed]) > [data-photo-base],
+[data-atmosphere='moon'] [data-photo-themes~='moon']:not([data-variant-failed]) > [data-photo-base],
+[data-atmosphere='forest']
+  [data-photo-themes~='forest']:not([data-variant-failed])
+  > [data-photo-base] {
+  opacity: 0;
+}
+
+/* Una foto de slot con imagen por tema (`media.themed`) es nocturna en su base. Bajo el tema
+   claro y sin variante publicada todavía, la noche oscura contra un velo claro corta el héroe
+   en dos mitades: se lava hasta quedar como un paisaje velado sobre el fondo del tema. Cuando la
+   variante existe, la regla de arriba oculta la base y esta no importa. */
+[data-scheme='light'] [data-photo-night] {
+  opacity: 0.4;
+  filter: sepia(0.9) saturate(1.3) brightness(1.55) contrast(0.85);
+}
+
+/* Durante el fundido de un cambio de tema (`beginThemeSwitch`), los colores del sitio transitan
+   en vez de saltar. Sólo mientras dura: el resto del tiempo cada elemento lleva sus propias
+   transiciones. Con movimiento reducido el atributo nunca se pone. Sólo propiedades de color
+   (pintado barato): ni `box-shadow` ni `opacity`, que encarecían todo el DOM. El `!important`
+   hace falta para ganar a las transiciones propias de cada elemento (p. ej. `transition-colors`
+   de Tailwind) mientras dura el fundido. Se excluye el lienzo del motor y los contenedores de
+   foto, que no tienen color que transitar y no deben repintarse. */
+[data-theme-switching] *:not(canvas):not([data-photo-night]),
+[data-theme-switching] *::before,
+[data-theme-switching] *::after {
+  transition-property: color, background-color, border-color, fill, stroke !important;
+  transition-duration: 0.9s !important;
+  transition-timing-function: ease-in-out !important;
 }

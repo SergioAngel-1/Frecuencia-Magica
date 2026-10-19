@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
+import { messageKey } from '@/i18n/keys';
 import { Link } from '@/i18n/navigation';
 import type { Lesson } from '@/lib/academy/lessons';
 import { cn } from '@/lib/cn';
@@ -47,8 +48,8 @@ export function LessonList({ courseId, lessons, currentIndex }: LessonListProps)
               >
                 {isCompleted ? '✓' : lesson.number}
               </span>
-              <span className="min-w-0 flex-1 font-serif text-[18px] leading-[1.2]">
-                {lesson.number}. {t(`lessonTitles.${lesson.titleIndex}` as 'lessonTitles.0')}
+              <span className="text-serif-sm min-w-0 flex-1 font-serif leading-[1.2]">
+                {lesson.number}. {t(messageKey('academy', `lessonTitles.${lesson.titleIndex}`))}
               </span>
               <span className="text-fg-meta text-label tracking-soft shrink-0 font-sans">
                 {lesson.duration}

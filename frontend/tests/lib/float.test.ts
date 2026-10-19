@@ -62,7 +62,7 @@ describe('el flotado del sitio', () => {
     for (const file of floating) expect(read(file), file).toContain('<Float');
 
     // Los discos flotan por dentro, con el mismo helper, y todo disco de audio flota.
-    expect(read('components/ui/frequency-disc.tsx')).toContain("floatStyle({ depth: 'deep'");
+    expect(read('components/ui/frequency-disc/index.tsx')).toContain("floatStyle({ depth: 'deep'");
     expect(read('components/features/player/audio-disc.tsx')).toContain(
       'floatDuration = DEFAULT_FLOAT',
     );

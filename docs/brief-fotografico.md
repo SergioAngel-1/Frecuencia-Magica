@@ -6,9 +6,9 @@
 > Dirección vigente: enmienda 2026-10-10 de `docs/superpowers/specs/2026-08-11-editorial-magical-visual-identity-design.md` — la imagen es el paisaje luminoso; el world engine es su energía.
 > Enmienda 2026-10-17 (`docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`): además de la noche hay atmósferas con paisajes de color natural y escenas claras. Tienen estilo propio (sección 2) y son provisionales (sección 5.6).
 
-**90 imágenes** (58 slots registrados, varios por instancia; 1 fuera del registro): P0 4 · P1 65 · P2 21. 1 requiere sesión real (retrato de Marisol).
+**138 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 99 · P2 27. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 80 completadas · 0 a corregir · 9 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 137 completadas · 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -58,7 +58,7 @@ a navy or gold color cast over the whole image, crushed black shadows, teal-and-
 
 - `dusk`: Dominant tone: warm terracotta, deep coral and soft amber light over dusky rose and warm brown shadows; reddish reflections that never become an intense red, and no dazzling light.
 - `dawn`: Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows.
-- `moon`: Dominant tone: deep night blue and cool silver with soft silver moonlight; shadows in deep blue, never pure black.
+- `moon`: Dominant tone: cool silver-blue moonlight over a night of deep teal-blue, the whole scene clearly lit and readable by a soft luminous silver light on the water, the mist and the stone, with small warm accents (a candle, a distant lamp) for depth; shadows in lifted deep blue, never pure black, never a flat dark image.
 - `forest`: Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated.
 - `forest-autumn`: Dominant tone: natural amber, russet and gold foliage with a few soft greens; warm and cozy, not saturated.
 - `study`: Dominant tone: cream, ivory, natural wood and linen in soft morning light; bright and welcoming.
@@ -156,15 +156,15 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `resonario-audio-cover-a5.avif` | Resonario · portadas · Aroma de Cedro | 1:1 | 1024×1024 | P1 | Completadas |
 | `resonario-audio-cover-a6.avif` | Resonario · portadas · Respirar el Cielo | 1:1 | 1024×1024 | P1 | Completadas |
 | `resonario-audio-cover-a7.avif` | Resonario · portadas · Corazón Abierto | 1:1 | 1024×1024 | P1 | Completadas |
-| `resonario-audio-cover-b1.avif` | Resonario · portadas · Pulso sereno | 1:1 | 1024×1024 | P1 | Faltantes |
-| `resonario-audio-cover-b2.avif` | Resonario · portadas · Pulso de raíz | 1:1 | 1024×1024 | P1 | Faltantes |
-| `resonario-audio-cover-n1.avif` | Resonario · portadas · Orilla de mar | 1:1 | 1024×1024 | P1 | Faltantes |
-| `resonario-audio-cover-n2.avif` | Resonario · portadas · Lluvia en la ventana | 1:1 | 1024×1024 | P1 | Faltantes |
-| `resonario-audio-cover-n3.avif` | Resonario · portadas · Canto de aves | 1:1 | 1024×1024 | P1 | Faltantes |
-| `resonario-audio-cover-m1.avif` | Resonario · portadas · Música celta para bajar el ritmo | 1:1 | 1024×1024 | P1 | Faltantes |
-| `resonario-audio-cover-m2.avif` | Resonario · portadas · Piano para la pausa | 1:1 | 1024×1024 | P1 | Faltantes |
-| `resonario-audio-cover-g1.avif` | Resonario · portadas · Respiración guiada | 1:1 | 1024×1024 | P1 | Faltantes |
-| `resonario-audio-cover-g2.avif` | Resonario · portadas · Un momento para ti | 1:1 | 1024×1024 | P1 | Faltantes |
+| `resonario-audio-cover-b1.avif` | Resonario · portadas · Pulso sereno | 1:1 | 1024×1024 | P1 | Completadas |
+| `resonario-audio-cover-b2.avif` | Resonario · portadas · Pulso de raíz | 1:1 | 1024×1024 | P1 | Completadas |
+| `resonario-audio-cover-n1.avif` | Resonario · portadas · Orilla de mar | 1:1 | 1024×1024 | P1 | Completadas |
+| `resonario-audio-cover-n2.avif` | Resonario · portadas · Lluvia en la ventana | 1:1 | 1024×1024 | P1 | Completadas |
+| `resonario-audio-cover-n3.avif` | Resonario · portadas · Canto de aves | 1:1 | 1024×1024 | P1 | Completadas |
+| `resonario-audio-cover-m1.avif` | Resonario · portadas · Música celta para bajar el ritmo | 1:1 | 1024×1024 | P1 | Completadas |
+| `resonario-audio-cover-m2.avif` | Resonario · portadas · Piano para la pausa | 1:1 | 1024×1024 | P1 | Completadas |
+| `resonario-audio-cover-g1.avif` | Resonario · portadas · Respiración guiada | 1:1 | 1024×1024 | P1 | Completadas |
+| `resonario-audio-cover-g2.avif` | Resonario · portadas · Un momento para ti | 1:1 | 1024×1024 | P1 | Completadas |
 | `academy-hero.avif` | Academia · hero | 16:9 | 2880×1620 | P1 | Completadas |
 | `academy-featured-course.avif` | Academia · curso destacado | 16:8 | 2880×1440 | P1 | Completadas |
 | `academy-course-cover-c1.avif` | Academia · portadas de curso · El Arte de Volver a Ti | 16:8 | 2880×1440 | P1 | Completadas |
@@ -203,15 +203,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `states-empty.avif` | Estados · vacío | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-error.avif` | Estados · error | 16:9 | 2880×1620 | P2 | Completadas |
 | `states-offline.avif` | Estados · sin conexión | 16:9 | 2880×1620 | P2 | Completadas |
-| `atmosphere-dusk.avif` | Atmósfera · Atardecer (descanso) | 16:9 | 2880×1620 | P1 | Completadas |
-| `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | 16:9 | 2880×1620 | P1 | Completadas |
-| `atmosphere-store.avif` | Atmósfera · Taller (tienda) | 16:9 | 2880×1620 | P1 | Completadas |
-| `atmosphere-moon.avif` | Atmósfera · Luna (escucha nocturna) | 16:9 | 2880×1620 | P1 | Completadas |
-| `atmosphere-forest.avif` | Atmósfera · Bosque (raíz y agua) | 16:9 | 2880×1620 | P1 | Completadas |
 | `atmosphere-forest-autumn.avif` | Atmósfera · Bosque otoñal (nostalgia) | 16:9 | 2880×1620 | P2 | Completadas |
-| `atmosphere-study.avif` | Atmósfera · Estudio (academia) | 16:9 | 2880×1620 | P1 | Completadas |
-| `atmosphere-gathering.avif` | Atmósfera · Encuentro (experiencias) | 16:9 | 2880×1620 | P1 | Completadas |
-| `atmosphere-marisol.avif` | Atmósfera · Luz de Marisol (sobre Marisol) | 16:9 | 2880×1620 | P1 | Completadas |
 | `resonario-celtic.avif` | Resonario · música de inspiración celta | 16:9 | 2880×1620 | P1 | Completadas |
 | `resonario-kind-banner-melody.avif` | Resonario · tipo de escucha · Melodías instrumentales | 16:8 | 2880×1440 | P2 | Completadas |
 | `resonario-kind-banner-nature.avif` | Resonario · tipo de escucha · Naturaleza | 16:8 | 2880×1440 | P2 | Completadas |
@@ -219,6 +211,62 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `resonario-kind-banner-binaural.avif` | Resonario · tipo de escucha · Binaurales | 16:8 | 2880×1440 | P2 | Completadas |
 | `resonario-kind-banner-guided.avif` | Resonario · tipo de escucha · Prácticas guiadas | 16:8 | 2880×1440 | P2 | Completadas |
 | `og-image.jpg` | Metadatos · Open Graph | 1.91:1 | 1200×630 | P0 | Completadas |
+| `academy-hero-dawn.avif` | Academia · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `store-hero-dawn.avif` | Tienda · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `about-hero-dawn.avif` | Sobre Marisol · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `portal-hero-dusk.avif` | Portal · umbral · tema · Atardecer | 16:9 | 2880×1620 | P0 | Completadas |
+| `portal-hero-dawn.avif` | Portal · umbral · tema · Amanecer | 16:9 | 2880×1620 | P0 | Completadas |
+| `portal-hero-forest.avif` | Portal · umbral · tema · Bosque | 16:9 | 2880×1620 | P0 | Completadas |
+| `home-hero-dusk.avif` | Home · hero · tema · Atardecer | 16:9 | 2880×1620 | P0 | Completadas |
+| `home-hero-dawn.avif` | Home · hero · tema · Amanecer | 16:9 | 2880×1620 | P0 | Completadas |
+| `home-hero-forest.avif` | Home · hero · tema · Bosque | 16:9 | 2880×1620 | P0 | Completadas |
+| `about-hero-dusk.avif` | Sobre Marisol · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `about-hero-forest.avif` | Sobre Marisol · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
+| `auth-hero-dusk.avif` | Acceso · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `auth-hero-dawn.avif` | Acceso · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `auth-hero-forest.avif` | Acceso · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
+| `discover-hero-dusk.avif` | Descúbrete · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `discover-hero-dawn.avif` | Descúbrete · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `discover-hero-forest.avif` | Descúbrete · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
+| `academy-hero-dusk.avif` | Academia · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `academy-hero-forest.avif` | Academia · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
+| `experiences-hero-dusk.avif` | Experiencias · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `experiences-hero-dawn.avif` | Experiencias · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `experiences-hero-forest.avif` | Experiencias · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
+| `booking-hero-dusk.avif` | Reserva · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `booking-hero-dawn.avif` | Reserva · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `booking-hero-forest.avif` | Reserva · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
+| `store-hero-dusk.avif` | Tienda · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `store-hero-forest.avif` | Tienda · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
+| `sanctuary-hero-dusk.avif` | Mi Santuario · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `sanctuary-hero-dawn.avif` | Mi Santuario · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `sanctuary-hero-forest.avif` | Mi Santuario · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
+| `home-daily-frequency-dawn.avif` | Home · frecuencia del día · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
+| `home-realms-banner-dawn.avif` | Home · banner de realms · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
+| `home-footer-banner-dawn.avif` | Home · cierre · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
+| `home-membership-dawn.avif` | Home · membresía · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
+| `about-angels-dawn.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
+| `auth-form-atmosphere-dawn.avif` | Acceso · formulario · tema · Amanecer | 3:4 | 1440×1920 | P2 | Completadas |
+| `discover-question-atmosphere-dawn.avif` | Descúbrete · pregunta · tema · Amanecer | 3:4 | 1440×1920 | P2 | Completadas |
+| `resonario-featured-dawn.avif` | Resonario · destacado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
+| `resonario-archive-banner-dawn.avif` | Resonario · archivo · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
+| `academy-featured-course-dawn.avif` | Academia · curso destacado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
+| `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
+| `store-ritual-banner-dawn.avif` | Tienda · banner ritual · tema · Amanecer | 16:9 | 2880×1620 | P2 | Completadas |
+| `portal-hero-moon.avif` | Portal · umbral · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
+| `home-hero-moon.avif` | Home · hero · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
+| `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
+| `about-hero-moon.avif` | Sobre Marisol · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
+| `auth-hero-moon.avif` | Acceso · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
+| `discover-hero-moon.avif` | Descúbrete · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
+| `academy-hero-moon.avif` | Academia · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
+| `experiences-hero-moon.avif` | Experiencias · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
+| `booking-hero-moon.avif` | Reserva · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
+| `store-hero-moon.avif` | Tienda · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
+| `sanctuary-hero-moon.avif` | Mi Santuario · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
+| `resonario-hero-dusk.avif` | Resonario · hero · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `resonario-hero-dawn.avif` | Resonario · hero · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
+| `resonario-hero-forest.avif` | Resonario · hero · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 
 ## 5. Estado de las imágenes
 
@@ -232,135 +280,11 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (9)
+### 5.2 Faltantes (0)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
-#### `resonario.audio-cover.* · Pulso sereno` — Resonario · portadas · P1
-
-- **Archivo:** `resonario-audio-cover-b1.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Portada de cada audio del archivo: el sonido con rostro (16 audios).
-
-**Prompt**
-
-```text
-Concentric slow ripples of pale light spreading across a dark night lake, teal and silver, no figures, the upper 40% plain dark sky, calm and wide. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `resonario.audio-cover.* · Pulso de raíz` — Resonario · portadas · P1
-
-- **Archivo:** `resonario-audio-cover-b2.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Portada de cada audio del archivo: el sonido con rostro (16 audios).
-
-**Prompt**
-
-```text
-A dark moss-green riverbank at night, tree roots reaching down into still water, one thin line of teal light along the surface, quiet and grounded. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `resonario.audio-cover.* · Orilla de mar` — Resonario · portadas · P1
-
-- **Archivo:** `resonario-audio-cover-n1.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Portada de cada audio del archivo: el sonido con rostro (16 audios).
-
-**Prompt**
-
-```text
-A dark night shoreline, long low waves catching faint silver light, sea mist drifting over the water, horizontal and spacious. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `resonario.audio-cover.* · Lluvia en la ventana` — Resonario · portadas · P1
-
-- **Archivo:** `resonario-audio-cover-n2.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Portada de cada audio del archivo: el sonido con rostro (16 audios).
-
-**Prompt**
-
-```text
-Rain falling over a dark valley at night, soft blurred lights far away, long pale streaks of rain catching the light, lavender mist, calm. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `resonario.audio-cover.* · Canto de aves` — Resonario · portadas · P1
-
-- **Archivo:** `resonario-audio-cover-n3.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Portada de cada audio del archivo: el sonido con rostro (16 audios).
-
-**Prompt**
-
-```text
-A dawn sky over a forest edge, pale gold light breaking through the treetops, a few birds as tiny dark shapes in the light, open air. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: warm muted gold (#D8B978) light on a dark navy ground; teal and lavender only as faint accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `resonario.audio-cover.* · Música celta para bajar el ritmo` — Resonario · portadas · P1
-
-- **Archivo:** `resonario-audio-cover-m1.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Portada de cada audio del archivo: el sonido con rostro (16 audios).
-
-**Prompt**
-
-```text
-Low mist over dark water in a valley at blue hour, a single line of warm light on the far hills, quiet and unhurried. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: dusty lavender (#B9B0D6) dusk light with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `resonario.audio-cover.* · Piano para la pausa` — Resonario · portadas · P1
-
-- **Archivo:** `resonario-audio-cover-m2.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Portada de cada audio del archivo: el sonido con rostro (16 audios).
-
-**Prompt**
-
-```text
-Soft ivory light falling on still dark water at night, a pale reflection and a long quiet space, minimal. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Balanced faint gold, teal and lavender, ultra calm, very low contrast. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `resonario.audio-cover.* · Respiración guiada` — Resonario · portadas · P1
-
-- **Archivo:** `resonario-audio-cover-g1.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Portada de cada audio del archivo: el sonido con rostro (16 audios).
-
-**Prompt**
-
-```text
-A soft column of luminous fog rising slowly from dark still water under a night sky, silver-teal light, open and calm. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: soft desaturated teal (#96C6BC) mist with small warm gold accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
-
-#### `resonario.audio-cover.* · Un momento para ti` — Resonario · portadas · P1
-
-- **Archivo:** `resonario-audio-cover-g2.avif`
-- **Medidas:** master 1024×1024 · tablet 768×768 · móvil 640×640 · generar a 1024×1024 (sin ampliar después) · peso ≤ 120 KB
-- **Ratio / focal:** 1:1 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Portada de cada audio del archivo: el sonido con rostro (16 audios).
-
-**Prompt**
-
-```text
-A single warm glow seen through mist at the edge of a dark forest at night, an intimate landscape with no figures. Square, the exact center of the frame (50% horizontal, 50% vertical) is calm, dark and low in contrast because content is laid over it later: nothing bright and nothing sharp sits there. Square framing. Dominant tone: warm muted gold (#D8B978) light on a dark navy ground; teal and lavender only as faint accents. Cinematic fine-art photograph, photorealistic, low-key, long-exposure feel, soft atmospheric haze and mist. Color grade: matte, low contrast and desaturated, like a muted film still; shadows are deep midnight navy (#0F1B2E), never pure black; a single warm, muted gold light (#D8B978) is the only strong light; soft teal (#96C6BC) and dusty lavender (#B9B0D6) appear only as faint glows; ivory (#F7F4EA) highlights; no bloom, no glare, never neon, no lens flare, no oversaturated or electric colors. When the sky is visible: only a few dozen fine pinpoint stars in the upper third, and any galaxy is small, faint and soft, never a sharp detailed spiral. The darkness at the edges comes from the scene itself (unlit sky, water or room), with nothing bright touching the frame edge and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere.
-```
+Ninguna.
 
 ### 5.3 Por cablear (crear vistas) (0)
 
@@ -376,7 +300,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (80)
+### 5.5 Completadas (137)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -409,6 +333,15 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-audio-cover-a5.avif` | Resonario · portadas · Aroma de Cedro | `resonario.audio-cover.*` | 1:1 | P1 |
 | `resonario-audio-cover-a6.avif` | Resonario · portadas · Respirar el Cielo | `resonario.audio-cover.*` | 1:1 | P1 |
 | `resonario-audio-cover-a7.avif` | Resonario · portadas · Corazón Abierto | `resonario.audio-cover.*` | 1:1 | P1 |
+| `resonario-audio-cover-b1.avif` | Resonario · portadas · Pulso sereno | `resonario.audio-cover.*` | 1:1 | P1 |
+| `resonario-audio-cover-b2.avif` | Resonario · portadas · Pulso de raíz | `resonario.audio-cover.*` | 1:1 | P1 |
+| `resonario-audio-cover-n1.avif` | Resonario · portadas · Orilla de mar | `resonario.audio-cover.*` | 1:1 | P1 |
+| `resonario-audio-cover-n2.avif` | Resonario · portadas · Lluvia en la ventana | `resonario.audio-cover.*` | 1:1 | P1 |
+| `resonario-audio-cover-n3.avif` | Resonario · portadas · Canto de aves | `resonario.audio-cover.*` | 1:1 | P1 |
+| `resonario-audio-cover-m1.avif` | Resonario · portadas · Música celta para bajar el ritmo | `resonario.audio-cover.*` | 1:1 | P1 |
+| `resonario-audio-cover-m2.avif` | Resonario · portadas · Piano para la pausa | `resonario.audio-cover.*` | 1:1 | P1 |
+| `resonario-audio-cover-g1.avif` | Resonario · portadas · Respiración guiada | `resonario.audio-cover.*` | 1:1 | P1 |
+| `resonario-audio-cover-g2.avif` | Resonario · portadas · Un momento para ti | `resonario.audio-cover.*` | 1:1 | P1 |
 | `academy-hero.avif` | Academia · hero | `academy.hero` | 16:9 | P1 |
 | `academy-featured-course.avif` | Academia · curso destacado | `academy.featured-course` | 16:8 | P1 |
 | `academy-course-cover-c1.avif` | Academia · portadas de curso · El Arte de Volver a Ti | `academy-course-cover` | 16:8 | P1 |
@@ -446,15 +379,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `states-empty.avif` | Estados · vacío | `states.empty` | 16:9 | P2 |
 | `states-error.avif` | Estados · error | `states.error` | 16:9 | P2 |
 | `states-offline.avif` | Estados · sin conexión | `states.offline` | 16:9 | P2 |
-| `atmosphere-dusk.avif` | Atmósfera · Atardecer (descanso) | `atmosphere.dusk` | 16:9 | P1 |
-| `atmosphere-dawn.avif` | Atmósfera · Amanecer (calma de día) | `atmosphere.dawn` | 16:9 | P1 |
-| `atmosphere-store.avif` | Atmósfera · Taller (tienda) | `atmosphere.store` | 16:9 | P1 |
-| `atmosphere-moon.avif` | Atmósfera · Luna (escucha nocturna) | `atmosphere.moon` | 16:9 | P1 |
-| `atmosphere-forest.avif` | Atmósfera · Bosque (raíz y agua) | `atmosphere.forest` | 16:9 | P1 |
 | `atmosphere-forest-autumn.avif` | Atmósfera · Bosque otoñal (nostalgia) | `atmosphere.forest-autumn` | 16:9 | P2 |
-| `atmosphere-study.avif` | Atmósfera · Estudio (academia) | `atmosphere.study` | 16:9 | P1 |
-| `atmosphere-gathering.avif` | Atmósfera · Encuentro (experiencias) | `atmosphere.gathering` | 16:9 | P1 |
-| `atmosphere-marisol.avif` | Atmósfera · Luz de Marisol (sobre Marisol) | `atmosphere.marisol` | 16:9 | P1 |
 | `resonario-celtic.avif` | Resonario · música de inspiración celta | `resonario.celtic` | 16:9 | P1 |
 | `resonario-kind-banner-melody.avif` | Resonario · tipo de escucha · Melodías instrumentales | `resonario.kind-banner.*` | 16:8 | P2 |
 | `resonario-kind-banner-nature.avif` | Resonario · tipo de escucha · Naturaleza | `resonario.kind-banner.*` | 16:8 | P2 |
@@ -462,22 +387,93 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-kind-banner-binaural.avif` | Resonario · tipo de escucha · Binaurales | `resonario.kind-banner.*` | 16:8 | P2 |
 | `resonario-kind-banner-guided.avif` | Resonario · tipo de escucha · Prácticas guiadas | `resonario.kind-banner.*` | 16:8 | P2 |
 | `og-image.jpg` | Metadatos · Open Graph | `og-image` | 1.91:1 | P0 |
+| `academy-hero-dawn.avif` | Academia · hero · tema · Amanecer | `academy.hero` | 16:9 | P1 |
+| `store-hero-dawn.avif` | Tienda · hero · tema · Amanecer | `store.hero` | 16:9 | P1 |
+| `about-hero-dawn.avif` | Sobre Marisol · hero · tema · Amanecer | `about.hero` | 16:9 | P1 |
+| `portal-hero-dusk.avif` | Portal · umbral · tema · Atardecer | `portal.hero` | 16:9 | P0 |
+| `portal-hero-dawn.avif` | Portal · umbral · tema · Amanecer | `portal.hero` | 16:9 | P0 |
+| `portal-hero-forest.avif` | Portal · umbral · tema · Bosque | `portal.hero` | 16:9 | P0 |
+| `home-hero-dusk.avif` | Home · hero · tema · Atardecer | `home.hero` | 16:9 | P0 |
+| `home-hero-dawn.avif` | Home · hero · tema · Amanecer | `home.hero` | 16:9 | P0 |
+| `home-hero-forest.avif` | Home · hero · tema · Bosque | `home.hero` | 16:9 | P0 |
+| `about-hero-dusk.avif` | Sobre Marisol · hero · tema · Atardecer | `about.hero` | 16:9 | P1 |
+| `about-hero-forest.avif` | Sobre Marisol · hero · tema · Bosque | `about.hero` | 16:9 | P1 |
+| `auth-hero-dusk.avif` | Acceso · hero · tema · Atardecer | `auth.hero` | 16:9 | P1 |
+| `auth-hero-dawn.avif` | Acceso · hero · tema · Amanecer | `auth.hero` | 16:9 | P1 |
+| `auth-hero-forest.avif` | Acceso · hero · tema · Bosque | `auth.hero` | 16:9 | P1 |
+| `discover-hero-dusk.avif` | Descúbrete · hero · tema · Atardecer | `discover.hero` | 16:9 | P1 |
+| `discover-hero-dawn.avif` | Descúbrete · hero · tema · Amanecer | `discover.hero` | 16:9 | P1 |
+| `discover-hero-forest.avif` | Descúbrete · hero · tema · Bosque | `discover.hero` | 16:9 | P1 |
+| `academy-hero-dusk.avif` | Academia · hero · tema · Atardecer | `academy.hero` | 16:9 | P1 |
+| `academy-hero-forest.avif` | Academia · hero · tema · Bosque | `academy.hero` | 16:9 | P1 |
+| `experiences-hero-dusk.avif` | Experiencias · hero · tema · Atardecer | `experiences.hero` | 16:9 | P1 |
+| `experiences-hero-dawn.avif` | Experiencias · hero · tema · Amanecer | `experiences.hero` | 16:9 | P1 |
+| `experiences-hero-forest.avif` | Experiencias · hero · tema · Bosque | `experiences.hero` | 16:9 | P1 |
+| `booking-hero-dusk.avif` | Reserva · hero · tema · Atardecer | `booking.hero` | 16:9 | P1 |
+| `booking-hero-dawn.avif` | Reserva · hero · tema · Amanecer | `booking.hero` | 16:9 | P1 |
+| `booking-hero-forest.avif` | Reserva · hero · tema · Bosque | `booking.hero` | 16:9 | P1 |
+| `store-hero-dusk.avif` | Tienda · hero · tema · Atardecer | `store.hero` | 16:9 | P1 |
+| `store-hero-forest.avif` | Tienda · hero · tema · Bosque | `store.hero` | 16:9 | P1 |
+| `sanctuary-hero-dusk.avif` | Mi Santuario · hero · tema · Atardecer | `sanctuary.hero` | 16:9 | P1 |
+| `sanctuary-hero-dawn.avif` | Mi Santuario · hero · tema · Amanecer | `sanctuary.hero` | 16:9 | P1 |
+| `sanctuary-hero-forest.avif` | Mi Santuario · hero · tema · Bosque | `sanctuary.hero` | 16:9 | P1 |
+| `home-daily-frequency-dawn.avif` | Home · frecuencia del día · tema · Amanecer | `home.daily-frequency` | 16:8 | P1 |
+| `home-realms-banner-dawn.avif` | Home · banner de realms · tema · Amanecer | `home.realms-banner` | 16:8 | P1 |
+| `home-footer-banner-dawn.avif` | Home · cierre · tema · Amanecer | `home.footer-banner` | 16:9 | P2 |
+| `home-membership-dawn.avif` | Home · membresía · tema · Amanecer | `home-membership` | 16:9 | P2 |
+| `about-angels-dawn.avif` | Sobre Marisol · Experiencias con Ángeles · tema · Amanecer | `about.angels` | 16:8 | P1 |
+| `auth-form-atmosphere-dawn.avif` | Acceso · formulario · tema · Amanecer | `auth.form-atmosphere` | 3:4 | P2 |
+| `discover-question-atmosphere-dawn.avif` | Descúbrete · pregunta · tema · Amanecer | `discover.question-atmosphere` | 3:4 | P2 |
+| `resonario-featured-dawn.avif` | Resonario · destacado · tema · Amanecer | `resonario.featured` | 16:8 | P1 |
+| `resonario-archive-banner-dawn.avif` | Resonario · archivo · tema · Amanecer | `resonario.archive-banner` | 16:9 | P2 |
+| `academy-featured-course-dawn.avif` | Academia · curso destacado · tema · Amanecer | `academy.featured-course` | 16:8 | P1 |
+| `experiences-featured-dawn.avif` | Experiencias · destacada · tema · Amanecer | `experiences.featured` | 16:8 | P1 |
+| `store-ritual-banner-dawn.avif` | Tienda · banner ritual · tema · Amanecer | `store.ritual-banner` | 16:9 | P2 |
+| `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
+| `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
+| `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
+| `about-hero-moon.avif` | Sobre Marisol · hero · tema · Luna | `about.hero` | 16:9 | P1 |
+| `auth-hero-moon.avif` | Acceso · hero · tema · Luna | `auth.hero` | 16:9 | P1 |
+| `discover-hero-moon.avif` | Descúbrete · hero · tema · Luna | `discover.hero` | 16:9 | P1 |
+| `academy-hero-moon.avif` | Academia · hero · tema · Luna | `academy.hero` | 16:9 | P1 |
+| `experiences-hero-moon.avif` | Experiencias · hero · tema · Luna | `experiences.hero` | 16:9 | P1 |
+| `booking-hero-moon.avif` | Reserva · hero · tema · Luna | `booking.hero` | 16:9 | P1 |
+| `store-hero-moon.avif` | Tienda · hero · tema · Luna | `store.hero` | 16:9 | P1 |
+| `sanctuary-hero-moon.avif` | Mi Santuario · hero · tema · Luna | `sanctuary.hero` | 16:9 | P1 |
+| `resonario-hero-dusk.avif` | Resonario · hero · tema · Atardecer | `resonario.hero` | 16:9 | P1 |
+| `resonario-hero-dawn.avif` | Resonario · hero · tema · Amanecer | `resonario.hero` | 16:9 | P1 |
+| `resonario-hero-forest.avif` | Resonario · hero · tema · Bosque | `resonario.hero` | 16:9 | P1 |
 
-### 5.6 Provisionales: reemplazar antes de publicar (23)
+### 5.6 Provisionales: reemplazar antes de publicar (71)
 
 Imágenes generadas que hacen de marco mientras llegan las fotografías reales (propias de Marisol o con licencia comercial documentada). Pueden estar completadas y seguir siendo provisionales: esta lista no es un estado, cruza los de arriba.
 
 | Slot | Vista | Archivos | Qué hacer |
 |---|---|---|---|
 | `store-product-visual` | Tienda · productos | `store-product-visual-p1.avif`, `store-product-visual-p2.avif`, `store-product-visual-p3.avif`, `store-product-visual-p4.avif`, `store-product-visual-p5.avif`, `store-product-visual-p6.avif`, `store-product-visual-p7.avif`, `store-product-visual-p8.avif` | Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto. |
-| `atmosphere.dusk` | Atmósfera · Atardecer (descanso) | `atmosphere-dusk.avif` | Atardecer natural, sin rojo intenso (D2 del spec). Sustituir por fotografía propia o con licencia comercial documentada. |
-| `atmosphere.dawn` | Atmósfera · Amanecer (calma de día) | `atmosphere-dawn.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
-| `atmosphere.store` | Atmósfera · Taller (tienda) | `atmosphere-store.avif` | Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo. |
-| `atmosphere.moon` | Atmósfera · Luna (escucha nocturna) | `atmosphere-moon.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
-| `atmosphere.forest` | Atmósfera · Bosque (raíz y agua) | `atmosphere-forest.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
 | `atmosphere.forest-autumn` | Atmósfera · Bosque otoñal (nostalgia) | `atmosphere-forest-autumn.avif` | Sólo si hay material: la variante otoñal es opcional (spec §4.2). Sustituir por fotografía propia o con licencia comercial documentada. |
-| `atmosphere.study` | Atmósfera · Estudio (academia) | `atmosphere-study.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
-| `atmosphere.gathering` | Atmósfera · Encuentro (experiencias) | `atmosphere-gathering.avif` | Sin personas por regla del brief. Sustituir por fotografías propias de Marisol de un encuentro real. |
-| `atmosphere.marisol` | Atmósfera · Luz de Marisol (sobre Marisol) | `atmosphere-marisol.avif` | Marco provisional. Sustituir por fotografías y videos reales de Marisol (spec §8). |
 | `resonario.celtic` | Resonario · música de inspiración celta | `resonario-celtic.avif` | Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `resonario.kind-banner.*` | Resonario · tipo de escucha | `resonario-kind-banner-melody.avif`, `resonario-kind-banner-nature.avif`, `resonario-kind-banner-frequency.avif`, `resonario-kind-banner-binaural.avif`, `resonario-kind-banner-guided.avif` | Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `academy.hero` | Academia · hero · tema | `academy-hero-dawn.avif`, `academy-hero-dusk.avif`, `academy-hero-forest.avif`, `academy-hero-moon.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
+| `store.hero` | Tienda · hero · tema | `store-hero-dawn.avif`, `store-hero-dusk.avif`, `store-hero-forest.avif`, `store-hero-moon.avif` | Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo. |
+| `about.hero` | Sobre Marisol · hero · tema | `about-hero-dawn.avif`, `about-hero-dusk.avif`, `about-hero-forest.avif`, `about-hero-moon.avif` | Marco provisional. Sustituir por fotografías y videos reales de Marisol (spec §8). |
+| `portal.hero` | Portal · umbral · tema | `portal-hero-dusk.avif`, `portal-hero-dawn.avif`, `portal-hero-forest.avif`, `portal-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.hero` | Home · hero · tema | `home-hero-dusk.avif`, `home-hero-dawn.avif`, `home-hero-forest.avif`, `home-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `auth.hero` | Acceso · hero · tema | `auth-hero-dusk.avif`, `auth-hero-dawn.avif`, `auth-hero-forest.avif`, `auth-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `discover.hero` | Descúbrete · hero · tema | `discover-hero-dusk.avif`, `discover-hero-dawn.avif`, `discover-hero-forest.avif`, `discover-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `experiences.hero` | Experiencias · hero · tema | `experiences-hero-dusk.avif`, `experiences-hero-dawn.avif`, `experiences-hero-forest.avif`, `experiences-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `booking.hero` | Reserva · hero · tema | `booking-hero-dusk.avif`, `booking-hero-dawn.avif`, `booking-hero-forest.avif`, `booking-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `sanctuary.hero` | Mi Santuario · hero · tema | `sanctuary-hero-dusk.avif`, `sanctuary-hero-dawn.avif`, `sanctuary-hero-forest.avif`, `sanctuary-hero-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.daily-frequency` | Home · frecuencia del día · tema | `home-daily-frequency-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.realms-banner` | Home · banner de realms · tema | `home-realms-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home.footer-banner` | Home · cierre · tema | `home-footer-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home-membership` | Home · membresía · tema | `home-membership-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `about.angels` | Sobre Marisol · Experiencias con Ángeles · tema | `about-angels-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `auth.form-atmosphere` | Acceso · formulario · tema | `auth-form-atmosphere-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `discover.question-atmosphere` | Descúbrete · pregunta · tema | `discover-question-atmosphere-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `resonario.featured` | Resonario · destacado · tema | `resonario-featured-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `resonario.archive-banner` | Resonario · archivo · tema | `resonario-archive-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `academy.featured-course` | Academia · curso destacado · tema | `academy-featured-course-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `experiences.featured` | Experiencias · destacada · tema | `experiences-featured-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `store.ritual-banner` | Tienda · banner ritual · tema | `store-ritual-banner-dawn.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `resonario.hero` | Resonario · hero · tema | `resonario-hero-moon.avif`, `resonario-hero-dusk.avif`, `resonario-hero-dawn.avif`, `resonario-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |

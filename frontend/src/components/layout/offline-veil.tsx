@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { getImageProps } from 'next/image';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence } from 'motion/react';
@@ -41,7 +41,11 @@ export function OfflineVeil() {
 
   const visible = !online && !dismissed;
   const duration = reduced ? 0 : DURATION.base;
-  const media = resolveEditorialMedia('states.offline', { alt: t('media.alt.offline') });
+  const offlineAlt = t('media.alt.offline');
+  const media = useMemo(
+    () => resolveEditorialMedia('states.offline', { alt: offlineAlt }),
+    [offlineAlt],
+  );
 
   return (
     <>
@@ -107,7 +111,7 @@ function OfflineScene({ kicker, message, dismissLabel, media, onDismiss }: Offli
         <Kicker tone="lav" spacing="wide" className="mb-[18px]">
           {kicker}
         </Kicker>
-        <Display id="offline-veil-title" size="lg" level="h2" className="max-w-[18ch]">
+        <Display id="offline-veil-title" size="lg" level="h2" className="max-w-measure-title-xl">
           {message}
         </Display>
         <Button variant="outline" onClick={onDismiss} className="mt-block">

@@ -6,7 +6,8 @@ import { useTranslations } from 'next-intl';
 
 import { PlayPauseIcon } from '@/components/features/player/player-icons';
 import { Badge, Button, Float, Kicker, Prose, SectionHeading } from '@/components/ui';
-import { PRODUCTS } from '@/data';
+import { PRODUCTS } from '@/data/products';
+import { messageKey } from '@/i18n/keys';
 import { useRouter } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
 import { cn } from '@/lib/cn';
@@ -52,7 +53,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
       return view ? [{ kind, media: view }] : [];
     }),
   ];
-  const frequencyTitle = tResonario(`audios.${product.relatedAudioId}.title` as 'audios.a1.title');
+  const frequencyTitle = tResonario(`audios.${product.relatedAudioId}.title`);
 
   return (
     <div>
@@ -70,12 +71,12 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
             <h1 className="text-fg mt-4 font-serif text-[clamp(36px,5vw,72px)] leading-[0.94]">
               {title}
             </h1>
-            <p className="text-accent tracking-soft mt-6 font-serif text-[30px]">
+            <p className="text-accent tracking-soft text-serif-2xl mt-6 font-serif">
               {formatPrice(product.price)}
             </p>
           </div>
 
-          <Prose maxWidth={48}>{t('productDescription')}</Prose>
+          <Prose maxWidth={52}>{t('productDescription')}</Prose>
           {/* Tamaño y contenido sólo si el dato existe: lo confirma Marisol. */}
           {specs.length > 0 ? (
             <dl aria-label={t('specs.label')} className="grid gap-2" data-product-specs>
@@ -85,7 +86,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
                     {t(`specs.${id}`)}
                   </dt>
                   <dd className="text-fg-soft text-body font-sans">
-                    {t(key.replace(/^store\./, '') as 'notes')}
+                    {t(messageKey('store', key))}
                   </dd>
                 </div>
               ))}
@@ -142,7 +143,7 @@ export function ProductDetail({ product, media }: ProductDetailProps) {
               <span className="text-accent-2 text-label tracking-label font-sans uppercase">
                 {t('relatedFrequencyLabel')}
               </span>
-              <span className="text-fg font-serif text-[16px]">{frequencyTitle}</span>
+              <span className="text-fg text-serif-xs font-serif">{frequencyTitle}</span>
             </span>
           </button>
 

@@ -3,9 +3,8 @@
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { AtmospherePicker } from '@/components/features/atmosphere/atmosphere-picker';
 import { EmptyState, Button, Swap } from '@/components/ui';
-import { AUDIOS } from '@/data';
+import { AUDIOS } from '@/data/audios';
 import { featuredAudio, kindSections } from '@/lib/resonario/layout-slots';
 import type { AudioKind } from '@/types/content';
 import type { EditorialMedia } from '@/types/editorial-media';
@@ -50,9 +49,6 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
 
   return (
     <>
-      <div className="mb-8">
-        <AtmospherePicker />
-      </div>
       <ResonarioFilters active={filter} onChange={setFilter} />
 
       {/* Al filtrar, la vista anterior se funde antes de que entre la nueva. */}
@@ -71,8 +67,13 @@ export function ResonarioSystem({ media }: { media: ResonarioMedia }) {
           <div className="gap-section flex flex-col">
             {showAll && featured ? <FeaturedSun audio={featured} cover={media.featured} /> : null}
 
-            {sections.map(({ entry, tracks }) => (
-              <KindSection key={entry.kind} entry={entry} banner={media.kindBanners[entry.kind]}>
+            {sections.map(({ entry, tracks }, index) => (
+              <KindSection
+                key={entry.kind}
+                entry={entry}
+                banner={media.kindBanners[entry.kind]}
+                deferRender={index > 0}
+              >
                 {entry.kind === 'melody' ? <CelticFeature media={media.celtic} /> : null}
                 <div className={TRACK_GRID}>
                   {tracks.map((audio) => (

@@ -18,12 +18,22 @@ const pageSource = readSource('app/[locale]/experiencias/(catalogo)/page.tsx');
 const bookingPageSource = readSource('app/[locale]/experiencias/[experienceId]/reservar/page.tsx');
 const listSource = readSource('components/features/experiences/experience-list.tsx');
 const rowSource = readSource('components/features/experiences/experience-row.tsx');
-const bookingSource = readSource('components/features/experiences/booking-flow.tsx');
+const dateSource = readSource('components/features/experiences/experience-date.tsx');
+// El flujo se reparte en pasos y en la confirmación; el contrato vive en todos.
+const bookingSource = [
+  'components/features/experiences/booking-flow.tsx',
+  'components/features/experiences/booking-date-step.tsx',
+  'components/features/experiences/booking-details-step.tsx',
+  'components/features/experiences/booking-confirmation.tsx',
+  'components/ui/confirmation-panel.tsx',
+]
+  .map((file) => readSource(file))
+  .join('\n');
 const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/experiencias/(catalogo)/loading.tsx');
 
 const EXPERIENCE_SLOTS = [
-  { slot: 'atmosphere.gathering' as const, aspect: '16:9' as const, alt: 'hero' },
+  { slot: 'experiences.hero' as const, aspect: '16:9' as const, alt: 'hero' },
   { slot: 'experiences.featured' as const, aspect: '16:8' as const, alt: 'featured' },
   { slot: 'experiences-visual' as const, aspect: '16:9' as const, alt: 'row' },
   { slot: 'booking.hero' as const, aspect: '16:9' as const, alt: 'hero' },
@@ -77,7 +87,7 @@ describe('experiences editorial composition contracts', () => {
   it('composes a localized full-width hero and passes media into the experiences archive', () => {
     expect(pageSource).toContain('const locale = await resolveLocale(params);');
     expect(pageSource).toContain("getTranslations({ locale, namespace: 'experiences' })");
-    expect(pageSource).toContain("resolveEditorialMedia('atmosphere.gathering'");
+    expect(pageSource).toContain("resolveEditorialMedia('experiences.hero'");
     expect(pageSource).toContain("resolveEditorialMedia('experiences.featured'");
     expect(pageSource).toContain("resolveEditorialMedia('experiences-visual'");
     expect(pageSource).toContain('<RealmHero');
@@ -98,11 +108,14 @@ describe('experiences editorial composition contracts', () => {
     expect(rowSource).toContain('media={media}');
     expect(rowSource).toContain('formatPrice(experience.price)');
     expect(rowSource).toContain('experience.dur');
-    expect(rowSource).toContain('dateTime={date.iso}');
-    expect(rowSource).toContain('{date.dow} {date.day} {date.month}');
-    expect(listSource).toContain('upcomingDates(new Date(), EXPERIENCES.length, locale)');
-    expect(listSource).toContain('date={dates[0]!}');
-    expect(listSource).toContain('date={dates[index + 1]!}');
+    // La fecha se resuelve en el cliente (SSG seguro); el contrato de la fila
+    // es pasarle cuántas fechas hay y en qué posición va.
+    expect(dateSource).toContain('dateTime={date?.iso}');
+    expect(dateSource).toContain('{date.dow} {date.day} {date.month}');
+    expect(rowSource).toContain('<ExperienceDate');
+    expect(listSource).toContain('dateCount={EXPERIENCES.length}');
+    expect(listSource).toContain('dateIndex={0}');
+    expect(listSource).toContain('dateIndex={index + 1}');
     // El CTA es un ButtonLink (cliente): Button asChild + Link desaparece en Server Components.
     expect(rowSource).toContain('<ButtonLink');
     expect(rowSource).toContain("pathname: '/experiencias/[experienceId]/reservar'");
@@ -122,9 +135,9 @@ describe('experiences editorial composition contracts', () => {
     );
     expect(bookingSource).toContain('media: BookingMedia');
     expect(bookingSource).toContain('data-editorial-media="booking.hero"');
-    expect(bookingSource).toContain('data-editorial-media="booking.confirmation"');
+    expect(bookingSource).toContain('slot="booking.confirmation"');
     expect(bookingSource).toContain('<EditorialImage');
-    expect(bookingSource).toContain('aria-live="polite"');
+    expect(bookingSource).toContain("aria-live={announce ? 'polite' : undefined}");
     expect(bookingSource).toContain('aria-pressed={booking.state.date === d.iso}');
     expect(bookingSource).toContain('aria-pressed={booking.state.time === time}');
     expect(bookingSource).toContain('booking.canContinue');

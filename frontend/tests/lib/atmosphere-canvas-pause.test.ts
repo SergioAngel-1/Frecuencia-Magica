@@ -6,8 +6,7 @@ import type { VisualMode } from '@/config/realms';
 import type { AtmosphereId } from '@/types/atmosphere';
 
 const MODES: VisualMode[] = ['cosmic', 'editorial', 'quiet'];
-const LIGHT: AtmosphereId[] = ['dawn', 'study', 'store', 'marisol'];
-const DARK: AtmosphereId[] = ['night', 'dusk', 'moon', 'forest', 'gathering'];
+const THEMES: AtmosphereId[] = ['night', 'dusk', 'dawn', 'moon', 'forest'];
 
 describe('shouldRunCanvas', () => {
   it('runs with the night canvas under every visual mode', () => {
@@ -24,14 +23,9 @@ describe('shouldRunCanvas', () => {
     expect(shouldRunCanvas(0.051)).toBe(true);
   });
 
-  it.each(MODES)('pauses the light atmospheres under %s', (mode) => {
-    for (const id of LIGHT) {
-      expect(shouldRunCanvas(engineProfile(id, mode).canvas), `${id} ${mode}`).toBe(false);
-    }
-  });
-
-  it.each(MODES)('runs the dark atmospheres under %s', (mode) => {
-    for (const id of DARK) {
+  // Cada tema pinta su propia escena: ninguno apaga el lienzo, ni siquiera el claro.
+  it.each(MODES)('runs the canvas of every theme under %s', (mode) => {
+    for (const id of THEMES) {
       expect(shouldRunCanvas(engineProfile(id, mode).canvas), `${id} ${mode}`).toBe(true);
     }
   });

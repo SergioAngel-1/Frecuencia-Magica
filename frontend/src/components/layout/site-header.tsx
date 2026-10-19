@@ -12,6 +12,7 @@ import { LanguageToggle } from './language-toggle';
 import { RealmMenu } from './realm-menu';
 import { SessionLink } from './session-link';
 import { StoreLink } from './store-link';
+import { ThemeSwitcher } from './theme-switcher';
 
 /**
  * Barra fija superior.
@@ -48,6 +49,7 @@ export function SiteHeader() {
       <div className="pointer-events-none flex items-center gap-2 md:gap-[10px]">
         <LanguageToggle locale={locale} />
         <AudioToggle />
+        <ThemeSwitcher />
         <SessionLink label={t('signIn')} active={realmId === 'auth'} />
         {showStore && <StoreLink active={realmId === 'tienda'} />}
         <CurrentSectionLabel />

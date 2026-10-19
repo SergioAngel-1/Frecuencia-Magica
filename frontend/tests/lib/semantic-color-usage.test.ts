@@ -103,49 +103,15 @@ export function findRawColorUse(source: string): string[] {
 
 /** Excepciones con dueño: archivo (relativo a `src/`) -> motivo. */
 const ALLOWED: Record<string, string> = {
-  // Decorativos permanentes: halos, aros, geometría y brillos sin texto ni controles.
-  // Su visibilidad en atmósferas claras la gobierna el perfil de engine (T0.7).
-  'app/[locale]/not-found.tsx': 'geometría sagrada: anillos orbitales del 404 (decorativo)',
-  'components/features/auth/auth-aside.tsx':
-    'geometría sagrada y halo de la ilustración de acceso (decorativo)',
-  'components/features/descubrete/quiz-layout.tsx':
-    'geometría sagrada y halo del fondo del quiz (decorativo)',
-  'components/features/home/about-section.tsx': 'halo decorativo sin texto ni controles',
-  'components/features/home/hero-section.tsx':
-    'geometría sagrada y halo del isotipo del héroe (decorativo)',
-  'components/features/portal/portal-scene.tsx': 'portal: anillos y halo del cruce (decorativo)',
-  'components/features/sanctuary/sanctuary-header.tsx': 'halo decorativo sin texto ni controles',
-  'components/features/player/player-orb.tsx': 'brillo especular del orbe (decorativo)',
-  'components/layout/brand-mark.tsx': 'halo del isotipo (decorativo)',
-  'components/layout/talk-float.tsx': 'aura decorativa del botón de hablar (decorativo)',
-  'components/world/brand-figures.tsx': 'figuras de marca del world engine (decorativo)',
-  'components/world/luminous-cursor.tsx': 'cursor luminoso (decorativo)',
-  'components/world/nebula-layer.tsx': 'halos del world engine: nebulosa (decorativo)',
-  'components/world/wave-separator.tsx': 'halos del world engine: separador de ondas (decorativo)',
-  'lib/cosmic/scene.ts': 'campo de estrellas del world engine (decorativo)',
-
-  // Aros y halos del UI Kit: decorativos, no se migran (T0.7 decide su visibilidad por atmósfera).
-  'components/ui/empty-state.tsx': 'aros orbitales del vacío (decorativo)',
-  'components/ui/error-state.tsx': 'aros orbitales del estado de error (decorativo)',
-  'components/ui/loading-orb.tsx': 'aros, halo y núcleo del orbe de espera (decorativo)',
+  // Aros y halo de la zebra: materia estructural que no se re-tematiza. El borde
+  // dorado del aro es parte del contrato del fallback (`fm-editorial-zebra`).
   'components/ui/media-skeleton.tsx': 'aros y halo de luz de la zebra (decorativo)',
   'components/ui/editorial-banner.tsx': 'aro orbital decorativo de la banda (border-gold/25)',
-  'components/ui/frequency-disc.tsx':
-    'aros, halos y resplandor del disco (decorativo); texto y bordes ya migrados',
-  'components/features/experiences/experience-row.tsx': 'aros orbitales de la fila (decorativo)',
-  'components/features/home/realm-card.tsx':
-    'aros orbitales de la card (decorativo) y peldaño void-2 del fundido (sin token)',
 
-  // Velos void-2 (#0a1220) que quedan. El modal y el diario ya leen `bg-scrim-deep` (en la noche
-  // vale void-2, en una atmósfera clara es el velo claro). Los de abajo no cambian con la
-  // atmósfera a propósito: el vídeo es un medio (su tinta es marfil sobre oscuro en todas), el
-  // acceso es siempre noche y el degradado de la card cae sobre foto con texto `on-media`.
+  // Velo void-2 del vídeo: superficie de medio, oscura en toda atmósfera
+  // (sus controles van en marfil sobre ella).
   'components/features/player/video-player.tsx':
     'fondo y velo void-2 del vídeo: superficie de medio, oscura en toda atmósfera (controles en marfil)',
-  'components/ui/band.tsx':
-    'base void-2 del degradado inferior de la card: sin token equivalente (decisión abierta)',
-  'components/features/auth/auth-form.tsx':
-    'velo void-2 del panel y peldaño void-2 del degradado: sin token equivalente (decisión abierta)',
 };
 
 describe('semantic color usage', () => {

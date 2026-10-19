@@ -16,26 +16,26 @@ const NIGHT_BY_MODE: Record<VisualMode, { canvas: number; nebula: number; figure
 };
 
 const MODES = Object.keys(NIGHT_BY_MODE) as VisualMode[];
-const LIGHT: AtmosphereId[] = ['dawn', 'study', 'store', 'marisol'];
+const THEMES: AtmosphereId[] = ['night', 'dusk', 'dawn', 'moon', 'forest'];
 
 describe('engineProfile', () => {
   it.each(MODES)('night reproduces the v1 opacity map for %s', (mode) => {
     expect(engineProfile('night', mode)).toEqual(NIGHT_BY_MODE[mode]);
   });
 
-  it.each(MODES)('light atmospheres silence canvas and figures under %s', (mode) => {
-    for (const id of LIGHT) {
+  // Cada tema pinta su escena: el motor se adapta, no se apaga en los claros.
+  it.each(MODES)('no theme silences the engine under %s', (mode) => {
+    for (const id of THEMES) {
       const profile = engineProfile(id, mode);
 
-      expect(profile.canvas, `${id} canvas`).toBeLessThanOrEqual(0.1);
-      expect(profile.figures, `${id} figures`).toBeLessThanOrEqual(0.1);
-    }
-  });
-
-  it.each(MODES)('light atmospheres only tint the nebula under %s', (mode) => {
-    for (const id of LIGHT) {
-      expect(engineProfile(id, mode).nebula, `${id} nebula`).toBeLessThanOrEqual(
-        NIGHT_BY_MODE[mode].nebula * 0.5,
+      expect(profile.canvas, `${id} canvas`).toBeGreaterThanOrEqual(
+        NIGHT_BY_MODE[mode].canvas * 0.9,
+      );
+      expect(profile.nebula, `${id} nebula`).toBeGreaterThanOrEqual(
+        NIGHT_BY_MODE[mode].nebula * 0.9,
+      );
+      expect(profile.figures, `${id} figures`).toBeGreaterThanOrEqual(
+        NIGHT_BY_MODE[mode].figures * 0.5,
       );
     }
   });

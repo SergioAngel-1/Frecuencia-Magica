@@ -22,13 +22,14 @@ const cardSource = readSource('components/features/academy/course-card.tsx');
 const detailSource = readSource('components/features/academy/course-detail.tsx');
 const lessonListSource = readSource('components/features/academy/lesson-list.tsx');
 const moduleListSource = readSource('components/features/academy/module-list.tsx');
+const collapseSource = readSource('components/ui/collapse.tsx');
 const factsSource = readSource('components/features/academy/course-facts.tsx');
 const playerSource = readSource('components/features/academy/lesson-player.tsx');
 const heroSource = readSource('components/layout/realm-hero.tsx');
 const loadingSource = readSource('app/[locale]/academia/(catalogo)/loading.tsx');
 
 const ACADEMY_SLOTS = [
-  { slot: 'atmosphere.study' as const, aspect: '16:9' as const, alt: 'hero' },
+  { slot: 'academy.hero' as const, aspect: '16:9' as const, alt: 'hero' },
   { slot: 'academy.featured-course' as const, aspect: '16:8' as const, alt: 'featured' },
   { slot: 'academy-course-cover' as const, aspect: '16:8' as const, alt: 'courseCover' },
   { slot: 'academy-lesson-visual' as const, aspect: '16:8' as const, alt: 'lesson' },
@@ -66,7 +67,7 @@ describe('academy editorial composition contracts', () => {
   it('composes a localized full-width hero and passes editorial media into the course archive', () => {
     expect(pageSource).toContain('const locale = await resolveLocale(params);');
     expect(pageSource).toContain("getTranslations({ locale, namespace: 'academy' })");
-    expect(pageSource).toContain("resolveEditorialMedia('atmosphere.study'");
+    expect(pageSource).toContain("resolveEditorialMedia('academy.hero'");
     expect(pageSource).toContain("resolveEditorialMedia('academy.featured-course'");
     expect(pageSource).toContain("resolveEditorialMedia('academy-course-cover'");
     expect(pageSource).toContain('<RealmHero');
@@ -118,8 +119,10 @@ describe('academy editorial composition contracts', () => {
     expect(detailSource).toContain('sticky');
     expect(moduleListSource).toContain('<nav');
     expect(moduleListSource).toContain('<LessonList');
-    expect(moduleListSource).toContain('grid-rows-[0fr]');
-    expect(moduleListSource).toContain('grid-rows-[1fr]');
+    // El panel plegable es la primitiva `Collapse`: la fila `0fr`→`1fr` vive ahí.
+    expect(moduleListSource).toContain('<Collapse');
+    expect(collapseSource).toContain('grid-rows-[0fr]');
+    expect(collapseSource).toContain('grid-rows-[1fr]');
     expect(lessonListSource).toContain("aria-current={isCurrent ? 'page' : undefined}");
     expect(lessonListSource).toContain('min-h-11');
     expect(lessonPageSource).toContain('<LessonPlayer');
@@ -139,11 +142,13 @@ describe('academy editorial composition contracts', () => {
 
   it('plays the lesson in the shared player bar, with custom video controls', () => {
     const videoSource = readSource('components/features/player/video-player.tsx');
+    const veilSource = readSource('hooks/use-fullscreen-veil.ts');
     const slotSource = readSource('components/features/player/video-slot.tsx');
     const barSource = readSource('components/features/player/player-bar.tsx');
     const dockSource = readSource('components/features/player/player-dock.tsx');
 
-    expect(playerSource).toContain('<EditorialImage');
+    // El cierre del curso usa el panel de confirmación compartido (ver ui/confirmation-panel).
+    expect(playerSource).toContain('<ConfirmationPanel');
     expect(playerSource).toContain('media={lessonMedia}');
     expect(playerSource).toContain('data-editorial-media={lessonMedia.slot}');
     // La lección consume la imagen de su curso (por instancia); la escena
@@ -165,14 +170,14 @@ describe('academy editorial composition contracts', () => {
     // Es la misma barra que el dock de frecuencias, con la posición siempre a la vista.
     expect(videoSource).toContain('<PlayerBar');
     expect(videoSource).toContain('timeline="always"');
-    expect(dockSource).toContain('<PlayerBar');
+    expect(dockSource).toContain('<PlayerProgressBar');
     expect(barSource).toContain('<SeekBar');
     // Sonido y pantalla completa propios; sin soporte, el botón no se pinta.
-    expect(videoSource).toContain('requestFullscreen');
-    expect(videoSource).toContain('document.fullscreenEnabled');
+    expect(veilSource).toContain('requestFullscreen');
+    expect(veilSource).toContain('document.fullscreenEnabled');
     // Entrar y salir de pantalla completa funde a la noche: nunca un salto.
-    expect(videoSource).toContain("setVeil('fade')");
-    expect(videoSource).toContain("current === 'clear' ? 'cut' : current");
+    expect(veilSource).toContain("setVeil('fade')");
+    expect(veilSource).toContain("current === 'clear' ? 'cut' : current");
     expect(videoSource).toContain('data-video-veil={veil}');
     // Sin fuente no hay reproductor: la fuente es obligatoria (ver video-playback-guard).
     expect(videoSource).toContain('  src: string;');

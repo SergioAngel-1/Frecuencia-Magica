@@ -1,7 +1,7 @@
 /**
  * Por debajo de esta opacidad final el canvas cósmico ya no se ve: su bucle de
- * frames se para. Con el perfil de la v1, las atmósferas claras quedan en 0,05
- * o menos (dawn, study, store, marisol) y la noche nunca baja de 0,34.
+ * frames se para. Con los cinco temas, ninguno baja de 0,34 (el modo `quiet` de la noche): el
+ * umbral queda como red de seguridad para un perfil futuro.
  */
 export const CANVAS_PAUSE_BELOW = 0.05;
 

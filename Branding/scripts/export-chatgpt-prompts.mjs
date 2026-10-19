@@ -8,7 +8,7 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { expandAll, isAtmosphere } from '../src/data/photography.js'
-import { STATES, STATE_LABELS, correctionLines, groupByState } from '../src/data/photography-status.js'
+import { STATES, STATE_LABELS, correctionLines, groupByState, statusOf } from '../src/data/photography-status.js'
 
 const AVOID =
   'Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, saturated colors, HDR, ' +
@@ -24,6 +24,11 @@ const AVOID_ATMOSPHERE =
   'Avoid: text, letters, watermark, logo, neon, glowing neon tube, rainbow spectrum, HDR, oversaturated colors, ' +
   'blown-out sun disc, lens flare, a navy or gold color cast over the whole image, crushed black shadows, ' +
   'people, faces, human figures, boats, stock-photo look, cartoon, CGI plastic look.'
+/** Luna: su tono es el azul noche, así que no se prohíbe «un tinte marino»; se prohíbe lo contrario (naranja) y la imagen plana y oscura. */
+const AVOID_MOON = AVOID_ATMOSPHERE.replace(
+  'a navy or gold color cast over the whole image, crushed black shadows,',
+  'a warm orange or gold color cast over the whole image, a flat black image, a large detailed moon disc, crushed black shadows,',
+)
 const AVOID_PORTRAIT = AVOID.replace('faces, facial features, eyes, nose, lips, ear, ', '')
 
 const FORMAT = {
@@ -63,11 +68,26 @@ const out = [
   '> Generado por `npm run export:chatgpt-prompts` (desde `Branding/`) con los mismos datos que `docs/brief-fotografico.md`. No editar a mano.',
   '> Uso: un chat nuevo de ChatGPT por imagen (así no arrastra el estilo de la anterior), pega el bloque entero sin adjuntar nada (salvo en los productos de la tienda, que llevan adjunta la foto real del producto, como indica su entrada), descarga y guarda con el nombre indicado en `frontend/public/editorial/`. Si cambia algo, pide la corrección concreta en el mismo chat en vez de regenerar desde cero.',
   '> El orden y las secciones son los de la sección 5 de `docs/brief-fotografico.md`; el estado de cada imagen vive en `Branding/src/data/photography-status.js`.',
-  '> Las imágenes de atmósfera (`atmosphere-*`, `resonario-celtic`, `resonario-kind-banner-*`; enmienda 2026-10-17, `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`) llevan otro estilo y otro «Avoid»: color natural, sin personas. **Genera primero las tres muestras: `atmosphere-dusk`, `atmosphere-dawn` y `atmosphere-store`.** Los productos de la tienda no se generan: son fotografía real que hará Marisol.',
+  '> **Variantes por tema** (`<slot>-<tema>.png`, p. ej. `home-hero-dawn.png`; spec `docs/superpowers/specs/2026-10-17-temas-globales-design.md`): el sitio tiene cinco temas (noche, atardecer, amanecer, luna, bosque) y un slot escénico puede traer una imagen propia en los temas donde la de la noche no funciona. La luna comparte la imagen de la noche. Cada variante lleva el mismo ratio, prioridad y encuadre que su slot, y el estilo de las atmósferas: color natural, sin personas y otro «Avoid». El mapa de abajo dice qué falta por tema. Si una variante tarda, la web muestra la imagen de la noche: no bloquea nada.',
+  '> Las demás imágenes de atmósfera (`atmosphere-forest-autumn`, `resonario-celtic`, `resonario-kind-banner-*`; enmienda 2026-10-17, `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`) llevan el mismo estilo. Los productos de la tienda no se generan: son fotografía real que hará Marisol.',
   '',
   `**${rows.length} imágenes:** ${counts}. Lo que hay que generar o regenerar está en las dos primeras secciones.`,
   '',
 ]
+
+const variantRows = rows.filter((row) => row.theme)
+const slotsWithVariants = [...new Set(variantRows.map((row) => row.slotId))]
+out.push('## Mapa de variantes por tema', '')
+out.push('| Slot | Atardecer | Amanecer | Luna | Bosque |', '|---|---|---|---|---|')
+for (const slotId of slotsWithVariants) {
+  const cells = ['dusk', 'dawn', 'moon', 'forest'].map((theme) => {
+    const row = variantRows.find((candidate) => candidate.slotId === slotId && candidate.theme === theme)
+    if (!row) return '—'
+    return `${statusOf(row.file).state === 'completada' ? '✓' : 'por generar'} \`${row.file.replace(/\.avif$/, '.png')}\``
+  })
+  out.push(`| \`${slotId}\` | ${cells.join(' | ')} |`)
+}
+out.push('', '✓ ya entregada y publicada (reasignada de las atmósferas de Ambientes v2). — el tema usa la imagen de la noche.', '')
 
 for (const [index, state] of STATES.entries()) {
   const items = byState.get(state)
@@ -78,7 +98,9 @@ for (const [index, state] of STATES.entries()) {
   for (const [position, { row, status }] of items.entries()) {
     const label = row.title ? `${row.view} · ${row.title}` : row.view
     const avoid = isAtmosphere(row)
-      ? AVOID_ATMOSPHERE
+      ? row.theme === 'moon'
+        ? AVOID_MOON
+        : AVOID_ATMOSPHERE
       : row.reference
         ? AVOID_REFERENCE
         : row.realShoot

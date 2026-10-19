@@ -6,8 +6,8 @@ import { featuredProducts } from '@/lib/store/showcase';
 
 describe('store showcase selection', () => {
   it('shows three or four distinct products, all of them in the catalogue', () => {
-    const ids = STORE_SHOWCASE_IDS as readonly string[];
-    const catalogue = new Set(PRODUCTS.map((product) => product.id));
+    const ids: readonly string[] = STORE_SHOWCASE_IDS;
+    const catalogue = new Set<string>(PRODUCTS.map((product) => product.id));
 
     expect(ids.length).toBeGreaterThanOrEqual(3);
     expect(ids.length).toBeLessThanOrEqual(4);

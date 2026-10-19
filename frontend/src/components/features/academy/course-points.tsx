@@ -1,6 +1,7 @@
 import { useTranslations } from 'next-intl';
 
 import { Display } from '@/components/ui';
+import { messageKey } from '@/i18n/keys';
 
 type CoursePointsProps = {
   title: string;
@@ -14,7 +15,7 @@ export function CoursePoints({ title, keys }: CoursePointsProps) {
 
   return (
     <section>
-      <Display level="h2" size="md" className="max-w-[16ch]">
+      <Display level="h2" size="md" className="max-w-measure-title-lg">
         {title}
       </Display>
       <ul className="mt-6 flex flex-col gap-4">
@@ -24,7 +25,7 @@ export function CoursePoints({ title, keys }: CoursePointsProps) {
               aria-hidden="true"
               className="bg-accent mt-[0.7em] size-[6px] shrink-0 rounded-full"
             />
-            {t(key.replace(/^academy\./, '') as 'courses.c1.title')}
+            {t(messageKey('academy', key))}
           </li>
         ))}
       </ul>

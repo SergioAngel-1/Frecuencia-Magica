@@ -20,7 +20,7 @@ export function AboutSection({ media, kicker, title, p1, p2, action, video }: Ab
   return (
     <section className="relative">
       <div
-        className="pointer-events-none absolute top-[18%] left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(150,198,188,0.1),transparent_68%)] blur-3xl"
+        className="pointer-events-none absolute top-[18%] left-[-10%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--color-accent-2)_10%,transparent),transparent_68%)] blur-3xl"
         aria-hidden="true"
       />
       <div className="fm-container relative grid grid-cols-1 items-center gap-[clamp(36px,8vw,120px)] md:grid-cols-[minmax(260px,0.8fr)_minmax(0,1.2fr)]">
@@ -30,11 +30,11 @@ export function AboutSection({ media, kicker, title, p1, p2, action, video }: Ab
           <Kicker tone="gold" spacing="widest">
             {kicker}
           </Kicker>
-          <Display size="md" className="mt-4 max-w-[14ch] leading-[0.98]">
+          <Display size="md" className="max-w-measure-title-md mt-4 leading-[0.98]">
             {title}
           </Display>
           <p className="text-fg-body text-lead mt-7 leading-[1.85]">{p1}</p>
-          <p className="text-fg-soft mt-6 max-w-[48ch] font-serif text-[clamp(22px,3vw,34px)] leading-[1.25] font-light italic">
+          <p className="text-fg-soft max-w-measure-mid mt-6 font-serif text-[clamp(22px,3vw,34px)] leading-[1.25] font-light italic">
             {p2}
           </p>
           {action ? <div className="mt-9">{action}</div> : null}

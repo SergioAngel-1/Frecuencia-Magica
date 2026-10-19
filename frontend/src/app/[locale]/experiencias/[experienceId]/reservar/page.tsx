@@ -3,7 +3,8 @@ import { getTranslations } from 'next-intl/server';
 
 import { BookingFlow } from '@/components/features/experiences/booking-flow';
 import { PageShell } from '@/components/layout';
-import { getExperience } from '@/data';
+import { getExperience } from '@/data/experiences';
+import { messageKey } from '@/i18n/keys';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { routing } from '@/i18n/routing';
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'experiences' });
 
-  return { title: t(`items.${experienceId}.title` as 'items.e1.title') };
+  return { title: t(messageKey('experiences', `items.${experienceId}.title`)) };
 }
 
 export default async function BookingPage({ params }: PageProps) {

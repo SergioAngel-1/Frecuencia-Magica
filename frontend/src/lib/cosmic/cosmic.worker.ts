@@ -44,7 +44,7 @@ scope.onmessage = ({ data }) => {
       return;
     }
 
-    scene = createCosmicScene(ctx, data.viewport, data.accent);
+    scene = createCosmicScene(ctx, data.viewport, data.accent, Math.random, data.theme);
     driver = createCosmicDriver(scene, schedule, cancel);
     driver.setVisible(data.visible);
     driver.setReduced(data.reduced);
@@ -60,6 +60,10 @@ scope.onmessage = ({ data }) => {
       break;
     case 'accent':
       scene.setAccent(data.accent);
+      driver.refresh();
+      break;
+    case 'theme':
+      scene.setTheme(data.theme);
       driver.refresh();
       break;
     case 'reduced':

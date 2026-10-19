@@ -5,9 +5,9 @@ import { Halo, Isotype, OrbitalRings } from '@/components/world';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 const ASIDE_GRADIENT =
-  'linear-gradient(150deg, rgba(150,198,188,0.16), rgba(15,27,46,0.55) 55%, rgba(185,176,214,0.14))';
-const ASIDE_GLOW = 'radial-gradient(60% 55% at 50% 44%, rgba(216,185,120,0.18), transparent 62%)';
-const ASIDE_FADE = 'linear-gradient(180deg, transparent 60%, rgba(10,18,32,0.78))';
+  'linear-gradient(150deg, rgb(var(--nebula-a) / 0.16), rgb(var(--scrim) / 0.55) 55%, rgb(var(--nebula-b) / 0.14))';
+const ASIDE_GLOW = 'radial-gradient(60% 55% at 50% 44%, rgb(var(--halo) / 0.18), transparent 62%)';
+const ASIDE_FADE = 'linear-gradient(180deg, transparent 60%, rgb(var(--scrim-deep) / 0.78))';
 
 export interface AuthAsideProps {
   media: EditorialMedia;
@@ -73,28 +73,37 @@ export async function AuthAside({ media }: AuthAsideProps) {
             className="opacity-55"
             style={{ width: '100%', height: '100%' }}
             rings={[
-              { r: 180, stroke: 'rgba(216,185,120,0.4)', width: 0.7 },
-              { r: 130, stroke: 'rgba(150,198,188,0.4)', width: 0.7, dash: '2 10' },
-              { r: 82, stroke: 'rgba(185,176,214,0.4)', width: 0.7 },
+              { r: 180, stroke: 'rgb(var(--halo) / 0.4)', width: 0.7 },
+              {
+                r: 130,
+                stroke: 'color-mix(in srgb, var(--color-accent-2) 40%, transparent)',
+                width: 0.7,
+                dash: '2 10',
+              },
+              {
+                r: 82,
+                stroke: 'color-mix(in srgb, var(--color-accent-3) 40%, transparent)',
+                width: 0.7,
+              },
             ]}
           >
-            <OrbitalRings.Node angle={270} radius={180} color="var(--color-gold)" size={6} />
-            <OrbitalRings.Node angle={0} radius={180} color="var(--color-teal)" size={4.8} />
-            <OrbitalRings.Node angle={90} radius={180} color="var(--color-lav)" size={4.8} />
+            <OrbitalRings.Node angle={270} radius={180} color="var(--color-accent)" size={6} />
+            <OrbitalRings.Node angle={0} radius={180} color="var(--color-accent-2)" size={4.8} />
+            <OrbitalRings.Node angle={90} radius={180} color="var(--color-accent-3)" size={4.8} />
           </OrbitalRings>
         </div>
 
         <div className="animate-fm-float relative size-[clamp(90px,16vw,170px)]">
-          <Halo color="rgba(216,185,120,0.28), transparent 68%" blur={12} inset="-16%" />
+          <Halo color="rgb(var(--halo) / 0.28), transparent 68%" blur={12} inset="-16%" />
           <Isotype
             label={brand}
             still
-            className="size-full drop-shadow-[0_0_24px_rgba(216,185,120,0.42)]"
+            className="size-full drop-shadow-[0_0_24px_rgb(var(--halo)/0.42)]"
           />
         </div>
 
         <div className="relative z-10 mt-4 min-[900px]:mt-8">
-          <p className="text-fg-body max-w-[22ch] font-serif text-[clamp(24px,3vw,44px)] leading-[1.25] text-balance italic">
+          <p className="text-fg-body max-w-measure-title-2xl font-serif text-[clamp(24px,3vw,44px)] leading-[1.25] text-balance italic">
             &ldquo;{t('quote')}&rdquo;
           </p>
           <Kicker tone="gold" className="mt-3">

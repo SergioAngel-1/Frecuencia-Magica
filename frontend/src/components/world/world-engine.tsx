@@ -7,7 +7,7 @@ import { useRealm } from '@/hooks/use-realm';
 import { AtmosphereBackdrop } from './atmosphere-backdrop';
 import { BrandFigures } from './brand-figures';
 import { CosmicCanvas } from './cosmic-canvas';
-import { LuminousCursor } from './luminous-cursor';
+import { LuminousCursorMount } from './luminous-cursor-mount';
 import { NebulaLayer } from './nebula-layer';
 import { PortalAnnouncer, PortalTransition } from './portal-transition';
 
@@ -33,7 +33,7 @@ export function WorldEngine({ visualMode }: WorldEngineProps = {}) {
       <CosmicCanvas visualMode={activeVisualMode} />
       <NebulaLayer visualMode={activeVisualMode} />
       <BrandFigures visualMode={activeVisualMode} />
-      <LuminousCursor />
+      <LuminousCursorMount />
       <PortalTransition />
       <PortalAnnouncer />
     </>

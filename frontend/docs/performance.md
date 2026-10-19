@@ -122,3 +122,9 @@ npm run start        # servir el build
 ```
 
 La medición del transferido real (gzip) se hizo con la Performance API del navegador (`performance.getEntriesByType('resource')`) sobre `/inicio`; el desglose por chunk se obtuvo listando los archivos de `.next/static/chunks/` y calculando su tamaño gzip. La pasada responsive (overflow + hit targets en 1440/1280/768/390) se hizo con un script de Selenium desechable, no versionado.
+
+## Temas globales (2026-10-17)
+
+- **Escenas del lienzo:** son datos (`lib/cosmic/themes.ts`), sin librerías nuevas. Ningún tema supera 220 estrellas ni 54 partículas (28 por debajo de 768 px; lo guarda `cosmic-themes.test`), y el gradiente de cada partícula se hornea al cambiar de tema, no por frame. El cambio de tema apaga y enciende la escena en ≈0,9 s sobre el mismo `<canvas>` y el mismo worker.
+- **Imágenes por tema:** el HTML lleva sólo la base nocturna; la variante del tema activo se descarga tras montar (una imagen más por slot visible, nunca las cuatro). Un visitante que nunca cambia de tema y está en la noche no descarga ninguna variante. `priority` sigue siendo de la base: la variante entra cuando llega, bajo el fondo del tema.
+- **Transición de colores:** `[data-theme-switching]` aplica transiciones de color a todo el sitio sólo durante el fundido (1,6 s) y sólo si no hay movimiento reducido.

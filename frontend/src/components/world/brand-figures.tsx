@@ -5,6 +5,11 @@ import { useEngineProfile } from '@/hooks/use-engine-profile';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { fadeDuration } from '@/lib/atmosphere/engine-profile';
 
+/** Los aros son los tres acentos del tema a poca opacidad: en la noche, oro, teal y lavanda de siempre. */
+const RING_GOLD = 'color-mix(in srgb, var(--color-accent) 10%, transparent)';
+const RING_TEAL = 'color-mix(in srgb, var(--color-accent-2) 9%, transparent)';
+const RING_LAV = 'color-mix(in srgb, var(--color-accent-3) 8%, transparent)';
+
 const STAR_PATH = 'M12 0 L13.4 10.6 L24 12 L13.4 13.4 L12 24 L10.6 13.4 L0 12 L10.6 10.6 Z';
 
 /** Los cuatro destellos de cuatro puntas, con su posición, color y ritmo. */
@@ -17,25 +22,31 @@ type Sparkle = {
 };
 
 const SPARKLES: readonly Sparkle[] = [
-  { style: { top: '14%', left: '11%' }, size: 26, fill: '#D8B978', duration: '6s', delay: '0s' },
+  {
+    style: { top: '14%', left: '11%' },
+    size: 26,
+    fill: 'var(--color-accent)',
+    duration: '6s',
+    delay: '0s',
+  },
   {
     style: { top: '26%', right: '16%' },
     size: 18,
-    fill: '#B9B0D6',
+    fill: 'var(--color-accent-3)',
     duration: '7.5s',
     delay: '.8s',
   },
   {
     style: { bottom: '20%', right: '24%' },
     size: 22,
-    fill: '#96C6BC',
+    fill: 'var(--color-accent-2)',
     duration: '8s',
     delay: '.4s',
   },
   {
     style: { bottom: '30%', left: '20%' },
     size: 15,
-    fill: '#D8B978',
+    fill: 'var(--color-accent)',
     duration: '6.8s',
     delay: '1.2s',
   },
@@ -68,16 +79,16 @@ export function BrandFigures({ visualMode = 'cosmic' }: { visualMode?: VisualMod
           animation: 'fm-ring-pulse 16s ease-in-out infinite',
         }}
       >
-        <circle cx="100" cy="100" r="96" fill="none" stroke="rgba(216,185,120,0.10)" />
+        <circle cx="100" cy="100" r="96" fill="none" style={{ stroke: RING_GOLD }} />
         <circle
           cx="100"
           cy="100"
           r="74"
           fill="none"
-          stroke="rgba(150,198,188,0.09)"
+          style={{ stroke: RING_TEAL }}
           strokeDasharray="1 6"
         />
-        <circle cx="100" cy="100" r="52" fill="none" stroke="rgba(185,176,214,0.08)" />
+        <circle cx="100" cy="100" r="52" fill="none" style={{ stroke: RING_LAV }} />
       </svg>
 
       {/* Aro inferior izquierdo */}
@@ -92,13 +103,13 @@ export function BrandFigures({ visualMode = 'cosmic' }: { visualMode?: VisualMod
           animation: 'fm-spin 200s linear infinite',
         }}
       >
-        <circle cx="100" cy="100" r="96" fill="none" stroke="rgba(216,185,120,0.10)" />
+        <circle cx="100" cy="100" r="96" fill="none" style={{ stroke: RING_GOLD }} />
         <circle
           cx="100"
           cy="100"
           r="66"
           fill="none"
-          stroke="rgba(150,198,188,0.09)"
+          style={{ stroke: RING_TEAL }}
           strokeDasharray="1 8"
         />
       </svg>
@@ -116,7 +127,7 @@ export function BrandFigures({ visualMode = 'cosmic' }: { visualMode?: VisualMod
             animationDelay: sparkle.delay,
           }}
         >
-          <path d={STAR_PATH} fill={sparkle.fill} />
+          <path d={STAR_PATH} style={{ fill: sparkle.fill }} />
         </svg>
       ))}
     </div>

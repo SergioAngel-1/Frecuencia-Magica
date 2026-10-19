@@ -90,7 +90,7 @@ Un realm no es sólo una ruta: su id vive en varios sitios que hay que mantener 
 6. **Datos:** el catálogo tipado en `src/data/` con claves de traducción, nunca textos.
 7. **Vista:** `src/app/[locale]/<realm>/page.tsx` (Server Component, empieza con `const locale = await resolveLocale(params);`) que compone componentes de `src/components/features/<realm>/`. Un realm de catálogo abre con `RealmHero` (`components/layout`).
 8. **Navegación y footer:** con `inNav: true` el realm aparece en `RealmNav` y en `RealmsGrid`; el footer cierra todos los realms salvo el portal (`src/components/layout/realm-footer.tsx`); un realm nuevo lo lleva sin tocar nada.
-9. **Atmósfera por defecto:** elegir una de las nueve de `DESIGN.md` (§ Atmósferas) y registrarla como su atmósfera por defecto en `src/config/atmospheres.ts` (en curso con la fase de ambientes v2; ver `docs/superpowers/specs/2026-10-17-ambientes-v2-design.md`, § 4.4). Sus valores se declaran sólo en `src/app/tokens.css`, y el test de contraste por atmósfera debe pasar con ella.
+9. **Tema sugerido:** elegir uno de los cinco de `DESIGN.md` (§ Atmósferas) y registrarlo como el que el realm sugiere en `PLACE_ATMOSPHERE` (`src/config/atmospheres.ts`, y su `Place` en `src/types/atmosphere.ts`). El tema es global: la persona lo cambia en el header y el realm nuevo lo hereda sin más; el script de arranque se regenera solo. Si el realm tiene héroe, valorar sus variantes por tema en `THEME_VARIANTS`.
 
 ## Añadir un componente al UI Kit
 

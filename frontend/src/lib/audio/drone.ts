@@ -1,39 +1,6 @@
-import { ATMOSPHERES, LISTENING_PLACES, PLACE_ATMOSPHERE } from '@/config/atmospheres';
-import { REALMS } from '@/config/realms';
-import type { AtmosphereId } from '@/types/atmosphere';
-import type { RealmId } from '@/types/realm';
+import { DEFAULT_NOTE, voiceFrequencies } from './drone-notes';
 
-const DEFAULT_NOTE = 110;
-
-const NOTE_BY_REALM = new Map<RealmId, number>(REALMS.map((realm) => [realm.id, realm.baseNote]));
-
-/** Nota base del drone para un realm. Un realm desconocido cae en 110 Hz. */
-export function baseNoteForRealm(realmId: RealmId): number {
-  return NOTE_BY_REALM.get(realmId) ?? DEFAULT_NOTE;
-}
-
-/**
- * Nota del drone para la atmósfera efectiva de un realm. Sólo un lugar de escucha
- * que la persona ha re-atmosferizado a mano usa la nota de la atmósfera elegida; en
- * el resto (atmósfera por defecto del sitio, o lugares con identidad propia como
- * Academia o Tienda) manda la nota del realm, la de siempre.
- */
-export function baseNoteFor(atmosphereId: AtmosphereId, realmId: RealmId): number {
-  const realmNote = baseNoteForRealm(realmId);
-  const isListening = LISTENING_PLACES.includes(realmId);
-
-  if (!isListening || atmosphereId === PLACE_ATMOSPHERE[realmId]) return realmNote;
-
-  return ATMOSPHERES[atmosphereId].droneNote;
-}
-
-/**
- * Las tres voces del acorde a partir de la nota base:
- * fundamental, la misma desafinada `×1.005` (batido lento) y su quinta (`×1.5`).
- */
-export function voiceFrequencies(baseNote: number): [number, number, number] {
-  return [baseNote, baseNote * 1.005, baseNote * 1.5];
-}
+export { baseNoteFor, baseNoteForRealm, DEFAULT_NOTE, voiceFrequencies } from './drone-notes';
 
 export type DroneHandle = {
   setEnabled(on: boolean): void;

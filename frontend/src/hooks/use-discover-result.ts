@@ -43,9 +43,9 @@ export function useDiscoverResult(
   if (!recommendation) return null;
 
   const { reading, audio, course, experience, product } = recommendation;
-  const courseTitle = tAcademy(`courses.${course.id}.title` as 'courses.c1.title');
-  const experienceTitle = tExperiences(`items.${experience.id}.title` as 'items.e1.title');
-  const productTitle = tStore(`products.${product.id}.title` as 'products.p1.title');
+  const courseTitle = tAcademy(`courses.${course.id}.title`);
+  const experienceTitle = tExperiences(`items.${experience.id}.title`);
+  const productTitle = tStore(`products.${product.id}.title`);
 
   return {
     audio,
@@ -54,7 +54,7 @@ export function useDiscoverResult(
     kicker: t('result.kicker'),
     intent: t(`intents.${reading.primary}.name`),
     description: t(`intents.${reading.primary}.description`),
-    audioTitle: tResonario(`audios.${audio.id}.title` as 'audios.a1.title'),
+    audioTitle: tResonario(`audios.${audio.id}.title`),
     ctaLabel: t('result.cta'),
     restartLabel: t('result.restart'),
     pathKicker: t('result.pathKicker'),

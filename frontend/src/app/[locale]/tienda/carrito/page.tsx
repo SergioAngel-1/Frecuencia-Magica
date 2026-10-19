@@ -32,7 +32,7 @@ export default async function CartPage({ params }: PageProps) {
     <PageShell width="form" padding="none" editorial>
       {/* El margen de página hasta que la columna de 820px cabe centrada con
           aire propio: en 768 la columna arrancaba en x = 0. */}
-      <div className="px-[var(--page-inset)] pt-[100px] pb-[180px] md:pt-[130px] lg:px-0">
+      <div className="pt-top px-[var(--page-inset)] pb-[180px] lg:px-0">
         <CheckoutView media={checkoutMedia} />
       </div>
     </PageShell>

@@ -36,21 +36,34 @@ export default async function NotFound() {
               direction="ccw"
               className="h-full w-full"
               rings={[
-                { r: 170, stroke: 'rgba(216,185,120,0.4)', width: 1, dash: '470 133' },
-                { r: 112, stroke: 'rgba(247,244,234,0.12)', width: 0.7 },
+                { r: 170, stroke: 'rgb(var(--halo) / 0.4)', width: 1, dash: '470 133' },
+                {
+                  r: 112,
+                  stroke: 'color-mix(in srgb, var(--color-fg) 12%, transparent)',
+                  width: 0.7,
+                },
               ]}
             >
-              <OrbitalRings.Node angle={-90} radius={170} color="rgba(216,185,120,0.55)" size={6} />
+              <OrbitalRings.Node
+                angle={-90}
+                radius={170}
+                color="rgb(var(--halo) / 0.55)"
+                size={6}
+              />
             </OrbitalRings>
           </div>
 
           <Kicker tone="gold" spacing="wide" className="relative mb-[18px]">
             404
           </Kicker>
-          <Display size="lg" level="h1" className="text-fg-body relative max-w-[34ch] text-balance">
+          <Display
+            size="lg"
+            level="h1"
+            className="text-fg-body max-w-measure-narrow relative text-balance"
+          >
             {t('notFoundTitle')}
           </Display>
-          <Prose muted className="text-body relative mt-[16px] max-w-[42ch] leading-[1.7]">
+          <Prose muted className="text-body max-w-measure-base relative mt-[16px] leading-[1.7]">
             {t('notFoundBody')}
           </Prose>
 

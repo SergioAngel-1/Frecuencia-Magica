@@ -11,7 +11,7 @@ import { readSource, SRC } from '../helpers/source-files';
  */
 const TOKENS = readSource(`${SRC}/app/tokens.css`);
 const GLOBALS = readSource(`${SRC}/app/globals.css`);
-const LIGHT = ['dawn', 'study', 'store', 'marisol'] as const;
+const LIGHT = ['dawn'] as const;
 const IVORY: [number, number, number] = [247, 244, 234];
 const MIN = 4.5;
 

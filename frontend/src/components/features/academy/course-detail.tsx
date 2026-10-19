@@ -30,7 +30,7 @@ type CourseDetailProps = {
 export function CourseDetail({ course, media, introMedia, currentLesson }: CourseDetailProps) {
   const t = useTranslations('academy');
   const lessons = buildLessons(course);
-  const title = t(`courses.${course.id}.title` as 'courses.c1.title');
+  const title = t(`courses.${course.id}.title`);
 
   return (
     <div>
@@ -46,10 +46,10 @@ export function CourseDetail({ course, media, introMedia, currentLesson }: Cours
           <Kicker tone="teal" spacing="widest">
             {t('featuredBadge')}
           </Kicker>
-          <Display size="lg" level="h1" className="mt-3 max-w-[13ch]">
+          <Display size="lg" level="h1" className="max-w-measure-title-sm mt-3">
             {title}
           </Display>
-          <p className="text-fg-soft mt-5 max-w-[56ch] text-[16px] leading-[1.8]">
+          <p className="text-fg-soft text-lead max-w-measure-full mt-5 leading-[1.8]">
             {t('courseDescription')}
           </p>
           <CourseFacts course={course} className="mt-6" />

@@ -75,10 +75,12 @@ export function RealmCard({
           {cover}
           <div className="relative z-[2] flex flex-col justify-end p-[clamp(28px,5vw,68px)]">
             <Kicker tone="teal">{emotion}</Kicker>
-            <Display level="h3" size="feature" className="mt-3 max-w-[10ch]">
+            <Display level="h3" size="feature" className="max-w-measure-title-xs mt-3">
               {title}
             </Display>
-            <p className="text-fg-body text-body mt-5 max-w-[42ch] leading-[1.75]">{description}</p>
+            <p className="text-fg-body text-body max-w-measure-base mt-5 leading-[1.75]">
+              {description}
+            </p>
             {actionLabel ? (
               <span className={arrowLinkClasses('teal', 'mt-7')}>
                 {actionLabel}
@@ -97,8 +99,11 @@ export function RealmCard({
                   size={330}
                   spin={100}
                   rings={[
-                    { r: 164, stroke: 'rgba(247,244,234,0.1)' },
-                    { r: 130, stroke: 'rgba(150,198,188,0.18)' },
+                    { r: 164, stroke: 'color-mix(in srgb, var(--color-fg) 10%, transparent)' },
+                    {
+                      r: 130,
+                      stroke: 'color-mix(in srgb, var(--color-accent-2) 18%, transparent)',
+                    },
                   ]}
                 />
               </div>
@@ -128,7 +133,7 @@ export function RealmCard({
         {cover}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_22%,rgba(10,18,32,0.82)_100%)]"
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_22%,rgb(var(--scrim-deep)/0.82)_100%)]"
         />
         {/* Tienda ya lleva su pill de conversión arriba a la izquierda y aros
           orbitales arriba a la derecha: un glifo encima chocaría con la pill. */}
@@ -149,8 +154,8 @@ export function RealmCard({
               size={210}
               spin={100}
               rings={[
-                { r: 105, stroke: 'rgba(216,185,120,0.1)' },
-                { r: 84, stroke: 'rgba(150,198,188,0.1)' },
+                { r: 105, stroke: 'rgb(var(--halo) / 0.1)' },
+                { r: 84, stroke: 'color-mix(in srgb, var(--color-accent-2) 10%, transparent)' },
               ]}
             />
           </div>
@@ -171,7 +176,12 @@ export function RealmCard({
           >
             {title}
           </h3>
-          <p className={cn('text-fg-soft text-body mt-3 leading-[1.7]', !store && 'max-w-[34ch]')}>
+          <p
+            className={cn(
+              'text-fg-soft text-body mt-3 leading-[1.7]',
+              !store && 'max-w-measure-narrow',
+            )}
+          >
             {description}
           </p>
         </div>

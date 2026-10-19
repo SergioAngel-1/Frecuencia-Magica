@@ -4,7 +4,7 @@ import { getImageProps } from 'next/image';
 import { useTranslations } from 'next-intl';
 import { AnimatePresence } from 'motion/react';
 import { div as Mdiv } from 'motion/react-m';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 
 import { DURATION, EASE, ROUTE_WAIT_DELAY_MS } from '@/config/motion';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
@@ -65,9 +65,13 @@ export function RouteTransition({ children }: { children: ReactNode }) {
     pathnameRef.current = pathname;
   }, [pathname]);
   const portalBusy = portalPhase !== 'idle';
-  const loadingMedia = resolveEditorialMedia('states.loading', {
-    alt: t('media.alt.loading'),
-  });
+  // La imagen sólo depende del alt: se resuelve una vez, no en cada render
+  // (este componente re-renderiza con cada cambio de espera y de ruta).
+  const loadingAlt = t('media.alt.loading');
+  const loadingMedia = useMemo(
+    () => resolveEditorialMedia('states.loading', { alt: loadingAlt }),
+    [loadingAlt],
+  );
 
   // Inicio de navegación: un clic en un enlace interno marca la espera ANTES
   // de que el router consuma la ruta (el commit llega cuando la vista nueva

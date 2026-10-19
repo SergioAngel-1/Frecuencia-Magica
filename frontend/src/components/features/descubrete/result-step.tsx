@@ -1,7 +1,5 @@
 'use client';
 
-import { AtmosphereBand } from '@/components/features/atmosphere/atmosphere-band';
-import { AtmospherePicker } from '@/components/features/atmosphere/atmosphere-picker';
 import { AudioDisc, type AudioDiscItem } from '@/components/features/player/audio-disc';
 import { Button, Display, Float, Kicker } from '@/components/ui';
 import { Link } from '@/i18n/navigation';
@@ -54,8 +52,6 @@ export function ResultStep({
 }: ResultStepProps) {
   return (
     <div className="pb-block flex w-full max-w-[1040px] flex-col items-center gap-6">
-      {/* El paisaje de la atmósfera elegida a protagonismo; en la noche no pinta nada. */}
-      <AtmosphereBand />
       <Kicker tone="gold" spacing="widest">
         {kicker}
       </Kicker>
@@ -66,11 +62,11 @@ export function ResultStep({
         {intent}
       </Display>
 
-      <p className="text-fg-soft text-body max-w-[48ch] text-center leading-[1.8]">{description}</p>
+      <p className="text-fg-soft text-body max-w-measure-mid text-center leading-[1.8]">
+        {description}
+      </p>
 
       <DiscoverArrival arrivalKey={arrivalKey} featuredId={audio.id} ctaLabel={arrivalCta} />
-
-      <AtmospherePicker />
 
       <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
         <Button variant="primary" asChild onClick={onListen}>

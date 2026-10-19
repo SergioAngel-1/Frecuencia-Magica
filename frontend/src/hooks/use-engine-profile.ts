@@ -9,8 +9,8 @@ import { engineProfile, type EngineProfile } from '@/lib/atmosphere/engine-profi
 import { placeFromPathname } from '@/lib/realm-from-pathname';
 
 /**
- * Opacidades del engine para la atmósfera activa. Antes de montar usa la del
- * lugar (lo que el servidor ya pintó), y la elección manual sólo entra después:
+ * Opacidades del engine para el tema activo. Antes de montar usa el del lugar
+ * (lo que el servidor ya pintó), y la elección de la persona sólo entra después:
  * así el primer render del cliente coincide con el marcado y no hay salto.
  */
 export function useEngineProfile(visualMode: VisualMode): EngineProfile {

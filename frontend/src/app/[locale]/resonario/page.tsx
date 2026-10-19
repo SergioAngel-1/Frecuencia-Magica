@@ -1,8 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 
-import { AtmosphereHero } from '@/components/features/atmosphere/atmosphere-hero';
 import { ResonarioSystem } from '@/components/features/resonario/resonario-system';
-import { PageShell } from '@/components/layout';
+import { PageShell, RealmHero } from '@/components/layout';
 import { BandChain, EditorialBanner } from '@/components/ui';
 import { AUDIO_KINDS } from '@/config/audio-kinds';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
@@ -21,8 +20,11 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function ResonarioPage({ params }: PageProps) {
   const locale = await resolveLocale(params);
-  const t = await getTranslations({ locale, namespace: 'resonario' });
-  const tStates = await getTranslations({ locale, namespace: 'states' });
+  // En paralelo: cada `getTranslations` es una espera independiente.
+  const [t, tStates] = await Promise.all([
+    getTranslations({ locale, namespace: 'resonario' }),
+    getTranslations({ locale, namespace: 'states' }),
+  ]);
   const resonarioMedia = {
     hero: resolveEditorialMedia('resonario.hero', { alt: t('media.alt.hero') }),
     featured: resolveEditorialMedia('resonario.featured', {
@@ -37,7 +39,7 @@ export default async function ResonarioPage({ params }: PageProps) {
         kind,
         resolveEditorialMedia('resonario.kind-banner.*', {
           instance: bannerSlug,
-          alt: t(`media.alt.kindBanner.${kind}` as 'media.alt.kindBanner.melody'),
+          alt: t(`media.alt.kindBanner.${kind}`),
           sizes: '(min-width: 1024px) 1040px, 100vw',
         }),
       ]),
@@ -57,8 +59,8 @@ export default async function ResonarioPage({ params }: PageProps) {
       {/* El héroe y el banner del archivo son bandas consecutivas: se tocan sin
           hueco. Los filtros bajan junto al sistema que filtran. */}
       <BandChain>
-        <AtmosphereHero
-          base={resonarioMedia.hero}
+        <RealmHero
+          media={resonarioMedia.hero}
           kicker={t('kicker')}
           title={t('title')}
           description={t('description')}

@@ -31,23 +31,26 @@ describe('voiceFrequencies', () => {
 });
 
 describe('baseNoteFor', () => {
-  it('keeps the realm note in the default atmosphere of a listening place', () => {
+  it('keeps the realm note in the default theme of a place', () => {
     expect(baseNoteFor('night', 'resonario')).toBe(130.8);
     expect(baseNoteFor('night', 'descubrete')).toBe(98);
     expect(baseNoteFor('night', 'sanctuario')).toBe(103.8);
   });
 
-  it('uses the note of the atmosphere the person chose at a listening place', () => {
+  it('uses the note of the theme the person chose', () => {
     expect(baseNoteFor('dusk', 'resonario')).toBe(87.3);
     expect(baseNoteFor('dawn', 'resonario')).toBe(146.8);
     expect(baseNoteFor('dawn', 'sanctuario')).toBe(146.8);
   });
 
-  it('keeps the realm note on places with their own identity, whatever the atmosphere', () => {
-    expect(baseNoteFor('study', 'academia')).toBe(146.8);
-    expect(baseNoteFor('store', 'tienda')).toBe(116.5);
-    expect(baseNoteFor('dusk', 'academia')).toBe(146.8);
-    expect(baseNoteFor('dusk', 'tienda')).toBe(116.5);
+  it('keeps the realm note when the theme is the one the place suggests', () => {
+    expect(baseNoteFor('dawn', 'academia')).toBe(146.8);
+    expect(baseNoteFor('dawn', 'tienda')).toBe(116.5);
+  });
+
+  it('uses the note of the theme the person chose, at any place', () => {
+    expect(baseNoteFor('dusk', 'academia')).toBe(87.3);
+    expect(baseNoteFor('forest', 'tienda')).toBe(123.5);
   });
 
   it('gives the portal and home their own realm note', () => {

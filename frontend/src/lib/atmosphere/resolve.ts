@@ -1,4 +1,4 @@
-import { ATMOSPHERE_IDS, LISTENING_PLACES, PLACE_ATMOSPHERE } from '@/config/atmospheres';
+import { ATMOSPHERE_IDS, PLACE_ATMOSPHERE } from '@/config/atmospheres';
 import type { AtmosphereId, Place } from '@/types/atmosphere';
 
 /** Desde esta hora (inclusive) la noche se ofrece como alternativa. */
@@ -6,19 +6,17 @@ const NIGHT_FROM_HOUR = 21;
 /** Hasta esta hora (exclusive): a las 5 h ya no es de noche. */
 const NIGHT_UNTIL_HOUR = 5;
 
-/** `true` si `value` es uno de los nueve ids. Valida lo que llega de almacenamiento. */
+/** `true` si `value` es uno de los cinco ids. Valida lo que llega de almacenamiento. */
 export function isAtmosphereId(value: unknown): value is AtmosphereId {
   return typeof value === 'string' && ATMOSPHERE_IDS.includes(value as AtmosphereId);
 }
 
 /**
- * Atmósfera activa de un lugar. Función pura: la elección manual sólo gana en
- * los lugares de escucha; en el resto la identidad del sitio manda.
+ * Tema activo en un lugar. Función pura: la elección de la persona manda en todo
+ * el sitio; sin ella, el lugar sugiere el suyo.
  */
-export function resolveAtmosphere(place: Place, manual?: AtmosphereId | null): AtmosphereId {
-  if (manual && LISTENING_PLACES.includes(place)) return manual;
-
-  return PLACE_ATMOSPHERE[place];
+export function resolveAtmosphere(place: Place, choice?: AtmosphereId | null): AtmosphereId {
+  return choice ?? PLACE_ATMOSPHERE[place];
 }
 
 /**

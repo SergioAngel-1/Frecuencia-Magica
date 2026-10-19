@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { GlassPanel, Kicker } from '@/components/ui';
+import { Collapse, GlassPanel, Kicker } from '@/components/ui';
 import type { Lesson } from '@/lib/academy/lessons';
 import { cn } from '@/lib/cn';
 import { groupIntoModules, MODULE_SIZE } from '@/lib/academy/modules';
@@ -49,7 +49,7 @@ export function ModuleList({ courseId, lessons, currentIndex }: ModuleListProps)
                   className="flex min-h-11 w-full items-center justify-between gap-4 py-3 text-left"
                 >
                   <span className="flex flex-col">
-                    <span className="text-fg font-serif text-[20px] leading-tight">
+                    <span className="text-fg text-serif-md font-serif leading-tight">
                       {t('facts.module', { number: module.number })}
                     </span>
                     <span className="text-fg-meta text-meta tracking-soft font-sans">
@@ -59,7 +59,7 @@ export function ModuleList({ courseId, lessons, currentIndex }: ModuleListProps)
                   <span
                     aria-hidden="true"
                     className={cn(
-                      'text-accent shrink-0 font-serif text-[22px] leading-none transition-transform duration-300 motion-reduce:transition-none',
+                      'text-accent text-serif-lg shrink-0 font-serif leading-none transition-transform duration-300 motion-reduce:transition-none',
                       isOpen && 'rotate-45',
                     )}
                   >
@@ -67,24 +67,13 @@ export function ModuleList({ courseId, lessons, currentIndex }: ModuleListProps)
                   </span>
                 </button>
 
-                <div
-                  id={bodyId}
-                  aria-hidden={!isOpen}
-                  inert={!isOpen}
-                  data-course-module-panel={module.number}
-                  className={cn(
-                    'grid transition-[grid-template-rows,opacity] duration-[350ms] ease-[cubic-bezier(.2,.85,.25,1)]',
-                    isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
-                  )}
-                >
-                  <div className="overflow-hidden">
-                    <LessonList
-                      courseId={courseId}
-                      lessons={module.lessons}
-                      currentIndex={currentIndex}
-                    />
-                  </div>
-                </div>
+                <Collapse id={bodyId} open={isOpen} data-course-module-panel={module.number}>
+                  <LessonList
+                    courseId={courseId}
+                    lessons={module.lessons}
+                    currentIndex={currentIndex}
+                  />
+                </Collapse>
               </div>
             );
           })}

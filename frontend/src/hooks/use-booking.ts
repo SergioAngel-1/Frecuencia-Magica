@@ -10,6 +10,9 @@ import {
 } from '@/lib/booking/booking-reducer';
 export type { BookingAction, BookingState } from '@/lib/booking/booking-reducer';
 
+/** Estado y acciones de la reserva; lo que devuelve `useBooking`. */
+export type BookingFlowState = ReturnType<typeof useBooking>;
+
 export function useBooking() {
   const [state, dispatch] = useReducer(bookingReducer, INITIAL_BOOKING);
 

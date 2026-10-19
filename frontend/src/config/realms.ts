@@ -1,3 +1,4 @@
+import type { NavRealmId } from '@/i18n/keys';
 import type { Realm, RealmId } from '@/types/realm';
 
 const GOLD = '#D8B978';
@@ -29,6 +30,7 @@ export const REALMS: readonly EditorialRealm[] = [
     id: 'portal',
     href: '/',
     accent: GOLD,
+    accentKey: 'gold',
     accentVar: '--color-gold',
     baseNote: 110,
     inNav: false,
@@ -39,6 +41,7 @@ export const REALMS: readonly EditorialRealm[] = [
     id: 'home',
     href: '/inicio',
     accent: GOLD,
+    accentKey: 'gold',
     accentVar: '--color-gold',
     baseNote: 110,
     inNav: false,
@@ -49,6 +52,7 @@ export const REALMS: readonly EditorialRealm[] = [
     id: 'auth',
     href: '/acceso',
     accent: GOLD,
+    accentKey: 'gold',
     accentVar: '--color-gold',
     baseNote: 110,
     inNav: false,
@@ -59,6 +63,7 @@ export const REALMS: readonly EditorialRealm[] = [
     id: 'descubrete',
     href: '/descubrete',
     accent: LAV,
+    accentKey: 'lav',
     accentVar: '--color-lav',
     baseNote: 98,
     inNav: true,
@@ -69,6 +74,7 @@ export const REALMS: readonly EditorialRealm[] = [
     id: 'resonario',
     href: '/resonario',
     accent: GOLD,
+    accentKey: 'gold',
     accentVar: '--color-gold',
     baseNote: 130.8,
     inNav: true,
@@ -79,6 +85,7 @@ export const REALMS: readonly EditorialRealm[] = [
     id: 'academia',
     href: '/academia',
     accent: TEAL,
+    accentKey: 'teal',
     accentVar: '--color-teal',
     baseNote: 146.8,
     inNav: true,
@@ -89,6 +96,7 @@ export const REALMS: readonly EditorialRealm[] = [
     id: 'experiencias',
     href: '/experiencias',
     accent: LAV,
+    accentKey: 'lav',
     accentVar: '--color-lav',
     baseNote: 123.4,
     inNav: true,
@@ -99,6 +107,7 @@ export const REALMS: readonly EditorialRealm[] = [
     id: 'tienda',
     href: '/tienda',
     accent: GOLD,
+    accentKey: 'gold',
     accentVar: '--color-gold',
     baseNote: 116.5,
     inNav: true,
@@ -109,6 +118,7 @@ export const REALMS: readonly EditorialRealm[] = [
     id: 'sanctuario',
     href: '/mi-santuario',
     accent: GOLD,
+    accentKey: 'gold',
     accentVar: '--color-gold',
     baseNote: 103.8,
     inNav: true,
@@ -125,7 +135,7 @@ const BY_ID = new Map(REALMS.map((realm) => [realm.id, realm]));
  * navegación, no el de `REALMS`: quien necesite otro (el bento de la home)
  * declara el suyo.
  */
-const NAV_ORDER: readonly RealmId[] = [
+const NAV_ORDER: readonly NavRealmId[] = [
   'tienda',
   'descubrete',
   'resonario',
@@ -134,11 +144,16 @@ const NAV_ORDER: readonly RealmId[] = [
   'sanctuario',
 ];
 
-/** Los seis destinos de la navegación de constelación, en su orden visual. */
-export const NAV_REALMS: readonly EditorialRealm[] = NAV_ORDER.flatMap((id) => {
+/**
+ * Los seis destinos de la navegación de constelación, en su orden visual.
+ *
+ * El id se estrecha a `NavRealmId`: es el subconjunto de realms con entrada en
+ * `nav.realms`/`nav.emotions`, y así las plantillas de mensaje tipan sin cast.
+ */
+export const NAV_REALMS = NAV_ORDER.flatMap((id) => {
   const realm = BY_ID.get(id);
 
-  return realm?.inNav ? [realm] : [];
+  return realm?.inNav ? [{ ...realm, id }] : [];
 });
 
 export function getRealm(id: RealmId): EditorialRealm {

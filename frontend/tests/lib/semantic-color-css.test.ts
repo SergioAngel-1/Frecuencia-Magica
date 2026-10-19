@@ -59,15 +59,9 @@ const ALLOWED: Record<string, string> = {
   'globals.css :: .fm-portal-ripple': 'portal: onda que se adelanta al iris (decorativo)',
   'globals.css :: .fm-portal-light': 'portal: punto de luz del cruce (decorativo)',
 
-  // Barras de desplazamiento: la identidad de la barra (pista noche, pulgar espectro).
-  'tokens.css :: ::-webkit-scrollbar-track':
-    'pista de la barra: noche fija, sin token equivalente (decisión abierta, claras pendientes)',
-  'tokens.css :: ::-webkit-scrollbar-corner':
-    'esquina de la barra: noche fija, sin token equivalente (decisión abierta, claras pendientes)',
+  // Barras de desplazamiento: la pista lee el velo denso del tema; el pulgar es el espectro de la frecuencia.
   'tokens.css :: ::-webkit-scrollbar-thumb:active':
     'pulgar al pulsar: espectro de la frecuencia (oro, teal, lavanda), decorativo',
-  'tokens.css :: html':
-    'scrollbar de Firefox: pista de la noche fija (decisión abierta, como la de Chrome)',
 
   // Zebra: materia estructural oscura por contrato (texto encima), no es superficie de contenido.
   'tokens.css :: @utility fm-editorial-zebra':

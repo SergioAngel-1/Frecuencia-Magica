@@ -28,7 +28,7 @@ export function ResonarioFilters({ active, onChange }: ResonarioFiltersProps) {
           active={active === key || (!active && key === 'all')}
           onClick={() => onChange(key === 'all' ? null : key)}
         >
-          {key === 'all' ? t('filters.all') : t(`kinds.${key}.title` as 'kinds.melody.title')}
+          {key === 'all' ? t('filters.all') : t(`kinds.${key}.title`)}
         </Pill>
       ))}
     </div>

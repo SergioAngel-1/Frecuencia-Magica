@@ -3,8 +3,9 @@ import { getTranslations } from 'next-intl/server';
 
 import { LessonPlayer } from '@/components/features/academy/lesson-player';
 import { PageShell } from '@/components/layout';
-import { COURSES, getCourse } from '@/data';
+import { COURSES, getCourse } from '@/data/courses';
 import { buildLessons } from '@/lib/academy/lessons';
+import { messageKey } from '@/i18n/keys';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { routing } from '@/i18n/routing';
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'academy' });
 
-  return { title: t(course.titleKey.replace('academy.', '') as 'courses.c1.title') };
+  return { title: t(messageKey('academy', course.titleKey)) };
 }
 
 export default async function LessonPage({ params }: PageProps) {
@@ -60,7 +61,7 @@ export default async function LessonPage({ params }: PageProps) {
   const isLast = lessonIndex >= lessons.length - 1;
   const lessonTitle =
     lessonIndex < lessons.length
-      ? `${lessonData?.number}. ${t(`lessonTitles.${lessonData!.titleIndex}` as 'lessonTitles.0')}`
+      ? `${lessonData?.number}. ${t(messageKey('academy', `lessonTitles.${lessonData!.titleIndex}`))}`
       : '';
 
   const lessonSizes = '(min-width: 1280px) 1240px, calc(100vw - 48px)';
@@ -86,7 +87,7 @@ export default async function LessonPage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      <div className="fm-editorial-full-bleed fm-container pb-section pt-[clamp(100px,12vw,160px)]">
+      <div className="fm-editorial-full-bleed fm-container pb-section pt-hero">
         <LessonPlayer
           completionMedia={completionMedia}
           course={course}

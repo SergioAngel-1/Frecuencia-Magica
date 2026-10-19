@@ -6,10 +6,10 @@ import { useAtmosphereStore } from '@/stores/atmosphere-store';
 
 describe('useArrival: la atmósfera sale del store (M5)', () => {
   beforeEach(() => {
-    useAtmosphereStore.setState({ manual: null });
+    useAtmosphereStore.setState({ choice: null });
   });
 
-  it('sin elección manual, pinta la noche', () => {
+  it('sin elección, pinta la noche', () => {
     const { result } = renderHook(() => useArrival());
 
     expect(result.current.atmosphere).toBe('night');
@@ -20,7 +20,7 @@ describe('useArrival: la atmósfera sale del store (M5)', () => {
 
     act(() => result.current.choose('mood:calm'));
 
-    expect(useAtmosphereStore.getState().manual).toBe('dawn');
+    expect(useAtmosphereStore.getState().choice).toBe('dawn');
     expect(result.current.atmosphere).toBe('dawn');
   });
 
@@ -29,10 +29,10 @@ describe('useArrival: la atmósfera sale del store (M5)', () => {
     act(() => result.current.choose('mood:calm'));
 
     // Descúbrete o el selector cambian la real: «otra opción» debe partir de ella.
-    act(() => useAtmosphereStore.getState().setManual('forest'));
+    act(() => useAtmosphereStore.getState().setChoice('forest'));
     act(() => result.current.other());
 
-    const after = useAtmosphereStore.getState().manual;
+    const after = useAtmosphereStore.getState().choice;
     expect(after).not.toBe('forest');
     expect(result.current.atmosphere).toBe(after);
   });

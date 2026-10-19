@@ -89,3 +89,8 @@ export const PRODUCTS: readonly Product[] = [
     relatedAudioId: 'a6',
   },
 ] as const;
+
+/** Un producto por id; `undefined` si no existe. */
+export function getProduct(id: string): Product | undefined {
+  return PRODUCTS.find((product) => product.id === id);
+}

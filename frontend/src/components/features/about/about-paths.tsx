@@ -34,7 +34,7 @@ export function AboutPaths({ kicker, title, paths }: AboutPathsProps) {
             <h3 className="text-fg font-serif text-[clamp(30px,4.4vw,56px)] leading-[1.05] font-light">
               {path.title}
             </h3>
-            <p className="text-fg-body text-lead max-w-[46ch] leading-[1.7]">{path.body}</p>
+            <p className="text-fg-body text-lead max-w-measure-mid leading-[1.7]">{path.body}</p>
             <div className="lg:justify-self-end">{path.action}</div>
           </li>
         ))}

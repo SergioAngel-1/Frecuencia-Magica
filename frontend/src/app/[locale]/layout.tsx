@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { LazyMotion, domAnimation } from 'motion/react';
 
 import { PlayerDock } from '@/components/features/player/player-dock';
@@ -18,6 +18,7 @@ import { SmoothScroll } from '@/components/world/smooth-scroll';
 import { WorldEngine } from '@/components/world/world-engine';
 import { ATMOSPHERES } from '@/config/atmospheres';
 import { cormorant, jost } from '@/config/fonts';
+import { BASE_NAMESPACES, pickMessages } from '@/i18n/messages';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { routing } from '@/i18n/routing';
 import { atmosphereBootScript, SERVER_ATMOSPHERE } from '@/lib/atmosphere/boot-script';
@@ -58,7 +59,9 @@ export async function generateMetadata({ params }: { params: LocaleParams }): Pr
 }
 
 export const viewport = {
-  themeColor: '#0F1B2E',
+  // El color de la barra del tema que pinta el servidor. El script de arranque
+  // lo corrige antes del primer pintado para el tema real del lugar.
+  themeColor: ATMOSPHERES[SERVER_ATMOSPHERE].themeColor,
   // La noche llega hasta los bordes del dispositivo y `env(safe-area-inset-*)`
   // deja de valer cero: de ahí salen los márgenes del header y de los flotantes.
   viewportFit: 'cover',
@@ -74,6 +77,8 @@ export const viewport = {
  */
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const locale = await resolveLocale(params);
+  // Sólo la base: cada realm re-provee con lo suyo en su propio `layout.tsx`.
+  const messages = pickMessages(await getMessages(), BASE_NAMESPACES);
 
   return (
     <html
@@ -97,7 +102,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           el uso legítimo de suppressHydrationWarning. */}
       <body className="antialiased" suppressHydrationWarning>
         <LazyMotion features={domAnimation}>
-          <NextIntlClientProvider>
+          <NextIntlClientProvider messages={messages}>
             <RealmProvider>
               <AtmosphereProvider>
                 <SmoothScroll>

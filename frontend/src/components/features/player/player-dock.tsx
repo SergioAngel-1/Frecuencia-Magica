@@ -7,20 +7,19 @@ import { div as Mdiv } from 'motion/react-m';
 
 import { IconButton } from '@/components/ui';
 import { DURATION, EASE } from '@/config/motion';
-import { getAudio } from '@/data';
+import { getAudio } from '@/data/audios';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { usePathname } from '@/i18n/navigation';
 import { resolveAudioCover } from '@/lib/editorial/audio-cover';
-import { formatDuration, parseDuration } from '@/lib/format';
-import { progressPercent, startsMinimized } from '@/lib/player/progress';
+import { parseDuration } from '@/lib/format';
+import { startsMinimized } from '@/lib/player/progress';
 import { usePlayerStore } from '@/stores/player-store';
 
 import { AudioCover } from './audio-cover';
-import { PlayerBar } from './player-bar';
 import { CloseIcon, MinimizeIcon } from './player-icons';
-import { PlayerMini } from './player-mini';
 import { PlayerOrb } from './player-orb';
+import { PlayerElapsedLabel, PlayerMiniProgress, PlayerProgressBar } from './player-progress';
 import { VolumeControl } from './volume-control';
 
 /**
@@ -36,7 +35,6 @@ export function PlayerDock() {
   const tResonario = useTranslations('resonario');
   const audioId = usePlayerStore((s) => s.audioId);
   const isPlaying = usePlayerStore((s) => s.isPlaying);
-  const elapsed = usePlayerStore((s) => s.elapsed);
   const minimized = usePlayerStore((s) => s.minimized);
   const volume = usePlayerStore((s) => s.volume);
   const opened = usePlayerStore((s) => s.opened);
@@ -53,7 +51,6 @@ export function PlayerDock() {
   const audio = audioId ? getAudio(audioId) : null;
   // Una pista `soon` no tiene duración; el dock sólo se abre con pistas reproducibles.
   const total = audio?.duration ? parseDuration(audio.duration) : 0;
-  const pct = progressPercent(elapsed, total);
 
   // Abrir una frecuencia a propósito la recoge en las rutas de compra y en móvil.
   // Sólo cuenta la apertura de la persona (`opened`): que la pista avance sola o
@@ -84,9 +81,8 @@ export function PlayerDock() {
     node.querySelector<HTMLElement>('[data-player-focus]')?.focus();
   };
 
-  const title = audio ? tResonario(`audios.${audio.id}.title` as 'audios.a1.title') : '';
-  const tag = audio ? tResonario(`tags.${audio.tagId}` as 'tags.meditation') : '';
-  const elapsedLabel = formatDuration(Math.min(elapsed, total));
+  const title = audio ? tResonario(`audios.${audio.id}.title`) : '';
+  const tag = audio ? tResonario(`tags.${audio.tagId}`) : '';
   // La misma portada que el disco del audio en cualquier vista. Decorativa:
   // el título ya está escrito al lado (o en el nombre del disco recogido).
   const cover = audio ? (
@@ -117,11 +113,11 @@ export function PlayerDock() {
       <AnimatePresence mode="wait">
         {!audio ? null : minimized ? (
           <Mdiv key="mini" ref={takeFocus} {...motion} className="flex justify-end">
-            <PlayerMini
+            <PlayerMiniProgress
               hz={audio.hz}
               band={audio.band}
               cover={cover}
-              progress={pct}
+              total={total}
               label={`${t('expand')} — ${title}${audio.hz !== null ? `, ${audio.hz} Hz` : ''}`}
               onExpand={expand}
             />
@@ -138,7 +134,7 @@ export function PlayerDock() {
             {/* La barra es compartida con el reproductor de video: aquí sólo
                 se decide qué lleva. En móvil no cabe la barra de posición y
                 el avance es su filo superior. */}
-            <PlayerBar
+            <PlayerProgressBar
               artwork={
                 <PlayerOrb band={audio.band} cover={cover} className="size-11 sm:size-[52px]" />
               }
@@ -147,7 +143,7 @@ export function PlayerDock() {
                 <>
                   {audio.hz !== null ? `${audio.hz} Hz` : tag}
                   <span className="max-md:hidden">{audio.hz !== null ? ` · ${tag}` : null}</span>
-                  <span className="md:hidden"> · {elapsedLabel}</span>
+                  <PlayerElapsedLabel total={total} />
                 </>
               }
               playing={isPlaying}
@@ -167,7 +163,6 @@ export function PlayerDock() {
                   }}
                 />
               }
-              elapsed={elapsed}
               total={total}
               onSeek={setElapsed}
               labels={{

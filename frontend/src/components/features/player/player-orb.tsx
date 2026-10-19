@@ -6,7 +6,8 @@ import { cn } from '@/lib/cn';
  * La misma luz especular del disco de frecuencia. Brillo decorativo: queda
  * crudo a propósito (T0.7 decide su visibilidad).
  */
-const SHEEN = 'radial-gradient(70% 80% at 32% 22%, rgba(247,244,234,0.24), transparent 62%)';
+const SHEEN =
+  'radial-gradient(70% 80% at 32% 22%, color-mix(in srgb, var(--color-fg) 24%, transparent), transparent 62%)';
 
 const RING_RADIUS = 47;
 const RING_LENGTH = 2 * Math.PI * RING_RADIUS;

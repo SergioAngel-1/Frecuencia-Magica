@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { VIDEOS, videoState, type VideoEntry } from '@/config/videos';
 import { COURSES } from '@/data';
 
-const poster = { slot: 'atmosphere.dawn' } as const;
+const poster = { slot: 'resonario.hero' } as const;
 
 describe('videoState', () => {
   it('con fuente está listo; sin ella (o vacía) es «próximamente»', () => {

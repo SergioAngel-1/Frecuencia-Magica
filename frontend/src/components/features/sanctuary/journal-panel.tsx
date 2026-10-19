@@ -27,7 +27,13 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
   const tJournal = useTranslations('journal');
   const tCommon = useTranslations('common');
   const mounted = useMounted();
-  const { draft, entries, setMood, setText, save, discard } = useJournalStore();
+  // Selectores finos: el panel sólo se re-renderiza con los campos que pinta.
+  const draft = useJournalStore((s) => s.draft);
+  const entries = useJournalStore((s) => s.entries);
+  const setMood = useJournalStore((s) => s.setMood);
+  const setText = useJournalStore((s) => s.setText);
+  const save = useJournalStore((s) => s.save);
+  const discard = useJournalStore((s) => s.discard);
   const [saved, setSaved] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 

@@ -40,9 +40,14 @@ const readSource = (relativePath: string) =>
   readFileSync(resolve(SOURCE_ROOT, relativePath), 'utf8');
 
 const homePageSource = readSource('app/[locale]/inicio/page.tsx');
+// Los slots y los alt de la Home viven en los builders puros de `lib/home/`.
+const homeMediaSource = readSource('lib/home/home-media.ts');
+const realmCardsSource = readSource('lib/home/realm-cards.ts');
 const footerSource = readSource('components/layout/site-footer.tsx');
 const homeSources = [
   homePageSource,
+  homeMediaSource,
+  realmCardsSource,
   readSource('components/features/home/hero-section.tsx'),
   readSource('components/features/home/daily-frequency.tsx'),
   readSource('components/features/player/frequency-strip.tsx'),
@@ -97,10 +102,11 @@ describe('home editorial composition contracts', () => {
     expect(pageAltKeys).toHaveLength(5);
 
     for (const altKey of pageAltKeys) {
-      expect(homePageSource).toContain(`alt: t('media.alt.${altKey}')`);
+      expect(homeMediaSource).toContain(`alt: t('media.alt.${altKey}')`);
     }
 
-    expect(footerSource).toContain("alt: tHome('media.alt.footerBanner')");
+    expect(footerSource).toContain("tHome('media.alt.footerBanner')");
+    expect(footerSource).toContain('useMemo(');
     expect(homeSources).not.toMatch(/alt:\s*['"][^'"]*[áéíóúñ]/i);
   });
 
@@ -117,9 +123,10 @@ describe('home editorial composition contracts', () => {
       'store.hero',
       'sanctuary.hero',
     ]) {
-      expect(homePageSource).toContain(`'${slot}'`);
+      expect(realmCardsSource).toContain(`'${slot}'`);
     }
-    expect(homePageSource).toContain('resolveEditorialMedia(REALM_HERO_SLOTS[');
+    expect(realmCardsSource).toContain('resolveEditorialMedia(REALM_HERO_SLOTS[');
+    expect(homePageSource).toContain('buildRealmCards(NAV_REALMS');
     expect(cardSource).toContain('<EditorialImage');
     expect(cardSource).toContain('media={media}');
     // Con foto, la geometría de la banda se retira.

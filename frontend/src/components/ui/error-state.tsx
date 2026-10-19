@@ -31,7 +31,10 @@ interface ErrorStateProps {
  * de terracota, el único color añadido a la paleta.
  */
 export function ErrorState({ title, body, action, tone = 'neutral', className }: ErrorStateProps) {
-  const stroke = tone === 'warn' ? 'rgba(201,139,122,0.55)' : 'rgba(247,244,234,0.2)';
+  const stroke =
+    tone === 'warn'
+      ? 'color-mix(in srgb, var(--color-warn) 55%, transparent)'
+      : 'color-mix(in srgb, var(--color-fg) 20%, transparent)';
 
   return (
     <div
@@ -44,16 +47,16 @@ export function ErrorState({ title, body, action, tone = 'neutral', className }:
         direction="ccw"
         rings={[
           { r: 96, stroke, width: 1, dash: BROKEN_ARC },
-          { r: 62, stroke: 'rgba(247,244,234,0.10)', width: 0.7 },
+          { r: 62, stroke: 'color-mix(in srgb, var(--color-fg) 10%, transparent)', width: 0.7 },
         ]}
       />
 
-      <p className="text-fg-soft mt-[26px] max-w-[34ch] font-serif text-[clamp(20px,2.6vw,24px)] leading-[1.4]">
+      <p className="text-fg-soft max-w-measure-narrow mt-[26px] font-serif text-[clamp(20px,2.6vw,24px)] leading-[1.4]">
         {title}
       </p>
 
       {body ? (
-        <p className="text-fg-meta text-body mt-[12px] max-w-[42ch] font-sans leading-[1.7]">
+        <p className="text-fg-meta text-body max-w-measure-base mt-[12px] font-sans leading-[1.7]">
           {body}
         </p>
       ) : null}

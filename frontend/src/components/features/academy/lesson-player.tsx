@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import { VideoSlot } from '@/components/features/player/video-slot';
-import { Button, Display, EditorialImage, Kicker } from '@/components/ui';
+import { Button, ConfirmationPanel, Display, Kicker } from '@/components/ui';
 import { getVideo, lessonVideoId } from '@/config/videos';
 import { Link } from '@/i18n/navigation';
 import { buildLessons } from '@/lib/academy/lessons';
@@ -34,40 +34,24 @@ export function LessonPlayer({
 
   if (lessonIndex >= lessons.length) {
     return (
-      <section
-        className="rounded-card-lg relative isolate min-h-[clamp(430px,48vw,680px)] overflow-hidden"
-        data-editorial-media="academy.completion"
+      <ConfirmationPanel
+        media={completionMedia}
+        slot="academy.completion"
+        title={t('completion.title')}
+        description={t('completion.description')}
+        iconLabel={t('completion.title')}
+        minHeightClass="min-h-[clamp(430px,48vw,680px)]"
+        contentClassName="max-w-[600px]"
       >
-        <div className="absolute inset-0">
-          <EditorialImage
-            aspect="16:8"
-            className="h-full"
-            media={completionMedia}
-            overlay="bottom"
-            scrim="bottom"
-          />
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Button variant="outline" asChild>
+            <Link href="/academia">{t('completion.back')}</Link>
+          </Button>
+          <Button variant="accent" asChild>
+            <Link href="/resonario">{t('completion.exploreResonario')}</Link>
+          </Button>
         </div>
-        <div className="relative z-10 flex min-h-[clamp(430px,48vw,680px)] max-w-[600px] flex-col justify-end px-[clamp(24px,7vw,84px)] py-[clamp(30px,7vw,84px)]">
-          <span className="border-accent/60 bg-scrim/35 text-accent mb-5 inline-flex size-14 items-center justify-center rounded-full border font-serif text-[24px] backdrop-blur-sm">
-            <span aria-hidden="true">✓</span>
-            <span className="sr-only">{t('completion.title')}</span>
-          </span>
-          <Display size="md" level="h1">
-            {t('completion.title')}
-          </Display>
-          <p className="text-fg-body mt-5 max-w-[42ch] text-[16px] leading-[1.8]">
-            {t('completion.description')}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button variant="outline" asChild>
-              <Link href="/academia">{t('completion.back')}</Link>
-            </Button>
-            <Button variant="accent" asChild>
-              <Link href="/resonario">{t('completion.exploreResonario')}</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      </ConfirmationPanel>
     );
   }
 
@@ -81,9 +65,9 @@ export function LessonPlayer({
       </Link>
 
       <Kicker tone="teal" spacing="widest" className="mt-8">
-        {t(`courses.${course.id}.title` as 'courses.c1.title')}
+        {t(`courses.${course.id}.title`)}
       </Kicker>
-      <Display size="lg" level="h1" className="mt-3 max-w-[15ch]">
+      <Display size="lg" level="h1" className="max-w-measure-title-lg mt-3">
         {lessonTitle}
       </Display>
 

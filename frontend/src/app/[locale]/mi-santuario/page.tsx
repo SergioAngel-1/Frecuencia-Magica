@@ -9,7 +9,7 @@ import {
 } from '@/components/features/sanctuary';
 import { PageShell } from '@/components/layout';
 import { Float, FullBleedSection } from '@/components/ui';
-import { COURSES } from '@/data';
+import { COURSES } from '@/data/courses';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 import { MOCK_PROFILE, resumeTarget } from '@/lib/sanctuary/profile';

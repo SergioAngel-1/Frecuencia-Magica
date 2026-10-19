@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { ATMOSPHERES, LISTENING_PLACES, PLACE_ATMOSPHERE } from '@/config/atmospheres';
-import { EDITORIAL_MEDIA_SLOTS } from '@/config/editorial-media';
+import { ATMOSPHERE_IDS, ATMOSPHERES, PLACE_ATMOSPHERE } from '@/config/atmospheres';
 import { getRealm } from '@/config/realms';
 import type { Place } from '@/types/atmosphere';
 
@@ -35,24 +34,23 @@ describe('registro de atmósferas', () => {
       descubrete: 'night',
       resonario: 'night',
       sanctuario: 'night',
-      academia: 'study',
-      tienda: 'store',
-      experiencias: 'gathering',
-      story: 'marisol',
+      academia: 'dawn',
+      tienda: 'dawn',
+      experiencias: 'dusk',
+      story: 'dawn',
     });
   });
 
-  it('la lista de escucha son descúbrete, resonario y mi santuario', () => {
-    expect([...LISTENING_PLACES].sort()).toEqual(['descubrete', 'resonario', 'sanctuario']);
+  it('hay cinco temas, y la noche es el primero', () => {
+    expect(ATMOSPHERE_IDS).toEqual(['night', 'dusk', 'dawn', 'moon', 'forest']);
   });
 
-  it('la noche es la v1: engine completo, nota del portal y sin fondo propio', () => {
+  it('la noche es la v1: engine completo y nota del portal', () => {
     expect(ATMOSPHERES.night).toEqual({
       scheme: 'dark',
       themeColor: '#0F1B2E',
       engine: { canvas: 1, nebula: 1, figures: 1 },
       droneNote: getRealm('portal').baseNote,
-      backdropSlot: null,
     });
   });
 
@@ -66,16 +64,6 @@ describe('registro de atmósferas', () => {
       }
       expect(definition.droneNote, `droneNote de ${id}`).toBeGreaterThanOrEqual(80);
       expect(definition.droneNote, `droneNote de ${id}`).toBeLessThanOrEqual(220);
-    }
-  });
-
-  it('todo backdropSlot declarado existe en EDITORIAL_MEDIA_SLOTS', () => {
-    const slots: readonly string[] = EDITORIAL_MEDIA_SLOTS;
-
-    for (const [id, definition] of Object.entries(ATMOSPHERES)) {
-      if (definition.backdropSlot === null) continue;
-
-      expect(slots, `backdropSlot de ${id}`).toContain(definition.backdropSlot);
     }
   });
 });

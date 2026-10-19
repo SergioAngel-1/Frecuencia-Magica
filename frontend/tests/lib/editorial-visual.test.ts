@@ -49,18 +49,8 @@ const BAND: readonly EditorialMediaSlot[] = [
   'sanctuary.continue',
 ];
 
-/** Paisajes de atmósfera: sin foto pintan el degradado de la atmósfera activa. */
-const ATMOSPHERE: readonly EditorialMediaSlot[] = [
-  'atmosphere.dusk',
-  'atmosphere.dawn',
-  'atmosphere.store',
-  'atmosphere.moon',
-  'atmosphere.forest',
-  'atmosphere.forest-autumn',
-  'atmosphere.study',
-  'atmosphere.gathering',
-  'atmosphere.marisol',
-];
+/** Paisajes de apoyo sin trabajo narrativo: sin foto pintan el degradado del tema activo. */
+const ATMOSPHERE: readonly EditorialMediaSlot[] = ['atmosphere.forest-autumn'];
 
 const BAND_GRADIENT = 'linear-gradient(150deg, #3a5a6e, #1a2c44)';
 
@@ -112,7 +102,9 @@ describe('editorial fallback policy', () => {
 
   it('keeps the photo over the atmosphere backdrop once the photo is published', () => {
     expect(
-      editorialVisual(resolveEditorialMedia('atmosphere.dusk', { src: '/editorial/dusk.avif' })),
+      editorialVisual(
+        resolveEditorialMedia('atmosphere.forest-autumn', { src: '/editorial/autumn.avif' }),
+      ),
     ).toBe('photo');
   });
 

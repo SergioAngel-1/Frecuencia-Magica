@@ -110,3 +110,10 @@ Movimiento y datos: con `prefers-reduced-motion` no hay deriva de paisaje, ni lo
 Videos: un espacio sin fuente («Próximamente») no tiene botón de play ni reloj, y su grupo lleva el nombre del video; con fuente, el reproductor conserva sus controles con nombre accesible. Los módulos del curso son botones con `aria-expanded` y `aria-controls`; el panel cerrado queda `inert`.
 
 Abierto: el recorrido completo por teclado y lector de pantalla sigue pendiente de auditoría manual en dispositivo real.
+
+## Temas globales (2026-10-17)
+
+- **Selector:** `ThemeSwitcher` en el header es un `radiogroup` dentro de un panel que se abre con un botón (`aria-expanded`, `aria-haspopup`); cada opción lleva `role="radio"` y `aria-checked`, hit target de 44 px y foco visible; `Escape` cierra y devuelve el foco al botón; al pulsar fuera se cierra. En móvil el panel ocupa el ancho de la pantalla. Las muestras son decorativas (`aria-hidden`); el nombre y la descripción del tema van en texto.
+- **Anuncio:** el cambio de tema lo anuncia la región `aria-live` del `AtmosphereProvider` con el nombre del tema (no se anuncia la carga).
+- **Contraste:** cinco bloques, una guarda (`atmosphere-contrast`). Sólo `dawn` es claro; los demás conservan la escalera 82/70/60/55. El velo de las fotos sale de `--scrim`/`--scrim-deep` del tema, y `hero-photo-contrast` mide cada héroe con imagen propia de tema sobre su variante.
+- **Movimiento:** con `prefers-reduced-motion` el cambio de tema es inmediato (sin fundido de fondo, sin transición de colores) y el lienzo pinta un frame quieto de la escena del tema.

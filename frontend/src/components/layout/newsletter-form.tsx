@@ -31,7 +31,7 @@ export function NewsletterForm() {
   return (
     <div>
       {sent ? (
-        <p className="text-accent-2 text-lead max-w-[34ch] font-serif leading-[1.5] italic">
+        <p className="text-accent-2 text-lead max-w-measure-narrow font-serif leading-[1.5] italic">
           {t('newsletterSuccess')}
         </p>
       ) : (

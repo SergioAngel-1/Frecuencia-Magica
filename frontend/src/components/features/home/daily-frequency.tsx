@@ -74,10 +74,17 @@ export function DailyFrequency({
 
           <div className="max-w-[620px]">
             <Kicker tone="gold">{kicker}</Kicker>
-            <Display level="h2" size="lg" id="home-daily-title" className="mt-3 max-w-[16ch]">
+            <Display
+              level="h2"
+              size="lg"
+              id="home-daily-title"
+              className="max-w-measure-title-lg mt-3"
+            >
               {title}
             </Display>
-            <p className="text-fg-body text-lead mt-5 max-w-[48ch] leading-[1.75]">{description}</p>
+            <p className="text-fg-body text-lead max-w-measure-mid mt-5 leading-[1.75]">
+              {description}
+            </p>
             <div className="mt-6 flex min-h-11 items-center gap-4">
               <button
                 type="button"

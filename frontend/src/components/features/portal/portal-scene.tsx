@@ -58,7 +58,7 @@ export function PortalScene({
           overlay={false}
           scrim={false}
         />
-        <div className="absolute inset-0 bg-[radial-gradient(52%_52%_at_50%_45%,rgba(216,185,120,0.10),transparent_72%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(52%_52%_at_50%_45%,rgb(var(--halo)/0.10),transparent_72%)]" />
         <div className="absolute top-1/2 left-1/2 size-[min(86vw,560px)] -translate-x-1/2 -translate-y-1/2 md:size-[min(70vh,720px)]">
           <OrbitalRings
             size={720}
@@ -66,12 +66,16 @@ export function PortalScene({
             className="absolute inset-0 h-full w-full opacity-90"
             style={{ width: '100%', height: '100%' }}
             rings={[
-              { r: 340, stroke: 'rgba(216,185,120,0.18)' },
-              { r: 270, stroke: 'rgba(150,198,188,0.16)', dash: '2 10' },
-              { r: 204, stroke: 'rgba(185,176,214,0.16)' },
+              { r: 340, stroke: 'rgb(var(--halo) / 0.18)' },
+              {
+                r: 270,
+                stroke: 'color-mix(in srgb, var(--color-accent-2) 16%, transparent)',
+                dash: '2 10',
+              },
+              { r: 204, stroke: 'color-mix(in srgb, var(--color-accent-3) 16%, transparent)' },
             ]}
           >
-            <g stroke="rgba(216,185,120,0.22)" strokeWidth={0.7}>
+            <g style={{ stroke: 'rgb(var(--halo) / 0.22)' }} strokeWidth={0.7}>
               <line x1="0" y1="-340" x2="0" y2="340" />
               <line x1="-340" y1="0" x2="340" y2="0" />
               <line x1="-240" y1="-240" x2="240" y2="240" />
@@ -86,11 +90,15 @@ export function PortalScene({
             style={{ width: '100%', height: '100%' }}
             rings={[{ r: 340, stroke: 'transparent' }]}
           >
-            <polygon points="0,-260 226,136 -226,136" fill="none" stroke="rgba(216,185,120,0.14)" />
+            <polygon
+              points="0,-260 226,136 -226,136"
+              fill="none"
+              style={{ stroke: 'rgb(var(--halo) / 0.14)' }}
+            />
             <polygon
               points="0,260 -226,-136 226,-136"
               fill="none"
-              stroke="rgba(150,198,188,0.12)"
+              style={{ stroke: 'color-mix(in srgb, var(--color-accent-2) 12%, transparent)' }}
             />
           </OrbitalRings>
         </div>
@@ -105,16 +113,19 @@ export function PortalScene({
               empujar el CTA ni la pista fuera de la primera pantalla; nunca baja del
               tamaño anterior (128/190 px). */}
           <div className="animate-fm-float relative mb-[22px] size-[clamp(128px,calc(100svh_-_510px),240px)] md:mb-[26px] md:size-[clamp(190px,calc(100svh_-_580px),340px)]">
-            <Halo color="rgba(216,185,120,0.22), rgba(150,198,188,0.10) 55%" inset="-8%" />
+            <Halo
+              color="rgb(var(--halo) / 0.22), color-mix(in srgb, var(--color-accent-2) 10%, transparent) 55%"
+              inset="-8%"
+            />
             {/* Decorativo: el nombre lo dice el `h1` de debajo. Flota con su caja; no gira. */}
             <Isotype
               variant="detail"
               still
-              className="size-full drop-shadow-[0_0_26px_rgba(216,185,120,0.4)]"
+              className="size-full drop-shadow-[0_0_26px_rgb(var(--halo)/0.4)]"
             />
             <div
               aria-hidden="true"
-              className="animate-fm-ring border-ivory/30 absolute -inset-[16px] rounded-full border"
+              className="animate-fm-ring border-fg/30 absolute -inset-[16px] rounded-full border"
             />
           </div>
 

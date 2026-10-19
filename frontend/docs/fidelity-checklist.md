@@ -127,3 +127,11 @@ Recorrido vista por vista contra el sistema de diseño del proyecto (Task 16.5 d
    - **El cruce ya no es el estallido del prototipo**: aquel círculo crema que inundaba la pantalla era un relleno sólido de acento. Ahora cruza un iris de noche con el borde encendido y la revelación espera a que llegue el destino (ver «Cruce del portal» en `DESIGN.md`).
 5. **Viñeta corregida** (`at 50% 145%`): la del prototipo dejaba una banda inferior sin oscurecer.
 6. **Fase 15 (3D) no ejecutada**: no hay escenas three.js; los fallbacks 2D (aros, geometría) cubren la dirección visual. El bundle se mantiene dentro de presupuesto en parte por esta ausencia.
+
+## Temas globales (2026-10-17)
+
+- [x] Cinco temas declarados sólo en `tokens.css`; la noche no cambia.
+- [x] El tema elegido vale en todas las vistas y se conserva al recargar (`localStorage`); sin elección, cada lugar sugiere el suyo (Academia, Tienda y Sobre Marisol: amanecer; Experiencias: atardecer).
+- [x] Cada tema pinta su escena del lienzo y sus nebulosas; ninguno apaga el motor.
+- [x] Las imágenes con variante por tema cambian con el tema; sin variante, la noche (lavada en el tema claro).
+- [ ] 38 variantes por generar (ver «Mapa de variantes por tema» de `docs/prompts-chatgpt.md`).

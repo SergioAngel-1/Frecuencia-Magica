@@ -14,9 +14,9 @@ import {
 
 /**
  * Contraste del texto del héroe sobre su foto (ambientes v2, T2.1). Reproduce lo
- * que pinta `RealmHero`: la foto publicada de la atmósfera con el velo `left` de
+ * que pinta `RealmHero`: la foto publicada del tema con el velo `left` de
  * `EditorialOverlay` (denso 0,86 en el borde, 0,58 al 44 %, nada al 82 %) y mide
- * la tinta de la atmósfera sobre la zona del título, la entrada y el kicker
+ * la tinta del tema sobre la zona del título, la entrada y el kicker
  * (x 8–40 %, y 20–55 % del héroe). Es el peor píxel, no la media: a 1440, 1280,
  * 768 y 390 px la medición con Chromium dio >= 10:1 en los cuatro héroes.
  */
@@ -24,25 +24,40 @@ const CSS = readTokensCss();
 const PUBLIC = resolve(process.cwd(), 'public/editorial');
 const MIN = 4.5;
 
-/** Héroe de catálogo -> atmósfera cuyo paisaje pinta (y si su velo es claro). */
+/** Héroe con imagen propia de un tema publicada -> tema cuyos tokens pinta y archivo de la variante. */
 const HEROES = [
-  { place: 'Academia', id: 'study', light: true },
-  { place: 'Sobre Marisol', id: 'marisol', light: true },
-  { place: 'Tienda', id: 'store', light: true },
-  { place: 'Experiencias', id: 'gathering', light: false },
+  { place: 'Academia', id: 'dawn', file: 'academy-hero-dawn' },
+  { place: 'Academia', id: 'moon', file: 'academy-hero-moon' },
+  { place: 'Sobre Marisol', id: 'dawn', file: 'about-hero-dawn' },
+  { place: 'Tienda', id: 'dawn', file: 'store-hero-dawn' },
+  { place: 'Experiencias', id: 'moon', file: 'experiences-hero-moon' },
+  { place: 'Tienda', id: 'moon', file: 'store-hero-moon' },
+  { place: 'Santuario', id: 'moon', file: 'sanctuary-hero-moon' },
+  { place: 'Home', id: 'dusk', file: 'home-hero-dusk' },
+  { place: 'Acceso', id: 'moon', file: 'auth-hero-moon' },
+  { place: 'Home', id: 'dawn', file: 'home-hero-dawn' },
+  { place: 'Home', id: 'forest', file: 'home-hero-forest' },
+  { place: 'Home', id: 'moon', file: 'home-hero-moon' },
+  { place: 'Resonario', id: 'moon', file: 'resonario-hero-moon' },
+  { place: 'Resonario', id: 'dusk', file: 'resonario-hero-dusk' },
+  { place: 'Resonario', id: 'dawn', file: 'resonario-hero-dawn' },
+  { place: 'Resonario', id: 'forest', file: 'resonario-hero-forest' },
+  { place: 'Sobre Marisol', id: 'dusk', file: 'about-hero-dusk' },
+  { place: 'Sobre Marisol', id: 'forest', file: 'about-hero-forest' },
+  { place: 'Sobre Marisol', id: 'moon', file: 'about-hero-moon' },
 ] as const;
 
 const W = 640;
 const H = 360;
 
-describe.each(HEROES)('hero of $place (atmosphere $id) over its photo', ({ id, light }) => {
+describe.each(HEROES)('hero of $place (theme $id) over its photo', ({ id, file }) => {
   it('reads at 4.5:1 or more in the worst pixel of the text zone', async () => {
     const tokens = resolvedTokens(CSS, `[data-atmosphere='${id}']`);
     const ink = parseColor(tokens['--color-fg']!);
     const scrim = parseTriplet(tokens['--scrim']!);
-    const dense = light ? scrim : parseTriplet(tokens['--scrim-deep']!);
+    const dense = parseTriplet(tokens['--scrim-deep']!);
 
-    const { data, info } = await sharp(resolve(PUBLIC, `atmosphere-${id}.avif`))
+    const { data, info } = await sharp(resolve(PUBLIC, `${file}.avif`))
       .resize(W, H, { fit: 'cover' })
       .removeAlpha()
       .raw()

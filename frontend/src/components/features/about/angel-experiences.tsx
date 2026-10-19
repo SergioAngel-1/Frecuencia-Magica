@@ -42,7 +42,7 @@ export function AngelExperiences({
         media={media}
         eyebrow={kicker}
         title={title}
-        body={<p className="max-w-[58ch] leading-[1.75]">{intro}</p>}
+        body={<p className="max-w-measure-full leading-[1.75]">{intro}</p>}
         tone="lav"
         heightClassName="min-h-[clamp(420px,46vw,640px)]"
       />
@@ -53,7 +53,9 @@ export function AngelExperiences({
               <h3 className="text-fg font-serif text-[clamp(26px,3vw,34px)] leading-[1.05] italic">
                 {item.title}
               </h3>
-              <p className="text-fg-body text-body mt-4 max-w-[44ch] leading-[1.75]">{item.body}</p>
+              <p className="text-fg-body text-body max-w-measure-base mt-4 leading-[1.75]">
+                {item.body}
+              </p>
             </li>
           ))}
         </ul>

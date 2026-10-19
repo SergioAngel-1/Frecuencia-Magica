@@ -10,7 +10,6 @@ import { useRealm } from '@/hooks/use-realm';
 import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
 import { useNavMenuStore } from '@/stores/nav-menu-store';
-import type { RealmId } from '@/types/realm';
 
 /**
  * Menú de navegación: la constelación en una tarjeta modal. Lo abre el botón
@@ -53,8 +52,8 @@ export function RealmMenu() {
       href: realm.href,
       accent: realm.accent,
       active: !storyActive && realm.id === realmId,
-      name: t(`realms.${realm.id as RealmId}` as 'realms.resonario'),
-      emotion: t(`emotions.${realm.id as RealmId}` as 'emotions.resonario'),
+      name: t(`realms.${realm.id}`),
+      emotion: t(`emotions.${realm.id}`),
     })),
     {
       id: NAV_STORY.id,
@@ -120,7 +119,7 @@ export function RealmMenu() {
                       boxShadow: active ? `0 0 12px 2px ${accent}` : undefined,
                     }}
                   />
-                  <span className="tracking-soft flex-1 font-serif text-[22px] leading-none">
+                  <span className="tracking-soft text-serif-lg flex-1 font-serif leading-none">
                     {name}
                   </span>
                   <span className="text-fg-meta text-label tracking-caps font-sans uppercase">
@@ -137,7 +136,7 @@ export function RealmMenu() {
               onClick={closeMenu}
               className="rounded-field text-fg-body hover:text-fg flex min-h-[60px] items-center justify-between gap-4 px-3 transition-colors duration-300"
             >
-              <span className="tracking-soft font-serif text-[22px] leading-none">
+              <span className="tracking-soft text-serif-lg font-serif leading-none">
                 {tStore('cart')}
               </span>
               {cartCount > 0 && (

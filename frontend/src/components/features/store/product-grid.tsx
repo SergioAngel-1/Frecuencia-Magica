@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
 
-import { PRODUCTS } from '@/data';
+import { PRODUCTS } from '@/data/products';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { ProductCard } from './product-card';
@@ -28,7 +28,7 @@ export function ProductGrid({ media }: ProductGridProps) {
 
   return (
     <section data-editorial-archive="true" aria-labelledby="store-archive-title">
-      <div className="mb-8 max-w-[58ch]">
+      <div className="max-w-measure-full mb-8">
         <Display level="h2" size="md" id="store-archive-title" className="mt-3">
           {t('gridTitle')}
         </Display>

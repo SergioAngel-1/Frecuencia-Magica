@@ -41,6 +41,18 @@ describe('configuración de realms', () => {
     }
   });
 
+  it('la clave de acento coincide con el hex del acento', () => {
+    const porHex: Record<string, 'gold' | 'teal' | 'lav'> = {
+      '#D8B978': 'gold',
+      '#96C6BC': 'teal',
+      '#B9B0D6': 'lav',
+    };
+
+    for (const realm of REALMS) {
+      expect(realm.accentKey, realm.id).toBe(porHex[realm.accent]);
+    }
+  });
+
   it('los acentos coinciden con el prototipo', () => {
     const esperado: Record<string, string> = {
       portal: '#D8B978',

@@ -23,6 +23,25 @@ describe('cn with the design tokens', () => {
     expect(cn('shadow-glow-gold', 'shadow-glow-teal')).toBe('shadow-glow-teal');
   });
 
+  it('registers the serif size scale as sizes, apart from colours', () => {
+    expect(cn('text-serif-md', 'text-fg')).toBe('text-serif-md text-fg');
+    expect(cn('text-serif-md', 'text-accent')).toBe('text-serif-md text-accent');
+    expect(cn('text-serif-md', 'text-meta')).toBe('text-meta');
+    expect(cn('text-serif-sm', 'text-serif-3xl')).toBe('text-serif-3xl');
+    expect(cn('text-label', 'text-serif-xl')).toBe('text-serif-xl');
+    expect(cn('text-serif-xs', 'text-serif-4xl')).toBe('text-serif-4xl');
+  });
+
+  it('resolves the reading measures and the page-top offset as their groups', () => {
+    expect(cn('max-w-md', 'max-w-measure-base')).toBe('max-w-measure-base');
+    expect(cn('max-w-measure-base', 'max-w-measure-wide')).toBe('max-w-measure-wide');
+    expect(cn('max-w-measure-narrow', 'text-fg')).toBe('max-w-measure-narrow text-fg');
+    expect(cn('max-w-measure-title-sm', 'max-w-measure-title-xl')).toBe('max-w-measure-title-xl');
+    expect(cn('pt-8', 'pt-hero')).toBe('pt-hero');
+    expect(cn('pt-hero', 'pt-top')).toBe('pt-top');
+    expect(cn('pt-hero', 'pb-section')).toBe('pt-hero pb-section');
+  });
+
   it('keeps tokens and arbitrary values coherent', () => {
     expect(cn('text-label', 'text-[13px]')).toBe('text-[13px]');
     expect(cn('tracking-label', 'tracking-[.3em]')).toBe('tracking-[.3em]');

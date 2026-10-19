@@ -7,12 +7,12 @@
  */
 
 export { arrowLinkClasses, ArrowGlyph, type ArrowLinkTone } from './arrow-link';
-export { ScopeBackdrop, type ScopeBackdropFade } from './scope-backdrop';
-export { AtmosphereScope } from './atmosphere-scope';
 export { Badge, type BadgeProps, type BadgeTone } from './badge';
 export { Band, type BandAspect } from './band';
 export { BandChain, type BandChainProps } from './band-chain';
 export { Button, type ButtonProps, type ButtonTone, type ButtonVariant } from './button';
+export { Collapse } from './collapse';
+export { ConfirmationPanel, type ConfirmationPanelProps } from './confirmation-panel';
 export { Display, type DisplayLevel, type DisplaySize } from './display';
 export { EmptyState } from './empty-state';
 export {

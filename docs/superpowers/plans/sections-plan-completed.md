@@ -518,3 +518,16 @@ Rama `feat/ambientes-v2-fase2` (base `32c54fe`). Spec y plan como arriba. Verifi
 **Hallazgo propio de cierre**: la viñeta de la nebulosa era un navy fijo y ensuciaba de gris todas las atmósferas claras (240 → 209); ahora lee el velo de la atmósfera (la noche, idéntica) (`de4851f`).
 
 **Pendiente de Marisol/Sergio** (en `docs/materiales-pendientes.md`): audio real (melodías, naturaleza, aves, celta, prácticas guiadas), videos (bienvenida, presentación, respiración, cursos y lecciones), fotografía de producto y catálogo real, cursos reales (rituales, esencias, gratuitos y de pago), recalibrar los hex provisionales de las atmósferas, enlace de vista previa para su visto bueno (D8) y las decisiones abiertas D2–D7 del spec. **Hallazgos abiertos**: FPS de las esferas en un móvil físico sin medir; cargar el motor de audio con `import()` bajo demanda (First Load JS 280–309 kB, por encima del presupuesto); `preload` del archivo de audio a `metadata` al llegar grabaciones largas; las pistas de síntesis pausadas siguen corriendo en silencio (M4).
+
+---
+
+## Sección 14 — Temas globales
+
+Rama `feat/temas-globales` (base `30b3a27`). Spec: `docs/superpowers/specs/2026-10-17-temas-globales-design.md`; plan: `docs/superpowers/plans/2026-10-17-temas-globales.md`. Las nueve atmósferas por lugar pasan a **cinco temas globales** (`night|dusk|dawn|moon|forest`).
+
+- **Modelo (T1, T2, T4):** elección global en `localStorage` (`fm.atmosphere`, versión 1) con el tema sugerido del lugar como respaldo (`PLACE_ATMOSPHERE`: Academia, Tienda y Sobre Marisol → amanecer; Experiencias → atardecer); `ThemeSwitcher` en el header; fuera `AtmosphereScope`, `ScopeBackdrop`, `AtmospherePicker`, `AtmosphereHero|Band` y `scrimTone`; «¿Cómo llegas hoy?» cambia el tema global; tokens de `study|store|gathering|marisol` eliminados y `--nebula-a|b|c|boost` por tema.
+- **Motor (T3):** `lib/cosmic/themes.ts` con una escena por tema (estrellas, grupos de partículas `rise|ember|mote|firefly|spore`, nebulosas) y cambio con fundido en el lienzo y el worker; nebulosas, aros, destellos y cursor leen tokens del tema.
+- **Imágenes (T5):** `slot@tema` en el manifiesto, `THEME_VARIANTS`, `ThemedPhoto` y una regla CSS que oculta la base nocturna; los ocho paisajes de Ambientes v2 se reasignan como variantes de héroe (`resonario-hero-dusk|dawn|moon|forest`, `academy-hero-dawn`, `store-hero-dawn`, `experiences-hero-dusk`, `about-hero-dawn`); 38 prompts nuevos en `docs/prompts-chatgpt.md`.
+- **Documentos (T6):** `DESIGN.md` § Atmósferas, `AGENTS.md`, `CLAUDE.md`, `frontend/docs/*`, showcase de `Branding/`.
+
+**Pendiente:** generar con ChatGPT las 38 variantes por tema (la tabla «Mapa de variantes por tema» dice cuáles) y publicarlas con `npm run editorial:ingest`; recalibrar contraste de las variantes de héroe publicadas con `hero-photo-contrast`; medir FPS del lienzo con las escenas nuevas en móvil físico.

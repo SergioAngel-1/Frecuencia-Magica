@@ -75,20 +75,30 @@ function EmptyContent({ title, body, action, illustration, className }: EmptyCon
           size={120}
           spin={140}
           rings={[
-            { r: 96, stroke: 'rgba(247,244,234,0.14)', width: 0.8 },
-            { r: 62, stroke: 'rgba(247,244,234,0.10)', width: 0.7, dash: '1 8' },
+            { r: 96, stroke: 'color-mix(in srgb, var(--color-fg) 14%, transparent)', width: 0.8 },
+            {
+              r: 62,
+              stroke: 'color-mix(in srgb, var(--color-fg) 10%, transparent)',
+              width: 0.7,
+              dash: '1 8',
+            },
           ]}
         >
-          <OrbitalRings.Node angle={-90} radius={96} color="rgba(247,244,234,0.28)" size={6} />
+          <OrbitalRings.Node
+            angle={-90}
+            radius={96}
+            color="color-mix(in srgb, var(--color-fg) 28%, transparent)"
+            size={6}
+          />
         </OrbitalRings>
       )}
 
-      <p className="text-fg-muted mt-[26px] max-w-[34ch] font-serif text-[clamp(20px,2.6vw,24px)] leading-[1.4] italic">
+      <p className="text-fg-muted max-w-measure-narrow mt-[26px] font-serif text-[clamp(20px,2.6vw,24px)] leading-[1.4] italic">
         {title}
       </p>
 
       {body ? (
-        <p className="text-fg-meta text-body mt-[12px] max-w-[42ch] font-sans leading-[1.7]">
+        <p className="text-fg-meta text-body max-w-measure-base mt-[12px] font-sans leading-[1.7]">
           {body}
         </p>
       ) : null}

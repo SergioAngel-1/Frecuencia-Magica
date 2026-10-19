@@ -31,6 +31,7 @@ type VideoPlayback = {
  */
 export function useVideoPlayback(src: string | undefined, duration: number): VideoPlayback {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const mutedRef = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [total, setTotal] = useState(duration);
@@ -105,11 +106,13 @@ export function useVideoPlayback(src: string | undefined, duration: number): Vid
   }, [playing, pause, elapsed, total, seek, src]);
 
   const toggleMute = useCallback(() => {
-    setMuted((current) => {
-      if (videoRef.current) videoRef.current.muted = !current;
+    // El valor actual vive en una ref (y en el elemento, si lo hay): el efecto
+    // se aplica fuera del updater, que debe ser puro bajo StrictMode.
+    const next = !mutedRef.current;
 
-      return !current;
-    });
+    mutedRef.current = next;
+    if (videoRef.current) videoRef.current.muted = next;
+    setMuted(next);
   }, []);
 
   return { videoRef, playing, elapsed, total, muted, toggle, seek, toggleMute };

@@ -2,10 +2,8 @@ import { getTranslations } from 'next-intl/server';
 
 import { ExperienceList } from '@/components/features/experiences/experience-list';
 import { PageShell, RealmHero } from '@/components/layout';
-import { ATMOSPHERES } from '@/config/atmospheres';
-import { EXPERIENCES } from '@/data';
+import { EXPERIENCES } from '@/data/experiences';
 import { resolveLocale, type LocaleParams } from '@/i18n/resolve-locale';
-import { scrimToneFor } from '@/lib/atmosphere/painting';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
 type PageProps = { params: LocaleParams };
@@ -22,8 +20,7 @@ export default async function ExperiencesPage({ params }: PageProps) {
   const t = await getTranslations({ locale, namespace: 'experiences' });
   const featuredTitle = t('items.e1.title');
   const experienceMedia = {
-    // Las experiencias viven en la atmósfera `gathering`: su paisaje, no la foto del realm.
-    hero: resolveEditorialMedia('atmosphere.gathering', {
+    hero: resolveEditorialMedia('experiences.hero', {
       alt: t('media.alt.hero'),
       sizes: '100vw',
     }),
@@ -57,7 +54,6 @@ export default async function ExperiencesPage({ params }: PageProps) {
             kicker={t('kicker')}
             title={t('title')}
             description={t('description')}
-            scrimTone={scrimToneFor(ATMOSPHERES.gathering.scheme)}
           />
         }
       />

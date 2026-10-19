@@ -3,7 +3,8 @@ import { getTranslations } from 'next-intl/server';
 
 import { CourseDetail } from '@/components/features/academy/course-detail';
 import { PageShell } from '@/components/layout';
-import { getCourse } from '@/data';
+import { getCourse } from '@/data/courses';
+import { messageKey } from '@/i18n/keys';
 import { resolveLocale } from '@/i18n/resolve-locale';
 import { courseIntroId, getVideo } from '@/config/videos';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: 'academy' });
 
-  return { title: t(course.titleKey.replace('academy.', '') as 'courses.c1.title') };
+  return { title: t(messageKey('academy', course.titleKey)) };
 }
 
 export default async function CoursePage({ params }: PageProps) {
@@ -47,7 +48,7 @@ export default async function CoursePage({ params }: PageProps) {
   const courseMedia = resolveEditorialMedia('academy-course-cover', {
     instance: course.id,
     alt: t('media.alt.courseCover', {
-      title: t(`courses.${course.id}.title` as 'courses.c1.title'),
+      title: t(`courses.${course.id}.title`),
     }),
     sizes: '(min-width: 1024px) 580px, calc(100vw - 48px)',
     band: course.band,
@@ -55,7 +56,7 @@ export default async function CoursePage({ params }: PageProps) {
 
   const introMedia = videoPosterMedia(getVideo(courseIntroId(course.id)), {
     alt: t('media.alt.courseCover', {
-      title: t(`courses.${course.id}.title` as 'courses.c1.title'),
+      title: t(`courses.${course.id}.title`),
     }),
     sizes: '(min-width: 1024px) 580px, calc(100vw - 48px)',
     band: course.band,
@@ -63,7 +64,7 @@ export default async function CoursePage({ params }: PageProps) {
 
   return (
     <PageShell width="wide" padding="none" fullBleed editorial>
-      <div className="fm-editorial-full-bleed fm-container pb-section pt-[clamp(100px,12vw,160px)]">
+      <div className="fm-editorial-full-bleed fm-container pb-section pt-hero">
         <CourseDetail course={course} media={courseMedia} introMedia={introMedia} />
       </div>
     </PageShell>

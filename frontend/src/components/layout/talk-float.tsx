@@ -81,10 +81,10 @@ export function TalkFloat() {
                 className="group fm-surface-strong shadow-glow-card rounded-pill hover:border-accent/45 text-fg pointer-events-auto flex h-14 min-w-14 items-center justify-center gap-3 transition-colors duration-300 sm:px-5"
               >
                 <span className="relative flex size-6 items-center justify-center">
-                  {/* Aura decorativa: queda cruda a propósito (T0.7). */}
+                  {/* Aura decorativa: sigue el halo del tema (T0.7). */}
                   <span
                     aria-hidden="true"
-                    className="animate-fm-glow bg-gold/25 absolute -inset-2 rounded-full blur-[8px]"
+                    className="animate-fm-glow bg-halo/25 absolute -inset-2 rounded-full blur-[8px]"
                   />
                   <svg
                     width="22"

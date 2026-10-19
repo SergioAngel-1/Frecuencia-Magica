@@ -54,9 +54,9 @@ describe('band chain', () => {
     };
 
     // Inicio (ritmo del spec §10): héroe → frecuencia del día, encadenados en la
-    // noche. Después, con el ritmo `section`, el bloque de llegada (amanecer), la
-    // tienda (atmósfera `store`), el bento de realms (noche), la membresía y
-    // Marisol, que cierra la página en su atmósfera antes del footer.
+    // noche. Después, con el ritmo `section`, el bloque de llegada, la tienda, el
+    // bento de realms, la membresía y Marisol, que cierra la página antes del
+    // footer. Todo bajo el mismo tema: la Home no declara temas locales.
     const home = view('app/[locale]/inicio/page.tsx');
     const homeChain = chainOf(home);
     expect(homeChain.indexOf('<HeroSection')).toBeGreaterThan(-1);
@@ -69,7 +69,6 @@ describe('band chain', () => {
       '<StoreShowcase',
       '<RealmsGrid',
       '<MembershipSection',
-      'atmosphere="marisol"',
       '<AboutSection',
     ].map((marker) => afterChain.indexOf(marker));
     for (const [index, position] of order.entries()) {
@@ -86,7 +85,7 @@ describe('band chain', () => {
 
     // Resonario: héroe → banner del archivo.
     const resonario = chainOf(view('app/[locale]/resonario/page.tsx'));
-    expect(resonario).toContain('<AtmosphereHero');
+    expect(resonario).toContain('<RealmHero');
     expect(resonario).toContain('<EditorialBanner');
 
     // Experiencias: héroe → destacada.

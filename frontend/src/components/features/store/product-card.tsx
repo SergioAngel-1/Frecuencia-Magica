@@ -5,6 +5,7 @@ import type { Product } from '@/types/content';
 import { useTranslations } from 'next-intl';
 
 import { Badge, Button, EditorialImage, GradientText } from '@/components/ui';
+import { messageKey } from '@/i18n/keys';
 import { Link } from '@/i18n/navigation';
 import { formatPrice } from '@/lib/format';
 import { categoryKey } from '@/lib/store/category-key';
@@ -109,7 +110,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
           <h3
             className={cn(
               'text-fg group-hover:text-accent font-serif leading-tight transition-colors',
-              featured ? 'text-[clamp(24px,3vw,34px)]' : 'text-[20px]',
+              featured ? 'text-[clamp(24px,3vw,34px)]' : 'text-serif-md',
             )}
           >
             {featured ? (
@@ -120,11 +121,11 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
           </h3>
           {size ? (
             <span className="text-fg-meta text-meta tracking-ui font-sans">
-              {t(size.key.replace(/^store\./, '') as 'notes')}
+              {t(messageKey('store', size.key))}
             </span>
           ) : null}
           {featured ? (
-            <p className="text-fg-soft text-body mt-1 max-w-[52ch] leading-[1.75]">
+            <p className="text-fg-soft text-body max-w-measure-wide mt-1 leading-[1.75]">
               {t('featuredDescription')}
             </p>
           ) : null}
@@ -138,7 +139,7 @@ export function ProductCard({ product, media: baseMedia, featured, className }: 
           featured && 'px-6 pb-6 md:absolute md:right-0 md:bottom-0 md:w-1/2',
         )}
       >
-        <span className="text-accent tracking-soft font-serif text-[21px]">
+        <span className="text-accent tracking-soft text-serif-md font-serif">
           {formatPrice(product.price)}
         </span>
         <Button variant="accent" tone="gold" onClick={() => add(product.id)}>
