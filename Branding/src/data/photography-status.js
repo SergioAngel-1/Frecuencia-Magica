@@ -238,6 +238,7 @@ export const COMPLETED = [
   'states-offline-dusk.avif',
   'states-offline-forest.avif',
   'sanctuary-continue-dawn.avif',
+  'sanctuary-daily-dusk.avif',
 ]
 
 /**
