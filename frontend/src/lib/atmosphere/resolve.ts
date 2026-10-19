@@ -13,10 +13,15 @@ export function isAtmosphereId(value: unknown): value is AtmosphereId {
 
 /**
  * Tema activo en un lugar. Función pura: la elección de la persona manda en todo
- * el sitio; sin ella, el lugar sugiere el suyo.
+ * el sitio; sin ella, lo que suena puede proponer el suyo (sólo en Automático y
+ * en los lugares de escucha) y, en último término, el lugar sugiere el suyo.
  */
-export function resolveAtmosphere(place: Place, choice?: AtmosphereId | null): AtmosphereId {
-  return choice ?? PLACE_ATMOSPHERE[place];
+export function resolveAtmosphere(
+  place: Place,
+  choice?: AtmosphereId | null,
+  listening?: AtmosphereId | null,
+): AtmosphereId {
+  return choice ?? listening ?? PLACE_ATMOSPHERE[place];
 }
 
 /**

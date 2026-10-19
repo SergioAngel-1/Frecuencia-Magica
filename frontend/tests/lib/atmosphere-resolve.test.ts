@@ -21,6 +21,22 @@ describe('resolveAtmosphere', () => {
     expect(resolveAtmosphere('story', null)).toBe('dawn');
     expect(resolveAtmosphere('experiencias', null)).toBe('dusk');
   });
+
+  it('la elección de la persona gana a lo que suena', () => {
+    expect(resolveAtmosphere('resonario', 'forest', 'moon')).toBe('forest');
+    expect(resolveAtmosphere('resonario', 'dawn', 'night')).toBe('dawn');
+  });
+
+  it('lo que suena gana al tema del lugar cuando no hay elección', () => {
+    expect(resolveAtmosphere('resonario', null, 'forest')).toBe('forest');
+    expect(resolveAtmosphere('resonario', undefined, 'moon')).toBe('moon');
+  });
+
+  it('sin escucha, el tema del lugar no cambia', () => {
+    expect(resolveAtmosphere('resonario', null, null)).toBe('night');
+    expect(resolveAtmosphere('resonario', null, undefined)).toBe('night');
+    expect(resolveAtmosphere('resonario', undefined, null)).toBe('night');
+  });
 });
 
 describe('placeFromPathname', () => {
