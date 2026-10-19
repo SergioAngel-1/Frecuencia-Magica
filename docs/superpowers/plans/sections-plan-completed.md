@@ -542,6 +542,8 @@ Rama `feat/estructura-experiencia` (base `ff926db`). Spec: `docs/superpowers/spe
 - **Home (`e4e4941`, `03aadde`, `fdff508`):** héroe `split` (ya no compite con el del portal) → «Elige por dónde entrar» (sin banner de apertura) → «Tu llegada» (panel directo si hay estado guardado; check-in si se llegó directo) → frecuencia del día → tienda → membresía → Marisol.
 - **Regla de ritmo:** nunca dos bandas fotográficas a sangre seguidas; sólo la última puede fundir con el pie (`BandChain intoFooter`). Aplicada en Resonario (archivo = encabezado de texto) y Experiencias (destacada = tarjeta contenida); Academia, Tienda, Sobre Marisol, Santuario y Descúbrete ya cumplían. Guarda: `tests/lib/band-rhythm.test.ts` y `band-chain.test.ts`.
 
-**Decisiones a confirmar:** `arrival` y `journal` pasan a `BASE_NAMESPACES` (el portal no tiene layout propio); Acceso se trata como contenido en su `BandChain` (lista blanca de la guarda); `home.realms-banner` y `resonario.archive-banner` quedan en el contrato sin consumidor.
+**Decisiones a confirmar:** `arrival` y `journal` pasan a `BASE_NAMESPACES` (el portal no tiene layout propio); Acceso se trata como contenido en su `BandChain` (lista blanca de la guarda).
 
-**Hallazgos previos, sin tocar:** botón «Menú» del header a 390 px queda a 2 px del borde; halo de `AngelExperiences` (`right-[-12%]`) sobresale del viewport; `.fm-editorial-viewport-media` sin uso; tras `next build`, comprobar 404 reales con `next start`.
+**Cierre (`5e87027`, `1ea90b4`, `8c9aaf4`):** menú del header a icono en móvil (a 390 px los controles desbordaban el gutter); halo de `AngelExperiences` recortado en el borde; `home.realms-banner` y `resonario.archive-banner` se cablean como tarjeta enmarcada (`FramedHeading`, `components/layout`), contenida y no a sangre, así que la regla de ritmo se mantiene. 404 comprobados con `next build` + `next start`: rutas inválidas de tienda, academia (curso y lección), experiencias (detalle y reserva), ES y EN, y `/kit` responden 404; las válidas, 200.
+
+**Hallazgo menor, sin tocar:** `.fm-editorial-viewport-media` (globals.css) sin uso en `src/`.
