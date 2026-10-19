@@ -580,8 +580,8 @@ export const THEME_VARIANTS = [
   {
     base: 'states.offline',
     theme: 'dawn',
-    subject: `A brief retreat at first light: a quiet cabin window with a warm lamp still lit inside and pale blue mist over a still lake outside, a sense of pausing, nobody in the frame, soft cream morning light on the sill`,
-    frame: 'Window slightly right of center at 70% horizontal, soft pale surroundings, calm and low in detail',
+    subject: `A brief retreat at first light: a quiet cabin window with a warm lamp still lit inside and pale blue mist over a still lake outside, a sense of pausing, nobody in the frame, soft cream morning light on the sill, the cabin wall and window frame painted pale whitewashed wood, light and smooth, never dark or heavily weathered`,
+    frame: 'Window slightly right of center at 70% horizontal and small in the frame, no more than 28% of the frame width, soft pale surroundings, the misty lake and pale sky fill most of the frame, calm and low in detail',
   },
   {
     base: 'states.offline',
