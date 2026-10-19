@@ -131,3 +131,12 @@ export const ARRIVAL_FALLBACK: ArrivalKey = 'mood:calm';
  * (lo decide `respondToArrival` por la hora).
  */
 export const ARRIVAL_ATMOSPHERES: readonly AtmosphereId[] = ['dusk', 'dawn', 'forest', 'moon'];
+
+/**
+ * Clave de `localStorage` de la última llegada elegida. Sólo guarda *qué* estado
+ * o intención se eligió: el tema y el sonido viven en sus propios stores.
+ */
+export const ARRIVAL_STORAGE_KEY = 'fm.arrival';
+
+/** Versión del formato guardado (`persist({ version })`). */
+export const ARRIVAL_STORE_VERSION = 1;
