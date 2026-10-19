@@ -301,12 +301,6 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   scroll-padding-bottom: 140px;
 }
 
-/* A media slot can own the viewport without depending on a browser toolbar. */
-@utility fm-editorial-viewport-media {
-  min-height: 100svh;
-  min-height: 100dvh;
-}
-
 /* Fixed mobile navigation and the player both respect the device safe area. */
 @utility fm-safe-area-top {
   padding-top: max(1rem, env(safe-area-inset-top));

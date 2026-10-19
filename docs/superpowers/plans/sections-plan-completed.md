@@ -546,4 +546,4 @@ Rama `feat/estructura-experiencia` (base `ff926db`). Spec: `docs/superpowers/spe
 
 **Cierre (`5e87027`, `1ea90b4`, `8c9aaf4`):** menú del header a icono en móvil (a 390 px los controles desbordaban el gutter); halo de `AngelExperiences` recortado en el borde; `home.realms-banner` y `resonario.archive-banner` se cablean como tarjeta enmarcada (`FramedHeading`, `components/layout`), contenida y no a sangre, así que la regla de ritmo se mantiene. 404 comprobados con `next build` + `next start`: rutas inválidas de tienda, academia (curso y lección), experiencias (detalle y reserva), ES y EN, y `/kit` responden 404; las válidas, 200.
 
-**Hallazgo menor, sin tocar:** `.fm-editorial-viewport-media` (globals.css) sin uso en `src/`.
+Se retiró también `.fm-editorial-viewport-media` (globals.css), sin uso desde que el héroe de la Home pasó a `split`.
