@@ -264,6 +264,7 @@ export const COMPLETED = [
   'discover-result-forest.avif',
   'discover-result-moon.avif',
   'booking-confirmation-dawn.avif',
+  'academy-completion-dawn.avif',
 ]
 
 /**

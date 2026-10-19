@@ -8,7 +8,7 @@
 
 **204 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 132 · P2 60. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 202 completadas · 0 a corregir · 1 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 203 completadas · 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -318,7 +318,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `discover-result-forest.avif` | Descúbrete · resultado · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
 | `discover-result-moon.avif` | Descúbrete · resultado · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
 | `booking-confirmation-dawn.avif` | Reserva · confirmación · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
-| `academy-completion-dawn.avif` | Academia · curso completado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
+| `academy-completion-dawn.avif` | Academia · curso completado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
@@ -346,25 +346,11 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (1)
+### 5.2 Faltantes (0)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
-#### `academy.completion · Amanecer` — Academia · curso completado · tema · P1
-
-- **Archivo:** `academy-completion-dawn.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Variante del tema Amanecer de `academy.completion`: la misma vista y el mismo encuadre, con la escena del tema. Celebración del curso terminado: el logro con luz. Cuerpo de luz.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-A completed cycle closed in light at sunrise: a ring of exactly twelve small golden lights, evenly spaced and with no other lights, floating on pale still water seen from a slightly oblique overhead angle, each one a small warm point with a soft ring of light around it so it reads on the bright water, a small abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated cross-legged just outside the far side of the ring, never counted as one of the twelve, every light steady and one slightly brighter, concentric ripples radiating outward from the ring only. Ring centered at 50% horizontal, its middle empty, pale and perfectly still water because content is laid over it later, count the lights: twelve around the ring and the figure beyond them, the ripples spreading outward from the ring only, the small figure no taller than 12% of the frame height at the far edge of the ring at 50% horizontal and 30% vertical, nothing but soft pale mist and water around. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: soft sky blue, ivory and a faint pale gold; light, open and airy, with soft blue-grey shadows. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
+Ninguna.
 
 ### 5.3 Por cablear (crear vistas) (0)
 
@@ -380,7 +366,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (202)
+### 5.5 Completadas (203)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -574,6 +560,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `discover-result-forest.avif` | Descúbrete · resultado · tema · Bosque | `discover.result` | 16:9 | P1 |
 | `discover-result-moon.avif` | Descúbrete · resultado · tema · Luna | `discover.result` | 16:9 | P1 |
 | `booking-confirmation-dawn.avif` | Reserva · confirmación · tema · Amanecer | `booking.confirmation` | 16:8 | P1 |
+| `academy-completion-dawn.avif` | Academia · curso completado · tema · Amanecer | `academy.completion` | 16:8 | P1 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
