@@ -114,7 +114,7 @@ export function FrequencyDisc({ size = 'md', hz, band, title, meta, active = fal
             className="pointer-events-none absolute transition-opacity duration-500"
             style={{ inset: spec.aura.inset, opacity: active ? spec.aura.active : spec.aura.rest }}
           >
-            <div className="animate-fm-breathe size-full rounded-full" style={{ backgroundImage: band, filter: `blur(${spec.aura.blur}px)` }} />
+            <div className="fm-disc-aura animate-fm-breathe size-full rounded-full" style={{ '--disc-band': band, filter: `blur(${spec.aura.blur}px)` }} />
           </div>
         ) : null}
         <OrbitalRings

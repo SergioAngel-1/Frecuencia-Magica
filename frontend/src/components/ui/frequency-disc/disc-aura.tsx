@@ -1,3 +1,5 @@
+import type { CSSProperties } from 'react';
+
 import type { SizeSpec } from '@/config/frequency-disc';
 
 type DiscAuraProps = {
@@ -10,7 +12,10 @@ type DiscAuraProps = {
 
 /**
  * La propia banda del audio, difuminada y respirando detrás del disco. La
- * opacidad va en el envoltorio: `fm-breathe` anima la suya propia.
+ * opacidad va en el envoltorio: `fm-breathe` anima la suya propia. La banda viaja
+ * en `--disc-band` para que un tema claro la sustituya por la luz del tema
+ * (`.fm-disc-aura` en globals.css): una banda oscura difuminada sobre crema es
+ * una sombra, no un aura.
  */
 export function DiscAura({ aura, band, active }: DiscAuraProps) {
   return (
@@ -20,8 +25,8 @@ export function DiscAura({ aura, band, active }: DiscAuraProps) {
       style={{ inset: aura.inset, opacity: active ? aura.active : aura.rest }}
     >
       <div
-        className="animate-fm-breathe size-full rounded-full"
-        style={{ backgroundImage: band, filter: `blur(${aura.blur}px)` }}
+        className="fm-disc-aura animate-fm-breathe size-full rounded-full"
+        style={{ '--disc-band': band, filter: `blur(${aura.blur}px)` } as CSSProperties}
       />
     </div>
   );

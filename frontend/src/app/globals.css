@@ -381,6 +381,22 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   );
 }
 
+/* Aura de la esfera: la banda del audio, difuminada. En esquema claro esa banda es
+   un tinte oscuro y se vería como una sombra azul sobre la crema: el aura pasa a ser
+   la luz del tema (`--halo`). */
+.fm-disc-aura {
+  background-image: var(--disc-band);
+}
+
+[data-scheme='light'] .fm-disc-aura {
+  background-image: radial-gradient(
+    circle,
+    rgb(var(--halo) / 0.55),
+    rgb(var(--halo) / 0.14) 62%,
+    transparent 74%
+  );
+}
+
 /* Cifra de la esfera en esquema claro: sobre una píldora de tinta a 72 %, para que el
    marfil llegue a 4,5:1 aunque la portada detrás sea blanca (ver tests/lib/light-contrast). */
 [data-scheme='light'] .fm-disc-face {
