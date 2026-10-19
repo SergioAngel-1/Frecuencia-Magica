@@ -204,6 +204,8 @@ export const COMPLETED = [
   'home-realms-banner-dusk.avif',
   'home-realms-banner-forest.avif',
   'home-footer-banner-dusk.avif',
+  'home-footer-banner-forest.avif',
+  'home-membership-dusk.avif',
 ]
 
 /**
