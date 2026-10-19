@@ -8,7 +8,7 @@
 
 **204 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 132 · P2 60. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 200 completadas · 0 a corregir · 3 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 201 completadas · 0 a corregir · 2 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -316,7 +316,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `discover-result-dawn.avif` | Descúbrete · resultado · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `discover-result-dusk.avif` | Descúbrete · resultado · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `discover-result-forest.avif` | Descúbrete · resultado · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
-| `discover-result-moon.avif` | Descúbrete · resultado · tema · Luna | 16:9 | 2880×1620 | P1 | Faltantes |
+| `discover-result-moon.avif` | Descúbrete · resultado · tema · Luna | 16:9 | 2880×1620 | P1 | Completadas |
 | `booking-confirmation-dawn.avif` | Reserva · confirmación · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
 | `academy-completion-dawn.avif` | Academia · curso completado · tema · Amanecer | 16:8 | 2880×1440 | P1 | Faltantes |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | 16:9 | 2880×1620 | P0 | Completadas |
@@ -346,25 +346,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (3)
+### 5.2 Faltantes (2)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `discover.result · Luna` — Descúbrete · resultado · tema · P1
-
-- **Archivo:** `discover-result-moon.avif`
-- **Medidas:** master 2880×1620 · tablet 1440×810 · móvil 768×432 · generar a 2048×1152 (sin ampliar después) · peso ≤ 260 KB (P0 ≤ 320 KB)
-- **Ratio / focal:** 16:9 · foco 50% 40%
-- **Zona de texto:** Centro despejado: lleva un disco, una cifra o un logo encima
-- **Contenido:** Variante del tema Luna de `discover.result`: la misma vista y el mismo encuadre, con la escena del tema. El resultado del quiz como revelación visual. Cuerpo de luz.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Revelation under the moon: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, standing upright with open arms at the edge of dark still water, seen from behind facing the horizon, a single narrow beam of cool silver light descending from the top center of the frame that fades out completely well before it reaches the middle of the frame, ending at about 30% of the frame height, one color only, silver, with no split and no colored bands, the body cool silver-white with only a very faint teal and lavender tint inside it, never iridescent and never pastel, and its reflection on the water a single silver column, a moment of clarity, a few dozen fine pinpoint stars above. The horizon line sits high, at 30% of the frame height, so the wide dark water fills the lower 70%; the figure is small, about 12% of the frame height, and stands on that water close to the viewer, centered at 50% horizontal, its head at 70% of the frame height and its feet at 82%, never near the horizon; the beam stays in the top third of the frame and never crosses the middle; the band from 35% to 65% of the frame height is calm dark blue mist and still water with nothing bright, for the result text. Wide landscape framing. Dominant tone: cool silver-blue moonlight over a night of deep teal-blue, the whole scene clearly lit and readable by a soft luminous silver light on the water, the mist and the stone, with small warm accents (a candle, a distant lamp) for depth; shadows in lifted deep blue, never pure black, never a flat dark image. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `booking.confirmation · Amanecer` — Reserva · confirmación · tema · P1
 
@@ -412,7 +396,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (200)
+### 5.5 Completadas (201)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -604,6 +588,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `discover-result-dawn.avif` | Descúbrete · resultado · tema · Amanecer | `discover.result` | 16:9 | P1 |
 | `discover-result-dusk.avif` | Descúbrete · resultado · tema · Atardecer | `discover.result` | 16:9 | P1 |
 | `discover-result-forest.avif` | Descúbrete · resultado · tema · Bosque | `discover.result` | 16:9 | P1 |
+| `discover-result-moon.avif` | Descúbrete · resultado · tema · Luna | `discover.result` | 16:9 | P1 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |

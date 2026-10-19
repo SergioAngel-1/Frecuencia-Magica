@@ -262,6 +262,7 @@ export const COMPLETED = [
   'discover-result-dawn.avif',
   'discover-result-dusk.avif',
   'discover-result-forest.avif',
+  'discover-result-moon.avif',
 ]
 
 /**
