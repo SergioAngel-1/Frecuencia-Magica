@@ -1136,8 +1136,8 @@
       "want": "Quiero volver a la tierra"
     },
     "switcher": {
-      "label": "Tu atmósfera",
-      "open": "Elegir tu atmósfera",
+      "label": "Cómo te sientes",
+      "open": "Elegir cómo te sientes",
       "auto": "Automático",
       "autoDescription": "El sitio elige la luz: cada lugar y cada sonido proponen la suya.",
       "current": "Ahora te acompaña: {name}",

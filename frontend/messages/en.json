@@ -1131,8 +1131,8 @@
       "want": "I want to come back to earth"
     },
     "switcher": {
-      "label": "Your atmosphere",
-      "open": "Choose your atmosphere",
+      "label": "How you feel",
+      "open": "Choose how you feel",
       "auto": "Automatic",
       "autoDescription": "The site chooses the light: each place and each sound suggest their own.",
       "current": "With you now: {name}",
