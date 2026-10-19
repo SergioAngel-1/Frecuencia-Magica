@@ -10,6 +10,7 @@ import {
   currentAlternative,
   IDLE_ARRIVAL,
   nextAtmosphere,
+  restoreArrival,
   stepAlternative,
 } from '@/lib/arrival/flow';
 import { respondToArrival } from '@/lib/arrival/respond';
@@ -118,5 +119,22 @@ describe('fundido de arranque de una pista de llegada (M3)', () => {
 
   it('el fundido dura unos 2,5 s', () => {
     expect(ARRIVAL_FADE_IN_SECONDS).toBe(2.5);
+  });
+});
+
+describe('restaurar una llegada guardada (sin sonar)', () => {
+  it('restaura la misma respuesta y primera alternativa que elegirla', () => {
+    const restored = restoreArrival('mood:nostalgia', DAY);
+
+    expect(restored).toEqual(chooseArrival('mood:nostalgia', DAY));
+    expect(restored.key).toBe('mood:nostalgia');
+    expect(restored.index).toBe(0);
+    expect(currentAlternative(restored)).toBe(restored.response!.alternatives[0]);
+  });
+
+  it('restaurar una intención conserva su respuesta', () => {
+    const restored = restoreArrival('intent:grounding', DAY);
+
+    expect(restored.response!.atmosphere).toBe('forest');
   });
 });
