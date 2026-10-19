@@ -8,7 +8,12 @@ const { full, quick } = PORTAL_TIMING;
 describe('usePortalStore', () => {
   beforeEach(() => {
     vi.useFakeTimers();
-    usePortalStore.setState({ phase: 'idle', mode: 'full', reason: 'route' });
+    usePortalStore.setState({
+      phase: 'idle',
+      mode: 'full',
+      reason: 'route',
+      destination: null,
+    });
   });
 
   afterEach(() => {
@@ -38,6 +43,22 @@ describe('usePortalStore', () => {
       mode: 'brief',
       reason: 'reveal',
     });
+  });
+
+  it('fija el destino al cruzar y lo limpia al volver a reposo', () => {
+    usePortalStore.getState().cross('full', 'route', '/inicio');
+    expect(usePortalStore.getState().destination).toBe('/inicio');
+
+    vi.advanceTimersByTime(full.cover);
+    usePortalStore.getState().arrive();
+    vi.advanceTimersByTime(full.settle + full.reveal);
+
+    expect(usePortalStore.getState()).toMatchObject({ phase: 'idle', destination: null });
+  });
+
+  it('una revelación en sitio no tiene destino', () => {
+    usePortalStore.getState().cross('brief', 'reveal', null);
+    expect(usePortalStore.getState().destination).toBeNull();
   });
 
   it('al cubrir la pantalla espera al destino en vez de revelar por reloj', () => {

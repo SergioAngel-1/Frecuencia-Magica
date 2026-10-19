@@ -51,7 +51,7 @@ export function useCrossPortal(): () => void {
     }
 
     const mode = portalModeFor(reduced, fullChoreography);
-    usePortalStore.getState().cross(mode);
+    usePortalStore.getState().cross(mode, 'route', '/inicio');
 
     router.prefetch('/inicio');
     navTimerRef.current = setTimeout(() => {

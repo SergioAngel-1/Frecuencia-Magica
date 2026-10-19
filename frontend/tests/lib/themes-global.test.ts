@@ -11,12 +11,13 @@ const FILES = sourceFiles(SRC, /\.(ts|tsx)$/).map((file) => ({
   source: readSource(file),
 }));
 
-/** Los únicos sitios que escriben `data-atmosphere`: el documento, el fondo en fundido, el velo del cruce (pinta el tema al que se va), la espera entre vistas (pinta el tema de llegada mientras el pathname aún es el de origen) y las muestras. */
+/** Los únicos sitios que escriben `data-atmosphere`: el documento, el fondo en fundido, el velo del cruce (pinta el tema al que se va), el cruce del portal (pinta el tema de destino), la espera entre vistas (pinta el tema de llegada mientras el pathname aún es el de origen) y las muestras. */
 const MAY_SET_ATTRIBUTE = new Set([
   'app/[locale]/layout.tsx',
   'components/world/atmosphere-provider.tsx',
   'components/world/atmosphere-backdrop.tsx',
   'components/world/atmosphere-shift-veil.tsx',
+  'components/world/portal-transition.tsx',
   'components/layout/route-transition.tsx',
   'components/ui/theme-swatch.tsx',
   'components/layout/theme-switcher.tsx',
