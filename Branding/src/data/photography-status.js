@@ -257,6 +257,7 @@ export const COMPLETED = [
   'checkout-confirmation-forest.avif',
   'discover-tuning-dawn.avif',
   'discover-tuning-dusk.avif',
+  'discover-tuning-forest.avif',
 ]
 
 /**

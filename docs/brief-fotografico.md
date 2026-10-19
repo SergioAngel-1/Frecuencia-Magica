@@ -8,7 +8,7 @@
 
 **204 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 12 · P1 132 · P2 60. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 195 completadas · 0 a corregir · 8 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 196 completadas · 0 a corregir · 7 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -311,7 +311,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `checkout-confirmation-forest.avif` | Compra · confirmación · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
 | `discover-tuning-dawn.avif` | Descúbrete · afinación · tema · Amanecer | 16:8 | 2880×1440 | P1 | Completadas |
 | `discover-tuning-dusk.avif` | Descúbrete · afinación · tema · Atardecer | 16:8 | 2880×1440 | P1 | Completadas |
-| `discover-tuning-forest.avif` | Descúbrete · afinación · tema · Bosque | 16:8 | 2880×1440 | P1 | Faltantes |
+| `discover-tuning-forest.avif` | Descúbrete · afinación · tema · Bosque | 16:8 | 2880×1440 | P1 | Completadas |
 | `discover-tuning-moon.avif` | Descúbrete · afinación · tema · Luna | 16:8 | 2880×1440 | P1 | Faltantes |
 | `discover-result-dawn.avif` | Descúbrete · resultado · tema · Amanecer | 16:9 | 2880×1620 | P1 | Faltantes |
 | `discover-result-dusk.avif` | Descúbrete · resultado · tema · Atardecer | 16:9 | 2880×1620 | P1 | Faltantes |
@@ -346,25 +346,9 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (8)
+### 5.2 Faltantes (7)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
-
-#### `discover.tuning · Bosque` — Descúbrete · afinación · tema · P1
-
-- **Archivo:** `discover-tuning-forest.avif`
-- **Medidas:** master 2880×1440 · tablet 1440×720 · móvil 768×384 · generar a 2048×1024 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 16:8 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** Variante del tema Bosque de `discover.tuning`: la misma vista y el mismo encuadre, con la escena del tema. El momento de la afinación personal: la materia que sintoniza. Cuerpo de luz.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada.
-
-**Prompt**
-
-```text
-Tuning in in the forest: an abstract translucent silhouette of pure light with natural human proportions, the head a smooth featureless glow with no nose, no lips, no eyes, no ear and no facial contour, the body a soft-edged form with no anatomical detail, more light than flesh, seated at the edge of a still forest pool and seen from behind, head slightly bowed, edged in warm golden-green light so it reads against the deep water, as a halo of golden-green ripples spreads across the surface toward it from a single struck point, soft green reflections in the water, exactly three thin vertical light filaments in total, one gold, one teal and one lavender, rising from the ripples, and no other vertical lines anywhere, a few fireflies above the surface. Figure centered, ripples fanning left and right across the wide frame, deep green calm edges, ferns only in the outer corners. Panoramic framing composed for a 2:1 crop: keep everything important away from the top and bottom edges. Dominant tone: natural greens, mossy and fresh, with warm filtered golden light; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. No people.
-```
 
 #### `discover.tuning · Luna` — Descúbrete · afinación · tema · P1
 
@@ -492,7 +476,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (195)
+### 5.5 Completadas (196)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -679,6 +663,7 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `checkout-confirmation-forest.avif` | Compra · confirmación · tema · Bosque | `checkout.confirmation` | 16:8 | P1 |
 | `discover-tuning-dawn.avif` | Descúbrete · afinación · tema · Amanecer | `discover.tuning` | 16:8 | P1 |
 | `discover-tuning-dusk.avif` | Descúbrete · afinación · tema · Atardecer | `discover.tuning` | 16:8 | P1 |
+| `discover-tuning-forest.avif` | Descúbrete · afinación · tema · Bosque | `discover.tuning` | 16:8 | P1 |
 | `portal-hero-moon.avif` | Portal · umbral · tema · Luna | `portal.hero` | 16:9 | P0 |
 | `home-hero-moon.avif` | Home · hero · tema · Luna | `home.hero` | 16:9 | P0 |
 | `resonario-hero-moon.avif` | Resonario · hero · tema · Luna | `resonario.hero` | 16:9 | P1 |
