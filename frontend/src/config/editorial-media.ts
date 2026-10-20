@@ -107,6 +107,7 @@ export const THEME_VARIANTS: Readonly<
   'discover.question-atmosphere': BAND_THEMES,
   'resonario.featured': BAND_THEMES,
   'resonario.archive-banner': BAND_THEMES,
+  'resonario.celtic': BAND_THEMES,
   'academy.featured-course': BAND_THEMES,
   'academy.completion': ['forest', 'dawn'],
   'experiences.featured': BAND_THEMES,

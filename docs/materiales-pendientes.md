@@ -13,7 +13,7 @@ Lo que Marisol aún no entrega y que el sitio muestra como «Próximamente» o c
 | Videos «Próximamente» | 32 |
 | Productos provisionales | 8 |
 | Cursos de demostración | 3 |
-| Imágenes provisionales | 137 |
+| Imágenes provisionales | 140 |
 
 ## Audio
 
@@ -114,7 +114,7 @@ Generadas, hacen de marco hasta tener fotografía propia de Marisol o con licenc
 |---|---|---|---|
 | `store-product-visual` | Tienda · productos | `store-product-visual-p1.avif`, `store-product-visual-p2.avif`, `store-product-visual-p3.avif`, `store-product-visual-p4.avif`, `store-product-visual-p5.avif`, `store-product-visual-p6.avif`, `store-product-visual-p7.avif`, `store-product-visual-p8.avif` | Pendiente de Marisol: son fotografía real de sus productos y quedan por hacer (envase con etiqueta legible, tamaño o contenido, textura, una imagen en uso). Las ocho publicadas son provisionales; el catálogo real (nombres, tamaños, contenidos) también lo define ella. No se generan imágenes nuevas de producto. |
 | `atmosphere.forest-autumn` | Atmósfera · Bosque otoñal (nostalgia) | `atmosphere-forest-autumn.avif` | Sólo si hay material: la variante otoñal es opcional (spec §4.2). Sustituir por fotografía propia o con licencia comercial documentada. |
-| `resonario.celtic` | Resonario · música de inspiración celta | `resonario-celtic.avif` | Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `resonario.celtic` | Resonario · música de inspiración celta | `resonario-celtic.avif`, `resonario-celtic-dusk.avif`, `resonario-celtic-dawn.avif`, `resonario-celtic-forest.avif` | Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `resonario.kind-banner.*` | Resonario · tipo de escucha | `resonario-kind-banner-melody.avif`, `resonario-kind-banner-nature.avif`, `resonario-kind-banner-frequency.avif`, `resonario-kind-banner-binaural.avif`, `resonario-kind-banner-guided.avif` | Imágenes de apoyo. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `academy.hero` | Academia · hero · tema | `academy-hero-dawn.avif`, `academy-hero-dusk.avif`, `academy-hero-forest.avif`, `academy-hero-moon.avif` | Sustituir por fotografía propia o con licencia comercial documentada. |
 | `store.hero` | Tienda · hero · tema | `store-hero-dawn.avif`, `store-hero-dusk.avif`, `store-hero-forest.avif`, `store-hero-moon.avif` | Escenario sin producto. La fotografía real de los productos (envases con etiqueta legible, textura, en uso) la hace Marisol; esta imagen se sustituye o se conserva sólo como fondo. |
