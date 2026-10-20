@@ -47,6 +47,12 @@ export function LeavingPhoto({ photo, className, sizes, onDone }: LeavingPhotoPr
       aria-hidden="true"
       className={className}
       data-photo-leaving=""
+      // Es un `<img>` nuevo que nace opaco sobre la foto que se estaba viendo: tiene que pintar en el
+      // primer frame. Con `lazy` (el valor por defecto de `next/image`) o con decodificación
+      // asíncrona, Safari la deja en blanco hasta el siguiente ciclo y por el hueco asoma el fondo
+      // del tema viejo: un destello oscuro entre dos temas. Chrome lo evita con su caché de memoria.
+      loading="eager"
+      decoding="sync"
       fill
       sizes={sizes}
       src={photo.src}

@@ -100,6 +100,19 @@ describe('ThemedPhoto: la foto saliente llega con el cambio de tema', () => {
     expect(leaving()?.getAttribute('src')).toBe('/dawn.avif');
   });
 
+  /**
+   * La saliente es un `<img>` nuevo que nace opaco encima de la foto que se estaba viendo. Si es
+   * `lazy` o se decodifica en asíncrono, Safari (iOS) no la pinta en el primer frame —no tiene el
+   * atajo de Chrome para imágenes ya en caché— y por el hueco se ve el fondo del tema viejo: un
+   * destello oscuro entre dos temas. Tiene que pedirse ya y decodificarse antes de pintar.
+   */
+  it('la foto saliente se carga ya y se decodifica antes de pintar, para no abrir un hueco', () => {
+    switchTo('dawn');
+
+    expect(leaving()?.getAttribute('loading')).toBe('eager');
+    expect(leaving()?.getAttribute('decoding')).toBe('sync');
+  });
+
   it('con ceremonia (fundido de 0 s) no se crea capa saliente: el velo ya cubre el cambio', () => {
     controls.fade = 0;
     switchTo('dawn');
