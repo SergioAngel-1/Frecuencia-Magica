@@ -98,6 +98,10 @@ export const THEME_VARIANTS: Readonly<
   'booking.hero': HERO_THEMES,
   'store.hero': HERO_THEMES,
   'sanctuary.hero': HERO_THEMES,
+  // El retrato de Marisol: una versión por tema, hermana de la base publicada (misma persona, misma
+  // pose y encuadre; cambian sólo la luz, el muro y la vista de la ventana). Retoque de luz sobre la
+  // foto publicada, no un rostro nuevo.
+  'home-marisol-portrait': HERO_THEMES,
   'home.daily-frequency': BAND_THEMES,
   'home.realms-banner': BAND_THEMES,
   'home.footer-banner': BAND_THEMES,

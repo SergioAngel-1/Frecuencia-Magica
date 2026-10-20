@@ -13,7 +13,7 @@ Lo que Marisol aún no entrega y que el sitio muestra como «Próximamente» o c
 | Videos «Próximamente» | 32 |
 | Productos provisionales | 8 |
 | Cursos de demostración | 3 |
-| Imágenes provisionales | 140 |
+| Imágenes provisionales | 144 |
 
 ## Audio
 
@@ -153,6 +153,7 @@ Generadas, hacen de marco hasta tener fotografía propia de Marisol o con licenc
 | `discover.tuning` | Descúbrete · afinación · tema | `discover-tuning-dawn.avif`, `discover-tuning-dusk.avif`, `discover-tuning-forest.avif`, `discover-tuning-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `discover.result` | Descúbrete · resultado · tema | `discover-result-dawn.avif`, `discover-result-dusk.avif`, `discover-result-forest.avif`, `discover-result-moon.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
 | `resonario.hero` | Resonario · hero · tema | `resonario-hero-moon.avif`, `resonario-hero-dusk.avif`, `resonario-hero-dawn.avif`, `resonario-hero-forest.avif` | Variante de tema. Sustituir por fotografía propia o con licencia comercial documentada. |
+| `home-marisol-portrait` | Home · Sobre Marisol · tema | `home-marisol-portrait-dusk.avif`, `home-marisol-portrait-dawn.avif`, `home-marisol-portrait-moon.avif`, `home-marisol-portrait-forest.avif` | Variante provisional. Sustituir por fotografía propia de Marisol (sesión real) cuando exista. |
 
 ## A revisar cuando llegue el material
 

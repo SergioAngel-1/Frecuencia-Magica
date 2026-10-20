@@ -35,6 +35,11 @@ const AVOID_MOON = AVOID_ATMOSPHERE.replace(
   "a navy or gold color cast over the whole image, crushed black shadows,",
   "a warm orange or gold color cast over the whole image, a flat black image, a large detailed moon disc, crushed black shadows,",
 );
+/** Retoque de luz del retrato de Marisol: la persona de la foto adjunta no se toca, así que se prohíbe cambiarla. */
+const PERSON = "people, faces, human figures, ";
+const KEEP_PERSON =
+  "a different person, altered or retouched facial features, a changed age, a changed hairstyle, changed earrings, changed clothing, a changed pose, ";
+const avoidPerson = (avoid) => avoid.replace(PERSON, KEEP_PERSON);
 const AVOID_PORTRAIT = AVOID.replace(
   "faces, facial features, eyes, nose, lips, ear, ",
   "",
@@ -130,10 +135,12 @@ for (const [index, state] of STATES.entries()) {
 
   for (const [position, { row, status }] of items.entries()) {
     const label = row.title ? `${row.view} · ${row.title}` : row.view;
+    const atmosphereAvoid =
+      row.theme === "moon" ? AVOID_MOON : AVOID_ATMOSPHERE;
     const avoid = isAtmosphere(row)
-      ? row.theme === "moon"
-        ? AVOID_MOON
-        : AVOID_ATMOSPHERE
+      ? row.person
+        ? avoidPerson(atmosphereAvoid)
+        : atmosphereAvoid
       : row.reference
         ? AVOID_REFERENCE
         : row.realShoot
@@ -141,9 +148,11 @@ for (const [index, state] of STATES.entries()) {
           : AVOID;
     const opening = row.reference
       ? "Create an image using the attached reference photo of the product. Follow this description exactly and do not add elements, text or effects that are not described or not in the reference."
-      : row.sibling
-        ? "Create an image using the attached image as the main reference: it is the same scene in its base version. Keep exactly the same room, the same objects, their shapes, materials and positions, and the same framing; change only the light, the color palette and the view beyond the window, as described. Follow this description exactly and do not add elements, text or effects that are not described or not in the reference."
-        : "Create an image. Follow this description exactly and do not add elements, text or effects that are not described.";
+      : row.person
+        ? "Create an image by editing the attached photograph, which is the base version of this portrait: keep exactly the same woman (her face, features, expression, age, skin, hair, earrings and clothing), the same pose and the same framing, and the same candle, lavender and window. Change only the light, the color palette, the wall and the view beyond the window, as described. Do not alter her identity or retouch her face. Follow this description exactly and do not add elements, text or effects that are not described or not in the reference."
+        : row.sibling
+          ? "Create an image using the attached image as the main reference: it is the same scene in its base version. Keep exactly the same room, the same objects, their shapes, materials and positions, and the same framing; change only the light, the color palette and the view beyond the window, as described. Follow this description exactly and do not add elements, text or effects that are not described or not in the reference."
+          : "Create an image. Follow this description exactly and do not add elements, text or effects that are not described.";
     // En «a corregir» el título lleva la gravedad: el orden es el de urgencia y así se lee de un vistazo.
     const level = state === "corregir" ? ` · ${status.severity}` : "";
     out.push(
@@ -165,11 +174,19 @@ for (const [index, state] of STATES.entries()) {
       out.push(
         "- **Adjuntar:** la foto real del producto. La forma y la etiqueta salen de ella; no escribas el texto de la etiqueta en el chat.",
       );
-    if (row.sibling)
+    if (row.person)
+      out.push(
+        `- **Adjuntar:** \`frontend/.editorial-originals/${row.sibling}\` (el retrato base publicado de Marisol, su hermana) como referencia principal. Es un retoque de luz: sin ella el rostro, el pelo y el vestuario cambian de una variante a otra; con ella sólo cambian la luz, el muro y la vista de la ventana. Comprobar que la persona sea idéntica a la base.`,
+      );
+    else if (row.sibling)
       out.push(
         `- **Adjuntar:** \`frontend/.editorial-originals/${row.sibling}\` (la imagen base publicada, su hermana) como referencia principal. Sin ella, la sala y el arpa cambian de una variante a otra; con ella, sólo cambian la luz y el paisaje.`,
       );
-    if (row.realShoot)
+    if (row.person)
+      out.push(
+        "- **Ojo:** retoque de luz sobre el retrato publicado de Marisol, no un rostro nuevo. Si Marisol hace una sesión por tema, esa fotografía sustituye a la variante.",
+      );
+    else if (row.realShoot)
       out.push(
         "- **Ojo:** sólo moodboard; la imagen publicada sale de una sesión real con Marisol.",
       );

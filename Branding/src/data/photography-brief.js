@@ -130,7 +130,11 @@ function renderRow(row, status) {
     lines.push(
       "- **Referencia:** adjuntar la foto real del producto junto al prompt; la forma y la etiqueta salen de ella.",
     );
-  if (row.sibling)
+  if (row.person)
+    lines.push(
+      `- **Referencia:** adjuntar \`${row.sibling}\` (el retrato base publicado de Marisol, su hermana) como referencia principal; es un retoque de luz: la persona, la pose y el encuadre salen de ella, sólo cambian la luz, el muro y la vista de la ventana.`,
+    );
+  else if (row.sibling)
     lines.push(
       `- **Referencia:** adjuntar \`${row.sibling}\` (la imagen base publicada, su hermana) como referencia principal; la sala, el arpa y el encuadre salen de ella, sólo cambian la luz y el paisaje.`,
     );

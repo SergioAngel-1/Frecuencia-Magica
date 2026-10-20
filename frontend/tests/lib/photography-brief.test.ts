@@ -127,9 +127,9 @@ describe('photography brief', () => {
   });
 
   it('gives the atmosphere images their own grade, with colors by name and nobody in the frame', () => {
-    const rows = (expandAll() as { id: string; prompt: string; treatment: string }[]).filter(
-      (row) => isAtmosphere(row),
-    );
+    const rows = (
+      expandAll() as { id: string; prompt: string; treatment: string; person?: boolean }[]
+    ).filter((row) => isAtmosphere(row) && !row.person);
 
     expect(rows.length).toBeGreaterThan(0);
 
@@ -139,6 +139,34 @@ describe('photography brief', () => {
       // La paleta nocturna no se cuela en una atmósfera: sus colores van por nombre, no por hex.
       expect(row.prompt, row.id).not.toMatch(/#[0-9a-f]{6}/i);
       expect(row.prompt, row.id).not.toContain(GLOBAL.base);
+    }
+  });
+
+  it('relights the portrait of Marisol from its published sibling instead of drawing a new face', () => {
+    const rows = (
+      expandAll() as {
+        id: string;
+        prompt: string;
+        person?: boolean;
+        sibling?: string;
+        realShoot?: boolean;
+        theme?: string;
+      }[]
+    ).filter((row) => row.person);
+
+    expect(rows.map((row) => row.id).sort()).toEqual(
+      ['dawn', 'dusk', 'forest', 'moon'].map((theme) => `home-marisol-portrait@${theme}`),
+    );
+
+    for (const row of rows) {
+      expect(row.sibling, row.id).toBe('home-marisol-portrait.png');
+      expect(row.realShoot, row.id).toBeUndefined();
+      expect(row.prompt, row.id).toContain('attached photograph');
+      expect(row.prompt, row.id).toContain(
+        'The only person is the woman in the attached photograph',
+      );
+      expect(row.prompt, row.id).not.toContain('No people.');
+      expect(row.prompt, row.id).not.toMatch(/#[0-9a-f]{6}/i);
     }
   });
 

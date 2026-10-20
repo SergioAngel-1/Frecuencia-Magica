@@ -1413,11 +1413,22 @@ export const isAtmosphere = (entry) => entry.style === "atmosphere";
 
 /** Estilo común que cierra el prompt de una imagen: el nocturno o el de las atmósferas. */
 export function baseFor(entry) {
-  return isAtmosphere(entry) ? GLOBAL.atmosphere.base : GLOBAL.base;
+  if (!isAtmosphere(entry)) return GLOBAL.base;
+
+  // Retoque de luz del retrato de Marisol (`person`): la única persona es la de la foto adjunta.
+  return entry.person
+    ? GLOBAL.atmosphere.base.replace(
+        "No people.",
+        "The only person is the woman in the attached photograph, unchanged.",
+      )
+    : GLOBAL.atmosphere.base;
 }
 
 /** Tratamiento de color de una imagen, según el estilo al que pertenece. */
 function treatmentFor(entry, key) {
+  // El retoque de luz del retrato fija su propio tono: el de la atmósfera describe agua, piedra y reflejos.
+  if (entry.tone) return entry.tone;
+
   return isAtmosphere(entry)
     ? GLOBAL.atmosphere.treatments[key]
     : GLOBAL.treatments[key];
@@ -1446,6 +1457,15 @@ export function composePrompt(entry, instance) {
  * productos con foto de referencia, las únicas donde el texto de la etiqueta debe verse.
  */
 export function negativeFor(entry) {
+  if (isAtmosphere(entry) && entry.person)
+    return (
+      GLOBAL.negative.replace(FACE_CLAUSE, "") +
+      GLOBAL.atmosphere.negativeExtra.replace(
+        ", people, human figures, silhouettes of people",
+        "",
+      )
+    );
+
   if (isAtmosphere(entry))
     return `${GLOBAL.negative}${GLOBAL.atmosphere.negativeExtra}`;
 
@@ -1502,6 +1522,8 @@ export function expandAll() {
       subject: variant.subject,
       frame: variant.frame ?? base.frame,
       style: "atmosphere",
+      person: variant.person,
+      tone: variant.tone,
     };
 
     rows.push({
@@ -1514,6 +1536,8 @@ export function expandAll() {
       view: `${base.view} · tema`,
       role: `Variante del tema ${label} de \`${variant.base}\`: la misma vista y el mismo encuadre, con la escena del tema. ${base.role}`,
       provisional: variant.provisional ?? PROVISIONAL_VARIANT,
+      // Un retoque de luz sobre una foto real no es sesión ni moodboard: la nota de la base no aplica.
+      ...(variant.person ? { realShoot: undefined, notes: variant.notes } : {}),
       // La imagen base publicada, como referencia principal cuando la variante debe ser la misma escena.
       sibling: variant.sibling
         ? base.file.replace(/\.avif$/, ".png")

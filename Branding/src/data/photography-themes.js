@@ -977,4 +977,62 @@ export const THEME_VARIANTS = [
     provisional:
       "Imagen de apoyo. Sustituir por fotografía propia o con licencia comercial documentada.",
   },
+
+  /* Home · retrato de Marisol: una versión por tema, hermana de la base publicada. Es un retoque de luz sobre la foto de Marisol (se adjunta como referencia principal): misma persona, misma pose, mismo vestuario y encuadre; sólo cambian la luz, el muro y la vista de la ventana. No se genera un rostro nuevo. */
+  {
+    base: "home-marisol-portrait",
+    theme: "dusk",
+    tone: "Dominant tone: deep indigo-plum shadows with warm amber candlelight and a faint coral rim of light from the window; her skin warm and natural, no brown cast over the image and no intense red.",
+    subject: `The same half-length portrait of the same woman as in the attached photograph, relit for dusk: she is seated beside a window, long wavy honey-blonde hair falling over her shoulders, fine drop earrings, a soft calm gaze and a quiet closed-lip smile, an ivory natural linen shirt with an open V neckline and loose sleeves, her arms resting forward on a dark table in the soft-focus foreground, a small glass candle holder with a lit candle and a sprig of dried lavender blurred in the lower left corner, the window at the left edge of the frame and a framed picture barely visible at the top right of the wall; beyond the window a quiet coast and hills in rose haze under a muted plum-and-coral sky; warm amber candlelight on one side of her face and a faint coral rim of light from the window on the other, her skin kept natural and warm; the wall behind her a deep aubergine-plum in soft shade`,
+    frame:
+      "Vertical 3:4, exactly the framing of the attached photograph: her face in the upper third with generous headroom because a niche-arch mask is applied in CSS, her shoulders and hands softly out of focus, the same pose, the same crop and the same position of the candle, the lavender and the window; a deep aubergine-plum wall in soft low light, calm and low in detail, with nothing bright touching the frame edge",
+    sibling: true,
+    person: true,
+    notes:
+      "Retoque de luz sobre el retrato publicado de Marisol, con la imagen base adjunta como referencia: no se genera un rostro nuevo. Revisar que la cara, el pelo, los pendientes y el vestuario sean idénticos a la base; si ChatGPT los cambia, regenerar. Si Marisol hace una sesión por tema, esa fotografía sustituye a la variante.",
+    provisional:
+      "Variante provisional. Sustituir por fotografía propia de Marisol (sesión real) cuando exista.",
+  },
+  {
+    base: "home-marisol-portrait",
+    theme: "dawn",
+    tone: "Dominant tone: warm peach, soft gold and cream with soft blue-grey shadows; her skin warm and natural, never washed out or white; light, open and airy.",
+    subject: `The same half-length portrait of the same woman as in the attached photograph, relit for sunrise: she is seated beside a window, long wavy honey-blonde hair falling over her shoulders, fine drop earrings, a soft calm gaze and a quiet closed-lip smile, an ivory natural linen shirt with an open V neckline and loose sleeves, her arms resting forward on a dark table in the soft-focus foreground, a small glass candle holder with a lit candle and a sprig of dried lavender blurred in the lower left corner, the window at the left edge of the frame and a framed picture barely visible at the top right of the wall; beyond the window soft green hills under a luminous pale peach and pale-gold morning sky; soft warm morning light from the window falling across her face with gentle natural shadows, her skin warm and natural, never washed out or white, the candle flame small and pale in the daylight; the wall behind her a warm dusty peach-cream in soft shade`,
+    frame:
+      "Vertical 3:4, exactly the framing of the attached photograph: her face in the upper third with generous headroom because a niche-arch mask is applied in CSS, her shoulders and hands softly out of focus, the same pose, the same crop and the same position of the candle, the lavender and the window; a warm dusty peach-cream wall in even soft shade, calm and low in detail, with nothing harsh touching the frame edge",
+    sibling: true,
+    person: true,
+    notes:
+      "Retoque de luz sobre el retrato publicado de Marisol, con la imagen base adjunta como referencia: no se genera un rostro nuevo. Revisar que la cara, el pelo, los pendientes y el vestuario sean idénticos a la base; si ChatGPT los cambia, regenerar. Si Marisol hace una sesión por tema, esa fotografía sustituye a la variante.",
+    provisional:
+      "Variante provisional. Sustituir por fotografía propia de Marisol (sesión real) cuando exista.",
+  },
+  {
+    base: "home-marisol-portrait",
+    theme: "moon",
+    tone: "Dominant tone: cool silver-blue moonlight and deep teal-blue, the whole portrait clearly lit and readable, with a single warm candle accent; shadows in lifted deep blue, never pure black, never a flat dark image.",
+    subject: `The same half-length portrait of the same woman as in the attached photograph, relit for moonlight: she is seated beside a window, long wavy honey-blonde hair falling over her shoulders, fine drop earrings, a soft calm gaze and a quiet closed-lip smile, an ivory natural linen shirt with an open V neckline and loose sleeves, her arms resting forward on a dark table in the soft-focus foreground, a small glass candle holder with a lit candle and a sprig of dried lavender blurred in the lower left corner, the window at the left edge of the frame and a framed picture barely visible at the top right of the wall; beyond the window a night of soft silver-blue hills under a clear sky with a faint moon glow; cool silver moonlight from the window on one side of her face and warm candlelight on the other, the scene clearly lit and readable, her skin natural; the wall behind her a deep teal-blue in lifted shadow, never pure black`,
+    frame:
+      "Vertical 3:4, exactly the framing of the attached photograph: her face in the upper third with generous headroom because a niche-arch mask is applied in CSS, her shoulders and hands softly out of focus, the same pose, the same crop and the same position of the candle, the lavender and the window; a deep teal-blue wall in lifted low light, calm and low in detail, with nothing bright touching the frame edge",
+    sibling: true,
+    person: true,
+    notes:
+      "Retoque de luz sobre el retrato publicado de Marisol, con la imagen base adjunta como referencia: no se genera un rostro nuevo. Revisar que la cara, el pelo, los pendientes y el vestuario sean idénticos a la base; si ChatGPT los cambia, regenerar. Si Marisol hace una sesión por tema, esa fotografía sustituye a la variante.",
+    provisional:
+      "Variante provisional. Sustituir por fotografía propia de Marisol (sesión real) cuando exista.",
+  },
+  {
+    base: "home-marisol-portrait",
+    theme: "forest",
+    tone: "Dominant tone: natural mossy greens with warm filtered golden light and a warm candle accent; lush but not saturated.",
+    subject: `The same half-length portrait of the same woman as in the attached photograph, relit for the forest: she is seated beside a window, long wavy honey-blonde hair falling over her shoulders, fine drop earrings, a soft calm gaze and a quiet closed-lip smile, an ivory natural linen shirt with an open V neckline and loose sleeves, her arms resting forward on a dark table in the soft-focus foreground, a small glass candle holder with a lit candle and a sprig of dried lavender blurred in the lower left corner, the window at the left edge of the frame and a framed picture barely visible at the top right of the wall; beyond the window a misty wooded valley of tall dark trees and soft ferns under a pale green-grey sky; warm filtered golden light from the window and warm candlelight on her face, her skin natural; the wall behind her a dark moss-green in soft low light`,
+    frame:
+      "Vertical 3:4, exactly the framing of the attached photograph: her face in the upper third with generous headroom because a niche-arch mask is applied in CSS, her shoulders and hands softly out of focus, the same pose, the same crop and the same position of the candle, the lavender and the window; a dark moss-green wall in soft low light, calm and low in detail, with nothing bright touching the frame edge",
+    sibling: true,
+    person: true,
+    notes:
+      "Retoque de luz sobre el retrato publicado de Marisol, con la imagen base adjunta como referencia: no se genera un rostro nuevo. Revisar que la cara, el pelo, los pendientes y el vestuario sean idénticos a la base; si ChatGPT los cambia, regenerar. Si Marisol hace una sesión por tema, esa fotografía sustituye a la variante.",
+    provisional:
+      "Variante provisional. Sustituir por fotografía propia de Marisol (sesión real) cuando exista.",
+  },
 ];
