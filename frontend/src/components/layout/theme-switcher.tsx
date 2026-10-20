@@ -5,10 +5,11 @@ import { AnimatePresence } from 'motion/react';
 import { div as Mdiv } from 'motion/react-m';
 import { useTranslations } from 'next-intl';
 
-import { ThemeSwatch } from '@/components/ui';
+import { Modal, ThemeSwatch } from '@/components/ui';
 import { ARRIVALS } from '@/config/arrivals';
 import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useAtmosphereShift } from '@/hooks/use-atmosphere-shift';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import { useMounted } from '@/hooks/use-mounted';
 import { originFromRect } from '@/lib/atmosphere/shift';
 import {
@@ -31,6 +32,8 @@ import { AutoOption, MoodOption, ThemeChoice } from './theme-switcher-option';
 
 const FEELING_TITLE_CLASSES = 'text-fg text-serif-md font-serif leading-none';
 const FEELING_DESCRIPTION_CLASSES = 'text-fg-soft text-meta mt-1 font-sans leading-snug';
+/** Por debajo de `sm` (640 px) el selector se abre como modal, como la guía de respirar. */
+const MOBILE_QUERY = '(max-width: 639px)';
 const THEME_LABEL_CLASSES = 'text-fg-meta tracking-label text-label mt-4 font-sans uppercase';
 
 /**
@@ -42,6 +45,10 @@ const THEME_LABEL_CLASSES = 'text-fg-meta tracking-label text-label mt-4 font-sa
  * `AtmosphereProvider`. La elección vive en `localStorage`, que el servidor no tiene: hasta
  * montar, «Automático» aparece pulsado para no desajustar la hidratación. Debajo, una línea fija
  * nombra y describe la opción señalada (la del puntero o el foco; si no hay ninguna, la elegida).
+ *
+ * En móvil el panel no cuelga del header: se abre en el `Modal` del sistema (el mismo de «Respirar»),
+ * con su fondo borroso, el foco atrapado y el cierre por fuera o con Escape. En escritorio sigue
+ * siendo el desplegable bajo el botón.
  */
 export function ThemeSwitcher() {
   const t = useTranslations('atmospheres');
@@ -51,6 +58,7 @@ export function ThemeSwitcher() {
   const choice = useAtmosphereStore((state) => state.choice);
   const feeling = useAtmosphereStore((state) => state.feeling);
   const shift = useAtmosphereShift();
+  const mobile = useMediaQuery(MOBILE_QUERY);
   const [open, setOpen] = useState(false);
   const [peek, setPeek] = useState<SwitcherOption | null>(null);
   const root = useRef<HTMLDivElement>(null);
@@ -71,8 +79,9 @@ export function ThemeSwitcher() {
   };
   const labelOf = (mood: MoodSwitcherOption) => tJournal(`moods.${moodOf(mood) as MoodId}`);
 
+  // El desplegable de escritorio se cierra solo al pulsar fuera o con Escape; el modal ya lo hace.
   useEffect(() => {
-    if (!open) return;
+    if (!open || mobile) return;
 
     const onPointerDown = (event: PointerEvent) => {
       if (!root.current?.contains(event.target as Node)) setOpen(false);
@@ -90,7 +99,7 @@ export function ThemeSwitcher() {
       document.removeEventListener('pointerdown', onPointerDown);
       document.removeEventListener('keydown', onKeyDown);
     };
-  }, [open]);
+  }, [open, mobile]);
 
   // El cambio pide confirmación y cruza con una onda que nace de la opción pulsada. Una emoción
   // fija el tema que propone y deja la llegada guardada, como el portal.
@@ -126,12 +135,61 @@ export function ThemeSwitcher() {
     onClearPeek: () => setPeek(null),
   });
 
+  const panel = (
+    <>
+      {/* En el modal el título ya dice «Tu atmósfera» y la línea de abajo nombra la elegida. */}
+      {mobile ? null : (
+        <div className="mb-3 flex items-baseline justify-between gap-4">
+          <p className="text-fg-meta text-label tracking-kicker font-sans uppercase">
+            {t('switcher.label')}
+          </p>
+          <p className="text-fg text-serif-md font-serif leading-none">{nameOf(pressed)}</p>
+        </div>
+      )}
+
+      <div role="radiogroup" aria-label={t('switcher.label')}>
+        <section className="mb-4">
+          <p className={FEELING_TITLE_CLASSES}>{t('switcher.feelingLabel')}</p>
+          <p className={FEELING_DESCRIPTION_CLASSES}>{t('switcher.feelingDescription')}</p>
+          <div className="mt-3 grid grid-cols-2 gap-2 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:w-[calc(50%-0.25rem)] [&>*:last-child:nth-child(odd)]:justify-self-center">
+            {feelingOptions().map((mood) => (
+              <MoodOption key={mood} mood={mood} label={labelOf(mood)} {...optionEvents(mood)} />
+            ))}
+          </div>
+        </section>
+
+        <div className="border-line mb-3 border-t pt-4">
+          <AutoOption name={nameOf('auto')} {...optionEvents('auto')} />
+
+          <p className={THEME_LABEL_CLASSES}>{t('switcher.themeLabel')}</p>
+          <div className="mt-2.5 flex items-center justify-between gap-1.5">
+            {switcherOptions()
+              .filter((option): option is Exclude<ThemeSwitcherOption, 'auto'> => option !== 'auto')
+              .map((option) => (
+                <ThemeChoice
+                  key={option}
+                  option={option}
+                  name={nameOf(option)}
+                  {...optionEvents(option)}
+                />
+              ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 min-h-14">
+        <p className="text-fg text-serif-xs font-serif leading-none">{nameOf(shown)}</p>
+        <p className="text-fg-soft text-meta mt-1 font-sans leading-snug">{descriptionOf(shown)}</p>
+      </div>
+    </>
+  );
+
   return (
     <div ref={root} className="relative">
       <button
         type="button"
         aria-label={t('switcher.open')}
-        aria-haspopup="true"
+        aria-haspopup={mobile ? 'dialog' : 'true'}
         aria-expanded={open}
         onClick={() => setOpen((value) => !value)}
         data-magnetic
@@ -141,68 +199,28 @@ export function ThemeSwitcher() {
       </button>
 
       <AnimatePresence>
-        {open ? (
+        {open && !mobile ? (
           <Mdiv
             key="panel"
             initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="border-line bg-scrim/95 rounded-card shadow-glow-card fixed inset-x-5 top-[calc(env(safe-area-inset-top)+72px)] max-h-[calc(100svh-96px)] overflow-y-auto border p-5 backdrop-blur-md sm:absolute sm:inset-x-auto sm:top-full sm:right-0 sm:mt-3 sm:w-[352px]"
+            className="border-line bg-scrim/95 rounded-card shadow-glow-card absolute top-full right-0 mt-3 max-h-[calc(100svh-96px)] w-[352px] overflow-y-auto border p-5 backdrop-blur-md"
           >
-            <div className="mb-3 flex items-baseline justify-between gap-4">
-              <p className="text-fg-meta text-label tracking-kicker font-sans uppercase">
-                {t('switcher.label')}
-              </p>
-              <p className="text-fg text-serif-md font-serif leading-none">{nameOf(pressed)}</p>
-            </div>
-
-            <div role="radiogroup" aria-label={t('switcher.label')}>
-              <section className="mb-4">
-                <p className={FEELING_TITLE_CLASSES}>{t('switcher.feelingLabel')}</p>
-                <p className={FEELING_DESCRIPTION_CLASSES}>{t('switcher.feelingDescription')}</p>
-                <div className="mt-3 grid grid-cols-2 gap-2 [&>*:last-child:nth-child(odd)]:col-span-2 [&>*:last-child:nth-child(odd)]:w-[calc(50%-0.25rem)] [&>*:last-child:nth-child(odd)]:justify-self-center">
-                  {feelingOptions().map((mood) => (
-                    <MoodOption
-                      key={mood}
-                      mood={mood}
-                      label={labelOf(mood)}
-                      {...optionEvents(mood)}
-                    />
-                  ))}
-                </div>
-              </section>
-
-              <div className="border-line mb-3 border-t pt-4">
-                <AutoOption name={nameOf('auto')} {...optionEvents('auto')} />
-
-                <p className={THEME_LABEL_CLASSES}>{t('switcher.themeLabel')}</p>
-                <div className="mt-2.5 flex items-center justify-between gap-1.5">
-                  {switcherOptions()
-                    .filter(
-                      (option): option is Exclude<ThemeSwitcherOption, 'auto'> => option !== 'auto',
-                    )
-                    .map((option) => (
-                      <ThemeChoice
-                        key={option}
-                        option={option}
-                        name={nameOf(option)}
-                        {...optionEvents(option)}
-                      />
-                    ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-4 min-h-14">
-              <p className="text-fg text-serif-xs font-serif leading-none">{nameOf(shown)}</p>
-              <p className="text-fg-soft text-meta mt-1 font-sans leading-snug">
-                {descriptionOf(shown)}
-              </p>
-            </div>
+            {panel}
           </Mdiv>
         ) : null}
       </AnimatePresence>
+
+      <Modal
+        open={open && mobile}
+        onClose={() => setOpen(false)}
+        title={t('switcher.label')}
+        closeLabel={t('shift.close')}
+      >
+        <div className="p-5">{panel}</div>
+      </Modal>
     </div>
   );
 }
