@@ -862,7 +862,7 @@ export const SLOTS = [
   slot(
     "sanctuary.hero",
     "wide",
-    "50% 40%",
+    "50% 72%",
     "P1",
     "soft",
     "left-bottom",
@@ -870,6 +870,11 @@ export const SLOTS = [
     "El espacio personal: la materia que recibe al volver. Cuerpo de luz.",
     `A personal sanctuary at night: an ${BODY_OF_LIGHT}, resting on a cushion beside a large window that opens onto a moonlit lake, seen from behind looking out, sheer curtains stirring, a lit candle on the sill, teal moonlight balanced with golden glow, ${filaments("rising from the water outside")}`,
     "Window on the right with the figure beneath it, left third dark and calm",
+    {
+      mobileFocal: "90% 72%",
+      notes:
+        "El cuerpo de luz ocupa la mitad baja y la derecha del encuadre (45–90 % del alto, 60–95 % del ancho): el foco vertical es 72 % y el móvil 90 % para que quede dentro de la ventana visible, en los cinco temas.",
+    },
   ),
   slot(
     "sanctuary.continue",

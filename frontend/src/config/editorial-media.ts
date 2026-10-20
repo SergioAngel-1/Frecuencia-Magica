@@ -501,6 +501,11 @@ export const EDITORIAL_MEDIA_REGISTRY: Record<EditorialMediaSlot, EditorialMedia
   },
   'sanctuary.hero': {
     ...WIDE,
+    // El cuerpo de luz está en la mitad baja (45–90 % del alto) y a la derecha: el foco 40 % lo
+    // dejaba fuera de la franja que muestra la caja del héroe. En móvil (franja estrecha)
+    // se corre a la derecha para que el cuerpo entre en la ventana, en los cinco temas.
+    position: '50% 72%',
+    mobilePosition: '90% 72%',
     aspect: '16:9',
     priority: false,
     priorityTier: 'P1',

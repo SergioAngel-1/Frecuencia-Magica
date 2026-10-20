@@ -75,15 +75,20 @@ describe('editorial media contracts', () => {
     expect(noInstance.src).toBeUndefined();
   });
 
-  it('gives a mobile focal point only to home.hero, without moving its desktop focus', () => {
+  it('gives a mobile focal point only to home.hero and sanctuary.hero, without moving their desktop focus', () => {
     const withMobile = EDITORIAL_MEDIA_SLOTS.filter(
       (slot) => EDITORIAL_MEDIA_REGISTRY[slot].mobilePosition !== undefined,
     );
 
-    expect(withMobile).toEqual(['home.hero']);
+    expect(withMobile).toEqual(['home.hero', 'sanctuary.hero']);
     expect(EDITORIAL_MEDIA_REGISTRY['home.hero']).toMatchObject({
       position: '62% 40%',
       mobilePosition: '75% 40%',
+    });
+    // El cuerpo de luz de Mi Santuario está en la mitad baja y a la derecha.
+    expect(EDITORIAL_MEDIA_REGISTRY['sanctuary.hero']).toMatchObject({
+      position: '50% 72%',
+      mobilePosition: '90% 72%',
     });
   });
 

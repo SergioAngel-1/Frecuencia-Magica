@@ -61,10 +61,10 @@ export default async function SanctuaryPage({ params }: PageProps) {
       <FullBleedSection
         media={media.hero}
         mode="quiet"
-        overlay="bottom"
+        overlay="left"
         fade="bottom"
         contentClassName="flex items-end"
-        minHeight="clamp(300px, 34vw, 460px)"
+        minHeight="clamp(380px, 44vw, 620px)"
       >
         <div className="fm-container flex w-full flex-col pt-[120px] pb-10">
           <SanctuaryHeader kicker={t('kicker')} title={t('title', { name: profile.name })} />

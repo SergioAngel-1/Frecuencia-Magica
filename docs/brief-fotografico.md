@@ -124,6 +124,7 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 
 - `home.hero` (`home-hero.avif`): foco 62% 40% · foco móvil 75% 40%. El foco móvil rige por debajo de 768 px: así el cuerpo de luz (62–88 % del ancho) queda dentro de la ventana visible.
 - `discover.question-atmosphere` (`discover-question-atmosphere.avif`): fondo a pantalla completa (`backdrop`), por encima de su ratio. Por eso es de bajo contraste y sin nada nítido: la ampliación no se percibe.
+- `sanctuary.hero` (`sanctuary-hero.avif`): foco 50% 72% · foco móvil 90% 72%. El cuerpo de luz ocupa la mitad baja y la derecha del encuadre (45–90 % del alto, 60–95 % del ancho): el foco vertical es 72 % y el móvil 90 % para que quede dentro de la ventana visible, en los cinco temas.
 
 ## 4. Resumen
 
