@@ -1,5 +1,5 @@
 import { BANDS } from '@/config/bands';
-import type { EditorialRealm } from '@/config/realms';
+import { NAV_REALMS, type EditorialRealm } from '@/config/realms';
 import type { Translator } from '@/lib/home/translator';
 import { resolveEditorialMedia } from '@/lib/editorial/asset-registry';
 
@@ -76,6 +76,31 @@ export function buildRealmCards(
 
 /** Celdas del bento que siguen a la Academia, en el orden que fija su rejilla. */
 const BENTO_ORDER = ['descubrete', 'resonario', 'experiencias', 'tienda', 'sanctuario'] as const;
+
+/**
+ * Pasos de `order-*` para la columna única de móvil. Son literales para que
+ * Tailwind los encuentre al escanear el código; su emparejamiento con el menú
+ * lo deriva `mobileOrder` de `NAV_REALMS`.
+ */
+const MOBILE_ORDER_STEPS = [
+  'order-1',
+  'order-2',
+  'order-3',
+  'order-4',
+  'order-5',
+  'order-6',
+] as const;
+
+/**
+ * En móvil (`< sm`) la rejilla es una sola columna: las puertas siguen el
+ * orden del menú (`NAV_REALMS`), no el del bento de escritorio. Devuelve la
+ * clase `order-*`; en `sm` y arriba el llamador la anula con `sm:order-none`.
+ */
+export function mobileOrder(id: EditorialRealm['id']): string | undefined {
+  const index = NAV_REALMS.findIndex((realm) => realm.id === id);
+
+  return index < 0 ? undefined : MOBILE_ORDER_STEPS[index];
+}
 
 /**
  * Reparte las tarjetas en el bento: Academia es la destacada y el resto sigue

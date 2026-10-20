@@ -1,11 +1,14 @@
 import { FramedHeading } from '@/components/layout';
 import { WaveSeparator } from '@/components/world';
+import type { EditorialRealm } from '@/config/realms';
+import { cn } from '@/lib/cn';
+import { mobileOrder } from '@/lib/home/realm-cards';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { RealmCard } from './realm-card';
 
 type RealmDescription = {
-  id: string;
+  id: EditorialRealm['id'];
   href: string;
   band: string;
   media: EditorialMedia;
@@ -33,6 +36,10 @@ type RealmsGridProps = {
  *   Mi Santuario (8)                  | ↑
  *
  * En tablet (2 columnas) Academia y Mi Santuario ocupan la fila entera.
+ *
+ * En móvil (una columna) las puertas recuperan el orden del menú
+ * (`mobileOrder`, derivado de `NAV_REALMS`); desde `sm` se anula y manda la
+ * composición del bento.
  */
 const BENTO_SPANS = [
   'lg:col-span-5',
@@ -80,7 +87,7 @@ export function RealmsGrid({
           description={academia.description}
           featured
           actionLabel={academia.featuredCta}
-          className="sm:col-span-2 lg:col-span-7"
+          className={cn('sm:col-span-2 lg:col-span-7', mobileOrder(academia.id), 'sm:order-none')}
         />
 
         {panels.map((realm, index) => (
@@ -95,7 +102,7 @@ export function RealmsGrid({
             description={realm.description}
             store={realm.id === 'tienda'}
             actionLabel={realm.id === 'tienda' ? `${featuredBadge} · ${storeCta}` : undefined}
-            className={BENTO_SPANS[index]}
+            className={cn(BENTO_SPANS[index], mobileOrder(realm.id), 'sm:order-none')}
           />
         ))}
       </div>
