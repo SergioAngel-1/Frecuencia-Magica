@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ATMOSPHERE_SHIFT_TIMING } from '@/config/motion';
 import { preloadTheme } from '@/lib/atmosphere/photo-preload';
 import type { ShiftRequest } from '@/lib/atmosphere/shift';
+import { activeMood } from '@/lib/arrival/selected-mood';
 import { useAtmosphereShiftStore } from '@/stores/atmosphere-shift-store';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
 
@@ -22,7 +23,7 @@ describe('useAtmosphereShiftStore', () => {
     preload.mockReset();
     preload.mockResolvedValue(undefined);
     localStorage.clear();
-    useAtmosphereStore.setState({ choice: null });
+    useAtmosphereStore.setState({ choice: null, feeling: null });
     useAtmosphereShiftStore.setState({ phase: 'idle', mode: 'full', request: null, origin: null });
   });
 
@@ -55,6 +56,36 @@ describe('useAtmosphereShiftStore', () => {
     vi.runAllTimers();
 
     expect(onApplied).not.toHaveBeenCalled();
+  });
+
+  it('rechazar deja marcada la emoción que ya estaba, no la nueva', () => {
+    useAtmosphereStore.setState({ choice: 'dusk', feeling: 'mood:tiredness' });
+    const onApplied = vi.fn();
+    const shift = useAtmosphereShiftStore.getState();
+
+    shift.ask({
+      choice: 'dawn',
+      resolved: 'dawn',
+      source: 'feeling',
+      feeling: 'mood:calm',
+      onApplied,
+    });
+    shift.cancel();
+
+    const { choice, feeling } = useAtmosphereStore.getState();
+    expect(activeMood(choice, feeling)).toBe('tiredness');
+    expect(onApplied).not.toHaveBeenCalled();
+  });
+
+  it('aceptar deja marcada la emoción aplicada', () => {
+    const shift = useAtmosphereShiftStore.getState();
+
+    shift.ask({ choice: 'dawn', resolved: 'dawn', source: 'feeling', feeling: 'mood:calm' });
+    shift.confirm();
+    vi.advanceTimersByTime(full.cover);
+
+    const { choice, feeling } = useAtmosphereStore.getState();
+    expect(activeMood(choice, feeling)).toBe('calm');
   });
 
   it('aceptar ejecuta onApplied bajo el velo, con el tema ya aplicado y no antes', () => {

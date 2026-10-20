@@ -1,11 +1,16 @@
 import { act, renderHook } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+const route = vi.hoisted(() => ({ pathname: '/' }));
 
 // El portal (`/`) es el umbral: ahí el tema se aplica sin cruce, que es lo que estos tests miden.
-vi.mock('@/i18n/navigation', () => ({ usePathname: () => '/' }));
+// Los que necesitan la confirmación mueven `route.pathname` a otra vista.
+vi.mock('@/i18n/navigation', () => ({ usePathname: () => route.pathname }));
 
+import { ATMOSPHERE_SHIFT_TIMING } from '@/config/motion';
 import { useArrival } from '@/hooks/use-arrival';
 import { useArrivalStore } from '@/stores/arrival-store';
+import { useAtmosphereShiftStore } from '@/stores/atmosphere-shift-store';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
 import { usePlayerStore } from '@/stores/player-store';
 
@@ -105,5 +110,63 @@ describe('useArrival: elegir sin sonar y restaurar la última llegada', () => {
     const { result } = renderHook(() => useArrival({ restore: true }));
 
     expect(result.current.flow.key).toBeNull();
+  });
+});
+
+describe('useArrival: la emoción no se adhiere hasta que el tema se aplica', () => {
+  beforeEach(() => {
+    route.pathname = '/resonario';
+    localStorage.clear();
+    useAtmosphereStore.setState({ choice: null, feeling: null });
+    useArrivalStore.setState({ key: null });
+    useAtmosphereShiftStore.setState({ phase: 'idle', mode: 'full', request: null, origin: null });
+  });
+
+  afterEach(() => {
+    route.pathname = '/';
+  });
+
+  it('rechazar la confirmación no escribe el ánimo, ni la llegada, ni el flujo', () => {
+    const onApplied = vi.fn();
+    const { result } = renderHook(() => useArrival());
+
+    act(() => result.current.pick('mood:tiredness', { onApplied }));
+
+    expect(useAtmosphereShiftStore.getState().phase).toBe('confirming');
+    expect(onApplied).not.toHaveBeenCalled();
+    expect(useAtmosphereStore.getState()).toMatchObject({ choice: null, feeling: null });
+    expect(useArrivalStore.getState().key).toBeNull();
+    expect(result.current.flow.key).toBeNull();
+
+    act(() => useAtmosphereShiftStore.getState().cancel());
+
+    expect(onApplied).not.toHaveBeenCalled();
+    expect(useAtmosphereStore.getState()).toMatchObject({ choice: null, feeling: null });
+    expect(useArrivalStore.getState().key).toBeNull();
+    expect(result.current.flow.key).toBeNull();
+  });
+
+  it('aceptar aplica el tema y sólo entonces escribe el ánimo y la llegada', () => {
+    vi.useFakeTimers();
+    try {
+      const onApplied = vi.fn();
+      const { result } = renderHook(() => useArrival());
+
+      act(() => result.current.pick('mood:tiredness', { onApplied }));
+      act(() => useAtmosphereShiftStore.getState().confirm());
+
+      act(() => vi.advanceTimersByTime(ATMOSPHERE_SHIFT_TIMING.full.cover));
+
+      expect(onApplied).toHaveBeenCalledTimes(1);
+      expect(useAtmosphereStore.getState()).toMatchObject({
+        choice: 'dusk',
+        feeling: 'mood:tiredness',
+      });
+      expect(useArrivalStore.getState().key).toBe('mood:tiredness');
+      expect(result.current.flow.key).toBe('mood:tiredness');
+    } finally {
+      vi.clearAllTimers();
+      vi.useRealTimers();
+    }
   });
 });

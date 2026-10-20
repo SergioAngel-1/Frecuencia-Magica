@@ -34,8 +34,10 @@ export type ArrivalControls = {
   /**
    * Elige una entrada sin sonido: fija el tema y la guarda, nada más. Lo usa el
    * portal, donde la persona puede elegir antes de cruzar sin que suene nada.
+   * `onApplied` corre sólo si el tema se aplica: si se rechaza la confirmación,
+   * no se escribe nada más (p. ej. el ánimo del diario).
    */
-  pick(key: ArrivalKey): void;
+  pick(key: ArrivalKey, options?: { onApplied?: () => void }): void;
   /** Siguiente (`1`) o anterior (`-1`) alternativa; abre la que queda. */
   step(delta: 1 | -1): void;
   /** «Elegir otra opción»: otra atmósfera, desde la activa, sin cortar el sonido. */
@@ -86,7 +88,14 @@ export function useArrival({ restore = false }: ArrivalOptions = {}): ArrivalCon
   // confirmación y la persona la rechaza, ni la respuesta, ni la llegada guardada, ni el sonido
   // cambian. `commit` corre cuando el tema queda aplicado (bajo el velo, si lo hay).
   const select = useCallback(
-    (key: ArrivalKey, { featuredId, sound = false }: { featuredId?: string; sound?: boolean }) => {
+    (
+      key: ArrivalKey,
+      {
+        featuredId,
+        sound = false,
+        onApplied,
+      }: { featuredId?: string; sound?: boolean; onApplied?: () => void },
+    ) => {
       const next = chooseArrival(key, {
         catalog: AUDIOS,
         hour: new Date().getHours(),
@@ -95,6 +104,7 @@ export function useArrival({ restore = false }: ArrivalOptions = {}): ArrivalCon
       const commit = () => {
         setFlow(next);
         setSavedKey(key);
+        onApplied?.();
 
         const audio = sound ? currentAlternative(next) : null;
         if (audio) open(audio.id, 'full', { fadeIn: ARRIVAL_FADE_IN_SECONDS });
@@ -109,7 +119,10 @@ export function useArrival({ restore = false }: ArrivalOptions = {}): ArrivalCon
     [shift, setSavedKey, open],
   );
 
-  const pick = useCallback((key: ArrivalKey) => select(key, {}), [select]);
+  const pick = useCallback(
+    (key: ArrivalKey, options: { onApplied?: () => void } = {}) => select(key, options),
+    [select],
+  );
 
   const choose = useCallback(
     (key: ArrivalKey, featuredId?: string) =>

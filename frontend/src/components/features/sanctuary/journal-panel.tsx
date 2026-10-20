@@ -7,6 +7,7 @@ import { Button, EditorialImage, GlassPanel, Kicker, Textarea } from '@/componen
 import { useMounted } from '@/hooks/use-mounted';
 import { ArrivalCheckIn } from '@/components/features/arrival/arrival-check-in';
 import { ARRIVALS } from '@/config/arrivals';
+import { useActiveMood } from '@/hooks/use-active-mood';
 import { useArrival } from '@/hooks/use-arrival';
 import { cn } from '@/lib/cn';
 import { hasEditorialVisual } from '@/lib/editorial/visual';
@@ -37,6 +38,9 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
   const save = useJournalStore((s) => s.save);
   const discard = useJournalStore((s) => s.discard);
   const { pick } = useArrival();
+  // La píldora marcada es la emoción compartida (la que aplicó el tema), no un
+  // borrador que pueda adelantarse a la confirmación.
+  const activeMood = useActiveMood();
   const [saved, setSaved] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -49,12 +53,19 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
 
   // La emoción del diario también propone su tema: fija la elección global sin
   // sonido, como el check-in del portal. Re-elegir la misma no dispara un cruce.
+  // El borrador se escribe sólo cuando el tema se aplica; si la persona rechaza
+  // la confirmación, la píldora y lo que se guardaría siguen como estaban.
   const handleMood = (id: MoodId) => {
-    setMood(id);
-    pick(`mood:${id}`);
+    pick(`mood:${id}`, { onApplied: () => setMood(id) });
   };
 
   const handleSave = () => {
+    // La entrada guarda la emoción compartida vigente, no un borrador viejo: así
+    // la píldora marcada y lo que Guardar considera elegido no pueden discrepar,
+    // y abrir el diario con una emoción ya activa basta para guardar sin repetir
+    // el clic. Si el tema dejó de ser una emoción, no hay nada que guardar.
+    if (activeMood === null) return;
+    if (draft.mood !== activeMood) setMood(activeMood);
     save(new Date());
     setSaved(true);
     if (timer.current) clearTimeout(timer.current);
@@ -96,7 +107,7 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
               label: tJournal(`moods.${id}`),
               atmosphere: ARRIVALS[`mood:${id}`].atmosphere,
             }))}
-            selected={draft.mood}
+            selected={activeMood}
             onSelect={handleMood}
           />
         </div>
@@ -135,7 +146,7 @@ export function JournalPanel({ media }: { media: JournalMedia }) {
           <Button
             variant="primary"
             onClick={handleSave}
-            disabled={!draft.text.trim() || draft.mood === null}
+            disabled={!draft.text.trim() || activeMood === null}
           >
             {saved ? '✓' : tJournal('save')}
           </Button>

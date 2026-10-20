@@ -7,8 +7,8 @@ import { ArrivalPanel } from '@/components/features/arrival/arrival-panel';
 import { BreathIcon } from '@/components/layout';
 import { Button, Display, Float, Kicker } from '@/components/ui';
 import { ARRIVALS } from '@/config/arrivals';
+import { useActiveMood } from '@/hooks/use-active-mood';
 import { useArrival } from '@/hooks/use-arrival';
-import { selectedMood } from '@/lib/arrival/selected-mood';
 import { useBreathingStore } from '@/stores/breathing-store';
 import { MOOD_IDS } from '@/types/mood';
 
@@ -22,6 +22,9 @@ export function ArrivalSection() {
   const t = useTranslations('arrival');
   const tJournal = useTranslations('journal');
   const { flow, atmosphere, choose, step, other, stop } = useArrival({ restore: true });
+  // Las píldoras pintan la emoción compartida, no la última de esta vista: si el
+  // tema cambia desde el selector (tarjeta, Automático, «otra opción»), se desmarcan.
+  const activeMood = useActiveMood();
   const showBreathing = useBreathingStore((s) => s.show);
 
   const options = MOOD_IDS.map((id) => ({
@@ -50,7 +53,7 @@ export function ArrivalSection() {
             <ArrivalCheckIn
               legend={t('legend')}
               options={options}
-              selected={selectedMood(flow.key)}
+              selected={activeMood}
               onSelect={(id) => choose(`mood:${id}`)}
             />
           </Float>

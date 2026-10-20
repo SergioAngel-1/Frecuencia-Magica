@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 import { ArrivalCheckIn } from '@/components/features/arrival/arrival-check-in';
 import { Kicker, Swap } from '@/components/ui';
 import { ARRIVALS } from '@/config/arrivals';
+import { useActiveMood } from '@/hooks/use-active-mood';
 import { useArrival } from '@/hooks/use-arrival';
-import { selectedMood } from '@/lib/arrival/selected-mood';
 import { MOOD_IDS } from '@/types/mood';
 
 /**
@@ -19,15 +19,17 @@ export function PortalArrival() {
   const tArrival = useTranslations('arrival');
   const tJournal = useTranslations('journal');
   const tAtmospheres = useTranslations('atmospheres');
-  const { flow, pick } = useArrival({ restore: true });
+  const { pick } = useArrival({ restore: true });
+  // La píldora y la línea del tema salen del estado compartido: si la emoción
+  // cambia en otra superficie (selector incluido), el umbral lo refleja.
+  const activeMood = useActiveMood();
 
   const options = MOOD_IDS.map((id) => ({
     id,
     label: tJournal(`moods.${id}`),
     atmosphere: ARRIVALS[`mood:${id}`].atmosphere,
   }));
-  const selected = selectedMood(flow.key);
-  const theme = flow.key ? ARRIVALS[flow.key].atmosphere : null;
+  const theme = activeMood ? ARRIVALS[`mood:${activeMood}`].atmosphere : null;
 
   return (
     <div
@@ -41,7 +43,7 @@ export function PortalArrival() {
       <ArrivalCheckIn
         legend={tArrival('legend')}
         options={options}
-        selected={selected}
+        selected={activeMood}
         onSelect={(id) => pick(`mood:${id}`)}
       />
 
