@@ -114,7 +114,9 @@ export const PORTAL_MAX_HOLD = 5000;
  * única fuente: el store secuencia las fases con ellos y el overlay los pasa a sus
  * animaciones.
  *
- * - `cover`: lo que tarda la luz del tema nuevo en cubrir la pantalla.
+ * - `cover`: lo que tarda la luz del tema nuevo en cubrir la pantalla, hasta que sale la
+ *   frase. Es toda la apertura del portal (`PORTAL_TIMING.full`: cover + settle), derivada
+ *   de ahí para que las dos aperturas no puedan divergir.
  * - `hold`: pantalla cubierta, ya con el tema aplicado debajo y con su nombre a la vista.
  *   Bajo el velo no hay fundido: `AtmosphereProvider` omite `beginThemeSwitch` mientras
  *   hay un cruce en marcha y las capas del motor que funden por debajo quedan tapadas.
@@ -123,7 +125,7 @@ export const PORTAL_MAX_HOLD = 5000;
  * `quick` es el cruce de movimiento reducido: un fundido, sin ondas.
  */
 export const ATMOSPHERE_SHIFT_TIMING = {
-  full: { cover: 1000, hold: 1700, reveal: 1100 },
+  full: { cover: PORTAL_TIMING.full.cover + PORTAL_TIMING.full.settle, hold: 1700, reveal: 1100 },
   quick: { cover: 220, hold: 700, reveal: 420 },
 } as const;
 
