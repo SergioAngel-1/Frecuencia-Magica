@@ -20,6 +20,16 @@ describe('one waiting flow for the whole site', () => {
     expect(REALM_LOADING).toContain('<LoadingScene');
   });
 
+  it('hands a fallback shown during a client navigation over to the single route wait', () => {
+    // La escena de un `loading.tsx` pasa por la puerta (se oculta tras hidratar) y `RouteTransition`
+    // mantiene su espera, con el tema de destino, mientras haya un fallback en pantalla: no hay dos
+    // esperas, ni una que se desvanece y vuelve a entrar.
+    expect(REALM_LOADING).toContain('<RouteLoadingGate>');
+    expect(TRANSITION).toContain('useRouteWaitStore');
+    expect(TRANSITION).toContain('markHydrated');
+    expect(TRANSITION).toMatch(/pending \|\| fallbackShown/);
+  });
+
   it('shows the same scene between views, not a veil of its own', () => {
     expect(TRANSITION).toContain('<LoadingScene');
     expect(TRANSITION).toContain("resolveEditorialMedia('states.loading'");
@@ -37,6 +47,12 @@ describe('one waiting flow for the whole site', () => {
     const wait = TRANSITION.slice(TRANSITION.lastIndexOf('<AnimatePresence'));
     expect(wait).toContain('exit={');
     expect(wait).toContain('<LoadingScene');
+  });
+
+  it('lets the wait in gently and takes it out fast', () => {
+    // Taparla en `fast` (0,3 s) contra un tema de luminancia opuesta se leía como un destello.
+    expect(TRANSITION).toMatch(/waitEnter = reducedMotion \? 0 : DURATION\.base/);
+    expect(TRANSITION).toMatch(/waitExit = reducedMotion \? 0 : DURATION\.fast/);
   });
 
   it('never lets the page scroll while the wait is on screen', () => {

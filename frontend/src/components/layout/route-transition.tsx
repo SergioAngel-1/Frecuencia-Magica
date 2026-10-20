@@ -16,6 +16,7 @@ import { mediaSizes } from '@/lib/editorial/media-sizes';
 import { useAtmosphereShiftStore } from '@/stores/atmosphere-shift-store';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
 import { usePortalStore } from '@/stores/portal-store';
+import { useRouteWaitStore } from '@/stores/route-wait-store';
 import type { AtmosphereId } from '@/types/atmosphere';
 
 import { LoadingScene } from './loading-scene';
@@ -73,10 +74,27 @@ export function RouteTransition({ children }: { children: ReactNode }) {
   useEffect(() => {
     pathnameRef.current = pathname;
   }, [pathname]);
+  // Un `loading.tsx` en pantalla durante una navegación del cliente (`RouteLoadingGate`): la ruta ya
+  // cambió pero la vista de llegada todavía no está. La espera sigue hasta que el fallback se va.
+  const fallbackShown = useRouteWaitStore((s) => s.fallbacks > 0);
   const portalBusy = portalPhase !== 'idle';
   // Un cruce de atmósfera ya cubre la pantalla con su propio velo: la espera
   // de ruta sobra y se vería encima de él.
   const shiftBusy = shiftPhase !== 'idle';
+  // Desde aquí la app está hidratada: un fallback que se monte después es el de una navegación del
+  // cliente y su escena la pinta esta espera (ver `RouteLoadingGate`).
+  useEffect(() => {
+    useRouteWaitStore.getState().markHydrated();
+  }, []);
+
+  // Con un fallback en pantalla la ruta ya es la de llegada: de ahí sale el tema de la espera. Cubre
+  // también la navegación programática, que no tiene un clic que lo anuncie.
+  useEffect(() => {
+    if (!fallbackShown) return;
+
+    setWaitTheme(atmosphereForPathname(pathnameRef.current, useAtmosphereStore.getState().choice));
+  }, [fallbackShown]);
+
   // La imagen sólo depende del alt: se resuelve una vez, no en cada render
   // (este componente re-renderiza con cada cambio de espera y de ruta).
   const loadingAlt = t('media.alt.loading');
@@ -121,13 +139,13 @@ export function RouteTransition({ children }: { children: ReactNode }) {
   // La escena sólo aparece si la navegación se alarga; una vista precargada
   // llega antes y no hay nada que tapar.
   useEffect(() => {
-    if (!pending || portalBusy || shiftBusy) {
+    if (!(pending || fallbackShown) || portalBusy || shiftBusy) {
       setWaiting(false);
       return;
     }
     const timer = window.setTimeout(() => setWaiting(true), ROUTE_WAIT_DELAY_MS);
     return () => window.clearTimeout(timer);
-  }, [pending, portalBusy, shiftBusy]);
+  }, [pending, fallbackShown, portalBusy, shiftBusy]);
 
   // La esfera de la espera se descarga en cuanto el navegador queda libre:
   // la espera sólo se ve con la red lenta, justo cuando una imagen pedida en
@@ -160,7 +178,11 @@ export function RouteTransition({ children }: { children: ReactNode }) {
   // se sumaría al del velo y la llegada se vería lavada.
   const enter = reducedMotion || portalBusy ? 0 : DURATION.base;
   const exit = reducedMotion || portalBusy ? 0 : DURATION.fast;
-  const waitFade = reducedMotion ? 0 : DURATION.fast;
+  // La espera entra con calma: aparece tras una pausa deliberada y puede tapar la vista con un tema
+  // de luminancia opuesta (de la noche a la luz de piel); en `fast` eso se leía como un destello.
+  // Sale rápido: descubre una vista que ya llegó.
+  const waitEnter = reducedMotion ? 0 : DURATION.base;
+  const waitExit = reducedMotion ? 0 : DURATION.fast;
 
   return (
     <>
@@ -187,8 +209,8 @@ export function RouteTransition({ children }: { children: ReactNode }) {
             aria-hidden="true"
             data-atmosphere={waitTheme}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: waitFade, ease: EASE.soft } }}
-            exit={{ opacity: 0, transition: { duration: waitFade, ease: EASE.soft } }}
+            animate={{ opacity: 1, transition: { duration: waitEnter, ease: EASE.soft } }}
+            exit={{ opacity: 0, transition: { duration: waitExit, ease: EASE.soft } }}
             className="z-veil pointer-events-none fixed inset-0 overflow-hidden"
             style={{ backgroundImage: 'var(--atmo-bg)' }}
           >
