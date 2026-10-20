@@ -8,7 +8,7 @@
 
 **211 imágenes** (50 slots registrados, varios por instancia; 1 fuera del registro): P0 16 · P1 135 · P2 60. 1 requiere sesión real (retrato de Marisol).
 
-**Estado:** 206 completadas · 0 a corregir · 4 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
+**Estado:** 210 completadas · 0 a corregir · 0 faltantes · 0 por cablear · 1 no tenidas en cuenta. Ver la sección 5.
 
 ## 1. Entrega
 
@@ -337,10 +337,10 @@ Los pesos son recomendaciones de trabajo, no un contrato de la web. El master es
 | `resonario-celtic-dusk.avif` | Resonario · música de inspiración celta · tema · Atardecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `resonario-celtic-dawn.avif` | Resonario · música de inspiración celta · tema · Amanecer | 16:9 | 2880×1620 | P1 | Completadas |
 | `resonario-celtic-forest.avif` | Resonario · música de inspiración celta · tema · Bosque | 16:9 | 2880×1620 | P1 | Completadas |
-| `home-marisol-portrait-dusk.avif` | Home · Sobre Marisol · tema · Atardecer | 3:4 | 1440×1920 | P0 | Faltantes |
-| `home-marisol-portrait-dawn.avif` | Home · Sobre Marisol · tema · Amanecer | 3:4 | 1440×1920 | P0 | Faltantes |
-| `home-marisol-portrait-moon.avif` | Home · Sobre Marisol · tema · Luna | 3:4 | 1440×1920 | P0 | Faltantes |
-| `home-marisol-portrait-forest.avif` | Home · Sobre Marisol · tema · Bosque | 3:4 | 1440×1920 | P0 | Faltantes |
+| `home-marisol-portrait-dusk.avif` | Home · Sobre Marisol · tema · Atardecer | 3:4 | 1440×1920 | P0 | Completadas |
+| `home-marisol-portrait-dawn.avif` | Home · Sobre Marisol · tema · Amanecer | 3:4 | 1440×1920 | P0 | Completadas |
+| `home-marisol-portrait-moon.avif` | Home · Sobre Marisol · tema · Luna | 3:4 | 1440×1920 | P0 | Completadas |
+| `home-marisol-portrait-forest.avif` | Home · Sobre Marisol · tema · Bosque | 3:4 | 1440×1920 | P0 | Completadas |
 
 ## 5. Estado de las imágenes
 
@@ -354,81 +354,11 @@ Entregadas, pero desviadas del brief o de su prompt. Van de más a menos urgente
 
 Ninguna.
 
-### 5.2 Faltantes (4)
+### 5.2 Faltantes (0)
 
 Aún no entregadas. La vista de cada una ya está preparada, salvo donde la nota indica lo contrario. Cada entrada trae su prompt.
 
-#### `home-marisol-portrait · Atardecer` — Home · Sobre Marisol · tema · P0
-
-- **Archivo:** `home-marisol-portrait-dusk.avif`
-- **Medidas:** master 1440×1920 · tablet 1080×1440 · móvil 780×1040 · generar a 1536×2048 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 3:4 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** Variante del tema Atardecer de `home-marisol-portrait`: la misma vista y el mismo encuadre, con la escena del tema. Retrato de la fundadora en arco de nicho: el ancla emocional de la marca.
-- **Nota:** Retoque de luz sobre el retrato publicado de Marisol, con la imagen base adjunta como referencia: no se genera un rostro nuevo. Revisar que la cara, el pelo, los pendientes y el vestuario sean idénticos a la base; si ChatGPT los cambia, regenerar. Si Marisol hace una sesión por tema, esa fotografía sustituye a la variante.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante provisional. Sustituir por fotografía propia de Marisol (sesión real) cuando exista.
-- **Referencia:** adjuntar `home-marisol-portrait.png` (el retrato base publicado de Marisol, su hermana) como referencia principal; es un retoque de luz: la persona, la pose y el encuadre salen de ella, sólo cambian la luz, el muro y la vista de la ventana.
-
-**Prompt**
-
-```text
-The same half-length portrait of the same woman as in the attached photograph, relit for dusk: she is seated beside a window, long wavy honey-blonde hair falling over her shoulders, fine drop earrings, a soft calm gaze and a quiet closed-lip smile, an ivory natural linen shirt with an open V neckline and loose sleeves, her arms resting forward on a dark table in the soft-focus foreground, a small glass candle holder with a lit candle and a sprig of dried lavender blurred in the lower left corner, the window at the left edge of the frame and a framed picture barely visible at the top right of the wall; beyond the window a quiet coast and hills in rose haze under a muted plum-and-coral sky; warm amber candlelight on one side of her face and a faint coral rim of light from the window on the other, her skin kept natural and warm; the wall behind her a deep aubergine-plum in soft shade. Vertical 3:4, exactly the framing of the attached photograph: her face in the upper third with generous headroom because a niche-arch mask is applied in CSS, her shoulders and hands softly out of focus, the same pose, the same crop and the same position of the candle, the lavender and the window; a deep aubergine-plum wall in soft low light, calm and low in detail, with nothing bright touching the frame edge. Vertical portrait framing. Dominant tone: deep indigo-plum shadows with warm amber candlelight and a faint coral rim of light from the window; her skin warm and natural, no brown cast over the image and no intense red. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only person is the woman in the attached photograph, unchanged.
-```
-
-#### `home-marisol-portrait · Amanecer` — Home · Sobre Marisol · tema · P0
-
-- **Archivo:** `home-marisol-portrait-dawn.avif`
-- **Medidas:** master 1440×1920 · tablet 1080×1440 · móvil 780×1040 · generar a 1536×2048 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 3:4 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** Variante del tema Amanecer de `home-marisol-portrait`: la misma vista y el mismo encuadre, con la escena del tema. Retrato de la fundadora en arco de nicho: el ancla emocional de la marca.
-- **Nota:** Retoque de luz sobre el retrato publicado de Marisol, con la imagen base adjunta como referencia: no se genera un rostro nuevo. Revisar que la cara, el pelo, los pendientes y el vestuario sean idénticos a la base; si ChatGPT los cambia, regenerar. Si Marisol hace una sesión por tema, esa fotografía sustituye a la variante.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante provisional. Sustituir por fotografía propia de Marisol (sesión real) cuando exista.
-- **Referencia:** adjuntar `home-marisol-portrait.png` (el retrato base publicado de Marisol, su hermana) como referencia principal; es un retoque de luz: la persona, la pose y el encuadre salen de ella, sólo cambian la luz, el muro y la vista de la ventana.
-
-**Prompt**
-
-```text
-The same half-length portrait of the same woman as in the attached photograph, relit for sunrise: she is seated beside a window, long wavy honey-blonde hair falling over her shoulders, fine drop earrings, a soft calm gaze and a quiet closed-lip smile, an ivory natural linen shirt with an open V neckline and loose sleeves, her arms resting forward on a dark table in the soft-focus foreground, a small glass candle holder with a lit candle and a sprig of dried lavender blurred in the lower left corner, the window at the left edge of the frame and a framed picture barely visible at the top right of the wall; beyond the window soft green hills under a luminous pale peach and pale-gold morning sky; soft warm morning light from the window falling across her face with gentle natural shadows, her skin warm and natural, never washed out or white, the candle flame small and pale in the daylight; the wall behind her a warm dusty peach-cream in soft shade. Vertical 3:4, exactly the framing of the attached photograph: her face in the upper third with generous headroom because a niche-arch mask is applied in CSS, her shoulders and hands softly out of focus, the same pose, the same crop and the same position of the candle, the lavender and the window; a warm dusty peach-cream wall in even soft shade, calm and low in detail, with nothing harsh touching the frame edge. Vertical portrait framing. Dominant tone: warm peach, soft gold and cream with soft blue-grey shadows; her skin warm and natural, never washed out or white; light, open and airy. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only person is the woman in the attached photograph, unchanged.
-```
-
-#### `home-marisol-portrait · Luna` — Home · Sobre Marisol · tema · P0
-
-- **Archivo:** `home-marisol-portrait-moon.avif`
-- **Medidas:** master 1440×1920 · tablet 1080×1440 · móvil 780×1040 · generar a 1536×2048 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 3:4 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** Variante del tema Luna de `home-marisol-portrait`: la misma vista y el mismo encuadre, con la escena del tema. Retrato de la fundadora en arco de nicho: el ancla emocional de la marca.
-- **Nota:** Retoque de luz sobre el retrato publicado de Marisol, con la imagen base adjunta como referencia: no se genera un rostro nuevo. Revisar que la cara, el pelo, los pendientes y el vestuario sean idénticos a la base; si ChatGPT los cambia, regenerar. Si Marisol hace una sesión por tema, esa fotografía sustituye a la variante.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante provisional. Sustituir por fotografía propia de Marisol (sesión real) cuando exista.
-- **Referencia:** adjuntar `home-marisol-portrait.png` (el retrato base publicado de Marisol, su hermana) como referencia principal; es un retoque de luz: la persona, la pose y el encuadre salen de ella, sólo cambian la luz, el muro y la vista de la ventana.
-
-**Prompt**
-
-```text
-The same half-length portrait of the same woman as in the attached photograph, relit for moonlight: she is seated beside a window, long wavy honey-blonde hair falling over her shoulders, fine drop earrings, a soft calm gaze and a quiet closed-lip smile, an ivory natural linen shirt with an open V neckline and loose sleeves, her arms resting forward on a dark table in the soft-focus foreground, a small glass candle holder with a lit candle and a sprig of dried lavender blurred in the lower left corner, the window at the left edge of the frame and a framed picture barely visible at the top right of the wall; beyond the window a night of soft silver-blue hills under a clear sky with a faint moon glow; cool silver moonlight from the window on one side of her face and warm candlelight on the other, the scene clearly lit and readable, her skin natural; the wall behind her a deep teal-blue in lifted shadow, never pure black. Vertical 3:4, exactly the framing of the attached photograph: her face in the upper third with generous headroom because a niche-arch mask is applied in CSS, her shoulders and hands softly out of focus, the same pose, the same crop and the same position of the candle, the lavender and the window; a deep teal-blue wall in lifted low light, calm and low in detail, with nothing bright touching the frame edge. Vertical portrait framing. Dominant tone: cool silver-blue moonlight and deep teal-blue, the whole portrait clearly lit and readable, with a single warm candle accent; shadows in lifted deep blue, never pure black, never a flat dark image. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only person is the woman in the attached photograph, unchanged.
-```
-
-#### `home-marisol-portrait · Bosque` — Home · Sobre Marisol · tema · P0
-
-- **Archivo:** `home-marisol-portrait-forest.avif`
-- **Medidas:** master 1440×1920 · tablet 1080×1440 · móvil 780×1040 · generar a 1536×2048 (sin ampliar después) · peso ≤ 220 KB
-- **Ratio / focal:** 3:4 · foco 50% 50%
-- **Zona de texto:** Sin texto encima: composición libre
-- **Contenido:** Variante del tema Bosque de `home-marisol-portrait`: la misma vista y el mismo encuadre, con la escena del tema. Retrato de la fundadora en arco de nicho: el ancla emocional de la marca.
-- **Nota:** Retoque de luz sobre el retrato publicado de Marisol, con la imagen base adjunta como referencia: no se genera un rostro nuevo. Revisar que la cara, el pelo, los pendientes y el vestuario sean idénticos a la base; si ChatGPT los cambia, regenerar. Si Marisol hace una sesión por tema, esa fotografía sustituye a la variante.
-- **Estilo:** atmósfera (v2): etalonaje natural, no el nocturno; ver «Estilo de las atmósferas».
-- **Provisional:** Variante provisional. Sustituir por fotografía propia de Marisol (sesión real) cuando exista.
-- **Referencia:** adjuntar `home-marisol-portrait.png` (el retrato base publicado de Marisol, su hermana) como referencia principal; es un retoque de luz: la persona, la pose y el encuadre salen de ella, sólo cambian la luz, el muro y la vista de la ventana.
-
-**Prompt**
-
-```text
-The same half-length portrait of the same woman as in the attached photograph, relit for the forest: she is seated beside a window, long wavy honey-blonde hair falling over her shoulders, fine drop earrings, a soft calm gaze and a quiet closed-lip smile, an ivory natural linen shirt with an open V neckline and loose sleeves, her arms resting forward on a dark table in the soft-focus foreground, a small glass candle holder with a lit candle and a sprig of dried lavender blurred in the lower left corner, the window at the left edge of the frame and a framed picture barely visible at the top right of the wall; beyond the window a misty wooded valley of tall dark trees and soft ferns under a pale green-grey sky; warm filtered golden light from the window and warm candlelight on her face, her skin natural; the wall behind her a dark moss-green in soft low light. Vertical 3:4, exactly the framing of the attached photograph: her face in the upper third with generous headroom because a niche-arch mask is applied in CSS, her shoulders and hands softly out of focus, the same pose, the same crop and the same position of the candle, the lavender and the window; a dark moss-green wall in soft low light, calm and low in detail, with nothing bright touching the frame edge. Vertical portrait framing. Dominant tone: natural mossy greens with warm filtered golden light and a warm candle accent; lush but not saturated. Cinematic fine-art photograph, photorealistic, long-exposure feel, soft atmospheric haze. Natural colors kept true to the real scene and gently muted, like a soft matte film still: low contrast, shadows gently lifted that keep their own hue and never crush to pure black, no bloom, no glare, no lens flare, no HDR, never neon, no oversaturated or electric colors. Light with a clear natural direction and soft natural shadows. The edges of the frame stay calm and low in detail, in the scene's own base tone, with nothing bright or sharp touching them and no added vignette. Serene, intimate, poetic, timeless. No text, letters or numbers anywhere. The only person is the woman in the attached photograph, unchanged.
-```
+Ninguna.
 
 ### 5.3 Por cablear (crear vistas) (0)
 
@@ -444,7 +374,7 @@ Publicadas, pero ninguna vista las pinta con el diseño actual.
 |---|---|---|
 | `experiences-visual-e1.avif` | Experiencias · filas · Baño de Sonido en Vivo | `e1` es siempre la experiencia destacada, que usa `experiences.featured`. Hay que usarla en otra vista o retirarla. |
 
-### 5.5 Completadas (206)
+### 5.5 Completadas (210)
 
 Entregadas, publicadas, cableadas y sin desviación conocida.
 
@@ -656,6 +586,10 @@ Entregadas, publicadas, cableadas y sin desviación conocida.
 | `resonario-celtic-dusk.avif` | Resonario · música de inspiración celta · tema · Atardecer | `resonario.celtic` | 16:9 | P1 |
 | `resonario-celtic-dawn.avif` | Resonario · música de inspiración celta · tema · Amanecer | `resonario.celtic` | 16:9 | P1 |
 | `resonario-celtic-forest.avif` | Resonario · música de inspiración celta · tema · Bosque | `resonario.celtic` | 16:9 | P1 |
+| `home-marisol-portrait-dusk.avif` | Home · Sobre Marisol · tema · Atardecer | `home-marisol-portrait` | 3:4 | P0 |
+| `home-marisol-portrait-dawn.avif` | Home · Sobre Marisol · tema · Amanecer | `home-marisol-portrait` | 3:4 | P0 |
+| `home-marisol-portrait-moon.avif` | Home · Sobre Marisol · tema · Luna | `home-marisol-portrait` | 3:4 | P0 |
+| `home-marisol-portrait-forest.avif` | Home · Sobre Marisol · tema · Bosque | `home-marisol-portrait` | 3:4 | P0 |
 
 ### 5.6 Provisionales: reemplazar antes de publicar (144)
 

@@ -272,6 +272,10 @@ export const COMPLETED = [
   "discover-result-moon.avif",
   "booking-confirmation-dawn.avif",
   "academy-completion-dawn.avif",
+  "home-marisol-portrait-dusk.avif",
+  "home-marisol-portrait-dawn.avif",
+  "home-marisol-portrait-moon.avif",
+  "home-marisol-portrait-forest.avif",
 ];
 
 /**
