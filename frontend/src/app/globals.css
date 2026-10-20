@@ -87,9 +87,9 @@
 
 /* Cruce de atmósfera (`AtmosphereShiftVeil`): una onda con el fondo del tema nuevo y un filo de
    su luz (`--halo`), que nace donde se pidió el cambio. Mide 100vmax de diámetro y crece hasta
-   escala 3: su radio (150vmax) pasa de la diagonal de cualquier viewport desde cualquier punto
-   (hasta 142vmax), así que al terminar lo cubre todo. El centrado va en `translate`; los
-   keyframes sólo tocan `transform` y `opacity`. */
+   `--shift-wave-scale`, la escala justa para llegar a la esquina más lejana desde su origen
+   (`lib/atmosphere/veil.ts`): así la cobertura dura todo `cover` y termina justo al acabarse.
+   El centrado va en `translate`; los keyframes sólo tocan `transform` y `opacity`. */
 .fm-shift-wave {
   position: absolute;
   width: 100vmax;
@@ -113,7 +113,7 @@
     opacity: 1;
   }
   100% {
-    transform: scale(3);
+    transform: scale(var(--shift-wave-scale));
     opacity: 1;
   }
 }
