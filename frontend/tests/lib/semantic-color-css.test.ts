@@ -54,10 +54,6 @@ export function findRawCssColor(css: string): RawColorHit[] {
 
 /** Excepciones con dueño: `archivo :: selector` -> motivo. */
 const ALLOWED: Record<string, string> = {
-  // Barras de desplazamiento: la pista lee el velo denso del tema; el pulgar es el espectro de la frecuencia.
-  'tokens.css :: ::-webkit-scrollbar-thumb:active':
-    'pulgar al pulsar: espectro de la frecuencia (oro, teal, lavanda), decorativo',
-
   // Zebra: materia estructural oscura por contrato (texto encima), no es superficie de contenido.
   'tokens.css :: @utility fm-editorial-zebra':
     'materia zebra del fallback editorial: oscura por contrato, texto encima (no se re-tematiza)',
