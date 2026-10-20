@@ -89,7 +89,12 @@
    su luz (`--halo`), que nace donde se pidió el cambio. Mide 100vmax de diámetro y crece hasta
    `--shift-wave-scale`, la escala justa para llegar a la esquina más lejana desde su origen
    (`lib/atmosphere/veil.ts`): así la cobertura dura todo `cover` y termina justo al acabarse.
-   El centrado va en `translate`; los keyframes sólo tocan `transform` y `opacity`. */
+   El centrado va en `translate`; los keyframes sólo tocan `transform` y `opacity`.
+
+   El borde es el del iris del portal (`.fm-portal-iris`): un aro encendido (marfil de medios, luz
+   del tema y un rastro de acento) dentro del borde de la onda, en su `::after`. Crece con la
+   escala, como algo que se acerca; la escala final deja el aro (desde el 92 % del radio) fuera de
+   la pantalla. */
 .fm-shift-wave {
   position: absolute;
   width: 100vmax;
@@ -97,11 +102,25 @@
   translate: -50% -50%;
   border-radius: 50%;
   background: var(--atmo-bg);
-  box-shadow:
-    0 0 0 1px rgb(var(--halo) / 0.55),
-    0 0 90px 24px rgb(var(--halo) / 0.3);
+  box-shadow: 0 0 90px 24px rgb(var(--halo) / 0.3);
   pointer-events: none;
   will-change: transform, opacity;
+}
+
+.fm-shift-wave::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side,
+    transparent 92%,
+    color-mix(in srgb, rgb(var(--halo)) 24%, transparent) 95%,
+    color-mix(in srgb, var(--color-on-media) 92%, transparent) 97%,
+    color-mix(in srgb, rgb(var(--halo)) 58%, transparent) 98.4%,
+    color-mix(in srgb, var(--color-accent-2) 16%, transparent) 99.4%,
+    transparent 100%
+  );
 }
 
 @keyframes fm-shift-wave {

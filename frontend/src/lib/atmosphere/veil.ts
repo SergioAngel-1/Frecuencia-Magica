@@ -5,8 +5,11 @@ export type VeilViewport = { width: number; height: number };
 
 /** La onda mide 100vmax de diámetro: su radio base es 50vmax. */
 const WAVE_RADIUS_RATIO = 0.5;
-/** Un pelín más allá de la esquina más lejana, para que no asome un filo al terminar. */
-const WAVE_SAFETY = 1.02;
+/**
+ * Más allá de la esquina más lejana: el aro del borde (`.fm-shift-wave::after`) arranca en el
+ * 92 % del radio, así que 1 / 0.92 lo deja fuera de la pantalla al terminar (con un pelín más).
+ */
+const WAVE_SAFETY = 1.1;
 
 /**
  * Escala final de la onda del velo: la que lleva su radio base (50vmax) hasta la esquina más

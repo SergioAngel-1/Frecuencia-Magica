@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { shiftWaveScale } from '@/lib/atmosphere/veil';
 
-const MARGIN = 1.02;
+const MARGIN = 1.1;
 
 describe('shiftWaveScale', () => {
   it('desde el centro de un viewport cuadrado llega a la esquina opuesta', () => {
