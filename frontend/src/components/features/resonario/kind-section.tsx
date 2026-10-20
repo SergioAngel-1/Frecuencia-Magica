@@ -11,8 +11,9 @@ type KindSectionProps = {
   /** Banner del tipo (slot `resonario.kind-banner.*`). */
   banner: EditorialMedia;
   /**
-   * Diferir el render cuando la sección queda fuera de pantalla (`fm-defer-render`).
-   * La primera sección visible no se difiere.
+   * Diferir el render de las pistas cuando la sección queda fuera de pantalla (`fm-defer-render`).
+   * La primera sección visible no se difiere. Se difiere el contenido y no la sección: la
+   * contención de `content-visibility` recorta lo que sale de la caja, y el banner es a sangre.
    */
   deferRender?: boolean;
   children: ReactNode;
@@ -24,11 +25,7 @@ export function KindSection({ entry, banner, deferRender = false, children }: Ki
   const title = t(`kinds.${entry.kind}.title`);
 
   return (
-    <section
-      aria-label={title}
-      className={cn('gap-section flex flex-col', deferRender && 'fm-defer-render')}
-      data-kind={entry.kind}
-    >
+    <section aria-label={title} className="gap-section flex flex-col" data-kind={entry.kind}>
       <EditorialBanner
         media={banner}
         eyebrow={t('kinds.eyebrow')}
@@ -36,7 +33,14 @@ export function KindSection({ entry, banner, deferRender = false, children }: Ki
         body={t(`kinds.${entry.kind}.explanation`)}
         heightClassName="min-h-[clamp(220px,26vw,340px)]"
       />
-      <div className="fm-editorial-container gap-section flex flex-col">{children}</div>
+      <div
+        className={cn(
+          'fm-editorial-container gap-section flex flex-col',
+          deferRender && 'fm-defer-render',
+        )}
+      >
+        {children}
+      </div>
     </section>
   );
 }
