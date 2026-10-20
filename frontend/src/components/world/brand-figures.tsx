@@ -2,8 +2,7 @@ import type { CSSProperties } from 'react';
 
 import type { VisualMode } from '@/config/realms';
 import { useEngineProfile } from '@/hooks/use-engine-profile';
-import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
-import { fadeDuration } from '@/lib/atmosphere/engine-profile';
+import { useThemeFade } from '@/hooks/use-theme-fade';
 
 /** Los aros son los tres acentos del tema a poca opacidad: en la noche, oro, teal y lavanda de siempre. */
 const RING_GOLD = 'color-mix(in srgb, var(--color-accent) 10%, transparent)';
@@ -58,8 +57,7 @@ const SPARKLES: readonly Sparkle[] = [
  */
 export function BrandFigures({ visualMode = 'cosmic' }: { visualMode?: VisualMode }) {
   const { figures } = useEngineProfile(visualMode);
-  const reduced = useReducedMotionSafe();
-  const fade = fadeDuration(reduced);
+  const fade = useThemeFade('engine');
 
   return (
     <div

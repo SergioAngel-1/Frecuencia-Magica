@@ -3,9 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
 import { useAtmosphere } from '@/hooks/use-atmosphere';
-import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
-import { fadeDuration } from '@/lib/atmosphere/engine-profile';
-import { usePortalStore } from '@/stores/portal-store';
+import { useThemeFade } from '@/hooks/use-theme-fade';
 import type { AtmosphereId } from '@/types/atmosphere';
 
 /**
@@ -71,13 +69,12 @@ function layerStyle({ fade, lit }: Slot, top: boolean): CSSProperties {
  * Fondo de la atmósfera activa, bajo todo el motor. Va anclado al documento (el
  * `body` es su bloque contenedor), como el gradiente que antes pintaba el body: se
  * estira con la página y no con el viewport. Mantiene dos capas y funde por
- * `opacity` al cambiar de atmósfera. Con movimiento reducido o con el portal
- * ocupado el cambio es inmediato: el velo ya cubre la pantalla.
+ * `opacity` al cambiar de atmósfera. Con movimiento reducido o con ceremonia
+ * (velo o portal) el cambio es inmediato: el velo ya cubre la pantalla.
  */
 export function AtmosphereBackdrop() {
   const { atmosphereId } = useAtmosphere();
-  const reduced = useReducedMotionSafe();
-  const busy = usePortalStore((state) => state.phase !== 'idle');
+  const fade = useThemeFade('backdrop');
   const [backdrop, setBackdrop] = useState(START);
   const shown = useRef<AtmosphereId | undefined>(undefined);
   const settleTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -94,12 +91,11 @@ export function AtmosphereBackdrop() {
       return;
     }
 
-    const fade = busy ? 0 : fadeDuration(reduced);
     setBackdrop((state) => crossfade(state, atmosphereId, fade));
 
     if (fade === 0) setBackdrop(settle);
     else settleTimer.current = setTimeout(() => setBackdrop(settle), fade * 1000);
-  }, [atmosphereId, busy, reduced]);
+  }, [atmosphereId, fade]);
 
   useEffect(() => () => clearTimeout(settleTimer.current), []);
 

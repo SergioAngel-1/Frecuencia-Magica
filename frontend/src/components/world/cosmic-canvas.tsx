@@ -7,8 +7,8 @@ import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useEngineProfile } from '@/hooks/use-engine-profile';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { useRealm } from '@/hooks/use-realm';
+import { useThemeFade } from '@/hooks/use-theme-fade';
 import { pauseDelayMs, shouldRunCanvas } from '@/lib/atmosphere/canvas-pause';
-import { fadeDuration } from '@/lib/atmosphere/engine-profile';
 import { hexToRgb } from '@/lib/cosmic/colors';
 import { paintInWorker, paintOnMainThread, readViewport, type Painter } from '@/lib/cosmic/painter';
 
@@ -36,7 +36,7 @@ export function CosmicCanvas({ visualMode = 'cosmic' }: { visualMode?: VisualMod
   const { atmosphereId } = useAtmosphere();
   const reduced = useReducedMotionSafe();
   const { canvas: level } = useEngineProfile(visualMode);
-  const fade = fadeDuration(reduced);
+  const fade = useThemeFade('engine');
 
   // Lo último que se le dijo al fondo: el pintor que se monte lo recibe.
   const accentRef = useRef(accent);

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { ATMOSPHERES } from '@/config/atmospheres';
 import type { VisualMode } from '@/config/realms';
-import { engineProfile, fadeDuration } from '@/lib/atmosphere/engine-profile';
+import { engineProfile } from '@/lib/atmosphere/engine-profile';
 import type { AtmosphereId } from '@/types/atmosphere';
 
 /**
@@ -49,15 +49,5 @@ describe('engineProfile', () => {
       nebula: editorial.nebula * nebula,
       figures: editorial.figures * figures,
     });
-  });
-});
-
-describe('fadeDuration', () => {
-  it('is instant under reduced motion', () => {
-    expect(fadeDuration(true)).toBe(0);
-  });
-
-  it('is a positive number of seconds otherwise', () => {
-    expect(fadeDuration(false)).toBeGreaterThan(0);
   });
 });

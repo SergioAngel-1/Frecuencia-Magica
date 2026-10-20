@@ -3,13 +3,11 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 
-import { ATMOSPHERE_FADE_SECONDS } from '@/config/motion';
 import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useMounted } from '@/hooks/use-mounted';
-import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { useThemeFade } from '@/hooks/use-theme-fade';
 import { registerThemedPhoto } from '@/lib/atmosphere/photo-preload';
-import { useAtmosphereShiftStore } from '@/stores/atmosphere-shift-store';
-import { usePortalStore } from '@/stores/portal-store';
+import { photoLeaveMs } from '@/lib/atmosphere/theme-fade';
 import type { EditorialMedia } from '@/types/editorial-media';
 
 import { useThemeOverride } from './theme-override';
@@ -32,6 +30,8 @@ type LeavingPhoto = {
   style: CSSProperties;
   key: number;
   fading: boolean;
+  /** Duración congelada al crearse: un cambio de ceremonia a mitad no la acorta. */
+  duration: number;
 };
 
 /**
@@ -63,7 +63,7 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
   const override = useThemeOverride();
   const theme = override ?? atmosphereId;
   const mounted = useMounted();
-  const reduced = useReducedMotionSafe();
+  const fade = useThemeFade('photo');
   const root = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState<string | null>(null);
   const [failed, setFailed] = useState<string | null>(null);
@@ -107,16 +107,9 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
 
     previous.current = { src: current, style: currentStyle };
 
-    // Con velo en marcha (atmósfera o portal) el cambio ya ocurre tapado; con
-    // movimiento reducido no debe haber fundido.
-    if (
-      reduced ||
-      override !== null ||
-      useAtmosphereShiftStore.getState().phase !== 'idle' ||
-      usePortalStore.getState().phase !== 'idle'
-    ) {
-      return;
-    }
+    // `fade` ya es 0 con ceremonia (velo o portal) o con movimiento reducido:
+    // en esos casos el cambio ocurre tapado o es inmediato y no hay capa saliente.
+    if (fade === 0 || override !== null) return;
 
     if (leaveTimer.current !== null) {
       clearTimeout(leaveTimer.current);
@@ -129,7 +122,7 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
 
     const key = ++leaveSequence.current;
 
-    setLeaving({ ...shown, key, fading: false });
+    setLeaving({ ...shown, key, fading: false, duration: fade });
 
     // Si la nueva nunca avisa de que cargó, la saliente empieza a irse igual.
     stallTimer.current = setTimeout(() => {
@@ -138,7 +131,7 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
         value && value.key === key && !value.fading ? { ...value, fading: true } : value,
       );
     }, LEAVE_READY_TIMEOUT_MS);
-  }, [current, currentStyle, mounted, override, reduced]);
+  }, [current, currentStyle, mounted, override, fade]);
 
   // La saliente no se desvanece hasta que la nueva está lista (la base ya lo está).
   useEffect(() => {
@@ -166,13 +159,10 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
 
     const key = leaving.key;
 
-    leaveTimer.current = setTimeout(
-      () => {
-        leaveTimer.current = null;
-        setLeaving((value) => (value && value.key === key ? null : value));
-      },
-      ATMOSPHERE_FADE_SECONDS * 1000 + 100,
-    );
+    leaveTimer.current = setTimeout(() => {
+      leaveTimer.current = null;
+      setLeaving((value) => (value && value.key === key ? null : value));
+    }, photoLeaveMs(leaving.duration));
   }, [leaving]);
 
   // Los temporizadores viven hasta el desmontaje: no se cancelan al re-renderizar
@@ -246,7 +236,7 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
             opacity: 1,
             filter: 'none',
             animation: leaving.fading
-              ? `fm-photo-leave ${ATMOSPHERE_FADE_SECONDS}s ease-in-out forwards`
+              ? `fm-photo-leave ${leaving.duration}s ease-in-out forwards`
               : undefined,
             pointerEvents: 'none',
           }}

@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
+import { THEME_FADE_SECONDS } from '@/config/motion';
 import { CANVAS_PAUSE_BELOW, pauseDelayMs, shouldRunCanvas } from '@/lib/atmosphere/canvas-pause';
-import { engineProfile, fadeDuration } from '@/lib/atmosphere/engine-profile';
+import { engineProfile } from '@/lib/atmosphere/engine-profile';
+import { themeFadeSeconds } from '@/lib/atmosphere/theme-fade';
 import type { VisualMode } from '@/config/realms';
 import type { AtmosphereId } from '@/types/atmosphere';
 
@@ -32,9 +34,9 @@ describe('shouldRunCanvas', () => {
 });
 
 describe('pauseDelayMs', () => {
-  const fade = fadeDuration(false);
+  const fade = THEME_FADE_SECONDS.engine;
 
-  it('waits for the fade when a running canvas is turned off', () => {
+  it('waits for the engine fade when a running canvas is turned off', () => {
     expect(pauseDelayMs(1, 0, fade)).toBe(fade * 1000);
   });
 
@@ -44,7 +46,12 @@ describe('pauseDelayMs', () => {
     expect(pauseDelayMs(0.02, 0.03, fade)).toBe(0);
   });
 
-  it('pauses at once under reduced motion', () => {
-    expect(pauseDelayMs(1, 0, fadeDuration(true))).toBe(0);
+  it('pauses at once under reduced motion or a ceremony', () => {
+    expect(pauseDelayMs(1, 0, themeFadeSeconds('engine', { reduced: true, ceremony: false }))).toBe(
+      0,
+    );
+    expect(pauseDelayMs(1, 0, themeFadeSeconds('engine', { reduced: false, ceremony: true }))).toBe(
+      0,
+    );
   });
 });

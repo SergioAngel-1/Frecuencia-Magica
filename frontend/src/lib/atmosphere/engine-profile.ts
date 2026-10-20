@@ -1,5 +1,4 @@
 import { ATMOSPHERES } from '@/config/atmospheres';
-import { ATMOSPHERE_FADE_SECONDS } from '@/config/motion';
 import type { VisualMode } from '@/config/realms';
 import type { AtmosphereId } from '@/types/atmosphere';
 
@@ -35,9 +34,4 @@ export function engineProfile(atmosphereId: AtmosphereId, visualMode: VisualMode
     nebula: level.nebula * multiplier.nebula,
     figures: level.figures * multiplier.figures,
   };
-}
-
-/** Duración del fundido entre atmósferas, en segundos. Con movimiento reducido, 0. */
-export function fadeDuration(reduced: boolean): number {
-  return reduced ? 0 : ATMOSPHERE_FADE_SECONDS;
 }

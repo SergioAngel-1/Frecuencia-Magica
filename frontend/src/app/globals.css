@@ -532,9 +532,9 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
 
 /* Durante el fundido de un cambio de tema (`beginThemeSwitch`), los colores del sitio transitan
    en vez de saltar. Sólo mientras dura: el resto del tiempo cada elemento lleva sus propias
-   transiciones. Con movimiento reducido el atributo nunca se pone. La duración es la misma que
-   la del fondo (`ATMOSPHERE_FADE_SECONDS`): si el color corre más, hay un instante de tinta
-   clara sobre fondo claro. Sólo propiedades de color (pintado barato): ni `box-shadow` ni
+   transiciones. Con movimiento reducido o con ceremonia el atributo nunca se pone. La duración
+   la fija `beginThemeSwitch` en `--theme-ink-duration` desde `THEME_FADE_SECONDS.ink`; el CSS
+   no repite el número. Sólo propiedades de color (pintado barato): ni `box-shadow` ni
    `opacity`, que encarecían todo el DOM. El `!important` hace falta para ganar a las
    transiciones propias de cada elemento (p. ej. `transition-colors` de Tailwind) mientras dura
    el fundido. Se excluye el lienzo del motor y los contenedores de foto, que no tienen color
@@ -543,6 +543,6 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
 [data-theme-switching] *::before,
 [data-theme-switching] *::after {
   transition-property: color, background-color, border-color, fill, stroke !important;
-  transition-duration: 2.19s !important;
+  transition-duration: var(--theme-ink-duration) !important;
   transition-timing-function: ease-in-out !important;
 }

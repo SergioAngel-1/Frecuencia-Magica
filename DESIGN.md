@@ -199,6 +199,21 @@ Una atmósfera se nombra por lo que la persona siente, nunca por el ambiente; lo
 
 **Imagen por tema.** La base de un slot es la foto nocturna (`kind: photo`); las variantes salen en el manifiesto como `slot@tema` y `ThemedPhoto` monta la del tema activo sobre la base, con una regla CSS que oculta la base mientras tanto (nunca se ve la foto equivocada). Hasta que exista la variante de un tema claro, la base se lava y se tiñe de sepia para que no ensucie el fondo piel (`[data-scheme='light'] [data-photo-night]`). Reglas de cobertura en `THEME_VARIANTS` (`config/editorial-media.ts`): los héroes llevan variante en `dusk`, `dawn`, `moon` y `forest`; las bandas con texto y los fondos de cristal, en `dawn`, `dusk` y `forest`; `moon` añade variante en `discover.tuning` y `discover.result`, y sólo el tema de su lugar en `academy.completion` (`forest`) y `booking.confirmation` (`dusk`); las portadas de audio, curso y experiencia y los productos no cambian con el tema. Las imágenes de tema conservan sus colores naturales (tratamiento `natural`), sin stock genérico: fotografía propia o con licencia comercial documentada. Sin foto, el fallback es el del contrato del slot. Los prompts viven en `docs/prompts-chatgpt.md`.
 
+### Tiempos del cambio de tema
+
+El cambio tiene dos formas: **con ceremonia** (el velo de atmósfera o el cruce de portal, que aplican el tema con la pantalla cubierta) y **sin ceremonia** (el lugar en automático, la escucha o un cambio durante otro cruce). Para saber en qué caso estamos hay un único predicado (`themeCeremonyActive` en `frontend/src/lib/atmosphere/ceremony.ts`); ninguna capa decide por su cuenta. `confirming` no es ceremonia: el tema aún no ha cambiado.
+
+Sin ceremonia, cada capa funde con **su propia** duración (`THEME_FADE_SECONDS` en `frontend/src/config/motion.ts`). La tinta termina primero y el fondo, la superficie más grande, al final. La tinta, la foto y el motor nunca duran más que el fondo: si la tinta corriera más, habría un tramo de tinta del tema viejo sobre el fondo nuevo. La caducidad de la foto saliente añade `THEME_PHOTO_LEAVE_GRACE_MS` a su propio fundido.
+
+| Capa                   | Constante                     | Sin ceremonia | Con ceremonia |
+| ---------------------- | ----------------------------- | ------------: | ------------: |
+| Tinta (texto y UI)     | `THEME_FADE_SECONDS.ink`      |         1,3 s |           0 s |
+| Foto del tema          | `THEME_FADE_SECONDS.photo`    |         1,5 s |           0 s |
+| Motor (lienzo y capas) | `THEME_FADE_SECONDS.engine`   |         1,8 s |           0 s |
+| Fondo del tema         | `THEME_FADE_SECONDS.backdrop` |        2,19 s |           0 s |
+
+Con ceremonia todas las capas valen 0: el velo (o el portal) es la única transición visible y el tema salta debajo. Con movimiento reducido también son 0. El fondo se deriva del cruce completo del portal (`ATMOSPHERE_FADE_SECONDS` = `PORTAL_TIMING.full`: cover + settle + reveal) y la duración de la tinta viaja al CSS en `--theme-ink-duration`, que fija `beginThemeSwitch`; `globals.css` no repite el número.
+
 ### Cruce de atmósfera
 
 Cambiar de tema es una experiencia, no un interruptor. Un cambio manual (selector del header) pide confirmación en un `Modal`: la luz del tema destino, su **frase** (no su nombre), el estado del ánimo y qué cambia; el botón principal dice lo que la persona quiere (`atmospheres.<id>.want`, p. ej. «Quiero descansar») y «Quedarme aquí» no toca nada. Un cambio por estado del ánimo fuera del portal (Home, Descúbrete, Mi Santuario) pide la misma confirmación que uno manual; en el portal, que ya es el umbral, se aplica sin ceremonia, igual que con otro cruce en marcha. Una elección manda sobre el lugar y sobre la escucha hasta que la persona elija otra emoción u otro tema.

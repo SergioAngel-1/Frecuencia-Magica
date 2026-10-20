@@ -2,8 +2,7 @@ import type { CSSProperties } from 'react';
 
 import type { VisualMode } from '@/config/realms';
 import { useEngineProfile } from '@/hooks/use-engine-profile';
-import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
-import { fadeDuration } from '@/lib/atmosphere/engine-profile';
+import { useThemeFade } from '@/hooks/use-theme-fade';
 
 /** Un blob circular difuminado a la deriva. Su color es `--nebula-a|b|c` del tema activo y su fuerza, `--nebula-boost`. */
 type Blob = {
@@ -43,8 +42,7 @@ const BLOBS: readonly Blob[] = [
  */
 export function NebulaLayer({ visualMode = 'cosmic' }: { visualMode?: VisualMode }) {
   const { nebula } = useEngineProfile(visualMode);
-  const reduced = useReducedMotionSafe();
-  const fade = fadeDuration(reduced);
+  const fade = useThemeFade('engine');
 
   return (
     <div

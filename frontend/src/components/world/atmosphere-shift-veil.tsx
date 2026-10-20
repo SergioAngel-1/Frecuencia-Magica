@@ -5,23 +5,11 @@ import { useTranslations } from 'next-intl';
 import { div as Mdiv } from 'motion/react-m';
 
 import { Display, Kicker } from '@/components/ui';
-import { ATMOSPHERE_SHIFT_TIMING, cssEase, EASE } from '@/config/motion';
+import { ATMOSPHERE_SHIFT_PARTS, ATMOSPHERE_SHIFT_TIMING, cssEase, EASE } from '@/config/motion';
 import { useFeelingLabel } from '@/hooks/use-feeling-label';
 import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
 import { shiftWaveScale } from '@/lib/atmosphere/veil';
 import { useAtmosphereShiftStore } from '@/stores/atmosphere-shift-store';
-
-/**
- * Fracción de `cover` tras la que el fondo del tema nuevo empieza a fundirse por debajo de la
- * onda. Termina justo con ella, así que no hay un tramo de pantalla opaca antes de tiempo.
- */
-const WASH_FROM = 0.55;
-
-/**
- * Fracción de `cover` en la que arranca el fundido de la frase; termina cuando termina la
- * cobertura. Al entrar en `hold` la frase ya se lee y nunca queda la pantalla llena y vacía.
- */
-const PHRASE_FROM = 0.7;
 
 const ms = (value: number) => `${Math.round(value)}ms`;
 
@@ -51,9 +39,10 @@ export function AtmosphereShiftVeil() {
   if (!request || phase === 'idle' || phase === 'confirming') return null;
 
   const { cover, reveal } = ATMOSPHERE_SHIFT_TIMING[mode];
+  const { washFrom, phraseFrom } = ATMOSPHERE_SHIFT_PARTS;
   const wave = mode === 'full' && !reduced;
   const covering = phase !== 'out';
-  const washDelay = wave ? cover * WASH_FROM : 0;
+  const washDelay = wave ? cover * washFrom : 0;
   const phrase = t(`${request.resolved}.phrase`);
 
   const viewport =
@@ -61,8 +50,8 @@ export function AtmosphereShiftVeil() {
       ? { width: 1, height: 1 }
       : { width: window.innerWidth, height: window.innerHeight };
   const waveScale = wave ? shiftWaveScale(origin, viewport) : 0;
-  const phraseDelay = covering && phase === 'in' ? (cover * PHRASE_FROM) / 1000 : 0;
-  const phraseDuration = covering && phase === 'in' ? (cover * (1 - PHRASE_FROM)) / 1000 : 0;
+  const phraseDelay = covering && phase === 'in' ? (cover * phraseFrom) / 1000 : 0;
+  const phraseDuration = covering && phase === 'in' ? (cover * (1 - phraseFrom)) / 1000 : 0;
 
   return (
     <div

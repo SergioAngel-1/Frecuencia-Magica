@@ -4,11 +4,9 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { ATMOSPHERES } from '@/config/atmospheres';
-import { ATMOSPHERE_FADE_SECONDS } from '@/config/motion';
 import { useAtmosphere } from '@/hooks/use-atmosphere';
-import { useReducedMotionSafe } from '@/hooks/use-reduced-motion-safe';
+import { useThemeFade } from '@/hooks/use-theme-fade';
 import { beginThemeSwitch } from '@/lib/atmosphere/theme-switching';
-import { useAtmosphereShiftStore } from '@/stores/atmosphere-shift-store';
 import { useAtmosphereStore } from '@/stores/atmosphere-store';
 import type { AtmosphereId } from '@/types/atmosphere';
 
@@ -43,8 +41,7 @@ export function AtmosphereProvider({ children }: { children: ReactNode }) {
   const t = useTranslations('atmospheres');
   const [announcement, setAnnouncement] = useState('');
   const previous = useRef<AtmosphereId | null>(null);
-  const reduced = useReducedMotionSafe();
-  const shiftPhase = useAtmosphereShiftStore((state) => state.phase);
+  const ink = useThemeFade('ink');
 
   useEffect(() => {
     const root = document.documentElement;
@@ -57,16 +54,16 @@ export function AtmosphereProvider({ children }: { children: ReactNode }) {
     // Los tokens cambian de golpe y el fondo funde: durante el fundido el color, el borde y el
     // relleno de todo el sitio transitan (`[data-theme-switching]` en globals.css) para que el
     // texto no se vea un instante con la tinta del tema viejo sobre el fondo del nuevo.
-    if (previous.current === null || previous.current === atmosphereId || reduced) return;
+    //
+    // `ink` ya es 0 con ceremonia (velo o portal) o con movimiento reducido: en esos casos el
+    // cambio está tapado o es inmediato y la tinta no debe transitar. Se comprueba en este
+    // mismo render, cuando `atmosphereId` acaba de cambiar.
+    if (previous.current === null || previous.current === atmosphereId || ink === 0) return;
 
-    // Bajo el velo del cruce de atmósfera el cambio ya está tapado: el fundido de color se
-    // gastaría sin verse. Los cambios sin velo (p. ej. el lugar en automático) sí lo llevan.
-    if (shiftPhase !== 'idle') return;
-
-    // La limpieza del efecto retira el atributo siempre, también si un cambio de
-    // `reduced` o el desmontaje cancelan el fundido a mitad.
-    return beginThemeSwitch(document.documentElement, ATMOSPHERE_FADE_SECONDS * 1000);
-  }, [atmosphereId, reduced, shiftPhase]);
+    // La limpieza del efecto retira el atributo y la variable de duración siempre, también si
+    // un cambio de `ink` o el desmontaje cancelan el fundido a mitad.
+    return beginThemeSwitch(document.documentElement, ink * 1000);
+  }, [atmosphereId, ink]);
 
   useEffect(() => {
     // La primera pasada sólo recuerda la atmósfera de partida: anunciar sólo

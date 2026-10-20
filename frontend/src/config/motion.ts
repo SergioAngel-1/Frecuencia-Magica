@@ -90,17 +90,46 @@ export const PORTAL_TIMING = {
 export type PortalMode = keyof typeof PORTAL_TIMING;
 
 /**
- * Fundido entre temas, en segundos. El fondo y las capas del motor funden con
- * `opacity`; los tokens cambian de golpe y, mientras dura el fundido, los colores
- * del sitio transitan (`[data-theme-switching]`, ver `AtmosphereProvider`).
- * Con movimiento reducido no hay fundido (`fadeDuration` en `lib/atmosphere`).
- *
- * Dura lo mismo que el cruce completo del portal (`PORTAL_TIMING.full`: cover +
- * settle + reveal), para que el cambio de tema sin velo no se sienta más rápido
- * que la ceremonia del portal y ambos no puedan divergir.
+ * Base del cambio de tema sin ceremonia, en segundos: dura lo mismo que el cruce
+ * completo del portal (`PORTAL_TIMING.full`: cover + settle + reveal), para que
+ * el cambio sin velo no se sienta más rápido que la ceremonia y ambos no puedan
+ * divergir. Es la duración del fondo (`THEME_FADE_SECONDS.backdrop`).
  */
 export const ATMOSPHERE_FADE_SECONDS =
   (PORTAL_TIMING.full.cover + PORTAL_TIMING.full.settle + PORTAL_TIMING.full.reveal) / 1000;
+
+/**
+ * Tiempos del cambio de tema sin ceremonia, en segundos, uno por capa. Cada capa
+ * lee SU constante: el cambio no es un único fundido, sino una coreografía que
+ * asienta primero lo más pequeño y deja para el final la superficie más grande.
+ *
+ * Línea de tiempo (de la capa que antes se asienta a la que más tarda):
+ * - `ink` 1,3 s: color, borde, relleno y trazo del texto y la UI. Es la primera
+ *   en llegar para que la tinta no se lea a medio camino sobre el fondo nuevo.
+ * - `photo` 1,5 s: la foto del tema que sale y la que entra. Su capa saliente se
+ *   retira con `THEME_PHOTO_LEAVE_GRACE_MS` de margen.
+ * - `engine` 1,8 s: opacidad del lienzo cósmico, las nebulosas y las figuras. Se
+ *   resuelve antes de que el fondo termine de fundir.
+ * - `backdrop` 2,19 s: el campo de color del tema, la capa más grande y lenta.
+ *   Deriva de `ATMOSPHERE_FADE_SECONDS`, igual al cruce completo del portal.
+ *
+ * Coherencia (guardada por `tests/lib/theme-fade.test.ts`): ninguna capa dura más
+ * que `backdrop`; si la tinta corriera más, habría un tramo de tinta del tema
+ * viejo sobre el fondo nuevo. Con ceremonia (velo o portal) o con movimiento
+ * reducido todas valen 0: el velo, o el propio salto, es la única transición.
+ */
+export const THEME_FADE_SECONDS = {
+  backdrop: ATMOSPHERE_FADE_SECONDS,
+  engine: 1.8,
+  photo: 1.5,
+  ink: 1.3,
+} as const;
+
+/**
+ * Margen, en milisegundos, antes de retirar del DOM la capa saliente de una foto
+ * ya desvanecida: cubre el último frame para que no se corte en seco.
+ */
+export const THEME_PHOTO_LEAVE_GRACE_MS = 100;
 
 /**
  * Espera máxima con la pantalla cubierta. La revelación aguarda a que el
@@ -118,8 +147,8 @@ export const PORTAL_MAX_HOLD = 5000;
  *   frase. Es toda la apertura del portal (`PORTAL_TIMING.full`: cover + settle), derivada
  *   de ahí para que las dos aperturas no puedan divergir.
  * - `hold`: pantalla cubierta, ya con el tema aplicado debajo y con su nombre a la vista.
- *   Bajo el velo no hay fundido: `AtmosphereProvider` omite `beginThemeSwitch` mientras
- *   hay un cruce en marcha y las capas del motor que funden por debajo quedan tapadas.
+ *   Bajo el velo no hay fundido: con ceremonia todas las capas (`THEME_FADE_SECONDS`) valen 0,
+ *   así que el salto ocurre tapado y el velo es la única transición visible.
  * - `reveal`: lo que tarda el velo en disolverse sobre el mundo nuevo.
  *
  * `quick` es el cruce de movimiento reducido: un fundido, sin ondas.
@@ -130,3 +159,16 @@ export const ATMOSPHERE_SHIFT_TIMING = {
 } as const;
 
 export type AtmosphereShiftMode = keyof typeof ATMOSPHERE_SHIFT_TIMING;
+
+/**
+ * Coreografía del velo de atmósfera, en fracciones de su `cover`:
+ *
+ * - `washFrom`: desde dónde el fondo del tema nuevo empieza a fundirse por debajo
+ *   de la onda. Termina justo con ella, así que no hay un tramo de pantalla opaca
+ *   antes de tiempo.
+ * - `phraseFrom`: desde dónde entra la frase; termina cuando termina la cobertura,
+ *   así que al entrar en `hold` ya se lee y nunca queda la pantalla llena y vacía.
+ *
+ * Vive aquí con el resto de la config de movimiento, no dentro del componente.
+ */
+export const ATMOSPHERE_SHIFT_PARTS = { washFrom: 0.55, phraseFrom: 0.7 } as const;
