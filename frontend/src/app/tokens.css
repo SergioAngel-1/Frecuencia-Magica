@@ -713,6 +713,54 @@
   }
 }
 
+/* Tokens de velo y luz del tema, tipados para que transiten. Cada tema los fija como una terna
+   (`15 27 46`) que consumen `rgb(var(--scrim) / .8)` y los degradados del sitio; sin tipo, el
+   navegador los cambia de golpe con el tema de `<html>` y todo degradado hecho con ellos salta al
+   color del tema nuevo antes de que funda nada (una pantalla entera del tema final). Con `@property`
+   la terna es una lista de números que se interpola; la transición vive en la raíz
+   (`[data-theme-switching]` en `globals.css`) y los descendientes heredan el valor intermedio. */
+@property --scrim {
+  syntax: '<number>+';
+  inherits: true;
+  initial-value: 15 27 46;
+}
+
+@property --scrim-deep {
+  syntax: '<number>+';
+  inherits: true;
+  initial-value: 10 18 32;
+}
+
+@property --halo {
+  syntax: '<number>+';
+  inherits: true;
+  initial-value: 216 185 120;
+}
+
+@property --nebula-a {
+  syntax: '<number>+';
+  inherits: true;
+  initial-value: 150 198 188;
+}
+
+@property --nebula-b {
+  syntax: '<number>+';
+  inherits: true;
+  initial-value: 185 176 214;
+}
+
+@property --nebula-c {
+  syntax: '<number>+';
+  inherits: true;
+  initial-value: 216 185 120;
+}
+
+@property --nebula-boost {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
 /* Fundido de bordes de la materia editorial (foto, zebra o banda): una
    máscara, no un degradado de color, para que la imagen se disuelva en lo que
    haya detrás sin desajuste de tono. Se aplica a la capa de medios de

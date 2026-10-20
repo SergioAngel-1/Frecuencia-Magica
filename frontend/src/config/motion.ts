@@ -110,6 +110,13 @@ export const ATMOSPHERE_FADE_SECONDS =
  *   retira con `THEME_PHOTO_LEAVE_GRACE_MS` de margen.
  * - `engine` 1,8 s: opacidad del lienzo cósmico, las nebulosas y las figuras. Se
  *   resuelve antes de que el fondo termine de fundir.
+ * - `scrim` 2,1 s: los tokens de velo y luz (`--scrim`, `--scrim-deep`, `--halo`, `--nebula-*`),
+ *   que pintan los degradados anchos (el velo del héroe y del header, las luces). Están
+ *   registrados con `@property` en `tokens.css`, así que funden en vez de saltar con el tema de
+ *   `<html>`; acompañan al fondo y llegan justo antes que él.
+ * - `vignette` 2 s: la viñeta que oscurece el borde de la pantalla. Se pinta con tokens del
+ *   tema (un degradado que no transita), así que funde en dos capas; llega un poco antes que
+ *   el fondo para que éste siga siendo lo último en asentarse.
  * - `backdrop` 2,19 s: el campo de color del tema, la capa más grande y lenta.
  *   Deriva de `ATMOSPHERE_FADE_SECONDS`, igual al cruce completo del portal.
  *
@@ -120,6 +127,8 @@ export const ATMOSPHERE_FADE_SECONDS =
  */
 export const THEME_FADE_SECONDS = {
   backdrop: ATMOSPHERE_FADE_SECONDS,
+  vignette: 2,
+  scrim: 2.1,
   engine: 1.8,
   photo: 1.5,
   ink: 1.3,

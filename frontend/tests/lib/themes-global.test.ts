@@ -16,6 +16,7 @@ const MAY_SET_ATTRIBUTE = new Set([
   'app/[locale]/layout.tsx',
   'components/world/atmosphere-provider.tsx',
   'components/world/atmosphere-backdrop.tsx',
+  'components/world/nebula-layer.tsx',
   'components/world/atmosphere-shift-veil.tsx',
   'components/world/portal-transition.tsx',
   'components/layout/route-transition.tsx',

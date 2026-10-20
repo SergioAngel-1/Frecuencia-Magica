@@ -42,6 +42,7 @@ export function AtmosphereProvider({ children }: { children: ReactNode }) {
   const [announcement, setAnnouncement] = useState('');
   const previous = useRef<AtmosphereId | null>(null);
   const ink = useThemeFade('ink');
+  const scrim = useThemeFade('scrim');
 
   useEffect(() => {
     const root = document.documentElement;
@@ -62,8 +63,8 @@ export function AtmosphereProvider({ children }: { children: ReactNode }) {
 
     // La limpieza del efecto retira el atributo y la variable de duración siempre, también si
     // un cambio de `ink` o el desmontaje cancelan el fundido a mitad.
-    return beginThemeSwitch(document.documentElement, ink * 1000);
-  }, [atmosphereId, ink]);
+    return beginThemeSwitch(document.documentElement, { ink: ink * 1000, scrim: scrim * 1000 });
+  }, [atmosphereId, ink, scrim]);
 
   useEffect(() => {
     // La primera pasada sólo recuerda la atmósfera de partida: anunciar sólo

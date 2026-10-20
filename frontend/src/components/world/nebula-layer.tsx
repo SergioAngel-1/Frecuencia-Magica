@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react';
 
 import type { VisualMode } from '@/config/realms';
 import { useEngineProfile } from '@/hooks/use-engine-profile';
+import { useThemeCrossfade, slotStyle } from '@/hooks/use-theme-crossfade';
 import { useThemeFade } from '@/hooks/use-theme-fade';
 
 /** Un blob circular difuminado a la deriva. Su color es `--nebula-a|b|c` del tema activo y su fuerza, `--nebula-boost`. */
@@ -62,23 +63,45 @@ export function NebulaLayer({ visualMode = 'cosmic' }: { visualMode?: VisualMode
           }}
         />
       ))}
-      <div
-        className="absolute inset-0"
-        style={{
-          // Viñeta que oscurece toda la pantalla. Port del prototipo (líneas
-          // 64–69), corregido: con `at 50% 120%` el borde superior de la elipse
-          // (el stop oscuro al 100%) caía al 75% de la altura y dejaba el
-          // borde inferior sin oscurecer — la oscuridad "se cortaba" y la base
-          // del body (void-2 plano) quedaba a la vista como una banda más
-          // clara. Con `at 50% 145%` el borde de la elipse coincide con el
-          // borde inferior de la pantalla y la viñeta cubre todo el viewport.
-          // El velo es el de la atmósfera: en la noche, el navy de siempre
-          // (`--scrim` y `--scrim-deep`); en una clara, el velo claro, que no
-          // ensucia el fondo a gris.
-          background:
-            'radial-gradient(120% 90% at 50% 145%, rgb(var(--scrim) / 0) 40%, rgb(var(--scrim-deep) / 0.85) 100%)',
-        }}
-      />
+      <Vignette />
     </div>
+  );
+}
+
+/**
+ * Viñeta que oscurece toda la pantalla. Se pinta con `--scrim` y `--scrim-deep`, que
+ * cambian de golpe con el tema de `<html>`: sobre una sola capa, la viñeta (85 % de
+ * opacidad en el borde) saltaría al color del tema nuevo antes de que fundiera nada, como
+ * una pantalla entera del tema final. Va en dos capas (`useThemeCrossfade`), cada una con
+ * los tokens de su tema, y funde con el resto.
+ */
+function Vignette() {
+  const vignette = useThemeCrossfade('vignette');
+
+  return (
+    <>
+      {vignette.slots.map((slot, index) => (
+        <div
+          key={`${index}-${slot.key}`}
+          data-atmosphere={slot.id}
+          className="absolute inset-0"
+          style={{
+            // Viñeta que oscurece toda la pantalla. Port del prototipo (líneas
+            // 64–69), corregido: con `at 50% 120%` el borde superior de la elipse
+            // (el stop oscuro al 100%) caía al 75% de la altura y dejaba el
+            // borde inferior sin oscurecer — la oscuridad "se cortaba" y la base
+            // del body (void-2 plano) quedaba a la vista como una banda más
+            // clara. Con `at 50% 145%` el borde de la elipse coincide con el
+            // borde inferior de la pantalla y la viñeta cubre todo el viewport.
+            // El velo es el de la atmósfera: en la noche, el navy de siempre
+            // (`--scrim` y `--scrim-deep`); en una clara, el velo claro, que no
+            // ensucia el fondo a gris.
+            background:
+              'radial-gradient(120% 90% at 50% 145%, rgb(var(--scrim) / 0) 40%, rgb(var(--scrim-deep) / 0.85) 100%)',
+            ...slotStyle(slot, index === vignette.top),
+          }}
+        />
+      ))}
+    </>
   );
 }

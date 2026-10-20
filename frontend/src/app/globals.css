@@ -539,6 +539,15 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
    transiciones propias de cada elemento (p. ej. `transition-colors` de Tailwind) mientras dura
    el fundido. Se excluye el lienzo del motor y los contenedores de foto, que no tienen color
    que transitar y no deben repintarse. */
+/* Los tokens de velo y luz (`@property` en `tokens.css`) transitan en la raíz, con la duración
+   `--theme-scrim-duration`; los descendientes heredan el valor intermedio. */
+:root[data-theme-switching] {
+  transition-property:
+    --scrim, --scrim-deep, --halo, --nebula-a, --nebula-b, --nebula-c, --nebula-boost;
+  transition-duration: var(--theme-scrim-duration);
+  transition-timing-function: ease-in-out;
+}
+
 [data-theme-switching] *:not(canvas):not([data-photo-night]),
 [data-theme-switching] *::before,
 [data-theme-switching] *::after {

@@ -210,9 +210,11 @@ Sin ceremonia, cada capa funde con **su propia** duración (`THEME_FADE_SECONDS`
 | Tinta (texto y UI)     | `THEME_FADE_SECONDS.ink`      |         1,3 s |           0 s |
 | Foto del tema          | `THEME_FADE_SECONDS.photo`    |         1,5 s |           0 s |
 | Motor (lienzo y capas) | `THEME_FADE_SECONDS.engine`   |         1,8 s |           0 s |
+| Viñeta del borde       | `THEME_FADE_SECONDS.vignette` |           2 s |           0 s |
+| Velos y luces (tokens) | `THEME_FADE_SECONDS.scrim`    |         2,1 s |           0 s |
 | Fondo del tema         | `THEME_FADE_SECONDS.backdrop` |        2,19 s |           0 s |
 
-Con ceremonia todas las capas valen 0: el velo (o el portal) es la única transición visible y el tema salta debajo. Con movimiento reducido también son 0. El fondo se deriva del cruce completo del portal (`ATMOSPHERE_FADE_SECONDS` = `PORTAL_TIMING.full`: cover + settle + reveal) y la duración de la tinta viaja al CSS en `--theme-ink-duration`, que fija `beginThemeSwitch`; `globals.css` no repite el número.
+Lo que se pinta con degradados de tokens no puede transitar con el tema de `<html>`, que cambia de golpe. Los velos anchos (el del héroe, el del header) leen `--scrim`, `--scrim-deep`, `--halo` y `--nebula-*`, que están registrados con `@property` (`tokens.css`) y transitan en la raíz con `--theme-scrim-duration`. El fondo y la viñeta del borde, en cambio, se montan en dos capas con el `data-atmosphere` de cada tema (`useThemeCrossfade`) y funde entre ellas; así nunca aparece, antes del fundido, la pantalla entera con los colores del tema nuevo. Con ceremonia todas las capas valen 0: el velo (o el portal) es la única transición visible y el tema salta debajo. Con movimiento reducido también son 0. El fondo se deriva del cruce completo del portal (`ATMOSPHERE_FADE_SECONDS` = `PORTAL_TIMING.full`: cover + settle + reveal) y la duración de la tinta viaja al CSS en `--theme-ink-duration`, que fija `beginThemeSwitch`; `globals.css` no repite el número.
 
 ### Cruce de atmósfera
 
