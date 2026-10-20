@@ -224,6 +224,7 @@ Cambiar de tema es una experiencia, no un interruptor. Un cambio manual (selecto
 
 - **Lo que se ve.** El velo pinta el **fondo del tema destino** con sus tokens (`data-atmosphere`), no los del tema que se deja. Una onda con filo de `--halo` nace de la tarjeta pulsada; al cubrir, se lee la **frase** del tema destino (y «Hoy: {feeling}»), nunca su nombre. El tema se aplica con la pantalla ya cubierta: el salto de fondo, imágenes y sonido ocurre debajo. La Regla de la Noche que Cubre sigue: nunca un relleno de acento a pantalla completa.
 - **Tiempos.** `ATMOSPHERE_SHIFT_TIMING` (`config/motion.ts`): `full` 1 s de entrada, 1,7 s de reposo y 1,1 s de salida; `quick` 220/700/420 ms. Sólo se animan `transform` y `opacity`.
+- **El tema se aplica cuando el velo ya es opaco, no cuando lo dice un reloj.** La entrada es una animación que arranca después de pintar; un temporizador armado al pedir el cambio disparaba con el velo entre el 57 y el 92 % de opacidad y el cambio se veía a través. `AtmosphereShiftVeil` avisa (`covered()`) al acabar su fundido de fondo y entonces el store aplica el tema y pasa a `hold`; `ATMOSPHERE_SHIFT_COVER_GRACE_MS` es sólo el plazo de respaldo para un velo que nunca avisa.
 - **Movimiento reducido.** `quick` y sin onda: el cruce queda en un fundido. El resto del sitio no gana animaciones por esto.
 - **Guardas.** `tests/lib/atmosphere-shift.test.ts`, `tests/stores/atmosphere-shift-store.test.ts` y `tests/lib/atmosphere-shift-writers.test.ts` (nadie más escribe la elección).
 

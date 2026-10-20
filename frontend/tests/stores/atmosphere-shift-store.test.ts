@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ATMOSPHERE_SHIFT_TIMING } from '@/config/motion';
+import { ATMOSPHERE_SHIFT_COVER_GRACE_MS, ATMOSPHERE_SHIFT_TIMING } from '@/config/motion';
 import { preloadTheme } from '@/lib/atmosphere/photo-preload';
 import type { ShiftRequest } from '@/lib/atmosphere/shift';
 import { activeMood } from '@/lib/arrival/selected-mood';
@@ -13,6 +13,9 @@ vi.mock('@/lib/atmosphere/photo-preload', () => ({
 
 const preload = vi.mocked(preloadTheme);
 const { full, quick } = ATMOSPHERE_SHIFT_TIMING;
+
+/** El velo avisa de que ya cubre la pantalla (lo hace `AtmosphereShiftVeil` al acabar su fundido). */
+const veilCovers = () => useAtmosphereShiftStore.getState().covered();
 
 const dusk: ShiftRequest = { choice: 'dusk', resolved: 'dusk', source: 'manual', feeling: null };
 const auto: ShiftRequest = { choice: null, resolved: 'night', source: 'manual', feeling: null };
@@ -82,7 +85,7 @@ describe('useAtmosphereShiftStore', () => {
 
     shift.ask({ choice: 'dawn', resolved: 'dawn', source: 'feeling', feeling: 'mood:calm' });
     shift.confirm();
-    vi.advanceTimersByTime(full.cover);
+    veilCovers();
 
     const { choice, feeling } = useAtmosphereStore.getState();
     expect(activeMood(choice, feeling)).toBe('calm');
@@ -94,20 +97,40 @@ describe('useAtmosphereShiftStore', () => {
     shift.ask({ ...dusk, onApplied });
     shift.confirm();
 
-    vi.advanceTimersByTime(full.cover - 1);
+    // Por mucho que pase el tiempo previsto del velo, mientras no avise de que cubre no se aplica.
+    vi.advanceTimersByTime(full.cover);
     expect(onApplied).not.toHaveBeenCalled();
 
-    vi.advanceTimersByTime(1);
+    veilCovers();
     expect(onApplied).toHaveBeenCalledTimes(1);
   });
 
-  it('aceptar cruza: el tema se aplica al cubrir la pantalla, no antes', () => {
+  it('aceptar cruza: el tema se aplica cuando el velo ya cubre la pantalla, no antes', () => {
     const shift = useAtmosphereShiftStore.getState();
     shift.ask(dusk);
     shift.confirm();
 
     expect(useAtmosphereShiftStore.getState().phase).toBe('in');
-    vi.advanceTimersByTime(full.cover - 1);
+    vi.advanceTimersByTime(full.cover);
+    expect(useAtmosphereShiftStore.getState().phase).toBe('in');
+    expect(useAtmosphereStore.getState().choice).toBeNull();
+
+    veilCovers();
+    expect(useAtmosphereShiftStore.getState().phase).toBe('hold');
+    expect(useAtmosphereStore.getState().choice).toBe('dusk');
+  });
+
+  /**
+   * Regresión: el tema se aplicaba con un temporizador armado al pedir el cambio, pero el velo es una
+   * animación que arranca después de pintar. En el momento de aplicar el tema el velo estaba entre el
+   * 57 % y el 92 % de opacidad y la onda a un 83–95 % de su recorrido: el cambio se veía a través.
+   */
+  it('si el velo no avisa, el tema se aplica igualmente al pasar el plazo de respaldo', () => {
+    const shift = useAtmosphereShiftStore.getState();
+    shift.ask(dusk);
+    shift.confirm();
+
+    vi.advanceTimersByTime(full.cover + ATMOSPHERE_SHIFT_COVER_GRACE_MS - 1);
     expect(useAtmosphereStore.getState().choice).toBeNull();
 
     vi.advanceTimersByTime(1);
@@ -115,10 +138,33 @@ describe('useAtmosphereShiftStore', () => {
     expect(useAtmosphereStore.getState().choice).toBe('dusk');
   });
 
+  it('el aviso del velo y el plazo de respaldo no aplican el tema dos veces', () => {
+    const onApplied = vi.fn();
+    useAtmosphereShiftStore.getState().cross({ ...dusk, onApplied });
+
+    veilCovers();
+    veilCovers();
+    vi.advanceTimersByTime(full.cover + ATMOSPHERE_SHIFT_COVER_GRACE_MS);
+
+    expect(onApplied).toHaveBeenCalledTimes(1);
+  });
+
+  it('el aviso del velo fuera de un cruce en `in` no hace nada', () => {
+    veilCovers();
+    expect(useAtmosphereShiftStore.getState().phase).toBe('idle');
+
+    useAtmosphereShiftStore.getState().cross(dusk);
+    veilCovers();
+    expect(useAtmosphereShiftStore.getState().phase).toBe('hold');
+
+    veilCovers();
+    expect(useAtmosphereShiftStore.getState().phase).toBe('hold');
+  });
+
   it('recorre in → hold → out → idle con los tiempos de config', async () => {
     useAtmosphereShiftStore.getState().cross(dusk);
 
-    await vi.advanceTimersByTimeAsync(full.cover);
+    veilCovers();
     expect(useAtmosphereShiftStore.getState().phase).toBe('hold');
 
     await vi.advanceTimersByTimeAsync(full.hold);
@@ -131,7 +177,8 @@ describe('useAtmosphereShiftStore', () => {
   it('el cruce reducido usa los tiempos de `quick`', async () => {
     useAtmosphereShiftStore.getState().cross(dusk, { mode: 'quick' });
 
-    await vi.advanceTimersByTimeAsync(quick.cover + quick.hold + quick.reveal);
+    veilCovers();
+    await vi.advanceTimersByTimeAsync(quick.hold + quick.reveal);
     expect(useAtmosphereShiftStore.getState().phase).toBe('idle');
     expect(useAtmosphereStore.getState().choice).toBe('dusk');
   });
@@ -152,7 +199,8 @@ describe('useAtmosphereShiftStore', () => {
 
     useAtmosphereShiftStore.getState().cross(dusk);
 
-    await vi.advanceTimersByTimeAsync(full.cover + full.hold);
+    veilCovers();
+    await vi.advanceTimersByTimeAsync(full.hold);
     expect(useAtmosphereShiftStore.getState().phase).toBe('hold');
     expect(useAtmosphereStore.getState().choice).toBe('dusk');
 
@@ -174,7 +222,8 @@ describe('useAtmosphereShiftStore', () => {
 
     const shift = useAtmosphereShiftStore.getState();
     shift.cross(dusk);
-    await vi.advanceTimersByTimeAsync(full.cover + full.hold);
+    veilCovers();
+    await vi.advanceTimersByTimeAsync(full.hold);
     expect(useAtmosphereShiftStore.getState().phase).toBe('hold');
 
     // Se fuerza el reposo (como haría una cancelación) y arranca otro cruce.
@@ -182,7 +231,8 @@ describe('useAtmosphereShiftStore', () => {
     preload.mockResolvedValueOnce(undefined);
     shift.cross({ ...dusk, choice: 'forest', resolved: 'forest' });
 
-    await vi.advanceTimersByTimeAsync(full.cover + full.hold);
+    veilCovers();
+    await vi.advanceTimersByTimeAsync(full.hold);
     expect(useAtmosphereShiftStore.getState().phase).toBe('out');
 
     finishOld();
@@ -194,7 +244,7 @@ describe('useAtmosphereShiftStore', () => {
     useAtmosphereStore.setState({ choice: 'dawn' });
     useAtmosphereShiftStore.getState().cross(auto);
 
-    vi.advanceTimersByTime(full.cover);
+    veilCovers();
     expect(useAtmosphereStore.getState().choice).toBeNull();
   });
 

@@ -7,7 +7,6 @@ const route = vi.hoisted(() => ({ pathname: '/' }));
 // Los que necesitan la confirmación mueven `route.pathname` a otra vista.
 vi.mock('@/i18n/navigation', () => ({ usePathname: () => route.pathname }));
 
-import { ATMOSPHERE_SHIFT_TIMING } from '@/config/motion';
 import { useArrival } from '@/hooks/use-arrival';
 import { useArrivalStore } from '@/stores/arrival-store';
 import { useAtmosphereShiftStore } from '@/stores/atmosphere-shift-store';
@@ -155,7 +154,8 @@ describe('useArrival: la emoción no se adhiere hasta que el tema se aplica', ()
       act(() => result.current.pick('mood:tiredness', { onApplied }));
       act(() => useAtmosphereShiftStore.getState().confirm());
 
-      act(() => vi.advanceTimersByTime(ATMOSPHERE_SHIFT_TIMING.full.cover));
+      // El tema se aplica cuando el velo avisa de que ya cubre la pantalla.
+      act(() => useAtmosphereShiftStore.getState().covered());
 
       expect(onApplied).toHaveBeenCalledTimes(1);
       expect(useAtmosphereStore.getState()).toMatchObject({

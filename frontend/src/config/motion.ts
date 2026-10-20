@@ -174,6 +174,16 @@ export const ATMOSPHERE_SHIFT_TIMING = {
   quick: { cover: 220, hold: 700, reveal: 420 },
 } as const;
 
+/**
+ * Plazo de respaldo, en milisegundos, para que el velo avise de que ya cubre la pantalla. El tema se
+ * aplica cuando el velo lo dice (`AtmosphereShiftVeil`, al acabar su fundido) y no con un reloj: el
+ * velo es una animación que arranca después de pintar, así que un temporizador armado al pedir el
+ * cambio disparaba con el velo a medias (57–92 % de opacidad) y el cambio se veía a través. Este
+ * plazo sólo cubre al velo que nunca avisa (pestaña en segundo plano, animación cancelada): pasado
+ * `cover` + este margen, el tema se aplica igualmente. Misma idea que `PORTAL_MAX_HOLD`.
+ */
+export const ATMOSPHERE_SHIFT_COVER_GRACE_MS = 1200;
+
 export type AtmosphereShiftMode = keyof typeof ATMOSPHERE_SHIFT_TIMING;
 
 /**

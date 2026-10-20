@@ -63,6 +63,10 @@ export function AtmosphereShiftVeil() {
         className="absolute inset-0 bg-[image:var(--atmo-bg)]"
         initial={{ opacity: 0 }}
         animate={{ opacity: covering ? 1 : 0 }}
+        // El fondo del tema nuevo ya es opaco: ahora sí se puede cambiar el tema por debajo.
+        onAnimationComplete={() => {
+          if (covering) useAtmosphereShiftStore.getState().covered();
+        }}
         transition={
           covering
             ? { duration: (cover - washDelay) / 1000, delay: washDelay / 1000, ease: 'easeIn' }
