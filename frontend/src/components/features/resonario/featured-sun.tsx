@@ -29,10 +29,14 @@ export function FeaturedSun({ audio, cover }: FeaturedSunProps) {
   const kind = t(`kinds.${audio.kind}.title`);
 
   return (
-    <div className="flex flex-col items-center gap-6 text-center" data-featured="sun">
-      <Badge solid>{playing ? t('nowPlaying') : t('featuredBadge')}</Badge>
-      {/* El halo de la esfera grande se contiene en el ancho de la pantalla. */}
-      <div className="w-full overflow-hidden py-4">
+    <div className="isolate flex flex-col items-center gap-2 text-center" data-featured="sun">
+      <Badge solid className="relative z-20 self-center">
+        {playing ? t('nowPlaying') : t('featuredBadge')}
+      </Badge>
+      {/* El halo de la esfera grande se recorta sólo en el borde de la pantalla (a sangre, sin barra
+          horizontal) y no a lo alto: `overflow-hidden` lo cortaba en seco por arriba y, en móvil,
+          en los márgenes de la página. El aire vertical lo recibe entero. */}
+      <div className="fm-editorial-full-bleed overflow-x-clip px-6 py-14">
         <AudioDisc
           audio={{ id: audio.id, hz: audio.hz, band: audio.band }}
           title={title}
@@ -44,7 +48,7 @@ export function FeaturedSun({ audio, cover }: FeaturedSunProps) {
           showEqualizer
         />
       </div>
-      <div className="flex flex-wrap justify-center gap-3">
+      <div className="relative z-20 mt-4 flex flex-wrap justify-center gap-3">
         <SampleButton audioId={audio.id} />
         <Button variant="primary" onClick={() => open(audio.id)}>
           {t('sample.full')}
