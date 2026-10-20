@@ -538,7 +538,8 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
    `opacity`, que encarecían todo el DOM. El `!important` hace falta para ganar a las
    transiciones propias de cada elemento (p. ej. `transition-colors` de Tailwind) mientras dura
    el fundido. Se excluye el lienzo del motor y los contenedores de foto, que no tienen color
-   que transitar y no deben repintarse. */
+   que transitar y no deben repintarse; la variante de tema tampoco: su transición es la de su
+   `opacity` al cargar (`PHOTO_LOAD_FADE_SECONDS`), que esta regla anularía. */
 /* Los tokens de velo y luz (`@property` en `tokens.css`) transitan en la raíz, con la duración
    `--theme-scrim-duration`; los descendientes heredan el valor intermedio. */
 :root[data-theme-switching] {
@@ -548,7 +549,7 @@ main:has([data-band-chain='footer']) [data-footer-lead] {
   transition-timing-function: ease-in-out;
 }
 
-[data-theme-switching] *:not(canvas):not([data-photo-night]),
+[data-theme-switching] *:not(canvas):not([data-photo-night]):not([data-photo-variant]),
 [data-theme-switching] *::before,
 [data-theme-switching] *::after {
   transition-property: color, background-color, border-color, fill, stroke !important;

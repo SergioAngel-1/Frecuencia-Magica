@@ -1,15 +1,16 @@
 'use client';
 
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import Image from 'next/image';
 
+import { PHOTO_LOAD_FADE_SECONDS } from '@/config/motion';
 import { useAtmosphere } from '@/hooks/use-atmosphere';
 import { useMounted } from '@/hooks/use-mounted';
 import { useThemeFade } from '@/hooks/use-theme-fade';
 import { registerThemedPhoto } from '@/lib/atmosphere/photo-preload';
-import { photoLeaveMs } from '@/lib/atmosphere/theme-fade';
 import type { EditorialMedia } from '@/types/editorial-media';
 
+import { LeavingPhoto, type LeavingPhotoLayer } from './leaving-photo';
 import { useThemeOverride } from './theme-override';
 
 type ThemedPhotoProps = {
@@ -25,14 +26,7 @@ const NO_VARIANTS: NonNullable<EditorialMedia['variants']> = {};
 /** Tope para que una capa saliente no se quede encima si la nueva nunca avisa de que cargó. */
 const LEAVE_READY_TIMEOUT_MS = 2500;
 
-type LeavingPhoto = {
-  src: string;
-  style: CSSProperties;
-  key: number;
-  fading: boolean;
-  /** Duración congelada al crearse: un cambio de ceremonia a mitad no la acorta. */
-  duration: number;
-};
+type SeenPhoto = { src: string; style: CSSProperties; changes: number };
 
 /**
  * Foto de un slot que tiene imagen propia en algunos temas. La base (la de la
@@ -67,11 +61,12 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
   const root = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState<string | null>(null);
   const [failed, setFailed] = useState<string | null>(null);
-  const [leaving, setLeaving] = useState<LeavingPhoto | null>(null);
-  const previous = useRef<{ src: string; style: CSSProperties } | null>(null);
-  const leaveSequence = useRef(0);
-  const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const stallTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Las fotos que dejaron de verse y aún se desvanecen, de la más antigua a la más reciente.
+  const [leaving, setLeaving] = useState<readonly LeavingPhotoLayer[]>([]);
+  // La foto que se estaba viendo la última vez que este componente pintó, y cuántas veces ha
+  // cambiado: de ahí sale la foto saliente y su `key`. Es estado y no un ref porque se compara y se
+  // reescribe durante el render (ver más abajo).
+  const [seen, setSeen] = useState<SeenPhoto | null>(null);
 
   const variants = media.variants ?? NO_VARIANTS;
   const themes = Object.keys(variants).join(' ');
@@ -93,87 +88,62 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
   );
 
   // Detecta el cambio de foto visible y deja la anterior encima para fundirla.
+  //
+  // Se hace durante el render (estado derivado: React vuelve a renderizar este componente antes de
+  // confirmar nada) y no en un efecto: la foto saliente tiene que estar en el DOM en el MISMO commit
+  // que trae la nueva. Con un efecto pasivo, `setLeaving` se programa para una tarea posterior y el
+  // navegador puede pintar un frame en medio, en el que la variante del tema final (ya cargada, si
+  // estaba en caché) se ve a opacidad plena o la base reaparece sin nada encima: un salto justo antes
+  // de que empiece el fundido. Con el commit atómico, lo primero que se ve sigue siendo la foto vieja.
+  //
+  // `fade` ya es 0 con ceremonia (velo o portal) o con movimiento reducido: en esos casos el cambio
+  // ocurre tapado o es inmediato y no hay capa saliente.
+  if ((mounted || override !== null) && seen?.src !== current) {
+    setSeen({ src: current, style: currentStyle, changes: (seen?.changes ?? 0) + 1 });
+
+    if (seen !== null && fade !== 0 && override === null) {
+      // Se APILA, no se sustituye: si el cambio llega a mitad de otro fundido, la saliente anterior
+      // sigue desvaneciéndose y la que acaba de dejar de verse queda debajo, opaca. Sustituir la
+      // anterior la cortaba en seco y la nueva reaparecía a opacidad 1 aunque sólo se viera a medias.
+      setLeaving([
+        ...leaving,
+        { src: seen.src, style: seen.style, key: seen.changes, fading: false, duration: fade },
+      ]);
+    }
+  }
+
+  // La nueva está lista: la base ya lo está; una variante, cuando ha cargado.
+  const ready = current === media.src || loaded === current;
+  const waiting = leaving.some((photo) => !photo.fading);
+  const waitingSince = leaving.filter((photo) => !photo.fading).at(-1)?.key;
+
+  // Las salientes no se desvanecen hasta que la nueva está lista.
   useEffect(() => {
-    if (!mounted && override === null) return;
+    if (!waiting || !ready) return;
 
-    const shown = previous.current;
+    setLeaving((photos) =>
+      photos.map((photo) => (photo.fading ? photo : { ...photo, fading: true })),
+    );
+  }, [waiting, ready]);
 
-    if (shown === null) {
-      previous.current = { src: current, style: currentStyle };
-      return;
-    }
+  // Si la nueva nunca avisa de que cargó, las salientes empiezan a irse igual.
+  useEffect(() => {
+    if (waitingSince === undefined) return;
 
-    if (shown.src === current) return;
-
-    previous.current = { src: current, style: currentStyle };
-
-    // `fade` ya es 0 con ceremonia (velo o portal) o con movimiento reducido:
-    // en esos casos el cambio ocurre tapado o es inmediato y no hay capa saliente.
-    if (fade === 0 || override !== null) return;
-
-    if (leaveTimer.current !== null) {
-      clearTimeout(leaveTimer.current);
-      leaveTimer.current = null;
-    }
-    if (stallTimer.current !== null) {
-      clearTimeout(stallTimer.current);
-      stallTimer.current = null;
-    }
-
-    const key = ++leaveSequence.current;
-
-    setLeaving({ ...shown, key, fading: false, duration: fade });
-
-    // Si la nueva nunca avisa de que cargó, la saliente empieza a irse igual.
-    stallTimer.current = setTimeout(() => {
-      stallTimer.current = null;
-      setLeaving((value) =>
-        value && value.key === key && !value.fading ? { ...value, fading: true } : value,
+    const timer = setTimeout(() => {
+      setLeaving((photos) =>
+        photos.map((photo) => (photo.fading ? photo : { ...photo, fading: true })),
       );
     }, LEAVE_READY_TIMEOUT_MS);
-  }, [current, currentStyle, mounted, override, fade]);
 
-  // La saliente no se desvanece hasta que la nueva está lista (la base ya lo está).
-  useEffect(() => {
-    if (!leaving || leaving.fading) return;
+    return () => clearTimeout(timer);
+  }, [waitingSince]);
 
-    const ready = current === media.src || loaded === current;
-
-    if (!ready) return;
-
-    if (stallTimer.current !== null) {
-      clearTimeout(stallTimer.current);
-      stallTimer.current = null;
-    }
-
-    setLeaving((value) =>
-      value && value.key === leaving.key ? { ...value, fading: true } : value,
-    );
-  }, [leaving, loaded, current, media.src]);
-
-  // Al arrancar el fundido, retira la capa cuando termina.
-  useEffect(() => {
-    if (!leaving || !leaving.fading) return;
-
-    if (leaveTimer.current !== null) clearTimeout(leaveTimer.current);
-
-    const key = leaving.key;
-
-    leaveTimer.current = setTimeout(() => {
-      leaveTimer.current = null;
-      setLeaving((value) => (value && value.key === key ? null : value));
-    }, photoLeaveMs(leaving.duration));
-  }, [leaving]);
-
-  // Los temporizadores viven hasta el desmontaje: no se cancelan al re-renderizar
-  // mientras la capa saliente sigue en el DOM.
-  useEffect(
-    () => () => {
-      if (leaveTimer.current !== null) clearTimeout(leaveTimer.current);
-      if (stallTimer.current !== null) clearTimeout(stallTimer.current);
-    },
+  const retire = useCallback(
+    (key: number) => setLeaving((photos) => photos.filter((photo) => photo.key !== key)),
     [],
   );
+
   // Con override las reglas de `globals.css` no aplican (miran `<html>`): la base se oculta aquí, con
   // `display: none` para que tampoco se descargue, y sin el lavado del esquema claro de origen.
   const baseStyle = override
@@ -211,37 +181,31 @@ export function ThemedPhoto({ media, className, style, sizes, priority }: Themed
           alt=""
           aria-hidden="true"
           className={className}
+          data-photo-variant=""
           fill
           onError={() => setFailed(variant)}
           onLoad={() => setLoaded(variant)}
           priority={priority}
           sizes={sizes}
           src={variant}
-          style={{ ...variantStyle, opacity: loaded === variant ? 1 : 0 }}
-        />
-      ) : null}
-      {/* Encima de la nueva: la foto que se va, opaca y sin el lavado del esquema claro. */}
-      {leaving ? (
-        <Image
-          key={`leaving-${leaving.key}`}
-          alt=""
-          aria-hidden="true"
-          className={className}
-          data-photo-leaving=""
-          fill
-          sizes={sizes}
-          src={leaving.src}
           style={{
-            ...leaving.style,
-            opacity: 1,
-            filter: 'none',
-            animation: leaving.fading
-              ? `fm-photo-leave ${leaving.duration}s ease-in-out forwards`
-              : undefined,
-            pointerEvents: 'none',
+            ...variantStyle,
+            opacity: loaded === variant ? 1 : 0,
+            transition: `opacity ${PHOTO_LOAD_FADE_SECONDS}s ease-out`,
           }}
         />
       ) : null}
+      {/* Encima de la nueva: las fotos que se van. La más antigua queda arriba del todo (es la que
+          lleva más fundido hecho); la que acaba de dejar de verse, justo sobre la nueva. */}
+      {[...leaving].reverse().map((photo) => (
+        <LeavingPhoto
+          key={`leaving-${photo.key}`}
+          photo={photo}
+          className={className}
+          sizes={sizes}
+          onDone={retire}
+        />
+      ))}
     </div>
   );
 }

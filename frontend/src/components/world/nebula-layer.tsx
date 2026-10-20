@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react';
 
 import type { VisualMode } from '@/config/realms';
 import { useEngineProfile } from '@/hooks/use-engine-profile';
-import { useThemeCrossfade, slotStyle } from '@/hooks/use-theme-crossfade';
+import { layerStyle, useThemeCrossfade } from '@/hooks/use-theme-crossfade';
 import { useThemeFade } from '@/hooks/use-theme-fade';
 
 /** Un blob circular difuminado a la deriva. Su color es `--nebula-a|b|c` del tema activo y su fuerza, `--nebula-boost`. */
@@ -72,18 +72,18 @@ export function NebulaLayer({ visualMode = 'cosmic' }: { visualMode?: VisualMode
  * Viñeta que oscurece toda la pantalla. Se pinta con `--scrim` y `--scrim-deep`, que
  * cambian de golpe con el tema de `<html>`: sobre una sola capa, la viñeta (85 % de
  * opacidad en el borde) saltaría al color del tema nuevo antes de que fundiera nada, como
- * una pantalla entera del tema final. Va en dos capas (`useThemeCrossfade`), cada una con
+ * una pantalla entera del tema final. Va en una pila de capas (`useThemeCrossfade`), cada una con
  * los tokens de su tema, y funde con el resto.
  */
 function Vignette() {
-  const vignette = useThemeCrossfade('vignette');
+  const layers = useThemeCrossfade('vignette');
 
   return (
     <>
-      {vignette.slots.map((slot, index) => (
+      {layers.map((layer) => (
         <div
-          key={`${index}-${slot.key}`}
-          data-atmosphere={slot.id}
+          key={layer.key}
+          data-atmosphere={layer.id}
           className="absolute inset-0"
           style={{
             // Viñeta que oscurece toda la pantalla. Port del prototipo (líneas
@@ -98,7 +98,7 @@ function Vignette() {
             // ensucia el fondo a gris.
             background:
               'radial-gradient(120% 90% at 50% 145%, rgb(var(--scrim) / 0) 40%, rgb(var(--scrim-deep) / 0.85) 100%)',
-            ...slotStyle(slot, index === vignette.top),
+            ...layerStyle(layer),
           }}
         />
       ))}

@@ -135,6 +135,13 @@ export const THEME_FADE_SECONDS = {
 } as const;
 
 /**
+ * Fundido de entrada, en segundos, de la foto de un tema cuando termina de cargar. No es el
+ * fundido del cambio de tema (`THEME_FADE_SECONDS.photo`, que lo lleva la foto saliente): es que la
+ * imagen no aparece de golpe sobre el fondo en una carga directa o al entrar en una vista.
+ */
+export const PHOTO_LOAD_FADE_SECONDS = 0.8;
+
+/**
  * Margen, en milisegundos, antes de retirar del DOM la capa saliente de una foto
  * ya desvanecida: cubre el último frame para que no se corte en seco.
  */
